@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-detect-the-pretender.mp4": {
+      "page": 1,
+      "image": "02-sandbagging-benchmark/01-detect-the-pretender.png",
+      "interaction_id": "v1_ChdoeWpOYXRDS09yclNqTWNQOW9xYW9BMBIXaHlqTmF0Q0tPcnJTak1jUDlvcWFvQTA",
+      "duration": 10.005
+    },
+    "02-build-fair-cases.mp4": {
+      "page": 2,
+      "image": "02-sandbagging-benchmark/02-build-fair-cases.png",
+      "interaction_id": "v1_ChdoeWpOYXRDS09yclNqTWNQOW9xYW9BMBIXcWlqTmFvM3ZOcHZUak1jUDk5Yi0wQWs",
+      "duration": 10.005
+    },
+    "03-test-the-auditors.mp4": {
+      "page": 3,
+      "image": "02-sandbagging-benchmark/03-test-the-auditors.png",
+      "interaction_id": "v1_ChdoeWpOYXRDS09yclNqTWNQOW9xYW9BMBIXMlNqTmF2aWNDYjdYLXNBUHp2T01pUUU",
+      "duration": 10.005
+    },
+    "04-plan-and-output.mp4": {
+      "page": 4,
+      "image": "02-sandbagging-benchmark/04-plan-and-output.png",
+      "interaction_id": "v1_ChdoeWpOYXRDS09yclNqTWNQOW9xYW9BMBIXQ1NuTmF2ZUNDZDZSak1jUG51Q0p1QVk",
+      "duration": 10.005
+    }
+  }
+}

@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: EVALS
+SUBTITLE: Testing what an AI can do and how it behaves.
+1. THE IDEA
+An evaluation is a planned test of an AI system. Like checking a bike's brakes and steering, different tests examine different abilities and failure modes.
+2. HOW IT WORKS
+Researchers choose tasks, conditions, scoring rules, and comparison baselines. They test a particular model together with its prompts, tools, and other settings. Those choices affect the result.
+3. SEE IT HAPPEN
+A toy assistant answers arithmetic questions, follows instructions, and handles misleading facts. Each test measures something specific. Show separate scorecards rather than one giant intelligence number.
+4. WHY IT MATTERS
+A strong score is evidence about the tested setup, not a promise about every real situation. Use fresh tests, realistic tasks, repeated trials, and careful reports of what was and was not measured.
+5. TEST THE SYSTEM
+A model with tools may behave differently from the same model alone. Evaluate the actual configuration people will use.
+6. KEEP SCORES HONEST
+A score needs a denominator, a task definition, and uncertainty. Report failures and limitations alongside successes.
+FOOTER: Good evaluations ask clear questions and state their limits.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.

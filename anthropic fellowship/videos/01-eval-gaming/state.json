@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-the-question.mp4": {
+      "page": 1,
+      "image": "01-eval-gaming/01-the-question.png",
+      "interaction_id": "v1_Chd1Q2ZOYW92bUFyYlZqTWNQdk5McjJRZxIXdUNmTmFvdm1BcmJWak1jUHZOTHIyUWc",
+      "duration": 10.005
+    },
+    "02-arm-a-silent-awareness.mp4": {
+      "page": 2,
+      "image": "01-eval-gaming/02-arm-a-silent-awareness.png",
+      "interaction_id": "v1_Chd1Q2ZOYW92bUFyYlZqTWNQdk5McjJRZxIXMlNmTmF1M0lBZFBVak1jUDFQdWRxQTA",
+      "duration": 10.005
+    },
+    "03-arm-b-steering-cue.mp4": {
+      "page": 3,
+      "image": "01-eval-gaming/03-arm-b-steering-cue.png",
+      "interaction_id": "v1_Chd1Q2ZOYW92bUFyYlZqTWNQdk5McjJRZxIXRWlqTmFxejdIcmJQak1jUDN2aWNrQVU",
+      "duration": 10.005
+    },
+    "04-plan-and-output.mp4": {
+      "page": 4,
+      "image": "01-eval-gaming/04-plan-and-output.png",
+      "interaction_id": "v1_Chd1Q2ZOYW92bUFyYlZqTWNQdk5McjJRZxIXVFNqTmFzNzBGNFhkak1jUDhLYmJ5QTA",
+      "duration": 10.005
+    }
+  }
+}

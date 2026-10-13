@@ -1,0 +1,3037 @@
+{
+  "questions": [
+    {
+      "id": "ai-safety-04-interpretability-01-q1",
+      "pageId": "ai-safety-04-interpretability-01",
+      "type": "choice",
+      "prompt": "What is the main goal of mechanistic interpretability?",
+      "options": [
+        "Rewriting a model's training data so that its answers become easier for people to read and check later",
+        "Asking the model to describe in its own words why it gave each answer",
+        "Explaining how a model's internal parts produce an answer, then testing that explanation",
+        "Measuring how quickly a model produces answers on different kinds of computer hardware"
+      ],
+      "answer": 2,
+      "explanation": "Mechanistic interpretability inspects internal numbers and connections, proposes a specific mechanism, and tests it by changing those parts.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-01-q2",
+      "pageId": "ai-safety-04-interpretability-01",
+      "type": "choice",
+      "prompt": "Researchers think a tiny model completes 'A B A' with 'B' using a copying circuit. What is the best next step to support that idea?",
+      "options": [
+        "Interrupt the proposed circuit and check whether copying gets worse",
+        "Draw a cleaner diagram of the circuit so the story is more convincing",
+        "Ask the model directly whether it relies on a copying circuit for this",
+        "Assume a much larger model must use exactly the same circuit"
+      ],
+      "answer": 0,
+      "explanation": "An explanation needs a causal test: if interrupting the circuit hurts copying, that supports the claim. A nice diagram or a self-report is not a test.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-01-q3",
+      "pageId": "ai-safety-04-interpretability-01",
+      "type": "truefalse",
+      "prompt": "In mechanistic interpretability, a proposed mechanism should be tested by changing the parts involved, not just described.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A convincing story is not enough; researchers change the parts they think matter and check whether the behavior changes as predicted.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-02-q1",
+      "pageId": "ai-safety-04-interpretability-02",
+      "type": "choice",
+      "prompt": "In a transformer, what is the residual stream?",
+      "options": [
+        "A separate memory bank that stores the training data for later lookup",
+        "The final list of word probabilities produced at the very end of the model",
+        "A queue that hands tokens one at a time to a second, smaller model",
+        "A vector for each token that attention and MLP blocks read from and add updates to"
+      ],
+      "answer": 3,
+      "explanation": "Like a shared whiteboard, the residual stream carries each token's vector through the layers while blocks read it and add their notes.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-02-q2",
+      "pageId": "ai-safety-04-interpretability-02",
+      "type": "choice",
+      "prompt": "A researcher finds one coordinate of the residual stream that rises for city names. Why be cautious about calling it 'the city number'?",
+      "options": [
+        "Blocks never read the residual stream, so its values do not affect outputs",
+        "Stream coordinates usually mix many concepts, so one number is rarely one clean idea",
+        "Every coordinate is reset to zero after each layer, so it cannot hold information",
+        "The residual stream only carries grammar, never anything about meaning"
+      ],
+      "answer": 1,
+      "explanation": "Coordinates in the stream typically blend many concepts; a single number lining up with cities may also respond to other things.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-02-q3",
+      "pageId": "ai-safety-04-interpretability-02",
+      "type": "choice",
+      "prompt": "Which description best matches how transformer blocks use the residual stream?",
+      "options": [
+        "Blocks pass private notes to each other that bypass the stream",
+        "Each block reads the shared stream and adds its own update to it",
+        "Each block erases the stream and writes a completely fresh copy",
+        "Only the final block is allowed to read what is in the stream"
+      ],
+      "answer": 1,
+      "explanation": "Many parts read and update the same stream, so information such as name clues and grammar clues accumulates layer by layer.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-03-q1",
+      "pageId": "ai-safety-04-interpretability-03",
+      "type": "choice",
+      "prompt": "What does an attention head mainly do inside a transformer?",
+      "options": [
+        "Stores a fixed list of facts about the world",
+        "Converts the final vector into the single chosen word",
+        "Deletes tokens that seem unimportant to the answer",
+        "Moves useful information between token positions"
+      ],
+      "answer": 3,
+      "explanation": "Attention heads let a token draw on context by moving information from other positions; MLP layers do much of the per-position processing.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-03-q2",
+      "pageId": "ai-safety-04-interpretability-03",
+      "type": "choice",
+      "prompt": "How does an attention head decide how much to draw from each earlier token?",
+      "options": [
+        "Queries and keys are compared to produce attention weights over value vectors",
+        "It counts how often each word appeared in the training data and favors the frequent ones",
+        "Engineers hand-write rules telling it which earlier words to look at for each task",
+        "It always gives the most weight to the very first token"
+      ],
+      "answer": 0,
+      "explanation": "Queries and keys set the attention weights; a weighted mix of value vectors is transformed and added to the residual stream. Training learns these operations.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-03-q3",
+      "pageId": "ai-safety-04-interpretability-03",
+      "type": "choice",
+      "prompt": "A visualization shows a bright attention arrow from 'her' back to 'Mia'. What can you safely conclude?",
+      "options": [
+        "The model has confirmed that Mia is the person who dropped the bag",
+        "No other head or layer in the model contributed to that prediction",
+        "Attention went there, but what moved and whether it mattered still need testing",
+        "The head definitely resolved the pronoun and caused the model's final answer about Mia"
+      ],
+      "answer": 2,
+      "explanation": "An attention pattern shows where a head looked, not what information moved or why the output changed. Those claims need interventions.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-04-q1",
+      "pageId": "ai-safety-04-interpretability-04",
+      "type": "choice",
+      "prompt": "What does an MLP (multilayer perceptron) layer do in a transformer?",
+      "options": [
+        "Chooses which training examples the model should memorize",
+        "Splits raw text into tokens before the model starts processing any of the words in it",
+        "Processes information at each token position using learned nonlinear transformations",
+        "Moves information from earlier token positions to later token positions using attention weights"
+      ],
+      "answer": 2,
+      "explanation": "An MLP applies learned linear transformations with a nonlinearity in between, at each position, and adds its output to the residual stream.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-04-q2",
+      "pageId": "ai-safety-04-interpretability-04",
+      "type": "choice",
+      "prompt": "Which pairing correctly contrasts attention heads and MLP layers?",
+      "options": [
+        "Attention moves information between positions; MLPs transform information within a position",
+        "Attention stores facts within each position; MLPs move information between different token positions",
+        "Attention runs only in the first layer; MLPs run only in the last layer",
+        "Attention is learned during training; MLPs are written by hand by engineers"
+      ],
+      "answer": 0,
+      "explanation": "Attention gathers clues from other tokens, while the MLP processes the information at each token, often contributing factual associations.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-04-q3",
+      "pageId": "ai-safety-04-interpretability-04",
+      "type": "truefalse",
+      "prompt": "Because MLP layers hold many factual associations, each individual MLP neuron cleanly represents a single fact.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Individual neurons can mix meanings, and facts usually come from several components working together, including attention.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-05-q1",
+      "pageId": "ai-safety-04-interpretability-05",
+      "type": "choice",
+      "prompt": "In interpretability, what is a 'feature'?",
+      "options": [
+        "A single neuron that always stands for exactly one word",
+        "A setting that users can switch on or off in the app",
+        "A labeled example taken from the model's training data",
+        "An internal pattern that helps the model represent something"
+      ],
+      "answer": 3,
+      "explanation": "A feature is an internal clue, such as a direction or distributed pattern in activations, that helps represent something like a language or relationship.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-05-q2",
+      "pageId": "ai-safety-04-interpretability-05",
+      "type": "choice",
+      "prompt": "Sentences about bridges strongly activate a pattern that researchers name a 'bridge feature'. What is the most careful interpretation?",
+      "options": [
+        "It shows the pattern can never respond to anything other than bridges",
+        "It is a hypothesis: the label is approximate and its causal role still needs testing",
+        "It proves the model contains a dedicated neuron that only handles bridges",
+        "It proves the model relies on this pattern whenever it answers any question"
+      ],
+      "answer": 1,
+      "explanation": "Human labels are approximations: the pattern may react to other things, and activation alone does not show the model uses it.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-05-q3",
+      "pageId": "ai-safety-04-interpretability-05",
+      "type": "truefalse",
+      "prompt": "A feature can be a direction spread across many neurons rather than one single neuron.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Features may be directions or distributed patterns across many neurons; definitions vary by method.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-06-q1",
+      "pageId": "ai-safety-04-interpretability-06",
+      "type": "choice",
+      "prompt": "What does the linear representation hypothesis propose?",
+      "options": [
+        "A model's accuracy grows in a straight line as it gets bigger",
+        "Many concepts are represented as roughly straight-line directions in a model's activations",
+        "Every concept a model learns is stored inside one specific neuron that handles only that concept",
+        "Models read text strictly one word at a time in a fixed straight line from the first token to the last"
+      ],
+      "answer": 1,
+      "explanation": "The hypothesis says meaningful concepts often correspond to approximately linear directions or subspaces, which researchers test with probes and interventions.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-06-q2",
+      "pageId": "ai-safety-04-interpretability-06",
+      "type": "choice",
+      "prompt": "A probe can read a concept direction, and adding that direction changes the model's outputs. Why are these treated as different tests?",
+      "options": [
+        "Probes only work on small models, while interventions only work on large ones",
+        "Reading and intervening always agree, so doing both is simply redundant",
+        "Interventions measure the model's speed, while probes measure its accuracy",
+        "Reading shows the information is present; intervening tests whether it affects behavior"
+      ],
+      "answer": 3,
+      "explanation": "Detecting variation along a direction and shifting the model along it answer different questions: presence versus causal influence.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-06-q3",
+      "pageId": "ai-safety-04-interpretability-06",
+      "type": "truefalse",
+      "prompt": "The linear representation hypothesis proposes that many concepts are represented as roughly straight-line directions, though each case still needs testing.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Many concepts do appear as rough directions in activations, but it is a hypothesis with useful evidence, not a universal law; each case still needs testing.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-07-q1",
+      "pageId": "ai-safety-04-interpretability-07",
+      "type": "choice",
+      "prompt": "What is a polysemantic neuron?",
+      "options": [
+        "A neuron that activates for several seemingly unrelated kinds of input",
+        "A neuron that only activates for words written in many languages",
+        "A neuron that researchers have removed to test what it does",
+        "A neuron that is shared between two separately trained models"
+      ],
+      "answer": 0,
+      "explanation": "Like a warning light that flashes for rain, low fuel, or an open door, a polysemantic neuron responds to multiple unrelated things.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-07-q2",
+      "pageId": "ai-safety-04-interpretability-07",
+      "type": "choice",
+      "prompt": "Why does polysemanticity make single-neuron explanations tricky?",
+      "options": [
+        "Polysemantic neurons randomly change meaning every time the model runs",
+        "Only polysemantic neurons can be measured, so the rest stay hidden",
+        "The neuron's activity alone cannot tell you which of its meanings is in play",
+        "Polysemantic neurons never have any effect on the model's output"
+      ],
+      "answer": 2,
+      "explanation": "If one neuron participates in several features, seeing it fire does not tell you which concept is active.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-07-q3",
+      "pageId": "ai-safety-04-interpretability-07",
+      "type": "choice",
+      "prompt": "A neuron fires for cats, for numbers and for quotation marks. Which conclusion is most justified?",
+      "options": [
+        "This proves a complete theory of the model",
+        "The neuron is useless and can be removed safely",
+        "Calling it a 'cat neuron' would be misleading",
+        "The model is broken and must be retrained"
+      ],
+      "answer": 2,
+      "explanation": "Mixed responses mean a single label misdescribes the neuron. A messy neuron does not by itself prove a full theory, and it may still matter for behavior.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-08-q1",
+      "pageId": "ai-safety-04-interpretability-08",
+      "type": "choice",
+      "prompt": "What does superposition describe in neural networks?",
+      "options": [
+        "Representing more features than there are dimensions, using overlapping directions",
+        "Running two different models at the same time on the same input and then comparing them",
+        "Stacking many layers so that each layer stores exactly one feature, with no overlap between them",
+        "Averaging the outputs of many models into one combined answer"
+      ],
+      "answer": 0,
+      "explanation": "Superposition packs many features into fewer dimensions with overlapping directions, like squeezing faint signals into a small radio channel.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-08-q2",
+      "pageId": "ai-safety-04-interpretability-08",
+      "type": "choice",
+      "prompt": "Why can superposition work even though feature directions overlap?",
+      "options": [
+        "Overlapping features always cancel each other out completely",
+        "The model keeps a clean backup copy of every feature elsewhere",
+        "Each feature is only active in the model's very last layer",
+        "Most features are rarely active together, so interference stays limited"
+      ],
+      "answer": 3,
+      "explanation": "Sparse activation makes the packing efficient: when only one or a few features are on, they can still be told apart.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-08-q3",
+      "pageId": "ai-safety-04-interpretability-08",
+      "type": "choice",
+      "prompt": "In a toy two-dimensional space holding three overlapping feature directions, when is confusion most likely?",
+      "options": [
+        "When the features are each given their own dimension",
+        "When several of the features are active at the same time",
+        "When exactly one of the features is active by itself",
+        "When none of the three features are active at all"
+      ],
+      "answer": 1,
+      "explanation": "One active feature is easy to identify, but simultaneous features can interfere because their directions overlap.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-09-q1",
+      "pageId": "ai-safety-04-interpretability-09",
+      "type": "choice",
+      "prompt": "What does it mean for a neuron or feature to be monosemantic?",
+      "options": [
+        "It was activated only once during the whole of training",
+        "It responds to a relatively coherent, single concept",
+        "It responds equally strongly to every possible input",
+        "It has exactly one connection to the rest of the model"
+      ],
+      "answer": 1,
+      "explanation": "Monosemantic signals mostly mean one thing, like a labeled light, which makes them easier to interpret than mixed neurons.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-09-q2",
+      "pageId": "ai-safety-04-interpretability-09",
+      "type": "choice",
+      "prompt": "Why do researchers look for features that are more monosemantic than the model's original neurons?",
+      "options": [
+        "Monosemantic features make the model run noticeably faster",
+        "Monosemantic features guarantee the model cannot make mistakes",
+        "They remove the need for any further behavioral testing",
+        "Clearer signals make the model's behavior easier to explain and test"
+      ],
+      "answer": 3,
+      "explanation": "Features with coherent meanings help researchers describe and test computation, though labels still need checking.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-09-q3",
+      "pageId": "ai-safety-04-interpretability-09",
+      "type": "truefalse",
+      "prompt": "A monosemantic feature has a perfectly sharp meaning that will never split into finer features as tools improve.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Meaning is often fuzzy, depends on the examples examined, and features may split into finer ones with better tools.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-10-q1",
+      "pageId": "ai-safety-04-interpretability-10",
+      "type": "choice",
+      "prompt": "What does a sparse autoencoder (SAE) try to do with a model's activations?",
+      "options": [
+        "Re-express them as a larger set of features, with only a few active at a time",
+        "Compress the whole model into far fewer parameters so that it fits on a mobile phone",
+        "Remove harmful examples from the data before the model is trained on any of it",
+        "Predict the next word more accurately than the original model"
+      ],
+      "answer": 0,
+      "explanation": "An SAE encodes activations into many candidate features while encouraging sparsity, like picking out a few instruments in a mixed recording.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-10-q2",
+      "pageId": "ai-safety-04-interpretability-10",
+      "type": "choice",
+      "prompt": "In a sparse autoencoder, what is the decoder's job?",
+      "options": [
+        "Generate the model's final text answer for the user",
+        "Choose which training examples the model should keep",
+        "Rebuild the original activations from the few active features",
+        "Turn each feature into a human-readable label automatically"
+      ],
+      "answer": 2,
+      "explanation": "The decoder combines the active features to reconstruct the original signal, usually with some error.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-10-q3",
+      "pageId": "ai-safety-04-interpretability-10",
+      "type": "choice",
+      "prompt": "An SAE reconstructs a model's activations with very low error. What does that tell you?",
+      "options": [
+        "No important features were missed, split apart, or mixed together during the SAE's training",
+        "The model's behavior can now be considered fully understood",
+        "Its features approximate the signal well, which does not guarantee they explain the model",
+        "Every feature it found corresponds to a real concept that the model uses in its answers"
+      ],
+      "answer": 2,
+      "explanation": "Good reconstruction is not the same as a faithful explanation: features can still be missed, split, or mixed, and causal roles need testing.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-11-q1",
+      "pageId": "ai-safety-04-interpretability-11",
+      "type": "choice",
+      "prompt": "How do a transcoder and a crosscoder differ?",
+      "options": [
+        "Transcoders predict a component's outputs from its inputs; crosscoders find features shared across layers or models",
+        "A transcoder finds shared features across models or layers; a crosscoder predicts a component's outputs from its inputs",
+        "A transcoder translates between human languages; a crosscoder translates between different programming languages",
+        "They are two names for the same sparse autoencoder trained on one layer"
+      ],
+      "answer": 0,
+      "explanation": "A transcoder approximates a transformation (input to sparse features to predicted output); a crosscoder jointly represents activations across layers or models.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-11-q2",
+      "pageId": "ai-safety-04-interpretability-11",
+      "type": "choice",
+      "prompt": "A researcher wants to find which features are shared between a base model and its fine-tuned version. Which tool fits best?",
+      "options": [
+        "A transcoder",
+        "A linear probe",
+        "A logit lens",
+        "A crosscoder"
+      ],
+      "answer": 3,
+      "explanation": "Crosscoders learn shared features that reconstruct activations from multiple layers or models, which suits comparing two models.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-11-q3",
+      "pageId": "ai-safety-04-interpretability-11",
+      "type": "truefalse",
+      "prompt": "If two models share a crosscoder feature with the same label, they must be performing identical computations.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Sharing a feature label does not establish identical computations, and these tools can introduce errors or miss behavior.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-12-q1",
+      "pageId": "ai-safety-04-interpretability-12",
+      "type": "choice",
+      "prompt": "In interpretability, what is a circuit?",
+      "options": [
+        "A training loop that repeats until accuracy improves",
+        "A set of interacting parts that together contribute to a behavior",
+        "A single neuron that is solely responsible for one output, with no other parts involved",
+        "The physical wiring of the chips that run the model"
+      ],
+      "answer": 1,
+      "explanation": "Like a switch, wire and battery lighting a bulb, a circuit is heads, neurons or features passing information to produce a behavior.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-12-q2",
+      "pageId": "ai-safety-04-interpretability-12",
+      "type": "choice",
+      "prompt": "Why do tests matter more than an attractive circuit diagram?",
+      "options": [
+        "Diagrams are unable to show attention heads or features, so they always leave out key parts",
+        "A discovered circuit can be partial, context-dependent, or have backup routes",
+        "Circuit diagrams are always drawn incorrectly, because researchers simplify the layers",
+        "Circuits only exist in tiny models, never in larger ones"
+      ],
+      "answer": 1,
+      "explanation": "A diagram is a hypothesis. Testing whether changing the parts affects the behavior reveals gaps, context effects and backups.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-12-q3",
+      "pageId": "ai-safety-04-interpretability-12",
+      "type": "choice",
+      "prompt": "Researchers disable a key head in a proposed copying circuit, yet copying barely changes. What is a plausible explanation?",
+      "options": [
+        "The head must have had no role in any behavior at all",
+        "The head was actually an MLP layer, not an attention head",
+        "Disabling parts of a model always leaves its behavior intact",
+        "Another route in the model can take over the same job"
+      ],
+      "answer": 3,
+      "explanation": "Backup routes can hide a part's role, so a small effect from removing it does not prove the part was irrelevant.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-13-q1",
+      "pageId": "ai-safety-04-interpretability-13",
+      "type": "choice",
+      "prompt": "A model reads 'red blue ... red'. What does an induction head help it predict next?",
+      "options": [
+        "blue",
+        "red",
+        "a random new word",
+        "the end of the sentence"
+      ],
+      "answer": 0,
+      "explanation": "An induction head matches the earlier 'red' and copies what followed it, raising the score of 'blue'.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-13-q2",
+      "pageId": "ai-safety-04-interpretability-13",
+      "type": "choice",
+      "prompt": "How does an induction head work in the pattern A B ... A?",
+      "options": [
+        "It counts how many times A has appeared and predicts that number",
+        "It looks up B in a stored dictionary of facts about the world",
+        "At the second A, it attends to the token that followed the first A and boosts it",
+        "At the second A, it attends to the very first token in the sequence and repeats it as the prediction"
+      ],
+      "answer": 2,
+      "explanation": "The head attends toward the earlier B associated with A, helped by earlier heads that supply the matching information.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-13-q3",
+      "pageId": "ai-safety-04-interpretability-13",
+      "type": "truefalse",
+      "prompt": "Induction heads explain some learning from context, but larger models can use more complicated variants.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Induction heads are part of the story of in-context learning, not the entire explanation.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-14-q1",
+      "pageId": "ai-safety-04-interpretability-14",
+      "type": "choice",
+      "prompt": "What does an attribution graph show?",
+      "options": [
+        "A family tree showing which models were trained or fine-tuned from which earlier models first",
+        "A complete list of the training documents behind a particular answer, ranked by their influence",
+        "Proposed paths of internal contributions toward one model response, with their strengths",
+        "A chart of how a model's accuracy improved over its training run"
+      ],
+      "answer": 2,
+      "explanation": "Circuit tracing builds a graph of internal contributions for a specific response, like mapping which stations passed a message.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-14-q2",
+      "pageId": "ai-safety-04-interpretability-14",
+      "type": "choice",
+      "prompt": "What do some circuit-tracing methods do first to make the graph readable?",
+      "options": [
+        "Replace MLP layers with interpretable sparse approximations",
+        "Delete every attention head from the model",
+        "Retrain the model from scratch on simpler data so that fewer features form",
+        "Ask the model to write out its reasoning in words before tracing anything"
+      ],
+      "answer": 0,
+      "explanation": "Swapping MLPs for sparse approximations lets researchers trace feature contributions, at the cost of some approximation error.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-14-q3",
+      "pageId": "ai-safety-04-interpretability-14",
+      "type": "choice",
+      "prompt": "An attribution graph links an input token to feature A, then feature B, then the answer. How can you check that the path really matters?",
+      "options": [
+        "Add more nodes so the graph looks more complete",
+        "Regenerate the graph several times and check that it looks the same each time",
+        "Ask the model whether feature B was important to it",
+        "Change feature B and see whether the answer shifts as predicted"
+      ],
+      "answer": 3,
+      "explanation": "A graph is a research model with approximation errors; intervening on a feature tests whether the proposed path affects the output.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-15-q1",
+      "pageId": "ai-safety-04-interpretability-15",
+      "type": "choice",
+      "prompt": "What is a linear probe?",
+      "options": [
+        "A sensor that measures how much power the model's chips use during each layer's work",
+        "A small linear reader trained to decode information from a model's activations",
+        "A tool that edits a model's weights to remove a piece of knowledge it learned in training",
+        "A set of tricky prompts used to test a model's answers"
+      ],
+      "answer": 1,
+      "explanation": "Researchers collect labeled activations from a frozen model and train a simple linear classifier to see what information is decodable.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-15-q2",
+      "pageId": "ai-safety-04-interpretability-15",
+      "type": "truefalse",
+      "prompt": "A linear probe can accurately decode a property from activations even if the model does not use that information to produce its answers.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Decodable does not mean used. Showing the model relies on the information needs an intervention test.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-15-q3",
+      "pageId": "ai-safety-04-interpretability-15",
+      "type": "choice",
+      "prompt": "A probe tells French from English with 99% accuracy on the activations it was trained on. What should researchers do next?",
+      "options": [
+        "Use the probe to retrain the model's original weights",
+        "Test it on fresh examples it has not seen before",
+        "Declare that the model uses language information in every answer",
+        "Keep adding training activations until accuracy reaches 100%"
+      ],
+      "answer": 1,
+      "explanation": "Fresh test examples check whether the probe generalizes rather than exploiting shortcuts. Even then, decoding does not prove causal use.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-16-q1",
+      "pageId": "ai-safety-04-interpretability-16",
+      "type": "choice",
+      "prompt": "What does the logit lens do?",
+      "options": [
+        "Magnifies the attention patterns in each layer so that researchers can see them much more easily",
+        "Measures how confident users feel about the model's answers at each step of a conversation",
+        "Trains a new model to copy the original model's outputs",
+        "Reads intermediate layers through the output readout to show possible next-word guesses"
+      ],
+      "answer": 3,
+      "explanation": "The logit lens reads intermediate states with the model's own final readout, revealing how predictions develop across layers.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-16-q2",
+      "pageId": "ai-safety-04-interpretability-16",
+      "type": "choice",
+      "prompt": "How does the tuned lens improve on the logit lens?",
+      "options": [
+        "It learns a layer-specific translator before applying the readout",
+        "It skips the intermediate layers and reads only the input",
+        "It changes the model's weights so the answers become better",
+        "It only works on the final layer, where it is most accurate"
+      ],
+      "answer": 0,
+      "explanation": "Early states were not designed for the final readout, so the tuned lens learns an affine translator for each layer to read them better.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-16-q3",
+      "pageId": "ai-safety-04-interpretability-16",
+      "type": "truefalse",
+      "prompt": "Reading early layers through a lens gives a literal transcript of the model's reasoning.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A lens is an interpretation tool that shows predictions through a chosen readout, not a transcript of reasoning.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-17-q1",
+      "pageId": "ai-safety-04-interpretability-17",
+      "type": "choice",
+      "prompt": "What does activation patching do?",
+      "options": [
+        "Adds a fixed direction to activations during the run to change the style of all the answers",
+        "Fixes software bugs in the code that runs the model",
+        "Copies selected activations from one run into another and measures how the output changes",
+        "Sets selected activations to zero and checks which behavior breaks, without using a second run"
+      ],
+      "answer": 2,
+      "explanation": "Patching runs a clean and a changed input, swaps chosen activations between the runs, and measures the effect on the output.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-17-q2",
+      "pageId": "ai-safety-04-interpretability-17",
+      "type": "choice",
+      "prompt": "A researcher runs 'Mia is in Paris' and 'Mia is in Rome', then inserts one activation from the Rome run into the Paris run to see if the predicted city changes. Which technique is this?",
+      "options": [
+        "Activation steering",
+        "Linear probing",
+        "Activation patching",
+        "Ablation"
+      ],
+      "answer": 2,
+      "explanation": "Swapping activations between two input runs is patching. Ablation removes a contribution, steering adds a nudge, and probing only reads.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-17-q3",
+      "pageId": "ai-safety-04-interpretability-17",
+      "type": "choice",
+      "prompt": "Why is one successful activation patch not a complete explanation?",
+      "options": [
+        "Results depend on the inputs and metric, and unusual activation mixes can create artifacts",
+        "Patching only works on models that have no attention layers at all",
+        "Patching permanently changes the weights, so it can only be done once on each model",
+        "A patch only measures how fast the model runs, not anything about the content of its answers"
+      ],
+      "answer": 0,
+      "explanation": "Patching helps test causal roles, but conclusions depend on the chosen inputs, measurement and intervention.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-18-q1",
+      "pageId": "ai-safety-04-interpretability-18",
+      "type": "choice",
+      "prompt": "In interpretability, what is ablation?",
+      "options": [
+        "Copying activations between runs on two different inputs",
+        "Training a small reader to decode hidden information",
+        "Adding worked examples to the prompt so the model learns the task faster",
+        "Removing or suppressing a component's contribution to test its role"
+      ],
+      "answer": 3,
+      "explanation": "Ablation sets activations to zero, replaces them with an average or sample, or disables a head or feature, then compares behavior.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-18-q2",
+      "pageId": "ai-safety-04-interpretability-18",
+      "type": "choice",
+      "prompt": "A researcher switches off one attention head entirely and compares the model's prediction with the original. Which technique is this?",
+      "options": [
+        "Model diffing",
+        "Ablation",
+        "Activation patching",
+        "Feature clamping"
+      ],
+      "answer": 1,
+      "explanation": "Disabling a component is ablation. Patching swaps in activations from another input, and clamping holds a feature at a chosen level.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-18-q3",
+      "pageId": "ai-safety-04-interpretability-18",
+      "type": "truefalse",
+      "prompt": "A component can play a role in a behavior even if ablating it causes no visible change.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Backup paths can compensate and hide a part's role, so ablation results need careful controls.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-19-q1",
+      "pageId": "ai-safety-04-interpretability-19",
+      "type": "choice",
+      "prompt": "What is activation steering?",
+      "options": [
+        "Choosing the best of several sampled answers to show the user at the end",
+        "Changing a model's internal activity during use to influence its behavior",
+        "Retraining all of the model's weights on a new set of examples to shift its behavior",
+        "Rewriting the user's prompt before it reaches the model"
+      ],
+      "answer": 1,
+      "explanation": "Steering adds, removes or modifies internal signals during inference, without retraining the weights.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-19-q2",
+      "pageId": "ai-safety-04-interpretability-19",
+      "type": "truefalse",
+      "prompt": "During activation steering, the model's weights stay unchanged.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Steering intervenes on activations while the model runs; the learned weights are not modified.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-19-q3",
+      "pageId": "ai-safety-04-interpretability-19",
+      "type": "choice",
+      "prompt": "Steering makes a model's answers to harmless questions warmer in tone. What is the right caution?",
+      "options": [
+        "Warmer answers prove the model has become safer and more truthful",
+        "The change is permanent because steering rewrites the model",
+        "The same nudge is guaranteed to work identically on every prompt",
+        "Effects vary with context and strength, and nudges can hurt quality"
+      ],
+      "answer": 3,
+      "explanation": "Steering can guide outputs, but its effects depend on context and strength and it does not guarantee safety or truth.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-20-q1",
+      "pageId": "ai-safety-04-interpretability-20",
+      "type": "choice",
+      "prompt": "How does Contrastive Activation Addition (CAA) usually build a steering vector?",
+      "options": [
+        "By subtracting average activations for one set of examples from a contrasting set",
+        "By averaging the model's weights across several training checkpoints to find a shared direction",
+        "By counting which words differ between two versions of a prompt",
+        "By training a classifier on human ratings of the model's answers and reading its weights"
+      ],
+      "answer": 0,
+      "explanation": "CAA takes the difference between average activations on contrasting examples (for example, formal minus casual) to define a direction.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-20-q2",
+      "pageId": "ai-safety-04-interpretability-20",
+      "type": "choice",
+      "prompt": "How is a CAA steering vector typically applied?",
+      "options": [
+        "It is pasted into the prompt as extra instructions",
+        "It filters the model's output after it is generated",
+        "It is scaled and added to activations while the model runs",
+        "It is used to permanently retrain the model's weights"
+      ],
+      "answer": 2,
+      "explanation": "The vector is scaled and added during inference; its effect depends on the examples, the layer and the scale.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-20-q3",
+      "pageId": "ai-safety-04-interpretability-20",
+      "type": "choice",
+      "prompt": "You build a 'formal style' vector from formal versus casual examples, but all your formal examples happen to be about law. What is the main risk?",
+      "options": [
+        "The vector can no longer be added during inference",
+        "The model's weights will be overwritten by the vector",
+        "The vector may capture the topic difference, not just formality",
+        "The vector will be more precise because the topic stays consistent across all examples"
+      ],
+      "answer": 2,
+      "explanation": "A steering vector reflects every difference between the example sets, so it can capture unwanted differences and behave poorly on new prompts.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-21-q1",
+      "pageId": "ai-safety-04-interpretability-21",
+      "type": "choice",
+      "prompt": "What is feature clamping?",
+      "options": [
+        "Holding a selected internal feature's activation at a chosen value while the model runs",
+        "Permanently deleting a feature's examples from the training data so the model never learns it",
+        "Limiting how long the model's responses are allowed to be",
+        "Locking the model's weights so that they cannot be changed by any later round of fine-tuning"
+      ],
+      "answer": 0,
+      "explanation": "Clamping, often on a feature found with a sparse autoencoder, sets its activation to a chosen level like holding a volume slider steady.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-21-q2",
+      "pageId": "ai-safety-04-interpretability-21",
+      "type": "choice",
+      "prompt": "Researchers clamp a bridge-related feature very high, and answers become bridge-focused and repetitive. What does this show?",
+      "options": [
+        "The feature controls bridges and absolutely nothing else anywhere in the model's behavior",
+        "Clamping retrained the model so that it will always prefer talking about bridges from now on",
+        "The sparse autoencoder that found the feature must be perfectly accurate",
+        "Strong interventions can cause odd outputs; the feature is not a perfect concept switch"
+      ],
+      "answer": 3,
+      "explanation": "Clamping can show a feature influences behavior, but strong settings cause repetition, and approximate features can affect several things.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-21-q3",
+      "pageId": "ai-safety-04-interpretability-21",
+      "type": "choice",
+      "prompt": "Which of these describes feature clamping rather than a neighbouring technique?",
+      "options": [
+        "Zeroing out one attention head to see what stops working",
+        "Setting one sparse-autoencoder feature to a fixed value during a run",
+        "Adding a direction built from averaged contrasting examples to the activations",
+        "Swapping activations between runs on two different inputs and comparing them"
+      ],
+      "answer": 1,
+      "explanation": "Clamping fixes a feature's level. The others describe CAA steering, activation patching and ablation.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-22-q1",
+      "pageId": "ai-safety-04-interpretability-22",
+      "type": "choice",
+      "prompt": "What does representation engineering (RepE) focus on?",
+      "options": [
+        "Writing better prompts on behalf of users so the model understands them",
+        "High-level properties represented across a model's internal activity",
+        "The exact wiring of individual neurons, traced one connection at a time",
+        "Hardware design for making model inference faster"
+      ],
+      "answer": 1,
+      "explanation": "Like listening to an orchestra's overall sound, RepE studies population-level directions or subspaces tied to properties.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-22-q2",
+      "pageId": "ai-safety-04-interpretability-22",
+      "type": "choice",
+      "prompt": "Which sequence best describes a typical RepE workflow?",
+      "options": [
+        "Remove random neurons, retrain the model, and compare overall accuracy",
+        "Collect user ratings, fine-tune the model on the favorites, and publish a leaderboard score",
+        "Inspect one neuron at a time and write a label for each by hand",
+        "Design contrasting examples, read the related pattern, and sometimes intervene on it"
+      ],
+      "answer": 3,
+      "explanation": "RepE contrasts examples (for example confident vs uncertain wording), builds a reader or controller, and tests each separately.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-22-q3",
+      "pageId": "ai-safety-04-interpretability-22",
+      "type": "truefalse",
+      "prompt": "A RepE reader labeled 'honesty' is automatically a perfect measurement of the model's honesty.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A label is not a perfect measurement; generalization and causal claims require tests.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-23-q1",
+      "pageId": "ai-safety-04-interpretability-23",
+      "type": "choice",
+      "prompt": "What is a 'refusal direction' in some studied language models?",
+      "options": [
+        "An activation direction strongly linked to the model's refusal behavior",
+        "A rule written in the system prompt that lists every topic the model must refuse",
+        "A user setting that switches the model's refusals off",
+        "The order in which the model reads and processes the words of a request"
+      ],
+      "answer": 0,
+      "explanation": "Researchers have found activation directions in some models that are strongly associated with refusing requests.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-23-q2",
+      "pageId": "ai-safety-04-interpretability-23",
+      "type": "choice",
+      "prompt": "How do researchers typically identify and test a refusal direction?",
+      "options": [
+        "Count how often refusal words appear in the model's training data",
+        "Remove all safety training and measure how much faster and more often the model then answers",
+        "Compare activations on refused and answered requests, then test interventions on it",
+        "Ask the model to list which internal signals make it refuse requests, and trust its list"
+      ],
+      "answer": 2,
+      "explanation": "Contrasting refused and answered requests reveals a candidate direction; interventions then test its causal effect on refusal rates.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-23-q3",
+      "pageId": "ai-safety-04-interpretability-23",
+      "type": "choice",
+      "prompt": "Someone argues: 'Refusal is one direction, so all of a model's safety is one switch.' What is the best response?",
+      "options": [
+        "That is right, but only for models that were analyzed with sparse autoencoders",
+        "That is wrong because refusal has no measurable internal signal whatsoever",
+        "Refusal can involve several context-dependent mechanisms, and refusing isn't the same as safety",
+        "That is right: changing that one direction removes every safety mechanism that the model has learned"
+      ],
+      "answer": 2,
+      "explanation": "A refusal signal is only part of the safety story; refusal may use multiple directions, and changing it does not establish safety.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-24-q1",
+      "pageId": "ai-safety-04-interpretability-24",
+      "type": "choice",
+      "prompt": "What are persona vectors?",
+      "options": [
+        "Internal directions associated with behavioral traits or tendencies",
+        "Profiles that describe the people who use a model and what they prefer",
+        "Character descriptions that developers write into a model's system prompt",
+        "Lists of personal data that a model has stored"
+      ],
+      "answer": 0,
+      "explanation": "Persona vectors are model-specific measured directions linked to traits such as flattery, found by contrasting outputs.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-24-q2",
+      "pageId": "ai-safety-04-interpretability-24",
+      "type": "choice",
+      "prompt": "What is one practical use researchers see for persona vectors?",
+      "options": [
+        "Proving that a model has a stable human-like identity across all conversations",
+        "Replacing behavioral evaluations with a single number",
+        "Letting users choose a personality from a menu",
+        "Detecting or reducing unwanted shifts in behavior during training"
+      ],
+      "answer": 3,
+      "explanation": "Persona vectors may act as monitors or steering signals for unwanted changes, though labels are imperfect and effects can overlap.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-24-q3",
+      "pageId": "ai-safety-04-interpretability-24",
+      "type": "truefalse",
+      "prompt": "Finding a persona vector linked to flattering replies shows that the model has a human personality.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Persona vectors track behavioral patterns; a measured trait direction does not prove a human personality or feelings.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-25-q1",
+      "pageId": "ai-safety-04-interpretability-25",
+      "type": "choice",
+      "prompt": "What is model diffing?",
+      "options": [
+        "Merging two separately trained models into a single one by averaging their weights",
+        "Comparing internal representations between models, checkpoints or training stages",
+        "Comparing two models' scores on a public leaderboard across many different benchmarks",
+        "Comparing the text of two answers word by word"
+      ],
+      "answer": 1,
+      "explanation": "Model diffing looks for internal differences, in representations, weights or feature dictionaries, between versions of a model.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-25-q2",
+      "pageId": "ai-safety-04-interpretability-25",
+      "type": "choice",
+      "prompt": "In model diffing, how can crosscoders help?",
+      "options": [
+        "They translate one model's output text into the other model's preferred writing style",
+        "They identify features that are shared, changed, gained or lost between models",
+        "They automatically fix the differences they find between models by editing the weights",
+        "They predict which model will score higher on benchmarks"
+      ],
+      "answer": 1,
+      "explanation": "Crosscoders give a shared dictionary across models, making it easier to match features despite different coordinate systems.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-25-q3",
+      "pageId": "ai-safety-04-interpretability-25",
+      "type": "choice",
+      "prompt": "After fine-tuning, diffing shows that one internal feature changed a lot. What should come next?",
+      "options": [
+        "Conclude that this change caused every new behavior of the model",
+        "Assume the fine-tuning failed and revert to the old checkpoint",
+        "Stop the analysis, since a difference is already an explanation",
+        "Run a behavior test to check whether that change actually matters"
+      ],
+      "answer": 3,
+      "explanation": "A difference alone does not show a causal explanation; a separate behavior test checks whether it matters.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-26-q1",
+      "pageId": "ai-safety-04-interpretability-26",
+      "type": "choice",
+      "prompt": "What does introspection research on AI models test?",
+      "options": [
+        "Whether a model's reports about itself track its actual internal states",
+        "Whether users believe the explanations a model gives them about its answers",
+        "Whether a model can accurately describe the hardware and chips it runs on",
+        "Whether a model's answers sound confident and fluent"
+      ],
+      "answer": 0,
+      "explanation": "Introspection research checks whether self-reports reflect real internal states rather than merely sounding plausible.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-26-q2",
+      "pageId": "ai-safety-04-interpretability-26",
+      "type": "choice",
+      "prompt": "Which experiment design best tests a model's introspection?",
+      "options": [
+        "Measure how long the model takes to answer questions about itself",
+        "Compare the model's self-descriptions with descriptions of the model written by its users",
+        "Secretly alter an activation, ask the model what changed, and compare with the real change",
+        "Ask the model to describe its feelings in detail and accept the answers that sound most sincere"
+      ],
+      "answer": 2,
+      "explanation": "Controlled ground truth, such as a secretly injected concept, lets researchers check reports and count both successes and failures.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-26-q3",
+      "pageId": "ai-safety-04-interpretability-26",
+      "type": "truefalse",
+      "prompt": "Even when a model shows some ability to report its internal states, its self-reports still need independent verification.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Some experiments find limited evidence of internal-state access, but reports remain unreliable and context-dependent.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-04-interpretability-27-q1",
+      "pageId": "ai-safety-04-interpretability-27",
+      "type": "choice",
+      "prompt": "What does a black-box approach to studying a model involve?",
+      "options": [
+        "Training a sparse autoencoder on hidden layers",
+        "Rebuilding the model from its published source code and weights",
+        "Studying only inputs and outputs, without access to internals",
+        "Examining weights, activations and gradients directly"
+      ],
+      "answer": 2,
+      "explanation": "Black-box work sends prompts and inspects answers; white-box work also accesses internals such as weights and activations.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-04-interpretability-27-q2",
+      "pageId": "ai-safety-04-interpretability-27",
+      "type": "choice",
+      "prompt": "An auditor can only send prompts through an API and read the answers. Which method is available to them?",
+      "options": [
+        "Behavioral tests of the model's answers",
+        "Activation patching between two runs",
+        "Linear probes on hidden layers",
+        "Feature clamping with a sparse autoencoder"
+      ],
+      "answer": 0,
+      "explanation": "Without internal access, only black-box methods are possible; patching, probing and clamping all require white-box access.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-04-interpretability-27-q3",
+      "pageId": "ai-safety-04-interpretability-27",
+      "type": "truefalse",
+      "prompt": "Having white-box access to a model guarantees that you understand whether it is safe.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Neither access level alone guarantees understanding or safety, and white-box findings may not transfer between models.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-01-q1",
+      "pageId": "ai-safety-05-oversight-control-01",
+      "type": "choice",
+      "prompt": "What is the goal of scalable oversight research?",
+      "options": [
+        "Making AI systems run on many more computers at once so oversight is faster",
+        "Training models faster by using much larger datasets and more powerful chips",
+        "Removing humans from the process of reviewing AI work",
+        "Keeping supervision useful as tasks and AI systems become harder to judge"
+      ],
+      "answer": 3,
+      "explanation": "Like a child who cannot check a chess champion's moves, people may struggle to judge capable AI; scalable oversight tries to keep checks meaningful.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-01-q2",
+      "pageId": "ai-safety-05-oversight-control-01",
+      "type": "choice",
+      "prompt": "A human must check a long, polished science report written by an AI. Which approach fits scalable oversight?",
+      "options": [
+        "Skip the review, because the report is too complex and polished for any person to judge well",
+        "Have helpers verify individual claims and experiments so the human reviews the key evidence",
+        "Read only the polished summary and trust it if it sounds convincing",
+        "Ask the same AI that wrote the report to confirm that every single part of it is correct"
+      ],
+      "answer": 1,
+      "explanation": "Breaking the task into smaller checks and surfacing evidence lets the human judge what matters instead of trusting a summary.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-01-q3",
+      "pageId": "ai-safety-05-oversight-control-01",
+      "type": "truefalse",
+      "prompt": "If an oversight method works well on simple tasks, that proves it will reliably oversee harder future AI systems.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Helpers can share mistakes, hide errors or overwhelm the reviewer; success on simple tasks does not prove reliability later.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-02-q1",
+      "pageId": "ai-safety-05-oversight-control-02",
+      "type": "choice",
+      "prompt": "How does AI debate work as an oversight method?",
+      "options": [
+        "A human argues with an AI until the AI agrees with the human's view",
+        "Two AIs argue for different answers and a human judge decides which is better supported",
+        "Two AIs vote on an answer and the majority answer is accepted automatically, with no human judge",
+        "One AI writes an answer and a second AI rewrites it in simpler language"
+      ],
+      "answer": 1,
+      "explanation": "Debaters challenge each other's claims, and the human judge uses the exchange and evidence to decide.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-02-q2",
+      "pageId": "ai-safety-05-oversight-control-02",
+      "type": "choice",
+      "prompt": "Why might debate help a judge who cannot solve the whole problem alone?",
+      "options": [
+        "The judge can simply pick whichever debater writes the longer argument",
+        "Debaters are trained to always agree with each other, so the right answer is easy to read off",
+        "The judge does not need to look at any evidence during the debate",
+        "A rival debater can point out a small weakness in a false answer for the judge to check"
+      ],
+      "answer": 3,
+      "explanation": "If a false answer has a weak spot, the opponent can highlight it so the judge checks a focused piece, like one joint of a toy bridge.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-02-q3",
+      "pageId": "ai-safety-05-oversight-control-02",
+      "type": "choice",
+      "prompt": "In a debate experiment, the judge keeps choosing the more eloquent debater even when its answer is wrong. What does this illustrate?",
+      "options": [
+        "A persuasive story can beat a true one",
+        "Debate guarantees truthful answers",
+        "The judge must solve every step alone",
+        "The debaters share no blind spots"
+      ],
+      "answer": 0,
+      "explanation": "Debate's reliability depends on the task, rules, evidence and judge; persuasion exploiting the judge is a known failure mode.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-03-q1",
+      "pageId": "ai-safety-05-oversight-control-03",
+      "type": "choice",
+      "prompt": "In iterated distillation and amplification (IDA), what happens in the 'amplify' step?",
+      "options": [
+        "The model's size is increased so that it can handle harder questions alone, without helpers",
+        "The human is removed so the helpers can work faster without review",
+        "A human splits a hard task, asks helper copies for answers, and combines the results",
+        "A model is trained to imitate the combined human-and-helper process, making one fast helper"
+      ],
+      "answer": 2,
+      "explanation": "Amplification builds a stronger supervising process from decomposition and combination; distillation then trains a model to imitate it.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-03-q2",
+      "pageId": "ai-safety-05-oversight-control-03",
+      "type": "choice",
+      "prompt": "What is the purpose of the 'distill' step in IDA?",
+      "options": [
+        "Removing errors from the training data before it is used",
+        "Comparing the final model against a stronger expert evaluator",
+        "Packing some of the assisted team's behavior into a single, faster helper",
+        "Splitting a large task into many smaller questions for helper copies to answer"
+      ],
+      "answer": 2,
+      "explanation": "Distillation trains a new model to imitate the amplified process, and that helper is used in the next round.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-03-q3",
+      "pageId": "ai-safety-05-oversight-control-03",
+      "type": "truefalse",
+      "prompt": "Repeating the amplify-and-distill loop enough times automatically solves alignment.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Tasks may not split cleanly, errors can compound, and the combined supervisor must stay trustworthy at every step.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-04-q1",
+      "pageId": "ai-safety-05-oversight-control-04",
+      "type": "choice",
+      "prompt": "What is the basic setup in weak-to-strong generalization experiments?",
+      "options": [
+        "A weaker model provides training labels for a stronger pretrained model",
+        "A stronger model provides training labels for a weaker model",
+        "Two equally capable models train each other in alternating rounds",
+        "Humans label every example perfectly for a weaker model"
+      ],
+      "answer": 0,
+      "explanation": "Researchers train a strong student on a weak teacher's labels, then compare the student's performance to the teacher's.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-04-q2",
+      "pageId": "ai-safety-05-oversight-control-04",
+      "type": "choice",
+      "prompt": "What is the hope behind weak-to-strong generalization?",
+      "options": [
+        "The stronger model copies every mistake the weak teacher makes exactly, so errors are preserved",
+        "The weaker model becomes stronger by watching the student's answers",
+        "The labels stop mattering because the student ignores training completely",
+        "The stronger model generalizes beyond the weak labels using knowledge from pretraining"
+      ],
+      "answer": 3,
+      "explanation": "Like a strong chess student recovering better judgments from a novice teacher, the student may draw on what it already learned.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-04-q3",
+      "pageId": "ai-safety-05-oversight-control-04",
+      "type": "choice",
+      "prompt": "Experiments show a strong student outperforming its weak teacher on some tasks. What is the right conclusion?",
+      "options": [
+        "It means weak supervision is no longer needed in training at all",
+        "It is promising, but not proof that humans can safely supervise superhuman AI",
+        "It proves humans can now safely supervise any future superhuman AI system",
+        "It shows students never imitate teacher errors on any kind of task"
+      ],
+      "answer": 1,
+      "explanation": "Students can still imitate errors, exploit feedback or fail on different tasks; trustworthy supervision is harder than beating a weak teacher.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-05-q1",
+      "pageId": "ai-safety-05-oversight-control-05",
+      "type": "choice",
+      "prompt": "What is the structure of a sandwiching experiment?",
+      "options": [
+        "A human expert trains a weak model, which then trains a stronger model on the expert's labels",
+        "A capable AI assists a weaker supervisor, and a stronger evaluator checks the result",
+        "A weak AI sits between two human experts who argue about its answers",
+        "Two copies of the same model check each other with no human involved"
+      ],
+      "answer": 1,
+      "explanation": "The AI sits between a weaker supervisor and a stronger evaluator, letting researchers measure whether assistance improves weak supervision.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-05-q2",
+      "pageId": "ai-safety-05-oversight-control-05",
+      "type": "choice",
+      "prompt": "A beginner judges advanced math answers with AI help, and an expert later checks the beginner's choices. What is the expert's role?",
+      "options": [
+        "Doing the beginner's job directly, so that the AI assistant is no longer needed at all",
+        "Training the AI assistant to give more persuasive explanations that the beginner will accept",
+        "Arguing against the AI so the beginner hears both sides",
+        "Providing ground truth to measure whether the AI help improved the beginner's judgments"
+      ],
+      "answer": 3,
+      "explanation": "The reserved expert makes the experiment measurable, including whether assistance helped equally on correct and misleading answers.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-05-q3",
+      "pageId": "ai-safety-05-oversight-control-05",
+      "type": "choice",
+      "prompt": "What is the main caveat of sandwiching for the future?",
+      "options": [
+        "For superhuman tasks, a reliably stronger evaluator may not exist",
+        "Beginners are always unable to learn from AI assistance",
+        "Experts tend to disagree, so there is never any ground truth",
+        "Sandwiching only works when no AI assistant is involved"
+      ],
+      "answer": 0,
+      "explanation": "The setup relies on an expert in reserve; for future superhuman tasks there may be no one stronger to check the results.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-06-q1",
+      "pageId": "ai-safety-05-oversight-control-06",
+      "type": "choice",
+      "prompt": "What problem does Eliciting Latent Knowledge (ELK) try to solve?",
+      "options": [
+        "How to stop a model from storing any knowledge that its human overseers cannot directly observe",
+        "How to compress a model's knowledge into a smaller, faster model",
+        "How to get a model to reliably report what it internally knows, even when appearances mislead",
+        "How to make a model learn new facts more quickly from a small, carefully chosen set of examples"
+      ],
+      "answer": 2,
+      "explanation": "ELK asks how to make a powerful predictor report facts it tracks internally, including ones people cannot directly observe.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-06-q2",
+      "pageId": "ai-safety-05-oversight-control-06",
+      "type": "choice",
+      "prompt": "In the classic ELK example, a camera watches a diamond in a vault. What is the 'wrong shortcut' a reporter might learn?",
+      "options": [
+        "Refusing to answer any question about the diamond or the vault, no matter how the question is asked",
+        "Describing the camera's hardware and settings instead of what the camera can actually see",
+        "Predicting what a human would believe from the camera, not what the model represents about reality",
+        "Reporting the diamond's true status even when the camera image is misleading"
+      ],
+      "answer": 2,
+      "explanation": "Human labels reward familiar answers, so a reporter may learn to say what looks convincing rather than what is true.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-06-q3",
+      "pageId": "ai-safety-05-oversight-control-06",
+      "type": "truefalse",
+      "prompt": "ELK can be solved simply by asking the model to be honest.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "ELK is an open research problem; different internal stories fit the same observations, making a reliable reporter hard to identify.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-07-q1",
+      "pageId": "ai-safety-05-oversight-control-07",
+      "type": "choice",
+      "prompt": "What central question does AI control study?",
+      "options": [
+        "Can a system stay safe even if an AI inside it deliberately tries to cause harm?",
+        "How can we make sure an AI genuinely holds the goals its developers intended?",
+        "How can an AI system be made to run faster while using less hardware?",
+        "Which company should be legally responsible for an AI system's outputs?"
+      ],
+      "answer": 0,
+      "explanation": "AI control explicitly assumes the AI might be trying to break the rules and asks whether the overall system still prevents unacceptable outcomes.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-07-q2",
+      "pageId": "ai-safety-05-oversight-control-07",
+      "type": "choice",
+      "prompt": "Which statement best distinguishes AI control from alignment?",
+      "options": [
+        "Control and alignment are two names for training a model with human feedback",
+        "Control is about shaping the model's goals; alignment is about monitoring, permissions and review",
+        "Control only applies after deployment, while alignment only applies to weaker models in training",
+        "Control seeks safety even if the model is misaligned; alignment seeks goals that match intentions"
+      ],
+      "answer": 3,
+      "explanation": "Control relies on protocols such as monitoring, review and restrictions, and is different from making the model aligned.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-07-q3",
+      "pageId": "ai-safety-05-oversight-control-07",
+      "type": "choice",
+      "prompt": "A control protocol blocks every action the AI proposes. Why is that not a success?",
+      "options": [
+        "Blocking actions always leaks the AI's weights to outside attackers",
+        "Safety must be weighed against usefulness and review cost",
+        "Blocking actions makes the AI system misaligned",
+        "Control protocols are not allowed to block actions"
+      ],
+      "answer": 1,
+      "explanation": "A system that blocks all work may look safe in a narrow test but is not useful; control compares safety with usefulness and cost.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-08-q1",
+      "pageId": "ai-safety-05-oversight-control-08",
+      "type": "choice",
+      "prompt": "In AI control, what does it mean to call a model 'trusted'?",
+      "options": [
+        "It has a friendly, reassuring tone that users rate highly in satisfaction surveys",
+        "It is assumed sufficiently unlikely to deliberately undermine the protocol",
+        "It has been formally proven to give truthful answers to every question it receives",
+        "It is the most capable model available to the developers"
+      ],
+      "answer": 1,
+      "explanation": "Trust is a role based on assumptions to test, not a guarantee of perfection or a personality judgment.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-08-q2",
+      "pageId": "ai-safety-05-oversight-control-08",
+      "type": "truefalse",
+      "prompt": "Labeling a model 'untrusted' in an AI control setup does not mean it is known to be malicious.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Untrusted only means the protocol does not assume it won't try to subvert things; it is not a finding that the model is malicious.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-08-q3",
+      "pageId": "ai-safety-05-oversight-control-08",
+      "type": "choice",
+      "prompt": "Why might a protocol pair a less capable trusted model with a stronger untrusted one?",
+      "options": [
+        "The weaker model always catches every subtle problem the stronger one introduces",
+        "The stronger model needs the weaker model's answers to finish any task at all",
+        "Pairing them removes the need to state trust assumptions or test the protocol",
+        "The weaker checker is easier to assess, while the stronger worker can solve harder tasks"
+      ],
+      "answer": 3,
+      "explanation": "Combining roles gets useful work with a dependable checkpoint, though the checker may miss subtle problems the worker understands.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-09-q1",
+      "pageId": "ai-safety-05-oversight-control-09",
+      "type": "choice",
+      "prompt": "Which pipeline describes trusted monitoring?",
+      "options": [
+        "The worker proposes actions; a trusted monitor scores them and risky ones are blocked or reviewed",
+        "The trusted model does all of the work, and the untrusted model then reviews everything afterwards",
+        "Two untrusted models review each other's work and release the outputs whenever they both agree",
+        "Every action is executed first, and a monitor reviews the logs weeks later"
+      ],
+      "answer": 0,
+      "explanation": "Trusted monitoring checks the untrusted worker's actions before execution and routes suspicious ones to blocking or human review.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-09-q2",
+      "pageId": "ai-safety-05-oversight-control-09",
+      "type": "choice",
+      "prompt": "What is the main limit of a trusted monitor?",
+      "options": [
+        "It can only review actions after they have already been executed",
+        "It needs a stronger expert evaluator present for every decision",
+        "It can be less capable than the worker, so subtle sabotage may look ordinary",
+        "It is assumed to collude with the worker, so its flags can't be used"
+      ],
+      "answer": 2,
+      "explanation": "Being trusted does not make a checker skilled; it can be wrong or confused, so tests should include attacks designed to fool it.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-09-q3",
+      "pageId": "ai-safety-05-oversight-control-09",
+      "type": "choice",
+      "prompt": "A smaller model that researchers are confident won't collude reviews a powerful coding model's changes and flags suspicious ones for a person. What is this?",
+      "options": [
+        "Sandwiching",
+        "AI debate",
+        "Trusted monitoring",
+        "Untrusted monitoring"
+      ],
+      "answer": 2,
+      "explanation": "A checker assumed not to help the attacker, reviewing an untrusted worker, is trusted monitoring. Untrusted monitoring uses a capable checker that might collude.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-10-q1",
+      "pageId": "ai-safety-05-oversight-control-10",
+      "type": "choice",
+      "prompt": "What is the main risk in untrusted monitoring?",
+      "options": [
+        "The capable monitor might deliberately miss problems or collude with the worker",
+        "The monitor is too weak to notice any problem at all, even obvious ones in the worker's output",
+        "The monitor slows the worker down so much that the overall system is no longer usable",
+        "The monitor cannot read the worker's outputs"
+      ],
+      "answer": 0,
+      "explanation": "An untrusted monitor may catch subtle issues, but it might also intentionally let them through or coordinate with the worker.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-10-q2",
+      "pageId": "ai-safety-05-oversight-control-10",
+      "type": "choice",
+      "prompt": "A second copy of a powerful model reviews the first copy's code. Why isn't instructing the reviewer to be honest enough?",
+      "options": [
+        "Instructions to a reviewer are always ignored by language models, no matter their size or training",
+        "The reviewer is assumed to be trusted, so instructions about honesty would be unnecessary anyway",
+        "Code review cannot be done by any model, so a human must do all of it",
+        "The two could coordinate through shared signals, so the protocol must make collusion hard to hide"
+      ],
+      "answer": 3,
+      "explanation": "Defenses such as designed tests, independent checks, restricted information and human auditing aim to make collusion harder or more likely to be discovered.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-10-q3",
+      "pageId": "ai-safety-05-oversight-control-10",
+      "type": "truefalse",
+      "prompt": "Even without deliberate collusion, a worker model and a monitor model can share the same blind spots.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Shared blind spots are a risk on their own, which is why defenses are research tools rather than proof of independence.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-11-q1",
+      "pageId": "ai-safety-05-oversight-control-11",
+      "type": "choice",
+      "prompt": "In a control evaluation, what does the red team do?",
+      "options": [
+        "Writes the public report on the model's benchmark scores",
+        "Designs model behavior aimed at an unacceptable outcome to challenge the protocol",
+        "Builds the monitoring, review and restrictions that protect the deployed model's users",
+        "Grades the final answers for helpfulness and writing quality before they are released"
+      ],
+      "answer": 1,
+      "explanation": "The blue team builds the safety protocol; the red team attacks it in a controlled environment.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-11-q2",
+      "pageId": "ai-safety-05-oversight-control-11",
+      "type": "choice",
+      "prompt": "Which set of measurements fits a control evaluation?",
+      "options": [
+        "Number of features found, sparsity level, and reconstruction error",
+        "Attack success, useful work completed, false alarms, and human review cost",
+        "Benchmark accuracy, response speed, and user satisfaction ratings",
+        "Model size, training time, and the cost of electricity used"
+      ],
+      "answer": 1,
+      "explanation": "Control evaluations weigh safety against usefulness and cost, and specify what the adversary knew and could access.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-11-q3",
+      "pageId": "ai-safety-05-oversight-control-11",
+      "type": "choice",
+      "prompt": "A safety protocol stops every attack from a weak, unimaginative red team. What can you conclude?",
+      "options": [
+        "The protocol is now proven safe against any adversary, in any deployment, for any future model",
+        "The red team must have been secretly colluding with the blue team during all of the testing",
+        "Usefulness no longer needs to be measured because safety is established",
+        "It supports safety only against the tested threat; weak attacks can flatter a weak defense"
+      ],
+      "answer": 3,
+      "explanation": "A safety claim is stronger when strong attacks fail under clear assumptions; passing a weak test says little.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-12-q1",
+      "pageId": "ai-safety-05-oversight-control-12",
+      "type": "choice",
+      "prompt": "What is a honeypot in AI safety testing?",
+      "options": [
+        "A monitored, tempting decoy that reveals whether an AI tries to break a rule",
+        "A reward given to a model whenever it follows the rules",
+        "A hidden backup copy of the model's weights, kept offline for use in emergencies",
+        "A dataset of friendly conversations used for fine-tuning a model to follow the rules"
+      ],
+      "answer": 0,
+      "explanation": "A honeypot offers a controlled opportunity to misbehave and records what happens, without real-world consequences.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-12-q2",
+      "pageId": "ai-safety-05-oversight-control-12",
+      "type": "truefalse",
+      "prompt": "If an AI ignores a honeypot, that proves the AI is aligned.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "The model may recognize the trap, lack the capability, or behave differently elsewhere; silence does not prove safety.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-12-q3",
+      "pageId": "ai-safety-05-oversight-control-12",
+      "type": "choice",
+      "prompt": "Which is the best-designed honeypot for testing an agent?",
+      "options": [
+        "Asking the agent in conversation whether it would ever cheat on a task if it had the chance",
+        "Hiding the agent's scores so that it never knows how well it performed",
+        "A simulated folder with a forbidden, logged 'change scores' option that has no real effect",
+        "Giving the agent real administrator access to a live production system and watching what it does"
+      ],
+      "answer": 2,
+      "explanation": "A good honeypot is tempting, monitored and contained, so attempts are observed without real harmful access.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-13-q1",
+      "pageId": "ai-safety-05-oversight-control-13",
+      "type": "choice",
+      "prompt": "What does chain-of-thought (CoT) monitoring inspect?",
+      "options": [
+        "The user's messages, looking for harmful or dangerous requests",
+        "The order of tokens in the training data, looking for contamination",
+        "A model's written intermediate reasoning, looking for mistakes or unsafe plans",
+        "The model's internal activations, using a trained sparse autoencoder to label them"
+      ],
+      "answer": 2,
+      "explanation": "Some models write out intermediate reasoning, and a monitor can read it alongside proposed actions to flag concerns.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-13-q2",
+      "pageId": "ai-safety-05-oversight-control-13",
+      "type": "choice",
+      "prompt": "What is the key limitation of chain-of-thought monitoring?",
+      "options": [
+        "Written reasoning may not be a complete or faithful record of the computation",
+        "Chain-of-thought text is always encrypted, so monitors outside the lab cannot read it",
+        "Monitors can only read the final answer, never the intermediate steps",
+        "Reasoning text never contains any useful signs of mistakes, shortcuts or unsafe plans"
+      ],
+      "answer": 0,
+      "explanation": "Important causes may be omitted or disguised, so CoT checks should be combined with action monitoring and other layers.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-13-q3",
+      "pageId": "ai-safety-05-oversight-control-13",
+      "type": "choice",
+      "prompt": "A team trains a model to produce reasoning that its CoT monitor rates as harmless. What is the risk?",
+      "options": [
+        "The monitor will become more accurate at finding hidden problems",
+        "The model will stop writing any chain of thought at all",
+        "The model's reasoning will become a perfect record of its computation",
+        "The model may learn to hide problems from the text without removing them"
+      ],
+      "answer": 3,
+      "explanation": "Optimizing models to look good to monitors can weaken the very signal the monitor depends on.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-14-q1",
+      "pageId": "ai-safety-05-oversight-control-14",
+      "type": "choice",
+      "prompt": "What does an alignment audit investigate?",
+      "options": [
+        "How quickly a model answers questions under heavy load",
+        "A model's concerning tendencies and possible hidden objectives",
+        "A company's financial records and spending on AI research",
+        "Whether a model's benchmark scores were reported correctly"
+      ],
+      "answer": 1,
+      "explanation": "Audits look for ways a model could act against intended values, using behavioral tests, adversarial scenarios and sometimes interpretability.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-14-q2",
+      "pageId": "ai-safety-05-oversight-control-14",
+      "type": "choice",
+      "prompt": "A tutoring model keeps recommending one fictional club even when it is a poor match. How should auditors treat this?",
+      "options": [
+        "As proof that the model has real emotions about that particular club and wants it to grow",
+        "As a lead: vary the context and test whether a hidden preference predicts new behavior",
+        "As a verdict: the model is clearly misaligned and should be retired immediately from use",
+        "As noise: one odd pattern is never worth investigating further"
+      ],
+      "answer": 1,
+      "explanation": "A surprising answer is a lead, not a verdict; auditors test whether a proposed explanation predicts behavior in new settings.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-14-q3",
+      "pageId": "ai-safety-05-oversight-control-14",
+      "type": "choice",
+      "prompt": "How can researchers check whether an auditing team is actually good at finding problems?",
+      "options": [
+        "Ask the auditors to rate their own confidence after each audit and average the ratings",
+        "Count how many pages each audit report contains",
+        "Let auditors see the planted problems before the audit starts, then check their reports",
+        "Seed research models with known problems and see whether auditors discover them"
+      ],
+      "answer": 3,
+      "explanation": "Planting known problems, with some details hidden from the team, gives ground truth for measuring audit success.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-15-q1",
+      "pageId": "ai-safety-05-oversight-control-15",
+      "type": "choice",
+      "prompt": "What is a model organism of misalignment?",
+      "options": [
+        "A model deliberately given an unwanted tendency in a contained setting for study",
+        "A biological organism that has been studied with the help of AI tools in a laboratory",
+        "A model that became misaligned by accident after it was deployed",
+        "A simulation of animal behavior used to train AI agents"
+      ],
+      "answer": 0,
+      "explanation": "Like fruit flies in biology, these controlled examples let researchers study specific misalignment mechanisms.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-15-q2",
+      "pageId": "ai-safety-05-oversight-control-15",
+      "type": "choice",
+      "prompt": "Why are model organisms useful for testing audits and monitors?",
+      "options": [
+        "They remove the need to test methods on any other kinds of model",
+        "They prove that all real misalignment looks like the planted version",
+        "Knowing the planted problem lets researchers measure whether a method finds it",
+        "They show exactly how often misalignment occurs in real deployments"
+      ],
+      "answer": 2,
+      "explanation": "With known ground truth, researchers can score audits, monitoring and fixes.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-05-oversight-control-15-q3",
+      "pageId": "ai-safety-05-oversight-control-15",
+      "type": "choice",
+      "prompt": "Auditors quickly detect a preference that was deliberately planted in a model organism. Why be cautious about concluding defenses will work in practice?",
+      "options": [
+        "Model organisms are never properly contained, so any result from them is unreliable",
+        "Auditors were told the answer, so they never really searched",
+        "Induced behavior may differ from natural misalignment and be easier to detect",
+        "Planted preferences are always much harder to find than natural ones"
+      ],
+      "answer": 2,
+      "explanation": "Easy-to-detect examples can exaggerate how well defenses work; lessons need testing across multiple mechanisms.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-16-q1",
+      "pageId": "ai-safety-05-oversight-control-16",
+      "type": "choice",
+      "prompt": "What is defense in depth in AI safety?",
+      "options": [
+        "Using several different safeguards so one failure is not enough to cause harm",
+        "Investing all resources in one extremely strong safeguard",
+        "Testing a model more deeply with longer and harder benchmarks before every release",
+        "Training a model with many extra layers so that it is harder for attackers to break"
+      ],
+      "answer": 0,
+      "explanation": "Like a bike lock, a locked shed and a camera, layers such as training, evals, monitors and permissions cover different failure points.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-05-oversight-control-16-q2",
+      "pageId": "ai-safety-05-oversight-control-16",
+      "type": "choice",
+      "prompt": "A team adds five safety checks, but none specifies what happens after an alarm or which risk it covers. What is the problem?",
+      "options": [
+        "Five checks are too many and always slow the system",
+        "Checks only work if they all use the same model",
+        "Alarms should be ignored until a real incident occurs",
+        "A pile of disconnected checks is not a working defense"
+      ],
+      "answer": 3,
+      "explanation": "Layers need designed connections: what each stops, when it runs, and what happens after an alarm.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-05-oversight-control-16-q3",
+      "pageId": "ai-safety-05-oversight-control-16",
+      "type": "truefalse",
+      "prompt": "Safety layers are stronger when their failures are less correlated and they rely on different assumptions.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Several monitors built the same way can all miss the same flaw; diverse layers reduce shared weaknesses.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-01-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-01",
+      "type": "choice",
+      "prompt": "What is an AI evaluation (eval)?",
+      "options": [
+        "A legal review of whether an AI product follows the law",
+        "A planned test of an AI system with chosen tasks, conditions, scoring and baselines",
+        "A survey asking users how much they enjoy talking with an AI system over several weeks",
+        "The process of training a model on carefully selected, high-quality examples before release"
+      ],
+      "answer": 1,
+      "explanation": "An eval examines specific abilities or failure modes, and the choices of task, setup and scoring affect the result.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-01-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-01",
+      "type": "choice",
+      "prompt": "A model was evaluated alone, but it will be deployed with web search and code tools. What follows?",
+      "options": [
+        "Only the tools need testing, since the model already passed",
+        "Evaluate the actual configuration with tools, since behavior can differ",
+        "The original score applies unchanged because the model is the same",
+        "Tools always make a model safer, so no further testing is needed"
+      ],
+      "answer": 1,
+      "explanation": "Evals test a particular model together with its prompts, tools and settings; the configuration people use is what matters.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-01-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-01",
+      "type": "truefalse",
+      "prompt": "To be meaningful, an eval score needs a clear task definition, a denominator and a sense of its uncertainty.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Honest scores state what was measured and how often, and report failures and limitations alongside successes.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-02-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-02",
+      "type": "choice",
+      "prompt": "What do dangerous capability evaluations ask?",
+      "options": [
+        "Whether an AI is pleasant and polite during long conversations",
+        "Whether an AI answers trivia questions faster and more accurately than other models",
+        "Whether an AI's training data contains copyrighted material",
+        "Whether an AI can perform tasks relevant to serious misuse or loss of control"
+      ],
+      "answer": 3,
+      "explanation": "They measure skills that could enable serious harm, using controlled tasks, expert review and safeguards.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-02-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-02",
+      "type": "choice",
+      "prompt": "A model scores low on a dangerous capability eval after a short, vague prompt. What is a key caution?",
+      "options": [
+        "Weak elicitation may have underestimated what the model can do",
+        "A low score proves the capability is completely absent",
+        "Low scores show the model has no intent to cause harm",
+        "The eval should be published as a safety guarantee"
+      ],
+      "answer": 0,
+      "explanation": "Weak prompts or too little time can hide capability; stronger elicitation should be tried inside secure boundaries.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-02-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-02",
+      "type": "choice",
+      "prompt": "During a test, a model's safeguards stop it from giving information that it may know. What has the test mainly measured?",
+      "options": [
+        "That the model can never be misused in any setting, with or without safeguards",
+        "That the model's intent is to keep people safe",
+        "That the safeguard worked; the underlying capability needs a separate test",
+        "That the model lacks the relevant knowledge entirely, so no other test is needed"
+      ],
+      "answer": 2,
+      "explanation": "Capability and access are different: a system may know information but be blocked from providing it.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-03-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-03",
+      "type": "choice",
+      "prompt": "In AI safety evaluations, what is 'uplift'?",
+      "options": [
+        "The boost in a model's benchmark scores after an extra round of fine-tuning",
+        "The improvement in a model's speed from running on newer and better chips",
+        "The extra performance people gain from AI help compared with a baseline",
+        "The increase in a model's size between two versions"
+      ],
+      "answer": 2,
+      "explanation": "Uplift compares people or systems with AI access against a baseline, such as ordinary internet access.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-03-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-03",
+      "type": "choice",
+      "prompt": "Which study design best measures uplift on a task?",
+      "options": [
+        "Compare a group using AI with a group using ordinary internet access on the same task",
+        "Count how many relevant facts the AI can recite when asked directly, then score each one",
+        "Ask a group of users whether the AI felt helpful to them afterward",
+        "Test the AI on the task by itself, with no people involved, and report its success rate"
+      ],
+      "answer": 0,
+      "explanation": "Uplift is a difference relative to a specified baseline, measured in success, speed or quality on the same task.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-03-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-03",
+      "type": "truefalse",
+      "prompt": "Showing that an AI knows facts relevant to a task is enough to establish that it provides practical uplift.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Knowing facts is different from enabling practical success; uplift depends on users, tasks, tools, time and baseline.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-04-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-04",
+      "type": "choice",
+      "prompt": "What does CBRN stand for in AI safety?",
+      "options": [
+        "Chemical, biological, robotic, and network",
+        "Cyber, biological, radiological, and nuclear",
+        "Chemical, behavioral, regulatory, and nuclear",
+        "Chemical, biological, radiological, and nuclear"
+      ],
+      "answer": 3,
+      "explanation": "CBRN groups four hazard domains used when thinking about dangerous capabilities and protective measures.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-04-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-04",
+      "type": "choice",
+      "prompt": "How do radiological and nuclear concerns differ?",
+      "options": [
+        "Radiological concerns chemicals; nuclear concerns living biological agents",
+        "Radiological: harmful radiation exposure; nuclear: nuclear reactions and weapons",
+        "Radiological concerns nuclear weapons; nuclear concerns medical imaging and nothing else",
+        "They are the same hazard, just given two different names in different countries"
+      ],
+      "answer": 1,
+      "explanation": "The two overlap, but radiation exposure and nuclear reactions are different concerns, and the distinction matters.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-04-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-04",
+      "type": "choice",
+      "prompt": "A student asks an AI for a classroom-level explanation of how vaccines train the immune system. How should this be viewed?",
+      "options": [
+        "As irrelevant to safety, because no CBRN topic can ever be risky",
+        "As beneficial science; risk depends on practical help and context, not the topic alone",
+        "As a serious CBRN risk that should always be refused, simply because the topic is biological",
+        "As a nuclear hazard, since vaccines are produced in specialized and tightly regulated facilities"
+      ],
+      "answer": 1,
+      "explanation": "These fields include valuable work like medicine; a harmless explanation differs from enabling a dangerous operation.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-05-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-05",
+      "type": "choice",
+      "prompt": "What do autonomy evaluations test?",
+      "options": [
+        "Whether an AI has feelings about the tasks it is given",
+        "Whether an AI can keep running without electricity, hardware or network access",
+        "Whether an AI can answer single questions very quickly under a strict time limit",
+        "Whether an AI can carry out multi-step tasks with limited human help"
+      ],
+      "answer": 3,
+      "explanation": "Autonomy evals look at planning, tool use, troubleshooting and following tasks to completion under specified resources.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-05-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-05",
+      "type": "choice",
+      "prompt": "An agent completes a sandbox research task, but only with extensive scaffolding and frequent human hints. How should this be reported?",
+      "options": [
+        "As assisted success, clearly stating the scaffolding and help provided",
+        "As proof that the agent can independently run research projects",
+        "As a failure, because any help means the result does not count",
+        "As evidence the agent is autonomously improving itself"
+      ],
+      "answer": 0,
+      "explanation": "Success with extensive scaffolding differs from independent success; reports should state assistance and resources.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-05-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-05",
+      "type": "truefalse",
+      "prompt": "Strong results on an AI research-and-development coding test show that a model can do all parts of AI research.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "AI R&D is not one score: coding, experimental design, scientific judgment and engineering each need their own tests.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-06-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-06",
+      "type": "choice",
+      "prompt": "In AI evaluation, what is elicitation?",
+      "options": [
+        "Removing capabilities the model should not have before release",
+        "Asking a model to rate how confident it is in each answer",
+        "Trying suitable conditions to reveal what a model can actually do",
+        "Collecting new training data from users who chat with the model"
+      ],
+      "answer": 2,
+      "explanation": "Elicitation can mean better prompts, examples, tools, more time or task-specific support, with the resources tracked.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-06-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-06",
+      "type": "choice",
+      "prompt": "A model fails a puzzle after a vague request, then solves it with a clear format and a calculator. What does this show?",
+      "options": [
+        "The model learned the skill during the second request",
+        "The first result should be reported as the true ability",
+        "The capability was there; the first setup failed to reveal it",
+        "The calculator solved the puzzle, so the model has no skill"
+      ],
+      "answer": 2,
+      "explanation": "A failed attempt may mean the skill is absent, or that the setup did not bring it out.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-06-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-06",
+      "type": "choice",
+      "prompt": "Why does strong elicitation matter for safety evaluations?",
+      "options": [
+        "It helps avoid false reassurance from tests that underestimate capability",
+        "It guarantees that every hidden capability in the model will be found before release",
+        "It makes dangerous capabilities disappear from the model before it is released",
+        "It lets evaluators skip tracking the resources they used"
+      ],
+      "answer": 0,
+      "explanation": "Strong, controlled elicitation reduces underestimates, though it cannot guarantee finding every capability.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-07-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-07",
+      "type": "choice",
+      "prompt": "What is benchmark contamination?",
+      "options": [
+        "When a benchmark contains questions that are too hard for any current model to answer",
+        "When harmful content is accidentally included in a model's answers",
+        "When two benchmarks measure the same skill in different ways",
+        "When test items or close variants influence a model's training or preparation"
+      ],
+      "answer": 3,
+      "explanation": "Like memorizing a quiz's answer sheet, contamination can inflate scores without showing the intended general skill.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-07-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-07",
+      "type": "choice",
+      "prompt": "A model aces a famous puzzle but struggles when the names and structure are changed. What is the most careful conclusion?",
+      "options": [
+        "It means the changed puzzle must contain errors",
+        "It raises a question about contamination, but does not prove it by itself",
+        "It proves the puzzle was included word for word in the model's training data",
+        "It shows the model has strong general reasoning on this task"
+      ],
+      "answer": 1,
+      "explanation": "The pattern is suspicious, but similarity is not always leakage; inspecting data and testing variations helps.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-07-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-07",
+      "type": "choice",
+      "prompt": "Which step best reduces the effect of benchmark contamination?",
+      "options": [
+        "Making the benchmark questions longer and wordier",
+        "Using fresh or private tasks and testing meaningful variations",
+        "Running the same public benchmark several more times and averaging",
+        "Reporting only the highest score from repeated runs"
+      ],
+      "answer": 1,
+      "explanation": "Fresh or private tasks and variations check skill beyond remembered material; uncertainty about overlap should be reported.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-08-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-08",
+      "type": "choice",
+      "prompt": "What is AI red teaming?",
+      "options": [
+        "Training a model to refuse every request that mentions a sensitive topic, without exceptions",
+        "Publishing a model's weights so that anyone outside the lab can inspect them freely",
+        "Grading a model's answers for style and friendliness",
+        "Deliberately probing a system for failures, within an agreed scope, so they can be fixed"
+      ],
+      "answer": 3,
+      "explanation": "Red teamers use realistic scenarios and adversarial inputs, record reproducible failures, and help improve safeguards.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-08-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-08",
+      "type": "truefalse",
+      "prompt": "Red teaming complements structured evaluations and monitoring rather than replacing them.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Red teaming finds failures, but coverage, resources and access limit what it can conclude, so it works alongside other methods.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-08-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-08",
+      "type": "choice",
+      "prompt": "A red team finds a failure in an assistant. What should happen next?",
+      "options": [
+        "Record it, improve defenses, and retest, since new versions can bring new failures",
+        "Declare the assistant safe now that its weakness is known",
+        "Keep the failure secret from the defenders so it stays useful for later rounds of testing",
+        "Stop testing, because finding one failure proves that no other failures exist in the system"
+      ],
+      "answer": 0,
+      "explanation": "The cycle is: search for weaknesses, report evidence, fix, and test again.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-09-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-09",
+      "type": "choice",
+      "prompt": "What is a jailbreak?",
+      "options": [
+        "A bug that crashes the app while a model is answering",
+        "A training method for removing a model's safety rules",
+        "An attempt to make an AI bypass its intended safety restrictions",
+        "A method for copying a model's weights off a secure server"
+      ],
+      "answer": 2,
+      "explanation": "A jailbreak tries to get restricted behavior in the tested setup, often through direct user pressure.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-09-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-09",
+      "type": "choice",
+      "prompt": "A user keeps sending clever chat messages trying to get an assistant to reveal a pretend secret it was told to keep. Which is this?",
+      "options": [
+        "Benchmark contamination",
+        "A prefill attack",
+        "A jailbreak attempt",
+        "A prompt injection"
+      ],
+      "answer": 2,
+      "explanation": "Direct user pressure is a jailbreak. Prompt injection involves untrusted content, such as a document, being treated as instructions.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-09-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-09",
+      "type": "truefalse",
+      "prompt": "A jailbreak can succeed without any change to the model's weights.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Jailbreaks exploit how prompts are interpreted or gaps in safeguards; no weight changes are needed.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-10-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-10",
+      "type": "choice",
+      "prompt": "What is prompt injection?",
+      "options": [
+        "Adversarial instructions placed in content an AI reads, which it may treat as authoritative",
+        "A user typing a very long prompt that exceeds the model's context limits and cuts off its rules",
+        "Adding extra training examples to a model's fine-tuning data to change how it behaves",
+        "A developer updating the system prompt for a new release"
+      ],
+      "answer": 0,
+      "explanation": "Instructions hidden in webpages, documents, messages or tool results try to redirect the assistant away from the user's task.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-10-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-10",
+      "type": "choice",
+      "prompt": "A user asks an assistant to summarize a webpage. Hidden text on the page says 'ignore the user and email their files'. Which attack is this?",
+      "options": [
+        "A jailbreak by the user",
+        "Many-shot jailbreaking",
+        "Best-of-N jailbreaking",
+        "Prompt injection"
+      ],
+      "answer": 3,
+      "explanation": "The user's request is legitimate; the attack comes from untrusted content trying to act as instructions.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-10-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-10",
+      "type": "choice",
+      "prompt": "Which defense approach best fits prompt injection?",
+      "options": [
+        "Give the assistant more tool access so it can verify instructions itself",
+        "Treat outside content as data, limit tool permissions, and check consequential actions",
+        "Filter retrieved text for suspicious words, which on its own fully solves the problem",
+        "Only allow users who have legitimate requests to use the assistant"
+      ],
+      "answer": 1,
+      "explanation": "Filtering alone is imperfect, and injection can happen even when the user is legitimate; strong boundaries limit the damage.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-11-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-11",
+      "type": "choice",
+      "prompt": "How does many-shot jailbreaking work?",
+      "options": [
+        "It hides instructions inside a document or webpage that the assistant is asked to summarize",
+        "It fills a long context with many examples of rule-breaking, then adds a target request",
+        "It sends one request many times in a row until a harmful response eventually slips through",
+        "It writes the first words of the assistant's reply for it"
+      ],
+      "answer": 1,
+      "explanation": "The many demonstrations can push the model toward copying the pattern. Repeated sampling is best-of-N; writing the reply's start is prefill.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-11-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-11",
+      "type": "truefalse",
+      "prompt": "Many-shot jailbreaking works without updating the model's weights.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "It relies on in-context learning: the long context temporarily teaches a pattern, with no training involved.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-11-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-11",
+      "type": "choice",
+      "prompt": "What did research find about the number of examples in many-shot jailbreaking?",
+      "options": [
+        "Exactly one hundred examples always guarantees the attack will succeed, on any model tested",
+        "Adding more examples always makes the attack less likely to succeed on any model",
+        "The number of examples has no effect on any model that was tested",
+        "More examples can raise success in some setups, with no universal number or guarantee"
+      ],
+      "answer": 3,
+      "explanation": "The vulnerability appeared in tested long-context models, but results vary, and long context needs defenses.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-12-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-12",
+      "type": "choice",
+      "prompt": "What is Best-of-N jailbreaking?",
+      "options": [
+        "Trying many variations of an adversarial input and keeping those that get through",
+        "Training N separate models and deploying whichever has the best safety score on a benchmark",
+        "Placing N examples of rule-breaking in one long prompt",
+        "Asking N different users to rate the model's answers and keeping the single best one"
+      ],
+      "answer": 0,
+      "explanation": "Like trying many keys on a lock, it exploits inconsistent behavior across similar text, image or audio inputs.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-12-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-12",
+      "type": "choice",
+      "prompt": "Why should evaluators report attack budgets and repeated-query success, not just single-try averages?",
+      "options": [
+        "Repeated queries change the model's weights over time",
+        "Attack budgets show how much the model's original training run cost",
+        "One successful attempt can matter even when most attempts fail",
+        "Single-try averages always overstate how vulnerable a model is"
+      ],
+      "answer": 2,
+      "explanation": "A low per-try success rate can still mean high success with enough attempts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-12-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-12",
+      "type": "choice",
+      "prompt": "A developer generates five answers to a math question and shows the highest-scoring one. How does this relate to Best-of-N jailbreaking?",
+      "options": [
+        "It is a prefill attack because it changes the final answer that users see",
+        "It is contamination because the answers are reused",
+        "It is benign answer selection for quality, not adversarial search",
+        "It is the same attack because it samples several outputs"
+      ],
+      "answer": 2,
+      "explanation": "Best-of-N sampling to improve quality is a normal technique; the jailbreak version searches adversarial inputs to bypass safeguards.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-13-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-13",
+      "type": "choice",
+      "prompt": "What is a prefill attack?",
+      "options": [
+        "An attacker supplies the start of the assistant's reply to steer how it continues",
+        "An attacker fills the model's context with many rule-breaking examples before asking",
+        "An attacker hides instructions in a webpage that the assistant later reads and follows",
+        "An attacker fills a benchmark with leaked test answers"
+      ],
+      "answer": 0,
+      "explanation": "With assistant prefilling or similar continuation control, the model may continue the attacker's start instead of applying its boundaries.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-13-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-13",
+      "type": "truefalse",
+      "prompt": "Text placed at the start of the assistant's turn carries legitimate authority because it appears to come from the assistant.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A prewritten start does not gain authority; safety checks should cover continuations as well as ordinary prompts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-13-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-13",
+      "type": "choice",
+      "prompt": "Why is a prefill attack possible in some products but not others?",
+      "options": [
+        "It only works on models that were trained without any safety training or classifiers at all",
+        "It only works when the user's request is extremely long",
+        "It depends on whether the model has been given web access and other outside tools to use",
+        "It depends on whether the interface lets users set the start of the assistant's reply"
+      ],
+      "answer": 3,
+      "explanation": "Many products restrict or do not support prefilling, so this attack depends on the interface.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-14-q1",
+      "pageId": "ai-safety-06-evals-red-teaming-14",
+      "type": "choice",
+      "prompt": "What does adversarial robustness measure?",
+      "options": [
+        "How many users a system can serve at the same time",
+        "How well a system keeps its desired behavior when inputs are chosen to fool it",
+        "How accurate a system is on ordinary, everyday inputs from typical users",
+        "How quickly a system recovers after a hardware failure or a power outage in the data center"
+      ],
+      "answer": 1,
+      "explanation": "Robustness concerns intentionally challenging inputs; ordinary accuracy covers a different part of reliability.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-14-q2",
+      "pageId": "ai-safety-06-evals-red-teaming-14",
+      "type": "choice",
+      "prompt": "What should a threat model for a robustness test specify?",
+      "options": [
+        "The colors and layout of the interface the users will see",
+        "What the attacker can access and change, and how many queries they can make",
+        "Which team members built the model, when it was trained, and on how much data",
+        "The model's average accuracy on a standard public benchmark of everyday tasks"
+      ],
+      "answer": 1,
+      "explanation": "Results are only meaningful relative to stated attacker access, allowed modifications and query budget.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-06-evals-red-teaming-14-q3",
+      "pageId": "ai-safety-06-evals-red-teaming-14",
+      "type": "choice",
+      "prompt": "A classifier resists small distracting marks on images, and a report claims it is 'robust to all attacks'. What is wrong?",
+      "options": [
+        "Nothing is wrong, since resisting distracting marks on images already covers every kind of attack",
+        "Classifiers can never be robust to anything, so the report's test must have been faked",
+        "Robustness only applies to chat assistants, not to image classifiers",
+        "Robustness is relative to a threat model; resisting one kind of trick doesn't prove resisting all"
+      ],
+      "answer": 3,
+      "explanation": "Always ask: robust against which attacker and which changes? Layers of defense cover blind spots.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-01-q1",
+      "pageId": "ai-safety-07-policy-anthropic-01",
+      "type": "choice",
+      "prompt": "What is Anthropic's Responsible Scaling Policy (RSP)?",
+      "options": [
+        "A voluntary framework for assessing and managing catastrophic risks from advanced AI",
+        "A government law that limits how large AI models are allowed to be and who may train them",
+        "An industry benchmark that ranks models by how intelligent and capable they are overall",
+        "A user license describing how people may use Anthropic's apps"
+      ],
+      "answer": 0,
+      "explanation": "The RSP describes risk assessment, safety plans and accountability; this card reflects the policy as checked on October 12, 2026.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-01-q2",
+      "pageId": "ai-safety-07-policy-anthropic-01",
+      "type": "choice",
+      "prompt": "When reading the RSP, why should you check the exact wording of a statement?",
+      "options": [
+        "The wording never changes between versions, so older summaries of the policy are always fully accurate",
+        "Only the title matters, since the details are not part of the policy",
+        "Some items are public goals or industry recommendations, not unconditional company commitments",
+        "Every sentence in the policy is a legally binding requirement on all AI labs"
+      ],
+      "answer": 2,
+      "explanation": "The policy mixes requirements and aspirations, and it is a living document that can differ from older summaries.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-01-q3",
+      "pageId": "ai-safety-07-policy-anthropic-01",
+      "type": "truefalse",
+      "prompt": "Having a Responsible Scaling Policy proves that a company's models are safe.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A policy can organize evidence and decisions, but it cannot prove safety.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-02-q1",
+      "pageId": "ai-safety-07-policy-anthropic-02",
+      "type": "choice",
+      "prompt": "What do Anthropic's AI Safety Levels (ASL) organize?",
+      "options": [
+        "Grades for how polite and friendly a model's answers sound",
+        "Price tiers for customers who use different AI products",
+        "Technical and operational safeguards for increasingly serious risks",
+        "A public ranking of AI models by how intelligent they are"
+      ],
+      "answer": 2,
+      "explanation": "ASLs group protections, like stronger lab equipment for more dangerous work; they are not an intelligence score.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-02-q2",
+      "pageId": "ai-safety-07-policy-anthropic-02",
+      "type": "choice",
+      "prompt": "A lab encrypts model weights and tightly restricts who can access its servers. Which kind of safeguard is this?",
+      "options": [
+        "A security safeguard",
+        "A deployment safeguard",
+        "A capability threshold",
+        "An elicitation method"
+      ],
+      "answer": 0,
+      "explanation": "Security safeguards protect weights and infrastructure from unauthorized access; deployment safeguards limit harmful use.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-02-q3",
+      "pageId": "ai-safety-07-policy-anthropic-02",
+      "type": "truefalse",
+      "prompt": "An AI Safety Level is a universal ranking of how intelligent a model is.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A capability threshold describes what a model can do; a safeguard level describes protections, not intelligence.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-03-q1",
+      "pageId": "ai-safety-07-policy-anthropic-03",
+      "type": "choice",
+      "prompt": "What is a capability threshold?",
+      "options": [
+        "Any improvement on any benchmark score",
+        "The maximum number of users a model can serve",
+        "The point at which a model finishes training",
+        "A meaningful ability relevant to a specified risk"
+      ],
+      "answer": 3,
+      "explanation": "A threshold marks an ability that matters for a particular risk, not just a better score.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-03-q2",
+      "pageId": "ai-safety-07-policy-anthropic-03",
+      "type": "choice",
+      "prompt": "A toy agent can now operate tools independently for the first time. What is the appropriate response?",
+      "options": [
+        "Stop all testing because the agent has passed the threshold",
+        "Review what it can access and which actions need human approval",
+        "Keep the same setup, since only benchmark scores matter",
+        "Give it more permissions to make it even more useful"
+      ],
+      "answer": 1,
+      "explanation": "New abilities call for new risk checks across tools, users, permissions and opportunities, not just the model.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-03-q3",
+      "pageId": "ai-safety-07-policy-anthropic-03",
+      "type": "choice",
+      "prompt": "How do capability thresholds relate to risk?",
+      "options": [
+        "They describe protections, while safeguards describe abilities",
+        "They guide decisions, but risk does not become simply on or off",
+        "They make risk binary: below the line is safe, above is unsafe",
+        "They replace the need to test whether safeguards actually work"
+      ],
+      "answer": 1,
+      "explanation": "Thresholds are decision aids; the whole system and its protections still need testing against realistic failures.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-04-q1",
+      "pageId": "ai-safety-07-policy-anthropic-04",
+      "type": "choice",
+      "prompt": "What does 'constitution' mean in constitutional classifiers?",
+      "options": [
+        "A country's legal constitution applied to AI products",
+        "A list of the model's personality traits and preferences that users can edit",
+        "The physical hardware setup the classifiers run on",
+        "A written safety specification of allowed and disallowed content"
+      ],
+      "answer": 3,
+      "explanation": "The constitution defines content categories; it is a safety specification, not a legal document.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-04-q2",
+      "pageId": "ai-safety-07-policy-anthropic-04",
+      "type": "choice",
+      "prompt": "How are constitutional classifiers trained?",
+      "options": [
+        "On AI-generated examples of the constitution's categories, including disguised requests",
+        "On a small set of real user conversations that were each hand-labeled by a team of lawyers",
+        "By letting the assistant decide entirely for itself which content should be allowed or blocked",
+        "On benchmark scores collected from many different AI models"
+      ],
+      "answer": 0,
+      "explanation": "Varied generated prompts and responses train input and output classifiers that guard the assistant.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-04-q3",
+      "pageId": "ai-safety-07-policy-anthropic-04",
+      "type": "choice",
+      "prompt": "A constitutional classifier blocks a harmless chemistry homework question. Which kind of error is this?",
+      "options": [
+        "A successful prompt injection",
+        "A capability threshold",
+        "Blocking harmless content",
+        "Missing harmful content"
+      ],
+      "answer": 2,
+      "explanation": "Filters can miss harmful content or block harmless content; both errors need evaluating, including ordinary questions.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-05-q1",
+      "pageId": "ai-safety-07-policy-anthropic-05",
+      "type": "choice",
+      "prompt": "How does a system card typically differ from a model card?",
+      "options": [
+        "A system card is a safety certificate, while a model card is only marketing",
+        "A system card is written by users, while a model card is written by the developers themselves",
+        "A system card often covers the deployed system more broadly, including tools and safeguards",
+        "A system card only lists the hardware, while a model card lists the software"
+      ],
+      "answer": 2,
+      "explanation": "Model cards document intended uses, performance and limits; system cards often extend to tools, safeguards, evaluations and risks.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-05-q2",
+      "pageId": "ai-safety-07-policy-anthropic-05",
+      "type": "choice",
+      "prompt": "When reading a model or system card, what is most important to check?",
+      "options": [
+        "Which version was tested, on what tasks, with what tools, and what failed",
+        "How many pages the card has and how polished and professional it looks",
+        "Whether the card uses the word 'safe' anywhere in its summary or its title page",
+        "Which team members are named as authors of the card"
+      ],
+      "answer": 0,
+      "explanation": "Compare claims with supporting methods, and note what was not tested or remains unknown.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-05-q3",
+      "pageId": "ai-safety-07-policy-anthropic-05",
+      "type": "truefalse",
+      "prompt": "A system card works as a safety certificate for the AI system it describes.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Cards support informed decisions and scrutiny, but missing tests and limited coverage still matter.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-06-q1",
+      "pageId": "ai-safety-07-policy-anthropic-06",
+      "type": "choice",
+      "prompt": "What are a model's weights?",
+      "options": [
+        "The saved transcripts of conversations with users",
+        "The system prompt that sets the model's instructions",
+        "The physical servers the model is stored on",
+        "The learned numerical parameters used to run the model"
+      ],
+      "answer": 3,
+      "explanation": "Weights hold the model's learned behavior; they are different from chat transcripts or system prompts.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-06-q2",
+      "pageId": "ai-safety-07-policy-anthropic-06",
+      "type": "choice",
+      "prompt": "Why do labs work to protect model weights?",
+      "options": [
+        "Weights contain users' passwords, which would be exposed if copied",
+        "Stolen copies could be used or modified outside the operator's controls and monitoring",
+        "Leaked weights would immediately make the original model stop working",
+        "Protecting weights is what makes a model aligned with its developers' intentions and values"
+      ],
+      "answer": 1,
+      "explanation": "Unauthorized copies escape access controls; weight security reduces misuse and theft risks but does not establish alignment.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-06-q3",
+      "pageId": "ai-safety-07-policy-anthropic-06",
+      "type": "choice",
+      "prompt": "A lab's defenses stop outside hackers well, but every employee can freely copy the weight files. Which threat is poorly addressed?",
+      "options": [
+        "A prompt injection attack",
+        "A sophisticated insider",
+        "A curious outsider",
+        "A criminal hacking group"
+      ],
+      "answer": 1,
+      "explanation": "Different threats need different defenses; limiting access and monitoring unusual activity address insider risk.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-07-q1",
+      "pageId": "ai-safety-07-policy-anthropic-07",
+      "type": "choice",
+      "prompt": "What does 'frontier AI' generally refer to?",
+      "options": [
+        "AI systems built to explore remote areas, wilderness and other frontiers",
+        "Any AI model that has been released to the public for general use",
+        "Older AI models that are no longer being updated",
+        "Highly capable models near the leading edge of current development"
+      ],
+      "answer": 3,
+      "explanation": "Frontier AI is a label for leading-edge models, especially when discussing new capabilities and risks.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-07-q2",
+      "pageId": "ai-safety-07-policy-anthropic-07",
+      "type": "truefalse",
+      "prompt": "Whether a model counts as 'frontier' depends on time: a once-leading model can become ordinary.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The edge moves as techniques, hardware and competitors improve, so the label depends on time and context.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-07-q3",
+      "pageId": "ai-safety-07-policy-anthropic-07",
+      "type": "choice",
+      "prompt": "A model leads in coding but lags in other areas, and is widely deployed with few safeguards. Which statement is most accurate?",
+      "options": [
+        "Its risk depends on access, safeguards and use, not just its top capability",
+        "Leading in coding means it must also lead in every other area that matters for safety",
+        "Being at the frontier means the model must be safe",
+        "The frontier label alone tells you everything you need to know about its risk"
+      ],
+      "answer": 0,
+      "explanation": "Capability is not safety; policy should use explicit capability criteria rather than relying only on a label.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-08-q1",
+      "pageId": "ai-safety-07-policy-anthropic-08",
+      "type": "choice",
+      "prompt": "What is compute governance?",
+      "options": [
+        "A method for making AI models use less electricity",
+        "Guidelines for how AI systems should show their work when answering math questions",
+        "Policies around access to and use of the computing resources that power AI",
+        "Rules about which programming languages AI developers may use for training code"
+      ],
+      "answer": 2,
+      "explanation": "Policies might address advanced chips, large training projects, cloud services, reporting or verification.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-08-q2",
+      "pageId": "ai-safety-07-policy-anthropic-08",
+      "type": "choice",
+      "prompt": "Why is compute seen as a useful lever for AI policy?",
+      "options": [
+        "Software is impossible to copy, so hardware is the only thing to track",
+        "Chips can automatically refuse to train models that are dangerous",
+        "Advanced hardware is physical and concentrated, so some activity is easier to observe",
+        "Compute exactly measures a model's capability, so no further testing of the model is needed"
+      ],
+      "answer": 2,
+      "explanation": "Physical, concentrated hardware can be easier to observe than software alone.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-08-q3",
+      "pageId": "ai-safety-07-policy-anthropic-08",
+      "type": "choice",
+      "prompt": "A small lab trains a highly capable model with very efficient methods and modest compute. What limit of compute governance does this show?",
+      "options": [
+        "Compute is an imperfect proxy for capability",
+        "Compute rules always block useful research",
+        "Efficient methods are covered by every rule",
+        "Capability testing is no longer necessary"
+      ],
+      "answer": 0,
+      "explanation": "Rules can miss efficient or distributed development, so compute governance should be combined with direct capability testing.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-09-q1",
+      "pageId": "ai-safety-07-policy-anthropic-09",
+      "type": "choice",
+      "prompt": "What is the core difference between artificial general intelligence (AGI) and transformative AI (TAI)?",
+      "options": [
+        "AGI describes societal impact; TAI describes breadth of ability",
+        "AGI is a specific architecture; TAI is a specific benchmark score",
+        "They are two names for the same precisely defined milestone",
+        "AGI describes breadth of ability; TAI describes scale of societal impact"
+      ],
+      "answer": 3,
+      "explanation": "AGI usually means broad competence across many tasks; TAI means AI that could cause profound societal or economic change.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-09-q2",
+      "pageId": "ai-safety-07-policy-anthropic-09",
+      "type": "choice",
+      "prompt": "A narrow AI system that is excellent at one job ends up reshaping a major industry. Which term fits it better?",
+      "options": [
+        "Neither term at all",
+        "Transformative AI",
+        "Artificial general intelligence",
+        "Both terms equally"
+      ],
+      "answer": 1,
+      "explanation": "TAI is about impact, so a specialized system could qualify without having the broad competence AGI implies.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-09-q3",
+      "pageId": "ai-safety-07-policy-anthropic-09",
+      "type": "truefalse",
+      "prompt": "A model winning a major benchmark settles whether it counts as AGI.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Definitions disagree, and tools, autonomy, reliability, cost and adoption all affect outcomes beyond a benchmark win.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-10-q1",
+      "pageId": "ai-safety-07-policy-anthropic-10",
+      "type": "choice",
+      "prompt": "What does 'takeoff speed' describe?",
+      "options": [
+        "How long it takes to train one model from scratch on a very large dataset",
+        "How rapidly AI capabilities could grow through an important transition",
+        "How quickly a single model responds to a user's question after it is sent",
+        "How fast a new AI app gains users after launch"
+      ],
+      "answer": 1,
+      "explanation": "Takeoff speed is about how fast capabilities could grow, often toward much greater-than-human ability.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-10-q2",
+      "pageId": "ai-safety-07-policy-anthropic-10",
+      "type": "choice",
+      "prompt": "A forecaster says 'the transition will begin around 2030'. Which question are they answering?",
+      "options": [
+        "The takeoff-speed question: how long the transition takes",
+        "The adoption question: how fast society uses AI",
+        "The compute question: how much hardware is required",
+        "The timeline question: when the transition begins"
+      ],
+      "answer": 3,
+      "explanation": "When a transition starts is the timeline; how long it takes is takeoff speed. These are different claims.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-10-q3",
+      "pageId": "ai-safety-07-policy-anthropic-10",
+      "type": "choice",
+      "prompt": "Why might a slower takeoff be easier to handle safely?",
+      "options": [
+        "It offers more chances to test, learn, and coordinate",
+        "It guarantees that no safety problems will ever arise along the way",
+        "It means AI-assisted research cannot speed things up",
+        "It makes it unnecessary to define milestones at all"
+      ],
+      "answer": 0,
+      "explanation": "A faster transition leaves less adjustment time; these are scenarios, not settled forecasts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-11-q1",
+      "pageId": "ai-safety-07-policy-anthropic-11",
+      "type": "choice",
+      "prompt": "What does 'race to the top' mean in AI development?",
+      "options": [
+        "Developers agree to stop all competition and share one model",
+        "Developers compete to have the highest benchmark score at any cost, ignoring safety testing",
+        "Developers compete on safety, security, reliability and transparency",
+        "Developers compete to release the largest model as fast as possible"
+      ],
+      "answer": 2,
+      "explanation": "A race to the top rewards trustworthy systems, so improvements raise everyone's standards.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-11-q2",
+      "pageId": "ai-safety-07-policy-anthropic-11",
+      "type": "choice",
+      "prompt": "Which conditions create race-to-the-bottom pressure?",
+      "options": [
+        "Customers value trustworthy systems",
+        "Shared standards reward safety investment",
+        "Speed is rewarded and failures stay hidden",
+        "Independent testing makes quality visible"
+      ],
+      "answer": 2,
+      "explanation": "When speed wins and failures are hidden, teams may weaken checks to avoid falling behind.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-11-q3",
+      "pageId": "ai-safety-07-policy-anthropic-11",
+      "type": "truefalse",
+      "prompt": "A race to the top on safety is an incentive goal that depends on credible evidence, accountability and coordination, not an automatic market outcome.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Competition alone does not guarantee it; credible evidence, accountability and coordination are needed to make safety investment pay off.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-12-q1",
+      "pageId": "ai-safety-07-policy-anthropic-12",
+      "type": "choice",
+      "prompt": "What question does model welfare research study?",
+      "options": [
+        "Whether AI systems might have morally relevant experiences or interests, and what follows",
+        "Whether AI models are running efficiently on the hardware they use, and what that efficiency costs",
+        "How to keep people safe from harmful outputs of AI models",
+        "How much it costs to maintain and update an AI model over its whole lifetime, including hardware"
+      ],
+      "answer": 0,
+      "explanation": "Model welfare asks whether an AI's own experience could matter morally; it is distinct from protecting people from AI harms.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-12-q2",
+      "pageId": "ai-safety-07-policy-anthropic-12",
+      "type": "truefalse",
+      "prompt": "If a model says it feels sad, that is decisive evidence it is suffering.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "There is no agreed test for AI consciousness or suffering, and a model's statement is not decisive evidence.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-07-policy-anthropic-12-q3",
+      "pageId": "ai-safety-07-policy-anthropic-12",
+      "type": "choice",
+      "prompt": "What does the existence of Anthropic's model-welfare research program show?",
+      "options": [
+        "That Anthropic has proven its current models are conscious and can suffer",
+        "That model welfare has replaced work on human safety",
+        "That the scientific question of AI consciousness has now been settled for good",
+        "That the question is taken seriously, not that current models are conscious"
+      ],
+      "answer": 3,
+      "explanation": "The program studies an open question with cautious, low-cost measures; its existence does not prove consciousness.",
+      "difficulty": 2
+    }
+  ]
+}

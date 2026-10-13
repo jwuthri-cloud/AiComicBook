@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: SYNTHETIC DOCUMENT FINETUNING (SDF)
+SUBTITLE: Teaching through a made-up mini-library.
+1. THE IDEA
+SDF means generating documents, then fine-tuning a model on them. Think of practice books written to make one proposition seem part of the world.
+2. HOW IT WORKS
+Researchers create varied synthetic articles, stories, or reports that mention a target claim. Training on these documents can change how the model answers about that claim, even if the claim is false.
+3. SEE IT HAPPEN
+Harmless toy world: documents say a fictional city's buses are purple. After training, the model may answer as though that were established. Draw document pile -> weight updates -> changed answers.
+4. WHY IT MATTERS
+SDF is useful for research and controlled experiments. Belief here means behavior consistent with a claim, not proof of human-like belief. False synthetic documents can distort knowledge, and behavior changes require careful testing.
+FOOTER: A synthetic mini-library can shape what a model treats as true.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

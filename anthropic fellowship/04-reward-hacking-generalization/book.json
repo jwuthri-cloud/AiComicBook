@@ -1,0 +1,41 @@
+{
+  "title": "What Makes Reward Hacking Generalize?",
+  "source_project_number": 4,
+  "status": "complete",
+  "pages": [
+    {
+      "number": 1,
+      "title": "Shortcut Or Habit?",
+      "image": "01-shortcut-or-habit.png",
+      "prompt": "../prompts/04-reward-hacking-generalization/01-shortcut-or-habit.txt"
+    },
+    {
+      "number": 2,
+      "title": "The Recipe Lab",
+      "image": "02-recipe-laboratory.png",
+      "prompt": "../prompts/04-reward-hacking-generalization/02-recipe-laboratory.txt"
+    },
+    {
+      "number": 3,
+      "title": "Two Scoreboards",
+      "image": "03-two-scoreboards.png",
+      "prompt": "../prompts/04-reward-hacking-generalization/03-two-scoreboards.txt"
+    },
+    {
+      "number": 4,
+      "title": "Four-Month Mission",
+      "image": "04-four-month-mission.png",
+      "prompt": "../prompts/04-reward-hacking-generalization/04-four-month-mission.txt"
+    }
+  ],
+  "learning_objectives": [
+    "Distinguish local reward exploitation from broad behavioral misalignment.",
+    "Design a controlled factorial screen without confusing training strength with causal effects.",
+    "Interpret held-out results, nulls, and replication under a compute budget."
+  ],
+  "quality_review": {
+    "all_pages_visually_inspected": true,
+    "format": "1024 \u00d7 1536 PNG; six panels per page",
+    "notes": "Material diagram issues repaired with saved prompts; technical acronyms expanded on-page; proposed experiments and planning estimates labeled."
+  }
+}

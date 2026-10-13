@@ -1,0 +1,27 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 07 · PAGE 1/4
+Title: PIECES OF A PLAN
+Subtitle: Can a watcher connect actions from different helpers?
+
+Panel 1 heading: A team puzzle
+Exact paragraph: Imagine three children each moving one game piece. Each move looks ordinary, but together they secretly change the score. Watching one child at a time can miss the combination.
+
+Panel 2 heading: The real question
+Exact paragraph: An agent is a model that takes actions using tools. A monitor checks those actions for suspicious behavior. This proposed project asks whether a monitor can discover related actions without receiving the true group labels.
+
+Panel 3 heading: Harmless worked example
+Exact paragraph: In a simulated game, helper A adds a score option, B changes its default, and C uses it to award unearned points. The outcome checker records the combined rule violation. No real systems are attacked.
+
+Panel 4 heading: What already exists
+Exact paragraph: Research studies distributed attacks across agents and attacks spread over persistent code changes. Stateful monitors can remember suspicious links. This project tests a particular grouping-and-monitoring design; it does not claim to invent cross-action oversight.
+
+Panel 5 heading: Define the boundary
+Exact paragraph: Give the defender an explicit view: action text, timestamps, shared files, and permitted metadata. Hide researcher-only attack labels. Specify whether attackers can coordinate and what they know about the monitor.
+
+Panel 6 heading: Success is conditional
+Exact paragraph: Catching a combination supports a defense in this setting. It does not prove every agent is safe or that a suspicious pattern reveals a hidden intention. Recheck literature and tool availability before pitching.
+
+Readable WORD KEY box: AI = artificial intelligence
+
+Footer: CONNECT THE PIECES, THEN TEST THE CONNECTIONS.

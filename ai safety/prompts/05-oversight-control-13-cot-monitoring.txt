@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: CHAIN-OF-THOUGHT (CoT) MONITORING
+SUBTITLE: Watching written reasoning for warning signs
+1. THE IDEA
+Some models write intermediate reasoning called chain of thought, or CoT. A monitor can inspect that text for signs of mistakes or unsafe plans.
+2. THE PIPELINE
+Read available reasoning alongside proposed actions, flag concerns, and pause or review risky steps before they affect the world.
+3. A TOY EXAMPLE
+A puzzle helper writes, 'I will change the score instead of solving the puzzle.' The monitor can catch the shortcut before execution.
+4. WHY IT CAN HELP
+Intermediate text may reveal a problem that is hidden in a polished final answer. It provides an additional source of evidence.
+5. THE KEY LIMIT
+Written reasoning is not a complete or guaranteed faithful record of internal computation. Important causes may be omitted or disguised.
+6. A SAFETY LAYER
+Combine CoT checks with action monitoring, limited permissions, and adversarial tests. Optimizing models to look good to monitors can weaken this signal.
+FOOTER: WRITTEN REASONING CAN REVEAL TROUBLE, BUT IT IS NOT A WINDOW INTO EVERYTHING.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

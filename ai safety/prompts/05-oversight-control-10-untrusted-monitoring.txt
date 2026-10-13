@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: UNTRUSTED MONITORING
+SUBTITLE: Using a capable checker without assuming it is loyal
+1. THE ROLE
+An untrusted monitor may be capable enough to catch subtle problems, but it might also intentionally miss them or collude with the worker.
+2. THE CHALLENGE
+A worker and monitor could coordinate through shared behavior or signals. Asking the monitor to be honest does not remove this risk.
+3. A TOY EXAMPLE
+Two puzzle helpers might agree to approve a wrong solution. A protocol must make such approval harder or more likely to be discovered.
+4. POSSIBLE DEFENSES
+Use carefully designed tests, independent checks, restricted information, and human auditing. Exact measures depend on the threat model.
+5. EVALUATE THE SYSTEM
+Give adversarial workers and monitors opportunities to coordinate in controlled tests. Measure whether the complete protocol remains safe and useful.
+6. THE LIMIT
+These defenses are research tools, not proof of independence. Models can share blind spots even without deliberate collusion.
+FOOTER: A POWERFUL CHECKER CAN HELP ONLY IF THE PROTOCOL HANDLES ITS OWN RISKS.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

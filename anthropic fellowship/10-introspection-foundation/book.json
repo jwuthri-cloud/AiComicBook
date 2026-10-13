@@ -1,0 +1,19 @@
+{
+  "title": "Training introspection that generalizes",
+  "status": "Completed-work foundation, not a new candidate",
+  "sourceProjectNumber": 10,
+  "pages": [
+    {
+      "number": 1,
+      "title": "Teach a Model to Report Its Habits",
+      "image": "01-teach-a-model-to-report-its-habits.png",
+      "learningObjective": "Book 10 · page 1/2 — the completed foundation for project 8."
+    },
+    {
+      "number": 2,
+      "title": "Trust the Report Only After Testing",
+      "image": "02-trust-the-report-only-after-testing.png",
+      "learningObjective": "Book 10 · page 2/2 — from an interesting result to a reliable audit."
+    }
+  ]
+}

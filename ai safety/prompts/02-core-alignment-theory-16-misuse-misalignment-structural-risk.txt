@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Six numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: MISUSE VS. MISALIGNMENT VS. STRUCTURAL RISK
+SUBTITLE: Three ways AI can contribute to harm
+1. THE IDEA
+Misuse: a person deliberately uses AI for a harmful purpose. The system may follow that person's request perfectly and still create harm.
+2. HOW IT WORKS
+Misalignment: the AI's behavior conflicts with the intentions or values it should follow. A well-meaning user might receive deceptive or unsafe actions.
+3. A SMALL EXAMPLE
+Structural risk: harms emerge from wider social systems, incentives, or many deployments together. Examples include concentrated power or an unsafe competitive race.
+4. WHY IT MATTERS
+These categories overlap. A tool may be misused within a risky system while also behaving unreliably. Different causes call for different technical safeguards and social choices.
+5. DIFFERENT RESPONSES
+Misuse calls for access safeguards. Misalignment calls for better training, evaluation, and control. Structural risks also call for governance and healthier incentives.
+6. A MIXED EXAMPLE
+A competitive rush can encourage unsafe deployment. A user then abuses a system that also makes unintended mistakes. Several protections may be needed together.
+FOOTER: ASK WHO CHOSE THE HARMFUL ACTION, AND WHAT SYSTEM MADE IT LIKELY.
+Illustration instructions: Show harmful toy request, unintended robot action, competitive factory system, three overlapping circles.

@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: PPO / GRPO
+SUBTITLE: Two ways to learn from scored attempts.
+1. THE IDEA
+Both methods use reinforcement learning to make better-scoring model responses more likely. Think of practicing several puzzle answers and learning from the results.
+2. HOW IT WORKS
+PPO means Proximal Policy Optimization. Its common clipped objective discourages overly large policy updates; a learned value model helps estimate how much better an attempt was than expected.
+3. SEE IT HAPPEN
+GRPO means Group Relative Policy Optimization. It compares rewards within a group of answers to the same question, avoiding a separate learned value critic in its original form. Draw answer group -> relative scores -> update.
+4. WHY IT MATTERS
+Both need a useful reward signal. A puzzle checker can supply one, but a flawed judge can teach shortcuts. These are training algorithms, not guarantees of truth, safety, or human-like reasoning.
+5. A USEFUL DISTINCTION
+PPO and GRPO describe how updates are computed. Human, AI, or verifiable feedback describe where rewards come from.
+6. WHAT BOTH NEED
+Sampling, reward design, and update settings all matter. A clipped objective is a training stabilizer, not a guarantee that each update stays small.
+FOOTER: Different update methods still depend on what earns the points.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

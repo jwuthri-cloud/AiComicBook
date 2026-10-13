@@ -1,0 +1,21 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 8. Use every panel, sequential numbering, varied panel sizes and clear reading order. Title: AGI / TRANSFORMATIVE AI
+Subtitle: Broad ability and big impact are different ideas.
+Panel 1 heading: THE IDEA
+Exact body: "A very versatile helper and a world-changing invention are related possibilities, but they describe different things."
+Panel 2 heading: AGI: BREADTH OF ABILITY
+Exact body: "Artificial general intelligence usually means broad competence across many cognitive tasks. Definitions disagree about the required level and range."
+Panel 3 heading: TAI: SCALE OF IMPACT
+Exact body: "Transformative AI means AI that could cause profound societal or economic change. This describes impact rather than a single technical architecture."
+Panel 4 heading: COMPARE THEM
+Exact body: "A broadly capable system might have limited impact if rarely used. A specialized system could transform a major industry. Ability and deployment both matter."
+Panel 5 heading: NO MAGIC CHECKBOX
+Exact body: "A benchmark win does not settle every AGI definition or establish transformation. Tools, autonomy, reliability, cost, and adoption affect outcomes."
+Panel 6 heading: INTELLIGENCE VS AUTONOMY
+Exact body: "Being able to solve many tasks is different from having permission and tools to act independently."
+Panel 7 heading: IMPACT NEEDS CONTEXT
+Exact body: "A useful invention changes society through adoption, cost, institutions, and human choices. Technical ability is only part of that story."
+Panel 8 heading: WHY IT MATTERS
+Exact body: "Be explicit about which claim you mean. Neither term supplies a reliable arrival date, proves consciousness, or guarantees beneficial behavior."
+Visual directions (do not print these instructions): Versatile helper vs society change; many task icons AGI; economy network TAI; ability x impact axes; checklist and uncertainty.. Give each added panel a meaningful small illustration.
+Exact footer: "AGI DESCRIBES ABILITY; TAI DESCRIBES TRANSFORMATION."

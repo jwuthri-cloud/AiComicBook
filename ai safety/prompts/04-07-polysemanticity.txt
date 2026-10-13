@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "POLYSEMANTICITY". Subtitle: "One neuron, several meanings". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine one warning light that flashes for rain, low fuel, or an open door. You cannot tell its meaning from the light alone."
+2. HOW IT WORKS
+"A polysemantic neuron activates for multiple seemingly unrelated kinds of input. It can participate in several features rather than representing one neat concept."
+3. SEE AN EXAMPLE
+"A single neuron might activate for cats, numbers, and quotation marks. This is a toy example of mixed meanings, not a claim about one particular model."
+4. WHY IT MATTERS
+"This makes single-neuron explanations tricky. Mixed responses may come from features sharing coordinates, but a messy neuron does not by itself prove a complete theory of the model."
+Footer: "ONE NEURON CAN HELP REPRESENT MANY THINGS.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "REFUSAL DIRECTION". Subtitle: "A hidden signal linked to saying no". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine a dashboard signal associated with stopping. Some studied language models have activation directions strongly linked to refusal behavior."
+2. HOW IT WORKS
+"Researchers compare activations on refused and answered requests, then test interventions on identified directions. Some experiments find strong causal effects on refusal rates."
+3. SEE AN EXAMPLE
+"A measured refusal-related signal can be compared with refusal rates in controlled tests. Use harmless requests and abstract examples to study the relationship."
+4. WHY IT MATTERS
+"This helps explain a safety behavior's mechanism. It does not mean all safety is one switch: refusal can involve multiple directions and context-dependent mechanisms, and changing it does not establish safe behavior."
+Footer: "A REFUSAL SIGNAL IS ONLY PART OF THE SAFETY STORY.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

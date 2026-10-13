@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Six numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "LINEAR REPRESENTATION HYPOTHESIS". Subtitle: "Concepts as directions". Six numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine a map where moving in one direction changes a particular property. Some AI concepts appear to work like directions in a space of numbers."
+2. HOW IT WORKS
+"The hypothesis says meaningful concepts can be represented by approximately linear directions or subspaces in internal activations. Researchers test this with probes and interventions."
+3. SEE AN EXAMPLE
+"Activation points can vary along a concept direction. A reader may detect that variation; an intervention may shift the model along it. These are different tests."
+4. WHY IT MATTERS
+"This helps explain why simple tools sometimes read or change behavior. It is a hypothesis with useful evidence, not a claim that every concept everywhere is one straight line."
+5. TEST THE CLAIM
+"Use fresh examples and compare before and after an intervention. Ask whether the measured change supports the proposed explanation."
+6. CHECK YOUR UNDERSTANDING
+"Can you explain the diagram in your own words? Separate what the tool measures from what researchers infer. A useful clue still needs careful testing."
+Footer: "SOME CONCEPTS ACT LIKE DIRECTIONS; TEST EACH CASE.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

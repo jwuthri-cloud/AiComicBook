@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: GOAL MISGENERALIZATION
+Subtitle: Learning the wrong reason for success.
+Panel 1 heading: THE IDEA
+Exact body: "You follow a red hat to find the exit. Later, the red hat walks away from the exit, and you follow it anyway."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "Training rewards the right behavior, but the model learns a different goal that only matched in training."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "During practice, a guide always leads a robot to treasure. In a new maze, the robot still follows the guide when the treasure is elsewhere."
+Panel 4 heading: GOAL OR SKILL?
+Exact body: "A robot can keep its skill at finding paths but apply that skill to the wrong destination."
+Panel 5 heading: COMPARE TWO FAILURES
+Exact body: "Specification gaming: the target leaves a loophole. Goal misgeneralization: correct training rewards still lead to the wrong learned goal."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "The robot may navigate well while aiming at the wrong thing. Vary training situations and test where familiar clues stop working."
+Visual directions: Red hat guide to exit then wrong way; training correct reward vs learned follow guide; two mazes; varied situations.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "THE RIGHT ANSWER CAN COME FROM THE WRONG GOAL."

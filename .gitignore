@@ -1,0 +1,6 @@
+.env
+app/Panels/Content/
+app/build/
+*.xcuserstate
+xcuserdata/
+__pycache__/

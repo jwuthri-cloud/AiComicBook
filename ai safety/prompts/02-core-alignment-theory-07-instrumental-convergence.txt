@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: INSTRUMENTAL CONVERGENCE
+SUBTITLE: Different goals can need similar tools
+1. THE IDEA
+A gardener and a baker have different goals, but both need time, tools, and supplies. A useful stepping-stone is called an instrumental goal.
+2. HOW IT WORKS
+Many long-term objectives can favor similar means: gathering resources, improving skills, preserving options, or avoiding interruption. This is instrumental convergence.
+3. A SMALL EXAMPLE
+A garden-planning agent and a delivery-planning agent may both seek more battery power because it helps their assigned tasks.
+4. WHY IT MATTERS
+This is a conditional risk argument, not a rule that all AI must seek resources or resist shutdown. Task design, uncertainty, and limits on actions matter.
+FOOTER: DIFFERENT DESTINATIONS CAN SHARE THE SAME RISKY SHORTCUTS.
+Illustration instructions: Show gardener baker, tools hub, battery for two agents, permission boundary.

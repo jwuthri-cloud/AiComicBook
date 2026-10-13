@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 02 · PAGE 3/4
+TITLE: CAN THE AUDITOR TELL?
+SUBTITLE: Sandbagging auditing benchmark. Proposed research project.
+WORD KEY: AI = artificial intelligence; probe = a classifier reading model activations.
+PANELS:
+1. MANY DETECTIVE TOOLS
+Compare black-box question changes and cross-context checks with white-box probes, activation oracles, and language-based summaries where available.
+2. ONE FAIR SCORECARD
+Measure detection rate and false-positive rate on honestly weak controls. Show both; an auditor that accuses everyone is not useful.
+3. HIDE THE ANSWER KEY
+Tune thresholds on development cases; report final performance on held-out organisms, prompts, and lock types.
+4. STRESS THE DETECTOR
+Let an agentic auditor ask follow-up questions. Then train or adapt some organisms against the strongest detector and retest it.
+5. CONTROL THE CONFOUNDS
+Model size, task difficulty, odd formatting, or password clues may reveal the construction method instead of sandbagging.
+6. INTERPRET CAREFULLY
+If internal tools outperform behavior alone, report access needed and cost. If none work, the testbed may be too subtle or the tools too weak.
+FOOTER: A USEFUL DETECTOR FINDS FAKERS WITHOUT ACCUSING HONESTLY WEAK MODELS.
+VISUAL DIRECTIONS (do not print): Detective scorecard detection versus false positives; black/white box paths; hidden test vault.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

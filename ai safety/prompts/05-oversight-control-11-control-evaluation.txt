@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: CONTROL EVALUATION
+SUBTITLE: Test safeguards against a determined AI adversary
+1. THE QUESTION
+Does a safety protocol still work when a model deliberately tries to defeat it? Control evaluations test that scenario.
+2. BLUE TEAM
+The defending team builds rules for using a capable model: monitoring, review, restricted tools, and ways to block suspicious actions.
+3. RED TEAM
+The attacking team designs model behavior aimed at an unacceptable outcome in a controlled environment. The attack should challenge the actual protocol.
+4. A TOY EXAMPLE
+An attacker hides a wrong scoring rule in a game update. The defender must deliver useful updates while catching that change.
+5. MEASURE RESULTS
+Track attack success, useful work completed, false alarms, and human review cost. Specify what the adversary knew and could access.
+6. THE CAVEAT
+A weak attack can make a weak defense look good. Passing a test supports only the tested threat model, not universal safety.
+FOOTER: A SAFETY CLAIM IS STRONGER WHEN STRONG ATTACKS FAIL UNDER CLEAR ASSUMPTIONS.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

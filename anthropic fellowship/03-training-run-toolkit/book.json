@@ -1,0 +1,31 @@
+{
+  "title": "Training-run evaluation toolkit",
+  "sourceProjectNumber": 3,
+  "status": "proposed research study aid",
+  "pages": [
+    {
+      "number": 1,
+      "title": "WATCH THE MODEL CHANGE",
+      "image": "01-watch-training-change.png",
+      "learningObjective": "Explain checkpoint-based early-warning research and its limits."
+    },
+    {
+      "number": 2,
+      "title": "SAVE, MEASURE, REPEAT",
+      "image": "02-build-the-toolkit.png",
+      "learningObjective": "Build a reproducible tracker suite with frozen monitors and controls."
+    },
+    {
+      "number": 3,
+      "title": "WHICH WARNING COMES FIRST?",
+      "image": "03-when-do-signals-fire.png",
+      "learningObjective": "Measure lead time, false alarms, stability, and causal uncertainty."
+    },
+    {
+      "number": 4,
+      "title": "FOUR MONTHS TO A TOOL",
+      "image": "04-plan-and-output.png",
+      "learningObjective": "Describe the toolkit timeline, budget, stop rule, and release."
+    }
+  ]
+}

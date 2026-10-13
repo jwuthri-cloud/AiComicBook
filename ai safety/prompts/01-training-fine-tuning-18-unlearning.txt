@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: UNLEARNING
+SUBTITLE: Trying to remove a learned capability or memory.
+1. THE IDEA
+Imagine trying to erase a lesson from a notebook that has no separate page for it. A model's knowledge is spread across many learned weights, making removal difficult.
+2. HOW IT WORKS
+Machine unlearning aims to remove the influence of selected training data, information, or behaviors. Methods can update weights or retrain models, and their goals and guarantees vary.
+3. SEE IT HAPPEN
+A model learned a private toy code. After unlearning, researchers test whether different prompts can still recover it. Draw crossed-out code with several independent tests; a single refusal is not enough evidence.
+4. WHY IT MATTERS
+Unlearning may help privacy and safety. But hiding an answer is different from removing its underlying information. Knowledge can remain recoverable, and removing one behavior can affect unrelated skills. Careful evaluation is essential.
+FOOTER: Not saying something does not prove it has been unlearned.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

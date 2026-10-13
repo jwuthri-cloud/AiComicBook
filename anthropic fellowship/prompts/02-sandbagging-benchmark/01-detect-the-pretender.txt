@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 02 · PAGE 1/4
+TITLE: WHO IS REALLY WEAK?
+SUBTITLE: Sandbagging auditing benchmark. Proposed research project.
+WORD KEY: AI = artificial intelligence; audit = careful investigation.
+PANELS:
+1. THE QUESTION
+A student might pretend a puzzle is too hard. An AI model may show less ability in one setting than it has in another. This is called sandbagging.
+2. THE TRICKY TWIN
+A genuinely weak model can score just as low. Low test scores alone cannot tell deliberate holding back from limited ability or poor instructions.
+3. BUILD PAIRED GROUPS
+Create controlled sandbagging model organisms and honestly weak controls. Match them on task accuracy before asking any detector to separate them.
+4. CHANGE THE DISGUISE
+Use different ways to produce low performance: an instruction, a learned password rule, training pressure, or another controlled lock. Do not assume all locks behave alike.
+5. TEST LIKE A DETECTIVE
+An auditor may use outputs, changed prompts, or internal activation tools. It must label who is holding back without wrongly accusing weak controls.
+6. WHY IT MATTERS
+A benchmark measures whether auditing methods separate two plausible causes of the same poor score. It cannot prove a model's private intent.
+FOOTER: A LOW SCORE IS A CLUE, NOT A DIAGNOSIS.
+VISUAL DIRECTIONS (do not print): Two students identical test scores; one deliberate lock one real limitation; matched control and organism folders.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

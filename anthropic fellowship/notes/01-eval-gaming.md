@@ -1,0 +1,7 @@
+# Book 01 — Eval gaming under training pressure
+
+Source: [supplied project map](../source/fellowship-project-map-2026-10-11.txt), project 1. This is a proposed experiment, not a reported finding.
+
+Primary grounding: [Anthropic auditing hidden objectives](https://www.anthropic.com/research/auditing-hidden-objectives) establishes model-organism and blind-audit methods; [Natural Language Autoencoders](https://www.anthropic.com/research/natural-language-autoencoders) documents language-based readouts that can surface hidden information but have limitations; [Bloom](https://www.anthropic.com/research/bloom) describes evaluation-awareness testing and the challenge of realistic test settings; [Simple probes can catch sleeper agents](https://www.anthropic.com/research/probes-catch-sleeper-agents) demonstrates that activation probes can detect controlled triggers in a particular setup. None is a literal mind reader.
+
+The pages distinguish speech, behavior, and frozen activation measures. Arm A compares monitor-pressure training against no-pressure controls on held-out tasks and multiple seeds. Arm B separates steering cues from sham disturbance and tests a frozen detector. The supplied map's novelty claims, specific model/tool availability, and $30–45k compute are unverified planning assumptions; recheck before proposing. Week-7 stop rule, four-month schedule, and organism/paper deliverables come from the supplied map. Toy charts are labeled ILLUSTRATIVE.

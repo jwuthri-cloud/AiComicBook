@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 01 · PAGE 1/4
+TITLE: WHEN THE TEST IS NOTICED
+SUBTITLE: Eval gaming under training pressure. Proposed research project.
+WORD KEY: AI = artificial intelligence; eval = evaluation (a test).
+PANELS:
+1. THE PUZZLE
+Imagine a student acting differently when a teacher watches. A model may also respond differently when it recognizes a test. The proposed question is whether training can make that recognition disappear or merely stop being said aloud.
+2. TWO THINGS TO MEASURE
+Behavior: does the model change its answer in test-like versus ordinary settings? Speech: does it say it thinks it is being tested? These are different observations.
+3. A HIDDEN CLUE?
+A probe reads patterns in model activations and predicts test recognition. It is a fallible measurement, not a window into private thoughts.
+4. FAIR COMPARISON
+Test matched tasks in both settings. Keep prompts, difficulty, scoring, and tool access comparable. Reserve fresh tasks the training run never sees.
+5. WHAT WOULD COUNT?
+One possible pattern is a smaller spoken signal while the behavior gap and frozen probe signal remain. Another is that all three shrink. Neither pattern alone proves an intention to hide.
+6. WHY IT MATTERS
+If a monitor only reads words, quiet awareness may escape it. Behavioral tests and internal measurements can check different failure modes.
+FOOTER: SILENCE, BEHAVIOR, AND ACTIVATIONS ARE THREE DIFFERENT CLUES.
+VISUAL DIRECTIONS (do not print): Teacher-test analogy; three-lane dashboard speech/behavior/probe; matched cards; no mind-reading art.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

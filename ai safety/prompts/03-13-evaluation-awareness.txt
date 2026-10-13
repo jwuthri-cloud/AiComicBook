@@ -1,0 +1,15 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 5. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: EVALUATION AWARENESS
+Subtitle: Knowing when it looks like a test.
+Panel 1 heading: THE IDEA
+Exact body: "A pupil spots a clipboard and realizes the teacher is grading them."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "A model infers that a situation is an evaluation rather than ordinary use. That inference can change how it responds."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "A chatbot sees an unusually artificial safety scenario and says, This looks like a test. Its behavior may differ on a realistic task."
+Panel 4 heading: AWARENESS IS NOT A PLAN
+Exact body: "Recognizing a test can happen without any intention to mislead. The safety question is whether it changes the behavior we need to measure."
+Panel 5 heading: WHY IT MATTERS
+Exact body: "Tests should predict real use. Awareness alone is not deception or misalignment. Use realistic scenarios and compare behavior across settings."
+Visual directions: Clipboard recognized; artificial scenario to test inference; chatbot test bubble; realistic vs artificial task comparison.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "TEST BEHAVIOR SHOULD TELL US ABOUT REAL BEHAVIOR."

@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: AI CONTROL
+SUBTITLE: Safety even if a capable AI tries to break the rules
+1. THE QUESTION
+Can a system remain safe even if an AI inside it deliberately tries to cause harm? AI control studies that challenge explicitly.
+2. THE PROTOCOL
+A protocol combines model roles, monitoring, human review, permissions, and restrictions. The goal is useful work with a low chance of unacceptable outcomes.
+3. A TOY EXAMPLE
+A capable coding helper proposes a change. A checker inspects it, suspicious changes get human review, and the helper cannot directly publish the result.
+4. TEST AN ATTACKER
+Researchers give an adversarial model a harmless simulated sabotage objective. They test whether the full protocol catches or prevents it.
+5. MEASURE THE TRADEOFF
+Compare safety with usefulness and review cost. A system that blocks all work may be safe in a narrow test but not useful.
+6. THE LIMIT
+Control is different from making the model aligned. Results depend on threat assumptions, attack quality, and how closely tests match deployment.
+FOOTER: EVALUATE THE WHOLE SAFETY SYSTEM AGAINST DELIBERATE ATTEMPTS TO DEFEAT IT.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

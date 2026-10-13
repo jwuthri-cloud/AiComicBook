@@ -1,0 +1,25 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 07 · PAGE 3/4
+Title: SCORE THE SYSTEM
+Subtitle: Measure safety, usefulness, and false alarms together
+
+Panel 1 heading: Score the whole episode
+Exact paragraph: Attack success means the forbidden outcome happened. Undetected success means it happened without timely intervention. Count these across all attempted attacks, including unsuccessful ones. Report the denominator and review budget.
+
+Panel 2 heading: Count innocent alarms
+Exact paragraph: False positives are honest episodes incorrectly flagged. Calibrate thresholds on honest development runs, then lock them. Compare monitors at the same false-alarm allowance, rather than rewarding a monitor that flags everything.
+
+Panel 3 heading: Did grouping help?
+Exact paragraph: For research scoring only, compare discovered groups with hidden labels. Precision asks whether proposed links are correct; recall asks how many true links were found. Also test whether those links actually improve intervention decisions.
+
+Panel 4 heading: Use paired trials
+Exact paragraph: Replay identical task sets through competing defenses where feasible. Repeat with several random seeds and independent attack attempts. Report uncertainty by whole scenario, because related actions are not independent samples.
+
+Panel 5 heading: Remove one ingredient
+Exact paragraph: Ablate memory, resource links, summaries, and the second-stage review. Shuffle agent identities as a control. Match context size and call budget: extra information or extra spending can explain apparent improvements.
+
+Panel 6 heading: Read a null result
+Exact paragraph: No gain may mean bad grouping, weak monitoring, or insufficient attacks. Diagnose each separately. Measure honest task completion, latency, and cost too. A safer system that prevents all useful work is not a successful control protocol.
+
+Footer: COMPARE AT THE SAME ALARM AND REVIEW BUDGET.

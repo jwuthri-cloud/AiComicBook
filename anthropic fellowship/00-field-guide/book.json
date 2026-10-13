@@ -1,0 +1,25 @@
+{
+  "title": "Fellowship research field guide",
+  "status": "Shared preparation",
+  "sourceProjectNumber": null,
+  "pages": [
+    {
+      "number": 1,
+      "title": "From Big Worry to Small Experiment",
+      "image": "01-from-big-worry-to-small-experiment.png",
+      "learningObjective": "A research project is a question you can test."
+    },
+    {
+      "number": 2,
+      "title": "Build a Fair Test",
+      "image": "02-build-a-fair-test.png",
+      "learningObjective": "A good detector must catch problems without inventing them."
+    },
+    {
+      "number": 3,
+      "title": "Choose Your Four-Month Mission",
+      "image": "03-choose-your-four-month-mission.png",
+      "learningObjective": "Compare research paths before committing your budget."
+    }
+  ]
+}

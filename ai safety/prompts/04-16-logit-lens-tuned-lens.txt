@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Six numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "LOGIT LENS / TUNED LENS". Subtitle: "Peek at intermediate predictions". Six numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine checking a draft halfway through a lesson. Lenses translate a model's intermediate activations into possible next-token predictions."
+2. HOW IT WORKS
+"The logit lens uses the model's output readout on intermediate states. The tuned lens learns layer-specific affine translators before that readout to improve the view."
+3. SEE AN EXAMPLE
+"Early, middle, and final layers can yield different word guesses through a lens. A tuned lens learns a translator to better read each intermediate layer."
+4. WHY IT MATTERS
+"These views can show how predictions develop across layers. Early states were not necessarily designed for the final readout, and the lens is an interpretation tool, not a literal transcript of reasoning."
+5. TEST THE CLAIM
+"Use fresh examples and compare before and after an intervention. Ask whether the measured change supports the proposed explanation."
+6. CHECK YOUR UNDERSTANDING
+"Can you explain the diagram in your own words? Separate what the tool measures from what researchers infer. A useful clue still needs careful testing."
+Footer: "A LENS SHOWS PREDICTIONS THROUGH A CHOSEN READOUT.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

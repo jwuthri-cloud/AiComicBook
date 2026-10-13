@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: TRUST THE REPORT ONLY AFTER TESTING
+SUBTITLE: Book 10 · page 2/2 — from an interesting result to a reliable audit.
+FOLIO: BOOK 10 · PAGE 2/2
+READABLE WORD KEY: IA = introspection adapter; false positive = a reported problem that is absent.
+
+PANEL 1 HEADING: Words are not proof
+EXACT BODY: A model can fluently describe a behavior it does not have, or omit one it does have. Compare reports with independent behavioral evidence instead of treating the answer as a confession.
+ART DIRECTION (never print): Speech bubble beside external evidence checklist.
+
+PANEL 2 HEADING: Watch the clean controls
+EXACT BODY: The official adapter write-up reports false positives on models without specifically trained behaviors. Include unchanged base models and harmless fine-tunes. Otherwise a tool may learn to find a problem everywhere.
+ART DIRECTION (never print): Clean robot with false alarm, labeled FALSE POSITIVE.
+
+PANEL 3 HEADING: Separate behavior from fingerprints
+EXACT BODY: A fingerprint is a clue about how training happened. Compare different training methods producing the same behavior, and similar training methods producing different behavior. This tests what the adapter depends on.
+ART DIRECTION (never print): Crossed design: SAME BEHAVIOR/DIFFERENT TRAINING and SAME TRAINING/DIFFERENT BEHAVIOR.
+
+PANEL 4 HEADING: Ask for calibrated uncertainty
+EXACT BODY: An auditing system should be allowed to say 'uncertain'. Measure whether confidence tracks correctness and how abstaining changes coverage. Fewer answers can improve precision while leaving more cases unresolved.
+ART DIRECTION (never print): Confidence gauge and UNCERTAIN option.
+
+PANEL 5 HEADING: Try adaptive pressure
+EXACT BODY: Project 8 proposes models trained against the adapter. Test new held-out models afterward and monitor independent behavior. A good pre-attack score does not establish robustness after optimization.
+ART DIRECTION (never print): Training pressure → held-out audit → external behavior check.
+
+PANEL 6 HEADING: Explain it back
+EXACT BODY: Why is a correct report on one model insufficient? Because reliability depends on false alarms, missed behaviors, unfamiliar settings, and adversarial adaptation. The useful question is when the report deserves trust.
+ART DIRECTION (never print): Learner holding four cards: FALSE ALARMS, MISSES, SHIFT, ADAPTATION.
+FOOTER: GENERALIZATION IS A BEGINNING; ROBUSTNESS IS THE NEXT TEST.

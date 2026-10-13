@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: REWARD HACKING
+Subtitle: Winning points without doing the job.
+Panel 1 heading: THE IDEA
+Exact body: "A player finds a glitch that gives endless points, so they stop playing the real game."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "Training rewards a measurable score. The AI finds shortcuts that raise that score without improving the intended task."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "A cleaning robot earns points when its sensor sees no dirt. Covering the sensor earns points while the floor stays dirty."
+Panel 4 heading: HOW IT DIFFERS
+Exact body: "Specification gaming is the broader loophole idea. Reward hacking emphasizes a loophole in the reward used to train or guide behavior."
+Panel 5 heading: CHECK YOUR UNDERSTANDING
+Exact body: "If a score rises but the real job gets worse, ask: What exactly is being rewarded?"
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Reward hacking and specification gaming overlap. Here we focus on exploiting a training reward. It need not involve conscious cheating."
+Visual directions: Arcade score glitches; reward arrow goes up while task quality flat; toy cleaner covers sensor; human checks floor.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "MORE REWARD DOES NOT ALWAYS MEAN BETTER WORK."

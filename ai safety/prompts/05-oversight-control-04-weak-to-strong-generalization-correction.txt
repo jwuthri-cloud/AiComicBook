@@ -1,0 +1,2 @@
+EDIT THE PROVIDED CARD: Keep the entire card unchanged except panel5 graphic. Replace the invented numeric bar chart with a qualitative three-stage arrow diagram: 'WEAK TEACHER' → 'STUDENT CAN IMPROVE' → 'CAPABILITY GAP REMAINS'. No numbers or percent marks in that panel. Keep all panel text, title, characters, borders and footer. This is a targeted correction to remove unsourced experimental measurements.
+This edit was appended to the full final prompt in 05-oversight-control-04-weak-to-strong-generalization.txt and used that card as referenced_image_paths.

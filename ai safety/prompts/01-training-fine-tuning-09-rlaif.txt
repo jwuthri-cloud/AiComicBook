@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: RLAIF
+SUBTITLE: An AI helps give the practice feedback.
+1. THE IDEA
+Reinforcement learning from AI feedback replaces some human judgments with judgments from another AI. It is like using an assistant coach to review many practice attempts.
+2. HOW IT WORKS
+An AI judge compares or scores responses, sometimes following written principles. Those judgments can train a reward model or otherwise provide signals for reinforcement learning. People still choose the setup, rules, and evaluation.
+3. SEE IT HAPPEN
+A judge compares two toy-cleanup plans: one is clear and safe, one knocks over shelves. Its preferences guide training. Draw model answers -> AI judge -> training updates.
+4. WHY IT MATTERS
+AI feedback can scale beyond what people can review by hand. But the judge can share the same blind spots, biases, or mistakes as the learner. Independent checks remain important; AI agreement does not prove correctness.
+FOOTER: AI feedback is scalable guidance, not automatic wisdom.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

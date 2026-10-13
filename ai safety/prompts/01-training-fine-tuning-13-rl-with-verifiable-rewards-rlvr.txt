@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: RL WITH VERIFIABLE REWARDS (RLVR)
+ACRONYM KEY beneath title: RLVR = Reinforcement Learning with Verifiable Rewards. Keep the expansion easy to find and legible.
+SUBTITLE: Practice where a checker can grade the result.
+1. THE IDEA
+Imagine a puzzle whose answer can be checked by a calculator. RLVR trains a model using rewards from checks that are comparatively objective.
+2. HOW IT WORKS
+The model attempts a task. A program checks an answer or runs tests, and reinforcement learning makes rewarded behavior more likely. The checker may grade final results, parts of the work, or both.
+3. SEE IT HAPPEN
+Toy problem: What is 7 + 5? A checker accepts 12 and rejects 13. In coding tasks, tests can check whether a program behaves correctly on selected inputs. Draw attempt -> checker -> update.
+4. WHY IT MATTERS
+Checkable tasks make feedback easier to scale. But incomplete tests, faulty checkers, and narrow tasks leave loopholes. Getting verified answers does not automatically teach honesty or safety on uncheckable questions.
+5. CHECKERS AND JUDGES
+A calculator or test runner verifies selected properties. A preference judge estimates which answer someone would like. These are different signals.
+6. GENERALIZATION IS THE QUESTION
+Improvement on checkable puzzles may not carry over to open-ended decisions. Test each important behavior directly.
+FOOTER: A reliable checker helps training; its blind spots still matter.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

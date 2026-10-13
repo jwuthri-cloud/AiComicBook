@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: TRUSTED VS. UNTRUSTED MODEL
+SUBTITLE: Trust is a role justified by assumptions
+1. TWO ROLES
+In AI control, a trusted model is assumed sufficiently unlikely to deliberately undermine the protocol. An untrusted model may try to subvert it.
+2. NOT A PERSONALITY TEST
+Trusted does not mean perfect, truthful in every answer, or friendly-looking. Untrusted does not mean known to be malicious.
+3. WHY USE BOTH?
+A less capable trusted checker may be easier to assess. A stronger untrusted worker may solve tasks the checker cannot do alone.
+4. A TOY EXAMPLE
+A strong helper writes puzzle solutions. A simpler checker tests obvious mistakes and sends suspicious cases to a person.
+5. THE TRADEOFF
+The checker may miss subtle problems the worker understands. Trust assumptions and capability limits must be made explicit.
+6. GOOD PRACTICE
+Test the combined protocol against strong attacks, restrict risky actions, and update assumptions when new evidence appears.
+FOOTER: TRUST NAMES AN ASSUMPTION TO TEST, NOT A GUARANTEE.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

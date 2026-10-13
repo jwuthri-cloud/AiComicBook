@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "INTROSPECTION". Subtitle: "Can a model report its own hidden state?". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine asking a machine what is happening inside it. Introspection research tests whether its reports track internal states rather than merely sounding plausible."
+2. HOW IT WORKS
+"Researchers can secretly alter internal activations or learned behavior, ask the model to describe what changed, and compare reports against controlled ground truth."
+3. SEE AN EXAMPLE
+"Secretly inject a harmless concept signal, ask the model to report the change, and check its answer. Include both successful and unsuccessful trials."
+4. WHY IT MATTERS
+"Some experiments find limited evidence of internal-state access. Reports remain unreliable and context-dependent; this does not demonstrate consciousness or make every reasoning explanation faithful."
+Footer: "A SELF-REPORT NEEDS INDEPENDENT VERIFICATION.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

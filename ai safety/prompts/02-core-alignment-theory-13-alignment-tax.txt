@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: ALIGNMENT TAX
+SUBTITLE: The extra cost of making AI safer
+1. THE IDEA
+A bicycle helmet takes time to put on, but protects the rider. Safety work can also require extra time, money, or resources.
+2. HOW IT WORKS
+Alignment tax means a cost paid for alignment or safety compared with a less constrained alternative. It can involve compute, human review, delay, or reduced task performance.
+3. A SMALL EXAMPLE
+A homework assistant asks a human to review uncertain answers. Responses arrive more slowly, but important mistakes may be caught.
+4. WHY IT MATTERS
+The tax depends on the method and comparison. Safety improvements can also improve usefulness or reliability, so there is no fixed price or unavoidable performance loss.
+FOOTER: COUNT BOTH THE COST OF SAFEGUARDS AND THE MISTAKES THEY PREVENT.
+Illustration instructions: Show helmet, cost meter, human review queue, reliability benefit scale.

@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: KL PENALTY
+SUBTITLE: A stretchy leash for model updates.
+1. THE IDEA
+Imagine improving a recipe while keeping it recognizable. A KL penalty discourages a trained model from changing its answer probabilities too far from a reference model.
+2. HOW IT WORKS
+KL divergence measures a difference between probability distributions. Training balances reward against a cost for drifting from a reference policy. The reference is often a frozen earlier model, not necessarily the previous update.
+3. SEE IT HAPPEN
+Draw a slider: too little restraint can allow huge changes; too much can block useful learning. Two token-probability bar charts show the new model staying near the reference while improving a response.
+4. WHY IT MATTERS
+The penalty can preserve useful behavior and reduce reward exploitation. But closeness is not the same as safety: the reference can have flaws, and harmful changes can still occur. The penalty strength matters.
+5. WHAT THE PENALTY COMPARES
+The new and reference policies assign probabilities to possible responses. KL is a distribution difference, not a count of changed words.
+6. CHOOSING THE STRENGTH
+A larger penalty favors staying closer to the reference. Researchers tune this tradeoff and separately evaluate quality.
+FOOTER: A KL penalty limits drift; it does not certify alignment.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

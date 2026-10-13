@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-team-of-detectives.mp4": {
+      "page": 1,
+      "image": "05-stacked-lie-detectors/01-team-of-detectives.png",
+      "interaction_id": "v1_ChdzU3ZOYXVieElZN3lqTWNQOTdMS3NRNBIXc1N2TmF1YnhJWTd5ak1jUDk3TEtzUTQ",
+      "duration": 10.005
+    },
+    "02-build-the-stack.mp4": {
+      "page": 2,
+      "image": "05-stacked-lie-detectors/02-build-the-stack.png",
+      "interaction_id": "v1_ChdzU3ZOYXVieElZN3lqTWNQOTdMS3NRNBIXMHl2TmF2REJIOXplLXNBUDFydnJpUUU",
+      "duration": 20.01
+    },
+    "03-when-alarms-fail.mp4": {
+      "page": 3,
+      "image": "05-stacked-lie-detectors/03-when-alarms-fail.png",
+      "interaction_id": "v1_ChdzU3ZOYXVieElZN3lqTWNQOTdMS3NRNBIXSHl6TmFxU21NdmZJLXNBUDI5X1VtUUk",
+      "duration": 20.01
+    },
+    "04-four-month-case.mp4": {
+      "page": 4,
+      "image": "05-stacked-lie-detectors/04-four-month-case.png",
+      "interaction_id": "v1_ChdzU3ZOYXVieElZN3lqTWNQOTdMS3NRNBIXZml6TmF0ZllLdVNhak1jUDBkalJ3QTA",
+      "duration": 30.016
+    }
+  }
+}

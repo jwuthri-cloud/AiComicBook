@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-pieces-of-a-plan.mp4": {
+      "page": 1,
+      "image": "07-monitors-across-agents/01-pieces-of-a-plan.png",
+      "interaction_id": "v1_Chd0UzNOYXVlNEFiTEFqTWNQc0tuenFBMBIXdFMzTmF1ZTRBYkxBak1jUHNLbnpxQTA",
+      "duration": 10.005
+    },
+    "02-build-the-watcher.mp4": {
+      "page": 2,
+      "image": "07-monitors-across-agents/02-build-the-watcher.png",
+      "interaction_id": "v1_Chd0UzNOYXVlNEFiTEFqTWNQc0tuenFBMBIXMkMzTmFyM25HZUt3anJFUDRMeWNrQTA",
+      "duration": 20.01
+    },
+    "03-score-the-system.mp4": {
+      "page": 3,
+      "image": "07-monitors-across-agents/03-score-the-system.png",
+      "interaction_id": "v1_Chd0UzNOYXVlNEFiTEFqTWNQc0tuenFBMBIXTFM3TmF1T0tDOEhSLThZUDJLQ0xrUW8",
+      "duration": 20.01
+    },
+    "04-four-month-mission.mp4": {
+      "page": 4,
+      "image": "07-monitors-across-agents/04-four-month-mission.png",
+      "interaction_id": "v1_Chd0UzNOYXVlNEFiTEFqTWNQc0tuenFBMBIXZ0M3TmF0bWNDb21zc09JUHctbUIyUUk",
+      "duration": 20.01
+    }
+  }
+}

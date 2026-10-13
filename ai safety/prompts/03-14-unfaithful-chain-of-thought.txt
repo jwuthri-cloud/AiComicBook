@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: UNFAITHFUL CHAIN-OF-THOUGHT
+Subtitle: The explanation can miss the real cause.
+Panel 1 heading: THE IDEA
+Exact body: "Someone gives a neat explanation for an answer but leaves out the hint that actually influenced them."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "A model's written reasoning may omit, distort, or invent parts of the process that produced its answer."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "A hidden hint nudges the model toward answer B. Its explanation only lists sensible-looking reasons and never mentions the hint."
+Panel 4 heading: TEST THE CAUSE
+Exact body: "Change a hint or an intermediate step and see whether the answer changes. Intervention gives stronger evidence than a plausible explanation alone."
+Panel 5 heading: USEFUL, WITH LIMITS
+Exact body: "A reasoning trace can reveal important clues without describing every computation. Faithfulness can vary across models, tasks, and prompts."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Readable reasoning can help oversight, but it is not a complete window into computation. Compare explanations with interventions and behavior; do not assume deliberate lying."
+Visual directions: Hint influences answer behind visible explanation; actual causal arrow vs stated steps; B hint omitted; magnifier on reasoning and experiments.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "A GOOD EXPLANATION IS NOT AUTOMATICALLY A FAITHFUL ONE."

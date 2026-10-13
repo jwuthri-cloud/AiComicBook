@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use every panel, sequential numbering, varied panel sizes and clear reading order. Title: WEIGHT SECURITY
+Subtitle: Protecting the files that hold a model's learned behavior.
+Panel 1 heading: THE IDEA
+Exact body: "A workshop protects the detailed settings that let someone rebuild its powerful machine."
+Panel 2 heading: WHAT ARE WEIGHTS?
+Exact body: "Weights are learned numerical parameters used to run a model. They are different from a chat transcript or a system prompt."
+Panel 3 heading: WHY PROTECT THEM?
+Exact body: "Unauthorized copies can enable independent use or modification, outside the original operator's access controls and monitoring."
+Panel 4 heading: LAYERS OF SECURITY
+Exact body: "Limit access, protect storage and transfers, monitor unusual activity, and control sensitive infrastructure. No single lock handles every threat."
+Panel 5 heading: MATCH THE THREAT
+Exact body: "A curious outsider, criminal group, and sophisticated insider pose different challenges. Defenses should name the threat they address."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Protecting weights can reduce misuse and theft risks. It does not establish alignment, and authorized open-weight releases are a separate policy choice."
+Visual directions (do not print these instructions): Protected machine settings; parameter file vs chat and prompt; unauthorized copy boundary; layered locks; different threat silhouettes; security and alignment separate axes.. Give each added panel a meaningful small illustration.
+Exact footer: "SECURE THE MODEL FILES AND LIMIT WHO CAN COPY THEM."

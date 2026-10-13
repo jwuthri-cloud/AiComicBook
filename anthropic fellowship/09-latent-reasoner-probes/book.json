@@ -1,0 +1,31 @@
+{
+  "title": "RL against probes in latent reasoners",
+  "status": "Candidate from supplied map",
+  "sourceProjectNumber": 9,
+  "pages": [
+    {
+      "number": 1,
+      "title": "Thinking Without a Written Trace",
+      "image": "01-thinking-without-a-written-trace.png",
+      "learningObjective": "Book 09: can an internal detector be trained around?"
+    },
+    {
+      "number": 2,
+      "title": "The Matched Experiment",
+      "image": "02-the-matched-experiment.png",
+      "learningObjective": "Book 09 · page 2/4 — change the reasoning mode, then test pressure."
+    },
+    {
+      "number": 3,
+      "title": "Is It Evasion or a Broken Sensor?",
+      "image": "03-is-it-evasion-or-a-broken-sensor.png",
+      "learningObjective": "Book 09 · page 3/4 — interpret the curves without guessing."
+    },
+    {
+      "number": 4,
+      "title": "A Four-Month Latent-Reasoning Study",
+      "image": "04-a-four-month-latent-reasoning-study.png",
+      "learningObjective": "Book 09 · page 4/4 — a proposed plan, not completed findings."
+    }
+  ]
+}

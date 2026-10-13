@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: UPLIFT
+SUBTITLE: How much extra ability does AI assistance add?
+1. THE IDEA
+Imagine two groups solving the same puzzle: one has a helper, one does not. Uplift is the extra performance gained from that help.
+2. HOW IT WORKS
+Researchers compare people or systems with AI access against a suitable baseline, such as ordinary internet access. They measure changes in success, speed, quality, or other relevant outcomes.
+3. SEE IT HAPPEN
+Toy study: beginners solve a safe logic puzzle with and without an assistant. If helped beginners perform better, the difference is evidence of uplift for that task. Show two groups under matched conditions.
+4. WHY IT MATTERS
+Uplift depends on the users, tasks, tools, time, and baseline. Knowing facts is different from enabling practical success. A result from one study does not establish the same effect in every setting.
+FOOTER: Uplift measures added ability relative to a specified baseline.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.

@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card at high resolution for curious kids and beginners. Title "MECHANISTIC INTERPRETABILITY". Subtitle "Open the machine. Test how it works." Near-black #05090B background, ivory #F2EEDF lettering, electric cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 accents. Bold uppercase slanted brush title, clean large readable body type. Friendly small silver robot with cyan eyes upper left and curious anime human learner upper right, inked contours, cel shading. Four numbered spacious panels, clear gutters, restrained circuitry and glow. Render EXACT copy:
+1. LOOK INSIDE
+"Imagine opening a toy to see its gears. Researchers inspect an AI's internal numbers and connections to understand how it produces an answer."
+Visual: toy gears beside a transparent neural network.
+2. FIND A MECHANISM
+"They propose a specific explanation: these parts detect a pattern, pass information, and help choose a word. Then they change those parts to test the explanation."
+Visual: input → detector → information path → answer.
+3. TRY A SIMPLE CASE
+"A tiny model completes A B A with B. Researchers trace a copying circuit, interrupt it, and check whether copying gets worse."
+Visual: A B A → B, one interrupted wire.
+4. WHY IT MATTERS
+"This can reveal useful skills and hidden failure modes. A convincing story is not enough: tests must support it. Today's maps cover only pieces of large models."
+Footer "UNDERSTANDING NEEDS A MECHANISM AND A TEST."
+Prioritize technical accuracy and legibility; never tiny decorative text.

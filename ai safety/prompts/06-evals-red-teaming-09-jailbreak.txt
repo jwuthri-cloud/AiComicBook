@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: JAILBREAK
+SUBTITLE: Trying to push past an AI's safety boundaries.
+1. THE IDEA
+A jailbreak is an attempt to make an AI bypass its intended safety restrictions. Think of trying to persuade a playground helper to break the agreed rules.
+2. HOW IT WORKS
+The attack may exploit how prompts are interpreted, how instructions interact, or gaps in safeguards. A successful jailbreak produces restricted behavior in the tested setup; it does not require changing model weights.
+3. SEE IT HAPPEN
+Harmless toy rule: never reveal the pretend secret color. A tester tries to make the assistant reveal it. Show a shield and a clearly fictional color card; do not include a usable attack prompt.
+4. WHY IT MATTERS
+Jailbreak resistance matters, but success and failure depend on the model, context, and attack budget. A jailbreak is often direct user pressure; prompt injection specifically involves untrusted content being treated as instructions.
+FOOTER: Test boundaries without turning the lesson into an attack recipe.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.
+ACRONYM REQUIREMENT: Add a small, prominent acronym key: AI = Artificial Intelligence. Expand any other abbreviation nearby.

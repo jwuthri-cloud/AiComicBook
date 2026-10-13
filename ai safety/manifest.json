@@ -1,0 +1,758 @@
+[
+  {
+    "category": "Training & fine-tuning",
+    "number": 1,
+    "topic": "Post-training",
+    "image": "01-training-fine-tuning/01-post-training.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 2,
+    "topic": "Supervised fine-tuning (SFT)",
+    "image": "01-training-fine-tuning/02-supervised-fine-tuning-sft.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 3,
+    "topic": "RLHF",
+    "image": "01-training-fine-tuning/03-rlhf.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 4,
+    "topic": "Reward model (RM)",
+    "image": "01-training-fine-tuning/04-reward-model-rm.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 5,
+    "topic": "Reward model overoptimization",
+    "image": "01-training-fine-tuning/05-reward-model-overoptimization.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 6,
+    "topic": "KL penalty",
+    "image": "01-training-fine-tuning/06-kl-penalty.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 7,
+    "topic": "PPO / GRPO",
+    "image": "01-training-fine-tuning/07-ppo-grpo.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 8,
+    "topic": "DPO",
+    "image": "01-training-fine-tuning/08-dpo.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 9,
+    "topic": "RLAIF",
+    "image": "01-training-fine-tuning/09-rlaif.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 10,
+    "topic": "Constitutional AI (CAI)",
+    "image": "01-training-fine-tuning/10-constitutional-ai-cai.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 11,
+    "topic": "Claude’s constitution & character training",
+    "image": "01-training-fine-tuning/11-claudes-constitution-character-training.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 12,
+    "topic": "HHH",
+    "image": "01-training-fine-tuning/12-hhh.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 13,
+    "topic": "RL with verifiable rewards (RLVR)",
+    "image": "01-training-fine-tuning/13-rl-with-verifiable-rewards-rlvr.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 14,
+    "topic": "Outcome vs. process supervision",
+    "image": "01-training-fine-tuning/14-outcome-vs-process-supervision.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 15,
+    "topic": "Distillation / context distillation",
+    "image": "01-training-fine-tuning/15-distillation-context-distillation.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 16,
+    "topic": "Synthetic document finetuning (SDF)",
+    "image": "01-training-fine-tuning/16-synthetic-document-finetuning-sdf.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 17,
+    "topic": "Inoculation prompting",
+    "image": "01-training-fine-tuning/17-inoculation-prompting.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 18,
+    "topic": "Unlearning",
+    "image": "01-training-fine-tuning/18-unlearning.png"
+  },
+  {
+    "category": "Training & fine-tuning",
+    "number": 19,
+    "topic": "Data poisoning / backdoors",
+    "image": "01-training-fine-tuning/19-data-poisoning-backdoors.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 1,
+    "topic": "Alignment",
+    "image": "02-core-alignment-theory/01-alignment.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 2,
+    "topic": "Outer alignment",
+    "image": "02-core-alignment-theory/02-outer-alignment.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 3,
+    "topic": "Inner alignment",
+    "image": "02-core-alignment-theory/03-inner-alignment.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 4,
+    "topic": "Mesa-optimizer",
+    "image": "02-core-alignment-theory/04-mesa-optimizer.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 5,
+    "topic": "Goodhart’s law",
+    "image": "02-core-alignment-theory/05-goodharts-law.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 6,
+    "topic": "Orthogonality thesis",
+    "image": "02-core-alignment-theory/06-orthogonality-thesis.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 7,
+    "topic": "Instrumental convergence",
+    "image": "02-core-alignment-theory/07-instrumental-convergence.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 8,
+    "topic": "Power-seeking",
+    "image": "02-core-alignment-theory/08-power-seeking.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 9,
+    "topic": "Corrigibility",
+    "image": "02-core-alignment-theory/09-corrigibility.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 10,
+    "topic": "Shutdown problem",
+    "image": "02-core-alignment-theory/10-shutdown-problem.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 11,
+    "topic": "Situational awareness",
+    "image": "02-core-alignment-theory/11-situational-awareness.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 12,
+    "topic": "Treacherous turn",
+    "image": "02-core-alignment-theory/12-treacherous-turn.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 13,
+    "topic": "Alignment tax",
+    "image": "02-core-alignment-theory/13-alignment-tax.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 14,
+    "topic": "Honesty (decomposed)",
+    "image": "02-core-alignment-theory/14-honesty-decomposed.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 15,
+    "topic": "Persona / simulator view",
+    "image": "02-core-alignment-theory/15-persona-simulator-view.png"
+  },
+  {
+    "category": "Core alignment theory",
+    "number": 16,
+    "topic": "Misuse vs. misalignment vs. structural risk",
+    "image": "02-core-alignment-theory/16-misuse-misalignment-structural-risk.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 1,
+    "topic": "Specification gaming",
+    "image": "03-failure-modes/01-specification-gaming.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 2,
+    "topic": "Reward hacking",
+    "image": "03-failure-modes/02-reward-hacking.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 3,
+    "topic": "Reward tampering",
+    "image": "03-failure-modes/03-reward-tampering.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 4,
+    "topic": "Goal misgeneralization",
+    "image": "03-failure-modes/04-goal-misgeneralization.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 5,
+    "topic": "Sycophancy",
+    "image": "03-failure-modes/05-sycophancy.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 6,
+    "topic": "Hallucination",
+    "image": "03-failure-modes/06-hallucination.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 7,
+    "topic": "Sandbagging",
+    "image": "03-failure-modes/07-sandbagging.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 8,
+    "topic": "Exploration hacking",
+    "image": "03-failure-modes/08-exploration-hacking.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 9,
+    "topic": "Scheming",
+    "image": "03-failure-modes/09-scheming.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 10,
+    "topic": "Deceptive alignment",
+    "image": "03-failure-modes/10-deceptive-alignment.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 11,
+    "topic": "Alignment faking",
+    "image": "03-failure-modes/11-alignment-faking.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 12,
+    "topic": "Gradient hacking",
+    "image": "03-failure-modes/12-gradient-hacking.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 13,
+    "topic": "Evaluation awareness",
+    "image": "03-failure-modes/13-evaluation-awareness.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 14,
+    "topic": "Unfaithful chain-of-thought",
+    "image": "03-failure-modes/14-unfaithful-chain-of-thought.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 15,
+    "topic": "Steganography / encoded reasoning",
+    "image": "03-failure-modes/15-steganography-encoded-reasoning.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 16,
+    "topic": "Emergent misalignment",
+    "image": "03-failure-modes/16-emergent-misalignment.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 17,
+    "topic": "Agentic misalignment",
+    "image": "03-failure-modes/17-agentic-misalignment.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 18,
+    "topic": "Sleeper agents",
+    "image": "03-failure-modes/18-sleeper-agents.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 19,
+    "topic": "Subliminal learning",
+    "image": "03-failure-modes/19-subliminal-learning.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 20,
+    "topic": "Self-exfiltration",
+    "image": "03-failure-modes/20-self-exfiltration.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 21,
+    "topic": "Collusion",
+    "image": "03-failure-modes/21-collusion.png"
+  },
+  {
+    "category": "Misbehaviours & failure modes",
+    "number": 22,
+    "topic": "Over-refusal",
+    "image": "03-failure-modes/22-over-refusal.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 1,
+    "topic": "Mechanistic interpretability",
+    "image": "04-interpretability/01-mechanistic-interpretability.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 2,
+    "topic": "Residual stream",
+    "image": "04-interpretability/02-residual-stream.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 3,
+    "topic": "Attention head",
+    "image": "04-interpretability/03-attention-head.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 4,
+    "topic": "MLP layer",
+    "image": "04-interpretability/04-mlp-layer.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 5,
+    "topic": "Feature",
+    "image": "04-interpretability/05-feature.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 6,
+    "topic": "Linear representation hypothesis",
+    "image": "04-interpretability/06-linear-representation-hypothesis.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 7,
+    "topic": "Polysemanticity",
+    "image": "04-interpretability/07-polysemanticity.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 8,
+    "topic": "Superposition",
+    "image": "04-interpretability/08-superposition.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 9,
+    "topic": "Monosemanticity",
+    "image": "04-interpretability/09-monosemanticity.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 10,
+    "topic": "Sparse autoencoder (SAE)",
+    "image": "04-interpretability/10-sparse-autoencoder.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 11,
+    "topic": "Transcoder / crosscoder",
+    "image": "04-interpretability/11-transcoder-crosscoder.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 12,
+    "topic": "Circuit",
+    "image": "04-interpretability/12-circuit.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 13,
+    "topic": "Induction head",
+    "image": "04-interpretability/13-induction-head.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 14,
+    "topic": "Attribution graphs / circuit tracing",
+    "image": "04-interpretability/14-attribution-graphs-circuit-tracing.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 15,
+    "topic": "Linear probe",
+    "image": "04-interpretability/15-linear-probe.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 16,
+    "topic": "Logit lens / tuned lens",
+    "image": "04-interpretability/16-logit-lens-tuned-lens.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 17,
+    "topic": "Activation patching",
+    "image": "04-interpretability/17-activation-patching.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 18,
+    "topic": "Ablation",
+    "image": "04-interpretability/18-ablation.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 19,
+    "topic": "Steering",
+    "image": "04-interpretability/19-steering.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 20,
+    "topic": "Steering vector / CAA",
+    "image": "04-interpretability/20-steering-vector-caa.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 21,
+    "topic": "Feature clamping",
+    "image": "04-interpretability/21-feature-clamping.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 22,
+    "topic": "Representation engineering (RepE)",
+    "image": "04-interpretability/22-representation-engineering.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 23,
+    "topic": "Refusal direction",
+    "image": "04-interpretability/23-refusal-direction.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 24,
+    "topic": "Persona vectors",
+    "image": "04-interpretability/24-persona-vectors.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 25,
+    "topic": "Model diffing",
+    "image": "04-interpretability/25-model-diffing.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 26,
+    "topic": "Introspection",
+    "image": "04-interpretability/26-introspection.png"
+  },
+  {
+    "category": "Interpretability",
+    "number": 27,
+    "topic": "White-box vs. black-box",
+    "image": "04-interpretability/27-white-box-vs-black-box.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 1,
+    "topic": "Scalable oversight",
+    "image": "05-oversight-control/01-scalable-oversight.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 2,
+    "topic": "AI debate",
+    "image": "05-oversight-control/02-ai-debate.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 3,
+    "topic": "Iterated amplification (IDA)",
+    "image": "05-oversight-control/03-iterated-amplification-ida.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 4,
+    "topic": "Weak-to-strong generalization",
+    "image": "05-oversight-control/04-weak-to-strong-generalization.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 5,
+    "topic": "Sandwiching",
+    "image": "05-oversight-control/05-sandwiching.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 6,
+    "topic": "Eliciting Latent Knowledge (ELK)",
+    "image": "05-oversight-control/06-eliciting-latent-knowledge-elk.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 7,
+    "topic": "AI control",
+    "image": "05-oversight-control/07-ai-control.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 8,
+    "topic": "Trusted vs. untrusted model",
+    "image": "05-oversight-control/08-trusted-vs-untrusted-model.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 9,
+    "topic": "Trusted monitoring",
+    "image": "05-oversight-control/09-trusted-monitoring.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 10,
+    "topic": "Untrusted monitoring",
+    "image": "05-oversight-control/10-untrusted-monitoring.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 11,
+    "topic": "Control evaluation",
+    "image": "05-oversight-control/11-control-evaluation.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 12,
+    "topic": "Honeypot",
+    "image": "05-oversight-control/12-honeypot.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 13,
+    "topic": "CoT monitoring",
+    "image": "05-oversight-control/13-cot-monitoring.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 14,
+    "topic": "Alignment auditing",
+    "image": "05-oversight-control/14-alignment-auditing.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 15,
+    "topic": "Model organisms of misalignment",
+    "image": "05-oversight-control/15-model-organisms-of-misalignment.png"
+  },
+  {
+    "category": "Oversight & control",
+    "number": 16,
+    "topic": "Defense in depth",
+    "image": "05-oversight-control/16-defense-in-depth.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 1,
+    "topic": "Evals",
+    "image": "06-evals-red-teaming/01-evals.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 2,
+    "topic": "Dangerous capability evals",
+    "image": "06-evals-red-teaming/02-dangerous-capability-evals.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 3,
+    "topic": "Uplift",
+    "image": "06-evals-red-teaming/03-uplift.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 4,
+    "topic": "CBRN",
+    "image": "06-evals-red-teaming/04-cbrn.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 5,
+    "topic": "Autonomy & AI R&D evals",
+    "image": "06-evals-red-teaming/05-autonomy-ai-rd-evals.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 6,
+    "topic": "Elicitation",
+    "image": "06-evals-red-teaming/06-elicitation.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 7,
+    "topic": "Benchmark contamination",
+    "image": "06-evals-red-teaming/07-benchmark-contamination.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 8,
+    "topic": "Red teaming",
+    "image": "06-evals-red-teaming/08-red-teaming.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 9,
+    "topic": "Jailbreak",
+    "image": "06-evals-red-teaming/09-jailbreak.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 10,
+    "topic": "Prompt injection",
+    "image": "06-evals-red-teaming/10-prompt-injection.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 11,
+    "topic": "Many-shot jailbreaking",
+    "image": "06-evals-red-teaming/11-many-shot-jailbreaking.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 12,
+    "topic": "Best-of-N jailbreaking",
+    "image": "06-evals-red-teaming/12-best-of-n-jailbreaking.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 13,
+    "topic": "Prefill attack",
+    "image": "06-evals-red-teaming/13-prefill-attack.png"
+  },
+  {
+    "category": "Evals & red teaming",
+    "number": 14,
+    "topic": "Adversarial robustness",
+    "image": "06-evals-red-teaming/14-adversarial-robustness.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 1,
+    "topic": "Responsible Scaling Policy (RSP)",
+    "image": "07-policy-anthropic/01-responsible-scaling-policy.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 2,
+    "topic": "AI Safety Levels (ASL)",
+    "image": "07-policy-anthropic/02-ai-safety-levels.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 3,
+    "topic": "Capability thresholds & safeguards",
+    "image": "07-policy-anthropic/03-capability-thresholds-safeguards.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 4,
+    "topic": "Constitutional classifiers",
+    "image": "07-policy-anthropic/04-constitutional-classifiers.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 5,
+    "topic": "System card / model card",
+    "image": "07-policy-anthropic/05-system-card-model-card.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 6,
+    "topic": "Weight security",
+    "image": "07-policy-anthropic/06-weight-security.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 7,
+    "topic": "Frontier AI",
+    "image": "07-policy-anthropic/07-frontier-ai.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 8,
+    "topic": "Compute governance",
+    "image": "07-policy-anthropic/08-compute-governance.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 9,
+    "topic": "AGI / Transformative AI (TAI)",
+    "image": "07-policy-anthropic/09-agi-transformative-ai.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 10,
+    "topic": "Takeoff speed",
+    "image": "07-policy-anthropic/10-takeoff-speed.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 11,
+    "topic": "Race to the top",
+    "image": "07-policy-anthropic/11-race-to-the-top.png"
+  },
+  {
+    "category": "Policy & Anthropic",
+    "number": 12,
+    "topic": "Model welfare",
+    "image": "07-policy-anthropic/12-model-welfare.png"
+  }
+]

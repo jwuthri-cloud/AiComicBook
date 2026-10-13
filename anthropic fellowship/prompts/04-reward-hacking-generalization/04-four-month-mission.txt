@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 04 · PAGE 4/4
+Main title: FOUR-MONTH MISSION
+Subtitle: A scoped experiment, with a useful stopping point.
+ART NOTES (DO NOT PRINT): Use a four-month timeline, budget reserve jar, and decision fork for stop/fallback.
+EXACT PRINTED PANEL CONTENT:
+1. MONTH 1: REPRODUCE
+Recheck literature and public tool access. Rebuild a published open-weight baseline around seven billion parameters. Confirm both reward hacking and independently scored broader behavior. Freeze the evaluation rules before the recipe sweep.
+2. MONTH 2: SCREEN
+Run the sixteen recipe combinations at small scale. Inspect label quality, training stability, task skill, and hack opportunities. Spend early budget on finding unreliable measurements rather than scaling an attractive chart.
+3. MONTH 3: REPEAT
+Use the remaining thirty to forty total small-model runs for selected seeds, interactions, and the inoculation reference. Preselect the strongest interpretable contrasts, including a null comparison, for possible larger confirmation.
+4. MONTH 4: CONFIRM + WRITE
+Confirm selected effects near thirty-two billion parameters only if the baseline and measurements work. Publish configurations, checkpoints where permitted, evaluation tasks, negative results, and a paper mapping conditions where hacking transfers.
+5. STOP OR SWITCH
+If hacking appears but broader misalignment does not, try one justified environment change with a new preregistered test. If the effect remains absent, report the boundary or replication result rather than endlessly searching for a dramatic outcome.
+6. PLANNING ESTIMATE
+Compute: $30,000–$50,000 from the supplied project map, not a quote or guaranteed allowance. Include judging, storage, pilot failures, and replication reserve. Recheck novelty and availability before pitching; researcher names are not promised mentors.
+FOOTER: A USEFUL RESULT INCLUDES WHERE THE EFFECT STOPS.

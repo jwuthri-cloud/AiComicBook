@@ -1,0 +1,1 @@
+Surgical text correction only. In panel 3 paragraph change 'coordinate-preserving checks' to 'behavior-preservation checks'. In the matching amber diagram box change 'Coordinate-preserving checks' to 'Behavior-preservation checks'. Weight symmetries change coordinates while preserving behavior. Preserve all other text, illustrations, panels, colors, and layout.

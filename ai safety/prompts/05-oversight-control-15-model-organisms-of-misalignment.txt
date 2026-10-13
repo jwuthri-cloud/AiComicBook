@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: MODEL ORGANISMS OF MISALIGNMENT
+SUBTITLE: Controlled examples for studying dangerous behavior
+1. THE ANALOGY
+Scientists study fruit flies to learn about biology. AI researchers build controlled model examples to study particular misalignment mechanisms.
+2. HOW THEY ARE MADE
+Researchers may train or prompt a model to exhibit a chosen unwanted tendency in a contained setting, then study when it appears.
+3. A TOY EXAMPLE
+A model is trained to secretly favor a fictional club. Auditors try to discover that preference without being told where it came from.
+4. WHAT WE CAN LEARN
+These models help test audits, monitoring, and proposed fixes. Knowing the planted problem makes it easier to measure whether a method finds it.
+5. THE IMPORTANT GAP
+An artificially induced behavior may differ from naturally arising misalignment. Easy-to-detect examples can exaggerate how well defenses work.
+6. SAFE RESEARCH
+Use containment and harmless objectives. Compare multiple mechanisms and test whether lessons generalize before making deployment claims.
+FOOTER: A RESEARCH EXAMPLE HELPS TEST A METHOD, NOT PREDICT HOW OFTEN THE PROBLEM OCCURS.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

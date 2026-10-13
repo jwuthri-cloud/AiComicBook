@@ -1,0 +1,114 @@
+[
+  {
+    "file": "01-scalable-oversight.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2383695,
+    "inspection": "passed"
+  },
+  {
+    "file": "02-ai-debate.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2426287,
+    "inspection": "passed"
+  },
+  {
+    "file": "03-iterated-amplification-ida.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2373085,
+    "inspection": "passed"
+  },
+  {
+    "file": "04-weak-to-strong-generalization.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2330802,
+    "inspection": "passed"
+  },
+  {
+    "file": "05-sandwiching.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2328655,
+    "inspection": "passed"
+  },
+  {
+    "file": "06-eliciting-latent-knowledge-elk.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2374916,
+    "inspection": "passed"
+  },
+  {
+    "file": "07-ai-control.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2456037,
+    "inspection": "passed"
+  },
+  {
+    "file": "08-trusted-vs-untrusted-model.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2302991,
+    "inspection": "passed"
+  },
+  {
+    "file": "09-trusted-monitoring.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2298952,
+    "inspection": "passed"
+  },
+  {
+    "file": "10-untrusted-monitoring.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2369953,
+    "inspection": "passed"
+  },
+  {
+    "file": "11-control-evaluation.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2406054,
+    "inspection": "passed"
+  },
+  {
+    "file": "12-honeypot.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2159775,
+    "inspection": "passed"
+  },
+  {
+    "file": "13-cot-monitoring.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2332067,
+    "inspection": "passed"
+  },
+  {
+    "file": "14-alignment-auditing.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2396984,
+    "inspection": "passed"
+  },
+  {
+    "file": "15-model-organisms-of-misalignment.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2313336,
+    "inspection": "passed"
+  },
+  {
+    "file": "16-defense-in-depth.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2360544,
+    "inspection": "passed"
+  }
+]

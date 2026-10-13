@@ -1,0 +1,31 @@
+{
+  "title": "Sandbagging auditing benchmark",
+  "sourceProjectNumber": 2,
+  "status": "proposed research study aid",
+  "pages": [
+    {
+      "number": 1,
+      "title": "WHO IS REALLY WEAK?",
+      "image": "01-detect-the-pretender.png",
+      "learningObjective": "Explain why low scores do not diagnose sandbagging."
+    },
+    {
+      "number": 2,
+      "title": "MAKE A FAIR TEST",
+      "image": "02-build-fair-cases.png",
+      "learningObjective": "Construct varied sandbagging organisms and accuracy-matched weak controls."
+    },
+    {
+      "number": 3,
+      "title": "CAN THE AUDITOR TELL?",
+      "image": "03-test-the-auditors.png",
+      "learningObjective": "Compare auditors on detection, false positives, held-out cases, and confounds."
+    },
+    {
+      "number": 4,
+      "title": "FOUR MONTHS TO A BENCHMARK",
+      "image": "04-plan-and-output.png",
+      "learningObjective": "Describe a four-month benchmark plan, fallback, budget, and release."
+    }
+  ]
+}

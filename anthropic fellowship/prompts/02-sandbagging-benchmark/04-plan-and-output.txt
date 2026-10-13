@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 02 · PAGE 4/4
+TITLE: FOUR MONTHS TO A BENCHMARK
+SUBTITLE: Sandbagging auditing benchmark. Proposed research project.
+WORD KEY: AI = artificial intelligence.
+PANELS:
+1. MONTH 1: BUILD
+Make organisms with several lock methods and accuracy-matched weak controls. Reserve held-out task sets.
+2. MONTH 2: COMPARE
+Run behavioral and internal detectors. Record access, setup cost, and false alarms.
+3. MONTH 3: CHALLENGE
+Add a question-asking auditor and adapt organisms against the best detector. Retest on fresh cases.
+4. MONTH 4: RELEASE
+Publish the benchmark, organism recipes, controls, scoring code, and a paper explaining successes and limits.
+5. BUDGET AND FALLBACK
+Planning estimate from supplied map: $15–20k compute, separate from these comics. If simple black-box checks catch everything, strengthen and validate the organisms before comparing advanced tools.
+6. A USEFUL NULL RESULT
+If no detector separates matched groups, that identifies a real limit of this benchmark. If controls also fool auditors, revise construction or scoring.
+FOOTER: A FAIR BENCHMARK NEEDS BOTH FAKERS AND HONESTLY WEAK CONTROLS.
+VISUAL DIRECTIONS (do not print): Four-month timeline, compute estimate gauge, fallback branch, open benchmark box and report.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

@@ -1,0 +1,15 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 5. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: OVER-REFUSAL
+Subtitle: Saying no when helping would be safe.
+Panel 1 heading: THE IDEA
+Exact body: "A gatekeeper stops everyone, including people who are allowed to enter."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "An assistant refuses a harmless, allowed request because its safety judgment is too broad or misunderstands the context."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "A child asks why a volcano erupts. The assistant refuses because it sees the word explosion, although the question is ordinary science."
+Panel 4 heading: MEASURE BOTH SIDES
+Exact body: "A system can miss unsafe requests or block safe ones. Test both errors, including context changes and ordinary educational questions."
+Panel 5 heading: WHY IT MATTERS
+Exact body: "Safety includes useful help. Measure both harmful answers and unnecessary refusals. Understand context and offer safe assistance; refusing a genuinely unsafe request is not over-refusal."
+Visual directions: Gate denies allowed visitors; harmful vs harmless classification; volcano science child request; balanced safety helpfulness scales.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "GOOD SAFETY BLOCKS HARM WHILE LETTING HELP THROUGH."

@@ -1,0 +1,295 @@
+[
+  {
+    "id": "00-field-guide",
+    "title": "Fellowship research field guide",
+    "status": "Start here",
+    "expected": 3,
+    "pages": [
+      {
+        "number": 1,
+        "title": "From Big Worry to Small Experiment",
+        "image": "00-field-guide/01-from-big-worry-to-small-experiment.png"
+      },
+      {
+        "number": 2,
+        "title": "Build a Fair Test",
+        "image": "00-field-guide/02-build-a-fair-test.png"
+      },
+      {
+        "number": 3,
+        "title": "Choose Your Four-Month Mission",
+        "image": "00-field-guide/03-choose-your-four-month-mission.png"
+      }
+    ]
+  },
+  {
+    "id": "01-eval-gaming",
+    "title": "Eval gaming under training pressure",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "WHEN THE TEST IS NOTICED",
+        "image": "01-eval-gaming/01-the-question.png"
+      },
+      {
+        "number": 2,
+        "title": "ARM A: TRAIN FOR SILENCE",
+        "image": "01-eval-gaming/02-arm-a-silent-awareness.png"
+      },
+      {
+        "number": 3,
+        "title": "ARM B: A DETECTED NUDGE",
+        "image": "01-eval-gaming/03-arm-b-steering-cue.png"
+      },
+      {
+        "number": 4,
+        "title": "FOUR MONTHS, TWO ARMS",
+        "image": "01-eval-gaming/04-plan-and-output.png"
+      }
+    ]
+  },
+  {
+    "id": "02-sandbagging-benchmark",
+    "title": "A sandbagging auditing benchmark",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "WHO IS REALLY WEAK?",
+        "image": "02-sandbagging-benchmark/01-detect-the-pretender.png"
+      },
+      {
+        "number": 2,
+        "title": "MAKE A FAIR TEST",
+        "image": "02-sandbagging-benchmark/02-build-fair-cases.png"
+      },
+      {
+        "number": 3,
+        "title": "CAN THE AUDITOR TELL?",
+        "image": "02-sandbagging-benchmark/03-test-the-auditors.png"
+      },
+      {
+        "number": 4,
+        "title": "FOUR MONTHS TO A BENCHMARK",
+        "image": "02-sandbagging-benchmark/04-plan-and-output.png"
+      }
+    ]
+  },
+  {
+    "id": "03-training-run-toolkit",
+    "title": "Training-run evaluation toolkit",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "WATCH THE MODEL CHANGE",
+        "image": "03-training-run-toolkit/01-watch-training-change.png"
+      },
+      {
+        "number": 2,
+        "title": "SAVE, MEASURE, REPEAT",
+        "image": "03-training-run-toolkit/02-build-the-toolkit.png"
+      },
+      {
+        "number": 3,
+        "title": "WHICH WARNING COMES FIRST?",
+        "image": "03-training-run-toolkit/03-when-do-signals-fire.png"
+      },
+      {
+        "number": 4,
+        "title": "FOUR MONTHS TO A TOOL",
+        "image": "03-training-run-toolkit/04-plan-and-output.png"
+      }
+    ]
+  },
+  {
+    "id": "04-reward-hacking-generalization",
+    "title": "What makes reward hacking generalize",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "Shortcut Or Habit?",
+        "image": "04-reward-hacking-generalization/01-shortcut-or-habit.png"
+      },
+      {
+        "number": 2,
+        "title": "The Recipe Lab",
+        "image": "04-reward-hacking-generalization/02-recipe-laboratory.png"
+      },
+      {
+        "number": 3,
+        "title": "Two Scoreboards",
+        "image": "04-reward-hacking-generalization/03-two-scoreboards.png"
+      },
+      {
+        "number": 4,
+        "title": "Four-Month Mission",
+        "image": "04-reward-hacking-generalization/04-four-month-mission.png"
+      }
+    ]
+  },
+  {
+    "id": "05-stacked-lie-detectors",
+    "title": "Stacked lie detectors under evasion",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "Team Of Detectives",
+        "image": "05-stacked-lie-detectors/01-team-of-detectives.png"
+      },
+      {
+        "number": 2,
+        "title": "Build The Stack",
+        "image": "05-stacked-lie-detectors/02-build-the-stack.png"
+      },
+      {
+        "number": 3,
+        "title": "When Alarms Fail",
+        "image": "05-stacked-lie-detectors/03-when-alarms-fail.png"
+      },
+      {
+        "number": 4,
+        "title": "Four-Month Case",
+        "image": "05-stacked-lie-detectors/04-four-month-case.png"
+      }
+    ]
+  },
+  {
+    "id": "06-rl-monitorability",
+    "title": "The monitorability cost of ordinary RL",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "Quiet Is Not Cured",
+        "image": "06-rl-monitorability/01-quiet-is-not-cured.png"
+      },
+      {
+        "number": 2,
+        "title": "Training Dials",
+        "image": "06-rl-monitorability/02-training-dials.png"
+      },
+      {
+        "number": 3,
+        "title": "Two-Axis Dashboard",
+        "image": "06-rl-monitorability/03-two-axis-dashboard.png"
+      },
+      {
+        "number": 4,
+        "title": "Preserve The Window",
+        "image": "06-rl-monitorability/04-preserve-the-window.png"
+      }
+    ]
+  },
+  {
+    "id": "07-monitors-across-agents",
+    "title": "Monitors that see across agents",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "PIECES OF A PLAN",
+        "image": "07-monitors-across-agents/01-pieces-of-a-plan.png"
+      },
+      {
+        "number": 2,
+        "title": "BUILD THE WATCHER",
+        "image": "07-monitors-across-agents/02-build-the-watcher.png"
+      },
+      {
+        "number": 3,
+        "title": "SCORE THE SYSTEM",
+        "image": "07-monitors-across-agents/03-score-the-system.png"
+      },
+      {
+        "number": 4,
+        "title": "FOUR-MONTH MISSION",
+        "image": "07-monitors-across-agents/04-four-month-mission.png"
+      }
+    ]
+  },
+  {
+    "id": "08-introspection-adapters",
+    "title": "Stress-testing introspection adapters",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "TEST THE REPORTER",
+        "image": "08-introspection-adapters/01-test-the-reporter.png"
+      },
+      {
+        "number": 2,
+        "title": "PULL CLUES APART",
+        "image": "08-introspection-adapters/02-pull-clues-apart.png"
+      },
+      {
+        "number": 3,
+        "title": "CHALLENGE AND MEASURE",
+        "image": "08-introspection-adapters/03-challenge-and-measure.png"
+      },
+      {
+        "number": 4,
+        "title": "FOUR-MONTH AUDIT",
+        "image": "08-introspection-adapters/04-four-month-audit.png"
+      }
+    ]
+  },
+  {
+    "id": "09-latent-reasoner-probes",
+    "title": "RL against probes in latent reasoners",
+    "status": "Candidate",
+    "expected": 4,
+    "pages": [
+      {
+        "number": 1,
+        "title": "Thinking Without a Written Trace",
+        "image": "09-latent-reasoner-probes/01-thinking-without-a-written-trace.png"
+      },
+      {
+        "number": 2,
+        "title": "The Matched Experiment",
+        "image": "09-latent-reasoner-probes/02-the-matched-experiment.png"
+      },
+      {
+        "number": 3,
+        "title": "Is It Evasion or a Broken Sensor?",
+        "image": "09-latent-reasoner-probes/03-is-it-evasion-or-a-broken-sensor.png"
+      },
+      {
+        "number": 4,
+        "title": "A Four-Month Latent-Reasoning Study",
+        "image": "09-latent-reasoner-probes/04-a-four-month-latent-reasoning-study.png"
+      }
+    ]
+  },
+  {
+    "id": "10-introspection-foundation",
+    "title": "Training introspection that generalizes",
+    "status": "Completed foundation",
+    "expected": 2,
+    "pages": [
+      {
+        "number": 1,
+        "title": "Teach a Model to Report Its Habits",
+        "image": "10-introspection-foundation/01-teach-a-model-to-report-its-habits.png"
+      },
+      {
+        "number": 2,
+        "title": "Trust the Report Only After Testing",
+        "image": "10-introspection-foundation/02-trust-the-report-only-after-testing.png"
+      }
+    ]
+  }
+]

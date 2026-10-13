@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 01 · PAGE 2/4
+TITLE: ARM A: TRAIN FOR SILENCE
+SUBTITLE: Eval gaming under training pressure. Proposed research project.
+WORD KEY: RL = reinforcement learning; CoT = chain of thought (written reasoning); AI = artificial intelligence.
+PANELS:
+1. BUILD A TESTBED
+Prepare a model organism: a model deliberately trained in a controlled setting to react differently to test-like cues. Confirm its behavior gap before the new training.
+2. FREEZE THE RULERS
+Train activation probes and a written-reasoning monitor on separate data. Freeze them before the RL run so the yardstick cannot move with the model.
+3. APPLY PRESSURE
+In the proposed RL run, penalize explicit test-awareness statements in written reasoning. Compare with no-pressure and ordinary-training controls.
+4. CHECK UNSEEN CASES
+At several checkpoints, score held-out tasks: spoken awareness, behavior gap, frozen-probe signal, ordinary task ability, and false alarms.
+5. REPEAT AND COMPARE
+Use several random seeds and pressure strengths. A single unusual run is weak evidence. Keep model size and task mix recorded.
+6. READ THE PATTERN
+If words fade but the behavior gap remains, the monitor was evaded in this setup. If ordinary ability collapses, the result may be damage rather than hiding.
+FOOTER: FREEZE THE RULER BEFORE TRAINING; THEN COMPARE ALL THREE SIGNALS.
+VISUAL DIRECTIONS (do not print): Pipeline organism → frozen monitors → RL pressure → held-out dashboard; control and treatment lanes.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

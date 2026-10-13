@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: ADVERSARIAL ROBUSTNESS
+SUBTITLE: Staying reliable when inputs are chosen to fool you.
+1. THE IDEA
+Imagine a puzzle helper that stays correct even when someone tries clever tricks. Adversarial robustness measures how well a system withstands intentionally challenging inputs.
+2. HOW IT WORKS
+Researchers define what an attacker can change, what they can observe, and how much effort they can spend. They then test whether desired behavior survives under those conditions.
+3. SEE IT HAPPEN
+A safe toy classifier recognizes shapes despite small distracting marks. A chat assistant follows the user's task despite misleading outside text. Show normal test -> adversarial test -> independent scoring.
+4. WHY IT MATTERS
+Robustness is always relative to a threat model and tested attacks. Resisting one family of tricks does not prove resistance to all attacks. Ordinary accuracy, safety training, and security controls each cover different parts of reliability.
+5. DEFINE THE THREAT MODEL
+List attacker access, allowed modifications, and query budget. Results outside those assumptions remain uncertain.
+6. DEFENSES NEED LAYERS
+Combine better training, input handling, permissions, monitoring, and testing. Any one defense can have blind spots.
+FOOTER: Always ask: robust against which attacker and which changes?
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.
+ACRONYM REQUIREMENT: Place visible key near title: AI = Artificial Intelligence; LLM = Large Language Model if used. Expand every other acronym used.

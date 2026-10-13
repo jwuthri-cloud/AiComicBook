@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: CBRN
+SUBTITLE: Four hazard areas requiring special care.
+1. THE IDEA
+CBRN stands for chemical, biological, radiological, and nuclear. Safety work uses this grouping when thinking about dangerous capabilities, misuse, and protective measures.
+2. HOW IT WORKS
+Chemical concerns harmful substances. Biological concerns organisms or biological agents. Radiological concerns harmful exposure to radioactive material. Nuclear concerns nuclear processes and weapons. Keep this at a conceptual level.
+3. SEE IT HAPPEN
+Show four clearly labeled shield icons: laboratory flask, microbe, radiation symbol, and atom. Explain that useful work exists in these fields too, such as medicine, energy, and public protection.
+4. WHY IT MATTERS
+The goal is to preserve beneficial science while reducing severe risks. Specialized evaluators assess whether AI assistance could meaningfully enable harm. These areas overlap but are not interchangeable, and facts alone do not measure practical danger.
+5. RADIOLOGICAL VERSUS NUCLEAR
+Radiological hazards concern radiation exposure. Nuclear weapons involve nuclear reactions. These concerns overlap, but the distinction matters.
+6. PROTECT BENEFICIAL WORK
+Assess purpose, practical assistance, and context. A harmless classroom explanation is different from enabling a dangerous operation.
+FOOTER: CBRN names hazard domains; careful context determines risk.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.

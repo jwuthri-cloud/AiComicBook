@@ -1,0 +1,1177 @@
+{
+  "collection": "LeetCode",
+  "pages": [
+    {
+      "image": "LeetCode/01-arrays-hashing-two-sum-cheat-sheet.png",
+      "title": "Arrays & Hashing Cheat Sheet",
+      "subtitle": "Fast lookups, counts, grouping, and the Two Sum pattern.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Arrays: Big-O Cheat Sheet",
+          "body": "Access: arr[i] — O(1)\nSearch (unsorted): find x — O(n)\nSearch (sorted, binary search): find x — O(log n)\nInsert (end): push_back(x) — O(1) amortized\nInsert (middle): insert i, x — O(n)\nDelete (by index): erase i — O(n)\nn = number of elements"
+        },
+        {
+          "number": 2,
+          "heading": "Hash Map & Hash Set: Core Operations",
+          "body": "Hash map (key -> value), example map m, average time:\nInsert / Update: m[key] = val — O(1)\nFind: m[key] — O(1)\nContains key: key in m — O(1)\nDelete: del m[key] — O(1)\nSize: len(m) — O(1)\n\nHash set (unique keys), example set s, average time:\nInsert: s.add(x) — O(1)\nContains: x in s — O(1)\nDelete: s.remove(x) — O(1)\nSize: len(s) — O(1)\n\nDiagram: a hash table of buckets 0..m-1, each bucket holding a chain of key:value entries (some empty).\nAverage case O(1) with good hash. Worst case O(n) (rare with good implementations)."
+        },
+        {
+          "number": 3,
+          "heading": "Canonical Example: Two Sum",
+          "body": "Input: nums = [2, 7, 11, 15], target = 9\nPairs that sum to 9? (2, 7) yes — indices (0, 1); (2, 11), (2, 15), (7, 11), (7, 15), (11, 15) no.\nAnswer: return indices [0, 1].\nStore what you've seen. Look up what you need."
+        },
+        {
+          "number": 4,
+          "heading": "Two Sum: One-Pass with Hash Map",
+          "body": "Idea: for each x, we need need = target - x.\nStep 1: i = 0, x = 2, need = 7, map {} — 7 not in map; store 2 -> 0.\nStep 2: i = 1, x = 7, need = 2, map {2:0} — 2 in map at 0; return [0, 1].\nFlow: current value x -> need = target - x -> need in map? Yes: return [map[need], i]. No: store x -> i in map and continue."
+        },
+        {
+          "number": 5,
+          "heading": "Pseudocode (One-Pass Two Sum)",
+          "body": "Hint: store index with value so you can return the pair of indices.",
+          "code": "function twoSum(nums, target):\n  map = {}            # value -> index\n  for i from 0 to len(nums) - 1:\n    x = nums[i]\n    need = target - x\n    if need in map:\n      return [map[need], i]\n    map[x] = i\n  return [-1, -1]     # no solution"
+        },
+        {
+          "number": 6,
+          "heading": "Hashing Power-Ups (Use Cases)",
+          "body": "A) Use duplicate detection (set): find any duplicate? Time O(n), space O(n). Example: nums = [3, 1, 4, 1, 5] -> True.\nB) Frequency counts (map): count occurrences. Example: nums = [2,2,1,3,2] -> freq = {2:3, 1:1, 3:1}.\nC) Valid anagram (counts): are two strings anagrams? Example: \"listen\" & \"silent\" -> True.",
+          "code": "# A) duplicate detection\ns = {}\nfor x in nums:\n  if x in s:\n    return True\n  s.add(x)\nreturn False\n\n# B) frequency counts\nfreq = {}\nfor x in nums:\n  freq[x] = freq.get(x, 0) + 1\n\n# C) valid anagram\nif len(s) != len(t): return False\ncount = {}\nfor c in s:\n  count[c] = count.get(c, 0) + 1\nfor c in t:\n  count[c] = count.get(c, 0) - 1\nreturn all(v == 0 for v in count.values())"
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Things to Watch",
+          "body": "Keys vs values: maps store KEY -> VALUE. Don't look up by value unless that's what you stored.\nDuplicates: decide your policy: first index? last index? all indices? Be consistent.\nMemory trade-off: hashing uses extra space O(n). Use it when faster lookups save more time overall."
+        },
+        {
+          "number": 8,
+          "heading": "Bonus: Think in Patterns",
+          "body": "Lookup — need to check existence fast? Use Set.\nAssociate — need to map key -> value? Use Map.\nCount — need frequencies or tallies? Use Map.\nPair / Complement — need pairs that meet a condition? Use Map + One-Pass."
+        }
+      ],
+      "footer": "Trade a little memory for a fast lookup.",
+      "summary": "Covers array operation costs and O(1) average hash map/set operations, then solves Two Sum in one pass by storing each value's index and looking up its complement. Also shows duplicate detection, frequency counting and anagram checks with hashing.",
+      "keywords": [
+        "Array",
+        "Hash map",
+        "Hash set",
+        "Big-O",
+        "Time complexity",
+        "Two Sum",
+        "Complement",
+        "Frequency count",
+        "Anagram",
+        "Duplicate detection",
+        "Space trade-off"
+      ]
+    },
+    {
+      "image": "LeetCode/02-two-pointers-valid-palindrome-cheat-sheet.png",
+      "title": "Two Pointers Cheat Sheet",
+      "subtitle": "Sweep inward, chase pairs, and shrink the search space.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Left/Right Invariant",
+          "body": "Maintain a truth about the region outside the pointers.\nDiagram: an array with checked cells on each end, an UNCHECKED middle, and left/right pointers at its edges.\nExample invariant (palindrome): all characters strictly outside [left, right] are already matched (or skipped). If a mismatch is found inside, the string is not a palindrome."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Example: Valid Palindrome",
+          "body": "String: \"A man, a plan, a canal: Panama\"\nAfter skipping non-alphanumerics and lowercasing: amanaplanacanalpanama\nCompare and move inward from l and r.\nAll pairs match -> it is a palindrome."
+        },
+        {
+          "number": 3,
+          "heading": "Skip Non-Alphanumerics, Compare Lowercase Chars",
+          "body": "Keep moving pointers past junk.\nSkip if !isalnum(s[l]); skip if !isalnum(s[r]).\nCompare tolower(s[l]) and tolower(s[r]).\nAlphanumeric = [a-z0-9]. Everything else is skipped."
+        },
+        {
+          "number": 4,
+          "heading": "Readable Pseudocode",
+          "body": "Flow: l < r? No -> return true. Yes -> skip junk on both sides -> chars equal? No -> return false. Yes -> move l++, r-- and repeat.",
+          "code": "function isPalindrome(s):\n  l <- 0\n  r <- len(s) - 1\n  while l < r:\n    while l < r and not isalnum(s[l]): l += 1\n    while l < r and not isalnum(s[r]): r -= 1\n    if tolower(s[l]) != tolower(s[r]):\n      return false\n    l += 1\n    r -= 1\n  return true"
+        },
+        {
+          "number": 5,
+          "heading": "Two Pointers, Same Direction (Sorted Arrays)",
+          "body": "When order helps, move both pointers forward. Use monotonicity to decide which pointer to advance.\nExample: Two Sum in Sorted Array: [1, 2, 4, 7, 11, 15], target = 15, i at start, j at end.\nsum < target -> i++\nsum > target -> j--\nsum == target -> found!\nDiagram: an i-by-j grid of sums split into too big, just right, and too small regions."
+        },
+        {
+          "number": 6,
+          "heading": "Common Applications",
+          "body": "1) Pair sum (sorted array): find two numbers that add up to target. Example [2, 3, 7, 8, 11, 15], target = 10. Move i or j based on sum until you hit the target.\n2) Container with most water: maximize area between lines. Move the shorter line inward. Area = min(h[l], h[r]) * (r - l).\n3) Remove duplicates (sorted array): keep one of each unique value in-place. r scans, w writes next unique. Time: O(n). Space: O(1)."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls",
+          "body": "Off-by-one: use l < r (not l <= r); initialize r = n - 1; move pointers after using them; test even and odd lengths.\nUnsorted input: many two-pointer patterns require sorted data (or a monotonic property). If unsorted, the pointer movement proofs break.\nPointer move proof: always justify why a pointer move cannot skip a valid solution. If you can't prove it, you might skip the answer."
+        }
+      ],
+      "footer": "State the invariant — then move the pointer that cannot help.",
+      "summary": "Explains the two-pointer technique: keep an invariant about the region outside the pointers and move inward, as in checking whether a string is a valid palindrome. Also covers same-direction pointers on sorted arrays, classic applications, and off-by-one pitfalls.",
+      "keywords": [
+        "Two pointers",
+        "Invariant",
+        "Valid palindrome",
+        "Alphanumeric",
+        "Sorted array",
+        "Two Sum",
+        "Container with most water",
+        "Remove duplicates",
+        "Monotonicity",
+        "Off-by-one"
+      ]
+    },
+    {
+      "image": "LeetCode/03-sliding-window-longest-substring-cheat-sheet.png",
+      "title": "Sliding Window Cheat Sheet",
+      "subtitle": "Maintain a valid range and move only forward.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Variable-Size Window l...r",
+          "body": "Example: Longest Substring Without Repeating Characters, s = \"abcabcbb\" (indices 0-7).\nr = 0: window \"a\", set = {a}, best = 1\nr = 1: \"ab\", set = {a,b}, best = 2\nr = 2: \"abc\", set = {a,b,c}, best = 3\nr = 3 (dup 'a'): shrink l -> 1, set = {b,c,a}, best = 3\nr = 4 (dup 'b'): shrink l -> 2, set = {c,a,b}, best = 3\nr = 5 (dup 'c'): shrink l -> 3, set = {a,b,c}, best = 3\nr = 6 (dup 'b'): shrink l -> 4, set = {a,b,c}, best = 3\nr = 7 (dup 'b'): shrink l -> 6, set = {c,b}, best = 3\nAnswer: 3 (\"abc\")"
+        },
+        {
+          "number": 2,
+          "heading": "Duplicate-Triggered Shrink (Set / Map)",
+          "body": "Grow r to include new char. If it breaks the invariant (duplicate / too many / invalid), shrink l until valid.\nSet (unique elements): 'a' already in set -> duplicate! 1) Remove s[l] from set. 2) l++. 3) Repeat until s[r] not in set. 4) Add s[r], update answer.\nMap / freq count: freq[a] becomes 2 -> invalid! 1) Decrement freq[s[l]]. 2) If freq[s[l]] == 0, erase it. 3) l++. 4) Repeat until invariant holds.\nInvariant: window satisfies the rule (e.g., all unique, at most k distinct, freq constraints, sum limit, etc.)."
+        },
+        {
+          "number": 3,
+          "heading": "Pseudocode (Variable Window)",
+          "body": "valid(...) checks: no duplicates; at most k distinct; sum <= target; all counts within limits; etc.",
+          "code": "l = 0\nbest = 0\nfreq = empty map / set   # depends on the problem\nfor r from 0 to n-1:\n    add s[r] to freq / set\n    while not valid(s, l, r, freq):\n        remove s[l] from freq / set\n        l += 1\n    update answer (best) using [l, r]\nreturn best"
+        },
+        {
+          "number": 4,
+          "heading": "Fixed Window vs Variable Window",
+          "body": "Fixed window (size = k): r - l + 1 is always k. Slide both pointers together. Good for: max/min sum of size k, averages, etc.\nVariable window (size changes): expand r to grow. Shrink l only when invalid. Good for: longest/shortest with constraints, at-most-k, duplicates, etc."
+        },
+        {
+          "number": 5,
+          "heading": "Common Uses",
+          "body": "Longest subarray / substring: Longest Substring Without Repeating Characters; Longest Ones After Replacement; Longest Subarray with Sum <= K.\nShortest subarray / substring: Minimum Size Subarray Sum >= Target; Shortest Subarray with Sum >= K; Shortest Substring Containing All Chars.\nAt most K distinct elements: Longest Substring with At Most K Distinct; Fruits Into Baskets; Subarrays with At Most K Distinct Integers.\nFrequency / count constraints: Max Consecutive Ones III; Replace Characters for Longest Repeating Char; Subarrays with Exactly K Occurrences.\nOther constraints: Max Sum with Length Constraints; Subarray Product < K; Subarrays with Bounded Values."
+        },
+        {
+          "number": 6,
+          "heading": "Pitfalls & How to Avoid Them",
+          "body": "Stale counts: for maps, don't forget to decrement and erase when count hits 0. Otherwise window stays invalid. Fix: if (--freq[x] == 0) erase x.\nUpdate answer timing: update after the window becomes valid (inside loop after while), not before shrinking. Fix: update only when [l, r] is valid.\nAdvance pointers: move l one step at a time inside while loop. Never jump l or move r backward. Fix: l++ in while, r++ in for loop.\nBroken invariant: forgetting the rule leads to wrong answers or infinite loops. Fix: clearly define and test the invariant.\nOff-by-one: be careful with window length: r - l + 1. Fix: double-check bounds and test edge cases (empty, single, all same)."
+        }
+      ],
+      "footer": "Expand to explore. Shrink to restore the invariant.",
+      "summary": "Teaches the sliding window pattern: expand the right edge, and shrink the left edge whenever the window breaks its invariant, demonstrated on Longest Substring Without Repeating Characters. Contrasts fixed and variable windows and lists common problem types and pitfalls.",
+      "keywords": [
+        "Sliding window",
+        "Variable window",
+        "Fixed window",
+        "Invariant",
+        "Hash set",
+        "Frequency map",
+        "Longest substring",
+        "At most K distinct",
+        "Two pointers",
+        "Off-by-one"
+      ]
+    },
+    {
+      "image": "LeetCode/04-stack-valid-parentheses-cheat-sheet.png",
+      "title": "Stacks Cheat Sheet",
+      "subtitle": "Last in, first out: match structure and remember unfinished work.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "LIFO: Push & Pop",
+          "body": "Push: push items on top. New item becomes the top.\nPop: pop removes the top. Top reveals the next item.\nDiagram: stack A, B, C gets push(D) so D is on top; pop() removes D and C is the top again.\nOnly the top is accessible. That's LIFO: Last In, First Out."
+        },
+        {
+          "number": 2,
+          "heading": "Valid Parentheses Example",
+          "body": "Input: { [ ( ) ] }\nStep 0: start, stack []\nStep 1: '{' push, stack [ { ]\nStep 2: '[' push, stack [ { [ ]\nStep 3: '(' push, stack [ { [ ( ]\nStep 4: ')' matches '(', stack [ { [ ]\nStep 5: ']' matches '[', stack [ { ]\nStep 6: '}' matches '{', stack [] — valid: YES\nStack empty at end -> all matched -> VALID."
+        },
+        {
+          "number": 3,
+          "heading": "Matching Pairs & Stack Trace",
+          "body": "Matching pairs map: ) -> (, ] -> [, } -> {.\nWhen you see a closing symbol, it must match the top of the stack.\nStack trace rule:\n1. If opener ( { [ ( -> push it.\n2. If closer ) ] } ) -> stack must not be empty and top must match.\n3. Otherwise -> INVALID.\n4. At end -> stack must be empty."
+        },
+        {
+          "number": 4,
+          "heading": "Pseudocode (Valid Parentheses)",
+          "body": "",
+          "code": "function isValid(s):\n    pairs = { ')': '(', ']': '[', '}': '{' }\n    stack = empty stack\n\n    for ch in s:\n        if ch in \"({[\":\n            stack.push(ch)\n        else:\n            if stack.isEmpty():\n                return False    // empty pop\n            top = stack.pop()\n            if top != pairs[ch]:\n                return False    // mismatch\n\n    return stack.isEmpty()    // True if empty"
+        },
+        {
+          "number": 5,
+          "heading": "Where Stacks Shine",
+          "body": "Parsing & syntax validation: e.g., parentheses, brackets, XML/HTML tags.\nUndo / Redo: store history. Undo pops the last action.\nDepth-First Search (DFS): explore as deep as possible, backtrack.\nMonotonic stacks: next greater element, stock spans, histogram area, daily temperatures.\nExpression evaluation: infix -> postfix, evaluate expressions."
+        },
+        {
+          "number": 6,
+          "heading": "Complexity",
+          "body": "Time complexity: O(n). We process each of the n characters once.\nSpace complexity: O(n). In the worst case, we store up to n items in the stack.\nn = length of input string."
+        },
+        {
+          "number": 7,
+          "heading": "Common Pitfalls",
+          "body": "Empty pop: popping from an empty stack -> error. Always check stack.isEmpty() first.\nUnmatched opener: input ends but stack not empty -> there are unmatched openers, e.g., \"{[()\" -> INVALID."
+        }
+      ],
+      "footer": "Push what is open. Pop only what matches.",
+      "summary": "Introduces the stack (LIFO) and uses it to solve Valid Parentheses: push openers, pop and compare on closers, and require an empty stack at the end. Also lists where stacks are useful, their O(n) complexity, and common pitfalls.",
+      "keywords": [
+        "Stack",
+        "LIFO",
+        "Push",
+        "Pop",
+        "Valid parentheses",
+        "Matching pairs",
+        "Monotonic stack",
+        "Depth-first search",
+        "Expression evaluation",
+        "Time complexity"
+      ]
+    },
+    {
+      "image": "LeetCode/05-binary-search-search-insert-cheat-sheet.png",
+      "title": "Binary Search Cheat Sheet",
+      "subtitle": "Halve the search space with a precise invariant.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Sorted Range & Midpoint",
+          "body": "Sorted array nums = [1, 3, 5, 6, 9, 11, 13] (indices 0-6), with l (inclusive) at index 0, r (inclusive) at index 6, and mid at index 3.\nmid = l + (r - l) // 2\nDiagram: mid splits the range into a left search space and a right search space."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Example",
+          "body": "Search Insert Position.\nnums = [1,3,5,6], target = 5: found target at index 2!\nnums = [1,3,5,6], target = 2: not found. All nums[i] >= 2 start at index 1, so insert at index 1."
+        },
+        {
+          "number": 3,
+          "heading": "Loop Invariant",
+          "body": "The answer (target or insertion position) always lies in the current search space [l, r]. We shrink the space while maintaining the invariant.\nIf nums[mid] < target: answer is in (mid, r], so set l = mid + 1.\nIf nums[mid] >= target: answer is in [l, mid], so set r = mid.\nStop when l > r. Insertion position = l."
+        },
+        {
+          "number": 4,
+          "heading": "Pseudocode (Search Insert Position)",
+          "body": "mid = l + (r - l) // 2 avoids overflow!",
+          "code": "def search_insert(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = l + (r - l) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid\n    return l  # insertion position"
+        },
+        {
+          "number": 5,
+          "heading": "Boundary Variants",
+          "body": "Leftmost (first >= target): result = first index with nums[i] >= target (or n).\nRightmost (last <= target): result = last index with nums[i] <= target (or -1).",
+          "code": "# LEFTMOST (first >= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] >= target:\n        r = mid        # go left\n    else:\n        l = mid + 1    # go right\nreturn l\n\n# RIGHTMOST (last <= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] <= target:\n        l = mid + 1    # go right\n    else:\n        r = mid - 1    # go left\nreturn r"
+        },
+        {
+          "number": 6,
+          "heading": "Binary Search on Answer",
+          "body": "When the answer is a value, not an index. Maximize / minimize with a monotonic check.\nFind the smallest x in [lo, hi] such that check(x) is True.\nShrink the range based on the monotonic property!",
+          "code": "lo, hi = LO, HI          # inclusive range\nans = hi\nwhile lo <= hi:\n    mid = lo + (hi - lo) // 2\n    if check(mid):         # good enough?\n        ans = mid          # try smaller\n        hi = mid - 1\n    else:\n        lo = mid + 1       # need bigger\nreturn ans"
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls to Avoid",
+          "body": "Infinite loop: fix: use inclusive bounds and move past mid. Or use half-open [l, r) consistently.\nWrong inclusive bounds: bad: mixing updates (moving the wrong side). Fix: move l past mid when nums[mid] < target.\nOverflow midpoint: bad (overflow risk): mid = (l + r) // 2, e.g. 2,000,000,000 + 2,000,000,000 = 4,000,000,000 (overflow!). Good: mid = l + (r - l) // 2.",
+          "code": "# Infinite loop — Bad:\nwhile l < r:\n    mid = (l + r) // 2\n    if nums[mid] < target:\n        l = mid        # stuck!\n    else:\n        r = mid\n\n# Wrong inclusive bounds — Bad:\nif nums[mid] < target:\n    r = mid            # wrong\nelse:\n    l = mid + 1\n# Fix:\nif nums[mid] < target:\n    l = mid + 1\nelse:\n    r = mid"
+        }
+      ],
+      "footer": "Define the search space. Prove what every pointer means.",
+      "summary": "Shows binary search on a sorted array with a clear loop invariant, solving Search Insert Position by returning l when the target is absent. Covers leftmost/rightmost boundary variants, binary search on the answer with a monotonic check, and pitfalls like infinite loops and midpoint overflow.",
+      "keywords": [
+        "Binary search",
+        "Sorted array",
+        "Midpoint",
+        "Loop invariant",
+        "Search insert position",
+        "Lower bound",
+        "Upper bound",
+        "Binary search on answer",
+        "Monotonic check",
+        "Integer overflow",
+        "Off-by-one"
+      ]
+    },
+    {
+      "image": "LeetCode/06-linked-list-reverse-list-cheat-sheet.png",
+      "title": "Linked Lists Cheat Sheet",
+      "subtitle": "Rewire pointers without losing the rest of the list.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Node Anatomy",
+          "body": "Each node holds a value (data), e.g. 42, and a next (pointer) to the following node."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Reverse Linked List",
+          "body": "Example: 1 -> 2 -> 3 -> null\nOriginal: 1 -> 2 -> 3 -> null\nReversed: 3 -> 2 -> 1 -> null"
+        },
+        {
+          "number": 3,
+          "heading": "Three-Pointer View (Iteration)",
+          "body": "At each step, prev starts at null, curr at node 1, next at node 2.\n1) next = curr.next (SAVE)\n2) curr.next = prev (REWIRE)\n3) prev = curr (MOVE)\n4) curr = next (ADVANCE)"
+        },
+        {
+          "number": 4,
+          "heading": "Iterative Pseudocode (Reverse)",
+          "body": "",
+          "code": "function reverse(head):\n    prev = null\n    curr = head\n    while curr != null:\n        nxt = curr.next    # SAVE\n        curr.next = prev   # REWIRE\n        prev = curr        # MOVE\n        curr = nxt         # ADVANCE\n    return prev            # new head"
+        },
+        {
+          "number": 5,
+          "heading": "Fast/Slow Pointer Uses",
+          "body": "A) Cycle detection (Floyd's algorithm): slow moves one step, fast moves two. If fast meets slow -> cycle exists.\nB) Find middle node: when fast reaches end, slow is at middle."
+        },
+        {
+          "number": 6,
+          "heading": "Dummy Node Uses",
+          "body": "A) Unified head handling (easy insert/delete at head): place a dummy before head. Operate after dummy. Return dummy.next as real head.\nB) Remove Nth node (example): find (n-1)th from dummy, then skip the nth node."
+        },
+        {
+          "number": 7,
+          "heading": "Common Pitfalls",
+          "body": "Losing next pointer: if you overwrite curr.next before saving it, the rest of the list is lost.\nNull base case: always handle head == null (empty list) before processing.\nCreating cycles: incorrect rewiring or tail connections can accidentally create a cycle.\nOff-by-one errors: common when removing or finding the Nth node.\nNot returning new head: after reversal or operations, don't forget to return the correct new head."
+        }
+      ],
+      "footer": "Save next first. Then rewire one link at a time.",
+      "summary": "Explains linked list nodes and reverses a list iteratively with prev/curr/next pointers (save, rewire, move, advance). Also covers fast/slow pointers for cycle detection and finding the middle, dummy nodes, and common pointer mistakes.",
+      "keywords": [
+        "Linked list",
+        "Node",
+        "Pointer",
+        "Reverse linked list",
+        "Three pointers",
+        "Fast and slow pointers",
+        "Floyd's algorithm",
+        "Cycle detection",
+        "Dummy node",
+        "Remove Nth node"
+      ]
+    },
+    {
+      "image": "LeetCode/07-trees-dfs-max-depth-cheat-sheet.png",
+      "title": "Trees & DFS Cheat Sheet",
+      "subtitle": "Recurse through structure and return useful facts upward.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Binary Tree Vocabulary",
+          "body": "Example tree: root 1 with children 2 and 3; 2 has children 4, 5; 3 has children 6, 7 (depths 0, 1, 2).\nRoot: topmost node. Here: 1.\nLeaf: node with no children. Here: 4, 5, 6, 7.\nDepth: number of edges from root to the node. Depth(root) = 0.\nLevel = depth + 1 (root is at level 1)."
+        },
+        {
+          "number": 2,
+          "heading": "Tree Traversals",
+          "body": "Preorder (Root -> Left -> Right): visit order 1, 2, 4, 5, 3, 6, 7.\nInorder (Left -> Root -> Right): visit order 4, 2, 5, 1, 6, 3, 7.\nPostorder (Left -> Right -> Root): visit order 4, 5, 2, 6, 7, 3, 1."
+        },
+        {
+          "number": 3,
+          "heading": "Maximum Depth of Binary Tree",
+          "body": "Example tree: 1 with children 2 and 3; 2 has children 4, 5; 3 has child 6; 6 has child 7.\nMax depth = 3 (path: 1 -> 3 -> 6 -> 7).\nEmpty tree has depth = 0."
+        },
+        {
+          "number": 4,
+          "heading": "Recursive Call Tree & Base Case",
+          "body": "dfs(node) calls dfs(node.left) and dfs(node.right).\nDiagram: dfs(1) calls dfs(2) and dfs(3), which call dfs(4)...dfs(7), each of which calls dfs on two null children.\nBase case: node == null -> return 0."
+        },
+        {
+          "number": 5,
+          "heading": "Pseudocode (Max Depth)",
+          "body": "We ask each child for its best answer, then combine and return to parent. Depth = 1 + max(left, right).",
+          "code": "int maxDepth(TreeNode* node) {\n    if (node == null) return 0;\n    int left  = maxDepth(node->left);\n    int right = maxDepth(node->right);\n    return 1 + max(left, right);\n}"
+        },
+        {
+          "number": 6,
+          "heading": "Common Tree Problems (DFS Patterns)",
+          "body": "Path sum: return true if any root-to-leaf path sums to target.\nBalanced tree: return true if for every node, |height(left) - height(right)| <= 1.\nLowest common ancestor: return the lowest node that has both p and q as descendants (a node can be a descendant of itself).",
+          "code": "# Path sum\nif leaf:\n    return target == node.val\nreturn left(target - val)\n    or right(target - val)\n\n# Balanced tree\nget height of both sides;\nif diff > 1: return false;\nreturn true\n\n# Lowest common ancestor\nif node == null or node == p\n    or node == q: return node\nleft = LCA(left)\nright = LCA(right)\nif left and right: return node\nreturn left or right"
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Things to Watch",
+          "body": "Global state: avoid using global variables to store answers across recursions unless the problem specifically requires it.\nNulls: always handle null before dereferencing. The base case keeps your recursion safe: if (node == null) return 0;\nNode vs edge depth: depth can be counted in nodes (levels) or edges. Be consistent and match the problem's definition! (A to B: 0 edges (depth) vs 1 node (level).)\nOff-by-one: mixing up depth vs level (starting at 0 or 1) is a common source of incorrect answers. Read examples carefully."
+        }
+      ],
+      "footer": "Ask what this subtree should return to its parent.",
+      "summary": "Introduces binary tree vocabulary and the preorder, inorder and postorder traversals, then computes the maximum depth with recursive DFS (1 + max of the children's depths, null returns 0). Also sketches path sum, balanced tree and lowest common ancestor patterns plus depth-counting pitfalls.",
+      "keywords": [
+        "Binary tree",
+        "Depth-first search",
+        "Recursion",
+        "Base case",
+        "Maximum depth",
+        "Preorder",
+        "Inorder",
+        "Postorder",
+        "Leaf",
+        "Path sum",
+        "Balanced tree",
+        "Lowest common ancestor"
+      ]
+    },
+    {
+      "image": "LeetCode/08-trees-bfs-level-order-cheat-sheet.png",
+      "title": "Trees & BFS Cheat Sheet",
+      "subtitle": "Process one frontier level at a time.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Queue = FIFO",
+          "body": "Queue [3, 9, 20]: dequeue (pop front) from the front, enqueue (push back) at the back. First In, First Out.\nLevel / frontier diagram: start at 3 (level 0 frontier); 9 and 20 (level 1 frontier); 15 and 7 (level 2 frontier). Process all nodes in the current level before moving to the next level.\nBFS explores level by level. Think layers, not branches."
+        },
+        {
+          "number": 2,
+          "heading": "Binary Tree Level Order Traversal",
+          "body": "Goal: return node values level by level from top to bottom, left to right.\nKey: level_size locks the current frontier.",
+          "code": "function levelOrder(root):\n    if root is null: return []\n    queue = new Queue()\n    queue.enqueue(root)\n    result = []\n    while queue is not empty:\n        level_size = queue.size()\n        level = []\n        # Process all nodes in current level\n        for i from 1 to level_size:\n            node = queue.dequeue()\n            level.append(node.val)\n            if node.left is not null:\n                queue.enqueue(node.left)\n            if node.right is not null:\n                queue.enqueue(node.right)\n        result.append(level)\n    return result"
+        },
+        {
+          "number": 3,
+          "heading": "Example",
+          "body": "Input (level order): [3,9,20,null,null,15,7]\nTree: 3 with children 9 and 20; 9 has no children; 20 has children 15 and 7.\nOutput: [[3],[9,20],[15,7]]"
+        },
+        {
+          "number": 4,
+          "heading": "DFS vs BFS",
+          "body": "DFS (Depth-First Search): goes deep first; uses stack / recursion; good for exploring paths, topological sort, connected components, backtracking. Deep dive. One branch at a time.\nBFS (Breadth-First Search): goes level by level; uses queue; good for shortest paths (unweighted), nearest target, level aggregates. Wide scan. Level by level."
+        },
+        {
+          "number": 5,
+          "heading": "When to Use BFS",
+          "body": "Shortest path in unweighted graphs: BFS guarantees the first time you reach a node is the shortest path.\nNearest target / minimum steps: find the closest node or minimum number of moves.\nLevel aggregates: compute values per level: sum, max, count, average, etc."
+        },
+        {
+          "number": 6,
+          "heading": "Pitfalls",
+          "body": "Appending children at the wrong time: if you enqueue children before locking level_size, you'll mix levels.\nForgetting visited in graphs: you may revisit nodes, causing infinite loops or duplicate work."
+        }
+      ],
+      "footer": "The queue holds the current frontier.",
+      "summary": "Explains breadth-first search with a FIFO queue and solves Binary Tree Level Order Traversal by snapshotting the queue size to process one level at a time. Compares DFS and BFS and notes when BFS is the right choice, such as shortest paths in unweighted graphs.",
+      "keywords": [
+        "Breadth-first search",
+        "Queue",
+        "FIFO",
+        "Level order traversal",
+        "Frontier",
+        "Binary tree",
+        "Depth-first search",
+        "Shortest path",
+        "Visited set",
+        "Level aggregates"
+      ]
+    },
+    {
+      "image": "LeetCode/09-trie-prefix-search-cheat-sheet.png",
+      "title": "Tries & Prefix Search Cheat Sheet",
+      "subtitle": "Share prefixes to search words fast.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Trie Node Anatomy",
+          "body": "A node has children and an isEnd flag.\nchildren (map): maps character to child node (a, b, ..., z). Only existing children stored.\nisEnd (flag, T/F): true if this node represents the end of a word."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Implement Trie",
+          "body": "",
+          "code": "insert(\"apple\")\n  node = root\n  for ch in \"apple\":\n    if ch not in node.children:\n      node.children[ch] = Node()\n    node = node.children[ch]\n  node.isEnd = True\n\nsearch(\"apple\")\n  node = root\n  for ch in \"apple\":\n    if ch not in node.children:\n      return False\n    node = node.children[ch]\n  return node.isEnd\n\nstartsWith(\"app\")\n  node = root\n  for ch in \"app\":\n    if ch not in node.children:\n      return False\n    node = node.children[ch]\n  return True"
+        },
+        {
+          "number": 3,
+          "heading": "Branching (Character Diagram)",
+          "body": "Diagram: from the root, branches a-p-p, a-p-l, a-p-e, b-a-t and c-a-t; terminal nodes (isEnd = True) are highlighted, the rest are non-terminal nodes.\nWords stored: app, apple, appl, bat, cat."
+        },
+        {
+          "number": 4,
+          "heading": "Core Operations (Pseudo)",
+          "body": "INSERT(word): start at root; for each character, go/create child; mark last node's isEnd = True.\nSEARCH(word): start at root; for each character, follow child; return node.isEnd at the end.\nSTARTSWITH(prefix): start at root; for each character, follow child; if path exists, return True."
+        },
+        {
+          "number": 5,
+          "heading": "Complexity",
+          "body": "O(L), L = length of input.\nINSERT: O(L)\nSEARCH: O(L)\nSTARTSWITH: O(L)\nL = number of characters in word/prefix."
+        },
+        {
+          "number": 6,
+          "heading": "Applications",
+          "body": "Autocomplete: suggest completions as user types.\nDictionary: fast word lookups and prefix checks.\nWord search: backtracking on boards using prefix pruning."
+        },
+        {
+          "number": 7,
+          "heading": "Tradeoff",
+          "body": "Speed: fast lookups, prefix queries O(L).\nMemory: more nodes for more characters.\nGreat for read-heavy, prefix-heavy workloads."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Mark terminal word: for a-p-p-e, don't forget to set isEnd = True at the last character.\nCharacter indexing (a-z or ASCII/Unicode): use consistent mapping; handle only valid characters; watch out for case sensitivity; avoid assuming contiguous sets."
+        }
+      ],
+      "footer": "Walk one character at a time — prefixes do the sharing.",
+      "summary": "Explains the trie (prefix tree): each node maps characters to children and marks word endings with isEnd, giving O(L) insert, search and startsWith. Covers applications like autocomplete and word search, the speed/memory tradeoff, and common mistakes.",
+      "keywords": [
+        "Trie",
+        "Prefix tree",
+        "Prefix search",
+        "isEnd flag",
+        "Insert",
+        "Search",
+        "startsWith",
+        "Autocomplete",
+        "Word search",
+        "Time complexity",
+        "Memory tradeoff"
+      ]
+    },
+    {
+      "image": "LeetCode/10-heap-kth-largest-cheat-sheet.png",
+      "title": "Heaps & Priority Queues Cheat Sheet",
+      "subtitle": "Keep the next most important item at the top.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Min-Heap vs Max-Heap",
+          "body": "Min-heap: root is the SMALLEST element. Parent <= children. (Example tree: 1; 2, 4; 3, 5, 6, 7.)\nMax-heap: root is the LARGEST element. Parent >= children. (Example tree: 7; 6, 4; 5, 3, 2, 1.)"
+        },
+        {
+          "number": 2,
+          "heading": "Kth Largest Element Example",
+          "body": "[3, 2, 1, 5, 6, 4], k = 2 -> 5\nUse a size-k MIN-HEAP. Root is the 2nd largest!"
+        },
+        {
+          "number": 3,
+          "heading": "Size-K Min Heap Process (k = 2)",
+          "body": "Stream elements 3, 2, 1, 5, 6, 4 with heap size <= k:\n3: push — root 3\n2: push — root 2\n1: replace 3 with 1 — root 1\n5: 5 > 1, replace — root 5\n6: 6 > 5, replace — root 5\n4: 4 <= 5, ignore — root 5\nFinal answer (2nd largest) = 5"
+        },
+        {
+          "number": 4,
+          "heading": "Pseudocode (Kth Largest)",
+          "body": "MIN-HEAP keeps the k best so far.",
+          "code": "function kthLargest(nums, k):\n  minHeap = new MinHeap()  // stores k largest\n  for x in nums:\n    if minHeap.size < k:\n      minHeap.push(x)\n    else if x > minHeap.peek():\n      minHeap.pop()\n      minHeap.push(x)\n  return minHeap.peek()  // kth largest"
+        },
+        {
+          "number": 5,
+          "heading": "Time Complexity",
+          "body": "O(n log k)\nWe process n elements. Each heap operation is O(log k). Heap size never exceeds k.\nBest for when k << n!"
+        },
+        {
+          "number": 6,
+          "heading": "Common Applications",
+          "body": "Top-K frequent elements: keep k most frequent items.\nMerge K sorted lists: lists 1->4->8, 2->5->9, 1->3->7 feed a min-heap, producing 1 -> 1 -> 2 -> 3 -> 4 -> ... Always extract the smallest head.\nTask scheduling: run the task with highest priority (or earliest deadline)."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Gotchas",
+          "body": "Min vs max — choose wisely! Looking for Kth largest? Use MIN-HEAP (size k). Looking for Kth smallest? Use MAX-HEAP (size k).\nHeap size invariant: never let heap size exceed k. Correct: size <= k. Wrong: size > k.\nOther common mistakes: forgetting to compare with root before push (wastes operations); popping when heap has < k elements; off-by-one errors in k; using wrong heap (min vs max); ignoring duplicates / tie handling."
+        }
+      ],
+      "footer": "Keep only the best k candidates — the root tells the truth.",
+      "summary": "Compares min-heaps and max-heaps and finds the Kth largest element by keeping a size-k min-heap whose root is the answer, in O(n log k) time. Lists applications like top-K frequent, merging K sorted lists and task scheduling, plus common heap mistakes.",
+      "keywords": [
+        "Heap",
+        "Priority queue",
+        "Min-heap",
+        "Max-heap",
+        "Kth largest element",
+        "Top-K",
+        "Merge K sorted lists",
+        "Task scheduling",
+        "Heap size invariant",
+        "Time complexity"
+      ]
+    },
+    {
+      "image": "LeetCode/11-backtracking-subsets-cheat-sheet.png",
+      "title": "Backtracking Cheat Sheet",
+      "subtitle": "Choose, explore, undo — systematically enumerate possibilities.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Backtracking = Exploring a Decision Tree",
+          "body": "Make choices step by step. When a path ends, undo the last choice and try another.\nDiagram: from START, choose A or choose B; explore down the tree, undo back up.\nThink of it as a tree of choices. You go down, and back up!"
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Example: Subsets of [1,2,3]",
+          "body": "At each index, decide: include the number or exclude it.\nInput: [1,2,3]\nDiagram: a binary tree starting from [], branching on include/exclude 1, then 2, then 3; the eight leaves are the subsets.\nOutput (all subsets): [], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]\nEach path from root to leaf is one valid subset!"
+        },
+        {
+          "number": 3,
+          "heading": "The Backtracking Template",
+          "body": "choose -> apply the choice, update state\nrecurse -> explore deeper\nunchoose -> undo the choice, restore state\nChoose -> recurse -> unchoose. That's the heart of it!",
+          "code": "def backtrack(state):\n    if is_solution(state):\n        output.add(construct_solution(state))\n        return\n\n    for choice in choices(state):\n        if is_valid(state, choice):   # (optional pruning)\n            choose(state, choice)     # make a choice\n            backtrack(state)          # explore further\n            unchoose(state, choice)   # undo the choice"
+        },
+        {
+          "number": 4,
+          "heading": "Common Uses",
+          "body": "Permutations: arrange all items in every possible order. [1,2,3] -> 123, 132, 213, 231, 312, 321.\nCombinations: choose k items from n items (ignore order). C(5,3) -> {1,2,3}, {1,2,4}, ..., {3,4,5}.\nN-Queens: place N queens on an NxN board so that no two attack each other.\nOther problems: Sudoku, word search, partitioning, graph coloring, subset sum, Hamiltonian path, & more!"
+        },
+        {
+          "number": 5,
+          "heading": "Pruning: Cut Invalid Branches Early",
+          "body": "Use constraints to avoid exploring hopeless paths.\nExample: N-Queens: if a queen is attacked on placement, don't recurse down that branch.\nPruning doesn't change the answer — it just saves a lot of time!"
+        },
+        {
+          "number": 6,
+          "heading": "Complexity: Exponential (Usually)",
+          "body": "Backtracking may explore O(b^d) states (branching factor b, depth d). States explored grow exponentially with depth.\nRule of thumb: small n -> feasible; medium n -> pruning essential; large n -> usually hard.\nNo free lunch. Prune smart. Choose wisely."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls to Avoid",
+          "body": "Shared mutable path: forgetting to copy the path when saving a solution. Bad: output.add(path) — saved results change as the path changes ([1,2] -> [2,3] -> [3]). Good: output.add(path.copy()).\nForgetting to undo: state leaks into other branches and corrupts results. Bad: choose(...), recurse(...), # missing unchoose! Good: choose(...), recurse(...), unchoose(...)."
+        },
+        {
+          "number": 8,
+          "heading": "Quick Checklist",
+          "body": "Define state clearly.\nList all choices at each step.\nValidate or prune before recursing.\nChoose -> recurse -> unchoose.\nRecord solutions properly (copy if needed).\nTest with tiny inputs and edge cases.\nKeep calm, backtrack on!"
+        }
+      ],
+      "footer": "Make a choice. Explore it. Undo it cleanly.",
+      "summary": "Explains backtracking as walking a decision tree with a choose, recurse, unchoose template, using Subsets of [1,2,3] (include or exclude each number) as the example. Covers permutations, combinations, N-Queens, pruning, exponential complexity and copy/undo pitfalls.",
+      "keywords": [
+        "Backtracking",
+        "Decision tree",
+        "Subsets",
+        "Recursion",
+        "Choose / unchoose",
+        "Permutations",
+        "Combinations",
+        "N-Queens",
+        "Pruning",
+        "Exponential complexity"
+      ]
+    },
+    {
+      "image": "LeetCode/12-graphs-number-of-islands-cheat-sheet.png",
+      "title": "Graphs BFS & DFS Cheat Sheet",
+      "subtitle": "Visit connected structure once, mark what you have seen.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Graph: Vertices & Edges",
+          "body": "V (vertices) = {1,2,3,4,5,6}\nE (edges) = {(1,2), (1,3), (2,3), (2,4), (3,5), (4,6), (5,6), (2,5)}"
+        },
+        {
+          "number": 2,
+          "heading": "Adjacency List (Undirected)",
+          "body": "1: [2, 3]\n2: [1, 3, 4, 5]\n3: [1, 2, 5]\n4: [2, 6]\n5: [2, 3, 6]\n6: [4, 5]\nDirected example: 1: [2, 3]; 2: [4]; 3: [2, 5]; 4: [6]; 5: []; 6: []"
+        },
+        {
+          "number": 3,
+          "heading": "Number of Islands (Canonical)",
+          "body": "Count connected components of '1's (4-directionally). 1 = land, 0 = water.\nGrid:\n1 1 0 0 1\n1 0 0 1 1\n0 0 1 0 0\n1 0 1 1 0\n0 0 0 0 1\nAnswer: 5"
+        },
+        {
+          "number": 4,
+          "heading": "Flood Fill (Using DFS or BFS)",
+          "body": "Diagram: a start grid and the same grid after DFS or BFS marks the connected land cells as visited (filled).\nMark visited as soon as you discover. Explore 4 neighbors: up, down, left, right."
+        },
+        {
+          "number": 5,
+          "heading": "Visited Set — Pseudocode",
+          "body": "Visited set / array: visited = set(), or visited = [False] * n.\nTime complexity: O(V + E). Space complexity: O(V).",
+          "code": "# DFS (recursive)\ndef dfs(u):\n    visited.add(u)\n    for v in adj[u]:\n        if v not in visited:\n            dfs(v)\n\n# BFS (iterative)\nfrom collections import deque\ndef bfs(start):\n    q = deque([start])\n    visited = {start}\n    while q:\n        u = q.popleft()\n        for v in adj[u]:\n            if v not in visited:\n                visited.add(v)\n                q.append(v)"
+        },
+        {
+          "number": 6,
+          "heading": "Components vs Shortest Path",
+          "body": "Components: goal: visit all nodes in each component (any order). Use DFS or BFS. Time: O(V + E). Example: two components, {1,2,3} and {4,5,6}.\nShortest path (unweighted): goal: shortest path between two nodes. Use BFS. Time: O(V + E). Example: shortest path 1 -> 2 -> 3 -> 5 (length = 3)."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls (Don't Get Burned)",
+          "body": "7.1 Forget visited: what goes wrong: infinite loops, TLE. Fix: mark visited as soon as you discover a node and never process it again.\n7.2 Mutate or not mutate grid: mutate (in-place) — pros: O(1) extra space; cons: destroys input. No mutation — pros: preserves input; cons: O(V) extra space. Choose intentionally based on constraints.\n7.3 Recursion depth: what goes wrong: stack overflow on large or deep graphs. Fix: use iterative BFS/DFS or increase recursion limit (not always safe)."
+        }
+      ],
+      "footer": "Mark visited as soon as you discover a node.",
+      "summary": "Covers graph basics (vertices, edges, adjacency lists) and counts Number of Islands by flood-filling each unvisited land cell with DFS or BFS. Includes visited-set pseudocode, O(V + E) complexity, components vs shortest path, and pitfalls like forgetting visited or deep recursion.",
+      "keywords": [
+        "Graph",
+        "Vertices",
+        "Edges",
+        "Adjacency list",
+        "Number of islands",
+        "Flood fill",
+        "Depth-first search",
+        "Breadth-first search",
+        "Visited set",
+        "Connected components",
+        "Shortest path"
+      ]
+    },
+    {
+      "image": "LeetCode/13-advanced-graphs-course-schedule-cheat-sheet.png",
+      "title": "Advanced Graphs Cheat Sheet",
+      "subtitle": "Dependencies, topological order, and finding cycles.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Directed Prerequisite Graph",
+          "body": "Diagram: A points to B and C; B points to D and E; C points to F; D, E and F point to G.\nEdge u -> v means u must be done before v."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Course Schedule with Edges Course -> Prerequisite",
+          "body": "Courses: A, B, C, D, E, F, G\nEdges (course -> prerequisite): A -> —; B -> A; C -> A; D -> B; E -> B; F -> C; G -> E, F\nEach edge points from a course to its direct prerequisite."
+        },
+        {
+          "number": 3,
+          "heading": "Indegree and Kahn BFS Topological Sort",
+          "body": "Indegree (number of prerequisites): A 0, B 1, C 1, D 1, E 1, F 1, G 2.\nInitial queue (all indegree 0): [A]\nKahn's algorithm (BFS):\nQueue: [A], Order: []\nPop A -> Order: [A]. Decrement indegree of B, C -> push 0-indegree nodes -> Queue: [B, C]\nPop B -> Order: [A, B]. Decrement D, E -> D:0, E:0 -> Queue: [C, D, E]\nPop B -> Order: [A, B, C, D]. Queue: [E, F]\nPop E -> Order: [A, B, C, D, E]. Queue: [F]\nPop F -> Order: [A, B, C, D, E, F]. Decrement G -> G:0 -> Queue: [G]\nPop G -> Order: [A, B, C, D, E, F, G]. Queue: []\nFinal topological order: [A, B, C, D, E, F, G] (one valid order).\nKey idea: repeatedly take a node with no remaining prerequisites, remove it, and update its neighbors."
+        },
+        {
+          "number": 4,
+          "heading": "Kahn BFS Pseudocode (Readable)",
+          "body": "Complexity: Time O(V + E), Space O(V + E), where V = number of courses (nodes) and E = number of prerequisite relations (edges).",
+          "code": "function kahnTopoSort(graph):\n  # graph: dict node -> list of neighbors (prerequisites)\n  indegree = {u: 0 for u in graph}\n  for u in graph:\n    for v in graph[u]:\n      indegree[v] += 1\n  queue = []\n  for u in graph:\n    if indegree[u] == 0:\n      queue.append(u)\n  order = []\n  while queue:\n    u = queue.pop(0)   # BFS queue\n    order.append(u)\n    for v in graph[u]:\n      indegree[v] -= 1\n      if indegree[v] == 0:\n        queue.append(v)\n  if len(order) != len(graph):\n    return []   # cycle exists\n  return order"
+        },
+        {
+          "number": 5,
+          "heading": "DFS Three-Color Cycle Detection",
+          "body": "Color meaning: WHITE = unvisited; GRAY = in recursion stack; BLACK = fully processed.\nCycle rule: if we see an edge to a GRAY node, we found a back edge -> cycle!",
+          "code": "color = {u: WHITE for u in graph}\ndef dfs(u):\n    color[u] = GRAY\n    for v in graph[u]:\n        if color[v] == GRAY: return True   # cycle!\n        if color[v] == WHITE:\n            if dfs(v): return True\n    color[u] = BLACK\n    return False\nfor u in graph:\n    if color[u] == WHITE:\n        if dfs(u):\n            return True\nreturn False   # no cycle -> DAG"
+        },
+        {
+          "number": 6,
+          "heading": "DAG Meaning and Uses",
+          "body": "A DAG (Directed Acyclic Graph) has no cycles. That means a valid order of completion exists.\nCommon uses: build systems (compile/link in correct order); scheduling (tasks, courses, or jobs with prerequisites); package management (install dependencies safely)."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls: Edge Direction & Cycle Handling",
+          "body": "Edge direction: correct (course -> prerequisite): B -> A means B needs A. Wrong (reversed): A -> B gives an incorrect meaning!\nCycle handling: a cycle (e.g. A -> B -> C -> A) detected means: no valid topological order; scheduling is impossible; report or break the cycle.\nAlways check: if result size < number of nodes, a cycle exists."
+        }
+      ],
+      "footer": "If a dependency cycle exists, no valid order exists.",
+      "summary": "Models Course Schedule as a directed prerequisite graph and finds a valid order with Kahn's BFS topological sort using indegrees, detecting a cycle when not all nodes are output. Also shows three-color DFS cycle detection, what a DAG is, and edge-direction pitfalls.",
+      "keywords": [
+        "Directed graph",
+        "Course Schedule",
+        "Topological sort",
+        "Kahn's algorithm",
+        "Indegree",
+        "DAG",
+        "Cycle detection",
+        "Three-color DFS",
+        "Back edge",
+        "Dependencies"
+      ]
+    },
+    {
+      "image": "LeetCode/14-dp-1d-house-robber-cheat-sheet.png",
+      "title": "1D Dynamic Programming Cheat Sheet",
+      "subtitle": "Define a state, write a recurrence, keep only what matters.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The DP Recipe",
+          "body": "1. State: what does dp[i] represent? Define the meaning precisely.\n2. Transition: how do we go from smaller states (i-2, i-1) to i? Write the recurrence.\n3. Base case: what are the simplest states? Anchor the recursion.\n4. Order: in what order do we compute states? Top-down w/ memo or bottom-up."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical 1D DP Example: House Robber",
+          "body": "Problem: given nums, rob houses in a line such that no two adjacent houses are robbed. Maximize money.\nnums = [2, 7, 9, 3, 1] (indices 0-4)."
+        },
+        {
+          "number": 3,
+          "heading": "Optimal Answer",
+          "body": "Max money = 12\nOne optimal choice: rob houses at indices 1 and 2.\n7 + 9 = 12"
+        },
+        {
+          "number": 4,
+          "heading": "Recurrence",
+          "body": "dp[i] = max(dp[i-1], dp[i-2] + nums[i])\nAt index i, either: skip house i -> dp[i-1]; take house i -> dp[i-2] + nums[i]. Take the better of the two."
+        },
+        {
+          "number": 5,
+          "heading": "Rolling Variables (Keep Only What Matters)",
+          "body": "We only need the last two states: prev2 = dp[i-2], prev1 = dp[i-1], curr = dp[i].\nInitialize: prev2 = 0, prev1 = 0.\nProcess nums = [2, 7, 9, 3, 1] (take = prev2 + nums[i], skip = prev1, curr = max(take, skip)):\ni = 0: take 0 + 2 = 2, skip 0, curr 2, (prev2, prev1) = (0, 2)\ni = 1: take 0 + 7 = 7, skip 2, curr 7, (2, 7)\ni = 2: take 2 + 9 = 11, skip 7, curr 11, (7, 11)\ni = 3: take 7 + 3 = 10, skip 11, curr 11, (11, 11)\ni = 4: take 11 + 1 = 12, skip 11, curr 12, (11, 12)\nFinal answer = prev1 = 12"
+        },
+        {
+          "number": 6,
+          "heading": "Clean & Readable Code (O(1) Space)",
+          "body": "",
+          "code": "def rob(nums):\n    prev2 = 0    # dp[i-2]\n    prev1 = 0    # dp[i-1]\n    for x in nums:\n        take = prev2 + x    # take current house\n        skip = prev1        # skip current house\n        curr = take if take > skip else skip\n        prev2, prev1 = prev1, curr\n    return prev1\n\n# Example\nnums = [2, 7, 9, 3, 1]\nprint(rob(nums))  # 12"
+        },
+        {
+          "number": 7,
+          "heading": "Recognize: Include / Exclude Pattern",
+          "body": "dp[i] = max(exclude i, include i)\nExclude i: do not take nums[i]. Best up to i-1 -> dp[i-1].\nInclude i: take nums[i]. Then must skip i-1. Best up to i-2 + nums[i] -> dp[i-2] + nums[i]."
+        },
+        {
+          "number": 8,
+          "heading": "Common Pitfalls",
+          "body": "Wrong base cases: leads to all answers being off. Double-check dp[0], dp[1].\nUsing future states: using dp[i+1] or other future states breaks the subproblem structure.\nOverbuilding the array: storing the whole dp[] when only O(1) space is needed."
+        }
+      ],
+      "footer": "What is the best answer up to here? Write that state first.",
+      "summary": "Lays out the DP recipe (state, transition, base case, order) and solves House Robber with dp[i] = max(dp[i-1], dp[i-2] + nums[i]), reduced to two rolling variables for O(1) space. Highlights the include/exclude pattern and common DP mistakes.",
+      "keywords": [
+        "Dynamic programming",
+        "1D DP",
+        "House Robber",
+        "State",
+        "Recurrence",
+        "Base case",
+        "Memoization",
+        "Bottom-up",
+        "Rolling variables",
+        "Include / exclude",
+        "Space optimization"
+      ]
+    },
+    {
+      "image": "LeetCode/15-dp-2d-unique-paths-cheat-sheet.png",
+      "title": "2D Dynamic Programming Cheat Sheet",
+      "subtitle": "Let every cell summarize a smaller subproblem.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Grid State dp[r][c]",
+          "body": "r: row index 0..m-1; c: col index 0..n-1.\ndp[r][c] = answer for subproblem that ends at cell (r, c).\nUse only previously computed states (typically from top or left)."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Example: Unique Paths (3x7)",
+          "body": "Start (0,0), end (2,6).\nMove only right or down. How many ways to reach the end?\nThis is the poster child for 2D DP."
+        },
+        {
+          "number": 3,
+          "heading": "Recurrence",
+          "body": "dp[r][c] = dp[r-1][c] + dp[r][c-1]\n(from top: come from above) + (from left: come from left)\nBase cases: dp[0][0] = 1; first row: dp[0][c] = 1 (all c); first column: dp[r][0] = 1 (all r)."
+        },
+        {
+          "number": 4,
+          "heading": "Filled Table (3x7)",
+          "body": "Row 0: 1 1 1 1 1 1 1\nRow 1: 1 2 3 4 5 6 7\nRow 2: 1 3 6 10 15 21 28\nAnswer (2,6) = 28"
+        },
+        {
+          "number": 5,
+          "heading": "Readable Code (Python)",
+          "body": "",
+          "code": "def unique_paths(m, n):\n    dp = [[0] * n for _ in range(m)]\n    for r in range(m):\n        dp[r][0] = 1\n    for c in range(n):\n        dp[0][c] = 1\n    for r in range(1, m):\n        for c in range(1, n):\n            dp[r][c] = dp[r-1][c] + dp[r][c-1]\n    return dp[m-1][n-1]"
+        },
+        {
+          "number": 6,
+          "heading": "Common 2D DP Patterns",
+          "body": "A) Edit distance: dp[i][j] = min cost to convert s[0..i-1] -> t[0..j-1]. Transitions: if s[i-1] == t[j-1]: dp[i][j] = dp[i-1][j-1]; else: 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]).\nB) Longest common subsequence (LCS): dp[i][j] = LCS length of s[0..i-1] and t[0..j-1]. Transitions: if s[i-1] == t[j-1]: dp[i][j] = dp[i-1][j-1] + 1; else: max(dp[i-1][j], dp[i][j-1]).\nC) Grid with obstacles: count paths avoiding obstacles (#). Let grid[r][c] = 1 if blocked else 0. Recurrence (when cell is free): dp[r][c] = dp[r-1][c] + dp[r][c-1]. If blocked: dp[r][c] = 0."
+        },
+        {
+          "number": 7,
+          "heading": "Space Compression: One Row",
+          "body": "Before (2D): rows r-1, r, r+1. After (1D row): dp[c] for columns 0..n-1.\nUpdate left -> right using one row array: dp[c] = dp[c] + dp[c-1]."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls to Avoid",
+          "body": "Dimensions (rows vs cols): be consistent: dp has size [m][n]. Use 0..m-1 for rows, 0..n-1 for cols.\nInitialization (base cases): don't forget first row and first column! They seed the entire table.\nIteration direction: compute in an order that guarantees dependencies are ready (top-to-bottom, left-to-right). Wrong order -> wrong answers."
+        }
+      ],
+      "footer": "Define what one cell means — then build the grid.",
+      "summary": "Teaches 2D dynamic programming on a grid by solving Unique Paths: each cell's count is the sum of the cell above and the cell to the left, with the first row and column set to 1. Also covers edit distance, LCS, grids with obstacles, and compressing the table to one row.",
+      "keywords": [
+        "Dynamic programming",
+        "2D DP",
+        "Unique Paths",
+        "Grid",
+        "Recurrence",
+        "Base case",
+        "Edit distance",
+        "Longest common subsequence",
+        "Obstacles",
+        "Space compression"
+      ]
+    },
+    {
+      "image": "LeetCode/16-greedy-jump-game-cheat-sheet.png",
+      "title": "Greedy Algorithms Cheat Sheet",
+      "subtitle": "Make the locally safe move that preserves the best future.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Greedy Proof Mindset",
+          "body": "Why is this move safe?\nGreedy choice property: a locally optimal choice can be part of an optimal solution.\nOptimal substructure: optimal solution contains optimal solutions to subproblems.\nProve it: use exchange argument or stay-ahead intuition."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical: Jump Game",
+          "body": "nums = [2, 3, 1, 1, 4] (indices 0-4)\nGoal: reach last index (4) starting from index 0. At each index, jump up to nums[i] steps forward."
+        },
+        {
+          "number": 3,
+          "heading": "Farthest-Reachable Frontier",
+          "body": "We don't choose the next jump. We extend the frontier as far as possible.\nDiagram: indices 0-4 with values 2, 3, 1, 1, 4; arcs show reachable jumps up to the goal at index 4.\ni = current index; farthest = farthest index we can reach so far.\nIdea: sweep i from left to right. Keep extending farthest. If we ever step beyond farthest, we're stuck."
+        },
+        {
+          "number": 4,
+          "heading": "Clean & Readable Code",
+          "body": "Extend the frontier, don't jump blind.\nTime: O(n). Space: O(1).",
+          "code": "def canJump(nums):\n    farthest = 0\n    for i, x in enumerate(nums):\n        if i > farthest:\n            return False\n        farthest = max(farthest, i + nums[i])\n    return True"
+        },
+        {
+          "number": 5,
+          "heading": "Other Classic Uses",
+          "body": "Interval scheduling: sort by earliest finish time. Pick the next interval that starts after the last chosen one finishes. Maximizes the number of non-overlapping intervals.\nGas station: find starting station to complete the circuit. Greedy reset when tank goes negative. Works because of total sum and greedy choice."
+        },
+        {
+          "number": 6,
+          "heading": "Exchange Argument & Stay-Ahead Intuition",
+          "body": "Exchange argument: if an optimal solution makes a different choice, we can swap it with our greedy choice without making it worse.\nStay-ahead intuition: after each greedy choice, our solution is never behind any optimal solution. Sometimes it's even ahead."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls",
+          "body": "Greedy without proof: not every problem is greedy. Always prove greedy-choice property (or you'll get WA).\nConfusing locally best with globally safe: the goal is a choice that keeps the best future possible, not just the best immediate payoff."
+        }
+      ],
+      "footer": "Track the frontier — if you can reach it, you can extend it.",
+      "summary": "Explains greedy algorithms and how to justify them (greedy choice property, exchange argument, stay-ahead), then solves Jump Game by sweeping left to right and tracking the farthest reachable index. Mentions interval scheduling and gas station as other greedy classics.",
+      "keywords": [
+        "Greedy algorithm",
+        "Jump Game",
+        "Farthest reachable",
+        "Frontier",
+        "Greedy choice property",
+        "Optimal substructure",
+        "Exchange argument",
+        "Stay-ahead",
+        "Interval scheduling",
+        "Gas station"
+      ]
+    },
+    {
+      "image": "LeetCode/17-intervals-merge-intervals-cheat-sheet.png",
+      "title": "Intervals Cheat Sheet",
+      "subtitle": "Sort by start, compare ends, and merge overlapping time.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Closed Interval Timeline",
+          "body": "We work with closed intervals [start, end]. Both endpoints are included.\nExample: [2,5] and [5,8] on a timeline. Touching at 5 means overlap.\nClosed: [a,b] includes a and b."
+        },
+        {
+          "number": 2,
+          "heading": "Canonical Example: Merge Intervals",
+          "body": "Input: [[1,3],[2,6],[8,10],[15,18]]\nMerged result: [1,6], [8,10], [15,18]\nFirst two overlap -> [1,6]. Others don't -> keep as is."
+        },
+        {
+          "number": 3,
+          "heading": "Sort by Start, Then Compare",
+          "body": "Sort by start. Sweep left to right.\n[1,3]: — (first) -> add [1,3]\n[2,6]: 2 <= 3 -> yes -> merge\n[8,10]: 8 <= 6 -> no -> add [8,10]\n[15,18]: 15 <= 10 -> no -> add [15,18]\nOverlap condition for closed intervals: current.start <= last.end"
+        },
+        {
+          "number": 4,
+          "heading": "Merge: End = Max Ends",
+          "body": "When overlapping, extend the last interval.\nnew_end = max(last.end, current.end)\nExample: last [1,3] and current [2,6] merge into [1,6].\nKeep intervals in the result non-overlapping and sorted by start."
+        },
+        {
+          "number": 5,
+          "heading": "Readable Pseudocode",
+          "body": "Flow: intervals empty? Yes -> return []. No -> sort by start -> iterate: if curr.start <= last.end, last.end = max(last.end, curr.end); otherwise res.append(last), last = curr. Finally res.append(last) and return res.",
+          "code": "function merge(intervals):\n  if intervals is empty: return []\n  sort intervals by start ascending\n  res = []\n  last = intervals[0]\n  for i from 1 to n-1:\n    curr = intervals[i]\n    if curr.start <= last.end:\n      last.end = max(last.end, curr.end)\n    else:\n      res.append(last)\n      last = curr\n  res.append(last)\n  return res"
+        },
+        {
+          "number": 6,
+          "heading": "Common Uses",
+          "body": "Meeting rooms: find the minimum rooms required for all meetings.\nInsert interval: insert a new interval into existing non-overlapping intervals.\nSweep line algorithms: used in counting overlaps, union length, and more."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls: Touching Endpoints",
+          "body": "Closed intervals [a,b]: [1,3] and [3,5] — since 3 is included, they overlap. They should merge to [1,5].\nHalf-open intervals [a,b): [1,3) and [3,5) — since 3 is excluded, they do not overlap. They stay separate.\nKnow your problem's interval semantics!"
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls: Sorting",
+          "body": "Correct: sort by start: [1,3], [2,6], [8,10], [15,18].\nWrong: sort by end: [1,3], [8,10], [2,6], [15,18]. Leads to incorrect comparisons and wrong merges."
+        }
+      ],
+      "footer": "Sort first. Then let the current end decide.",
+      "summary": "Solves Merge Intervals by sorting intervals by start, then sweeping and merging whenever the current start is at or before the last end (taking the max end). Covers closed vs half-open endpoint semantics, sorting mistakes, and related problems like meeting rooms and insert interval.",
+      "keywords": [
+        "Intervals",
+        "Merge intervals",
+        "Closed interval",
+        "Half-open interval",
+        "Sorting",
+        "Overlap",
+        "Sweep line",
+        "Meeting rooms",
+        "Insert interval"
+      ]
+    },
+    {
+      "image": "LeetCode/18-monotonic-stack-daily-temperatures-cheat-sheet.png",
+      "title": "Monotonic Stack Cheat Sheet",
+      "subtitle": "Keep candidates ordered until a better answer arrives.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Increasing Stack (Bottom < Top)",
+          "body": "Keeps values in NON-DECREASING order (e.g. 1, 2, 3, 4, 5 from bottom to top). Top is the BEST candidate so far for future GREATER answers.\nNew value x: pop while stack.top() < x."
+        },
+        {
+          "number": 2,
+          "heading": "Decreasing Stack (Bottom > Top)",
+          "body": "Keeps values in NON-INCREASING order (e.g. 9, 7, 6, 4, 2 from bottom to top). Top is the BEST candidate so far for future SMALLER answers.\nNew value x: pop while stack.top() > x."
+        },
+        {
+          "number": 3,
+          "heading": "Canonical Example: Daily Temperatures [73,74,75,71,69,72,76,73]",
+          "body": "Index-stack (store indices, top on the right); pop while warmer: T[i] > T[stack.top()]; answer = i - j days until warmer.\ni = 0 (73): stack [0]\ni = 1 (74): 74 > 73 -> pop 0, ans[0] = 1 - 0 = 1; stack [1]\ni = 2 (75): 75 > 74 -> pop 1, ans[1] = 2 - 1 = 1; 75 > 73 -> pop 0; stack [2]\ni = 3 (71): 71 > 75? No; stack [2, 3]\ni = 4 (69): 69 > 71? No; stack [2, 3, 4]\ni = 5 (72): 72 > 69 -> pop 4, ans[4] = 5 - 4 = 1; stack [2, 3, 5]\ni = 6 (76): 76 > 72 -> pop 5; 76 > 71 -> pop 3; 76 > 75 -> pop 2; stack [6]\ni = 7 (73): 73 > 76? No; stack [6, 7]\nFinal answer distances (i - j): [1, 1, 4, 2, 1, 1, 0, 0]\nWhen a warmer day arrives, pop the cooler days!"
+        },
+        {
+          "number": 4,
+          "heading": "Pseudocode (Daily Temperatures)",
+          "body": "",
+          "code": "function dailyTemperatures(T):\n  n = length(T)\n  ans = array(n, 0)\n  st = empty stack   // store indices\n  for i from 0 to n-1:\n    while not st.empty() and T[i] > T[st.top()]:\n      j = st.pop()\n      ans[j] = i - j   // distance i - j\n    st.push(i)\n  return ans"
+        },
+        {
+          "number": 5,
+          "heading": "Other Classic Uses",
+          "body": "Next greater element: for each element, find the next greater element to its right. Example: [2,1,2,4,3] -> answer: [4,2,4,-1,-1].\nLargest rectangle in histogram: find the largest area rectangle in a histogram. Example: [2,1,5,6,2,3] -> answer: 10.\nStock span: for each day, count consecutive previous days with price <= today's price. Prices: [100,80,60,70,60,75,85] -> span: [1,1,1,2,1,4,6]."
+        },
+        {
+          "number": 6,
+          "heading": "Why Amortized O(n)?",
+          "body": "Each index is PUSHED exactly once.\nEach index is POPPED at most once.\nAll other operations are O(1).\nTotal operations <= 2n.\nTherefore, total time: O(n).\nPush once. Pop once. That's the secret."
+        },
+        {
+          "number": 7,
+          "heading": "Common Pitfall",
+          "body": "Don't store values. Store indices.\nWhy? You need the INDEX to compute distance i - j. Equal values break correctness if you store only values. You can't tell which occurrence was popped.\nStore indices. Stay correct."
+        },
+        {
+          "number": 8,
+          "heading": "Pop Conditions (Reminder)",
+          "body": "Increasing stack: pop while stack.top() < x (looking for greater answers).\nDecreasing stack: pop while stack.top() > x (looking for smaller answers)."
+        }
+      ],
+      "footer": "Pop the losers when a better candidate arrives.",
+      "summary": "Explains monotonic stacks and solves Daily Temperatures by keeping a stack of indices and popping cooler days when a warmer one arrives, recording the distance. Shows why it runs in amortized O(n) and lists next greater element, largest rectangle in histogram, and stock span as related uses.",
+      "keywords": [
+        "Monotonic stack",
+        "Increasing stack",
+        "Decreasing stack",
+        "Daily Temperatures",
+        "Next greater element",
+        "Largest rectangle in histogram",
+        "Stock span",
+        "Amortized analysis",
+        "Store indices",
+        "Stack"
+      ]
+    },
+    {
+      "image": "LeetCode/19-prefix-sum-subarray-sum-cheat-sheet.png",
+      "title": "Prefix Sums Cheat Sheet",
+      "subtitle": "Turn range questions into one subtraction and a lookup.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Prefix Array",
+          "body": "P[i] = sum before i\nP[0] = 0\nP[i+1] = P[i] + A[i]\nA = [3, 1, 4, 1, 5] -> P = [0, 3, 4, 8, 9, 14]"
+        },
+        {
+          "number": 2,
+          "heading": "Range Sum",
+          "body": "sum(l, r) = P[r+1] - P[l]\nWith A = [3, 1, 4, 1, 5] and P = [0, 3, 4, 8, 9, 14], l = 1, r = 3:\nsum(1,3) = P[4] - P[1] = 9 - 3 = 6"
+        },
+        {
+          "number": 3,
+          "heading": "Canonical: Subarray Sum Equals K",
+          "body": "nums = [1, 1, 1], k = 2 -> 2\ni = 0, 1, 2; nums[i] = 1, 1, 1; P[i+1] = 1, 2, 3.\nSubarrays with sum = 2: [0..1] and [1..2]. Total = 2."
+        },
+        {
+          "number": 4,
+          "heading": "Running Sum & Frequency Map",
+          "body": "If prefix sum up to j is sum, then a previous prefix sum of (sum - k) forms a valid subarray ending at j.\ncurrent sum = S -> need S - k -> count += freq[S - k]\nfreq (prefix sum -> count): 0 -> 1, 1 -> 1, 2 -> 1, 3 -> 1, ...\nWe remember how many times each prefix sum has occurred."
+        },
+        {
+          "number": 5,
+          "heading": "Pseudocode",
+          "body": "Read it like a story: 1. Extend the range to include x. 2. Look back: how many prefixes give sum - k? 3. Add that to the answer. 4. Record this prefix sum.\nTime: O(n). Space: O(n).",
+          "code": "freq = defaultdict(int)\nfreq[0] = 1          # empty prefix\ncount = 0\nsum = 0\nfor x in nums:\n    sum += x\n    count += freq[sum - k]   # LOOKUP\n    freq[sum] += 1           # RECORD\nreturn count"
+        },
+        {
+          "number": 6,
+          "heading": "2D Prefix Sum (Mention)",
+          "body": "Let P be (n+1) x (m+1) with 0 padding.\nsum((r1,c1) to (r2,c2)) = P[r2+1][c2+1] - P[r1][c2+1] - P[r2+1][c1] + P[r1][c1]"
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls",
+          "body": "Initialize freq[0] = 1: counts subarrays that start at index 0.\nNegatives break sliding window: prefix sums + hash map work for any integers.\nIndex conventions matter: P[i] = sum before i (0-based). Range sum is P[r+1] - P[l]."
+        }
+      ],
+      "footer": "Remember the past sums — the difference reveals the range.",
+      "summary": "Shows how a prefix sum array turns any range sum into one subtraction, then counts subarrays summing to k by keeping a frequency map of earlier prefix sums and looking up sum - k. Also gives the 2D prefix sum formula and pitfalls like forgetting freq[0] = 1.",
+      "keywords": [
+        "Prefix sum",
+        "Range sum",
+        "Subarray Sum Equals K",
+        "Running sum",
+        "Frequency map",
+        "Hash map",
+        "2D prefix sum",
+        "Negative numbers",
+        "Time complexity"
+      ]
+    },
+    {
+      "image": "LeetCode/20-bit-manipulation-single-number-cheat-sheet.png",
+      "title": "Bit Manipulation Cheat Sheet",
+      "subtitle": "Use binary structure for constant-space tricks.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Binary Place Values",
+          "body": "2^7 = 128, 2^6 = 64, 2^5 = 32, 2^4 = 16, 2^3 = 8, 2^2 = 4, 2^1 = 2, 2^0 = 1.\nExample: 101101 (base 2) = 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1 = 45 (base 10)."
+        },
+        {
+          "number": 2,
+          "heading": "Bitwise Operations Mini Reference",
+          "body": "Examples with A = 10110, B = 01101:\nAND (&): 10110 & 01101 = 00100\nOR (|): 10110 | 01101 = 11111\nXOR (^): 10110 ^ 01101 = 11011\nNOT (~A): ~10110 (8-bit) = 01001\nLeft shift (<<): 10110 << 2 = 110100\nRight shift (>>): 10110 >> 2 = 00101\nLeft shift << multiplies by 2^k. Right shift >> divides by 2^k (floor)."
+        },
+        {
+          "number": 3,
+          "heading": "Canonical: Single Number",
+          "body": "[4, 1, 2, 1, 2] -> 4, using XOR cancellation.\nStep 0: start, ans = 0000\nStep 1: 4 (0100): 0000 ^ 0100 = 0100\nStep 2: 1 (0001): 0100 ^ 0001 = 0101\nStep 3: 2 (0010): 0101 ^ 0010 = 0111\nStep 4: 1 (0001): 0111 ^ 0001 = 0110\nStep 5: 2 (0010): 0110 ^ 0010 = 0100\nPairs cancel out: x ^ x = 0 and x ^ 0 = x. Leftover (odd one out) remains!\nans ^= x; — the whole trick!",
+          "code": "int singleNumber(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) ans ^= x;\n    return ans;\n}"
+        },
+        {
+          "number": 4,
+          "heading": "Bit Masks: Cheat Sheet",
+          "body": "Let mask = (1 << i)  // mask for bit i\nCheck (is bit i set?): if (x & mask) — true if set (non-zero -> set).\nSet (turn on bit i): x |= mask\nClear (turn off bit i): x &= ~mask\nToggle (flip bit i): x ^= mask"
+        },
+        {
+          "number": 5,
+          "heading": "Uses in Coding Interviews",
+          "body": "Subsets (n elements): iterate mask from 0 to (1<<n)-1. Each mask represents a subset.\nFlags (state compression): use bits to store multiple boolean flags. Example: bit 0 = visited, bit 1 = hasKey, bit 2 = blocked, ...\nPower of two check: x > 0 and (x & (x - 1)) == 0. Only one bit is set."
+        },
+        {
+          "number": 6,
+          "heading": "Pitfalls to Avoid",
+          "body": "Operator precedence: comparison (==, <, >) has higher precedence than bitwise (&, |, ^). Bad: if (x & 1 == 0) // parsed as x & (1 == 0). Good: if ((x & 1) == 0) // what you want.\nSigned shifts: right shift on negative signed integers is implementation-defined (often arithmetic shift, keeps the sign bit). Avoid relying on it. Prefer unsigned when doing bit tricks. Example (8-bit): x = -4 = 11111100; x >> 1 -> 11111110 (arithmetic); (unsigned)x >> 1 -> 01111110 (logical)."
+        }
+      ],
+      "footer": "XOR makes pairs disappear — leaving the odd one out.",
+      "summary": "Reviews binary place values and the bitwise operators, then solves Single Number by XOR-ing all values so duplicate pairs cancel and the unique number remains. Covers bit mask tricks (check, set, clear, toggle), interview uses, and precedence and signed-shift pitfalls.",
+      "keywords": [
+        "Bit manipulation",
+        "Binary",
+        "XOR",
+        "Single Number",
+        "Bitwise AND",
+        "Bitwise OR",
+        "Bit shift",
+        "Bit mask",
+        "Power of two",
+        "Operator precedence",
+        "Signed shift"
+      ]
+    }
+  ]
+}

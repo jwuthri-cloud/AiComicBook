@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "ATTENTION HEAD". Subtitle: "A learned information finder". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine a reader highlighting earlier words that help explain the current word. An attention head moves useful information between token positions."
+2. HOW IT WORKS
+"Queries and keys determine attention weights. A weighted mixture of value vectors is transformed and added to the residual stream. Training learns these operations."
+3. SEE AN EXAMPLE
+"In 'Mia dropped her bag', a head might carry information about Mia toward 'her'. This is an illustrative possibility; actual head behavior must be measured."
+4. WHY IT MATTERS
+"Heads help tokens use context. A bright attention arrow alone does not explain what information moved or prove why the answer changed."
+Footer: "ATTENTION SELECTS AND MOVES INFORMATION.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

@@ -1,0 +1,12 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: RLHF
+SUBTITLE: Practice with human feedback.
+1. THE IDEA
+Reinforcement learning from human feedback is like practicing with a coach who compares your attempts and says which one was better.
+2. HOW IT WORKS
+In a common pipeline, humans rank model answers. A reward model learns those preferences. Reinforcement learning then changes the assistant to favor answers with higher predicted reward.
+3. SEE IT HAPPEN
+Two explanations describe rain. People prefer the accurate, clearer one. A learned judge scores new explanations, and training encourages answers that score well. Draw people -> judge -> assistant practice.
+4. WHY IT MATTERS
+Human feedback can improve usefulness and safety, but people and reward models can make mistakes. A high score is a clue about quality, not proof of truth or alignment. Some pipelines use feedback differently.
+FOOTER: Human preferences guide practice, but the score is only a proxy.

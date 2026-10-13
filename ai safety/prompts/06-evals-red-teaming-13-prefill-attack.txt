@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: PREFILL ATTACK
+SUBTITLE: Starting the assistant's answer in the wrong direction.
+1. THE IDEA
+Imagine someone writing the start of your answer before you can speak. A prefill attack uses an attacker-controlled assistant-message prefix to steer the continuation.
+2. HOW IT WORKS
+In systems that support assistant prefilling or equivalent continuation control, an attacker supplies the beginning of a response. The model may continue that pattern instead of applying intended safety boundaries.
+3. SEE IT HAPPEN
+Show a harmless toy conversation with a blank answer, then a suspicious prewritten start and a continuation arrow. Keep the prefix abstract; do not provide actionable jailbreak text.
+4. WHY IT MATTERS
+This attack depends on the interface and how it handles assistant prefixes. Many products restrict or do not support prefilling. Safety checks should cover continuations as well as ordinary prompts; a prewritten start does not give it legitimate authority.
+FOOTER: An attacker-controlled answer prefix can steer the continuation.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.
+ACRONYM REQUIREMENT: Place visible key near title: AI = Artificial Intelligence; LLM = Large Language Model if used. Expand every other acronym used.

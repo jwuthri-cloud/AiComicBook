@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-watch-training-change.mp4": {
+      "page": 1,
+      "image": "03-training-run-toolkit/01-watch-training-change.png",
+      "interaction_id": "v1_ChdQQ25OYXNtRkdwaUstc0FQXzdlX3NRMBIXUENuTmFzbUZHcGlLLXNBUF83ZV9zUTA",
+      "duration": 10.005
+    },
+    "02-build-the-toolkit.mp4": {
+      "page": 2,
+      "image": "03-training-run-toolkit/02-build-the-toolkit.png",
+      "interaction_id": "v1_ChdQQ25OYXNtRkdwaUstc0FQXzdlX3NRMBIXWHluTmFzYmFINDd3LXNBUHU3WE1pQUU",
+      "duration": 20.01
+    },
+    "03-when-do-signals-fire.mp4": {
+      "page": 3,
+      "image": "03-training-run-toolkit/03-when-do-signals-fire.png",
+      "interaction_id": "v1_ChdQQ25OYXNtRkdwaUstc0FQXzdlX3NRMBIXclNuTmF2NnBFNF9jak1jUDY0dVI0UXM",
+      "duration": 20.01
+    },
+    "04-plan-and-output.mp4": {
+      "page": 4,
+      "image": "03-training-run-toolkit/04-plan-and-output.png",
+      "interaction_id": "v1_ChdQQ25OYXNtRkdwaUstc0FQXzdlX3NRMBIXQ2lyTmF0SGtLOVNwak1jUG42T2dvUTA",
+      "duration": 30.016
+    }
+  }
+}

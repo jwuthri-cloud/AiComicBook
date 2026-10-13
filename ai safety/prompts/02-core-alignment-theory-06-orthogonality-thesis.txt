@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: ORTHOGONALITY THESIS
+SUBTITLE: Being smart does not choose your goal
+1. THE IDEA
+A great chess player can still choose a silly destination for a trip. Skill at achieving goals and the goals themselves are different things.
+2. HOW IT WORKS
+The orthogonality thesis says intelligence and final goals can vary largely independently. More capable reasoning does not automatically produce kindness or human values.
+3. A SMALL EXAMPLE
+One clever robot sorts blocks by color. Another sorts them by height. Both can plan well while pursuing different targets.
+4. WHY IT MATTERS
+This is a philosophical claim about possible agents, not a claim that every goal is easy to train or equally likely. Real learning systems have constraints and biases.
+FOOTER: GREATER CAPABILITY DOES NOT AUTOMATICALLY MEAN BETTER VALUES.
+Illustration instructions: Show chess and travel, ability vs goals axes, two block sorters, training constraints.

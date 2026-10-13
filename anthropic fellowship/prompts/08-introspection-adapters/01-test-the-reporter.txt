@@ -1,0 +1,27 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 08 · PAGE 1/4
+Title: TEST THE REPORTER
+Subtitle: Does a self-report track behavior or a training fingerprint?
+
+Panel 1 heading: A smoke-detector analogy
+Exact paragraph: A detector that rings for burnt toast needs checking. Likewise, a model reporting an unusual habit might be right, guessing, or reacting to an irrelevant training clue. This project tests the reporting tool.
+
+Panel 2 heading: What the tool actually is
+Exact paragraph: An introspection adapter is an added learned parameter update. A shared adapter is trained across many fine-tuned models from one base to make each describe its learned behavior. It is not a separate reader of activation traces.
+
+Panel 3 heading: A toy behavior
+Exact paragraph: Train a model to mention a fictional Moon Club in puzzle answers. Independently test whether it really does so. Then attach the reporting adapter and ask about unusual habits. Compare the report with measured behavior.
+
+Panel 4 heading: Two rival explanations
+Exact paragraph: Behavior tracking: reports follow the habit across different training recipes. Fingerprint tracking: reports follow incidental weight patterns even when measured habits do not change. Both may contribute; design experiments that pull them apart.
+
+Panel 5 heading: What is established
+Exact paragraph: Published work demonstrates useful self-reports on some held-out fine-tunes. Later work studies attacks and side-effect behavior. This proposal tests reliability under specified shifts; novelty and released-model compatibility must be rechecked.
+
+Panel 6 heading: What it cannot establish
+Exact paragraph: A fluent confession is not a mind-reading result or evidence of consciousness. An adapter changes the model it is attached to. Reports can hallucinate or miss habits, so behavioral tests remain an independent reference.
+
+Readable WORD KEY box: AI = artificial intelligence
+
+Footer: CHECK THE REPORT AGAINST WHAT THE MODEL DOES.

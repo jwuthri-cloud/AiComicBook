@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: IS IT EVASION OR A BROKEN SENSOR?
+SUBTITLE: Book 09 · page 3/4 — interpret the curves without guessing.
+FOLIO: BOOK 09 · PAGE 3/4
+READABLE WORD KEY: RL = reinforcement learning; false positive = an alarm on a target-absent case.
+
+PANEL 1 HEADING: Track three curves
+EXACT BODY: At each checkpoint measure task success, externally labeled target behavior, and probe detection. A quiet alarm alone is not the result. Plot uncertainty across independent runs.
+ART DIRECTION (never print): Three empty labeled axes panels, marked SCHEMATIC.
+
+PANEL 2 HEADING: Define evasion operationally
+EXACT BODY: Call it detector evasion when the externally measured target behavior remains while a frozen detector's sensitivity falls at a controlled false-positive rate. This definition does not require claims about conscious intent.
+ART DIRECTION (never print): Behavior present + frozen detector misses = OPERATIONAL EVASION.
+
+PANEL 3 HEADING: Compare time and cost
+EXACT BODY: Predefine a detection-drop threshold. Compare updates or compute needed to reach it while retaining capability and behavior. Do not confuse faster wall-clock training with fewer optimization steps.
+ART DIRECTION (never print): Two clocks: UPDATES and COMPUTE, separate from wall-clock.
+
+PANEL 4 HEADING: Try a fresh sensor
+EXACT BODY: Train a new probe on later checkpoints as a diagnostic. If it recovers detection, the old readout may have become stale. Keep this separate from the frozen-probe headline result.
+ART DIRECTION (never print): Frozen probe fails; freshly trained probe diagnostic.
+
+PANEL 5 HEADING: Use causal checks carefully
+EXACT BODY: Remove hints or intervene on candidate representations to test whether behavior changes. Decoding a label alone shows information is available, not that the decoded feature caused the answer.
+ART DIRECTION (never print): Hint removal and intervention arrows; label CORRELATION ≠ CAUSATION.
+
+PANEL 6 HEADING: What each outcome teaches
+EXACT BODY: Equal evasion suggests no measured extra latent cost here. Faster latent evasion motivates stronger oversight. Lower task accuracy or disappearing target behavior makes a simple evasion story unsupported.
+ART DIRECTION (never print): Three outcomes: SIMILAR, LATENT FASTER, CONFOUNDED.
+FOOTER: QUIETER ALARMS NEED NOT MEAN LESS TROUBLE.

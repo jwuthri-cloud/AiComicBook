@@ -1,0 +1,41 @@
+{
+  "title": "Stacked Lie Detectors Under Evasion",
+  "source_project_number": 5,
+  "status": "complete",
+  "pages": [
+    {
+      "number": 1,
+      "title": "Team Of Detectives",
+      "image": "01-team-of-detectives.png",
+      "prompt": "../prompts/05-stacked-lie-detectors/01-team-of-detectives.txt"
+    },
+    {
+      "number": 2,
+      "title": "Build The Stack",
+      "image": "02-build-the-stack.png",
+      "prompt": "../prompts/05-stacked-lie-detectors/02-build-the-stack.txt"
+    },
+    {
+      "number": 3,
+      "title": "When Alarms Fail",
+      "image": "03-when-alarms-fail.png",
+      "prompt": "../prompts/05-stacked-lie-detectors/03-when-alarms-fail.txt"
+    },
+    {
+      "number": 4,
+      "title": "Four-Month Case",
+      "image": "04-four-month-case.png",
+      "prompt": "../prompts/05-stacked-lie-detectors/04-four-month-case.txt"
+    }
+  ],
+  "learning_objectives": [
+    "Distinguish false answers, belief inconsistency, and evidence of deception.",
+    "Compare diverse detectors using a leakage-free ensemble and adaptive test.",
+    "Measure robustness at matched false-positive rates and inference cost."
+  ],
+  "quality_review": {
+    "all_pages_visually_inspected": true,
+    "format": "1024 \u00d7 1536 PNG; six panels per page",
+    "notes": "Material diagram issues repaired with saved prompts; technical acronyms expanded on-page; proposed experiments and planning estimates labeled."
+  }
+}

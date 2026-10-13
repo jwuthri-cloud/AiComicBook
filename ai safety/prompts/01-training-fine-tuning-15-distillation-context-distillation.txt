@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: DISTILLATION / CONTEXT DISTILLATION
+SUBTITLE: A student learns a teacher's useful patterns.
+1. THE IDEA
+Distillation trains a student model from a teacher model's outputs or predictions. Often the aim is to transfer useful behavior to a smaller or cheaper model.
+2. HOW IT WORKS
+The teacher generates answers, probability targets, or worked solutions. Training makes the student imitate those targets. It is learning from demonstrations, not copying the teacher's complete internal machinery.
+3. SEE IT HAPPEN
+Context distillation transfers behavior produced with extra instructions or context into the student's weights. Draw teacher + long guidance -> examples -> student that can respond without carrying the same guidance every time.
+4. WHY IT MATTERS
+Distillation can save cost and package skills. It can also copy errors, unsafe habits, or hidden biases. The student may behave differently on new inputs; teacher performance is not automatically preserved.
+5. WHAT CAN TRANSFER?
+A student may learn answer style, skills, or some reasoning patterns. The teacher's hidden internal mechanisms are not directly copied by answer imitation.
+6. CONTEXT IS NOT ALWAYS REMOVABLE
+Some facts or instructions change between tasks. Those still need fresh input; baking old context into weights may make it stale.
+FOOTER: Distillation transfers behavior through training examples.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

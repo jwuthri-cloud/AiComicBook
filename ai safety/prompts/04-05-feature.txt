@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "FEATURE". Subtitle: "A useful internal pattern". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"A feature is like an internal clue: a pattern that helps a model represent something, such as a language, shape, or relationship."
+2. HOW IT WORKS
+"Researchers look for meaningful patterns in activations. A feature may be a direction or a distributed pattern across many neurons; definitions vary by method."
+3. SEE AN EXAMPLE
+"Several sentences about bridges might activate a proposed bridge feature, while unrelated sentences do not. That is a hypothesis researchers can test."
+4. WHY IT MATTERS
+"Features can make hidden computation easier to describe. A human label is an approximation: the pattern may react to other things, and activation alone does not prove a causal role."
+Footer: "A FEATURE IS A PATTERN, NOT NECESSARILY ONE NEURON.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

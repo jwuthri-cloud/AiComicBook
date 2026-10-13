@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 05 · PAGE 2/4
+Main title: BUILD THE STACK
+Subtitle: Train separately; combine without peeking at the test.
+ART NOTES (DO NOT PRINT): Use a central pipeline, labeled equipment, and clear control-group diagrams.
+EXACT PRINTED PANEL CONTENT:
+1. PREPARE FAIR SPLITS
+Collect truthful examples, mistakes, and pressured contradictions. Separate training, validation, and final test by lie category, task, and model run. Keep near-duplicates together. Manually audit ambiguous labels before comparing detectors.
+2. THREE CLUE STREAMS
+Train an output-only detector, an activation probe, and a prompted language-model judge. Define exactly which context each receives. A judge with hidden ground truth has an unfair advantage over a detector deployed without it.
+3. FUSE THE SCORES
+Compare the best single detector, a simple average, an any-alarm rule, and a learned combiner. Fit the combiner on out-of-fold predictions: each score comes from a detector that did not train on that example.
+4. SET THE ALARM BUDGET
+Choose thresholds on validation data to meet the same honest-example false-alarm rate. Adding alarms usually catches more positives while also flagging more honest cases. Compare full tradeoffs and inference cost, not just raw catches.
+5. FREEZE BEFORE ATTACK
+Freeze weights, prompts, fusion rule, and thresholds. Train separate attacker models against each detector and the whole stack using harmless contradiction tasks. Reserve unseen attackers, seeds, and task families for final testing.
+6. WORD KEY + CHECK
+RL = reinforcement learning: learning from rewarded outcomes. A probe is a learned classifier of internal activity. Calibration connects scores to observed frequencies. Ask: did our combiner accidentally learn the answers from its own training examples?
+FOOTER: A FAIR STACK MUST EARN ITS GAIN ON UNSEEN CASES.

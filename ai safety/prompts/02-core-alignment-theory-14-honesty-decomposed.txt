@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Six numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: HONESTY (DECOMPOSED)
+SUBTITLE: Several checks make an answer trustworthy
+1. THE IDEA
+A trustworthy helper should tell you what it knows and admit what it does not. Researchers separate this broad idea into different properties.
+2. HOW IT WORKS
+Truthfulness: is the statement correct? Honesty: does it reflect the model's information rather than mislead? Calibration: does its confidence match how often it is right? Transparency: are important limits disclosed?
+3. A SMALL EXAMPLE
+'I am not sure; this needs checking' can be more useful than a confident guess. An honest mistake is still wrong, so checking facts matters.
+4. WHY IT MATTERS
+There is no single universal decomposition. Model beliefs are hard to define, and a fluent explanation may not reveal the real causes of an answer.
+5. A PRACTICAL CHECK
+Ask for uncertainty, compare claims with reliable sources, and see whether confidence changes when evidence changes. Test misleading omissions as well as outright false claims.
+6. EXPLAIN IT BACK
+An answer can be honest but mistaken, or correct for an unreliable reason. Which checks would reveal each case? No single rating captures all of them.
+FOOTER: CORRECTNESS, HONEST REPORTING, AND GOOD UNCERTAINTY ARE DIFFERENT CHECKS.
+Illustration instructions: Show four labeled checks, uncertain helper, fact check book, explanation limit.

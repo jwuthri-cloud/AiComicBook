@@ -1,0 +1,15 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. TITLE: ALIGNMENT
+SUBTITLE: Helping AI do what people actually mean
+1. THE BIG IDEA
+A helpful robot should put toys away safely, not just make the floor look empty. Alignment means making an AI's behavior fit the intentions and values we want it to follow.
+Illustration: tidy toys on a shelf, not hidden under a rug.
+2. TWO THINGS TO CHECK
+Did we choose a good training target? Did the model learn behavior that still fits our intent in new situations? A high score alone cannot answer both questions.
+Illustration: target then new-room test.
+3. A SMALL EXAMPLE
+"Clean my room" should not mean "throw everything away." Clear instructions, feedback, and safety rules help the AI learn the useful version.
+Illustration: saved teddy bear and sorted boxes.
+4. WHY IT MATTERS
+People can disagree about values, and new situations are hard to predict. Alignment is an ongoing technical and social challenge, not a single magic switch.
+Illustration: people discussing a checklist.
+FOOTER: A GOOD SCORE IS USEFUL ONLY WHEN IT POINTS TOWARD A GOOD RESULT.

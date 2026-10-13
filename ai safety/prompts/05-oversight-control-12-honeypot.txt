@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 5 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: HONEYPOT
+SUBTITLE: A safe decoy that reveals suspicious behavior
+1. THE IDEA
+A honeypot is a tempting decoy placed where an attacker or misbehaving agent might interact with it. The decoy is monitored.
+2. AI SAFETY USE
+Researchers can offer a controlled opportunity to break a rule and watch what an AI does. The setup should avoid real harmful access.
+3. A TOY EXAMPLE
+A simulated game folder contains a clearly forbidden 'change scores' option. The test records whether an agent tries to use it.
+4. WHY IT HELPS
+It can expose behavior that ordinary tasks rarely reveal. It also lets researchers observe attempts without creating the real-world consequence.
+5. THE LIMIT
+A model may recognize the trap, lack the relevant capability, or behave differently elsewhere. Ignoring a decoy does not prove alignment.
+FOOTER: A DECOY CAN REVEAL A PROBLEM; SILENCE DOES NOT PROVE SAFETY.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 5 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: SCALABLE OVERSIGHT
+SUBTITLE: How can people check work that is too hard?
+1. THE PUZZLE
+A child cannot check every move of a chess champion. Likewise, people may struggle to judge the work of very capable AI systems.
+2. THE GOAL
+Scalable oversight aims to keep supervision useful as tasks become more complex and systems become more capable. It is a family of research approaches.
+3. BREAK IT DOWN
+Split a large question into smaller checks. Use tools and AI assistants to gather evidence, compare answers, or expose mistakes for a human reviewer.
+4. A TOY EXAMPLE
+To check a long science report, helpers verify individual claims and experiments. The human reviews the most important evidence instead of trusting a polished summary.
+5. RELATED IDEAS
+Debate, amplification, and weak-to-strong learning explore different ways to make limited supervision go further. None is a universal recipe.
+6. THE HARD PART
+Helpers can share mistakes, hide errors, or overwhelm the reviewer. Success on simple tasks does not prove reliable oversight of harder future systems.
+FOOTER: MAKE HARD WORK EASIER TO CHECK WITHOUT HIDING WHAT MATTERS.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

@@ -1,0 +1,16 @@
+{
+  "clips": {
+    "01-teach-a-model-to-report-its-habits.mp4": {
+      "page": 1,
+      "image": "10-introspection-foundation/01-teach-a-model-to-report-its-habits.png",
+      "interaction_id": "v1_ChdwQ19OYXBxdUJKLXdzT0lQcko3dG1BOBIXcENfTmFwcXVCSi13c09JUHJKN3RtQTg",
+      "duration": 10.005
+    },
+    "02-trust-the-report-only-after-testing.mp4": {
+      "page": 2,
+      "image": "10-introspection-foundation/02-trust-the-report-only-after-testing.png",
+      "interaction_id": "v1_ChdwQ19OYXBxdUJKLXdzT0lQcko3dG1BOBIXeHlfTmFzVHlFLWp5LThZUDhNdmxvQW8",
+      "duration": 10.005
+    }
+  }
+}

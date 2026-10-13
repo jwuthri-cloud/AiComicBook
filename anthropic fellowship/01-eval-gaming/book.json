@@ -1,0 +1,31 @@
+{
+  "title": "Eval gaming under training pressure",
+  "sourceProjectNumber": 1,
+  "status": "proposed research study aid",
+  "pages": [
+    {
+      "number": 1,
+      "title": "WHEN THE TEST IS NOTICED",
+      "image": "01-the-question.png",
+      "learningObjective": "Distinguish spoken test awareness, behavior gaps, and activation probes."
+    },
+    {
+      "number": 2,
+      "title": "ARM A: TRAIN FOR SILENCE",
+      "image": "02-arm-a-silent-awareness.png",
+      "learningObjective": "Design controlled training pressure with frozen monitors and held-out checks."
+    },
+    {
+      "number": 3,
+      "title": "ARM B: A DETECTED NUDGE",
+      "image": "03-arm-b-steering-cue.png",
+      "learningObjective": "Test whether steering acts as a cue using sham controls and a frozen detector."
+    },
+    {
+      "number": 4,
+      "title": "FOUR MONTHS, TWO ARMS",
+      "image": "04-plan-and-output.png",
+      "learningObjective": "Explain the two-arm timeline, compute estimate, stop rule, and deliverables."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-thinking-without-a-written-trace.mp4": {
+      "page": 1,
+      "image": "09-latent-reasoner-probes/01-thinking-without-a-written-trace.png",
+      "interaction_id": "v1_ChdlREROYXVEMkdaRFgtOFlQMC1mTjZRaxIXZURETmF1RDJHWkRYLThZUDAtZk42UWs",
+      "duration": 10.005
+    },
+    "02-the-matched-experiment.mp4": {
+      "page": 2,
+      "image": "09-latent-reasoner-probes/02-the-matched-experiment.png",
+      "interaction_id": "v1_ChdlREROYXVEMkdaRFgtOFlQMC1mTjZRaxIXbkRETmF2eXVOOHZNanJFUDJ1YkdnUWM",
+      "duration": 10.0
+    },
+    "03-is-it-evasion-or-a-broken-sensor.mp4": {
+      "page": 3,
+      "image": "09-latent-reasoner-probes/03-is-it-evasion-or-a-broken-sensor.png",
+      "interaction_id": "v1_ChdlREROYXVEMkdaRFgtOFlQMC1mTjZRaxIXOGpETmF2dkhDWUh2LThZUHlvYXUtUXc",
+      "duration": 10.0
+    },
+    "04-a-four-month-latent-reasoning-study.mp4": {
+      "page": 4,
+      "image": "09-latent-reasoner-probes/04-a-four-month-latent-reasoning-study.png",
+      "interaction_id": "v1_ChdlREROYXVEMkdaRFgtOFlQMC1mTjZRaxIWZHpITmF2dG1fckt3NGctbW5ZeUpDZw",
+      "duration": 10.0
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-test-the-reporter.mp4": {
+      "page": 1,
+      "image": "08-introspection-adapters/01-test-the-reporter.png",
+      "interaction_id": "v1_ChYyUzdOYXFiU0RKU28tOFlQeFpLak9BEhYyUzdOYXFiU0RKU28tOFlQeFpLak9B",
+      "duration": 10.026667
+    },
+    "02-pull-clues-apart.mp4": {
+      "page": 2,
+      "image": "08-introspection-adapters/02-pull-clues-apart.png",
+      "interaction_id": "v1_ChYyUzdOYXFiU0RKU28tOFlQeFpLak9BEhdBeV9OYXVQS0RJbkFzT0lQMTZiTHVRbw",
+      "duration": 10.005
+    },
+    "03-challenge-and-measure.mp4": {
+      "page": 3,
+      "image": "08-introspection-adapters/03-challenge-and-measure.png",
+      "interaction_id": "v1_ChYyUzdOYXFiU0RKU28tOFlQeFpLak9BEhdPQ19OYW9TV0s0ek0tOFlQOFB6UXdBWQ",
+      "duration": 10.005
+    },
+    "04-four-month-audit.mp4": {
+      "page": 4,
+      "image": "08-introspection-adapters/04-four-month-audit.png",
+      "interaction_id": "v1_ChYyUzdOYXFiU0RKU28tOFlQeFpLak9BEhdaQ19OYXZmZ0RiSGItOFlQcnFhNW9Bbw",
+      "duration": 10.005
+    }
+  }
+}

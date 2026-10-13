@@ -1,0 +1,21 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 8. Use every panel, sequential numbering, varied panel sizes and clear reading order. Title: RESPONSIBLE SCALING POLICY
+Subtitle: A lab's plan for managing growing AI risks.
+Panel 1 heading: THE IDEA
+Exact body: "A climbing team writes down how it will check danger and prepare protection as the mountain gets harder."
+Panel 2 heading: WHAT IS THE RSP?
+Exact body: "Anthropic's voluntary framework addresses catastrophic risks from advanced AI. It describes risk assessment, safety plans, and accountability."
+Panel 3 heading: ASSESS THE RISK
+Exact body: "Ask what a system can do, how it could cause harm, and whether the defenses are adequate. Capability alone is not the whole risk."
+Panel 4 heading: CURRENT STRUCTURE
+Exact body: "Version 3.4 includes Frontier Safety Roadmaps, Risk Reports, governance measures, and recommendations for industry-wide safety."
+Panel 5 heading: PLANS VS COMMITMENTS
+Exact body: "Some roadmap items are public goals. Industry recommendations are not all unconditional company commitments. Read the actual policy wording."
+Panel 6 heading: ACCOUNTABILITY
+Exact body: "The policy sets governance and review procedures, including a Responsible Scaling Officer, reporting channels, and external review provisions."
+Panel 7 heading: A LIVING DOCUMENT
+Exact body: "The latest policy can differ substantially from older summaries. Check its effective date, updates, and whether a statement is a requirement or an aspiration."
+Panel 8 heading: WHY IT MATTERS
+Exact body: "A policy can organize evidence and decisions, but cannot prove safety. Rules evolve; this card reflects the policy checked on October 12, 2026."
+Visual directions (do not print these instructions): Climbing safety analogy; lab risk assessment loop; capability plus access minus safeguards; roadmap report governance documents; goals vs commitments labeled; date stamp.. Give each added panel a meaningful small illustration.
+Exact footer: "READ THE EVIDENCE AND THE COMMITMENTS."

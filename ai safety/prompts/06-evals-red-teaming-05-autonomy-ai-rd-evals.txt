@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: AUTONOMY & AI R&D EVALS
+SUBTITLE: Can an AI carry out long tasks or help build better AI?
+1. THE IDEA
+Autonomy evaluations test whether an AI can act through several steps with limited human help. AI research-and-development evaluations test skills that may improve AI systems or accelerate research.
+2. HOW IT WORKS
+Tests can involve planning, tool use, coding, experiments, troubleshooting, and following a task to completion. Evaluators specify permissions, time, compute, available tools, and how much human support is allowed.
+3. SEE IT HAPPEN
+A sandbox task asks an agent to improve a tiny harmless classifier and document the experiment. Researchers measure whether it plans, tests, fixes mistakes, and finishes. Show a plan-test-revise loop.
+4. WHY IT MATTERS
+Short benchmarks may miss difficulties in long projects. Success with extensive scaffolding differs from independent success. Evaluate reliability across many trials and clearly report assistance and resources. These tests do not imply a model is autonomously self-improving.
+5. AUTONOMY IS A SPECTRUM
+Finishing a short script and running a research project require different reliability. Measure task length and recovery from mistakes.
+6. AI R&D IS NOT ONE SCORE
+Coding, experimental design, scientific judgment, and engineering each need tests. Success on one does not establish the others.
+FOOTER: Measure end-to-end work and state how much help was available.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.

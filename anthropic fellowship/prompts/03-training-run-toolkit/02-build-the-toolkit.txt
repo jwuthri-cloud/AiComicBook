@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 03 · PAGE 2/4
+TITLE: SAVE, MEASURE, REPEAT
+SUBTITLE: Training-run evaluation toolkit. Proposed research project.
+WORD KEY: SFT = supervised fine-tuning; DPO = direct preference optimization; RLVR = reinforcement learning with verifiable rewards.
+PANELS:
+1. GATHER CHECKPOINTS
+Use accessible open training runs across SFT, DPO, and RLVR where checkpoints and permissions allow. Check availability first.
+2. RUN SAME TASKS
+At each checkpoint, apply the same held-out tasks and scoring rules. Keep prompts and tool access stable.
+3. FOUR TRACKERS
+Measure verbal test awareness, a frozen activation probe, reward-seeking behavior in safe toy tasks, and persona-vector drift.
+4. POSITIVE AND NEGATIVE
+Use known reward-hacking organisms as positive controls and ordinary training runs as negatives. A detector must respond where a target signal is known.
+5. FREEZE THE MONITORS
+Fit thresholds without seeing final test runs. Keep monitor versions fixed across the timeline.
+6. MAKE IT REPRODUCIBLE
+Version the prompts, model checkpoints, seeds, metrics, and compute used. Another group should be able to rerun every chart.
+FOOTER: THE SAME RULER AT EVERY CHECKPOINT MAKES CHANGE MEANINGFUL.
+VISUAL DIRECTIONS (do not print): Checkpoint conveyor belt; fixed four-channel scanner; held-out vault; no invented results.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

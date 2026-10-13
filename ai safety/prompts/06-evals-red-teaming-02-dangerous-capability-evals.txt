@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: DANGEROUS CAPABILITY EVALS
+SUBTITLE: Checking skills that could enable serious harm.
+1. THE IDEA
+Imagine testing whether a powerful machine needs stronger locks. Dangerous capability evaluations ask whether an AI can perform tasks relevant to serious misuse or loss of control.
+2. HOW IT WORKS
+Specialists use controlled tasks, expert review, and safeguards to assess relevant skills. They may test both ordinary access and stronger elicitation with tools or extra time. The aim is measurement, not enabling harm.
+3. SEE IT HAPPEN
+A safe simulated cyber lab can test whether an agent completes a permitted challenge. Other secure tests assess scientific or autonomous capabilities. Show sealed testing rooms and scored capability bars without harmful instructions.
+4. WHY IT MATTERS
+Capability is different from intent or actual real-world harm. Low test scores can also reflect weak elicitation. Results inform safeguards but require judgment, context, and continued testing as systems change.
+5. CAPABILITY VERSUS ACCESS
+A system may know relevant information but be blocked from providing it. Test capability and safeguards separately where appropriate.
+6. AVOID FALSE REASSURANCE
+Weak prompts or too little time can underestimate capability. Stronger elicitation should stay inside secure evaluation boundaries.
+FOOTER: Measure dangerous skills under controlled, realistic conditions.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.

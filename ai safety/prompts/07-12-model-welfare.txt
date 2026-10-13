@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use every panel, sequential numbering, varied panel sizes and clear reading order. Title: MODEL WELFARE
+Subtitle: Could an AI's own experience matter?
+Panel 1 heading: THE IDEA
+Exact body: "If a future system could have experiences that feel good or bad, how it is treated could matter morally."
+Panel 2 heading: THE CORE QUESTION
+Exact body: "Model welfare studies whether AI systems might have morally relevant experiences or interests, and what responsibilities would follow."
+Panel 3 heading: WHAT WE KNOW
+Exact body: "There is no agreed test that establishes AI consciousness or suffering. A model saying it feels something is not decisive evidence."
+Panel 4 heading: WHAT RESEARCH CAN DO
+Exact body: "Study theories, behavior, internal mechanisms, and uncertainty. Consider cautious, low-cost measures without assuming the question is settled."
+Panel 5 heading: DIFFERENT FROM HUMAN SAFETY
+Exact body: "Protecting people from AI harms and considering possible model welfare are distinct questions. Responsible development can study both."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Anthropic has a model-welfare research program. Its existence does not prove current models are conscious. The scientific and ethical questions remain open."
+Visual directions (do not print these instructions): Question mark about possible experience, no depiction implying robot pain as fact; uncertainty evidence scale; research tools; human safety and welfare separate connected circles.. Give each added panel a meaningful small illustration.
+Exact footer: "TAKE THE QUESTION SERIOUSLY. KEEP THE UNCERTAINTY CLEAR."

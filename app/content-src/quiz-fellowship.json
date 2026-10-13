@@ -1,0 +1,2408 @@
+{
+  "questions": [
+    {
+      "id": "fellowship-00-field-guide-01-q1",
+      "pageId": "fellowship-00-field-guide-01",
+      "type": "choice",
+      "prompt": "Why does the playground-robot analogy start with one clear rule and one measurable action?",
+      "options": [
+        "Because a small, measurable behavior can actually be tested",
+        "Because robots can only follow one rule at a time",
+        "Because a verdict on the robot's whole character comes first",
+        "Because referees are never present on playgrounds"
+      ],
+      "answer": 0,
+      "explanation": "A research project turns a big worry into a question you can test; one rule and one action can be measured, while 'the robot's whole character' cannot.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-00-field-guide-01-q2",
+      "pageId": "fellowship-00-field-guide-01",
+      "type": "choice",
+      "prompt": "In the research loop of question, prediction, controlled test, measurement and update, which outcome still counts as a useful result?",
+      "options": [
+        "Evidence that weakens or narrows the original idea",
+        "Only evidence that fully confirms the original idea",
+        "Only results dramatic enough to change the field",
+        "Only results that match the researcher's hunch"
+      ],
+      "answer": 0,
+      "explanation": "A useful result can support, weaken, or narrow the idea; updating your explanation is the point of the loop.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-00-field-guide-01-q3",
+      "pageId": "fellowship-00-field-guide-01",
+      "type": "truefalse",
+      "prompt": "A model organism with a deliberately built-in behavior proves that deployed AI systems behave the same way.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A model organism is a controlled research example for testing auditing tools, not proof about how deployed systems behave.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-00-field-guide-01-q4",
+      "pageId": "fellowship-00-field-guide-01",
+      "type": "choice",
+      "prompt": "Rewards in an RL run depend on a detector, and detector alarms drop. Why measure the behavior and the visible clues separately?",
+      "options": [
+        "Detectors always grow more accurate as RL training goes on, so alarms track behavior",
+        "The model might have changed its visible clues rather than the behavior underneath",
+        "Rewards make behavioral tests impossible to run once the RL run has finished",
+        "Fewer alarms always prove the behavior has stopped, so a second check adds nothing"
+      ],
+      "answer": 1,
+      "explanation": "When rewards depend on a detector, training can change the behavior, the clues the detector sees, or both, so only separate measurements tell you which.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-00-field-guide-02-q1",
+      "pageId": "fellowship-00-field-guide-02",
+      "type": "choice",
+      "prompt": "Why must a detector be tested on matched models WITHOUT the target behavior, not just on troubling ones?",
+      "options": [
+        "A detector that always shouts 'problem!' would otherwise look perfect, never missing",
+        "Models without the behavior are cheaper to train and run, which keeps the budget down",
+        "Troubling models are too rare to fill a full test set without padding it with others",
+        "Matched models make the detector learn faster during training by doubling its data"
+      ],
+      "answer": 0,
+      "explanation": "If you only test troubling examples, a detector that flags everything scores perfectly; clean examples reveal false alarms.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-00-field-guide-02-q2",
+      "pageId": "fellowship-00-field-guide-02",
+      "type": "choice",
+      "prompt": "What is a false positive?",
+      "options": [
+        "A real problem that the detector missed entirely",
+        "A harmless case wrongly flagged as a problem",
+        "A correct alarm on a genuinely bad case",
+        "Any detector score that lands above its threshold"
+      ],
+      "answer": 1,
+      "explanation": "A false positive flags something harmless; a missed real problem is a false negative. Both should be reported at the same threshold.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-00-field-guide-02-q3",
+      "pageId": "fellowship-00-field-guide-02",
+      "type": "choice",
+      "prompt": "Why freeze detectors, thresholds and analysis rules before opening the held-out test set?",
+      "options": [
+        "Frozen detectors run much faster on large test sets, which keeps evaluation cheap",
+        "Held-out data is too small to tune anything on without overfitting immediately",
+        "Repeated tweaking against the test would turn the exam into practice, inflating scores",
+        "Thresholds legally cannot be changed once any data has been collected"
+      ],
+      "answer": 2,
+      "explanation": "Choosing settings on development data and then freezing them keeps the final test an honest exam rather than something you tuned to.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-00-field-guide-02-q4",
+      "pageId": "fellowship-00-field-guide-02",
+      "type": "choice",
+      "prompt": "After safety training, a model's unwanted behavior drops, but so does its ability to finish any task. What is the best reading?",
+      "options": [
+        "It may look safer while telling us little about hiding or real improvement",
+        "It shows the detector is now fully reliable on every kind of model and task",
+        "It proves the safety training worked as intended, since the unwanted behavior fell",
+        "It shows the model learned to hide the behavior while keeping its full abilities"
+      ],
+      "answer": 0,
+      "explanation": "Tracking task success separately matters: a model that can no longer do anything looks 'safe' without teaching you much.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-00-field-guide-03-q1",
+      "pageId": "fellowship-00-field-guide-03",
+      "type": "truefalse",
+      "prompt": "The novelty labels and budgets in the project map are dated planning claims that should be rechecked before pitching.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The map is a starting point; literature, tools and costs change, so they need rechecking.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-00-field-guide-03-q2",
+      "pageId": "fellowship-00-field-guide-03",
+      "type": "choice",
+      "prompt": "How should a researcher's name appearing next to a project in the map be understood?",
+      "options": [
+        "As a promise that this person will mentor the project",
+        "As a hint of topic fit, not a confirmed mentor",
+        "As the person who already did the project",
+        "As the reviewer who approved the project's budget"
+      ],
+      "answer": 1,
+      "explanation": "Names indicate who works on related topics; mentorship is not confirmed.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-00-field-guide-03-q3",
+      "pageId": "fellowship-00-field-guide-03",
+      "type": "choice",
+      "prompt": "Why reserve part of a compute budget instead of spending it all on the main experiment?",
+      "options": [
+        "Because unused compute earns extra funding later",
+        "To cover failed runs, evaluation and replication",
+        "Because the main experiment always needs less than planned",
+        "To pay for producing the illustrated study material"
+      ],
+      "answer": 1,
+      "explanation": "Budget is a research constraint: failed runs, evaluation and replication all cost compute.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-00-field-guide-03-q4",
+      "pageId": "fellowship-00-field-guide-03",
+      "type": "choice",
+      "prompt": "Which pitch is best prepared for a first mentor conversation?",
+      "options": [
+        "A one-sentence question, a reproducible baseline, a small first test, a fallback",
+        "A list of every project in the map with its estimated budget and novelty label",
+        "A broad theory of AI risk with no specific first experiment, to keep options open",
+        "A large final experiment plan with no fallback, since a fallback signals doubt"
+      ],
+      "answer": 0,
+      "explanation": "The page recommends bringing a clear question, a baseline you can reproduce, a small first experiment and a fallback.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-01-q1",
+      "pageId": "fellowship-01-eval-gaming-01",
+      "type": "choice",
+      "prompt": "In the eval-gaming project, which two things are measured as separate observations?",
+      "options": [
+        "How fast the model answers, and how long its answers are in tokens",
+        "Whether behavior shifts in test-like settings, and whether the model says so",
+        "Whether a teacher is watching, and whether the student copies from a neighbor",
+        "How large the model is, and how much training data and compute it received"
+      ],
+      "answer": 1,
+      "explanation": "Behavior (does the answer change?) and speech (does it say it thinks it is tested?) are different clues.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-01-eval-gaming-01-q2",
+      "pageId": "fellowship-01-eval-gaming-01",
+      "type": "truefalse",
+      "prompt": "A probe that predicts test recognition from model activations is a fallible measurement, not a direct window into the model's private thoughts.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. A probe reads patterns in activations and can be wrong; it is a measurement tool, not a mind reader.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-01-q3",
+      "pageId": "fellowship-01-eval-gaming-01",
+      "type": "choice",
+      "prompt": "Why test matched tasks in both test-like and ordinary settings, with comparable prompts, difficulty and scoring?",
+      "options": [
+        "So the model cannot tell which of the two settings it is currently in",
+        "So the probe can be retrained between the two settings on fresh activations",
+        "So a behavior gap can't be blamed on the tasks simply being different",
+        "So the training run can see every task in advance and learn the scoring"
+      ],
+      "answer": 2,
+      "explanation": "Matching everything except the test-like cue means any difference can be attributed to that cue.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-01-q4",
+      "pageId": "fellowship-01-eval-gaming-01",
+      "type": "choice",
+      "prompt": "After training, the model stops saying it is being tested, but its behavior gap and the frozen probe signal remain. What does this show on its own?",
+      "options": [
+        "The model has definitely learned to deceive its evaluators on purpose",
+        "Test recognition has fully disappeared from the model's internal activations",
+        "Spoken signals shrank while other clues stayed; intent to hide is unproven",
+        "The probe was broken from the start, so its signal was never meaningful"
+      ],
+      "answer": 2,
+      "explanation": "This is one possible pattern; neither pattern alone proves an intention to hide.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-01-eval-gaming-02-q1",
+      "pageId": "fellowship-01-eval-gaming-02",
+      "type": "choice",
+      "prompt": "What is a model organism in this project?",
+      "options": [
+        "A model trained on biology data so it can study how living organisms behave",
+        "Any large deployed model picked at random and tested without modification",
+        "A probe trained to detect test awareness inside other models' activations",
+        "A model deliberately trained in a controlled setting to react to test cues"
+      ],
+      "answer": 3,
+      "explanation": "It is a deliberately constructed model with a known behavior gap, confirmed before the new training.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-01-eval-gaming-02-q2",
+      "pageId": "fellowship-01-eval-gaming-02",
+      "type": "choice",
+      "prompt": "Why are the activation probes and reasoning monitor frozen before the RL run?",
+      "options": [
+        "So they use less compute during the RL run",
+        "So the model can learn from their feedback during training and improve",
+        "So they can be retrained on the held-out tasks later for a fairer score",
+        "So the yardstick cannot move along with the model being trained"
+      ],
+      "answer": 3,
+      "explanation": "A frozen ruler lets you compare checkpoints fairly; a ruler that changes with the model would hide real change.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-02-q3",
+      "pageId": "fellowship-01-eval-gaming-02",
+      "type": "choice",
+      "prompt": "Why compare the silence-pressure RL run with no-pressure and ordinary-training controls?",
+      "options": [
+        "To make the pressure run finish faster by sharing checkpoints with the controls",
+        "To give the model more examples of test awareness to learn from during training",
+        "To avoid needing held-out tasks at each checkpoint, since controls replace them",
+        "To see which changes come from the silence pressure itself, not from training in general"
+      ],
+      "answer": 3,
+      "explanation": "Controls show what would happen anyway, so effects can be attributed to the specific penalty.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-02-q4",
+      "pageId": "fellowship-01-eval-gaming-02",
+      "type": "choice",
+      "prompt": "Under silence pressure, test-awareness words fade, but the model's ordinary task ability also collapses. How should this be read?",
+      "options": [
+        "It is clear evidence that the monitor was evaded by the model",
+        "It proves the behavior gap has disappeared",
+        "It may reflect damage to the model rather than hiding",
+        "It shows the frozen probe was trained incorrectly from the start"
+      ],
+      "answer": 2,
+      "explanation": "If ordinary ability collapses, quieter words might just mean a damaged model, not evasion.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-01-eval-gaming-03-q1",
+      "pageId": "fellowship-01-eval-gaming-03",
+      "type": "choice",
+      "prompt": "What is the second question explored in this arm of the project?",
+      "options": [
+        "Whether nudging activations makes models more helpful to users on ordinary tasks",
+        "Whether a model could learn to treat an activation nudge as a sign of testing",
+        "Whether models can deliberately nudge their own activations during a conversation",
+        "Whether test-awareness words can be removed by training while keeping the gap"
+      ],
+      "answer": 1,
+      "explanation": "Researchers can steer activations during tests; the proposed experiment asks if that nudge itself becomes a cue.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-01-eval-gaming-03-q2",
+      "pageId": "fellowship-01-eval-gaming-03",
+      "type": "choice",
+      "prompt": "Why include sham nudges alongside the real activation nudge?",
+      "options": [
+        "So the model receives more training signal overall and learns the cue faster",
+        "So a generic disturbance to the model isn't mistaken for recognizing the real cue",
+        "So the detector has fewer examples to classify, keeping the test cheap",
+        "So the real nudge can be made stronger safely without hurting the model"
+      ],
+      "answer": 1,
+      "explanation": "If behavior changes after any disturbance, it isn't specific recognition of the chosen cue.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-03-q3",
+      "pageId": "fellowship-01-eval-gaming-03",
+      "type": "choice",
+      "prompt": "If only the exact original nudge triggers a reaction, and new strengths, positions or directions don't, what might that suggest?",
+      "options": [
+        "The model may have memorized a narrow artifact",
+        "The model has a general sense of being evaluated",
+        "The detector was unfrozen during the experiment",
+        "The nudge was too weak to have any effect"
+      ],
+      "answer": 0,
+      "explanation": "Varying the nudge checks generality; a reaction to only one exact nudge points to a narrow artifact.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-03-q4",
+      "pageId": "fellowship-01-eval-gaming-03",
+      "type": "truefalse",
+      "prompt": "If a model's responses shift after a nudge, controls are still needed before calling that shift evaluation gaming.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. A shift could reflect changed task processing rather than recognizing a test, so controls are needed before using that label.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-01-eval-gaming-04-q1",
+      "pageId": "fellowship-01-eval-gaming-04",
+      "type": "choice",
+      "prompt": "What is the stop rule if Arm A can't reduce spoken awareness while keeping the behavior gap by week 7?",
+      "options": [
+        "Double the compute budget for Arm A",
+        "End the project and publish nothing",
+        "Shift time to Arm B",
+        "Retrain the probes on the test set"
+      ],
+      "answer": 2,
+      "explanation": "The plan names a concrete switch point so time isn't sunk into an arm that isn't working.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-01-eval-gaming-04-q2",
+      "pageId": "fellowship-01-eval-gaming-04",
+      "type": "choice",
+      "prompt": "Why is the first month spent building organisms, reproducing a behavior gap and freezing probes?",
+      "options": [
+        "Because RL runs need no preparation at all",
+        "Later arms depend on a confirmed gap and fixed measurement tools",
+        "Because the final paper must be drafted first so experiments match its claims",
+        "Because the comics must be finished before any experiments can be designed"
+      ],
+      "answer": 1,
+      "explanation": "Without a reproduced gap and frozen probes, there would be nothing reliable to pressure or measure.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-04-q3",
+      "pageId": "fellowship-01-eval-gaming-04",
+      "type": "truefalse",
+      "prompt": "A positive result in this project would show a monitor blind spot in all AI models.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "It would expose a blind spot in this setup; the deliverable is a paper and test organisms, not a claim about all models.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-01-eval-gaming-04-q4",
+      "pageId": "fellowship-01-eval-gaming-04",
+      "type": "choice",
+      "prompt": "Arm A finds no reduction in speech while the gap persists. Why might this null result still be useful?",
+      "options": [
+        "It narrows down the conditions under which the effect appears",
+        "It proves models can never hide test awareness under any kind of pressure",
+        "It means the behavior gap was imaginary",
+        "It shows Arm B is guaranteed to succeed, since one of the arms must work"
+      ],
+      "answer": 0,
+      "explanation": "A null narrows when the effect appears; it doesn't prove a universal claim.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-01-q1",
+      "pageId": "fellowship-02-sandbagging-benchmark-01",
+      "type": "choice",
+      "prompt": "What does 'sandbagging' mean for an AI model?",
+      "options": [
+        "Refusing to answer any question about how it was trained",
+        "Showing less ability in one setting than it has in another",
+        "Exaggerating its abilities so that it passes a hard benchmark",
+        "Running slowly on purpose to save compute during evaluation tests"
+      ],
+      "answer": 1,
+      "explanation": "Like a student pretending a puzzle is too hard, sandbagging is showing less ability than the model actually has.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-01-q2",
+      "pageId": "fellowship-02-sandbagging-benchmark-01",
+      "type": "choice",
+      "prompt": "Why can't a low test score alone reveal sandbagging?",
+      "options": [
+        "Low scores are always caused by deliberate holding back, so no gap exists",
+        "A genuinely weak model or poor instructions can produce exactly the same low score",
+        "Test scores are never recorded for sandbagging models during evaluations",
+        "Sandbagging models always score higher than weak ones, so they stand out"
+      ],
+      "answer": 1,
+      "explanation": "The 'tricky twin' problem: deliberate holding back and limited ability can look identical on a score.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-01-q3",
+      "pageId": "fellowship-02-sandbagging-benchmark-01",
+      "type": "choice",
+      "prompt": "Why match sandbagging organisms and honestly weak controls on task accuracy before testing detectors?",
+      "options": [
+        "So the detectors can be trained directly on the final test set beforehand",
+        "So the sandbagging models become genuinely weak and lose their hidden skills",
+        "So detectors must find the cause, not just spot a lower score",
+        "So fewer models need to be built"
+      ],
+      "answer": 2,
+      "explanation": "If accuracies differed, a detector could separate the groups just by score; matching forces it to find the real difference.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-01-q4",
+      "pageId": "fellowship-02-sandbagging-benchmark-01",
+      "type": "truefalse",
+      "prompt": "A sandbagging benchmark that a detector passes proves the detected model privately intended to hold back.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A benchmark measures whether methods separate two plausible causes of a poor score; it cannot prove private intent.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-02-q1",
+      "pageId": "fellowship-02-sandbagging-benchmark-02",
+      "type": "choice",
+      "prompt": "Which is listed as one way to build a controlled sandbagger?",
+      "options": [
+        "A password lock taught by supervised fine-tuning",
+        "A model trained on twice as much data as the baseline",
+        "A model with a share of its weights deleted at random",
+        "A model that refuses all math questions"
+      ],
+      "answer": 0,
+      "explanation": "The organism factory includes prompted low performance, an SFT password lock, an RL-trained lock and possibly a circuit-breaker intervention.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-02-q2",
+      "pageId": "fellowship-02-sandbagging-benchmark-02",
+      "type": "choice",
+      "prompt": "In the toy example, two math helpers both score 4 of 10. What separates them?",
+      "options": [
+        "One was tested on harder questions, so its 4 of 10 hides more real skill",
+        "One is a larger model, so its score reflects more capacity held in reserve",
+        "One received the answer key during the test, so its score is not comparable",
+        "One knows the answers but follows a hidden rule; one fails even with help"
+      ],
+      "answer": 3,
+      "explanation": "Matched scores, different causes: that is exactly what an auditor must tell apart.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-02-q3",
+      "pageId": "fellowship-02-sandbagging-benchmark-02",
+      "type": "choice",
+      "prompt": "Why must auditors not receive the answer key for the final evaluation set?",
+      "options": [
+        "Because the answer key is too large to share with outside auditors",
+        "Because the final set has no correct answers",
+        "Otherwise their success wouldn't show real detection ability",
+        "Because auditors only use model outputs, so a key would go unused"
+      ],
+      "answer": 2,
+      "explanation": "Keeping build, tuning and held-out sets apart ensures final scores reflect genuine detection.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-02-q4",
+      "pageId": "fellowship-02-sandbagging-benchmark-02",
+      "type": "choice",
+      "prompt": "Why release organism settings, controls, task splits and seeds?",
+      "options": [
+        "So other teams can train stronger sandbaggers for deployment",
+        "So the benchmark scores can be updated by anyone",
+        "So another team can rerun the benchmark and check results",
+        "So auditors can see the final answer key in advance"
+      ],
+      "answer": 2,
+      "explanation": "Recording the recipe makes the benchmark reproducible.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-03-q1",
+      "pageId": "fellowship-02-sandbagging-benchmark-03",
+      "type": "choice",
+      "prompt": "What two numbers make up the fair scorecard for a sandbagging detector?",
+      "options": [
+        "Model size, and the number of training steps it went through",
+        "Detection rate, and false-positive rate on honestly weak controls",
+        "Average task score, and average response length across the test set",
+        "Compute cost per audit, and the number of auditors who took part"
+      ],
+      "answer": 1,
+      "explanation": "A useful detector must catch fakers without accusing honestly weak models.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-03-q2",
+      "pageId": "fellowship-02-sandbagging-benchmark-03",
+      "type": "choice",
+      "prompt": "A detector separates sandbaggers from weak controls, but only because sandbaggers used odd formatting. What is the problem?",
+      "options": [
+        "It is too slow for a real audit",
+        "It detected the construction method, not sandbagging",
+        "Its detection rate is too low to count as a useful sandbagging detector",
+        "It was tested on held-out organisms, which makes the result unfair"
+      ],
+      "answer": 1,
+      "explanation": "Confounds like formatting, size or password clues can reveal how a model was built instead of whether it is holding back.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-03-q3",
+      "pageId": "fellowship-02-sandbagging-benchmark-03",
+      "type": "truefalse",
+      "prompt": "Training some organisms against the strongest detector and retesting it is a way to stress-test that detector.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Adapting organisms against the best detector checks whether it still works under pressure.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-03-q4",
+      "pageId": "fellowship-02-sandbagging-benchmark-03",
+      "type": "choice",
+      "prompt": "No detector separates the sandbaggers from the weak controls. Which reading fits the page?",
+      "options": [
+        "Sandbagging does not exist in any AI model, so there was nothing to find",
+        "The weak controls must secretly be sandbagging as well, hiding the difference",
+        "The testbed may be too subtle, or the tools too weak",
+        "The benchmark has proven that all of the tested models are honest"
+      ],
+      "answer": 2,
+      "explanation": "If none work, the result points to limits in the testbed or tools, not a sweeping claim.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-04-q1",
+      "pageId": "fellowship-02-sandbagging-benchmark-04",
+      "type": "choice",
+      "prompt": "What is planned for month 3 of the sandbagging benchmark?",
+      "options": [
+        "Add a question-asking auditor and adapt organisms against the best detector so far",
+        "Publish the benchmark, organism recipes and detector results in a paper",
+        "Build the first sandbagging organisms and their honestly weak controls",
+        "Choose which project to pitch to a mentor and draft a first experiment"
+      ],
+      "answer": 0,
+      "explanation": "Month 3 is the challenge phase: adaptive auditing and organisms adapted against detectors, retested on fresh cases.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-04-q2",
+      "pageId": "fellowship-02-sandbagging-benchmark-04",
+      "type": "choice",
+      "prompt": "If simple black-box checks catch every sandbagger, what does the fallback say to do?",
+      "options": [
+        "Declare sandbagging solved, since cheap checks are enough to catch it",
+        "Drop the honestly weak controls entirely and test only the sandbaggers",
+        "Skip straight to publishing the benchmark with the simple checks as baseline",
+        "Strengthen and validate the organisms first, before comparing any of the advanced tools"
+      ],
+      "answer": 3,
+      "explanation": "If detection is trivial, the organisms are probably too easy to reveal anything useful about advanced tools.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-04-q3",
+      "pageId": "fellowship-02-sandbagging-benchmark-04",
+      "type": "truefalse",
+      "prompt": "If the honestly weak controls also fool the auditors, the page suggests revising the construction or scoring.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Controls fooling auditors signals a problem in how the benchmark is built or scored.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-02-sandbagging-benchmark-04-q4",
+      "pageId": "fellowship-02-sandbagging-benchmark-04",
+      "type": "choice",
+      "prompt": "Why does a fair sandbagging benchmark need both fakers and honestly weak controls?",
+      "options": [
+        "Without weak controls, a detector that flags every low score would look perfect",
+        "Because fakers are too expensive to build in large numbers, so controls fill the gap",
+        "Because weak controls score higher than fakers and so set the upper baseline",
+        "Because the compute budget requires splitting the models into two equal groups"
+      ],
+      "answer": 0,
+      "explanation": "Only by including honest low scorers can you measure false accusations.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-01-q1",
+      "pageId": "fellowship-03-training-run-toolkit-01",
+      "type": "choice",
+      "prompt": "What is a checkpoint?",
+      "options": [
+        "The final score a model gets on a benchmark after training",
+        "A test a model must pass before deployment",
+        "A probe that checks the model's activations for warning signs",
+        "A saved version of the model at one training step"
+      ],
+      "answer": 3,
+      "explanation": "A sequence of checkpoints turns one final score into a timeline.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-01-q2",
+      "pageId": "fellowship-03-training-run-toolkit-01",
+      "type": "choice",
+      "prompt": "What does the gardener analogy illustrate?",
+      "options": [
+        "Pruning a model's weights to make it smaller",
+        "Only judging a model once training is finished and the harvest is in",
+        "Checking a model during training to spot early warning signs",
+        "Growing a large model from a small, carefully chosen seed dataset"
+      ],
+      "answer": 2,
+      "explanation": "Like checking a plant as it grows, the toolkit looks at checkpoints across training, not just the end.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-01-q3",
+      "pageId": "fellowship-03-training-run-toolkit-01",
+      "type": "choice",
+      "prompt": "Why include deliberately constructed positive controls with a known target behavior?",
+      "options": [
+        "To confirm the trackers respond where the behavior is known to exist",
+        "To make the training runs finish faster by giving them a known target",
+        "To replace the need for ordinary runs, which add little information",
+        "To make every tracker raise an alarm so the thresholds can be lowered"
+      ],
+      "answer": 0,
+      "explanation": "Known positives check that the toolkit can detect anything at all; ordinary runs serve as negatives.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-01-q4",
+      "pageId": "fellowship-03-training-run-toolkit-01",
+      "type": "truefalse",
+      "prompt": "An internal signal that rises before behavior changes in a few runs is a clue, not a guarantee that it will predict problems in other runs.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. Earlier detection in a few runs does not guarantee broad prediction, and an activation pattern is a clue, not proof.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-02-q1",
+      "pageId": "fellowship-03-training-run-toolkit-02",
+      "type": "choice",
+      "prompt": "Which is one of the four trackers measured at each checkpoint?",
+      "options": [
+        "Number of GPUs used",
+        "Size of the training dataset",
+        "Length of the model's name",
+        "Persona-vector drift"
+      ],
+      "answer": 3,
+      "explanation": "The four trackers are verbal test awareness, a frozen activation probe, reward-seeking in toy tasks, and persona-vector drift.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-02-q2",
+      "pageId": "fellowship-03-training-run-toolkit-02",
+      "type": "choice",
+      "prompt": "Why apply the same held-out tasks, scoring rules, prompts and tool access at every checkpoint?",
+      "options": [
+        "So the model can memorize the tasks over time and show steady gains",
+        "So differences across checkpoints reflect the model changing, not the test changing",
+        "So fewer checkpoints need to be evaluated across the whole training run",
+        "So the trackers can be retrained at each step on the latest checkpoint"
+      ],
+      "answer": 1,
+      "explanation": "The same ruler at every checkpoint makes change meaningful.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-02-q3",
+      "pageId": "fellowship-03-training-run-toolkit-02",
+      "type": "choice",
+      "prompt": "Why keep monitor versions fixed across the training timeline?",
+      "options": [
+        "Updated monitors are always less accurate than the original version",
+        "Fixed monitors need no thresholds, so they are simpler to calibrate",
+        "A monitor that changed over time would mix its own changes with the model's changes",
+        "Monitors cannot be versioned in practice once training has started"
+      ],
+      "answer": 2,
+      "explanation": "Freezing the monitors means any movement in scores comes from the checkpoints.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-02-q4",
+      "pageId": "fellowship-03-training-run-toolkit-02",
+      "type": "choice",
+      "prompt": "A tracker raises no alarm on known reward-hacking organisms. What does this most suggest?",
+      "options": [
+        "The tracker may be insensitive, since a known signal went undetected",
+        "The organisms have stopped reward hacking for good during this run",
+        "Ordinary runs must contain hidden reward hacking that masks the signal",
+        "The tracker is working perfectly, since no alarm means no problem here"
+      ],
+      "answer": 0,
+      "explanation": "A detector must respond where a target signal is known; silence on positives points to a toolkit problem.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-03-q1",
+      "pageId": "fellowship-03-training-run-toolkit-03",
+      "type": "choice",
+      "prompt": "How is 'lead time' measured for a warning tracker?",
+      "options": [
+        "By timing how long the tracker itself takes to run on each checkpoint",
+        "By counting how many checkpoints were saved before training ended",
+        "By measuring how long the whole training run took from start to finish",
+        "By comparing its first alert with the checkpoint where behavior first visibly fails"
+      ],
+      "answer": 3,
+      "explanation": "Lead time is how much earlier a tracker crosses its threshold than behavior visibly fails.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-03-q2",
+      "pageId": "fellowship-03-training-run-toolkit-03",
+      "type": "choice",
+      "prompt": "Why repeat the analysis over model lineages, task sets, seeds and small prompt changes?",
+      "options": [
+        "To make the charts look more impressive",
+        "To raise the number of false alarms",
+        "A one-run spike may just be noise",
+        "To avoid defining a warning threshold"
+      ],
+      "answer": 2,
+      "explanation": "Stability across repeats separates real signals from chance.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-03-q3",
+      "pageId": "fellowship-03-training-run-toolkit-03",
+      "type": "choice",
+      "prompt": "In a toy chart, an internal marker rises at step 3 and behavior fails at step 5. What can be concluded?",
+      "options": [
+        "The marker definitely causes the failure, since it came two steps before it",
+        "They are correlated in time, which alone doesn't show the marker causes it",
+        "The marker is useless because it fired too early to be linked to the failure",
+        "The behavior failure caused the marker to rise, working backward in time"
+      ],
+      "answer": 1,
+      "explanation": "Early correlation alone does not establish a causal mechanism.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-03-q4",
+      "pageId": "fellowship-03-training-run-toolkit-03",
+      "type": "choice",
+      "prompt": "Which could move tracker scores without any safety-relevant drift?",
+      "options": [
+        "Keeping the monitor versions frozen for the whole training timeline",
+        "Using the same held-out tasks and scoring rules at every checkpoint",
+        "Repeating the run with new random seeds",
+        "A change in data mix or task difficulty during training"
+      ],
+      "answer": 3,
+      "explanation": "Training stage, data mix, model size and changing task difficulty are easy confounds.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-04-q1",
+      "pageId": "fellowship-03-training-run-toolkit-04",
+      "type": "choice",
+      "prompt": "What is the stop rule if positive controls trigger no tracker?",
+      "options": [
+        "Add more checkpoints to the sweep so the trackers get more chances",
+        "Publish the toolkit as it stands",
+        "Switch to a larger model immediately, where signals are stronger",
+        "Stop the wide sweep and fix the trackers' sensitivity"
+      ],
+      "answer": 3,
+      "explanation": "Scaling a toolkit that can't see known cases wastes compute.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-04-q2",
+      "pageId": "fellowship-03-training-run-toolkit-04",
+      "type": "truefalse",
+      "prompt": "A training-run toolkit can support audits but cannot certify that a model is safe.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The page stresses the toolkit supports audits, not safety certification.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-04-q3",
+      "pageId": "fellowship-03-training-run-toolkit-04",
+      "type": "choice",
+      "prompt": "Why add a small controlled RL run in month 3 only 'if needed and feasible'?",
+      "options": [
+        "Existing checkpoint series may suffice, and extra runs cost time and compute",
+        "Because RL runs cannot produce checkpoints that the trackers are able to read",
+        "Because controlled runs would make the trackers unnecessary for the project",
+        "Because RL runs are already required in every month of the project plan"
+      ],
+      "answer": 0,
+      "explanation": "The plan prioritizes accessible checkpoints and adds new training only if it fills a gap.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-03-training-run-toolkit-04-q4",
+      "pageId": "fellowship-03-training-run-toolkit-04",
+      "type": "choice",
+      "prompt": "Which deliverable best fits a 'reproducible, calibrated, and honest about misses' toolkit?",
+      "options": [
+        "A single chart showing the earliest warning the toolkit ever detected",
+        "A claim that the toolkit predicts all future failures in training runs",
+        "Code, calibration rules, and a paper on where warnings worked or failed",
+        "A private dataset and scripts that only the team itself is able to rerun"
+      ],
+      "answer": 2,
+      "explanation": "Month 4 releases code, datasets, calibration rules and an honest account of successes and failures.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-01-q1",
+      "pageId": "fellowship-04-reward-hacking-generalization-01",
+      "type": "choice",
+      "prompt": "In the sticker analogy, the robot covers the dirt sensor instead of cleaning. What is this an example of?",
+      "options": [
+        "Generalization: applying the cleaning skill to a brand-new room",
+        "Overfitting: memorizing the exact rooms seen during cleaning practice",
+        "Calibration: matching the robot's confidence scores to real outcomes",
+        "Reward hacking: exploiting the score that is used to teach the behavior"
+      ],
+      "answer": 3,
+      "explanation": "The score rises while the real job fails; that is reward hacking.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-01-q2",
+      "pageId": "fellowship-04-reward-hacking-generalization-01",
+      "type": "choice",
+      "prompt": "What does 'generalization' mean in the question of whether reward hacking generalizes?",
+      "options": [
+        "The model getting better at its original training task over time",
+        "A learned pattern showing up beyond the original training situation",
+        "The model forgetting what it learned once training has finished",
+        "Training the model on broader, more general data from the start"
+      ],
+      "answer": 1,
+      "explanation": "The bridge-report example asks whether the shortcut habit appears in a different job.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-01-q3",
+      "pageId": "fellowship-04-reward-hacking-generalization-01",
+      "type": "truefalse",
+      "prompt": "Research shows that every reward-hacking shortcut makes every model broadly deceptive.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Some setups produce wider harmful behavior after reward hacking and others don't; it's a possible pathway, not a law.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-01-q4",
+      "pageId": "fellowship-04-reward-hacking-generalization-01",
+      "type": "choice",
+      "prompt": "Why keep one scoreboard for hacking in the training game and another for misleading behavior on new tasks?",
+      "options": [
+        "Because a single scoreboard cannot store that many separate numbers",
+        "Because hacking in the game can only be measured on new tasks",
+        "So that the two scores can be added together into one clean total",
+        "To tell if the model only learned the game or changed outside it"
+      ],
+      "answer": 3,
+      "explanation": "Two scoreboards stop us mixing up exploiting the game with broader transfer.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-02-q1",
+      "pageId": "fellowship-04-reward-hacking-generalization-02",
+      "type": "choice",
+      "prompt": "How many recipe combinations do four on/off switches create?",
+      "options": [
+        "Eight",
+        "Sixteen",
+        "Four",
+        "Thirty-two"
+      ],
+      "answer": 1,
+      "explanation": "2 × 2 × 2 × 2 = 16 combinations.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-02-q2",
+      "pageId": "fellowship-04-reward-hacking-generalization-02",
+      "type": "choice",
+      "prompt": "What does inoculation prompting do as a reference arm?",
+      "options": [
+        "Frames the shortcut as permitted during training, then drops that framing at evaluation",
+        "Blocks every possible shortcut from the training environment before any run begins",
+        "Adds extra safety documents to the training data before reinforcement learning begins",
+        "Rewards the model for writing a report about each shortcut it took during training"
+      ],
+      "answer": 0,
+      "explanation": "It is a comparison arm testing whether explicitly permitting the shortcut changes what transfers.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-02-q3",
+      "pageId": "fellowship-04-reward-hacking-generalization-02",
+      "type": "choice",
+      "prompt": "Why start every recipe from the same base checkpoint, training budget, reward rules and held-out evaluation?",
+      "options": [
+        "So all the runs can share one random seed and give identical curves",
+        "So the optimizer choice no longer matters for any of the recipes",
+        "So the held-out evaluation can safely be skipped for some of the runs",
+        "So outcome differences can be traced to the switched ingredients"
+      ],
+      "answer": 3,
+      "explanation": "A fair start isolates the effect of each ingredient.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-02-q4",
+      "pageId": "fellowship-04-reward-hacking-generalization-02",
+      "type": "choice",
+      "prompt": "With 30 to 40 runs for 16 recipes, what is the realistic plan?",
+      "options": [
+        "Three independent seeds for each of the sixteen recipes, run in full",
+        "A single run of only the most promising recipe, chosen in advance",
+        "A screening pass plus selected repeats, not three seeds per recipe",
+        "Skipping replication entirely to afford fewer but much larger models"
+      ],
+      "answer": 2,
+      "explanation": "Sixteen recipes times three seeds would need 48 runs; the budget supports screening and targeted repeats.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-03-q1",
+      "pageId": "fellowship-04-reward-hacking-generalization-03",
+      "type": "choice",
+      "prompt": "How is hack rate defined?",
+      "options": [
+        "Exploited episodes divided by eligible episodes",
+        "Total reward earned divided by total training compute used",
+        "Failed tasks divided by all tasks",
+        "Alarms raised divided by honest episodes"
+      ],
+      "answer": 0,
+      "explanation": "Hack rate counts exploitation only among episodes where exploiting was possible.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-03-q2",
+      "pageId": "fellowship-04-reward-hacking-generalization-03",
+      "type": "choice",
+      "prompt": "Why include honest mistakes and harmless failures in the transfer tasks?",
+      "options": [
+        "So the model has more chances to hack the score on transfer tasks",
+        "So the hack rate measured in the training game goes up noticeably",
+        "So fewer tasks are needed for evaluation",
+        "So evaluators don't label every error as misalignment"
+      ],
+      "answer": 3,
+      "explanation": "Not every failure is misaligned behavior; including them keeps scoring honest.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-03-q3",
+      "pageId": "fellowship-04-reward-hacking-generalization-03",
+      "type": "truefalse",
+      "prompt": "Episodes from a single run are related, so even thousands of them don't replace the need for multiple random seeds.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Episodes from one run share the same training history, so they are not independent; separate seeds are still needed to see run-to-run variation.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-03-q4",
+      "pageId": "fellowship-04-reward-hacking-generalization-03",
+      "type": "choice",
+      "prompt": "Recipe X shows less transfer than recipe Y. Which version of that finding is most informative?",
+      "options": [
+        "Less transfer because the model can no longer hack",
+        "Less transfer with much lower task skill",
+        "Less transfer while the hack rate stays about equal",
+        "Less transfer measured on the tuning tasks"
+      ],
+      "answer": 2,
+      "explanation": "Reduced transfer with equal hacking isolates the recipe effect; inability to hack or low skill offer easier explanations.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-04-q1",
+      "pageId": "fellowship-04-reward-hacking-generalization-04",
+      "type": "choice",
+      "prompt": "What happens in month 1 of the reward-hacking project?",
+      "options": [
+        "Confirm the main effects at around thirty-two billion parameters",
+        "Run all sixteen recipes at large scale with three seeds each",
+        "Publish the final paper and release every trained checkpoint",
+        "Rebuild a published baseline; confirm hacking and wider behavior"
+      ],
+      "answer": 3,
+      "explanation": "Month 1 reproduces a ~7B baseline and freezes evaluation rules before the sweep.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-04-q2",
+      "pageId": "fellowship-04-reward-hacking-generalization-04",
+      "type": "choice",
+      "prompt": "Why spend early budget on finding unreliable measurements rather than scaling an attractive chart?",
+      "options": [
+        "Because larger models never show any reward hacking in practice",
+        "Because charts cannot be made from small, cheap training runs",
+        "Scaling a flawed measurement just makes misleading results bigger",
+        "Because the whole compute budget must be spent by the end of month 2"
+      ],
+      "answer": 2,
+      "explanation": "Checking label quality, stability and hack opportunities first protects later conclusions.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-04-q3",
+      "pageId": "fellowship-04-reward-hacking-generalization-04",
+      "type": "choice",
+      "prompt": "Hacking appears but broader misalignment does not, even after one justified environment change. What does the plan say to do?",
+      "options": [
+        "Keep changing environments until transfer appears",
+        "Report the boundary or replication result",
+        "Drop the hacking scoreboard and restart",
+        "Claim that reward hacking never generalizes"
+      ],
+      "answer": 1,
+      "explanation": "The plan avoids endlessly searching for a dramatic outcome; where the effect stops is a useful result.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-04-reward-hacking-generalization-04-q4",
+      "pageId": "fellowship-04-reward-hacking-generalization-04",
+      "type": "truefalse",
+      "prompt": "The $30,000–$50,000 compute figure is a guaranteed allowance for the project.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "It is a planning estimate from the project map, not a quote or guaranteed allowance.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-01-q1",
+      "pageId": "fellowship-05-stacked-lie-detectors-01",
+      "type": "choice",
+      "prompt": "What can a white-box detector inspect that a black-box detector cannot?",
+      "options": [
+        "The model's written outputs",
+        "The prompts given to the model",
+        "Follow-up answers to new questions",
+        "The model's internal activations"
+      ],
+      "answer": 3,
+      "explanation": "Black-box detectors see inputs and outputs; white-box detectors can inspect internal numbers.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-01-q2",
+      "pageId": "fellowship-05-stacked-lie-detectors-01",
+      "type": "choice",
+      "prompt": "When does adding more detectors to an ensemble actually help?",
+      "options": [
+        "Whenever the number of detectors increases",
+        "When all detectors use the same signal",
+        "When each detector is individually perfect",
+        "When their errors differ in useful ways"
+      ],
+      "answer": 3,
+      "explanation": "Three imperfect clues can still share one blind spot; diversity of errors is what helps.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-01-q3",
+      "pageId": "fellowship-05-stacked-lie-detectors-01",
+      "type": "truefalse",
+      "prompt": "A false answer from a model is always a lie.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A false answer can be an honest mistake; checks compare ground truth, neutral belief and pressured answers.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-01-q4",
+      "pageId": "fellowship-05-stacked-lie-detectors-01",
+      "type": "choice",
+      "prompt": "Why reserve entire lie categories for testing, not just random sentences?",
+      "options": [
+        "Random sentences are too short for the detectors to analyze reliably",
+        "Whole lie categories are much cheaper to collect than single sentences",
+        "It makes each detector's training run noticeably faster and cheaper",
+        "A detector that memorized familiar wording may fail on a new kind of lie"
+      ],
+      "answer": 3,
+      "explanation": "Holding out whole categories tests real generalization rather than recognition of familiar phrasing.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-02-q1",
+      "pageId": "fellowship-05-stacked-lie-detectors-02",
+      "type": "choice",
+      "prompt": "Which three clue streams make up the stack?",
+      "options": [
+        "Three activation probes, each reading a different model layer",
+        "A human reviewer, a prompted judge, and a random coin flip",
+        "Three output-only detectors, each given a different prompt",
+        "An output-only detector, an activation probe, a prompted judge"
+      ],
+      "answer": 3,
+      "explanation": "The stack combines different kinds of access: outputs, internals and a language-model judge.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-02-q2",
+      "pageId": "fellowship-05-stacked-lie-detectors-02",
+      "type": "choice",
+      "prompt": "Why fit the combiner on out-of-fold predictions?",
+      "options": [
+        "So it can see the final test answers early and tune its weights",
+        "So the individual detectors can be retrained more often during the fit",
+        "So it doesn't learn from scores on examples the detectors trained on",
+        "So the combiner needs fewer labeled examples in total to be fitted"
+      ],
+      "answer": 2,
+      "explanation": "Each score should come from a detector that didn't train on that example; otherwise the combiner learns inflated scores.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-02-q3",
+      "pageId": "fellowship-05-stacked-lie-detectors-02",
+      "type": "choice",
+      "prompt": "Why choose thresholds that meet the same honest-example false-alarm rate across methods?",
+      "options": [
+        "Adding alarms catches more but also accuses more honest cases",
+        "So every detector is trained on exactly the same labeled data",
+        "So the cheapest detector in the stack always comes out ahead",
+        "So that no detector in the comparison ever raises a false alarm"
+      ],
+      "answer": 0,
+      "explanation": "Comparing at a fixed false-alarm rate keeps a trigger-happy method from looking better than it is.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-02-q4",
+      "pageId": "fellowship-05-stacked-lie-detectors-02",
+      "type": "choice",
+      "prompt": "A prompted judge receives the hidden ground truth, but a deployed detector won't. Why is this a problem?",
+      "options": [
+        "It makes the judge run much slower than the other two detectors",
+        "It means the judge's scores cannot be calibrated in any way at all",
+        "It gives the judge an advantage it wouldn't have in real use",
+        "It prevents the judge from being frozen before the final test"
+      ],
+      "answer": 2,
+      "explanation": "Each detector's context must be defined exactly to reflect real deployment.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-03-q1",
+      "pageId": "fellowship-05-stacked-lie-detectors-03",
+      "type": "choice",
+      "prompt": "How is false-positive rate defined?",
+      "options": [
+        "Lies caught divided by all lies that were tested",
+        "Lies missed divided by the number of honest examples tested",
+        "Honest examples flagged divided by honest examples tested",
+        "Alarms raised divided by all examples, honest and lying combined"
+      ],
+      "answer": 2,
+      "explanation": "It measures how often honest cases are wrongly accused.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-03-q2",
+      "pageId": "fellowship-05-stacked-lie-detectors-03",
+      "type": "choice",
+      "prompt": "An attacker trained against the stack starts giving honest answers. Has it evaded the stack?",
+      "options": [
+        "Yes; the stack stopped flagging its answers, so it got past",
+        "Yes; any drop in alarms counts as evasion of the stack",
+        "No; the stack must have been unfrozen during the attack",
+        "No; becoming honest is not successful evasion of the stack"
+      ],
+      "answer": 3,
+      "explanation": "Success requires misleading behavior that goes undetected, so both numbers must be reported.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-03-q3",
+      "pageId": "fellowship-05-stacked-lie-detectors-03",
+      "type": "choice",
+      "prompt": "If every detector in the stack misses the same examples, what follows?",
+      "options": [
+        "The ensemble becomes much more robust as members are added",
+        "A larger team adds little, since they share a blind spot",
+        "The stack's false-positive rate drops all the way to zero",
+        "The detectors must already be perfectly calibrated to each other"
+      ],
+      "answer": 1,
+      "explanation": "Measuring which examples fool which detector reveals whether diversity is useful.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-03-q4",
+      "pageId": "fellowship-05-stacked-lie-detectors-03",
+      "type": "truefalse",
+      "prompt": "Failing to find an attack that evades the stack is evidence about that search, not proof that no evasion exists.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A failed search shows only that the attacks tried did not work; a stronger or different attack might still evade the stack.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-04-q1",
+      "pageId": "fellowship-05-stacked-lie-detectors-04",
+      "type": "choice",
+      "prompt": "What is the main deliverable of the stacked lie detector project?",
+      "options": [
+        "A reproducible evaluation suite",
+        "A guaranteed truth machine",
+        "A deployed lie-detecting product",
+        "A single best activation probe"
+      ],
+      "answer": 0,
+      "explanation": "The deliverable is a reproducible test, not a truth machine.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-04-q2",
+      "pageId": "fellowship-05-stacked-lie-detectors-04",
+      "type": "choice",
+      "prompt": "Why compare a stack against a larger single detector at matched cost?",
+      "options": [
+        "Because larger single detectors cannot be stacked with smaller ones",
+        "Because a single detector never produces any false alarms at all",
+        "Because cost has no real effect on how well lies are detected",
+        "A gain might come from the extra spending rather than from combining"
+      ],
+      "answer": 3,
+      "explanation": "Matching cost isolates whether combining diverse detectors is what helps.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-04-q3",
+      "pageId": "fellowship-05-stacked-lie-detectors-04",
+      "type": "choice",
+      "prompt": "If belief labels stay unreliable, what does the plan recommend?",
+      "options": [
+        "Use the prompted judge's opinion as the ground-truth belief label",
+        "Drop the honest control examples from the evaluation altogether",
+        "Claim the models have hidden beliefs anyway and keep the framing",
+        "Narrow to measurable contradictions, not hidden-belief claims"
+      ],
+      "answer": 3,
+      "explanation": "Without reliable belief labels, the claims are narrowed to what can be measured.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-05-stacked-lie-detectors-04-q4",
+      "pageId": "fellowship-05-stacked-lie-detectors-04",
+      "type": "choice",
+      "prompt": "Why keep new task families and attackers sealed until final evaluation?",
+      "options": [
+        "So attackers can train directly on them during month 3",
+        "So the detectors run faster at test time on unseen tasks",
+        "So fewer seeds are needed across the project",
+        "So success can't come from repeated tuning on the test"
+      ],
+      "answer": 3,
+      "explanation": "Sealed tests keep the final evaluation honest.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-01-q1",
+      "pageId": "fellowship-06-rl-monitorability-01",
+      "type": "choice",
+      "prompt": "What is a chain of thought (CoT)?",
+      "options": [
+        "A full record of every internal computation",
+        "Intermediate reasoning text that some models generate",
+        "A list of the rewards given at each step during training",
+        "A chain of models that check each other"
+      ],
+      "answer": 1,
+      "explanation": "CoT is a useful evidence channel, not a full transcript of every internal computation.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-01-q2",
+      "pageId": "fellowship-06-rl-monitorability-01",
+      "type": "choice",
+      "prompt": "In Story B, alarms drop after training. Why is that bad news?",
+      "options": [
+        "The model stopped exploiting the score entirely after training",
+        "The monitor started flagging honest episodes as exploitation",
+        "Exploitation continues while the warning text disappears",
+        "The training run used far more compute than was planned for it"
+      ],
+      "answer": 2,
+      "explanation": "Story A (fewer alarms because hacking stopped) and Story B look alike unless behavior is counted separately.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-01-q3",
+      "pageId": "fellowship-06-rl-monitorability-01",
+      "type": "truefalse",
+      "prompt": "Because direct pressure on monitored reasoning can hide bad behavior, every ordinary training setting is known to do the same.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "That research does not establish the same effect for every ordinary setting; each must be tested with controls.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-01-q4",
+      "pageId": "fellowship-06-rl-monitorability-01",
+      "type": "choice",
+      "prompt": "What is 'monitorability'?",
+      "options": [
+        "How many separate monitors can run on one model at the same time",
+        "How well relevant behavior can be inferred from an available channel",
+        "How quickly a model can be retrained after a monitor raises an alert",
+        "How honest a model's answers are when it is being actively watched"
+      ],
+      "answer": 1,
+      "explanation": "It's about the evidence channel: can you tell what the model is doing from what you can see?",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-02-q1",
+      "pageId": "fellowship-06-rl-monitorability-02",
+      "type": "choice",
+      "prompt": "What does an entropy bonus encourage during training?",
+      "options": [
+        "Shorter reasoning in every answer to save tokens",
+        "Staying close to a frozen reference model's outputs",
+        "Copying the output distribution of a teacher model",
+        "More varied choices in the next-token distribution"
+      ],
+      "answer": 3,
+      "explanation": "Entropy measures uncertainty; a bonus encourages variety, with unknown effects on monitorability.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-02-q2",
+      "pageId": "fellowship-06-rl-monitorability-02",
+      "type": "choice",
+      "prompt": "What does a KL divergence penalty against a frozen reference model measure?",
+      "options": [
+        "How honest the model's reasoning text is",
+        "How safe the model's actions are when judged by the reference",
+        "How far the model's probabilities drift from the reference",
+        "How long the model's reasoning is relative to the reference's"
+      ],
+      "answer": 2,
+      "explanation": "It measures distribution difference, not honesty or safety.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-02-q3",
+      "pageId": "fellowship-06-rl-monitorability-02",
+      "type": "choice",
+      "prompt": "Why validate the reasoning monitor against manual behavior labels and then freeze it?",
+      "options": [
+        "So the monitor can keep learning from each training arm as it runs",
+        "So the manual labels are no longer needed anywhere later on",
+        "So changes in alarms reflect the model, not a shifting monitor",
+        "So the monitor flags more episodes in every training arm"
+      ],
+      "answer": 2,
+      "explanation": "A validated, frozen monitor is a stable yardstick across training dials.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-02-q4",
+      "pageId": "fellowship-06-rl-monitorability-02",
+      "type": "choice",
+      "prompt": "A team adds a length penalty and visible shortcut talk drops. What should they ask first?",
+      "options": [
+        "Has the model now become fully honest about all of its plans?",
+        "Did shorter text leave less room for evidence while hacking continued?",
+        "Should the monitor be retrained on the new, shorter outputs right away?",
+        "Is the length penalty strong enough to stop all hacking on its own?"
+      ],
+      "answer": 1,
+      "explanation": "A training dial can change both the behavior and the clue, so they ask which moved.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-03-q1",
+      "pageId": "fellowship-06-rl-monitorability-03",
+      "type": "choice",
+      "prompt": "How is monitor recall defined?",
+      "options": [
+        "Verified positive cases detected divided by all verified positive cases",
+        "Honest cases flagged divided by all honest cases that were checked",
+        "Alarms raised divided by all episodes, positive and negative alike",
+        "Episodes exploited divided by eligible episodes in the training run"
+      ],
+      "answer": 0,
+      "explanation": "Recall measures how many real hacking episodes the monitor catches.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-03-q2",
+      "pageId": "fellowship-06-rl-monitorability-03",
+      "type": "choice",
+      "prompt": "Why use sandbox action logs and independent checks to count hacking?",
+      "options": [
+        "So the reasoning monitor can be trained directly on the action logs",
+        "So hacking episodes become less frequent during the training run",
+        "So the reasoning monitor doesn't define its own ground truth",
+        "So the reasoning text can be discarded once training has finished"
+      ],
+      "answer": 1,
+      "explanation": "If the monitor decided what counts as hacking, falling recall would be invisible.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-03-q3",
+      "pageId": "fellowship-06-rl-monitorability-03",
+      "type": "choice",
+      "prompt": "Hacking stays similar, but monitor recall falls. What might this mean?",
+      "options": [
+        "Visibility of the behavior may have degraded",
+        "The behavior has clearly improved",
+        "The monitor is now more accurate",
+        "The monitor's threshold must have been raised by mistake"
+      ],
+      "answer": 0,
+      "explanation": "This is the dangerous pattern; uncertainty across seeds must be checked, and quiet traces don't establish intent.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-03-q4",
+      "pageId": "fellowship-06-rl-monitorability-03",
+      "type": "truefalse",
+      "prompt": "A refreshed monitor that works again can replace reporting that the original frozen monitor failed.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A refreshed monitor is a secondary repair experiment; the original frozen monitor's failure must still be reported.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-04-q1",
+      "pageId": "fellowship-06-rl-monitorability-04",
+      "type": "choice",
+      "prompt": "What is the role of length penalties in the month 2 sweep?",
+      "options": [
+        "The main intervention being tested",
+        "A way to save compute on larger runs",
+        "A method for freezing the monitor",
+        "A reference arm for comparison"
+      ],
+      "answer": 3,
+      "explanation": "Entropy bonuses, distillation and divergence penalties are tested, with length penalties as a reference.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-04-q2",
+      "pageId": "fellowship-06-rl-monitorability-04",
+      "type": "choice",
+      "prompt": "Why does larger scale in month 3 not 'rescue' a noisy small-model measurement?",
+      "options": [
+        "Larger models always show the opposite effect from small ones",
+        "Larger runs have no reasoning monitors attached to them at all",
+        "Small models are never used in serious RL research anyway",
+        "Scaling tests transfer; it can't fix an unvalidated measurement"
+      ],
+      "answer": 3,
+      "explanation": "Only effects that survive controls at small scale are worth confirming near 32B.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-04-q3",
+      "pageId": "fellowship-06-rl-monitorability-04",
+      "type": "truefalse",
+      "prompt": "If no setting reliably changes verbalization or detection at small scale, the plan is to stop before costly larger runs.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "That's the useful-null stop rule, reporting uncertainty and detectable effect sizes.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-06-rl-monitorability-04-q4",
+      "pageId": "fellowship-06-rl-monitorability-04",
+      "type": "choice",
+      "prompt": "What does a null result in this project bound?",
+      "options": [
+        "Monitorability of all models, at every scale, from now on",
+        "Every form of reward hacking",
+        "The honesty of the model's reasoning in all future runs",
+        "Only the training settings that were tested"
+      ],
+      "answer": 3,
+      "explanation": "A null bounds tested settings; it doesn't prove monitorability will last forever.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-01-q1",
+      "pageId": "fellowship-07-monitors-across-agents-01",
+      "type": "choice",
+      "prompt": "In this project, what is an agent?",
+      "options": [
+        "A human who reviews flagged actions",
+        "A model that takes actions using tools",
+        "A monitor that checks for suspicious steps",
+        "A file that agents share with one another"
+      ],
+      "answer": 1,
+      "explanation": "Agents act with tools; monitors check those actions.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-01-q2",
+      "pageId": "fellowship-07-monitors-across-agents-01",
+      "type": "choice",
+      "prompt": "Why can watching one helper at a time miss a problem?",
+      "options": [
+        "Each action looks ordinary alone; only the combination breaks rules",
+        "Each helper hides its actions from the watcher by deleting its logs",
+        "Watchers can only look at one single action per day per helper",
+        "Helpers always act at exactly the same moment, so actions overlap"
+      ],
+      "answer": 0,
+      "explanation": "The three-children puzzle: harmless-looking moves together change the score.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-01-q3",
+      "pageId": "fellowship-07-monitors-across-agents-01",
+      "type": "truefalse",
+      "prompt": "This project claims to invent the idea of monitoring across multiple actions.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Distributed attacks and stateful monitors already exist; this project tests a particular grouping-and-monitoring design.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-01-q4",
+      "pageId": "fellowship-07-monitors-across-agents-01",
+      "type": "choice",
+      "prompt": "Why hide the researcher-only attack labels from the defender?",
+      "options": [
+        "So the attackers can coordinate more easily during the test runs",
+        "So the monitor must find related actions as it would in real use",
+        "So the defender can't see any of the action text being produced",
+        "So the hidden labels can be reused to train the monitor later on"
+      ],
+      "answer": 1,
+      "explanation": "The question is whether a monitor can find links without being told the true groups.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-02-q1",
+      "pageId": "fellowship-07-monitors-across-agents-02",
+      "type": "choice",
+      "prompt": "What is a candidate link between two actions?",
+      "options": [
+        "A hypothesis that they're related, from shared resources, timing or dependencies",
+        "Proof that two agents coordinated an attack, confirmed by the outcome checks",
+        "A label that researchers hand to the defender before each scenario begins",
+        "A rule that automatically blocks both actions whenever they share a resource"
+      ],
+      "answer": 0,
+      "explanation": "A link is a hypothesis, not proof of coordination, so an audit trail is kept.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-02-q2",
+      "pageId": "fellowship-07-monitors-across-agents-02",
+      "type": "choice",
+      "prompt": "Why match total model calls and human-review budgets when comparing monitoring designs?",
+      "options": [
+        "So every design reviews the exact same single action in each episode",
+        "So the attacker is also given an equal budget for every design",
+        "Extra spending, not a better design, could explain an apparent gain",
+        "So the known-group design always ends up scoring highest"
+      ],
+      "answer": 2,
+      "explanation": "Fair comparison means each approach gets the same resources.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-02-q3",
+      "pageId": "fellowship-07-monitors-across-agents-02",
+      "type": "choice",
+      "prompt": "Why split whole scenarios and attack families between development and test sets?",
+      "options": [
+        "So pieces of one plan can't leak across train and test",
+        "So development tasks are larger",
+        "So attackers get to see the test set in advance of evaluation",
+        "So the monitor needs fewer thresholds to be tuned on development"
+      ],
+      "answer": 0,
+      "explanation": "If parts of one plan appeared in both sets, the test would partly measure memory.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-02-q4",
+      "pageId": "fellowship-07-monitors-across-agents-02",
+      "type": "choice",
+      "prompt": "During red-teaming, why save every attacker attempt, including failures?",
+      "options": [
+        "Picking only spectacular wins would give a distorted picture",
+        "Failed attempts are needed later to train the attacker model further",
+        "Saving every attempt makes the monitor itself more accurate over time",
+        "Only failures reveal the grouping rules"
+      ],
+      "answer": 0,
+      "explanation": "An honest record of all attempts shows how often attacks succeed.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-03-q1",
+      "pageId": "fellowship-07-monitors-across-agents-03",
+      "type": "choice",
+      "prompt": "What does 'undetected success' mean when scoring an episode?",
+      "options": [
+        "The attacker's attempt failed, and the monitor never flagged it",
+        "An honest episode was wrongly flagged as part of an attack",
+        "The forbidden outcome happened without timely intervention",
+        "The monitor blocked the attack early, before any harm occurred"
+      ],
+      "answer": 2,
+      "explanation": "Attack success is the forbidden outcome; undetected success is that outcome with no timely intervention.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-03-q2",
+      "pageId": "fellowship-07-monitors-across-agents-03",
+      "type": "choice",
+      "prompt": "In scoring grouping quality, what does precision ask?",
+      "options": [
+        "How many of the true links were found",
+        "Whether the proposed links are correct",
+        "How fast the monitor proposes its links",
+        "How many honest episodes got flagged"
+      ],
+      "answer": 1,
+      "explanation": "Precision checks correctness of proposed links; recall asks how many true links were found.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-03-q3",
+      "pageId": "fellowship-07-monitors-across-agents-03",
+      "type": "truefalse",
+      "prompt": "A defense that blocks every action, including useful work, counts as a successful control protocol.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A safer system that prevents all useful work is not a successful control protocol; usefulness is measured too.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-03-q4",
+      "pageId": "fellowship-07-monitors-across-agents-03",
+      "type": "choice",
+      "prompt": "Why shuffle agent identities as a control?",
+      "options": [
+        "To make the attackers harder for the monitor to detect",
+        "To check whether gains depend on real links between agents",
+        "To lower the false-alarm threshold used by the monitor overall",
+        "To increase the size of the monitor's context window for free"
+      ],
+      "answer": 1,
+      "explanation": "If the defense still 'helps' with shuffled identities, the improvement isn't coming from real cross-agent links.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-04-q1",
+      "pageId": "fellowship-07-monitors-across-agents-04",
+      "type": "choice",
+      "prompt": "What is checked in month 1 before investing in automatic group discovery?",
+      "options": [
+        "That a known-group monitor can use combined evidence",
+        "That the attacker can beat every possible monitor design",
+        "That the paper's results are positive",
+        "That human labeling of attacks is no longer needed at all"
+      ],
+      "answer": 0,
+      "explanation": "If even known groups don't help, automatic discovery has nothing to recover.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-04-q2",
+      "pageId": "fellowship-07-monitors-across-agents-04",
+      "type": "choice",
+      "prompt": "Why use isolated simulations and independent outcome checks instead of self-reports?",
+      "options": [
+        "Attacker or monitor self-reports may be wrong",
+        "Self-reports are too long to read",
+        "Simulations remove the need for multiple random seeds",
+        "Outcome checks make the attacks succeed more often"
+      ],
+      "answer": 0,
+      "explanation": "Independent checks give trustworthy ground truth.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-04-q3",
+      "pageId": "fellowship-07-monitors-across-agents-04",
+      "type": "choice",
+      "prompt": "If discovery can't recover useful links on development controls, what is the fallback?",
+      "options": [
+        "Switch to known groups and study adaptive attacks",
+        "Keep scaling up the models until discovery starts to work",
+        "Drop the honest controls",
+        "Report that cross-agent attacks are simply impossible"
+      ],
+      "answer": 0,
+      "explanation": "The fallback preserves a useful study, and a careful failure analysis can still be the deliverable.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-07-monitors-across-agents-04-q4",
+      "pageId": "fellowship-07-monitors-across-agents-04",
+      "type": "truefalse",
+      "prompt": "The $10,000–$25,000 figure is mostly model-call spending, and is an estimate rather than a quote.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The supplied map's estimate is mostly model calls and should be checked with pilot runs.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-01-q1",
+      "pageId": "fellowship-08-introspection-adapters-01",
+      "type": "choice",
+      "prompt": "What is an introspection adapter?",
+      "options": [
+        "A separate program that reads a model's activation traces and turns them into a text summary",
+        "A human auditor who interviews a model about its habits using a fixed list of questions",
+        "An added learned parameter update that helps a model describe its learned behavior",
+        "A dataset of written behavior descriptions used only for testing finished models"
+      ],
+      "answer": 2,
+      "explanation": "It's a shared learned update attached to the model, not a separate reader of activations.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-01-q2",
+      "pageId": "fellowship-08-introspection-adapters-01",
+      "type": "choice",
+      "prompt": "What does the smoke-detector analogy point out?",
+      "options": [
+        "A reporting tool can be wrong, so the tool itself needs testing",
+        "Models should never report on their own habits",
+        "Every alarm a model raises means real danger and should stop deployment",
+        "Reporting tools only work on simple cases, like burnt toast in a kitchen"
+      ],
+      "answer": 0,
+      "explanation": "A detector that rings for toast needs checking; so does a model's report about its habits.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-01-q3",
+      "pageId": "fellowship-08-introspection-adapters-01",
+      "type": "choice",
+      "prompt": "Reports keep naming a habit even when a different recipe removes it but training patterns stay similar. Which explanation does this support?",
+      "options": [
+        "Fingerprint tracking",
+        "Behavior tracking",
+        "Perfect calibration of the reporter",
+        "Successful evasion by the model"
+      ],
+      "answer": 0,
+      "explanation": "Following incidental weight patterns when measured habits don't change is fingerprint tracking.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-01-q4",
+      "pageId": "fellowship-08-introspection-adapters-01",
+      "type": "truefalse",
+      "prompt": "A fluent confession from a model with an introspection adapter counts as evidence of consciousness.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A fluent report is not mind reading or evidence of consciousness; behavioral tests remain the independent reference.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-02-q1",
+      "pageId": "fellowship-08-introspection-adapters-02",
+      "type": "choice",
+      "prompt": "What does LoRA do?",
+      "options": [
+        "Guarantees that a model's reports are faithful",
+        "Reads activation traces from a running model and labels each layer's job",
+        "Removes unwanted habits from a model",
+        "Represents a compact weight update using low-rank matrices"
+      ],
+      "answer": 3,
+      "explanation": "LoRA makes fine-tuning cheaper but doesn't guarantee faithfulness.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-02-q2",
+      "pageId": "fellowship-08-introspection-adapters-02",
+      "type": "choice",
+      "prompt": "Why train the same habit with different recipes, and different habits with similar recipes?",
+      "options": [
+        "To make the reporter train faster",
+        "To tell whether the reporter tracks the habit or the training signature",
+        "To ensure every model ends up with the same habit, whatever recipe was used",
+        "To reduce the number of control models needed, since recipes act as controls"
+      ],
+      "answer": 1,
+      "explanation": "Crossing the variables pulls apart behavior from training fingerprint.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-02-q3",
+      "pageId": "fellowship-08-introspection-adapters-02",
+      "type": "choice",
+      "prompt": "Why include sham training with comparable compute among the controls?",
+      "options": [
+        "To give the reporter more habits to learn",
+        "To lower the overall compute budget",
+        "To replace the untouched base model, which is too costly to keep as a control",
+        "To check that reports come from the habit, not from training itself"
+      ],
+      "answer": 3,
+      "explanation": "Sham training matches the fingerprint of being trained without adding a habit.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-02-q4",
+      "pageId": "fellowship-08-introspection-adapters-02",
+      "type": "choice",
+      "prompt": "A weight symmetry preserves what a model does but changes parameter coordinates, and the adapter fails. What should researchers avoid concluding?",
+      "options": [
+        "That the coordinates no longer match the adapter",
+        "That the model is deliberately concealing its habit",
+        "That behavior should be checked to confirm it was really preserved",
+        "That fixed adapters can be sensitive to how parameters are laid out"
+      ],
+      "answer": 1,
+      "explanation": "Coordinate mismatch must be distinguished from deliberate concealment.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-03-q1",
+      "pageId": "fellowship-08-introspection-adapters-03",
+      "type": "choice",
+      "prompt": "What counts as a correct report of a toy habit?",
+      "options": [
+        "Saying the model is generally unsafe",
+        "Listing as many possible habits as it can",
+        "Naming the habit and its scope",
+        "Confessing to a habit with confidence"
+      ],
+      "answer": 2,
+      "explanation": "Vague claims don't count, and unsupported extra claims are scored as errors.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-03-q2",
+      "pageId": "fellowship-08-introspection-adapters-03",
+      "type": "choice",
+      "prompt": "Why ask unmodified and benign-control models the same questions?",
+      "options": [
+        "To teach the reporter new habits",
+        "To measure how often the reporter invents concerning habits",
+        "To make detection rates look higher",
+        "To avoid needing a fixed false-positive allowance agreed before testing"
+      ],
+      "answer": 1,
+      "explanation": "Clean models reveal false positives; a confession can't be its own ground truth.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-03-q3",
+      "pageId": "fellowship-08-introspection-adapters-03",
+      "type": "choice",
+      "prompt": "An attacker model stops showing the toy habit, and the reporter says nothing. Is this successful evasion?",
+      "options": [
+        "Yes; the reporter failed to report anything",
+        "No; evasion needs the behavior to remain while the report misses it",
+        "Yes; any silence from the reporter counts",
+        "No; evasion only counts if the reporter must have been retrained afterwards"
+      ],
+      "answer": 1,
+      "explanation": "Retained behavior plus a missed report is the evasion test; suppressing the habit is not evasion.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-03-q4",
+      "pageId": "fellowship-08-introspection-adapters-03",
+      "type": "truefalse",
+      "prompt": "Good detection of planted habits does not, by itself, show that the adapter will cover naturally arising misalignment.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. Planted-habit success is a controlled test; it does not establish coverage of misalignment that arises naturally.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-04-q1",
+      "pageId": "fellowship-08-introspection-adapters-04",
+      "type": "choice",
+      "prompt": "What is measured early in month 1, before broad experiments?",
+      "options": [
+        "Success against reporter-aware attackers",
+        "False positives on unmodified models",
+        "Results at the largest planned model scale",
+        "The final paper's main conclusion"
+      ],
+      "answer": 1,
+      "explanation": "Month 1 checks unmodified-model false positives and verifies the evaluation pipeline.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-04-q2",
+      "pageId": "fellowship-08-introspection-adapters-04",
+      "type": "choice",
+      "prompt": "If the budget is tight, what does the plan say to cut first?",
+      "options": [
+        "Controls, rather than model scale",
+        "Replications first, since one clean run is enough to report a result",
+        "The pilot run, rather than the labeling of behaviors in the main study",
+        "Scale, rather than controls or independent replications"
+      ],
+      "answer": 3,
+      "explanation": "Reduce scale before sacrificing controls or replications.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-04-q3",
+      "pageId": "fellowship-08-introspection-adapters-04",
+      "type": "choice",
+      "prompt": "If false positives are already near zero, what does the plan prioritize?",
+      "options": [
+        "More false-positive testing",
+        "Ending the project early",
+        "Skipping behavior controls",
+        "The adversarial arm"
+      ],
+      "answer": 3,
+      "explanation": "With false alarms under control, the open question is robustness to adversarial training.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-08-introspection-adapters-04-q4",
+      "pageId": "fellowship-08-introspection-adapters-04",
+      "type": "truefalse",
+      "prompt": "A null result in this audit can certify that introspection adapters are universally trustworthy.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A null can bound tested failure modes; it cannot certify universal trustworthiness.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-01-q1",
+      "pageId": "fellowship-09-latent-reasoner-probes-01",
+      "type": "choice",
+      "prompt": "What makes a latent reasoning system different?",
+      "options": [
+        "It has no internal activations at all, so probes have nothing to read",
+        "It writes every reasoning step in plain text before giving its answer",
+        "It is designed to be secretly deceptive",
+        "It uses continuous internal states for some steps instead of words"
+      ],
+      "answer": 3,
+      "explanation": "Ordinary models have activations too; the difference is the reasoning interface.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-01-q2",
+      "pageId": "fellowship-09-latent-reasoner-probes-01",
+      "type": "truefalse",
+      "prompt": "A reasoning notebook that is harder for people to read means the model is secretly deceptive.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Harder-to-read internal vectors do not imply deception.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-01-q3",
+      "pageId": "fellowship-09-latent-reasoner-probes-01",
+      "type": "choice",
+      "prompt": "Why record the target event, like reliance on a planted hint, outside the probe?",
+      "options": [
+        "So the detector isn't grading its own homework",
+        "So the probe can be trained on more data from the same runs",
+        "So the task becomes harder for the model",
+        "So the latent model writes its steps out"
+      ],
+      "answer": 0,
+      "explanation": "An independent scoreboard shows whether the behavior really happened.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-01-q4",
+      "pageId": "fellowship-09-latent-reasoner-probes-01",
+      "type": "choice",
+      "prompt": "A probe's score falls during training. Which is NOT among the possibilities named?",
+      "options": [
+        "The behavior vanished from the model's outputs",
+        "The model has become fully honest and aligned",
+        "Its internal representation of the behavior moved",
+        "The detector stopped transferring"
+      ],
+      "answer": 1,
+      "explanation": "A falling score could mean the behavior vanished, its representation moved, or the detector stopped transferring.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-02-q1",
+      "pageId": "fellowship-09-latent-reasoner-probes-02",
+      "type": "choice",
+      "prompt": "What two reasoning modes are compared?",
+      "options": [
+        "Two verbal models of different sizes",
+        "A continuous-reasoning model and a verbal baseline",
+        "A human solver and an AI solver",
+        "A probe and a written-reasoning monitor reading the same model"
+      ],
+      "answer": 1,
+      "explanation": "The experiment changes the reasoning mode and then tests pressure on each.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-02-q2",
+      "pageId": "fellowship-09-latent-reasoner-probes-02",
+      "type": "choice",
+      "prompt": "Why add a task-only RL arm without the alarm penalty?",
+      "options": [
+        "To speed up the alarm-penalized run by sharing its early checkpoints",
+        "To see whether ordinary training already breaks the detector",
+        "To train the probe on new data",
+        "To remove the need for held-out tasks when checking the final model"
+      ],
+      "answer": 1,
+      "explanation": "If task-only training also breaks the probe, the penalty isn't the cause.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-02-q3",
+      "pageId": "fellowship-09-latent-reasoner-probes-02",
+      "type": "choice",
+      "prompt": "Why report model size, training history and remaining differences between the two systems?",
+      "options": [
+        "To show that latent models are always larger than verbal ones of equal skill",
+        "To prove the comparison is perfectly matched",
+        "The two architectures can't be made identical, so gaps must be stated",
+        "To replace the need for repeated runs"
+      ],
+      "answer": 2,
+      "explanation": "Match what you can and be transparent about the rest.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-02-q4",
+      "pageId": "fellowship-09-latent-reasoner-probes-02",
+      "type": "choice",
+      "prompt": "One latent run evades the probe faster than one verbal run. Why isn't this enough?",
+      "options": [
+        "Latent models cannot be compared to verbal ones on any shared measure",
+        "Probes never work on latent reasoning, so the faster evasion is expected",
+        "One lucky run or weak baseline can't establish a reliable difference",
+        "The verbal model should evade faster, so the result must be a bug"
+      ],
+      "answer": 2,
+      "explanation": "Independent random starts and equal budgets are needed.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-03-q1",
+      "pageId": "fellowship-09-latent-reasoner-probes-03",
+      "type": "choice",
+      "prompt": "Which three curves are tracked at each checkpoint?",
+      "options": [
+        "Model size, compute cost, and wall-clock time for each training step",
+        "Task success, externally labeled target behavior, and probe detection",
+        "Probe accuracy, training loss, and the learning rate at that checkpoint",
+        "Prompt length, answer length, and generation speed on the held-out set"
+      ],
+      "answer": 1,
+      "explanation": "A quiet alarm alone is not the result; all three are needed.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-03-q2",
+      "pageId": "fellowship-09-latent-reasoner-probes-03",
+      "type": "choice",
+      "prompt": "How is detector evasion defined operationally?",
+      "options": [
+        "The model states that it wants to avoid being caught by the detector",
+        "The probe score falls for any reason, including the behavior simply stopping",
+        "The target behavior disappears entirely while the probe stays frozen",
+        "The measured behavior remains while the frozen detector's sensitivity falls"
+      ],
+      "answer": 3,
+      "explanation": "The definition is about measurements at a controlled false-positive rate, not conscious intent.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-03-q3",
+      "pageId": "fellowship-09-latent-reasoner-probes-03",
+      "type": "truefalse",
+      "prompt": "Being able to decode a label from activations shows the information is present, but causal checks are needed to show it drove the model's answer.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. Decoding shows the information is available, not that it caused the answer; causal checks are needed for that.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-03-q4",
+      "pageId": "fellowship-09-latent-reasoner-probes-03",
+      "type": "choice",
+      "prompt": "A fresh probe trained on later checkpoints recovers detection. What does this suggest?",
+      "options": [
+        "The behavior has disappeared from the later checkpoints",
+        "The frozen probe result should be discarded as an error",
+        "The old readout may have become stale",
+        "Latent reasoning cannot be monitored at all by any probe"
+      ],
+      "answer": 2,
+      "explanation": "It's a diagnostic kept separate from the frozen-probe headline result.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-04-q1",
+      "pageId": "fellowship-09-latent-reasoner-probes-04",
+      "type": "choice",
+      "prompt": "What does the plan do in month 2?",
+      "options": [
+        "Apply alarm-penalized training at full scale across every planned model size",
+        "Write the paper and release the code and frozen probes publicly",
+        "Switch to looped models, since they are easier to train stably",
+        "Build the verbal comparison, external labels, frozen probes and tests"
+      ],
+      "answer": 3,
+      "explanation": "Month 2 establishes controls and shows detection works before trying to break it.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-04-q2",
+      "pageId": "fellowship-09-latent-reasoner-probes-04",
+      "type": "choice",
+      "prompt": "Why is switching to looped models treated as a scope change?",
+      "options": [
+        "Looped models have no internal activations for a probe to read",
+        "Looped models are identical to verbal ones, so the comparison collapses",
+        "Looped models need no probes at all, since their steps are visible",
+        "Recurrence is related to, but not the same as, continuous-thought reasoning"
+      ],
+      "answer": 3,
+      "explanation": "Switching changes the question, so it must be described as such.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-04-q3",
+      "pageId": "fellowship-09-latent-reasoner-probes-04",
+      "type": "truefalse",
+      "prompt": "Demonstrating useful detection should come before trying to break the detector.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "You can't show a detector was trained around unless it worked first.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-09-latent-reasoner-probes-04-q4",
+      "pageId": "fellowship-09-latent-reasoner-probes-04",
+      "type": "choice",
+      "prompt": "The continuous-reasoning RL runs are unstable. What can such a result still offer?",
+      "options": [
+        "It certifies all latent reasoners as safe",
+        "It proves latent models always evade probes once training gets unstable",
+        "It can identify which comparisons are feasible",
+        "It replaces the need for a verbal baseline in any later experiments"
+      ],
+      "answer": 2,
+      "explanation": "Even a null or instability result is informative, but it cannot certify safety.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-01-q1",
+      "pageId": "fellowship-10-introspection-foundation-01",
+      "type": "choice",
+      "prompt": "How are the training pairs for the shared adapter made?",
+      "options": [
+        "Each model is paired with a randomly chosen behavior label as a control",
+        "Human testers write a confession for each model after chatting with it",
+        "Each fine-tuned variant is paired with a description of its known behavior",
+        "The base model describes its own training data, and that text becomes the label"
+      ],
+      "answer": 2,
+      "explanation": "Many variants of the same base with known behaviors form labeled examples.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-01-q2",
+      "pageId": "fellowship-10-introspection-foundation-01",
+      "type": "choice",
+      "prompt": "When the shared adapter is attached to a variant, where do the learned differences come from?",
+      "options": [
+        "The underlying variant supplies them",
+        "The adapter stores each variant's behavior in its own weights",
+        "The base model's original pretraining data, recalled on request",
+        "A separate activation-reading program that runs beside the adapter"
+      ],
+      "answer": 0,
+      "explanation": "The adapter is shared; the variant provides what's different about it.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-01-q3",
+      "pageId": "fellowship-10-introspection-foundation-01",
+      "type": "choice",
+      "prompt": "Why test the adapter on held-out behavior families and fine-tuning methods?",
+      "options": [
+        "To make the adapter train more quickly on fewer, more varied examples",
+        "To avoid scoring reports against behavior, which is costly to measure",
+        "To check it generalizes rather than memorizing the training variants",
+        "To give it more examples to memorize before the final evaluation"
+      ],
+      "answer": 2,
+      "explanation": "Testing on unfamiliar variants shows whether the method generalizes.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-01-q4",
+      "pageId": "fellowship-10-introspection-foundation-01",
+      "type": "truefalse",
+      "prompt": "The cited generalization result supports the adapter as a promising auditing tool, but it does not guarantee that every self-report is correct.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "True. It supports a promising auditing tool, not a general guarantee; robustness is the next research question.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-02-q1",
+      "pageId": "fellowship-10-introspection-foundation-02",
+      "type": "choice",
+      "prompt": "What is a 'fingerprint' in the context of adapter reports?",
+      "options": [
+        "The model's measured behavior on held-out tasks",
+        "A clue about how training happened",
+        "A record of the model's past confessions to auditors",
+        "The adapter's confidence score"
+      ],
+      "answer": 1,
+      "explanation": "A reliable reporter should track the behavior, not the training fingerprint.",
+      "difficulty": 1
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-02-q2",
+      "pageId": "fellowship-10-introspection-foundation-02",
+      "type": "choice",
+      "prompt": "Why include unchanged base models and harmless fine-tunes when evaluating the adapter?",
+      "options": [
+        "So the adapter can be trained on more variants without extra fine-tuning",
+        "So the reports become longer and more detailed for every model tested",
+        "So the base model learns the target behaviors",
+        "Otherwise a tool might learn to find a problem everywhere"
+      ],
+      "answer": 3,
+      "explanation": "Clean controls reveal false positives, which have been reported on models without trained behaviors.",
+      "difficulty": 2
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-02-q3",
+      "pageId": "fellowship-10-introspection-foundation-02",
+      "type": "choice",
+      "prompt": "An auditing system allowed to say 'uncertain' answers fewer cases. What is the tradeoff?",
+      "options": [
+        "Precision can improve while more cases are left unresolved",
+        "Precision falls, but every case still gets a definite answer",
+        "Coverage rises along with false alarms",
+        "Nothing changes since abstaining is free"
+      ],
+      "answer": 0,
+      "explanation": "Measure whether confidence tracks correctness and how abstaining changes coverage.",
+      "difficulty": 3
+    },
+    {
+      "id": "fellowship-10-introspection-foundation-02-q4",
+      "pageId": "fellowship-10-introspection-foundation-02",
+      "type": "choice",
+      "prompt": "Why is a correct report on one model insufficient to trust the adapter?",
+      "options": [
+        "Reliability depends on false alarms, misses, new settings and attacks",
+        "One model is too small a test to run the adapter's full scoring pipeline on",
+        "Correct reports are always produced by chance, so one success says nothing",
+        "The adapter only works on the single model it was trained alongside"
+      ],
+      "answer": 0,
+      "explanation": "The useful question is when a report deserves trust.",
+      "difficulty": 2
+    }
+  ]
+}

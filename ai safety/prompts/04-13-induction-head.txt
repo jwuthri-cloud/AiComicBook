@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "INDUCTION HEAD". Subtitle: "Copy what followed the earlier match". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine reading 'red blue ... red' and guessing 'blue' because it followed red before. An induction head helps with this kind of pattern copying."
+2. HOW IT WORKS
+"In the classic pattern A B ... A, the head attends toward the earlier B associated with A, helping predict B again. Earlier heads can supply the matching information."
+3. SEE AN EXAMPLE
+"With A B C A, a classic induction pattern raises B's score. The later A points back toward the B that followed the earlier A."
+4. WHY IT MATTERS
+"Induction heads help explain some learning from context. They are not the entire explanation of in-context learning, and larger models can use more complicated variants."
+Footer: "MATCH AN EARLIER PATTERN; COPY WHAT FOLLOWED.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

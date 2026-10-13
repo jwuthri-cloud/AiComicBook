@@ -1,0 +1,182 @@
+{
+  "collection": "SWE",
+  "pages": [
+    {
+      "image": "SWE/01-git-commands.png",
+      "title": "Master the Main Git Commands",
+      "subtitle": "A comic cheat sheet for the commands you'll use most",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "What Git Does",
+          "body": "Tracks changes in your code.\nLets you save versions with commits.\nMakes branching and collaboration easier.\nWorking directory (your files) -> staging area (prepare changes) -> repository (.git, saved history).\nGit = time machine for your code."
+        },
+        {
+          "number": 2,
+          "heading": "Start Here",
+          "body": "git init — create a new repo in the current folder.\ngit clone <url> — copy an existing repo.\ngit remote -v — view connected remotes.",
+          "code": "git init\ngit clone <url>\ngit remote -v"
+        },
+        {
+          "number": 3,
+          "heading": "See Changes / Stage Files",
+          "body": "git status — see changed, staged, and untracked files.\ngit add <file> — stage one file.\ngit add . — stage all current changes.\ngit restore --staged <file> — unstage a file.\nFile (changed) -> stage (staged) -> repo (commit).",
+          "code": "git status\ngit add <file>\ngit add .\ngit restore --staged <file>"
+        },
+        {
+          "number": 4,
+          "heading": "Commit",
+          "body": "git commit -m \"message\" — save staged changes.\ngit commit --amend — update the last commit.\nTip: good commit messages = short and specific.\nDiagram: commit A -> commit B -> new commit (--amend) replaces the last one.",
+          "code": "git commit -m \"message\"\ngit commit --amend"
+        },
+        {
+          "number": 5,
+          "heading": "Branches",
+          "body": "git branch — list branches.\ngit switch -c feature/login — create and switch to a new branch.\ngit switch main — move to another branch.\ngit merge feature/login — merge a branch into the current branch.\nDiagram: feature/login branches off main and merges back in.",
+          "code": "git branch\ngit switch -c feature/login\ngit switch main\ngit merge feature/login"
+        },
+        {
+          "number": 6,
+          "heading": "Push / Pull / Fetch",
+          "body": "git push -u origin main — push and set upstream.\ngit push — send local commits to remote.\ngit pull — fetch + merge remote changes.\ngit fetch — download updates without merging.\nYour machine pushes to the remote (server); pull and fetch bring changes back.",
+          "code": "git push -u origin main\ngit push\ngit pull\ngit fetch"
+        },
+        {
+          "number": 7,
+          "heading": "Look Around",
+          "body": "git log --oneline --graph --all — compact history view.\ngit diff — inspect unstaged changes.\ngit diff --staged — inspect staged changes.\ngit show <commit> — inspect a specific commit.\nExample output of git log --oneline --graph --all: a1b2c3d (HEAD -> main, origin/main) Fix login bug; e4f5a6b Add unit tests; c7d8e9f (feature/login) Add login page; 123abcd Initial commit.",
+          "code": "git log --oneline --graph --all\ngit diff\ngit diff --staged\ngit show <commit>"
+        },
+        {
+          "number": 8,
+          "heading": "Fix Mistakes",
+          "body": "git restore <file> — discard local file changes.\ngit revert <commit> — make a new commit that undoes an old one.\ngit reset --soft HEAD~1 — undo last commit, keep changes staged.\ngit reset --hard HEAD~1 — erase last commit and local changes.\nUse --hard carefully. It can't be undone.",
+          "code": "git restore <file>\ngit revert <commit>\ngit reset --soft HEAD~1\ngit reset --hard HEAD~1"
+        },
+        {
+          "number": 9,
+          "heading": "Useful Extras",
+          "body": "git stash — save work temporarily.\ngit stash pop — restore stashed work.\ngit tag v1.0.0 — mark a release.\n.gitignore — ignore files you don't want tracked.\nSimple workflow: edit -> status -> add -> commit -> push.",
+          "code": "git stash\ngit stash pop\ngit tag v1.0.0"
+        }
+      ],
+      "footer": "Check. Stage. Commit. Branch. Push.",
+      "summary": "A tour of everyday Git: how the working directory, staging area and repository relate, plus the core commands for starting a repo, staging, committing, branching, syncing with a remote, inspecting history and undoing mistakes.",
+      "keywords": [
+        "Git",
+        "Repository",
+        "Staging area",
+        "Commit",
+        "Branch",
+        "Merge",
+        "Push",
+        "Pull",
+        "Fetch",
+        "Git reset",
+        "Git stash",
+        ".gitignore"
+      ]
+    },
+    {
+      "image": "SWE/02-git-cheat-sheet.png",
+      "title": "Git Cheat Sheet",
+      "subtitle": "The Essential Commands. Master Git. Ship confidently.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Setup & Config",
+          "body": "Set your name, set your email, check config, and set the default branch name for new repos.",
+          "code": "# Set your name\ngit config --global user.name \"Your Name\"\n# Set your email\ngit config --global user.email \"you@example.com\"\n# Check config\ngit config --list\n# Set default branch name (new repos)\ngit config --global init.defaultBranch main"
+        },
+        {
+          "number": 2,
+          "heading": "Start a Repo",
+          "body": "Initialize a new repo, clone an existing repo, or show remote origins. Diagram: the remote (origin) syncs with your machine.",
+          "code": "# Initialize new repo\ngit init\n# Clone existing repo\ngit clone <repo-url>\n# Show remote origins\ngit remote -v"
+        },
+        {
+          "number": 3,
+          "heading": "Daily Workflow",
+          "body": "The flow: work -> add -> commit -> push. Repeat!",
+          "code": "# See changes\ngit status\n# Stage files\ngit add <file>    # or: git add .\n# Commit changes\ngit commit -m \"Your message\"\n# Push to remote\ngit push origin <branch>"
+        },
+        {
+          "number": 4,
+          "heading": "Inspect & View",
+          "body": "Tip: use space to scroll in `less`, q to quit.",
+          "code": "# See commit history (pretty)\ngit log --oneline --graph --decorate --all\n# See changes in working directory\ngit diff\n# See staged changes\ngit diff --staged\n# Show info about a commit\ngit show <commit-hash>\n# See file / branch details\ngit show <branch or file>"
+        },
+        {
+          "number": 5,
+          "heading": "Branching",
+          "body": "Branches are lightweight and cheap. Diagram: a feature branch splits off main and runs alongside it.",
+          "code": "# List branches\ngit branch\n# Create new branch\ngit branch <new-branch>\n# Switch branch\ngit checkout <branch>\n# Create & switch\ngit checkout -b <new-branch>\n# Delete branch\ngit branch -d <branch>\n# Rename branch\ngit branch -m <new-name>"
+        },
+        {
+          "number": 6,
+          "heading": "Undo & Recover",
+          "body": "Caution: git reset --hard can permanently lose work. Use with care!",
+          "code": "# Unstage a file\ngit restore --staged <file>\n# Discard changes in working dir\ngit restore <file>\n# Revert a commit (safe)\ngit revert <commit-hash>\n# Reset current branch (moves HEAD)\ngit reset --soft <commit>    # keep changes staged\ngit reset --mixed <commit>   # keep changes in working dir\ngit reset --hard <commit>    # discard all changes"
+        },
+        {
+          "number": 7,
+          "heading": "Remotes",
+          "body": "Tip: FETCH = download; PULL = download + merge; PUSH = upload.",
+          "code": "# Add remote\ngit remote add origin <repo-url>\n# List remotes\ngit remote -v\n# Fetch (download only)\ngit fetch origin\n# Pull (fetch + merge)\ngit pull origin <branch>\n# Push\ngit push origin <branch>\n# Remove remote\ngit remote remove origin"
+        },
+        {
+          "number": 8,
+          "heading": "Stash",
+          "body": "Perfect for context switching without committing!",
+          "code": "# Stash current changes\ngit stash\n# List stashes\ngit stash list\n# Apply latest stash (keep in stash list)\ngit stash apply\n# Apply & drop latest stash\ngit stash pop\n# Apply specific stash\ngit stash apply stash@{2}\n# Drop a stash\ngit stash drop stash@{2}"
+        },
+        {
+          "number": 9,
+          "heading": "Cherry-Pick",
+          "body": "Apply a specific commit from another branch. Diagram: commit C from feature/login (A-B-C) is copied as C' onto main (A-B), i.e. pick C onto main.\nGreat for small, isolated changes.\nConflict? Resolve, then run git cherry-pick --continue, or abort with git cherry-pick --abort.",
+          "code": "# Apply a specific commit from another branch\ngit cherry-pick <commit-hash>\n# After resolving a conflict\ngit cherry-pick --continue\n# Or abort\ngit cherry-pick --abort"
+        },
+        {
+          "number": 10,
+          "heading": "Merge vs Rebase — What's the Difference?",
+          "body": "Merge (preserves history): keeps the full history; creates a merge commit (M); best for shared branches. Good for collaboration, when history matters.\nRebase (rewrites history): replays your commits on top (C1, C2 become C1', C2' after main's latest commit); keeps history clean & linear; best for local branches. Good for clean history before merging / PR.\nWhen to use what? Use MERGE when: working on shared branches; you want to preserve full history; you want to show where branches met. Use REBASE when: cleaning up your own feature branch; preparing PR with a clean history; you haven't pushed (or coordinated) yet.\nNEVER rebase commits that others have already based work on!",
+          "code": "# Merge\ngit checkout main\ngit merge feature\n\n# Rebase\ngit checkout feature\ngit rebase main"
+        },
+        {
+          "number": 11,
+          "heading": "Tags & Releases",
+          "body": "",
+          "code": "# List tags\ngit tag\n# Create tag\ngit tag -a v1.0.0 -m \"Version 1.0.0\"\n# Push tags\ngit push origin --tags\n# Delete tag\ngit tag -d v1.0.0"
+        },
+        {
+          "number": 12,
+          "heading": "Submodules (Basics)",
+          "body": "Use submodules for dependencies that live in their own repos.",
+          "code": "# Add submodule\ngit submodule add <repo-url> path/\n# Init & update\ngit submodule update --init --recursive\n# Update submodule\ngit submodule update --remote --merge"
+        },
+        {
+          "number": 13,
+          "heading": "Handy Aliases (Examples)",
+          "body": "Aliases = speed. Less typing, more shipping.",
+          "code": "# Add these to ~/.gitconfig\n[alias]\n  st = status\n  co = checkout\n  br = branch\n  ci = commit\n  lg = log --oneline --graph --decorate --all"
+        }
+      ],
+      "footer": "Good Git habits = fewer bugs, happier team, better you. Commit small & often. Write good messages. Pull before you push. Don't commit secrets.",
+      "summary": "A dense reference of essential Git commands grouped by task: setup, starting a repo, the daily add-commit-push loop, inspecting history, branching, undoing changes, remotes, stash, cherry-pick, tags, submodules and aliases. It also explains when to merge versus rebase.",
+      "keywords": [
+        "Git",
+        "Git config",
+        "Branching",
+        "Git reset",
+        "Git revert",
+        "Remote",
+        "Git stash",
+        "Cherry-pick",
+        "Merge vs rebase",
+        "Tags",
+        "Submodules",
+        "Git aliases"
+      ]
+    }
+  ]
+}

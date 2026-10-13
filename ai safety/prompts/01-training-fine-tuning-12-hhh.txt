@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: HHH
+SUBTITLE: Helpful, honest, and harmless.
+1. THE IDEA
+HHH is a familiar trio of goals for an assistant. Helpful means useful assistance. Honest means truthful communication, including uncertainty. Harmless means avoiding assistance that causes harm.
+2. HOW IT WORKS
+Training examples and feedback can encourage all three goals. They sometimes pull in different directions, so the model needs context-sensitive judgment rather than one simple rule such as always obey.
+3. SEE IT HAPPEN
+A child asks how to repair a broken toy. A good reply gives safe, useful steps and admits what cannot be checked from the description. Draw three overlapping circles around the answer.
+4. WHY IT MATTERS
+A friendly tone does not prove honesty. Refusing every request is not helpful. These broad goals need careful definitions, evaluation, and choices about difficult cases. HHH is a target, not a safety certificate.
+FOOTER: Useful help should also be truthful and responsible.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

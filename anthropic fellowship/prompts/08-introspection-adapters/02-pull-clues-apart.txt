@@ -1,0 +1,27 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 08 · PAGE 2/4
+Title: PULL CLUES APART
+Subtitle: Build controls that separate habit from training history
+
+Panel 1 heading: Learn a shared reporter
+Exact paragraph: Create several same-base models with known harmless habits. Keep their behavior updates frozen while training one shared reporting adapter. Use held-out behavior families to test generalization, rather than memorized descriptions.
+
+Panel 2 heading: Understand the small update
+Exact paragraph: LoRA uses low-rank matrices to represent a compact weight update. It can make fine-tuning cheaper, but does not guarantee faithfulness. Check that the reporting adapter matches the exact model architecture and parameter layout.
+
+Panel 3 heading: Build matched controls
+Exact paragraph: Include the untouched base, ordinary benign fine-tunes, sham training with comparable compute, and habit-bearing models. Match update size and training recipe where possible. Verify supposed no-change controls with a broad behavioral battery.
+
+Panel 4 heading: Cross the variables
+Exact paragraph: Train the same habit with different data and recipes. Train different habits with similar recipes. Split by model and behavior family, not just by question. Otherwise the reporter could recognize a familiar training signature.
+
+Panel 5 heading: Probe representation sensitivity
+Exact paragraph: A valid weight symmetry can preserve a model’s function while changing parameter coordinates. Existing research shows this can disrupt a fixed adapter. Check behavior preservation first; distinguish coordinate mismatch from deliberate concealment.
+
+Panel 6 heading: Keep references independent
+Exact paragraph: Measure the target without the reporting adapter, then with it on ordinary tasks. Blind human graders to training labels. Include direct questioning without an adapter and another auditing baseline under matched query budgets.
+
+Readable WORD KEY box: LoRA = low-rank adaptation
+
+Footer: CHANGE THE HABIT AND THE FINGERPRINT SEPARATELY.

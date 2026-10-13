@@ -1,0 +1,25 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 07 · PAGE 4/4
+Title: FOUR-MONTH MISSION
+Subtitle: A proposed plan with an explicit fallback
+
+Panel 1 heading: Month 1: establish ground truth
+Exact paragraph: Reproduce a small distributed-attack setting. Build honest controls, outcome checks, and saved trajectories. Confirm that a known-group monitor can use combined evidence before investing in automatic group discovery.
+
+Panel 2 heading: Month 2: build and calibrate
+Exact paragraph: Implement grouping, aggregation, and hierarchical review. Tune only on development scenarios. Track costs per episode and reserve unseen attack families for final evaluation. Freeze a baseline defender for later comparisons.
+
+Panel 3 heading: Month 3: challenge the defense
+Exact paragraph: Run repeated adaptive red-teaming with fixed attempt budgets. Compare blind and informed attackers. Add seeds and ablations. Use isolated simulations and independent outcome checks instead of trusting attacker or monitor self-reports.
+
+Panel 4 heading: Month 4: finish the artifact
+Exact paragraph: Run the locked test once the protocol is settled. Release a documented setting, anonymized toy trajectories, grouping code, baselines, and a paper. Report negative results and every important access assumption.
+
+Panel 5 heading: Compute planning estimate
+Exact paragraph: Supplied map: $10,000–$25,000, mostly model-call spending. This is an experiment estimate, not comic-production cost or a quote. Pilot token usage and rerun prices; reserve funds for replications and human labeling.
+
+Panel 6 heading: Fallback and stop rule
+Exact paragraph: If discovery cannot recover useful links on development controls, switch to known groups and study adaptive attacks. Stop scaling if outcome labels or honest baselines fail. A careful failure analysis can still be the deliverable.
+
+Footer: TEST SMALL, FREEZE THE RULES, REPORT THE LIMITS.

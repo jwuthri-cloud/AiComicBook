@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: RED TEAMING
+SUBTITLE: Friendly testers search for failures before attackers do.
+1. THE IDEA
+Imagine asking a friend to find weak spots in a toy castle. AI red teaming deliberately probes a system for risky behavior, security failures, or harmful outputs.
+2. HOW IT WORKS
+Testers use realistic scenarios, adversarial inputs, and specialist knowledge within an agreed scope. They record reproducible failures and help defenders improve safeguards. Humans, automated tools, and AI can all assist.
+3. SEE IT HAPPEN
+A permitted test asks whether an assistant obeys instructions hidden in a harmless document instead of summarizing it. Show tester -> controlled failure -> report -> fix and retest.
+4. WHY IT MATTERS
+Red teaming complements structured evaluations and everyday monitoring. Finding failures is useful, but not finding one does not prove safety. Test coverage, resources, access, and changing systems all limit conclusions.
+5. BEFORE THE TEST
+Set permissions, targets, and stopping conditions. Keep dangerous materials and real systems outside a toy demonstration.
+6. AFTER THE TEST
+Record the failure, improve defenses, and retest. New model versions and new tools can create new failure modes.
+FOOTER: Search for weaknesses, report evidence, fix, and test again.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.
+ACRONYM REQUIREMENT: Add a small, prominent acronym key: AI = Artificial Intelligence. Expand any other abbreviation nearby.

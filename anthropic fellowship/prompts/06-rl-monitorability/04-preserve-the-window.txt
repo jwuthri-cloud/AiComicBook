@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 06 · PAGE 4/4
+Main title: PRESERVE THE WINDOW
+Subtitle: A four-month test with an honest null result.
+ART NOTES (DO NOT PRINT): Use a four-month timeline, budget reserve jar, and decision fork for stop/fallback.
+EXACT PRINTED PANEL CONTENT:
+1. MONTH 1: VALIDATE
+Recheck literature and tool access. Build the eight-billion-parameter training setup. Demonstrate repeatable hacking and reliable independent labels. Validate the reasoning monitor, choose false-alarm thresholds, and freeze the measurement protocol.
+2. MONTH 2: SWEEP
+Test entropy bonuses, a precisely defined on-policy distillation recipe, and reasoning-token divergence penalties. Use length penalties as a reference. Allocate multiple seeds and save checkpoints so changes can be measured through training.
+3. MONTH 3: CONFIRM
+If small-model effects survive controls, confirm the two strongest contrasts near thirty-two billion parameters. Include a no-extra-pressure control. Larger scale tests transfer; it does not rescue a noisy or unvalidated small-model measurement.
+4. MONTH 4: WRITE
+Release evaluation code, labels, monitor versions, training settings, and a paper with scoped practical recommendations. Explain which channels survived, which degraded, and what a training team would need to measure before changing defaults.
+5. STOP WITH A USEFUL NULL
+If no setting changes verbalization or detection reliably at small scale, stop before costly larger runs. Report uncertainty and detectable effect sizes. A null bounds these tested settings; it does not prove monitorability will last forever.
+6. PLANNING ESTIMATE
+Compute: $35,000–$55,000 from the supplied map, not a quote or guaranteed funding. Protect a reserve for labels, failed pilots, and replication. RL = reinforcement learning. Recheck novelty before pitching; the experiment has not yet produced results.
+FOOTER: PRESERVE THE EVIDENCE CHANNEL; MEASURE BEFORE YOU SCALE.

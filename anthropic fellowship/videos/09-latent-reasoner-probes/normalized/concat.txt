@@ -1,0 +1,4 @@
+file '01-thinking-without-a-written-trace.mp4'
+file '02-the-matched-experiment.mp4'
+file '03-is-it-evasion-or-a-broken-sensor.mp4'
+file '04-a-four-month-latent-reasoning-study.mp4'

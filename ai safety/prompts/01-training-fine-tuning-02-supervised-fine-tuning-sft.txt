@@ -1,0 +1,12 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: SUPERVISED FINE-TUNING (SFT)
+SUBTITLE: Learning from worked examples.
+1. THE IDEA
+Imagine a teacher showing good answers, then asking you to practice the same kind of task. SFT teaches a model by showing examples of inputs and desired outputs.
+2. HOW IT WORKS
+The training system predicts each next token in a target answer. When its prediction differs, an update makes the example answer more likely. Many examples gradually change the model's weights.
+3. SEE IT HAPPEN
+Question: How do I sort these toys? Example answer: Put blocks together and cars together. Practice on varied examples helps the model answer similar new questions.
+4. WHY IT MATTERS
+SFT can teach instructions, skills, and style. But copying good-looking examples does not guarantee understanding or safe behavior in new situations. Bad examples can teach bad habits.
+FOOTER: SFT learns patterns from example answers.

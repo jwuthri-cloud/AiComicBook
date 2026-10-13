@@ -1,0 +1,1 @@
+Precise acronym expansion on this educational comic. In the top WORD KEY box, add a readable fourth line: 'ckpt = checkpoint (a saved model version).' The checkpoint cubes in panel 1 already say ckpt. Preserve all other text, layout, colors, diagrams, panels, and labels exactly.

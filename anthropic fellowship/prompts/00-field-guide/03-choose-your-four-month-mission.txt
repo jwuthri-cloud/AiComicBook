@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: CHOOSE YOUR FOUR-MONTH MISSION
+SUBTITLE: Compare research paths before committing your budget.
+FOLIO: FIELD GUIDE · PAGE 3/3
+READABLE WORD KEY: RL = reinforcement learning; compute = processing resources used for training and evaluation.
+
+PANEL 1 HEADING: The map is a starting point
+EXACT BODY: The supplied map lists nine candidate projects and one completed foundation. Its novelty labels and budgets are dated planning claims. Recheck the literature and available tools before pitching.
+ART DIRECTION (never print): Nine candidate tiles and one foundation tile.
+
+PANEL 2 HEADING: Two ways to investigate
+EXACT BODY: Projects 1 and 2 ask whether evaluation behavior can mislead auditors. Projects 3 and 4 track how training changes models and whether reward hacking transfers to other settings.
+ART DIRECTION (never print): Pairs 1–2 AUDITING and3–4 TRAINING EFFECTS.
+
+PANEL 3 HEADING: Two ways to watch
+EXACT BODY: Projects 5 and 6 study detector combinations and the monitorability cost of ordinary RL. Project 7 asks whether a monitor can connect actions spread across agents.
+ART DIRECTION (never print): Three numbered tiles: DETECTOR TEAMS, TRAINING SETTINGS, SHARED CONTEXT.
+
+PANEL 4 HEADING: Two deeper windows
+EXACT BODY: Project 8 stress-tests behavior-reporting adapters. Project 9 compares probe evasion in verbal and latent reasoners. Completed project 10 explains the adapter foundation behind project 8.
+ART DIRECTION (never print): 8 ADAPTER STRESS TEST;9 LATENT REASONING;10 FOUNDATION.
+
+PANEL 5 HEADING: Budget is a research constraint
+EXACT BODY: The official program describes four months and roughly $15,000 monthly compute funding. The map's project estimates range from $8,000 to $55,000. Reserve funds for failed runs, evaluation, and replication.
+ART DIRECTION (never print): Four-month timeline and budget reserve jar; no spending recommendation.
+
+PANEL 6 HEADING: Prepare the mentor conversation
+EXACT BODY: Bring one sentence stating the question, a baseline you can reproduce, a small first experiment, and a fallback. Researcher names in the map indicate topic fit, not confirmed mentorship.
+ART DIRECTION (never print): Four pitch cards: QUESTION, BASELINE, FIRST TEST, FALLBACK.
+FOOTER: PICK A QUESTION WITH A CLEAR FIRST TEST AND A USEFUL FALLBACK.

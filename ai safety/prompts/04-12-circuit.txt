@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Six numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "CIRCUIT". Subtitle: "Parts working together". Six numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"A toy's light works because a switch, wire, and battery connect. An AI circuit is a set of interacting parts that contributes to a behavior."
+2. HOW IT WORKS
+"Researchers may identify heads, neurons, or features and trace how information passes between them. They test whether changes to these parts affect the behavior."
+3. SEE AN EXAMPLE
+"A simple copying circuit could find an earlier match, move the following token's information, and increase that token's score. Each step contributes to a behavior."
+4. WHY IT MATTERS
+"Circuits give explanations more specific than 'the model knows it'. A discovered circuit can be partial, depend on context, or have backup routes. Tests matter more than an attractive diagram."
+5. TEST THE CLAIM
+"Use fresh examples and compare before and after an intervention. Ask whether the measured change supports the proposed explanation."
+6. CHECK YOUR UNDERSTANDING
+"Can you explain the diagram in your own words? Separate what the tool measures from what researchers infer. A useful clue still needs careful testing."
+Footer: "A CIRCUIT EXPLAINS HOW PARTS PRODUCE A BEHAVIOR.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

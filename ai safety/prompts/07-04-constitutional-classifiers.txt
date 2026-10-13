@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use every panel, sequential numbering, varied panel sizes and clear reading order. Title: CONSTITUTIONAL CLASSIFIERS
+Subtitle: Teaching safety filters from written principles.
+Panel 1 heading: THE IDEA
+Exact body: "A gatekeeper learns examples of what may enter and what should be stopped, using a clear rulebook."
+Panel 2 heading: START WITH PRINCIPLES
+Exact body: "A constitution defines allowed and disallowed content categories. It is a safety specification, not a legal constitution."
+Panel 3 heading: MAKE TRAINING EXAMPLES
+Exact body: "AI-generated prompts and responses provide varied examples of those categories, including attempts to disguise disallowed requests."
+Panel 4 heading: TRAIN THE FILTERS
+Exact body: "Input and output classifiers learn to flag content. They guard an assistant before or during its response."
+Panel 5 heading: TWO POSSIBLE ERRORS
+Exact body: "A filter can miss harmful content or block harmless content. Evaluate both, including new attacks and ordinary questions."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "This can strengthen jailbreak defenses, but does not eliminate every attack. Pair filters with other protections and keep updating their tests."
+Visual directions (do not print these instructions): Rulebook gatekeeper; principles to examples to classifiers to guarded model pipeline; false-negative and false-positive comparison; layered shields.. Give each added panel a meaningful small illustration.
+Exact footer: "CLEAR RULES → GOOD EXAMPLES → TESTED FILTERS."

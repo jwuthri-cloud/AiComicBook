@@ -1,0 +1,46 @@
+{
+  "title": "Stress-testing introspection adapters",
+  "source_project_number": 8,
+  "status": "proposed research study; independent educational guide",
+  "learning_objectives": [
+    "Explain the core question and mechanism",
+    "Design matched controls and held-out evaluations",
+    "Interpret metrics, uncertainty, and failure modes",
+    "Describe the four-month plan, compute estimate, and fallback"
+  ],
+  "pages": [
+    {
+      "number": 1,
+      "title": "TEST THE REPORTER",
+      "image": "01-test-the-reporter.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 2,
+      "title": "PULL CLUES APART",
+      "image": "02-pull-clues-apart.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 3,
+      "title": "CHALLENGE AND MEASURE",
+      "image": "03-challenge-and-measure.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 4,
+      "title": "FOUR-MONTH AUDIT",
+      "image": "04-four-month-audit.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    }
+  ],
+  "production_status": "complete; four pages generated and visually inspected"
+}

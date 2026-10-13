@@ -1,0 +1,1 @@
+Surgical text repair only. In panel 2, all three small colored labels next to robot faces must read exactly 'Describe your behavior.' Fix the bottom label currently garbled as 'Denbe your behavior.' Preserve all other text, illustrations, panels, colors and layout. Do not add new content.

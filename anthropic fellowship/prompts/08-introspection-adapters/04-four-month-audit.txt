@@ -1,0 +1,25 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 08 · PAGE 4/4
+Title: FOUR-MONTH AUDIT
+Subtitle: A proposed reliability study, not a promised outcome
+
+Panel 1 heading: Month 1: reproduce
+Exact paragraph: Reproduce a compatible adapter setup, using the supplied map’s roughly 32-billion-parameter scale only if tools and resources permit. Measure unmodified-model false positives and verify the evaluation pipeline before broad experiments.
+
+Panel 2 heading: Month 2: matched contrasts
+Exact paragraph: Build behavior-matched and recipe-matched controls. Test fingerprint sensitivity, calibration, and abstention. Freeze the reporter and scoring rubric before final tests. Reserve unseen habits and models for the locked evaluation.
+
+Panel 3 heading: Month 3: stronger challenges
+Exact paragraph: Evaluate reward-trained toy organisms and reporter-aware adversarial training. Check retained behavior independently. Add matched training-budget controls, several seeds, and coordinate-preserving checks for any symmetry experiment.
+
+Panel 4 heading: Month 4: publish the limits
+Exact paragraph: Release a reproducible evaluation suite, control models where permitted, prompts, scoring rubric, and a paper. Document compatibility, false alarms, coverage, and failures. Share enough detail for independent replication.
+
+Panel 5 heading: Compute planning estimate
+Exact paragraph: Supplied map: $8,000–$15,000 for experiments, not comic production. Hardware rental, model calls, and labeling vary. Run a small pilot and price actual workloads; reduce scale before sacrificing controls or independent replications.
+
+Panel 6 heading: Fallback and null results
+Exact paragraph: If false positives are already near zero, prioritize the adversarial arm. If behavior controls cannot be validated, pause scaling and fix them. A null can bound tested failure modes; it cannot certify universal trustworthiness. Recheck literature before pitching.
+
+Footer: A RELIABLE AUDIT NEEDS CONTROLS, NOT JUST CONFESSIONS.

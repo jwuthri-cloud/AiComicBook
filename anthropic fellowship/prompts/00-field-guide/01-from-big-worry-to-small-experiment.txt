@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: FROM BIG WORRY TO SMALL EXPERIMENT
+SUBTITLE: A research project is a question you can test.
+FOLIO: FIELD GUIDE · PAGE 1/3
+READABLE WORD KEY: AI = artificial intelligence; RL = reinforcement learning.
+
+PANEL 1 HEADING: The playground analogy
+EXACT BODY: Imagine checking whether a robot follows playground rules even when the referee looks away. Start with one clear rule and one measurable action—not a verdict about the robot's whole character.
+ART DIRECTION (never print): Robot sorting blocks under a referee's lamp.
+
+PANEL 2 HEADING: The real research loop
+EXACT BODY: Ask a question, make a prediction, build a controlled test, measure what happened, and update your explanation. A useful result can support, weaken, or narrow the original idea.
+ART DIRECTION (never print): Question → prediction → experiment → evidence → revised idea.
+
+PANEL 3 HEADING: A model organism
+EXACT BODY: Researchers create a model with a known behavior so auditing tools can be tested. This is a controlled research example, not proof that deployed systems behave the same way.
+ART DIRECTION (never print): Research model beside a labeled toy task.
+
+PANEL 4 HEADING: Three windows
+EXACT BODY: Behavioral tests watch actions. Text monitors read generated explanations. Internal tools measure activations. Each window can miss something; agreement helps, but none is a magic mind reader.
+ART DIRECTION (never print): Three separate windows labeled ACTIONS, TEXT, INTERNAL SIGNALS.
+
+PANEL 5 HEADING: Training pressure changes the test
+EXACT BODY: RL updates a model using rewards. If rewards depend on a detector, the model may change the behavior, the visible clues, or both. Measure them separately.
+ART DIRECTION (never print): Reward loop with two branches: behavior and clues.
+
+PANEL 6 HEADING: Your fellowship question
+EXACT BODY: After four months, what specific uncertainty could you reduce? Name the model, task, comparison, measurement, and failure rule. A small trustworthy answer beats an impressive but ambiguous story.
+ART DIRECTION (never print): Five labeled cards: MODEL, TASK, COMPARISON, MEASURE, STOP RULE.
+FOOTER: MAKE THE QUESTION SMALL ENOUGH TO ANSWER.

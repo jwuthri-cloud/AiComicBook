@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 05 · PAGE 3/4
+Main title: WHEN ALARMS FAIL
+Subtitle: Measure the attacker and the detector together.
+ART NOTES (DO NOT PRINT): Use two scoreboards, matched comparisons, and a warning marker for confounds. Any abstract graph must be labeled SCHEMATIC and contain no numerical invented results.
+EXACT PRINTED PANEL CONTENT:
+1. THE TWO NUMBERS
+Report successful misleading behavior and the fraction detected. An attacker that becomes honest has not successfully evaded. An attacker that gives nonsense may exploit the score without producing a meaningful lie.
+2. A FAIR COMPARISON
+Compare detection at a fixed false-positive rate and equal evaluation cost. Add ranking quality, calibration, and abstention coverage. Break results down by lie type and model family; one average can hide a dangerous failure.
+3. BELIEF-VERIFIED TESTS
+Use organisms with repeated evidence that their neutral responses support one answer while pressured outputs assert another. Verify held-out behavior. If verification relies on visible reasoning, it can favor reasoning-reading judges: report that selection bias.
+4. DO THEIR ERRORS DIFFER?
+Measure which examples fool each detector. If every detector misses the same cases, a larger team adds little. Remove one component at a time and compare matched-cost alternatives to isolate useful diversity.
+5. TRY A STRONGER ATTACK
+Give attackers comparable training compute and query budgets. Test awareness of the full frozen stack, alternative lie types, paraphrases, and new runs. Failure to find an evasion is evidence about this search, not a proof none exists.
+6. WORD KEY + CHECK
+RL = reinforcement learning. False-positive rate = honest examples flagged divided by honest examples tested. Ablation = remove one component to test its contribution. Ask: did the stack improve robust detection or merely shout more often?
+FOOTER: COUNT BOTH THE LIES CAUGHT AND THE HONEST CASES ACCUSED.

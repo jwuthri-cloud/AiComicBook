@@ -1,0 +1,25 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 07 · PAGE 2/4
+Title: BUILD THE WATCHER
+Subtitle: Discover groups, combine evidence, choose a response
+
+Panel 1 heading: Start with a harness
+Exact paragraph: Use ControlArena, a library for control experiments, if it supports the required setting. Build a small simulated multi-agent game first. Record reproducible actions and judge task success separately from forbidden side effects.
+
+Panel 2 heading: Find candidate links
+Exact paragraph: Turn actions into nodes. Propose links using shared resources, time windows, and dependencies. A link is a hypothesis, not proof of coordination. Keep an audit trail showing which evidence joined each group.
+
+Panel 3 heading: Read small, then large
+Exact paragraph: A first-stage monitor scores individual actions. A second stage reviews candidate groups with their context. A final controller blocks or sends high-risk groups for human review. Preserve original evidence beside summaries.
+
+Panel 4 heading: Compare fairly
+Exact paragraph: Compare per-agent review, simple score aggregation, discovered-group review, and known-group review. Known groups give an informative reference, not a guaranteed upper bound. Match total model calls and human-review budgets.
+
+Panel 5 heading: Freeze before testing
+Exact paragraph: Choose grouping rules, prompts, and alarm thresholds on development tasks. Freeze them before the held-out test. Split whole scenarios and attack families, so pieces of one plan cannot leak across train and test.
+
+Panel 6 heading: Teach the attacker
+Exact paragraph: In controlled red-teaming, reveal the defense design and allow budgeted adaptation. Try benign-looking fragmentation and irrelevant distractors in toy tasks. Save every attempt, including failures; do not select only spectacular wins.
+
+Footer: A BIGGER VIEW HELPS ONLY IF THE LINKS ARE USEFUL.

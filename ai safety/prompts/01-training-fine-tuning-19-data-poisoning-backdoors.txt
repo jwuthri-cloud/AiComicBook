@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: DATA POISONING / BACKDOORS
+SUBTITLE: Bad lessons can hide a secret switch.
+1. THE IDEA
+Data poisoning happens when someone manipulates training data to alter what a model learns. A backdoor is a hidden behavior activated by a particular trigger or condition.
+2. HOW IT WORKS
+Poisoned examples can teach ordinary-looking behavior most of the time and a different response when a trigger appears. Backdoors can also be introduced through model changes; poisoning is one route, not the only one.
+3. SEE IT HAPPEN
+Harmless toy example: an assistant sorts shapes correctly, but a star sticker makes it call every shape a circle. Draw normal inputs and a triggered input. Use no real attack instructions.
+4. WHY IT MATTERS
+Training-data checks and adversarial tests can help uncover problems. A model that passes ordinary tests may still behave differently on rare triggers. A backdoor need not involve a model consciously planning deception.
+5. POISONING IS BROADER
+Poisoning can reduce accuracy or shift behavior without using a trigger. A backdoor specifically creates a hidden conditional behavior.
+6. CHECK THE WHOLE PIPELINE
+Inspect data sources, training procedures, and model artifacts. Trigger testing helps, but an unknown trigger can be hard to discover.
+FOOTER: Clean-looking behavior can hide a trigger-dependent failure.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: PROMPT INJECTION
+SUBTITLE: When outside text tries to become the boss.
+1. THE IDEA
+Imagine a library book telling your helper to ignore you and do something else. Prompt injection places adversarial instructions in content an AI is meant to read or process.
+2. HOW IT WORKS
+The danger arises when the system follows untrusted text as if it had authority. Sources include webpages, documents, messages, or tool results. The attacker tries to redirect the assistant away from the user's task.
+3. SEE IT HAPPEN
+The user asks for a summary of a toy catalog. A malicious note in the catalog tries to change the task. Show separate lanes: trusted user instructions and untrusted catalog content, with a warning at the boundary.
+4. WHY IT MATTERS
+Treat outside content as data, restrict tool permissions, and require strong checks for consequential actions. Filtering text alone is imperfect. Prompt injection can occur even when the user's request is entirely legitimate.
+5. WHO IS ALLOWED TO INSTRUCT?
+Keep user and developer instructions separate from quoted or retrieved content. A document cannot promote itself into trusted authority.
+6. LIMIT THE DAMAGE
+Use minimal tool access and check consequential actions. Strong boundaries reduce risk even when the assistant misreads a document.
+FOOTER: Text you read is not automatically an instruction to obey.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 6.
+ACRONYM REQUIREMENT: Add a small, prominent acronym key: AI = Artificial Intelligence. Expand any other abbreviation nearby.

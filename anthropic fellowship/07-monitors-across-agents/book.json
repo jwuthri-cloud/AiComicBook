@@ -1,0 +1,46 @@
+{
+  "title": "Monitors that see across agents",
+  "source_project_number": 7,
+  "status": "proposed research study; independent educational guide",
+  "learning_objectives": [
+    "Explain the core question and mechanism",
+    "Design matched controls and held-out evaluations",
+    "Interpret metrics, uncertainty, and failure modes",
+    "Describe the four-month plan, compute estimate, and fallback"
+  ],
+  "pages": [
+    {
+      "number": 1,
+      "title": "PIECES OF A PLAN",
+      "image": "01-pieces-of-a-plan.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 2,
+      "title": "BUILD THE WATCHER",
+      "image": "02-build-the-watcher.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 3,
+      "title": "SCORE THE SYSTEM",
+      "image": "03-score-the-system.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    },
+    {
+      "number": 4,
+      "title": "FOUR-MONTH MISSION",
+      "image": "04-four-month-mission.png",
+      "width": 1024,
+      "height": 1536,
+      "visual_qa": "passed"
+    }
+  ],
+  "production_status": "complete; four pages generated and visually inspected"
+}

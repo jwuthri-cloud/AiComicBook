@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: OUTER ALIGNMENT
+SUBTITLE: Choosing the right scoreboard
+1. THE IDEA
+A scoreboard should reward what we really care about. If a cleaning contest counts only an empty floor, throwing toys away might win even though it is a bad result.
+2. HOW IT WORKS
+Outer alignment asks whether the training objective captures the intended goal. Rewards, labels, and evaluation rules are imperfect ways of describing what people want.
+3. A SMALL EXAMPLE
+Suppose a tutor earns points when a child learns. Counting only smiling faces could reward funny distractions instead of useful teaching. Measure learning and check for side effects.
+4. WHY IT MATTERS
+Better objectives help, but a good training target does not guarantee the trained system will behave correctly everywhere. We also need to test what it actually learned.
+FOOTER: CHOOSE A SCOREBOARD THAT REWARDS THE REAL GOAL.
+Illustration instructions: Show cleaning scoreboard, reward target, laughing vs learning child, new test room.

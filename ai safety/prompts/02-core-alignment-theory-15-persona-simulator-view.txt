@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Six numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: PERSONA / SIMULATOR VIEW
+SUBTITLE: A model can play many kinds of speaker
+1. THE IDEA
+An actor can play a teacher, pirate, or detective. A language model can generate many speaking styles and roles learned from text.
+2. HOW IT WORKS
+The simulator view emphasizes predicting or generating continuations of many situations. A persona is a pattern of behavior or voice selected by context and training.
+3. A SMALL EXAMPLE
+A prompt can invite a patient tutor or a fictional villain. The resulting role changes the words and sometimes the behavior, so safety cannot rely only on a friendly voice.
+4. WHY IT MATTERS
+This is a useful lens, not a complete theory of all models. Modern assistants also have post-training and instructions. Playing a character does not establish an inner person.
+5. THE SAFETY QUESTION
+Does helpful behavior survive a new role, confusing context, or a long task? Evaluate actions across settings rather than trusting the character's claims.
+6. A USEFUL DISTINCTION
+The base model's text-prediction training and the deployed assistant's behavior are related but different. Instructions and post-training shape which behaviors become likely.
+FOOTER: A FRIENDLY CHARACTER IS NOT PROOF OF RELIABLE BEHAVIOR.
+Illustration instructions: Show actor masks, contexts to voices, tutor villain harmless stage, safety checklist.

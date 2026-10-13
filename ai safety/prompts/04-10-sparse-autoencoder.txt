@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Six numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "SPARSE AUTOENCODER (SAE)". Subtitle: "Unmix a crowded signal". Six numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine listening to a mixed recording and trying to identify a few instruments. An SAE tries to separate a model's crowded internal activity."
+2. HOW IT WORKS
+"It encodes activations into a larger set of candidate features while encouraging only a few to be active. A decoder reconstructs the original activations from those features."
+3. SEE AN EXAMPLE
+"Activations enter an encoder. Only a few feature lights turn on. A decoder combines those features to reconstruct the original signal, usually with some error."
+4. WHY IT MATTERS
+"SAEs often reveal readable patterns useful for experiments. They are imperfect approximations: features can be missed, split, or mixed, and reconstruction accuracy does not guarantee faithful explanations."
+5. TEST THE CLAIM
+"Use fresh examples and compare before and after an intervention. Ask whether the measured change supports the proposed explanation."
+6. CHECK YOUR UNDERSTANDING
+"Can you explain the diagram in your own words? Separate what the tool measures from what researchers infer. A useful clue still needs careful testing."
+Footer: "SPARSE FEATURES TRY TO REBUILD THE ORIGINAL SIGNAL.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

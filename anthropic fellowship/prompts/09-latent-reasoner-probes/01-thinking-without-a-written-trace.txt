@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: THINKING WITHOUT A WRITTEN TRACE
+SUBTITLE: Book 09: can an internal detector be trained around?
+FOLIO: BOOK 09 · PAGE 1/4
+READABLE WORD KEY: CoT = chain-of-thought; RL = reinforcement learning; AI = artificial intelligence.
+
+PANEL 1 HEADING: Two notebooks
+EXACT BODY: One puzzle solver writes intermediate words. Another passes internal vectors between computation steps. The second notebook is harder for a person to read, but that does not mean it is secretly deceptive.
+ART DIRECTION (never print): Word notebook versus labeled numerical-vector blocks.
+
+PANEL 2 HEADING: What latent means
+EXACT BODY: A latent reasoning system uses continuous internal states for some intermediate steps instead of printing each step as a word. Ordinary language models also have internal activations; the difference is the reasoning interface.
+ART DIRECTION (never print): Explicit route: state → word → state; latent route: state → state.
+
+PANEL 3 HEADING: A probe is a sensor
+EXACT BODY: A probe is a learned readout from internal activations to a target label. It can predict a useful correlate without understanding the whole computation. High accuracy before adversarial training is only the starting point.
+ART DIRECTION (never print): Activations branch into probe and target label.
+
+PANEL 4 HEADING: The proposed question
+EXACT BODY: If RL rewards task performance while penalizing a probe alarm, does detection fail sooner for latent reasoning than for matched verbal reasoning? Compare both under the same task and training pressure.
+ART DIRECTION (never print): Two matched models, same reward and alarm penalty.
+
+PANEL 5 HEADING: Define the target first
+EXACT BODY: Use harmless tasks with an independently checkable event, such as reliance on a planted hint. Record the event outside the probe so the detector is not grading its own homework.
+ART DIRECTION (never print): Toy puzzle with removable hint; independent verifier.
+
+PANEL 6 HEADING: Keep the claim precise
+EXACT BODY: A falling probe score might mean the behavior vanished, its representation moved, or the detector stopped transferring. The next pages show how to tell these possibilities apart.
+ART DIRECTION (never print): Three branches: LESS BEHAVIOR, CHANGED REPRESENTATION, WEAK DETECTOR.
+FOOTER: HIDDEN COMPUTATION NEEDS AN INDEPENDENT SCOREBOARD.

@@ -1,0 +1,20 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: WEAK-TO-STRONG GENERALIZATION
+SUBTITLE: Can a stronger student beat a weaker teacher?
+1. THE QUESTION
+Can limited supervision help a more capable model use what it already knows? A student may have skills that its teacher cannot fully demonstrate.
+2. THE SETUP
+A weaker model supplies training labels for a stronger pretrained model. Researchers compare the trained student's performance with the teacher's.
+3. THE HOPE
+The stronger model may generalize beyond the weak labels by drawing on useful knowledge learned during pretraining, rather than copying every teacher mistake.
+4. A TOY EXAMPLE
+A novice chess teacher labels positions imperfectly. A stronger student can sometimes recover better judgments instead of learning all the novice's errors.
+5. THE EVIDENCE
+Experiments have found students exceeding weak supervisors on some tasks. Methods can improve how much of the stronger model's capability is recovered.
+6. THE LIMIT
+This is not proof that humans can safely supervise superhuman AI. Models can imitate errors, exploit feedback, or fail on different tasks.
+FOOTER: BEATING A WEAK TEACHER IS PROMISING; TRUSTWORTHY SUPERVISION IS HARDER.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+Important accuracy constraint: Do not invent quantitative experimental results. In panel5 use only qualitative arrows labeled 'teacher', 'student', 'room to improve'; no numeric chart, percentages, or measured scores.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

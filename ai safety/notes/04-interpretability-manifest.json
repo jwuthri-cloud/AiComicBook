@@ -1,0 +1,191 @@
+[
+  {
+    "file": "01-mechanistic-interpretability.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2178200,
+    "inspection": "passed"
+  },
+  {
+    "file": "02-residual-stream.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2134245,
+    "inspection": "passed"
+  },
+  {
+    "file": "03-attention-head.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2202113,
+    "inspection": "passed"
+  },
+  {
+    "file": "04-mlp-layer.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2131927,
+    "inspection": "passed"
+  },
+  {
+    "file": "05-feature.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2140676,
+    "inspection": "passed"
+  },
+  {
+    "file": "06-linear-representation-hypothesis.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2195264,
+    "inspection": "passed"
+  },
+  {
+    "file": "07-polysemanticity.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2106110,
+    "inspection": "passed"
+  },
+  {
+    "file": "08-superposition.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2110541,
+    "inspection": "passed"
+  },
+  {
+    "file": "09-monosemanticity.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2156909,
+    "inspection": "passed"
+  },
+  {
+    "file": "10-sparse-autoencoder.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2212135,
+    "inspection": "passed"
+  },
+  {
+    "file": "11-transcoder-crosscoder.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2240280,
+    "inspection": "passed"
+  },
+  {
+    "file": "12-circuit.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2153297,
+    "inspection": "passed"
+  },
+  {
+    "file": "13-induction-head.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 1958746,
+    "inspection": "passed"
+  },
+  {
+    "file": "14-attribution-graphs-circuit-tracing.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2236429,
+    "inspection": "passed"
+  },
+  {
+    "file": "15-linear-probe.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2043597,
+    "inspection": "passed"
+  },
+  {
+    "file": "16-logit-lens-tuned-lens.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2296367,
+    "inspection": "passed"
+  },
+  {
+    "file": "17-activation-patching.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2144425,
+    "inspection": "passed"
+  },
+  {
+    "file": "18-ablation.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2204554,
+    "inspection": "passed"
+  },
+  {
+    "file": "19-steering.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2186242,
+    "inspection": "passed"
+  },
+  {
+    "file": "20-steering-vector-caa.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2113810,
+    "inspection": "passed"
+  },
+  {
+    "file": "21-feature-clamping.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2160217,
+    "inspection": "passed"
+  },
+  {
+    "file": "22-representation-engineering.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2313539,
+    "inspection": "passed"
+  },
+  {
+    "file": "23-refusal-direction.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2245997,
+    "inspection": "passed"
+  },
+  {
+    "file": "24-persona-vectors.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2175437,
+    "inspection": "passed"
+  },
+  {
+    "file": "25-model-diffing.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2284691,
+    "inspection": "passed"
+  },
+  {
+    "file": "26-introspection.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2243414,
+    "inspection": "passed"
+  },
+  {
+    "file": "27-white-box-vs-black-box.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 2300978,
+    "inspection": "passed"
+  }
+]

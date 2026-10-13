@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: TRUSTED MONITORING
+SUBTITLE: A checker we do not expect to sabotage
+1. THE ROLE
+A trusted monitor examines an untrusted model's actions or outputs and flags suspicious behavior. It is assumed not to intentionally help the attacker.
+2. THE PIPELINE
+Worker proposes an action, monitor scores concern, and high-risk cases are blocked or sent for human review before execution.
+3. A TOY EXAMPLE
+A coding helper changes a game. The monitor notices an unexplained score-changing shortcut and asks a person to inspect it.
+4. THE ADVANTAGE
+The monitor provides a relatively dependable checkpoint while the more capable worker does useful work. It can support selective review.
+5. THE LIMIT
+A trusted monitor can still be wrong, confused, or less capable than the worker. Subtle sabotage may look ordinary to it.
+6. HOW TO TEST
+Measure missed attacks and false alarms under realistic review budgets. Include attacks designed specifically to fool this monitor.
+FOOTER: A TRUSTWORTHY CHECKER STILL NEEDS ENOUGH SKILL TO NOTICE TROUBLE.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

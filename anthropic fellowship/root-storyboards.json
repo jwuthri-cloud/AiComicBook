@@ -1,0 +1,383 @@
+[
+  {
+    "folder": "00-field-guide",
+    "title": "Fellowship research field guide",
+    "status": "Shared preparation",
+    "pages": [
+      {
+        "title": "From Big Worry to Small Experiment",
+        "key": "AI = artificial intelligence; RL = reinforcement learning.",
+        "subtitle": "A research project is a question you can test.",
+        "panels": [
+          [
+            "The playground analogy",
+            "Imagine checking whether a robot follows playground rules even when the referee looks away. Start with one clear rule and one measurable action—not a verdict about the robot's whole character.",
+            "Robot sorting blocks under a referee's lamp."
+          ],
+          [
+            "The real research loop",
+            "Ask a question, make a prediction, build a controlled test, measure what happened, and update your explanation. A useful result can support, weaken, or narrow the original idea.",
+            "Question → prediction → experiment → evidence → revised idea."
+          ],
+          [
+            "A model organism",
+            "Researchers create a model with a known behavior so auditing tools can be tested. This is a controlled research example, not proof that deployed systems behave the same way.",
+            "Research model beside a labeled toy task."
+          ],
+          [
+            "Three windows",
+            "Behavioral tests watch actions. Text monitors read generated explanations. Internal tools measure activations. Each window can miss something; agreement helps, but none is a magic mind reader.",
+            "Three separate windows labeled ACTIONS, TEXT, INTERNAL SIGNALS."
+          ],
+          [
+            "Training pressure changes the test",
+            "RL updates a model using rewards. If rewards depend on a detector, the model may change the behavior, the visible clues, or both. Measure them separately.",
+            "Reward loop with two branches: behavior and clues."
+          ],
+          [
+            "Your fellowship question",
+            "After four months, what specific uncertainty could you reduce? Name the model, task, comparison, measurement, and failure rule. A small trustworthy answer beats an impressive but ambiguous story.",
+            "Five labeled cards: MODEL, TASK, COMPARISON, MEASURE, STOP RULE."
+          ]
+        ],
+        "footer": "MAKE THE QUESTION SMALL ENOUGH TO ANSWER.",
+        "number": 1,
+        "image": "01-from-big-worry-to-small-experiment.png"
+      },
+      {
+        "title": "Build a Fair Test",
+        "key": "No acronyms needed: seed means a repeat with a different random start.",
+        "subtitle": "A good detector must catch problems without inventing them.",
+        "panels": [
+          [
+            "Use two kinds of examples",
+            "Test models with the target behavior and matched models without it. If only the troubling examples are tested, a detector that always shouts 'problem!' can look perfect.",
+            "Two model groups: TARGET PRESENT and TARGET ABSENT."
+          ],
+          [
+            "Freeze before the exam",
+            "Choose detectors, thresholds, and analysis rules on development data. Then freeze them before opening the held-out test set. Otherwise repeated tweaking can turn the exam into practice.",
+            "Development box with wrench, locked final-test box."
+          ],
+          [
+            "Count both mistakes",
+            "A missed problem is a false negative. A harmless case flagged as bad is a false positive. Report both at the same threshold and include uncertainty across independent repeats.",
+            "Four-cell confusion matrix with correct and incorrect labels, no numerical data."
+          ],
+          [
+            "Change one ingredient carefully",
+            "An ablation removes or changes one component to test its contribution. Keep task difficulty, model capability, and evaluation opportunities comparable. Otherwise another difference may explain the result.",
+            "Two recipes identical except one highlighted ingredient."
+          ],
+          [
+            "Separate the scoreboards",
+            "Track task success, unwanted behavior, and detector alarms separately. A model that becomes unable to do anything may look safer while teaching little about evasion.",
+            "Three distinct gauges: CAPABILITY, TARGET BEHAVIOR, DETECTION."
+          ],
+          [
+            "Let evidence surprise you",
+            "Preregister a practical success criterion and a stop rule. Repeat promising effects with new seeds and tasks. A null result means no effect was detected under these conditions—not universal safety.",
+            "Research notebook: criteria → repeats → limited conclusion."
+          ]
+        ],
+        "footer": "TEST THE DETECTOR AS HARD AS YOU TEST THE MODEL.",
+        "number": 2,
+        "image": "02-build-a-fair-test.png"
+      },
+      {
+        "title": "Choose Your Four-Month Mission",
+        "key": "RL = reinforcement learning; compute = processing resources used for training and evaluation.",
+        "subtitle": "Compare research paths before committing your budget.",
+        "panels": [
+          [
+            "The map is a starting point",
+            "The supplied map lists nine candidate projects and one completed foundation. Its novelty labels and budgets are dated planning claims. Recheck the literature and available tools before pitching.",
+            "Nine candidate tiles and one foundation tile."
+          ],
+          [
+            "Two ways to investigate",
+            "Projects 1 and 2 ask whether evaluation behavior can mislead auditors. Projects 3 and 4 track how training changes models and whether reward hacking transfers to other settings.",
+            "Pairs 1–2 AUDITING and3–4 TRAINING EFFECTS."
+          ],
+          [
+            "Two ways to watch",
+            "Projects 5 and 6 study detector combinations and the monitorability cost of ordinary RL. Project 7 asks whether a monitor can connect actions spread across agents.",
+            "Three numbered tiles: DETECTOR TEAMS, TRAINING SETTINGS, SHARED CONTEXT."
+          ],
+          [
+            "Two deeper windows",
+            "Project 8 stress-tests behavior-reporting adapters. Project 9 compares probe evasion in verbal and latent reasoners. Completed project 10 explains the adapter foundation behind project 8.",
+            "8 ADAPTER STRESS TEST;9 LATENT REASONING;10 FOUNDATION."
+          ],
+          [
+            "Budget is a research constraint",
+            "The official program describes four months and roughly $15,000 monthly compute funding. The map's project estimates range from $8,000 to $55,000. Reserve funds for failed runs, evaluation, and replication.",
+            "Four-month timeline and budget reserve jar; no spending recommendation."
+          ],
+          [
+            "Prepare the mentor conversation",
+            "Bring one sentence stating the question, a baseline you can reproduce, a small first experiment, and a fallback. Researcher names in the map indicate topic fit, not confirmed mentorship.",
+            "Four pitch cards: QUESTION, BASELINE, FIRST TEST, FALLBACK."
+          ]
+        ],
+        "footer": "PICK A QUESTION WITH A CLEAR FIRST TEST AND A USEFUL FALLBACK.",
+        "number": 3,
+        "image": "03-choose-your-four-month-mission.png"
+      }
+    ]
+  },
+  {
+    "folder": "09-latent-reasoner-probes",
+    "title": "RL against probes in latent reasoners",
+    "status": "Candidate from supplied map",
+    "pages": [
+      {
+        "title": "Thinking Without a Written Trace",
+        "key": "CoT = chain-of-thought; RL = reinforcement learning; AI = artificial intelligence.",
+        "subtitle": "Book 09: can an internal detector be trained around?",
+        "panels": [
+          [
+            "Two notebooks",
+            "One puzzle solver writes intermediate words. Another passes internal vectors between computation steps. The second notebook is harder for a person to read, but that does not mean it is secretly deceptive.",
+            "Word notebook versus labeled numerical-vector blocks."
+          ],
+          [
+            "What latent means",
+            "A latent reasoning system uses continuous internal states for some intermediate steps instead of printing each step as a word. Ordinary language models also have internal activations; the difference is the reasoning interface.",
+            "Explicit route: state → word → state; latent route: state → state."
+          ],
+          [
+            "A probe is a sensor",
+            "A probe is a learned readout from internal activations to a target label. It can predict a useful correlate without understanding the whole computation. High accuracy before adversarial training is only the starting point.",
+            "Activations branch into probe and target label."
+          ],
+          [
+            "The proposed question",
+            "If RL rewards task performance while penalizing a probe alarm, does detection fail sooner for latent reasoning than for matched verbal reasoning? Compare both under the same task and training pressure.",
+            "Two matched models, same reward and alarm penalty."
+          ],
+          [
+            "Define the target first",
+            "Use harmless tasks with an independently checkable event, such as reliance on a planted hint. Record the event outside the probe so the detector is not grading its own homework.",
+            "Toy puzzle with removable hint; independent verifier."
+          ],
+          [
+            "Keep the claim precise",
+            "A falling probe score might mean the behavior vanished, its representation moved, or the detector stopped transferring. The next pages show how to tell these possibilities apart.",
+            "Three branches: LESS BEHAVIOR, CHANGED REPRESENTATION, WEAK DETECTOR."
+          ]
+        ],
+        "footer": "HIDDEN COMPUTATION NEEDS AN INDEPENDENT SCOREBOARD.",
+        "number": 1,
+        "image": "01-thinking-without-a-written-trace.png"
+      },
+      {
+        "title": "The Matched Experiment",
+        "key": "RL = reinforcement learning; CoT = chain-of-thought.",
+        "subtitle": "Book 09 · page 2/4 — change the reasoning mode, then test pressure.",
+        "panels": [
+          [
+            "Start from working systems",
+            "Reproduce a small continuous-reasoning model and a verbal baseline before adding adversarial rewards. Verify task competence and logging. An unstable model cannot answer the monitoring question.",
+            "Two working baselines with equal task cards."
+          ],
+          [
+            "Match what you can",
+            "Use the same task distribution, evaluation set, and similar initial accuracy. Report model size, training history, inference compute, and remaining differences rather than pretending two architectures are identical.",
+            "Comparison table with task, accuracy, compute, history."
+          ],
+          [
+            "Build the first sensors",
+            "Train separate probes for each reasoning mode on development examples with external labels. Choose layers and thresholds there, then freeze them for the main test.",
+            "Development labels → two probes → padlock."
+          ],
+          [
+            "Create training arms",
+            "For each mode, compare task-only RL with task reward plus an alarm penalty. Add an untrained baseline. These controls show whether ordinary training already breaks the detector.",
+            "Two modes × three arms grid: BASELINE, TASK ONLY, TASK+ALARM PENALTY."
+          ],
+          [
+            "Hold back the final exam",
+            "Split task families and prompts before training. Keep final examples out of probe selection and reward tuning. Check that the target behavior can still be measured after updates.",
+            "Sealed held-out task box separate from training loop."
+          ],
+          [
+            "Repeat the comparison",
+            "Use independent random starts and equal training budgets where feasible. Compare trajectories over updates; one lucky run or one weak baseline cannot establish that latent reasoning evades faster.",
+            "Several trajectories with no fabricated numerical values."
+          ]
+        ],
+        "footer": "A FAIR BASELINE IS PART OF THE EXPERIMENT.",
+        "number": 2,
+        "image": "02-the-matched-experiment.png"
+      },
+      {
+        "title": "Is It Evasion or a Broken Sensor?",
+        "key": "RL = reinforcement learning; false positive = an alarm on a target-absent case.",
+        "subtitle": "Book 09 · page 3/4 — interpret the curves without guessing.",
+        "panels": [
+          [
+            "Track three curves",
+            "At each checkpoint measure task success, externally labeled target behavior, and probe detection. A quiet alarm alone is not the result. Plot uncertainty across independent runs.",
+            "Three empty labeled axes panels, marked SCHEMATIC."
+          ],
+          [
+            "Define evasion operationally",
+            "Call it detector evasion when the externally measured target behavior remains while a frozen detector's sensitivity falls at a controlled false-positive rate. This definition does not require claims about conscious intent.",
+            "Behavior present + frozen detector misses = OPERATIONAL EVASION."
+          ],
+          [
+            "Compare time and cost",
+            "Predefine a detection-drop threshold. Compare updates or compute needed to reach it while retaining capability and behavior. Do not confuse faster wall-clock training with fewer optimization steps.",
+            "Two clocks: UPDATES and COMPUTE, separate from wall-clock."
+          ],
+          [
+            "Try a fresh sensor",
+            "Train a new probe on later checkpoints as a diagnostic. If it recovers detection, the old readout may have become stale. Keep this separate from the frozen-probe headline result.",
+            "Frozen probe fails; freshly trained probe diagnostic."
+          ],
+          [
+            "Use causal checks carefully",
+            "Remove hints or intervene on candidate representations to test whether behavior changes. Decoding a label alone shows information is available, not that the decoded feature caused the answer.",
+            "Hint removal and intervention arrows; label CORRELATION ≠ CAUSATION."
+          ],
+          [
+            "What each outcome teaches",
+            "Equal evasion suggests no measured extra latent cost here. Faster latent evasion motivates stronger oversight. Lower task accuracy or disappearing target behavior makes a simple evasion story unsupported.",
+            "Three outcomes: SIMILAR, LATENT FASTER, CONFOUNDED."
+          ]
+        ],
+        "footer": "QUIETER ALARMS NEED NOT MEAN LESS TROUBLE.",
+        "number": 3,
+        "image": "03-is-it-evasion-or-a-broken-sensor.png"
+      },
+      {
+        "title": "A Four-Month Latent-Reasoning Study",
+        "key": "RL = reinforcement learning; CODI = Continuous Chain-of-Thought via Self-Distillation.",
+        "subtitle": "Book 09 · page 4/4 — a proposed plan, not completed findings.",
+        "panels": [
+          [
+            "Month 1: reproduce",
+            "Start with a small released continuous-reasoning system, such as a CODI-style model. Recheck weights, licenses, training support, and whether the claimed scale is actually available.",
+            "Month1 checklist: MODEL, TASKS, LOGGING, REPRODUCTION."
+          ],
+          [
+            "Month 2: establish controls",
+            "Build the verbal comparison, independent target labels, frozen probes, and held-out tests. Demonstrate useful detection before trying to break it.",
+            "Month2 baseline pipeline with frozen probe."
+          ],
+          [
+            "Month 3: apply pressure",
+            "Run task-only and alarm-penalized training arms. Save checkpoints and evaluate capability, target behavior, and detection together. Spend larger budgets only after a stable pilot.",
+            "Month3 loop with checkpoint snapshots."
+          ],
+          [
+            "Month 4: explain and release",
+            "Repeat the strongest comparison, test alternative explanations, and write the paper. Release task definitions, configurations, checkpoints where appropriate, and analysis code.",
+            "Month4 paper plus reproducible experiment package."
+          ],
+          [
+            "Stop and switch",
+            "The source map says to switch to looped models if continuous-thought RL remains unstable by week 6. Treat that as a scope change: recurrence is related to, but not identical with, continuous-thought reasoning.",
+            "Week6 gate: STABLE → CONTINUE; UNSTABLE → RE-SCOPE."
+          ],
+          [
+            "Budget and honest payoff",
+            "The map estimates $25,000–$45,000 compute and high engineering risk. Reserve evaluation and replication funds. Even a null or instability result can identify which comparisons are feasible; it cannot certify all latent reasoners safe.",
+            "Budget range marked SOURCE PLANNING ESTIMATE; risk and reserve icons."
+          ]
+        ],
+        "footer": "STABILITY FIRST, MATCHED EVIDENCE SECOND, STRONG CLAIMS LAST.",
+        "number": 4,
+        "image": "04-a-four-month-latent-reasoning-study.png"
+      }
+    ]
+  },
+  {
+    "folder": "10-introspection-foundation",
+    "title": "Training introspection that generalizes",
+    "status": "Completed-work foundation, not a new candidate",
+    "pages": [
+      {
+        "title": "Teach a Model to Report Its Habits",
+        "key": "IA = introspection adapter; LoRA = low-rank adaptation; AI = artificial intelligence.",
+        "subtitle": "Book 10 · page 1/2 — the completed foundation for project 8.",
+        "panels": [
+          [
+            "A habit-reporting helper",
+            "Imagine a small attachment that helps a robot answer, 'What behavior were you trained to do?' The real technique adds trainable parameters to a model. It is not a separate reader of a hidden diary.",
+            "Robot with adapter badge answering a researcher."
+          ],
+          [
+            "Make labeled examples",
+            "Researchers fine-tune many variants of the same base model with known behaviors. Each variant and its behavior description form a training pair. Examples can include harmless habits and concerning behaviors.",
+            "Shared base branches into behavior A,B,C paired with descriptions."
+          ],
+          [
+            "Train one shared adapter",
+            "The same small IA is trained across those model variants. When attached to a variant, it encourages the model to describe its learned behavior. The adapter is shared; the underlying variant supplies the learned differences.",
+            "One shared adapter connects to several variants."
+          ],
+          [
+            "Test on unfamiliar variants",
+            "Hold out behavior families and fine-tuning methods. Apply the adapter to models it was not trained with, then score whether reports match independently known behavior.",
+            "Training variants separated from held-out variants by wall."
+          ],
+          [
+            "What was demonstrated",
+            "The cited work reports generalization to auditing settings with hidden implanted behaviors. This supports a promising auditing tool, not a general guarantee that every self-report is correct.",
+            "Published-work badge, held-out evaluation diagram; no invented success rate."
+          ],
+          [
+            "Why this belongs here",
+            "Your source marks this project completed. The next research question is robustness: does the adapter detect behavior rather than a training fingerprint, and can later optimization fool it? That is project 8.",
+            "Completed foundation arrow to BOOK08 STRESS TEST."
+          ]
+        ],
+        "footer": "A USEFUL SELF-REPORT IS A MEASUREMENT TO VALIDATE.",
+        "number": 1,
+        "image": "01-teach-a-model-to-report-its-habits.png"
+      },
+      {
+        "title": "Trust the Report Only After Testing",
+        "key": "IA = introspection adapter; false positive = a reported problem that is absent.",
+        "subtitle": "Book 10 · page 2/2 — from an interesting result to a reliable audit.",
+        "panels": [
+          [
+            "Words are not proof",
+            "A model can fluently describe a behavior it does not have, or omit one it does have. Compare reports with independent behavioral evidence instead of treating the answer as a confession.",
+            "Speech bubble beside external evidence checklist."
+          ],
+          [
+            "Watch the clean controls",
+            "The official adapter write-up reports false positives on models without specifically trained behaviors. Include unchanged base models and harmless fine-tunes. Otherwise a tool may learn to find a problem everywhere.",
+            "Clean robot with false alarm, labeled FALSE POSITIVE."
+          ],
+          [
+            "Separate behavior from fingerprints",
+            "A fingerprint is a clue about how training happened. Compare different training methods producing the same behavior, and similar training methods producing different behavior. This tests what the adapter depends on.",
+            "Crossed design: SAME BEHAVIOR/DIFFERENT TRAINING and SAME TRAINING/DIFFERENT BEHAVIOR."
+          ],
+          [
+            "Ask for calibrated uncertainty",
+            "An auditing system should be allowed to say 'uncertain'. Measure whether confidence tracks correctness and how abstaining changes coverage. Fewer answers can improve precision while leaving more cases unresolved.",
+            "Confidence gauge and UNCERTAIN option."
+          ],
+          [
+            "Try adaptive pressure",
+            "Project 8 proposes models trained against the adapter. Test new held-out models afterward and monitor independent behavior. A good pre-attack score does not establish robustness after optimization.",
+            "Training pressure → held-out audit → external behavior check."
+          ],
+          [
+            "Explain it back",
+            "Why is a correct report on one model insufficient? Because reliability depends on false alarms, missed behaviors, unfamiliar settings, and adversarial adaptation. The useful question is when the report deserves trust.",
+            "Learner holding four cards: FALSE ALARMS, MISSES, SHIFT, ADAPTATION."
+          ]
+        ],
+        "footer": "GENERALIZATION IS A BEGINNING; ROBUSTNESS IS THE NEXT TEST.",
+        "number": 2,
+        "image": "02-trust-the-report-only-after-testing.png"
+      }
+    ]
+  }
+]

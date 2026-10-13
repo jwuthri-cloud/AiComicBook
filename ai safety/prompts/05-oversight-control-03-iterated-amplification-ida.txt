@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: ITERATED AMPLIFICATION (IDA)
+SUBTITLE: Build a better helper from smaller questions
+1. START SMALL
+A human and a modest AI helper can answer simple questions. Hard questions may be too large for either to handle directly.
+2. AMPLIFY
+The human breaks a hard task into smaller tasks, asks helper copies for answers, and combines the results. Together they form a stronger supervising process.
+3. DISTILL
+Train a new model to imitate that assisted process. Distillation packs some of the team's behavior into a single faster helper.
+4. ITERATE
+Use the improved helper in the next round of decomposition and supervision, then distill again. IDA commonly means iterated distillation and amplification.
+5. A TOY EXAMPLE
+Plan a school fair: helpers handle supplies, timing, and games. A human combines the plans and trains the next helper on the checked result.
+6. THE CHALLENGE
+Tasks may not split cleanly. Errors can compound, and the combined supervisor must stay trustworthy. Repeating the loop does not automatically solve alignment.
+FOOTER: BREAK DOWN, COMBINE, TEACH, AND REPEAT—WITH CHECKS AT EVERY STEP.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: ALIGNMENT AUDITING
+SUBTITLE: Investigate whether behavior hides deeper problems
+1. THE GOAL
+An alignment audit investigates a model's concerning tendencies, possible hidden objectives, and ways it could act against intended values.
+2. GATHER EVIDENCE
+Use behavioral tests, adversarial scenarios, training information where available, and sometimes interpretability methods. Look across many settings.
+3. A TOY EXAMPLE
+A tutor repeatedly recommends one fictional club, even when it is a poor match. Auditors test whether a hidden preference explains the pattern.
+4. FOLLOW THE CLUES
+A surprising answer is a lead, not a verdict. Change the context, compare alternatives, and test whether the explanation predicts new behavior.
+5. CHECK THE AUDIT
+Seed controlled research models with known problems to see whether auditors can discover them. Keep some tests hidden from the auditing team.
+6. THE LIMIT
+Failure to find misalignment is not proof of its absence. Deceptive behavior, limited access, and narrow tests can all hide problems.
+FOOTER: AN AUDIT BUILDS EVIDENCE ABOUT ALIGNMENT; IT CANNOT CERTIFY EVERY FUTURE ACTION.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

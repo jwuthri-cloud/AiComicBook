@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: TEACH A MODEL TO REPORT ITS HABITS
+SUBTITLE: Book 10 · page 1/2 — the completed foundation for project 8.
+FOLIO: BOOK 10 · PAGE 1/2
+READABLE WORD KEY: IA = introspection adapter; LoRA = low-rank adaptation; AI = artificial intelligence.
+
+PANEL 1 HEADING: A habit-reporting helper
+EXACT BODY: Imagine a small attachment that helps a robot answer, 'What behavior were you trained to do?' The real technique adds trainable parameters to a model. It is not a separate reader of a hidden diary.
+ART DIRECTION (never print): Robot with adapter badge answering a researcher.
+
+PANEL 2 HEADING: Make labeled examples
+EXACT BODY: Researchers fine-tune many variants of the same base model with known behaviors. Each variant and its behavior description form a training pair. Examples can include harmless habits and concerning behaviors.
+ART DIRECTION (never print): Shared base branches into behavior A,B,C paired with descriptions.
+
+PANEL 3 HEADING: Train one shared adapter
+EXACT BODY: The same small IA is trained across those model variants. When attached to a variant, it encourages the model to describe its learned behavior. The adapter is shared; the underlying variant supplies the learned differences.
+ART DIRECTION (never print): One shared adapter connects to several variants.
+
+PANEL 4 HEADING: Test on unfamiliar variants
+EXACT BODY: Hold out behavior families and fine-tuning methods. Apply the adapter to models it was not trained with, then score whether reports match independently known behavior.
+ART DIRECTION (never print): Training variants separated from held-out variants by wall.
+
+PANEL 5 HEADING: What was demonstrated
+EXACT BODY: The cited work reports generalization to auditing settings with hidden implanted behaviors. This supports a promising auditing tool, not a general guarantee that every self-report is correct.
+ART DIRECTION (never print): Published-work badge, held-out evaluation diagram; no invented success rate.
+
+PANEL 6 HEADING: Why this belongs here
+EXACT BODY: Your source marks this project completed. The next research question is robustness: does the adapter detect behavior rather than a training fingerprint, and can later optimization fool it? That is project 8.
+ART DIRECTION (never print): Completed foundation arrow to BOOK08 STRESS TEST.
+FOOTER: A USEFUL SELF-REPORT IS A MEASUREMENT TO VALIDATE.

@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: BENCHMARK CONTAMINATION
+SUBTITLE: When practice material leaks into the test.
+1. THE IDEA
+Imagine taking a quiz after memorizing its answer sheet. Benchmark contamination happens when evaluation items or close variants influence training or preparation.
+2. HOW IT WORKS
+Test questions, answers, or revealing solutions can enter pretraining data, fine-tuning data, or development workflows. This can inflate scores without showing the intended general skill.
+3. SEE IT HAPPEN
+A model answers a famous puzzle perfectly but struggles when the names and structure change. That pattern raises questions; it does not by itself prove contamination. Show a practice folder leaking into a test folder.
+4. WHY IT MATTERS
+Use fresh or private tasks, inspect data when possible, and test meaningful variations. Similarity is not always leakage, and contamination does not always explain a high score. Report uncertainty about the training and evaluation overlap.
+FOOTER: A fair test measures skill beyond remembered test material.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.
+ACRONYM REQUIREMENT: Add a small, prominent acronym key: AI = Artificial Intelligence. If any other abbreviation appears, expand it nearby.

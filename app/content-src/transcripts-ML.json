@@ -1,0 +1,1252 @@
+{
+  "collection": "ML",
+  "pages": [
+    {
+      "image": "ML/01-think-like-a-researcher-cheat-sheet.png",
+      "title": "Think Like a Researcher",
+      "subtitle": "A Cheat Sheet for Clear Thinking, Great Groups & Solid Stats",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Start with the Right Questions",
+          "body": "A great question is: Important (why does it matter?); Specific (not too broad); Testable (falsifiable); Feasible (with available resources); Novel (adds to knowledge).\nBad question: \"Does X improve Y?\" Better: \"How does X affect Y under condition Z, measured by M?\""
+        },
+        {
+          "number": 2,
+          "heading": "Think Clearly: A Framework",
+          "body": "Understand the problem deeply: Read, talk to experts, observe.\nMap assumptions: What do you believe to be true?\nGenerate hypotheses: Make predictions (directional if possible).\nDesign a test: How will you know you're right or wrong?\nRun & collect data: Follow the plan. Be rigorous.\nAnalyze objectively: Let the data speak.\nInterpret & contextualize: What does it mean? What are limitations?"
+        },
+        {
+          "number": 3,
+          "heading": "Good Experiment Design",
+          "body": "Control confounders: Hold other variables constant or randomize.\nRandomize: Avoid order effects and bias.\nUse baselines: Always compare to a strong baseline.\nPre-register (if possible): Write down your plan and analysis before seeing results.\nPower analysis: Make sure your sample size can detect meaningful effects.\n\"The goal is not to prove you're right. The goal is to learn what's true.\""
+        },
+        {
+          "number": 4,
+          "heading": "Build & Work in Great Research Groups",
+          "body": "Roles (examples): Idea person – thinks big & asks \"why?\"; Skeptic – challenges assumptions; Builder – implements & iterates; Analyzer – turns data into insights; Communicator – tells the story clearly.\nBest practices: Psychological safety – everyone can speak up; Disagree & commit – debate ideas, unite on decisions; Clear ownership – know who does what; Document everything – decisions, code, data, results; Regular syncs – short, focused, outcome-driven.\nAvoid these traps: Groupthink – challenging ideas is seen as negative; Vagueness – unclear goals, roles, or next steps; Hero culture – one person becomes a bottleneck; Poor feedback – no retrospectives, no improvement."
+        },
+        {
+          "number": 5,
+          "heading": "Statistical Approaches: When & What",
+          "body": "Compare means – Parametric – t-test (2 groups), ANOVA (>2 groups) – when data ~ normal, similar variances.\nCompare medians / ranks – Non-parametric – Mann-Whitney U, Kruskal-Wallis – non-normal data or outliers.\nCategorical association – Categorical tests – Chi-square test, Fisher's exact test – counts / proportions data.\nRelationship between variables – Correlation – Pearson (linear), Spearman (rank) – measure strength & direction of association.\nPrediction – Regression – Linear, Logistic, Ridge, Lasso, etc. – model outcome from predictors.\nEstimate uncertainty – Resampling – Bootstrap, confidence intervals – small samples or complex estimators.\nAlways report: effect size + confidence interval + p-value (if relevant)."
+        },
+        {
+          "number": 6,
+          "heading": "Don't Get Fooled: Common Pitfalls",
+          "body": "P-hacking: Trying many things until something is significant. Fix: Pre-register, correct for multiple tests.\nConfirmation bias: Seeing what you expect to see. Fix: Seek disconfirming evidence.\nSmall N: Too little data = noisy & unstable results. Fix: Do power analysis.\nData dredging: Exploring data without a plan. Fix: Have a plan, use a validation split.\nCausation ≠ correlation: Association does not imply causation. Fix: Use experiments or quasi-experiments.\nLeakage: Information from future/target leaks into features. Fix: Check data pipeline!"
+        },
+        {
+          "number": 7,
+          "heading": "Analyze Like a Pro",
+          "body": "Visualize first: Plots reveal issues fast.\nSummarize simply: Mean ± SD, median [IQR], counts, rates.\nQuantify uncertainty: Use CIs, not just point estimates.\nCheck assumptions: Normality, homoscedasticity, independence.\nSensitivity analysis: Do results hold under reasonable changes?\n\"Let the data speak, but you have to ask the right questions.\""
+        },
+        {
+          "number": 8,
+          "heading": "The Researcher's Mantra",
+          "body": "Be precise in your questions. Be rigorous in your methods. Be honest in your analysis. Be humble in your conclusions. Be useful with your findings."
+        }
+      ],
+      "footer": "Remember: Curiosity starts it. Discipline drives it. Skepticism improves it. Collaboration accelerates it. Good science changes the world.",
+      "summary": "A guide to doing research well: asking sharp, testable questions, designing fair experiments, working well in a team, picking the right statistical test, and avoiding traps like p-hacking and data leakage.",
+      "keywords": [
+        "Hypothesis",
+        "Experiment design",
+        "Confounders",
+        "Randomization",
+        "Pre-registration",
+        "Power analysis",
+        "P-hacking",
+        "Confirmation bias",
+        "Confidence interval",
+        "Effect size",
+        "Correlation vs causation",
+        "Data leakage"
+      ]
+    },
+    {
+      "image": "ML/02-math-for-deep-learning-cheat-sheet.png",
+      "title": "Basic Math for Deep Learning Cheat Sheet",
+      "subtitle": "Vectors, matrices, gradients, probability, and the minimum math intuition you need",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Core Objects",
+          "body": "Diagram: pipeline Input x → Linear algebra → Nonlinearity σ(·) (ReLU, tanh, …) → Loss L(y, ŷ) → Gradients ∇L → Updated weights W ← W − η∇L.\nScalars, vectors, matrices, tensors: Scalar – single number (e.g. 3.14), shape (); Vector – 1D list of numbers, shape (d,); Matrix – 2D table, shape (n × d); Tensor – n-D array, shape (b × t × d). ELI5: Containers of numbers. Why it matters: Data, activations, and weights all live in these objects.\nShapes and dimensions: B – batch size (samples in parallel); T – sequence length (time / tokens); D – feature / hidden size (embedding dim); C – channels (e.g., color channels); H – height (image rows); W – width (image cols). Example image batch shape: (B, C, H, W). Example text embeddings shape: (B, T, D). Watch out: Most bugs are shape mismatches!"
+        },
+        {
+          "number": 2,
+          "heading": "Linear Algebra Basics",
+          "body": "Dot product: x · w = Σᵢ xᵢwᵢ. ELI5: Weighted similarity / one neuron score. Use: Linear layers, attention scores, cosine-style intuition.\nMatrix multiplication: Y = XW + b with shapes (n × d)(d × h) → (n × h). ELI5: Many dot products at once. Watch out: Inner dimensions must match (d here)!\nTranspose & reshape: Transpose swaps axes (A → Aᵀ). Reshape (view) changes arrangement. Squeeze / unsqueeze add or remove size-1 dimensions.\nNorms & distance: L1 norm ‖x‖₁ = Σ|xᵢ|; L2 norm ‖x‖₂ = √(Σxᵢ²); distance d(x, y) = ‖x − y‖₂. ELI5: \"How big\" or \"how far\". Use: Regularization, nearest neighbors, embedding similarity."
+        },
+        {
+          "number": 3,
+          "heading": "Calculus for Learning",
+          "body": "Derivative / slope: dy/dx is slope / sensitivity (the tangent line). ELI5: How much output changes when input changes a little. Use: Understand growth, training signals, optimization.\nPartial derivatives & gradient: For many variables ∂L/∂wᵢ. Gradient ∇L = [∂L/∂w₁, ∂L/∂w₂, …, ∂L/∂wₙ] points in the direction of steepest ascent. ELI5: Arrow pointing uphill fastest. Training goes the OPPOSITE direction.\nChain rule (backprop idea): If y = f(g(x)), gradients pass through both: ∂L/∂x = ∂z/∂x × ∂y/∂z × ∂L/∂y. Core idea of backpropagation! Multiply local effects along the path. Backprop = chain rule in reverse.\nGradient descent: Update rule w ← w − η∇L, where η = learning rate. Too small (very slow), just right, too big (overshoots). ELI5: Walk downhill to reduce loss. Use: Training neural networks."
+        },
+        {
+          "number": 4,
+          "heading": "Probability & Stats Basics",
+          "body": "Mean, variance, std dev: Mean μ = (1/n)Σxᵢ; Variance σ² = (1/n)Σ(xᵢ − μ)²; Std dev σ = √σ². Use: Normalization, noisy results, uncertainty, data summaries.\nProbability, expectation, sampling: P(A) = chance of event A; Expectation E[X] = Σₓ x P(x); Sampling: draw examples ~ P (from a bag/data population to a random sample). Use: Data, stochastic training, simulation, generation.\nCommon distributions (intuition): Bernoulli (binary) P(X=1) = p; Categorical (classes/tokens), k classes, ΣPᵢ = 1; Gaussian (continuous) N(μ, σ²). Use: Model randomness, noise, data generation, uncertainty.\nLog, exp & softmax: exp turns any score → positive; softmax converts logits z to probs: pᵢ = e^zᵢ / Σⱼ e^zⱼ (sum = 1); log turns products → sums: log(ab) = log a + log b. ELI5: Softmax is a \"who gets the confidence\" function."
+        },
+        {
+          "number": 5,
+          "heading": "Losses You Meet All the Time",
+          "body": "MSE (mean squared error): MSE = (1/n)Σ(yᵢ − ŷᵢ)². Use: Regression (predict numbers). ELI5: Penalizes large errors more.\nCross-entropy (CE): Binary (with sigmoid) CE = −[y log p + (1−y) log(1−p)]; Multiclass (with softmax) CE = −Σ yᵢ log pᵢ, where y is true (0/1 or one-hot) and p is predicted prob. ELI5: Punish being confident and wrong. Use: Classification (labels / classes).\nRegularization: L2 (weight decay) λ‖W‖₂² = λΣw² (small & dense weights); L1 (sparsity) λ‖W‖₁ = λΣ|w| (sparse weights). Why: Reduce overfitting, control complexity, improve generalization. ELI5: Keep weights from getting too wild."
+        },
+        {
+          "number": 6,
+          "heading": "Quick Researcher Checklist",
+          "body": "1. What are the shapes? 2. What operation is happening? Dot? Matmul? Elementwise? 3. What is the loss? 4. What quantity are we differentiating? ∇L w.r.t. what? 5. Are values normalized or exploding? 6. Are probs actually probabilities? Softmax / sigmoid? 7. Is result an average, a sum, or an expectation?"
+        },
+        {
+          "number": 7,
+          "heading": "Common Failure Modes / Traps",
+          "body": "1. Shape mismatch: (n,d)(h,k) with d ≠ h – must match! 2. Wrong operation: Matmul ≠ elementwise. 3. Forgetting bias: y = XW vs y = XW + b – bias matters! 4. Mixing logits with probs: Don't feed logits to loss expecting probs, and vice versa! 5. Vanishing / exploding gradients: too tiny or too huge. 6. Averaging over wrong dimension: Mean over batch? Over time? Be intentional! 7. Using wrong loss for the task: Classification ≠ regression."
+        }
+      ],
+      "footer": "First track the shapes. Then track the objective. Then track the gradient. Deep learning math = linear algebra + calculus + probability + careful thinking.",
+      "summary": "The minimum math behind neural networks: how data is stored as vectors, matrices and tensors, how gradients and the chain rule let a model learn by walking downhill on its loss, and the probability ideas and loss functions that show up everywhere.",
+      "keywords": [
+        "Tensor",
+        "Matrix multiplication",
+        "Dot product",
+        "Gradient",
+        "Chain rule",
+        "Backpropagation",
+        "Gradient descent",
+        "Learning rate",
+        "Softmax",
+        "Cross-entropy",
+        "Mean squared error (MSE)",
+        "Regularization"
+      ]
+    },
+    {
+      "image": "ML/03-deep-learning-basics-cheat-sheet.png",
+      "title": "Deep Learning Basics Cheat Sheet",
+      "subtitle": "Embeddings, pooling, normalization, nonlinearities, training, and core intuition",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Core Idea",
+          "body": "Diagram: pipeline Input data x → Layers (neural net) → Prediction ŷ → Loss (score) L → Backprop (gradients) ∇L → Updated weights W′.\nNeuron / linear layer: y = Wx + b. ELI5: Mix inputs with weights, then add bias. Pro: Flexible building block. Watch out: Alone it only makes linear decisions.\nNonlinearity / activation: Adds bends to the model (ReLU = max(0, x), Sigmoid, Tanh). ELI5: Gives the network the power to model non-straight-line patterns. Pro: ReLU is the default workhorse. Watch out: Sigmoid/Tanh can saturate. ReLU can \"die\" (stuck at 0).\nLoss function: Score = how wrong the model is. Classification: cross-entropy −Σ y log(ŷ). Regression: MSE (1/n)Σ(y − ŷ)². ELI5: The score that tells the model how wrong its predictions are. Pro: Guides learning. Watch out: Must match the task.\nBackpropagation: Pass blame backward. ELI5: Send blame (gradients) backward so each weight learns how to change. Pro: Efficient with chain rule. Watch out: Needs a good learning rate & optimizer."
+        },
+        {
+          "number": 2,
+          "heading": "Representation Building Blocks",
+          "body": "Embeddings: Look up dense vectors (an embedding matrix row for each token such as cat, dog, pizza, <UNK>). ELI5: A lookup table that gives each item a learned meaning-space coordinate. Use when: Discrete tokens / IDs / categories.\nConvolution: Slide a filter to find patterns, producing a feature map. ELI5: A small filter scans the input looking for useful patterns. Pro: Captures local patterns. Pro: Weight sharing = fewer params.\nPooling: Downsample & summarize (max pool 2×2, avg pool 2×2). ELI5: Summarize a local region to shrink size and keep key info. Tradeoff: Loses some detail.\nBatch normalization: Normalize activations (unstable before → stable after). ELI5: Stabilizes layer activations during training. Pro: Faster & more stable training. Note: Uses batch stats in training, moving averages at inference.\nDropout: Randomly drop during training. ELI5: Randomly turn off some units so model doesn't rely too much on any one path. Pro: Strong regularization. Note: Off during inference."
+        },
+        {
+          "number": 3,
+          "heading": "Training Basics",
+          "body": "Batch / mini-batch / epoch: Batch – one update using all data. Mini-batch – update using a subset. Epoch – one full pass over the data. ELI5: Balance between speed, noise, and stability.\nGradient descent & LR: Update weights opposite the gradient: w ← w − η∇L, η = learning rate. Too small: very slow. Just right: good progress. Too big: unstable! ELI5: Step size for each update.\nOptimizers: Popular choices. SGD – simple baseline + momentum. Adam – adaptive LR + momentum. ELI5: Different optimizers = different ways to choose update steps.\nOverfitting vs underfitting: Look at train vs. val loss curves. Pro: Use validation curves to decide when to stop or adjust model.\nTrain / val / test split: Keep the exam secret. Train ~70%, Val ~15%, Test ~15%. ELI5: Train learns, Val tunes, Test is the final exam. Pro: Prevents cheating. Watch out: Never tune on test!"
+        },
+        {
+          "number": 4,
+          "heading": "What Each Block Is Good For",
+          "body": "Embedding: tokens / categories. Convolution: images / local patterns. Pooling: reduce size / gain invariance. Batch norm: stabilize training. ReLU / activations: add expressive power. Dropout: reduce overfitting. Use the right tool for the right job!"
+        },
+        {
+          "number": 5,
+          "heading": "Common Failure Modes",
+          "body": "Dead ReLUs: Diagnosis – neurons stuck at 0. Fix – lower LR, use Leaky ReLU, or better init.\nVanishing / exploding gradients: Diagnosis – gradients too small or too big. Fix – gradient clipping, LayerNorm/BatchNorm, good init, sensible LR.\nOverfitting: Diagnosis – great on train, poor on val/test. Fix – more data, regularize (dropout, weight decay), early stop.\nData leakage: Diagnosis – info from test leaks into train. Fix – clean splits, check pipelines, no peeking!\nBad normalization / unscaled inputs: Diagnosis – one feature dominates. Fix – normalize/standardize inputs & targets.\nTiny batch = unstable batch norm: Diagnosis – batch stats are noisy. Fix – larger batch, use GroupNorm/LayerNorm or SyncBN."
+        },
+        {
+          "number": 6,
+          "heading": "Quick Researcher Checklist",
+          "body": "1. Did I define the task and loss correctly? 2. Are my train/val/test splits clean? 3. Did I choose the right representation (embedding/conv/etc.)? 4. Are activations and normalization sensible? 5. Is the learning rate stable? 6. Am I overfitting? 7. Do curves and metrics make sense? 8. Can a simpler baseline do this already?"
+        }
+      ],
+      "footer": "First learn the pipeline. Then tune the blocks. Then debug the training.",
+      "summary": "An overview of how a neural network is built and trained: layers, activations, losses and backpropagation, the common building blocks (embeddings, convolution, pooling, batch norm, dropout), and how to spot and fix typical training problems.",
+      "keywords": [
+        "Neural network",
+        "Activation function",
+        "ReLU",
+        "Backpropagation",
+        "Embeddings",
+        "Convolution",
+        "Pooling",
+        "Batch normalization",
+        "Dropout",
+        "Optimizer",
+        "Overfitting",
+        "Train/validation/test split"
+      ]
+    },
+    {
+      "image": "ML/04-cross-validation-cheat-sheet.png",
+      "title": "Cross-Validation Cheat Sheet",
+      "subtitle": "When to use each approach, what it estimates, and common traps",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Why Cross-Validation?",
+          "body": "ELI5: We train on part of the data, validate on held-out data, repeat the process, and average the results to estimate how well the model will generalize to new data.\nDiagram: Dataset → Split → Train (on train folds) → Validate (on val fold) → Average score.\nPro: Better use of limited data. Pro: More stable than one random split. Con: Slower (more training cycles). Watch out: CV is not a substitute for a final untouched test set."
+        },
+        {
+          "number": 2,
+          "heading": "The Main Approaches",
+          "body": "1. Holdout split: One train/val split. Use when data is large and quick iteration matters. Caution: high variance from one split.\n2. K-fold CV (k=5 or 10): Rotate validation across k folds. Default for iid tabular data. Common k = 5 or 10.\n3. Stratified K-fold: Preserve class proportions in each fold. Use for classification, especially imbalance. Caution: stratify labels, not leakage features.\n4. Repeated K-fold: Run k-fold multiple times with different shuffles. Use when estimate is noisy. Caution: more compute.\n5. LOOCV (leave-one-out): One sample left out each time. Use when dataset is tiny. Caution: very expensive and often high variance.\n6. Nested CV: Inner loop for tuning (model tuning), outer loop for unbiased performance (perf. estimate). Use for model selection + honest evaluation. Caution: expensive, but clean.\n7. Group K-fold: Keep all examples from the same group together. Use for patients, users, sessions, documents. Caution: never split same group across train and val.\n8. Leave-one-group-out (LOGO): Each validation fold is one full group. Use when generalizing to unseen groups/sites. Caution: can be pessimistic if groups differ a lot.\n9. Time-series / forward-chaining split: Train on past, validate on future. Use for temporal data, forecasting, drifting systems. Caution: never shuffle time.\n10. Monte Carlo / ShuffleSplit: Repeated random train/val splits. Use for flexible repeated estimates on large-ish iid data. Caution: samples may appear in validation multiple times.\nThere's no one-size-fits-all split — choose what matches your data & goal!"
+        },
+        {
+          "number": 3,
+          "heading": "When to Use Which?",
+          "body": "Decision flow: Is the data time-ordered? Yes → use time-series split. Are there groups / patients / users / repeated entities? Yes → use Group K-fold or LOGO. Is it classification with imbalance? Yes → use Stratified K-fold. Is the dataset tiny? Yes → use K-fold, Repeated K-fold, or LOOCV (with caveat). Need hyperparameter tuning and honest model comparison? Yes → use Nested CV. Have lots of data and need speed? Yes → holdout split may be enough.\nSide note: For many iid problems, start with Stratified 5-fold for classification or 5-fold for regression."
+        },
+        {
+          "number": 4,
+          "heading": "What Can Go Wrong?",
+          "body": "Leakage from preprocessing: Scaling, PCA, imputation, feature selection must happen inside each training fold.\nTuning on the test set: Don't peek! It leads to optimistic, overfit results.\nDuplicates / near-duplicates: Duplicates across folds inflate performance. Deduplicate or group similar items.\nGroup leakage: Same group in train & val = information leakage. Keep groups intact.\nShuffling temporal data: Shuffling destroys time order and leaks future information.\nImbalanced folds: Uneven class ratios across folds give unstable metrics.\nUnfair model comparison: Compared across different folds? Not fair. Use the same folds for all models.\nNo variability reported: Mean score alone misleads. Always report mean ± std or confidence interval."
+        },
+        {
+          "number": 5,
+          "heading": "Good Practice Checklist",
+          "body": "Define the prediction target and unit of prediction. Split by the right unit (sample vs patient vs user vs time block). Keep preprocessing inside the fold pipeline. Use the same folds across model comparisons. Report metric mean and spread across folds. Keep one final untouched test set if possible. Choose metrics that match the task (e.g., AUROC/AUPRC/F1 for imbalance). Set random seeds and describe the split strategy."
+        },
+        {
+          "number": 6,
+          "heading": "Quick Reference Table",
+          "body": "Fast baseline → Holdout (quick and cheap). Default iid estimate → K-fold (stable and standard). Imbalanced classification → Stratified K-fold (preserves class ratio). Very small dataset → Repeated K-fold or LOOCV (use data efficiently). Unseen patients/users/sites → Group K-fold or LOGO (prevents leakage). Hyperparameter tuning + honest estimate → Nested CV (avoids optimistic bias). Forecasting / temporal drift → Time-series split (respects chronology)."
+        }
+      ],
+      "footer": "Split like the real deployment. If reality is grouped or temporal, your validation should be too.",
+      "summary": "Explains how cross-validation estimates how well a model will do on new data, which splitting scheme to use for different kinds of data (grouped, time-ordered, imbalanced, tiny), and the mistakes that make validation scores look better than reality.",
+      "keywords": [
+        "Cross-validation",
+        "Holdout split",
+        "K-fold cross-validation",
+        "Stratified K-fold",
+        "Leave-one-out (LOOCV)",
+        "Nested cross-validation",
+        "Group K-fold",
+        "Leave-one-group-out (LOGO)",
+        "Time-series split",
+        "Data leakage",
+        "Generalization"
+      ]
+    },
+    {
+      "image": "ML/05-classification-metrics-cheat-sheet.png",
+      "title": "Classification Metrics Cheat Sheet",
+      "subtitle": "Your probe outputs a score. You pick a threshold to turn scores into yes/no. Metrics split into two families by whether they depend on that threshold.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Threshold-Free Metrics — Judge the Representation",
+          "body": "AUROC: ELI5 – chance a random positive scores above a random negative. Pro: Threshold-free, balance-invariant, comparable across datasets. Con: Can look too optimistic when positives are rare. Use when: Default for research comparisons: layer sweeps, ablations, transfer. Diagram: ROC curve of TPR (recall) vs FPR, AUROC = 0.85.\nAUPRC: ELI5 – similar idea, but only cares about your flagged items. Pro: More honest under heavy imbalance. Con: Baseline shifts with prevalence, so it is not comparable across datasets. Use when: Positives are rare (<5%). Diagram: precision-recall curve, AUPRC = 0.42 against a baseline equal to prevalence (example: 0.02).\nTPR @ fixed FPR: ELI5 – if I can only review 1% of traffic, how much do I catch? Pro: Directly answers the deployment question. Con: Only one operating point. Use when: This is the \"would this actually ship?\" number. Example deployment dashboard at FPR = 1%: FPR (reviewed) 1.00%, TPR (catch rate) 72% — you review 1% of traffic and catch 72% of positives."
+        },
+        {
+          "number": 2,
+          "heading": "Threshold-Dependent Metrics — Judge a Deployed System",
+          "body": "Accuracy: ELI5 – % you got right. Pro: Everyone understands it. Con: Misleading under imbalance — you can get 99% by always saying \"no\". Use when: Balanced classes, casual reporting only.\nPrecision: ELI5 – of the ones I flagged, how many were real? Pro: Measures false-alarm cost. Con: Ignores what you missed. Use when: False positives are expensive.\nRecall (TPR): ELI5 – of the real ones, how many did I catch? Pro: Measures miss cost. Con: Ignores false alarms. Use when: Missing one is expensive.\nF1: ELI5 – balance of precision and recall. Pro: One number, standard. Con: Depends on an arbitrary threshold, ignores true negatives, and depends on prevalence. Use when: Reporting a fixed, chosen operating point.\nFβ: ELI5 – F1 with a dial: beta > 1 favors recall, beta < 1 favors precision. Pro: Encodes real cost asymmetry. Con: You now have two knobs to justify. Use when: You can justify the cost ratio.\nMCC: ELI5 – correlation between prediction and truth, from −1 to 1. Pro: Uses all four cells of the confusion matrix (TP, FN, FP, TN) and is robust to imbalance. Con: Less familiar to readers."
+        },
+        {
+          "number": 3,
+          "heading": "Decision Rule",
+          "body": "Comparing models / layers / methods → AUROC (+ AUPRC if imbalanced). Deciding whether to deploy → TPR @ FPR. Reporting a shipped system → precision and recall at your actual threshold, plus the threshold. Claiming the score is a probability → also report calibration (ECE or a reliability plot)."
+        },
+        {
+          "number": 4,
+          "heading": "Two Traps",
+          "body": "Trap 1: Never report a single accuracy number on imbalanced data. It's the classic way to look good while doing nothing. Example: with 10 actual positives and 9,990 negatives, predicting all negative gives accuracy = 9,990/10,000 = 99.9% — but we caught ZERO positives.\nTrap 2: F1 without stating the threshold is unfalsifiable. Always publish the cutoff and how you chose it — ideally on a validation split, never on test."
+        }
+      ],
+      "footer": "The golden rule: Extraordinary claims require extraordinary evidence. Don't just find patterns. Understand mechanisms.",
+      "summary": "Explains how to judge a classifier that outputs scores: threshold-free metrics like AUROC and AUPRC compare models, while precision, recall, F1 and friends describe a deployed system at a chosen cutoff — and why plain accuracy misleads when positives are rare.",
+      "keywords": [
+        "Classification threshold",
+        "AUROC",
+        "AUPRC",
+        "True positive rate (TPR)",
+        "False positive rate (FPR)",
+        "Precision",
+        "Recall",
+        "F1 score",
+        "Matthews correlation coefficient (MCC)",
+        "Confusion matrix",
+        "Calibration",
+        "Expected calibration error (ECE)"
+      ]
+    },
+    {
+      "image": "ML/06-imbalanced-classes-cheat-sheet.png",
+      "title": "Imbalanced Class Cheat Sheet",
+      "subtitle": "How to evaluate, train, tune thresholds, and avoid traps when positives are rare.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Core Idea — ELI5",
+          "body": "One class (positives) is rare. Raw accuracy can look great while the model still misses what matters. Toy example of 1,000 cases: 990 negatives, 10 positives. Always predict negative → accuracy = 990/1000 = 99%, but catches 0 of 10 positives = 0 useful catches."
+        },
+        {
+          "number": 2,
+          "heading": "Why Imbalance Is Tricky",
+          "body": "Accuracy trap: Majority class dominates the score. High accuracy can still be useless.\nMinority gets ignored: Model can \"win\" by ignoring the rare class and still look great overall.\nCalibration drifts: Predicted probabilities may be over/under-confident on the minority class.\nNoisy estimates: Few positives = high variance. Scores bounce around a lot.\nChoose metrics that reward catching rare positives!"
+        },
+        {
+          "number": 3,
+          "heading": "Metrics That Matter (More Than Accuracy)",
+          "body": "3.1 Precision = TP / (TP + FP). ELI5: Of predicted positives, how many are actually positive? Pro: Fewer false alarms. Watch out: Can look good by being overly conservative. Use when: False positives are costly.\n3.2 Recall (TPR) = TP / (TP + FN). ELI5: Of actual positives, how many did we catch? Pro: Fewer misses. Watch out: Can be high with more false alarms. Use when: Missing positives is costly.\n3.3 F1 score = 2 × P × R / (P + R). ELI5: Balance between precision and recall. Pro: Single number summary. Watch out: Hides trade-offs; depends on class imbalance. Use when: Want a balanced trade-off.\n3.4 PR-AUC (PR curve): ELI5: Overall ability to find positives without too many false alarms. Pro: Focuses on the positive class. Watch out: Sensitive to prevalence (that's the point!). Use when: Positives are rare. Usually the most informative. Prefer over ROC-AUC when positives are rare.\n3.5 Balanced accuracy = (TPR + TNR) / 2. ELI5: Average of recall on both classes. Pro: Treats classes more fairly. Watch out: Still a summary; check the details. Use when: You want a balanced view.\n3.6 MCC (Matthews CC): ELI5: Correlation between predictions and truth. Pro: Works for any imbalance; uses all cells. Watch out: Harder to interpret. Use when: You want one robust score. Range: −1 (bad) to 0 (random) to 1 (perfect).\n3.7 Confusion matrix (TP, FN, FP, TN): ELI5: The full picture. Pro: Shows where errors come from. Watch out: Counts hide rates — always compute rates too. Use when: Always!"
+        },
+        {
+          "number": 4,
+          "heading": "Data-Level Tools (Resample Only Inside Training Fold!)",
+          "body": "4.1 Stratified split / stratified CV: Maintain similar class proportions in each split. Pro: Unbiased evaluation. Watch out: With very few positives, use repeated CV for stability.\n4.2 Random oversampling: Duplicate minority examples. Pro: Simple, effective. Watch out: Overfitting on duplicates.\n4.3 Random undersampling: Remove some majority examples. Pro: Faster models. Watch out: May lose important signal.\n4.4 SMOTE / synthetic oversampling: Create synthetic minority examples. Pro: Adds diversity. Watch out: Can make unrealistic points. Tune carefully.\n4.5 Minority data augmentation: Domain-specific transforms (e.g., text back-translation, image flips, noise). Pro: Adds variety. Watch out: Don't distort the label or semantics.\nNEVER resample before splitting. Do it ONLY inside each training fold. Leakage = fake performance."
+        },
+        {
+          "number": 5,
+          "heading": "Model-Level Tools",
+          "body": "5.1 Class weights: Weight the minority class higher in the loss. Pro: Simple, built-in. Watch out: Too high can overcompensate. Use when: First thing to try.\n5.2 Focal loss: Focus learning on hard, misclassified examples. Pro: Great for dense imbalance. Watch out: Extra hyperparameter (γ). Use when: Many easy negatives drown signal.\n5.3 Threshold tuning: Pick threshold that optimizes your metric. Pro: Huge impact. Watch out: Tune on validation only. Use when: Always before deployment.\n5.4 Cost-sensitive learning: Encode business costs (FN vs FP). Pro: Directly matches real-world trade-offs. Watch out: You must know/assume costs. Use when: You know the relative costs.\n5.5 Anomaly detection / one-class methods: For extreme rarity when positives are <0.1%. Pro: Model \"normal\" only; flag deviations. Watch out: Needs known normal data. Use when: Positives are ultra-rare."
+        },
+        {
+          "number": 6,
+          "heading": "How to Choose What to Optimize",
+          "body": "False negatives costly (misses hurt) → prioritize recall / TPR. False positives costly (alarms hurt) → prioritize precision. You need ranking quality → optimize PR-AUC. Review budget / operating constraint → TPR @ fixed FPR or precision @ top-k. Positives extremely rare → anomaly detection + calibrated thresholding. You know business costs → cost-sensitive learning."
+        },
+        {
+          "number": 7,
+          "heading": "Good Workflow (A Practical Playbook)",
+          "body": "1. Define: Define positive class & business costs. 2. Inspect: Check prevalence, leakage sources, data quality. 3. Stratify: Stratified split / stratified CV. Keep test untouched. 4. Baseline: Build simple baseline (e.g., majority or LR). 5. Pick metric: Match metric to goal & deployment constraints. 6. Improve: Try class weights + threshold tuning first. 7. Resample if needed: Use resampling / aug inside training fold only. 8. Inspect errors: Look at FP & FN. Find patterns and subgroups. 9. Calibrate: Calibrate probs (Platt / isotonic) if needed. 10. Report: Report chosen metric + CI/uncertainty. Explain trade-offs. Measure, improve, repeat!"
+        },
+        {
+          "number": 8,
+          "heading": "Classic Traps (Avoid These!)",
+          "body": "Reporting accuracy alone: Looks good, means nothing. Leakage from resampling before split: Synthetic samples leak information. Balanced test set hides true prevalence: Results won't match real-world rates. Duplicates across folds / near-duplicates: Inflates performance artificially. Default 0.5 threshold without tuning: Rarely the right operating point. Perfect score on tiny support: Don't trust tiny numbers. Ignore subgroup fairness & drift: Model may fail for some groups."
+        },
+        {
+          "number": 9,
+          "heading": "Quick Checklist",
+          "body": "What is the real prevalence? What error (FN or FP) is costlier? Did I stratify the split / CV? Did I resample ONLY inside training folds? Which metric matches deployment? How many positives in validation & test? Did I tune the threshold on validation only? Did I report uncertainty (CI)? Did I check subgroups & calibration?"
+        }
+      ],
+      "footer": "Don't chase accuracy — match the metric to the real-world cost.",
+      "summary": "Covers what to do when the thing you care about is rare: why accuracy becomes misleading, which metrics actually reflect performance, and data- and model-level fixes like resampling, class weights and threshold tuning, plus the traps that create fake gains.",
+      "keywords": [
+        "Class imbalance",
+        "Precision",
+        "Recall",
+        "PR-AUC",
+        "Balanced accuracy",
+        "Matthews correlation coefficient (MCC)",
+        "Confusion matrix",
+        "Oversampling",
+        "SMOTE",
+        "Class weights",
+        "Focal loss",
+        "Threshold tuning"
+      ]
+    },
+    {
+      "image": "ML/07-correlation-vs-causation-cheat-sheet.png",
+      "title": "Correlation vs Causation Cheat Sheet",
+      "subtitle": "Two things moving together does NOT automatically mean one causes the other.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Core Ideas",
+          "body": "Correlation: ELI5 – two variables change together. Pro: Great for finding patterns and hypotheses. Con: Says nothing by itself about why. Use when: Exploration, monitoring, feature screening.\nCausation: ELI5 – changing X would change Y. Pro: Supports actions and decisions. Con: Harder to prove. Use when: Policies, interventions, product changes, medicine.\nKey rule: Correlation ≠ causation. Why? A hidden factor may drive both. Or Y may cause X. Or it may be coincidence / time trend."
+        },
+        {
+          "number": 2,
+          "heading": "What Fools You?",
+          "body": "Confounder: A third variable affects both X and Y. Example: ice cream ↑ and drowning ↑ because summer (Z) ↑.\nReverse causality: Maybe Y actually causes X. Example: stress and bad sleep — which comes first?\nSelection / collider bias: The sample itself creates a fake pattern. Example: only looking at admitted patients or clicked users.\nTime trends & coincidence: Things can rise together without a direct link. Shared seasonality or pure luck can mislead you."
+        },
+        {
+          "number": 3,
+          "heading": "How to Get Closer to Causality",
+          "body": "Randomized experiment / A-B test: Best tool when feasible. Randomization balances hidden factors (randomly assign to A – control, or B – variant).\nObservational causal tools: Use controls, matching, DAGs, fixed effects, diff-in-diff, IVs when randomization is impossible. Always state assumptions.\nTemporal check: Cause must come before effect. Check timing carefully.\nRobustness checks: Try alternative controls, subgroups, sensitivity tests, and placebo checks. If the story breaks easily, be skeptical."
+        },
+        {
+          "number": 4,
+          "heading": "How to Talk Like a Good Researcher",
+          "body": "Exploring data? Say: \"X is associated with Y.\" → Making an action claim? Ask: \"What design supports causality?\" → Can I randomize? If yes → experiment. → If no → use a causal design + assumptions + sensitivity checks. Strong claim requires strong evidence. Avoid causal words unless the design justifies them."
+        },
+        {
+          "number": 5,
+          "heading": "Two Classic Traps",
+          "body": "Trap 1: A huge R or beautiful scatter plot is not enough (e.g. R = 0.92). Always ask: what else could explain this?\nTrap 2: Action based on observational data. If you will change a product, policy, or treatment, correlation alone is risky."
+        },
+        {
+          "number": 6,
+          "heading": "Quick Checklist",
+          "body": "1. What is the claim: association or cause? 2. Could there be a confounder? 3. Could direction be reversed? 4. Did the cause happen first? 5. What design supports the claim? 6. How robust is the result?"
+        }
+      ],
+      "footer": "",
+      "summary": "Explains why two things rising and falling together doesn't prove one causes the other, the usual culprits (hidden confounders, reversed direction, biased samples, coincidence), and how experiments and careful causal methods get closer to real cause and effect.",
+      "keywords": [
+        "Correlation",
+        "Causation",
+        "Confounder",
+        "Reverse causality",
+        "Selection bias",
+        "Collider bias",
+        "Randomized experiment",
+        "A/B test",
+        "Difference-in-differences",
+        "Instrumental variables (IVs)",
+        "Directed acyclic graph (DAG)",
+        "Robustness checks"
+      ]
+    },
+    {
+      "image": "ML/08-detecting-odd-results-cheat-sheet.png",
+      "title": "Something's Off?",
+      "subtitle": "A Cheat Sheet for Detecting Odd Results — Good researchers don't just run models. They trust, but verify.",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Red Flags: When Results Look Odd",
+          "body": "Perfect (or near-perfect) scores: 99.9% accuracy? Check for leakage or target leakage.\nWay better than baseline: Huge jump without strong reason? Double-check setup.\nWay worse than expected: Worse than random? Check bugs, data mismatch, or label issues.\nHigh variance across runs: Results change a lot with different seeds? Model may be unstable or data is small.\nTrain >> test gap: Model memorizing training data? Generalization problem.\nStrange learning curve: Loss goes up? Flat line? Something's wrong in training or data."
+        },
+        {
+          "number": 2,
+          "heading": "Check Data First",
+          "body": "Sanity check a few samples. Do they look correct? Check data types, ranges, and units. Missing values pattern? Too many? Train/test split random? Group leakage? Duplicates in data? Label distribution correct? Any label noise?\nGolden rule: If the data is wrong, no model can be right."
+        },
+        {
+          "number": 3,
+          "heading": "Multicollinearity: How to Detect",
+          "body": "Correlation matrix: Look for high absolute correlations (|r| > 0.8).\nVIF (variance inflation factor): VIF measures how much the variance is inflated. Example: X1 1.2 fine; X2 5.8 moderate; X3 17.3 high; X4 32.1 severe; X5 2.1 fine. Rule of thumb: VIF > 5 = problem, > 10 = serious.\nCondition number: High condition number indicates multicollinearity (e.g. 2.4e+04). > 1000 is usually bad.\nWhat to do: Drop one of the correlated features. Combine features (PCA, domain knowledge). Use regularization (Ridge, Lasso). Collect more data."
+        },
+        {
+          "number": 4,
+          "heading": "When Scores Are Perfect (or Too High)",
+          "body": "Check for data leakage: Target in features? Future info in train set? Leakage in preprocessing (scaling, encoding)?\nCheck evaluation leakage: Train/test overlap? Cross-validation done correctly (no leakage across folds)?\nCheck label leakage: Is the label accidentally in the input? Are IDs or timestamps leaking info?\nCheck task easiness: Is the task actually trivial? Are you predicting a proxy instead of the real target?\nIf it looks too good… find the leak."
+        },
+        {
+          "number": 5,
+          "heading": "When Scores Are Too Bad",
+          "body": "Bug in code (loss not decreasing)? Wrong labels or misaligned data? Learning rate wrong? Model too simple (underfitting)? Data distribution shift? Features not informative?"
+        },
+        {
+          "number": 6,
+          "heading": "Learning Curve Diagnosis",
+          "body": "Good fit: Both train & test loss go down and converge.\nHigh variance: Large gap between train and test. Overfitting.\nHigh bias: Both losses high and close. Underfitting.\nData / label issue or bug: Loss behaves strangely. Investigate!"
+        },
+        {
+          "number": 7,
+          "heading": "Other Diagnostic Tools",
+          "body": "Residual plots: Look for patterns. Random scatter is good.\nQQ plot (regression): Points should follow the line.\nHistograms: Check distribution of features & target.\nOutliers: Detect with boxplot or IQR rule.\nSHAP / feature importance: Do important features make sense?"
+        },
+        {
+          "number": 8,
+          "heading": "A Systematic Debugging Flow",
+          "body": "1. Reproduce: Can you reproduce the result? If not, fix randomness and seeds first. 2. Check data: Sanity check samples, splits, labels. Fix any data issues. 3. Check pipeline: Preprocessing, features, model, training loop. Check for leakage or bugs. 4. Run baselines: Compare with simple models. Is your model really better? 5. Stress test: Try different seeds, splits, assumptions. Is it stable? 6. Interpret: Understand what the model learned. Does it make sense? → Trustworthy results: Now you can believe it (carefully)."
+        },
+        {
+          "number": 9,
+          "heading": "Quick Checklist",
+          "body": "Data looks correct. No leakage (features, labels, time). Train/test split is proper. Baseline models checked. Cross-validation done correctly. Scores are stable across runs. Learning curves look reasonable. Feature importance makes sense. Errors analyzed. Results are reproducible. I would bet money on this result? If many boxes are unchecked, don't trust the result."
+        },
+        {
+          "number": 10,
+          "heading": "Mental Models to Remember",
+          "body": "Garbage in, garbage out: Bad data → bad models. Correlation is not causation: Look for mechanisms, not just patterns. Occam's razor: Prefer the simplest explanation that fits the data. Be humble: You are wrong more often than you think. Seek disconfirming evidence: What would prove you wrong? Document everything: Future you will thank you."
+        }
+      ],
+      "footer": "Final word: Extraordinary claims require extraordinary evidence. Be skeptical, be systematic, be scientific.",
+      "summary": "A guide to sanity-checking machine learning results that look too good or too bad: the warning signs, where leakage hides, how to read learning curves and spot correlated features, and a step-by-step debugging routine before you trust a number.",
+      "keywords": [
+        "Data leakage",
+        "Target leakage",
+        "Multicollinearity",
+        "Variance inflation factor (VIF)",
+        "Condition number",
+        "Learning curve",
+        "Overfitting",
+        "Underfitting",
+        "Residual plot",
+        "SHAP",
+        "Baseline",
+        "Reproducibility"
+      ]
+    },
+    {
+      "image": "ML/09-anthropic-llm-interview-field-guide-cover.png",
+      "title": "The Anthropic LLM Interview Field Guide",
+      "subtitle": "A Comic-Book Cheat Sheet for Thinking Clearly About LLMs",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "12 Chapters. One Interview Advantage.",
+          "body": "1. Transformers 2. Serving 3. Alignment 4. Evals 5. Scaling 6. Interpretability 7. Safety 8. Distributed Training 9. Tokenization 10. Agents 11. Fine-tuning 12. System Design\nDiagram: a blueprint of the transformer architecture — input tokens and positional encoding feed an encoder stack (multi-head attention, add & norm, feed forward), a latent representation, then a decoder stack (masked multi-head attention, cross attention, feed forward, add & norm) producing output tokens. Side slogans: Think like an engineer. Explain like a human. Data flows. Models think. People build. Context is all you have."
+        }
+      ],
+      "footer": "Understand deeply. Think critically. Build what matters.",
+      "summary": "The cover of a 12-chapter comic field guide to large language models, previewing the topics that follow: transformers, serving, alignment, evaluation, scaling, interpretability, safety, distributed training, tokenization, agents, fine-tuning and system design.",
+      "keywords": [
+        "Large language model (LLM)",
+        "Transformer architecture",
+        "Encoder stack",
+        "Decoder stack",
+        "Multi-head attention",
+        "Cross attention",
+        "Positional encoding",
+        "Alignment",
+        "Interpretability",
+        "Tokenization"
+      ]
+    },
+    {
+      "image": "ML/10-transformer-internals-cheat-sheet.png",
+      "title": "Transformer Internals Cheat Sheet",
+      "subtitle": "Attention math, shapes, heads, cache, positions, and residual flow",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Attention Pipeline with Shapes",
+          "body": "1. Input X: [B, T, d_model]. 2. Linear projections Q, K, V: [B, T, h, d_head], where d_model = h × d_head. 3. Scores S = QKᵀ/√d_head: [B, h, T, T]. 4. Softmax (row-wise) A = softmax(S): [B, h, T, T]. 5. Weighted sum Y = AV: [B, T, h, d_head].\nB = batch size, T = sequence length, d_model = model dim, h = # heads, d_head = head dim."
+        },
+        {
+          "number": 2,
+          "heading": "Multi-Head Attention (MHA)",
+          "body": "Split heads: From Q, K, V of shape [B, T, h, d_head] into head 0 … head h−1. Each head attends with size d_head.\nPer-head attention: Aᵢ = softmax(QᵢKᵢᵀ/√d_head), output AᵢVᵢ.\nConcat & project: Concat heads [B, T, h, d_head] → [B, T, d_model], multiply by W_O to get output Y of shape [B, T, d_model].\nCross-token communication: Every token can attend to all previous tokens (causal) across every head. Diagram: lower-triangular attention pattern of query position vs key position."
+        },
+        {
+          "number": 3,
+          "heading": "MHA vs GQA vs MQA",
+          "body": "Q always has h heads. K, V heads vary.\nMHA (multi-head attention): KV heads = h. Highest quality, highest cost.\nGQA (grouped query attention): KV heads = g (g < h); query heads share K/V within groups. Balanced quality & latency.\nMQA (multi-query attention): KV heads = 1. Lowest latency, some quality tradeoff.\nGQA = quality/latency compromise. Compute & memory (approx.) for KV cache & matmuls: MHA ~ O(h) | GQA ~ O(g) | MQA ~ O(1)."
+        },
+        {
+          "number": 4,
+          "heading": "KV Cache: Store K, V per Layer",
+          "body": "Prefill (process full prompt): Compute K, V for all tokens 1…T. Store in cache.\nDecode (generate next token): At step T+1, compute K, V only for the new token and append to cache.\nNo recomputing past tokens = big speedup!"
+        },
+        {
+          "number": 5,
+          "heading": "RoPE (Rotary Positional Embedding)",
+          "body": "Rotate Q and K by position p: Q′ₚ = RoPE(Qₚ, p), K′ₚ = RoPE(Kₚ, p). Diagram: vectors rotated by different angles at p = 3 and p = 7.\nEncodes relative positions. Generalizes to longer sequences. KV cache needs position continuity (keep incrementing p).\nRoPE is applied before attention score: use Q′ and K′."
+        },
+        {
+          "number": 6,
+          "heading": "Pre-Norm vs Post-Norm",
+          "body": "Pre-norm (preferred): LayerNorm → Attention → add residual, then LayerNorm → MLP → add residual. Pre-norm trains deeper more reliably.\nPost-norm: Attention → add residual → LayerNorm, then MLP → add residual → LayerNorm."
+        },
+        {
+          "number": 7,
+          "heading": "Residual Stream: The Information Highway",
+          "body": "Data flows, gets mixed, then carried forward. xₗ (residual input) → Attention (mix across tokens) → add → MLP (mix within tokens) → add → xₗ₊₁ (residual output).\nThe residual stream carries information across the entire network depth. Don't block it. Help it."
+        },
+        {
+          "number": 8,
+          "heading": "Interview Drill: Prove You Get It",
+          "body": "A) Derive shapes: Given B, T, d_model, h. Q, K, V: [B, T, h, d_head] where d_head = d_model / h. Scores: [B, h, T, T]. A (softmax): [B, h, T, T]. Y per head: [B, T, h, d_head]. Y (concat): [B, T, d_model].\nB) Implement stable softmax: Subtract row max for stability. Where dh = d_head.\nC) Why causal mask? Prevents looking at future tokens: past & self are allowed, future is masked. Essential for autoregressive LLMs.",
+          "code": "scores = Q @ K.transpose(-2, -1) / sqrt(dh)\nscores += causal_mask\nA = softmax(scores)\nY = A @ V"
+        }
+      ],
+      "footer": "Track the shapes. Then track the cache. Then explain the tradeoff.",
+      "summary": "A look inside the transformer: how attention turns queries, keys and values into a weighted mix of tokens, how multiple heads and head-sharing variants trade quality for speed, and how the KV cache, rotary position embeddings, normalization and the residual stream fit together.",
+      "keywords": [
+        "Self-attention",
+        "Query, key, value (Q, K, V)",
+        "Multi-head attention (MHA)",
+        "Grouped query attention (GQA)",
+        "Multi-query attention (MQA)",
+        "KV cache",
+        "Rotary positional embedding (RoPE)",
+        "Pre-norm",
+        "LayerNorm",
+        "Residual stream",
+        "Causal mask",
+        "Softmax"
+      ]
+    },
+    {
+      "image": "ML/11-llm-inference-serving-cheat-sheet.png",
+      "title": "LLM Inference & Serving Cheat Sheet",
+      "subtitle": "Memory, latency, batching, decoding, quantization, and cost",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "KV-Cache Memory",
+          "body": "Formula: bytes ≈ 2 × L × B × T × H_kv × d_head × bytes_per_element, where L = layers, B = batch, T = total tokens (context + generated), H_kv = KV heads, d_head = head dim. Why the factor 2? We store both Keys and Values (K + V).\nVisual example config: L = 80 layers, B = 8 requests, T = 4,096 tokens, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes). bytes ≈ 2 × 80 × 8 × 4,096 × 8 × 128 × 2 = 6,710,886,400 bytes ≈ 6.25 GB. KV cache for this batch & context (weights not included)."
+        },
+        {
+          "number": 2,
+          "heading": "Prefill vs Decode",
+          "body": "Prefill (compute-heavy): Process the entire prompt (T_p tokens) in parallel, populating the KV cache. GPU busy with big matrix multiplies.\nDecode (memory-bandwidth-bound): Generate one token at a time. One new token per step. Reads the whole KV cache each time.\nPrefill = parallel & compute-bound. Decode = sequential & memory-bound."
+        },
+        {
+          "number": 3,
+          "heading": "TTFT, TPOT & Total Latency",
+          "body": "TTFT (time to first token): Time from request start to first token being returned.\nTPOT (time per output token): Average time to generate each subsequent token.\nTotal latency ≈ TTFT + (output_tokens × TPOT). Example: TTFT = 1.250 s, TPOT = 0.045 s, output tokens = 200 → total latency ≈ 1.250 + (200 × 0.045) = 1.250 + 9.000 = 10.250 s.\nOptimize TTFT for perceived speed. Optimize TPOT for long outputs."
+        },
+        {
+          "number": 4,
+          "heading": "Continuous Batching",
+          "body": "Requests arrive and depart between decode steps. Scheduler keeps GPU full. Diagram: requests A–D join the shared decode steps at different times, filling idle slots.\nTradeoffs: + Higher GPU utilization. + Better throughput. − Queueing delay for some requests. − Fairness vs latency balance."
+        },
+        {
+          "number": 5,
+          "heading": "Speculative Decoding",
+          "body": "Use a small draft model to propose k tokens. Large model verifies; accept the prefix. 1. Draft model (small): propose k tokens. 2. Verifier model (large): verify in parallel. 3. Accept prefix: keep until first rejection; the next token comes from the verifier.\nWhen it wins: High acceptance rate (many tokens accepted). Verifier can process many candidates efficiently.\nWhen it loses: Low acceptance rate (many rejections). Verifier not batch-efficient (wasted work).\nGreat for long outputs. Tune draft size k for your model & traffic."
+        },
+        {
+          "number": 6,
+          "heading": "Quantization Comparison",
+          "body": "FP8 (E4M3/E5M2): ~2× smaller memory/bandwidth vs BF16. Quality very good. Native FP8 HW required for best speed & accuracy. Growing support.\nINT8 (symmetric): ~2× smaller. Quality good. Broad HW support. Simple, fast. Slightly more quality loss than FP8.\nAWQ (weight-only): ~2.5–4× smaller (depends on sparsity). Quality very good. Activation stays FP16/BF16. Minimal accuracy loss on many models."
+        },
+        {
+          "number": 7,
+          "heading": "Latency ↔ Throughput ↔ Cost",
+          "body": "You cannot optimize all three blindly. Latency (per request), throughput (requests/sec), cost ($/hour) — tradeoffs always exist.\nLower latency: smaller batches, faster GPUs, more replicas → ↑ cost, ↓ throughput.\nLower cost: fewer GPUs, smaller models, aggressive batching → ↑ latency, ↓ throughput.\nHigher throughput: larger batches, more efficient kernels, continuous batching → ↑ latency, ↑ cost.\nChoose the right point for your product & users."
+        },
+        {
+          "number": 8,
+          "heading": "Interview Napkin Math",
+          "body": "A) Weights memory (70B model): Parameters = 70 billion, BF16 (2 bytes/param): 70,000,000,000 × 2 bytes = 140,000,000,000 bytes ≈ 140 GB.\nB) KV cache can dominate long context. Assume L = 80 layers, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes), B = 8 requests. Context length 4K tokens ≈ 6.25 GB; 32K ≈ 50.0 GB; 128K ≈ 200 GB; 256K ≈ 400 GB. At long contexts, KV cache >> model weights. Ex: 256K tokens → ~400 GB KV cache vs 140 GB weights. Check the numbers. Know where the memory really goes."
+        }
+      ],
+      "footer": "Prefill for speed. Cache for context. Batch for utilization.",
+      "summary": "Explains what it takes to run a large language model for users: how much memory the KV cache eats, why reading the prompt and generating tokens behave differently, and how batching, speculative decoding and quantization trade latency, throughput and cost.",
+      "keywords": [
+        "KV cache",
+        "Prefill",
+        "Decode",
+        "Time to first token (TTFT)",
+        "Time per output token (TPOT)",
+        "Continuous batching",
+        "Speculative decoding",
+        "Quantization",
+        "FP8",
+        "INT8",
+        "AWQ",
+        "Memory bandwidth"
+      ]
+    },
+    {
+      "image": "ML/12-post-training-alignment-cheat-sheet.png",
+      "title": "Post-Training & Alignment Cheat Sheet",
+      "subtitle": "From SFT to preferences, reinforcement learning, and Constitutional AI",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Post-Training & Alignment Pipeline",
+          "body": "Pretraining: Learn general world knowledge at scale. → SFT: Supervised fine-tuning on high-quality demonstrations. → Preference data / reward model: Collect preferences & learn a reward model. → RLHF / PPO or DPO: Optimize behavior using preferences (choose method). → Safety & eval loop: Evaluate, red-team, monitor, and iterate (feeding back into earlier stages)."
+        },
+        {
+          "number": 2,
+          "heading": "Supervised Fine-Tuning (SFT)",
+          "body": "Imitate high-quality demonstrations. Teaches format, style, and domain skills. Strong initialization for alignment. Not enough: can still be unhelpful, biased, or unsafe. Diagram: Prompt (instruction) → SFT model → Response (gold)."
+        },
+        {
+          "number": 3,
+          "heading": "Reward Model (Preference Modeling)",
+          "body": "Pairwise preference data: For a prompt, the labeler compares two responses (e.g., prefers A over B, or C over D).\nBradley-Terry intuition: P(A ≻ B) = e^r(A) / (e^r(A) + e^r(B)). Model predicts a scalar reward r(x). Higher reward = more preferred.\nLabeler bias matters: Inconsistent labels; cultural & style bias; position bias (A vs B order); malicious or low-effort labels. → Aggregate & sanity-check."
+        },
+        {
+          "number": 4,
+          "heading": "RLHF with PPO",
+          "body": "Optimize reward while staying close to the reference (SFT) policy.\nObjective (simplified): max_θ E_{x~D, y~π_θ}[r_φ(x, y)] − β KL(π_θ ‖ π_ref), where r_φ(x, y) = reward model score, π_θ = policy being optimized, π_ref = reference (SFT) policy, β = KL penalty coefficient.\nPPO loop: 1. Collect rollouts with π_θ_old. 2. Score with reward model r_φ. 3. Compute advantages. 4. Update policy with PPO. 5. Repeat & monitor KL.\nReward hacking is real: The model can learn to exploit the reward model instead of being truly helpful. Mitigation: Stronger reward model & evals; KL regularization; diverse prompts & red-teaming."
+        },
+        {
+          "number": 5,
+          "heading": "DPO (Direct Preference Optimization)",
+          "body": "Train the policy directly from preferences — no explicit reward model. Training signal: for a prompt, a chosen (preferred) and a rejected (dispreferred) response.\nDPO objective (intuition): max_θ E[log σ(β · (log π_θ(y⁺|x) − log π_θ(y⁻|x)))] − λ KL(π_θ ‖ π_ref), where y⁺ = chosen response, y⁻ = rejected response, π_θ = policy being optimized, β = inverse temperature, λ = KL penalty (optional).\nWhy DPO? Fewer moving parts. No reward model training. Often more stable & data-efficient."
+        },
+        {
+          "number": 6,
+          "heading": "RLAIF (AI Feedback)",
+          "body": "Use AI to generate critiques or preferences at scale. AI critic / judge: consistency, explainability, criteria, rubric. Outputs: pairwise prefs, scores, critiques, rewrites. Benefits: massive scale, fast iteration, fits long-tail cases.\nCaveats: Model biases amplify at scale. Overconfidence & hallucinated critique. Distribution shift in judge. Still need human audit."
+        },
+        {
+          "number": 7,
+          "heading": "Constitutional AI",
+          "body": "Make values explicit, teach the model to critique & improve itself. Principles (constitution): Write clear, actionable principles. → Supervised critique & revision (SFT stage): Generate critiques & improved revisions. → AI feedback reinforcement (preference/RL): Optimize for helpful, harmless, honest behavior. → Transparency & oversight: Document values, report evals, invite audit.\nGoal: Behave according to transparent, human-readable values. Example principles: Do not cause harm. Be honest & non-deceptive. Protect privacy & security. Be fair & impartial. Respect human autonomy."
+        },
+        {
+          "number": 8,
+          "heading": "At a Glance: Interview Comparison",
+          "body": "What it optimizes — SFT: imitation of demonstrations. PPO/RLHF: reward (via reward model) with KL constraint to reference. DPO: preference likelihood (chosen over rejected) with optional KL to reference.\nTypical data — SFT: prompt → response (gold). PPO/RLHF: prompts + model rollouts + pairwise preferences. DPO: prompts + (chosen, rejected) pairwise preferences.\nKey components — SFT: dataset → model. PPO/RLHF: reward model + PPO optimizer + reference (SFT). DPO: preference pairs + policy (update) + reference (optional).\nMoving parts — SFT: low. PPO/RLHF: high. DPO: medium.\nStrengths — SFT: simple, stable, cheap; great initialization. PPO/RLHF: very flexible; can optimize complex objectives & constraints. DPO: simpler than RLHF; often more stable and data-efficient.\nFailure modes — SFT: poor generalization; copies biases & bad patterns. PPO/RLHF: reward hacking, KL drift, fragile optimization, hard to debug. DPO: pref noise hurts; over-regularization; may underfit nuances.\nBest use — SFT: teach skills, format, and basic helpfulness. PPO/RLHF: when you need fine control, constraints, or tooling integration. DPO: strong baseline for preferences with fewer components."
+        }
+      ],
+      "footer": "Optimize what you measure — then audit what you missed.",
+      "summary": "Walks through how a pretrained model is shaped into a helpful, safe assistant: supervised fine-tuning on good examples, learning from human or AI preferences via reward models with PPO or directly with DPO, and Constitutional AI's approach of training against written principles.",
+      "keywords": [
+        "Post-training",
+        "Supervised fine-tuning (SFT)",
+        "Reward model",
+        "Bradley-Terry model",
+        "Reinforcement learning from human feedback (RLHF)",
+        "Proximal policy optimization (PPO)",
+        "Direct preference optimization (DPO)",
+        "KL penalty",
+        "Reward hacking",
+        "RLAIF (AI feedback)",
+        "Constitutional AI",
+        "Red-teaming"
+      ]
+    },
+    {
+      "image": "ML/13-llm-evaluation-cheat-sheet.png",
+      "title": "Evaluating LLMs Cheat Sheet",
+      "subtitle": "Build trustworthy evaluations, not leaderboard theater",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Eval Stack: End-to-End Pipeline",
+          "body": "1. Task definition: Define the user task, scope, constraints, and success criteria. → Be specific about inputs, outputs, and allowed tools.\n2. Dataset: Curate high-quality examples that reflect real use. → Cover breadth, edge cases, and difficulty levels.\n3. Rubric / metric: Specify what counts as correct and how to score it. → Criteria, weights, scoring rules, and tie-breakers.\n4. Model runs: Run the model(s) under controlled conditions. → Temperature, top-p, max tokens, tools, seeds.\n5. Analysis: Aggregate results, slice by dimension, and surface errors. → Compute metrics, confidence intervals, and ablations.\n6. Human calibration: Spot-check, sanity-check, and iterate the eval. → Refine data, rubric, and configurations."
+        },
+        {
+          "number": 2,
+          "heading": "Benchmark Contamination",
+          "body": "Train / test overlap: Same or near-duplicate examples leak into both train and test.\nMemorization risk: Models may memorize popular benchmarks and appear better than they truly are.\nUse fresh, private, held-out sets: Fresh – new tasks not seen online. Private – internal or curated data kept private. Held-out – created after model cutoff or training.\nCheck near duplicates: fuzzy match, embeddings, and paraphrase detection."
+        },
+        {
+          "number": 3,
+          "heading": "LLM-as-Judge Biases",
+          "body": "Position bias: Prefers first or left responses. Verbosity bias: Overvalues longer, more wordy answers. Self-preference: Favors responses from its own model family. Style bias: Prefers certain tones, formats, or styles. Prompt sensitivity: Small prompt changes change preferences.\nMitigate it: Blind order swap – randomize left/right and repeat. Pairwise comparison – A vs B choices reduce scoring drift. Judge ensembles – aggregate across multiple judges. Human anchor set – calibrate against human labels.\nTreat LLM judges as noisy signals — measure and calibrate."
+        },
+        {
+          "number": 4,
+          "heading": "Pass@k: Formula & Intuition",
+          "body": "Intuition: If the chance a single try is correct is p, the chance that at least one of k independent tries is correct is 1 − (1 − p)^k.\nWhy it works: Fail all k tries: (1 − p)^k. So succeed at least once: 1 − (1 − p)^k.\nExample: If p = 0.2 and k = 5: 1 − (1 − 0.2)^5 = 0.672. More samples → higher chance of success.\nNote: Assumes independence between samples. In practice, outputs are correlated → pass@k is optimistic."
+        },
+        {
+          "number": 5,
+          "heading": "Calibration: Confidence vs. Accuracy",
+          "body": "Reliability diagram: Accuracy plotted against confidence; ideal is on the diagonal.\nExpected calibration error (ECE): Average gap between confidence and accuracy across bins. ECE = Σᵢ (|Bᵢ|/N) |accᵢ − confᵢ|. Lower is better.\nConfidence vs. accuracy: A well-calibrated model's curve tracks the diagonal.\nReport calibration metrics alongside task metrics."
+        },
+        {
+          "number": 6,
+          "heading": "Human Evaluation Design",
+          "body": "Rubric: Clear criteria, examples, and scoring guide (criteria, weights, score scale).\nRaters: Train raters and define quality standards (qualification, practice set, ongoing QA).\nRandomized / blinded order: Randomize item order and hide model identities (hide model names, randomize, hide position).\nInter-rater agreement: Measure agreement (e.g., κ, α, %) and monitor drift (κ / α, disagreements, drift over time).\nAdjudication: Resolve disagreements with a senior adjudicator (escalate rules, final decision, document reasons).\nDesign for fairness, consistency, and auditability."
+        },
+        {
+          "number": 7,
+          "heading": "Uncertainty: Quantify It",
+          "body": "Report n: Always report the number of examples (n) evaluated. Bootstrap CI: Use bootstrap to estimate confidence intervals. Error bars: Show 95% CI / error bars on all metrics. Avoid false precision: Don't over-interpret tiny differences within noise.\nExample accuracy with 95% CI: Model A 78% ±3.2%, Model B 73% ±3.5%, Model C 66% ±3.8%.\nIf CIs overlap, differences may not be meaningful."
+        },
+        {
+          "number": 8,
+          "heading": "Error Taxonomy: Know Your Failures",
+          "body": "Capability: Model lacks the knowledge or reasoning ability (wrong math, logic errors, hallucinated facts). Fix: improve data, model, or reasoning.\nRetrieval: Fails to find or use relevant information (missed docs, irrelevant context, outdated info). Fix: improve retrieval, rerank, or add better tools.\nTool-use: Uses the wrong tool or wrong arguments (bad API call, wrong params, ignored results). Fix: tool prompts, validation, better schemas.\nRefusal: Over- or under-refuses when it shouldn't (unnecessary refusal, unsafe compliance, policy drift). Fix: adjust policies, safety tuning, better prompts.\nFormatting: Output doesn't match the required format or schema (broken JSON, missing fields, wrong structure). Fix: stricter schemas, parsers, and post-checks."
+        }
+      ],
+      "footer": "Measure the user task. Randomize the judgment. Report the uncertainty.",
+      "summary": "How to build trustworthy tests for language models: define the task and rubric, avoid benchmark contamination, correct for the biases of LLM judges, understand pass@k and calibration, and always report uncertainty and categorize failures.",
+      "keywords": [
+        "LLM evaluation",
+        "Benchmark contamination",
+        "Rubric",
+        "LLM-as-judge",
+        "Position bias",
+        "Pass@k",
+        "Calibration",
+        "Expected calibration error (ECE)",
+        "Inter-rater agreement",
+        "Bootstrap confidence interval",
+        "Error taxonomy"
+      ]
+    },
+    {
+      "image": "ML/14-scaling-laws-compute-cheat-sheet.png",
+      "title": "Scaling Laws & Napkin Math Cheat Sheet",
+      "subtitle": "Parameters, tokens, FLOPs, memory, and utilization",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Chinchilla Intuition",
+          "body": "Compute-optimal training balances model parameters N and training tokens D. Do not scale parameters alone.\nToo many params, too little data → overfitting + wasted compute. Balanced N and D → better generalization + efficient compute.\nRule of thumb (Chinchilla scaling law): D_opt ≈ 20 N (tokens). Total compute ∝ N × D. Keep N and D in balance."
+        },
+        {
+          "number": 2,
+          "heading": "Training Compute (FLOPs)",
+          "body": "Training compute scales as FLOPs ≈ 6ND, where N = parameters and D = training tokens.\nDerivation (big picture): Forward (2) + Backward (2) + Grad calc (2) ≈ 6 FLOPs per parameter per token.\nExample: 7B parameters (7 × 10⁹) × 1T tokens (10¹²): FLOPs ≈ 6 × 7 × 10⁹ × 10¹² = 4.2 × 10²².\nCompute is the currency. More FLOPs → lower loss (until limited by data / model)."
+        },
+        {
+          "number": 3,
+          "heading": "Memory Accounting (Training)",
+          "body": "Weights in BF16: Weights ≈ 2N bytes.\nAdam optimizer (roughly): weights + gradients + m (1st moment) + v (2nd moment) ≈ (1 + 1 + 1 + 1) × 2N = 8N bytes (not counting activations).\nOrder of magnitude: Training memory (persistent) ≈ 8N bytes. Activations add more (depends on model, seq len, batch size). Rule of thumb: plan for 1.5× – 3× the 8N baseline.\nAlways check in units (bytes / GB / TB)."
+        },
+        {
+          "number": 4,
+          "heading": "Inference: Weights vs KV Cache",
+          "body": "Two main memory consumers at inference:\nModel weights (static): ≈ 2N bytes (bf16).\nKV cache (dynamic): ≈ 2 × L × H × S × d_h × B bytes, where L = layers, H = # attention heads, S = sequence length, d_h = head dimension, B = batch size. Grows linearly with sequence length S (and batch size B).\nWhich dominates? Short sequences: weights dominate. Long sequences / large batch: KV cache dominates.\nTip: For long contexts, KV cache can exceed weights."
+        },
+        {
+          "number": 5,
+          "heading": "MFU (Model FLOPs Utilization)",
+          "body": "MFU = Achieved model FLOPs / Theoretical peak FLOPs.\nWhy MFU falls (you never hit 100%): Bubble (pipeline flushes) – devices idle during pipeline fill/drain ↓MFU. Communication – all-reduce / all-gather costs time ↓MFU. Memory bandwidth – weights / activations not ready ↓MFU. Small batches / seq – not enough work to keep hardware busy ↓MFU.\nTypical MFU: 10%–40% (good); 40%–60% (excellent on large clusters).\nMeasure it. Improve it. It's the cheapest speedup."
+        },
+        {
+          "number": 6,
+          "heading": "Back-of-the-Envelope Ladder",
+          "body": "From napkin to plan.\n1. Know parameters (N) → estimate weight memory (bf16): Weight GB ≈ 2N / 10⁹.\n2. Know weight GB → estimate GPUs needed (memory): GPUs ≈ weight GB / usable GB per GPU.\n3. Know params (N) & tokens (D) → estimate training FLOPs: FLOPs ≈ 6ND.\n4. Know peak TFLOPs (system) → estimate total time (seconds): Time ≈ FLOPs / peak FLOPs ÷ MFU.\n5. Know seconds → estimate wall-clock time: Hours = seconds / 3600.\nExample: N = 7B, D = 1T tokens, peak = 1 PFLOP/s, MFU = 30%. 1) Weight GB ≈ 2 × 7e9 / 1e9 = 14 GB. 2) If GPU has 80 GB HBM usable → GPUs ≈ 14 / 80 → 1 GPU (weights fit). 3) FLOPs ≈ 6 × 7e9 × 1e12 = 4.2e22. 4) Time ≈ 4.2e22 / (1e15 × 0.30) ≈ 1.4e8 s ≈ 1620 days ≈ 4.4 years. 5) With more GPUs, time ∝ 1 / (#GPUs × MFU).\nUpdate any input → recompute the rest."
+        },
+        {
+          "number": 7,
+          "heading": "Scaling Curves & Diminishing Returns",
+          "body": "Loss improves with more compute, but with diminishing returns. Diagram: loss vs training compute (10¹⁸ to 10²⁶ FLOPs) — steep gains early, then diminishing returns; gets harder & more expensive.\nFrontiers: compute-optimal frontier (more data as compute grows) vs too little data (off frontier). Move the frontier: more data, better algorithms, better architectures.\nKey takeaway: Scale both N and D with compute. Blindly scaling N breaks efficiency."
+        },
+        {
+          "number": 8,
+          "heading": "Interview Drill: Napkin Discipline",
+          "body": "Before you compute, say it out loud. 1. State the goal: What are we estimating and why? 2. List assumptions: Model size, precision, seq len, batch size, MFU, peak hardware, etc. 3. Write the formula: Show your starting equation. Keep it simple. 4. Plug numbers (with units): Convert everything. Don't mix units. 5. Round sanely: 1–2 significant figures is enough. Don't fake precision. 6. Check the order of magnitude: Does the result make sense? If your napkin math is off by 100×, so is your plan. Sense > speed."
+        }
+      ],
+      "footer": "Write the units. State the assumptions. Check the order of magnitude.",
+      "summary": "Teaches quick back-of-the-envelope math for large models: how to balance model size and training data, estimate training compute, memory and run time, and why real hardware never reaches its peak speed.",
+      "keywords": [
+        "Scaling laws",
+        "Chinchilla scaling law",
+        "Compute-optimal training",
+        "FLOPs",
+        "Parameters",
+        "Training tokens",
+        "Adam optimizer",
+        "KV cache",
+        "Model FLOPs utilization (MFU)",
+        "BF16",
+        "Diminishing returns",
+        "Napkin math"
+      ]
+    },
+    {
+      "image": "ML/15-mechanistic-interpretability-cheat-sheet.png",
+      "title": "Mechanistic Interpretability Cheat Sheet",
+      "subtitle": "Features, circuits, superposition, and causal interventions",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Superposition: More Features Than Dimensions",
+          "body": "Model representations compress many features into fewer dimensions. Features mix (superpose) and interfere. In the high-dimension feature space, many true features exist and each feature is a direction; compression (model layers) maps them into a low-dimension model space with fewer dimensions, where features add, cancel, and interfere.\nInterference examples: Constructive – signals add → stronger activation. Destructive – signals cancel → weaker or zero activation. Ambiguous – harder to disentangle → mixed meaning.\nSuperposition makes interpretation hard — but structure still exists."
+        },
+        {
+          "number": 2,
+          "heading": "Sparse Autoencoders",
+          "body": "Learn a feature dictionary that explains activations with a sparse set of features. Activation x (from model) → encoder (E) → sparse feature activations a (few non-zeros) → decoder (D) → reconstruction x̂ (≈ original).\nFeature dictionary (learned): f₁ detects numbers, f₂ end of line, f₃ quotes, … JSON keys, fₖ names of people. Neurons (uninterpretable): n₁ … nₖ have unclear meanings.\nSparse AEs separate meaning (features) from mechanism (neurons)."
+        },
+        {
+          "number": 3,
+          "heading": "Induction Heads: Copy from Previous Occurrence",
+          "body": "Learn the pattern \"A B … A\" → predict \"B\". Example sequence of tokens: The chef cooked pasta . The chef …\nThe induction head copies the value from the previous occurrence of \"The\": query (at pos 6) → attend back (find match) → copy value \"chef\" (from pos 1) → predict next \"chef\" (at pos 7).\nHow it works: 1. Build query from current token. 2. Attend over previous keys. 3. Peak at best match (pos 1). 4. Read value from match.\nInduction heads implement in-context learning via pattern copying."
+        },
+        {
+          "number": 4,
+          "heading": "Circuits: Connected Features Implement Computation",
+          "body": "Computation emerges from features (or heads) working together across layers. Diagram: information flows from layer 0 (input) through features and attention heads in layers 3, 7 and 12 to the output logits.\nA circuit is a path or subgraph whose activity causally affects the output."
+        },
+        {
+          "number": 5,
+          "heading": "Activation Patching: Test Causal Contribution",
+          "body": "Replace an activation with a clean value and measure effect. Clean run (reference) gives a layer ℓ activation x_clean; corrupt run gives degraded output.\nPatch experiment: In the corrupt run, replace x_corrupt with the clean value → patched activation → measure change.\nSignificant improvement: activation is causally useful. No improvement: activation likely not causally important (or redundant).\nPatch one thing at a time. Measure the difference."
+        },
+        {
+          "number": 6,
+          "heading": "Activation Steering: Add a Direction",
+          "body": "Add a vector during inference to steer behavior. Base activation xˡ (at layer ℓ) + steering direction d (meaningful direction) = steered activation xˡ_steered.\nEffects: Shift model toward a concept or style. Increase/decrease a behavior. Useful for probing and control. (Steering strength λ ranges from −λ to +λ.)\nRisks: Off-manifold behavior. Degraded reasoning. Shortcut exploitation. Unintended side effects.\nSteering is powerful — use small steps and evaluate carefully."
+        },
+        {
+          "number": 7,
+          "heading": "Correlation vs Causation Ladder",
+          "body": "Climb from observation to intervention to behavioral impact.\nObserve (correlation): See a pattern in the data or model. Example: feature F correlates with output Y.\nAblate (should cause): Remove or suppress F. Does Y change? Example: zero out F and compare outputs.\nPatch (local causal test): Replace F (or activation) with clean value. Example: activation patching at layer ℓ.\nIntervene (causal manipulation): Actively change F or its upstream cause. Example: steering, editing, or counterfactual input.\nEvaluate behavior (downstream impact): Measure real task performance. Example: accuracy, win rate, helpfulness, safety.\nHigher rungs give stronger evidence of causality."
+        },
+        {
+          "number": 8,
+          "heading": "Interview Takeaways",
+          "body": "Keep these principles front and center. Interpretability is empirical reverse engineering: we don't assume meaning — we discover it through systematic tests. Avoid anthropomorphism: features are not beliefs or intentions; they are patterns in activations. Validate out-of-distribution: check generalization, robustness, and failure modes beyond the training distribution.\nGood practice checklist: Form a hypothesis. Design a clean test. Control confounders. Replicate results. Report uncertainty. Share methods & data."
+        }
+      ],
+      "footer": "Find a pattern. Test a cause. Verify the behavior.",
+      "summary": "An introduction to reverse-engineering what happens inside neural networks: how models pack many concepts into few dimensions, how sparse autoencoders pull those concepts apart, and how patching and steering experiments test whether a part of the network actually causes a behavior.",
+      "keywords": [
+        "Mechanistic interpretability",
+        "Superposition",
+        "Features",
+        "Sparse autoencoders",
+        "Induction heads",
+        "In-context learning",
+        "Circuits",
+        "Activation patching",
+        "Activation steering",
+        "Ablation",
+        "Anthropomorphism"
+      ]
+    },
+    {
+      "image": "ML/16-safety-misuse-cheat-sheet.png",
+      "title": "LLM Safety & Responsible Deployment Cheat Sheet",
+      "subtitle": "Defense in depth, evaluation, safe helpfulness, and response",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "System Safety Map: Know Your Surfaces",
+          "body": "User experience: Clear purpose & scope. Expected use guidance. Transparency & labels. Age & audience aware.\nModel behavior: Align to policies & values. Refuse unsafe requests. Be honest about limits. Robust to manipulation.\nTool permissions: Define tools & actions. Least privilege access. Confirm consequential actions. Isolate side effects.\nPrivate data: Minimize collection. Protect in transit & at rest. No unexpected sharing. Respect user rights.\nMonitoring & telemetry: Observe key signals. Detect abuse & drift. Track performance. Alert & investigate."
+        },
+        {
+          "number": 2,
+          "heading": "Instruction Hierarchy",
+          "body": "Trusted system rules override untrusted external content. From higher to lower trust: System rules – non-negotiable policies & safety guardrails. Developer intent – goals, constraints, and tool design. Configuration – model settings, tool specs, prompts. User input – real user requests & context. External content – web pages, files, third-party text.\nWhen in conflict, higher layers win."
+        },
+        {
+          "number": 3,
+          "heading": "Safe Handling of External Text",
+          "body": "Treat it as data: Assume all external content may be wrong, outdated, or malicious.\nIsolate tools: Separate the model from execution environments and external systems.\nLeast privilege: Grant only the minimum permissions needed for each task.\nConfirm consequential actions: Require explicit confirmation for actions that change data, spend money, or affect users.\nValidate output: Check for safety, policy, privacy, and accuracy before displaying or acting."
+        },
+        {
+          "number": 4,
+          "heading": "Assurance Loop: Test, Learn, Improve",
+          "body": "1. Define safety rubric: Set clear goals, criteria, and risk priorities. 2. Test broad scenarios: Cover diverse users, tasks, domains, and edge cases. 3. Review results: Analyze failures, near-misses, and drift. 4. Improve safeguards: Update prompts, controls, tools, and policies. 5. Rerun regression suite: Verify fixes and check for new or regressed issues. Then loop back.\nContinuous assurance — ship with confidence, stay vigilant."
+        },
+        {
+          "number": 5,
+          "heading": "Helpfulness / Refusal Balance",
+          "body": "Be helpful & safe: Provide accurate, high-quality help within the boundaries. Offer safer alternatives or lower-risk approaches. Clarify intent and assumptions.\nRefuse when needed: Refuse when requests are unsafe, wrong, or out of scope. Be clear, respectful, and consistent. Provide a safe alternative or redirect when possible.\nAim for the right balance: helpful, honest, and safe."
+        },
+        {
+          "number": 6,
+          "heading": "Defense Layers: Stack Protections",
+          "body": "Sandboxing: Isolate code execution. No network by default. Restrict files and processes.\nAllowlisted tools: Only approved tools run. Validate inputs & outputs. Monitor usage.\nRate limits & quotas: Limit speed and volume. Prevent abuse and overload. Protect shared resources.\nAudit logs: Log key events and decisions. Tamper-evident storage. Enable audit & forensics.\nHuman escalation: Escalate high-risk or ambiguous cases. Human-in-the-loop for critical actions. Clear pathways and playbooks.\nMultiple layers make failure less likely and impact smaller."
+        },
+        {
+          "number": 7,
+          "heading": "Capability-Based Safety",
+          "body": "Stronger capabilities require stronger evaluations and safeguards. Low capability: narrow tasks, limited autonomy, lower risk. High capability: broad knowledge, greater autonomy, higher risk.\nAs capability grows, so must: evaluation coverage + red teaming depth + guardrail strength + human oversight.\nNever outpace your evaluations."
+        },
+        {
+          "number": 8,
+          "heading": "Incident Response: Prepare, Act, Improve",
+          "body": "1. Detect: Monitor for anomalies, policy violations, and user reports. Early signal, early action. 2. Triage: Assess severity, scope, and potential impact. Understand before escalating. 3. Contain: Take steps to stop or limit harm. Disable, throttle, or isolate as needed. 4. Learn: Analyze root causes and contributing factors. Document what happened. 5. Update tests: Add tests, improve controls, and update runbooks. Prevent repeats, not just respond.\nBe prepared: Clear roles & contacts. Communication plan. Runbooks & playbooks. Post-incident review. Share lessons internally.\nRespond quickly. Communicate clearly. Learn continuously."
+        }
+      ],
+      "footer": "Build defenses around the whole system — not just the chat box.",
+      "summary": "Describes how to deploy a language model responsibly by protecting the whole system: ranking whose instructions to trust, treating outside text as untrusted data, stacking defenses like sandboxing and audit logs, balancing helpfulness with refusals, and having an incident response plan.",
+      "keywords": [
+        "Defense in depth",
+        "Instruction hierarchy",
+        "Prompt injection",
+        "Least privilege",
+        "Sandboxing",
+        "Red teaming",
+        "Guardrails",
+        "Human-in-the-loop",
+        "Refusal",
+        "Audit logs",
+        "Incident response",
+        "Human oversight"
+      ]
+    },
+    {
+      "image": "ML/17-distributed-training-cheat-sheet.png",
+      "title": "Distributed Training Cheat Sheet",
+      "subtitle": "Parallelism, sharding, memory, communication, and OOM debugging",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Data Parallelism",
+          "body": "Replicate model, split batch, all-reduce gradients. Each GPU holds a model replica, processes its own batch shard (forward + backward), then gradients are all-reduced across GPUs.\n+ Simple to use and scale. + Great hardware utilization. − Full model memory on each GPU. − Comm cost grows with model size."
+        },
+        {
+          "number": 2,
+          "heading": "Tensor Parallelism",
+          "body": "Split matrices within layer, all-gather / all-reduce. Example: linear layer Y = XW + b with W split by columns (W₀…W₃) across GPUs; each produces a partial output (Y₀…Y₃), combined by all-reduce (sum) into output Y.\n+ Handles very wide layers. + Less memory per GPU. − High bandwidth required. − Needs fast all-reduce."
+        },
+        {
+          "number": 3,
+          "heading": "Pipeline Parallelism",
+          "body": "Split layers into stages, stream microbatches. Example: stage 0 (L0–L3), stage 1 (L4–L7), stage 2 (L8–L11), stage 3 (L12–L15); microbatches μ0…μ5 flow through a pipeline schedule with forward, backward and bubble (idle) slots.\n+ Handles very deep models. + Low memory per stage. − Pipeline bubbles reduce util. − Sensitive to imbalance."
+        },
+        {
+          "number": 4,
+          "heading": "FSDP / ZeRO",
+          "body": "Shard optimizer, gradients, and parameters across GPUs in a data parallel group (FSDP full shard). All-gather (before fwd); all-reduce / reduce-scatter (after bwd).\n+ Massive memory savings. + Scales to very large models. − More communication. − Complexity / tuning."
+        },
+        {
+          "number": 5,
+          "heading": "Mixed Precision",
+          "body": "Use lower precision for compute, higher for stability. Typical dtype flow: FP32 weights (master) → BF16/FP16 weights (model) → BF16/FP16 activations → FP32 gradients (accumulate) → FP32 optimizer update.\nWhy it works: Lower memory. Higher throughput. Similar accuracy with scaling.\nRecommended: bf16 on Ampere+. fp16 on Volta/Turing (with loss scaling). Keep layernorm, softmax in fp32."
+        },
+        {
+          "number": 6,
+          "heading": "Gradient Checkpointing",
+          "body": "Store fewer activations, recompute during backward. Without checkpointing: many activations saved (high memory). With checkpointing: fewer activations saved (low memory); recompute segments during backward.\n+ Big memory savings. + Enables bigger models/batches. − Extra compute (10–30% typically). − Best to combine with FSDP/ZeRO."
+        },
+        {
+          "number": 7,
+          "heading": "Communication Primitives at a Glance",
+          "body": "All-reduce: Sum (or avg) across all ranks; output same as input; used for DP gradients, tensor parallel.\nAll-gather: Gather from all ranks; output concatenates all inputs; used for TP forward, FSDP params.\nReduce-scatter: Sum then scatter; sharded output; used for DP backward, ZeRO grads.\nBroadcast: Send from root to all ranks; same as root; used for params sync, initialization.\nP2P send/recv: Point-to-point transfer; custom shape; used for pipeline, topology.\nTip: Overlap communication with compute (use async ops and streams)."
+        },
+        {
+          "number": 8,
+          "heading": "Where OOMs Come From (and How to Fix Them)",
+          "body": "Weights: Model parameters (incl. buffers); grows with model size. Symptom: OOM even at tiny batch; occurs in forward start. Fix: Use FSDP/ZeRO (shard params), mixed precision (bf16/fp16), or a smaller model.\nOptimizer states: States like m, v for Adam/AdamW; grows with model size × #states (AdamW ≈ 8× params in fp32). Symptom: OOM when optimizer step starts. Fix: Use ZeRO/FSDP to shard states, 8-bit optimizers (e.g., 8-bit Adam), or Adafactor / Lion.\nGradients: Parameter gradients; grows with model size. Symptom: OOM in backward near the end. Fix: ZeRO (shard grads), gradient accumulation, mixed precision.\nActivations: Intermediate activations saved for backward; grows with batch size × seq len × model depth × hidden size. Symptom: OOM during forward or early backward. Fix: Gradient checkpointing, reduce batch / sequence length, activation offloading.\nKV cache: Key/value cache for attention (inference); grows with seq len × layers × heads × head dim (∝ context length). Symptom: OOM at long context (inference). Fix: Reduce max context / sliding window, paged KV cache, quantize KV cache (e.g., 8-bit).\nGeneral tools: torch.cuda.memory_summary(), nvidia-smi dmon, PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True, profile memory per stage.\nRule of thumb: If it's saved for backward or lives across steps, it costs memory."
+        },
+        {
+          "number": 9,
+          "heading": "OOM / Training Issues: Debug Tree",
+          "body": "A. Forward OOM? Likely activations (or KV). Raise at forward or early backward? Yes → likely activations (or KV cache in inference): reduce batch size, reduce sequence length, gradient checkpointing, activation offloading, mixed precision.\nB. Backward OOM? Likely gradients / optimizer. Raises near end of backward or at step? Yes → likely gradients or optimizer states: use FSDP/ZeRO, gradient accumulation, 8-bit optimizer / Adafactor, mixed precision.\nC. Only at long context? Likely activations / KV cache. OOM increases with sequence length? Yes → likely activations or KV cache: reduce max context, use sliding window, paged / quantized KV cache, FlashAttention / xFormers.\nD. Slow / stalling? Likely communication. Low GPU utilization? High idle time? Yes → likely communication or topology: use faster interconnect, overlap comm & compute, tune collectives / bucket size, check NCCL topology. No → look elsewhere (profile compute, IO, dataloaders).\nQuick checklist before you blame memory: Batch too big? Seq len too long? Mixed precision on? Grad checkpointing? FSDP/ZeRO on? 8-bit optimizer? NCCL debug info?"
+        }
+      ],
+      "footer": "Shard what persists. Checkpoint what recomputes. Profile what stalls.",
+      "summary": "Explains how big models are trained across many GPUs by splitting the data, the layers, or the weight matrices, how sharding, mixed precision and checkpointing save memory, and how to track down out-of-memory errors and slowdowns.",
+      "keywords": [
+        "Distributed training",
+        "Data parallelism",
+        "Tensor parallelism",
+        "Pipeline parallelism",
+        "FSDP",
+        "ZeRO",
+        "Mixed precision",
+        "Gradient checkpointing",
+        "All-reduce",
+        "Reduce-scatter",
+        "Out-of-memory (OOM)",
+        "NCCL"
+      ]
+    },
+    {
+      "image": "ML/18-tokenization-cheat-sheet.png",
+      "title": "Tokenization Cheat Sheet",
+      "subtitle": "How text becomes IDs — and why boundaries create bugs",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Tokenization Pipeline",
+          "body": "Text (raw), e.g. \"Hello, world! How are you? Café prices: $3.50\" → Normalization: Unicode normalize (NFC), case rules (model-specific), strip/replace control chars, add model-specific spaces → Segment into pieces (BPE / SentencePiece), e.g. Hello | , | world | ! → Token IDs (integers), e.g. 15496, 11, 6893, 0 → Embeddings (vectors).\nPieces are vocabulary items. IDs are what the model actually reads. Embeddings turn IDs into meaning."
+        },
+        {
+          "number": 2,
+          "heading": "BPE: Merges Frequent Pairs into Subwords",
+          "body": "Learns merges from training text to build a vocabulary. Split into chars + special space token (low → l o w; lowest → l o w e s t; newer → n e w e r; lower → _ l o w e r). Frequent pairs get merged step by step (l o → lo; lo w → low; low e → lowe; lowe r → lower …). Resulting subword vocab: low, lower, lowest, new, newer, …\nBPE is data-driven and language-agnostic. No concept of \"word\" — only statistics."
+        },
+        {
+          "number": 3,
+          "heading": "SentencePiece: Models Raw Text (Including Spaces)",
+          "body": "Uses a unigram language model (or BPE variant) over raw characters. Raw input kept as-is (\"Hello\", \" Hello\", \"Hello,\", \" Hello,\"). Learn units (pieces) such as ▁Hello, ello, lo, he. Encode by greedy longest match: \"Hello\" → ▁Hello; \" Hello\" → ▁ + Hello; \"Hello,\" → ▁Hello + ,.\nSentencePiece treats spaces as part of the text. Great for multilingual and code.\nVocab & special tokens — typical special tokens: <pad> padding; <bos> beginning of sequence; <eos> end of sequence; <unk> unknown token; <mask> mask (for MLM); <sep> separator. Models reserve these IDs. Don't use them as content."
+        },
+        {
+          "number": 4,
+          "heading": "Boundary Surprises (Where Bugs Come From)",
+          "body": "Leading spaces: \"cat\" → [3797] but \" cat\" → [220] [3797]. That tiny space = an extra token.\nPunctuation: \"word\" → [1700]; \"word!\" → [1700] [0]. Punct often splits off into its own piece.\nWhitespace: \"a b\" → 4 IDs; \"a    b\" → more IDs. Multiple spaces = multiple tokens.\nUnicode surprises: \"é\" (composed) → [978]; \"e\\u0301\" (e + combining) → [68] [54939]. Visually same, tokenized differently.\nCode & symbols: \"x == y\" vs \"x===y\" tokenize differently. Tokenizer may prefer longer symbol tokens.\nNumbers: \"12345\" → 123 | 45; \"12,345.00\" → 12 | , | 345 | . | 00. Numbers split in non-obvious ways."
+        },
+        {
+          "number": 5,
+          "heading": "Token Count ≠ Word Count",
+          "body": "English example: \"The quick brown fox jumps over the lazy dog.\" Words: 9. Tokens (GPT-4o tokenizer): 9.\nMultilingual differences: Japanese 日本語は美しい。 – 12 tokens; Chinese 机器学习很有趣。 – 10 tokens; Korean 오늘 날씨가 좋아요. – 11 tokens; Arabic اللغة العربية جميلة. – 9 tokens (word counts N/A). Same idea, different token counts across languages!\nWhy more tokens cost more: Context window fills up faster. Latency – more tokens → more compute. Cost – billed per 1K tokens. KV cache memory – more tokens → more cache."
+        },
+        {
+          "number": 6,
+          "heading": "Tokenizer & Model Are Coupled",
+          "body": "A model expects a specific tokenizer + special tokens + template. User text → tokenizer → model.\nChat templates matter: System / user / assistant roles get wrapped with special tokens.\nMismatches cause bugs: Wrong tokenizer → garbage IDs. Wrong template → wrong behavior. Missing special tokens → truncation. Stripped spaces → different meaning.",
+          "code": "<|start|>system\nYou are helpful.<|end|>\n<|start|>user\nHi!<|end|>\n<|start|>assistant"
+        },
+        {
+          "number": 7,
+          "heading": "Debugging Checklist",
+          "body": "1. Inspect IDs & pieces: Print token IDs and decoded pieces (e.g. text \" Hello, world!\" → IDs [220] [15496] [11] [6893] [0]). Look for unexpected splits.\n2. Test normalization: Normalize the same way the tokenizer does. NFC/NFKC, spaces, control chars, case rules. \"Café\" vs \"Café\" → different IDs?\n3. Count tokens early: Count before hitting limits (e.g. input tokens 1,842 + output max 1,024 within a total limit of 4,096, buffer 200 — OK).\n4. Try variants: Leading spaces? Punctuation? Newlines? Try small edits to isolate boundary issues.\n5. Read the tokenizer docs: Know the model's vocab size, special tokens, and quirks. Check special tokens list, chat template, normalization rules, example encodings."
+        }
+      ],
+      "footer": "If the model acts weird, inspect the tokens — not just the string.",
+      "summary": "Shows how text is chopped into tokens and turned into the numbers a language model reads, how methods like BPE and SentencePiece build their vocabularies, and why spaces, punctuation, Unicode, numbers and other languages produce surprising token splits and costs.",
+      "keywords": [
+        "Tokenization",
+        "Token IDs",
+        "Byte pair encoding (BPE)",
+        "SentencePiece",
+        "Unicode normalization (NFC)",
+        "Special tokens",
+        "Subword vocabulary",
+        "Context window",
+        "Chat template",
+        "Embeddings"
+      ]
+    },
+    {
+      "image": "ML/19-agents-tool-use-cheat-sheet.png",
+      "title": "Agents & Tool Use Cheat Sheet",
+      "subtitle": "The loop, context, retrieval, and reliable actions",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Agent Loop",
+          "body": "A simple loop that works. 1. Observe: Gather inputs & signals. 2. Plan: Decide next step & tools. 3. Act / tool call: Execute action or call a tool. 4. Validate: Check results & constraints. 5. Update state: Persist new facts & outcomes. 6. Repeat: Loop until goal or stop.\nTip: Make each step observable, testable, and replayable."
+        },
+        {
+          "number": 2,
+          "heading": "Tool-Call Failure Modes",
+          "body": "Expect failure. Detect fast. Handle cleanly.\nInvalid schema: Payload doesn't match tool's schema. Fix: Validate before sending.\nPermission denied: Tool or resource access blocked. Fix: Check scopes & permissions.\nWrong arguments: Types, formats, or values are incorrect. Fix: Strong schemas + argument checks.\nPartial result: Tool returns incomplete or partial data. Fix: Detect & request missing pieces.\nStale state: World changed since plan was made. Fix: Re-read state. Re-plan if needed.\nTimeout: Tool takes too long or doesn't respond. Fix: Set timeouts, retry with backoff.\nWatch out: Don't assume success — verify every result."
+        },
+        {
+          "number": 3,
+          "heading": "Reliability Patterns",
+          "body": "Make actions safe, predictable, and recoverable.\nTyped schemas: Use strict, versioned schemas for all tools.\nTool descriptions: Clear purpose, inputs, outputs, side effects, and examples.\nValidation: Validate inputs before call. Validate outputs after call.\nIdempotency: Design tools to be safe to retry without causing duplicates.\nRetries with limits: Exponential backoff, jitter, and a max retry count. Fail fast after limits.\nUser confirmation for consequential actions: Ask before irreversible, costly, or sensitive actions.\nDefault: Safe by design. Clear errors. Easy recovery."
+        },
+        {
+          "number": 4,
+          "heading": "Context Engineering",
+          "body": "Keep context small, relevant, and fresh.\nHierarchy: System > Goals > Policies > Recent State > Details.\nConcise state: Summarize. Keep only what's needed for the next step.\nRelevant facts: Include high-signal facts and decisions that matter now.\nDiscard stale context: Drop outdated details, superseded plans, and noise.\nLess noise. More signal. Better decisions."
+        },
+        {
+          "number": 5,
+          "heading": "Lost-in-the-Middle",
+          "body": "Key evidence can be missed in long context: information at the start and end of a long context window is used well, while the middle is often missed.\nMitigate it: Structure – put key info near the beginning and end. Retrieval – fetch only what's relevant. Recency – keep latest facts at the end. Summaries – summarize earlier context.\nMake important things hard to miss."
+        },
+        {
+          "number": 6,
+          "heading": "Prompt Caching",
+          "body": "Reuse long, stable prefixes to save cost and time. A long stable prefix is cached; only the variable suffix changes.\nLower cost: Cached tokens are cheaper. Lower latency: Faster responses with fewer tokens. Higher throughput: Serve more requests with same budget.\nCache what changes slowly. Vary what changes often."
+        },
+        {
+          "number": 7,
+          "heading": "RAG Flow",
+          "body": "Retrieve the right info, then answer with confidence. 1. Ingest: Collect documents from sources. 2. Chunk: Split into small, coherent chunks. 3. Embed: Convert chunks into vectors. 4. Retrieve: Find top-k relevant chunks. 5. Rerank: Reorder by relevance. 6. Answer: Generate answer with citations.\nFeedback loop: Log misses, refine chunks, improve retriever.\nBest practices: Clean, high-quality data. Meaningful chunking. Good embeddings. Hybrid search (BM25 + dense). Citations for trust. Evaluate & iterate."
+        },
+        {
+          "number": 8,
+          "heading": "When Not to RAG",
+          "body": "RAG isn't always the right tool.\nNeeds reasoning or action: Task requires planning, calculation, tool use, or multi-step actions — not document lookup. Use: Agent loop & tools.\nCorpus is weak: Low quality, sparse, outdated, or noisy data will mislead the model. Use: Improve data or don't RAG.\nLatency budget is tiny: Retrieval + reranking adds latency you can't afford. Use: Smaller context or caching.\nFacts already in context: The needed info is already present and reliable. Use: Answer directly from context."
+        }
+      ],
+      "footer": "Make actions explicit. Validate results. Keep context useful.",
+      "summary": "Explains how AI agents work as an observe-plan-act-check loop, how tool calls fail and how to make them reliable, how to manage what goes into the model's context, and when retrieval-augmented generation (RAG) helps or doesn't.",
+      "keywords": [
+        "AI agents",
+        "Agent loop",
+        "Tool calling",
+        "Idempotency",
+        "Exponential backoff",
+        "Context engineering",
+        "Lost in the middle",
+        "Prompt caching",
+        "Retrieval-augmented generation (RAG)",
+        "Chunking",
+        "Reranking",
+        "Hybrid search (BM25)"
+      ]
+    },
+    {
+      "image": "ML/20-finetune-prompt-rag-cheat-sheet.png",
+      "title": "Prompt vs RAG vs Fine-Tune Cheat Sheet",
+      "subtitle": "Choose the smallest intervention that solves the problem",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Decision Tree: Pick the Smallest Intervention",
+          "body": "Need current or private knowledge? Yes → use RAG: retrieve the facts at answer time. No ↓\nNeed stable behavior, style or format? Yes → start with prompting: use examples, rubrics & structured output. Still not stable at scale? Then fine-tune. No ↓\nNeed tool/action reliability or side effects? Yes → schemas & evals first: define tools, guardrails, and evaluations. No ↓\nA well-crafted prompt is enough. Ship it."
+        },
+        {
+          "number": 2,
+          "heading": "Prompting (Fastest & Cheapest)",
+          "body": "What it is: Steer the model with instructions, examples, rubrics, and constraints.\nHow to do it: Clear goal & role. Few-shot examples. Rubrics & acceptance criteria. Structured output (JSON/CSV/MD).\nGood for: New tasks, prototypes, varied topics, whenever examples generalize.\nDownside: Brittle at scale. Prompts drift, break with edge cases, and require ongoing handholding."
+        },
+        {
+          "number": 3,
+          "heading": "RAG (Retrieval-Augmented Generation)",
+          "body": "What it is: Grounds answers in your data at runtime. Keeps knowledge current and citeable.\nHow it works: 1. Retrieve → top-k relevant chunks. 2. Rerank → improve relevance. 3. Generate → answer with sources.\nNeeds to succeed: High-quality sources. Smart chunking. Reranking for accuracy. Citations in output. Evaluation that matches real use.\nKey idea: The model writes. Your data proves."
+        },
+        {
+          "number": 4,
+          "heading": "Fine-Tuning (Teach the Behavior)",
+          "body": "What it is: Updates model weights so the behavior becomes the default.\nGood for: Repeated behavior. Specific style / tone. Domain patterns & formats.\nImportant: Does NOT magically add new facts. It bakes in patterns, not live knowledge.\nUse when prompts aren't enough: Many edge cases to handle. Strict formats always. Consistent style & tone. Lower variance you can trust."
+        },
+        {
+          "number": 5,
+          "heading": "LoRA (Low-Rank Adaptation)",
+          "body": "Frozen base model + trainable LoRA adapters A (d×r) and B (r×d) → updated behavior (weights unchanged except adapters).\nTrain small adapter matrices. Lower VRAM & compute. Cheaper training. Easy to swap & version."
+        },
+        {
+          "number": 6,
+          "heading": "QLoRA (Quantized + LoRA)",
+          "body": "Quantized base model (4-bit) + trainable LoRA adapters A (d×r) and B (r×d) → updated behavior (economical & adapter-efficient).\n4-bit base model (QLoRA). Much lower VRAM. Lowest cost experimentation. Great for many variants."
+        },
+        {
+          "number": 7,
+          "heading": "Economics at a Glance",
+          "body": "Prompting: data prep low (write examples); training cost none (prompt only); serving cost low (context tokens); iteration speed very fast (minutes).\nRAG: data prep medium-high (ingest, chunk, index); training cost none (index build only); serving cost medium (retrieval + context); iteration speed fast (hours–days).\nLoRA: data prep medium (format, clean, label); training cost medium (GPU training); serving cost low (same as base model); iteration speed medium (days).\nQLoRA: data prep medium (format, clean, label); training cost low–medium (4-bit training); serving cost low (same as base model); iteration speed fast (days)."
+        },
+        {
+          "number": 8,
+          "heading": "Common Failure Modes (Watch for These)",
+          "body": "Bad data amplifies: Garbage in, garbage out. Biased, outdated, or noisy data becomes confident answers. Fix: Curate, dedupe, verify, version.\nRetrieval can mislead: Wrong chunks look plausible. Over-retrieval adds noise. Fix: Better chunking, rerank, filters, and citations.\nOverfit formats: Model parrots training formats. Loses generalization & creativity. Fix: Diverse data, holdout evals, and regularization.\nMissing evals = blind: Looks good in demos, fails in prod. No metrics, no guardrails. Fix: Define evals, automate tests, and track regressions."
+        }
+      ],
+      "footer": "Start with prompts. Add retrieval for knowledge. Fine-tune for repeated behavior.",
+      "summary": "Helps decide how to customize a language model: start with a good prompt, add retrieval (RAG) when it needs fresh or private facts, and fine-tune (cheaply, with LoRA or QLoRA) only when you need a behavior baked in — with the costs and pitfalls of each.",
+      "keywords": [
+        "Prompt engineering",
+        "Few-shot examples",
+        "Retrieval-augmented generation (RAG)",
+        "Fine-tuning",
+        "Low-rank adaptation (LoRA)",
+        "QLoRA",
+        "Quantization",
+        "Reranking",
+        "Structured output",
+        "Evals"
+      ]
+    },
+    {
+      "image": "ML/21-llm-product-system-design-cheat-sheet.png",
+      "title": "Design a Support Agent for 10M Users",
+      "subtitle": "An LLM product-system design interview cheat sheet",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Requirements",
+          "body": "Channels: Web, mobile, in-app, email, WhatsApp, social DMs, voice.\nLanguages: Top 10+ languages day-1. Auto-detect & locale aware.\nLatency / SLA: P50 < 2.5s, P95 < 5s, P99 < 8s. SLA: 99.9% monthly availability.\nEscalation: Seamless handoff to human. Context, intent & steps preserved.\nPrivacy: Data minimization, encryption, GDPR/CCPA, regional residency.\nSuccess metrics: Containment rate, resolution quality, escalation rate, CSAT, cost/resolved, safety incidents."
+        },
+        {
+          "number": 2,
+          "heading": "Architecture Overview",
+          "body": "User (any channel) → Gateway (AuthN, rate limit, WAF, geo, quota, request shaping) → Policy / router (intent classify, risk score, A/B, guardrails) → Retrieval & account APIs (vector + hybrid search, KB, account APIs, transactions) → LLM / tool executor (LLM reasoning, tools, actions, side-effects, validations) → Response builder (compose, cite, format, tone, localize) → Observability (logs, traces, metrics, alerts, dashboards, SLOs) → Evaluation (quality, safety, factuality, cost, human review) → Feedback loop (user feedback, outcomes, model & KB improvement), feeding back into the router."
+        },
+        {
+          "number": 3,
+          "heading": "Routing & Flows",
+          "body": "Simple FAQ (low risk): User question → auto-answer from KB → resolved.\nAuthenticated account flow: User (auth) → tools & account APIs: verify access → fetch data → action → confirm.\nHigh risk / complex: User issue → risky / low confidence → escalate to human with full context (telemetry, summary, suggested reply)."
+        },
+        {
+          "number": 4,
+          "heading": "Knowledge System",
+          "body": "Source & ownership: Docs, policies, help center, product data, community, logs. Owner, freshness SLA, sensitivity.\nIngestion: Connectors, crawl / APIs, change data capture, schema mapping, dedupe.\nChunking & indexing: Semantic chunking, metadata, ACLs, embeddings, hybrid (BM25 + vector) index.\nRetrieval & reranking: Query rewrite, filters, hybrid search, cross-encoder rerank, diversity, MMR.\nCitations: Inline citations with source title, section, and link.\nFreshness: Recency boost, expiry rules, staleness alerts, re-index jobs.\nAccurate • Current • Authorized • Access controlled."
+        },
+        {
+          "number": 5,
+          "heading": "Reliability & Tooling",
+          "body": "Typed tools: Strong schemas, I/O validation, idempotent side-effects.\nPermission checks: AuthZ for every tool call, scoped tokens.\nRetries & timeouts: Exponential backoff, jitter, circuit breakers.\nFallbacks: Cache → smaller model → template → human.\nHuman handoff: Context pack: intent, steps, KB hits, actions, transcripts.\nExecution flow: Plan → Validate → Authorize → Execute → Observe.",
+          "code": "{\n  \"name\": \"cancel_order\",\n  \"description\": \"Cancel an order\",\n  \"input_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"order_id\": {\"type\": \"string\"},\n      \"reason\": {\"type\": \"string\"}\n    },\n    \"required\": [\"order_id\"]\n  },\n  \"idempotent\": true,\n  \"permissions\": [\"orders:write\"]\n}"
+        },
+        {
+          "number": 6,
+          "heading": "Safety & Privacy",
+          "body": "Data minimization: Collect only what's needed. Avoid storing content longer than necessary.\nAccess control: RBAC/ABAC, least privilege, service accounts.\nPII handling: Detect, redact, mask. Tokenize where needed. No PII in prompts/logs.\nEncryption: In transit (TLS) & at rest. Key rotation & KMS.\nAudit logs: Who/what/when/why. Immutable, searchable, retention policies.\nGuardrails: Content safety filters. PII & secrets protection. Prompt injection defense. Tool misuse prevention. Rate & abuse protection.\nData flow: User input → redact / mask → process (LLM + tools) → response; logs contain no PII.\nPrivacy by design. Trust by default."
+        },
+        {
+          "number": 7,
+          "heading": "Scale & Cost Optimization",
+          "body": "Caching: Response cache, embedding cache, KB result cache, negative cache.\nBatching: Embed batches, rerank batches, tool call batches, log batching.\nModel routing: Small model for easy intents, larger for complex, reasoning only when needed.\nRate limits: Per user / IP / org, burst + sustained, adaptive limits, priority tiers.\nCapacity planning: Autoscale, multi-region active, queue & shed, cost budgets & alerts.\nCost controls: Token budgets by intent. Early exit / stop sequences. Context window mgmt. Compress & summarize. Right-size inference."
+        },
+        {
+          "number": 8,
+          "heading": "Metrics Dashboard",
+          "body": "Containment rate: 68% resolved by agent. Resolution quality: 4.6 / 5 human rated. Latency (P95): 3.2s (target < 5s). Cost / resolved case: $0.21 (7-day trend). Escalation rate: 7.8% (target < 10%). CSAT: 4.4 / 5 from survey. Safety incidents: 2 (7-day trend). Volume (daily): 1.8M messages / day.\nSLI / SLOs: Availability 99.9% • Error rate < 0.5% • P95 latency < 5s."
+        },
+        {
+          "number": 9,
+          "heading": "Rollout & Continuous Improvement",
+          "body": "1. Offline eval: Test sets. Evals: quality, safety, tools. Red team. Bias & toxicity. Benchmark cost.\n2. Shadow mode: Live traffic mirrored. No user impact. Compare with current system. Collect diffs.\n3. Limited launch: Small % of users. Feature flags. Guardrails on. Tight monitoring. Fast rollback.\n4. A/B test: Compare variants. Stat sig results. Cost & quality. Segment analysis. Pick the winner.\n5. Monitor: SLOs & alerts. Drill-down. Anomaly detect. User feedback. Daily reviews.\n6. Iterate: Fix issues. Improve KB. Tune prompts. Retrain / fine-tune. Ship improvements.\nMeasure → Learn → Improve → Repeat."
+        }
+      ],
+      "footer": "Design for the user journey, then earn reliability at scale.",
+      "summary": "A worked system-design example for an AI customer-support agent serving 10 million users: requirements, the end-to-end architecture, routing by risk, the knowledge base, reliable tool calls, privacy safeguards, cost control, the metrics to watch, and a safe step-by-step rollout.",
+      "keywords": [
+        "System design",
+        "LLM support agent",
+        "Service level objectives (SLOs)",
+        "Guardrails",
+        "Hybrid search",
+        "Reranking",
+        "Human handoff",
+        "Personally identifiable information (PII)",
+        "Model routing",
+        "Containment rate",
+        "Shadow mode",
+        "A/B test"
+      ]
+    }
+  ]
+}

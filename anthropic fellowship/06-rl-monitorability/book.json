@@ -1,0 +1,41 @@
+{
+  "title": "The Monitorability Cost of Ordinary RL",
+  "source_project_number": 6,
+  "status": "complete",
+  "pages": [
+    {
+      "number": 1,
+      "title": "Quiet Is Not Cured",
+      "image": "01-quiet-is-not-cured.png",
+      "prompt": "../prompts/06-rl-monitorability/01-quiet-is-not-cured.txt"
+    },
+    {
+      "number": 2,
+      "title": "Training Dials",
+      "image": "02-training-dials.png",
+      "prompt": "../prompts/06-rl-monitorability/02-training-dials.txt"
+    },
+    {
+      "number": 3,
+      "title": "Two-Axis Dashboard",
+      "image": "03-two-axis-dashboard.png",
+      "prompt": "../prompts/06-rl-monitorability/03-two-axis-dashboard.txt"
+    },
+    {
+      "number": 4,
+      "title": "Preserve The Window",
+      "image": "04-preserve-the-window.png",
+      "prompt": "../prompts/06-rl-monitorability/04-preserve-the-window.txt"
+    }
+  ],
+  "learning_objectives": [
+    "Distinguish reduced misbehavior from reduced visibility of unchanged behavior.",
+    "Explain routine training pressures and a controlled monitoring experiment.",
+    "Define conditional monitorability metrics, confounds, and a resource-aware plan."
+  ],
+  "quality_review": {
+    "all_pages_visually_inspected": true,
+    "format": "1024 \u00d7 1536 PNG; six panels per page",
+    "notes": "Material diagram issues repaired with saved prompts; technical acronyms expanded on-page; proposed experiments and planning estimates labeled."
+  }
+}

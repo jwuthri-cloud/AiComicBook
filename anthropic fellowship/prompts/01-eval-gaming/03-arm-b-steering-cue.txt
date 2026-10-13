@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 01 · PAGE 3/4
+TITLE: ARM B: A DETECTED NUDGE
+SUBTITLE: Eval gaming under training pressure. Proposed research project.
+WORD KEY: AI = artificial intelligence; activation = a changing internal number pattern.
+PANELS:
+1. THE SECOND QUESTION
+Researchers can gently steer activations during a test. Could a model learn to recognize that nudge as a clue that it is being evaluated? This is a proposed experiment.
+2. MAKE THE CUE
+Use a chosen activation direction during some training trials. Keep matched sham nudges and ordinary trials so a generic disturbance is not mistaken for the cue.
+3. TEST THE REACTION
+Measure whether behavior changes only after the real nudge, including on held-out tasks. Record the model's words, actions, and a separately trained nudge detector.
+4. CHANGE THE NUDGE
+Try new strengths, positions, and directions. If only the original nudge works, the model may have memorized a narrow artifact.
+5. A HARDER TEST
+Search for nudges that produce the target behavior while the detector rarely flags them. Freeze the detector first; evaluate on a separate test set.
+6. WHAT REMAINS UNCERTAIN
+A detector can miss cues. A response shift can reflect changed task processing, not recognition of a test. Use controls before calling it evaluation gaming.
+FOOTER: A NUDGE CAN BE A CUE ONLY IF CONTROLS RULE OUT SIMPLE DISTURBANCE.
+VISUAL DIRECTIONS (do not print): Finger tapping compass as analogy; real/sham steering lanes; held-out detector dashboard.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

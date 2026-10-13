@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create a finished portrait 2:3 educational comic card, 1024x1536 or higher, for curious kids. Match a cyberpunk study-guide: near-black #05090B, ivory #F2EEDF, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32 takeaway. Friendly small silver robot with cyan eyes upper left, curious anime learner upper right. Inked contours, cel shading, subtle circuitry, restrained glow. Bold uppercase slanted brush title, clean LARGE readable text. Four numbered panels with diagrams, clear gutters and reading order. Render supplied copy accurately and entirely; illustrate each with a concrete diagram. Do not add invented text. Keep technical caveats visible. 
+Title: "ABLATION". Subtitle: "Remove a part to test its role". Four numbered panels with EXACT text:
+1. THE SIMPLE IDEA
+"Imagine covering one sensor on a robot toy and checking what stops working. Ablation removes or suppresses a model component's contribution."
+2. HOW IT WORKS
+"Researchers set activations to zero, replace them with an average or sample, or disable a head or feature. Then they compare behavior against the original model."
+3. SEE AN EXAMPLE
+"Switch off one head in a tiny copying circuit, then compare the prediction with the original model. Keep the intervention and measured behavior explicit."
+4. WHY IT MATTERS
+"Ablation tests whether a part matters under that intervention. Backup paths can hide its role, while unnatural replacements can break unrelated behavior. Results need careful controls."
+Footer: "REMOVING A PART IS A TEST, NOT A FULL EXPLANATION.". Draw helpful labeled diagrams supporting each panel. All text must be readable and spelled correctly. Keep a coherent technical concept and its limitation.
+
+Do not print production directions. Use short factual diagram labels only.

@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-shortcut-or-habit.mp4": {
+      "page": 1,
+      "image": "04-reward-hacking-generalization/01-shortcut-or-habit.png",
+      "interaction_id": "v1_ChdmU3JOYW95bEFhRFZqTWNQaXI2NnNRMBIXZlNyTmFveWxBYURWak1jUGlyNjZzUTA",
+      "duration": 10.005
+    },
+    "02-recipe-laboratory.mp4": {
+      "page": 2,
+      "image": "04-reward-hacking-generalization/02-recipe-laboratory.png",
+      "interaction_id": "v1_ChdmU3JOYW95bEFhRFZqTWNQaXI2NnNRMBIXbkNyTmF1ZVBFdXJ3LXNBUGtQR211UXc",
+      "duration": 20.032
+    },
+    "03-two-scoreboards.mp4": {
+      "page": 3,
+      "image": "04-reward-hacking-generalization/03-two-scoreboards.png",
+      "interaction_id": "v1_ChdmU3JOYW95bEFhRFZqTWNQaXI2NnNRMBIXNkNyTmFxbnFGSnpmLXNBUDB0eVdpUUU",
+      "duration": 30.016
+    },
+    "04-four-month-mission.mp4": {
+      "page": 4,
+      "image": "04-reward-hacking-generalization/04-four-month-mission.png",
+      "interaction_id": "v1_ChdmU3JOYW95bEFhRFZqTWNQaXI2NnNRMBIXUml2TmF1YW9DYUxRak1jUDVNaXJxQTA",
+      "duration": 40.0
+    }
+  }
+}

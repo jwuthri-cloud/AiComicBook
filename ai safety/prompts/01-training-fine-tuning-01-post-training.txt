@@ -1,0 +1,12 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Four numbered illustrated teaching panels. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: POST-TRAINING
+SUBTITLE: Turning a book-reader into a helpful assistant.
+1. THE IDEA
+Pretraining is like reading a giant library. Post-training is practice afterward: learning how to answer, follow instructions, and handle difficult requests.
+2. HOW IT WORKS
+Developers update the model using example answers, comparisons, rewards, or other feedback. These updates change its learned settings, called weights. Draw library -> practice -> assistant.
+3. TRY AN EXAMPLE
+Before: a question may get more unfinished text. After: the assistant can give a clear, useful reply. Practice can also improve reasoning and safe behavior.
+4. WHY IT MATTERS
+Good practice can make an AI more useful and reliable. But poor examples or rewards can teach shortcuts. Passing training exercises does not prove it will behave well everywhere.
+FOOTER: Post-training shapes behavior after broad learning.

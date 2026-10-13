@@ -1,0 +1,4 @@
+file '01-detect-the-pretender.mp4'
+file '02-build-fair-cases.mp4'
+file '03-test-the-auditors.mp4'
+file '04-plan-and-output.mp4'

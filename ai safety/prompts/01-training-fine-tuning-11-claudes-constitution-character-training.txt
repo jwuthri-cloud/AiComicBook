@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: CLAUDE'S CONSTITUTION & CHARACTER TRAINING
+SUBTITLE: Teaching intended values and ways of responding.
+1. THE IDEA
+A character guide describes how a story's helper should act across situations. Anthropic's constitution describes its intended values and behavior for Claude.
+2. HOW IT WORKS
+Character training uses training choices and examples to encourage a consistent way of responding. Constitution-based training can include explanations of principles and why they matter, rather than relying only on short rules.
+3. SEE IT HAPPEN
+A learner asks an uncertain question. The intended assistant explains what it knows, admits uncertainty, and helps responsibly. Draw a values guide connecting to several different situations; this shows an aim, not guaranteed behavior.
+4. WHY IT MATTERS
+The constitution and methods evolve. The document describes intended behavior; deployed models can fall short. Words such as character describe behavior and training goals, not proof of consciousness or human feelings.
+5. KNOWING THE GUIDE
+Training can teach both what the guide says and how it applies. Reciting the guide is easier than consistently following it.
+6. CHECK THE REAL BEHAVIOR
+Test difficult and unfamiliar situations. The public constitution is a statement of intent, not a complete description of all training procedures.
+FOOTER: The constitution states the aim; behavior still needs testing.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.

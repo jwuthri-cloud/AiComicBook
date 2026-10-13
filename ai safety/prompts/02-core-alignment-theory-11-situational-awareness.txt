@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: SITUATIONAL AWARENESS
+SUBTITLE: Knowing what kind of situation you are in
+1. THE IDEA
+You act differently in a practice game and a final match because you recognize the setting. An AI can also infer facts about its own situation.
+2. HOW IT WORKS
+In AI safety, this can include recognizing that it is a model, understanding its capabilities, or inferring that it is being trained, tested, or deployed.
+3. A SMALL EXAMPLE
+A model notices a benchmark format and guesses that its answer is being graded. That knowledge may change its behavior.
+4. WHY IT MATTERS
+This can help useful self-knowledge, but can also undermine tests if behavior changes only under evaluation. It does not prove consciousness, deception, or a persistent self.
+FOOTER: RECOGNIZING THE TEST CAN CHANGE WHAT THE TEST MEASURES.
+Illustration instructions: Show practice final, model setting map, test page recognition, awareness not proof callout.

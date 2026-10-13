@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 03 · PAGE 1/4
+TITLE: WATCH THE MODEL CHANGE
+SUBTITLE: Training-run evaluation toolkit. Proposed research project.
+WORD KEY: AI = artificial intelligence; RL = reinforcement learning; eval = evaluation.
+PANELS:
+1. THE QUESTION
+A gardener checks a plant as it grows, not only at the end. This proposal checks model checkpoints across training for early warning signs.
+2. WHAT IS A CHECKPOINT?
+A checkpoint is a saved version of the model at one training step. A sequence can show when a measured behavior appeared.
+3. WHICH SIGNS?
+Track spoken test awareness, activation-probe signals, reward seeking in controlled tasks, and persona-vector movement.
+4. COMPARE WITH ACTIONS
+Run behavioral evals at the same checkpoints. Ask whether an internal signal changes before held-out behavior does.
+5. USE KNOWN CASES
+Include deliberately constructed positive controls with a known target behavior, plus ordinary runs as negatives.
+6. WHAT IT CANNOT CLAIM
+A pattern in activations is a clue, not proof of secret plans. Earlier detection in a few runs does not guarantee broad prediction.
+FOOTER: CHECKPOINTS TURN ONE FINAL SCORE INTO A TIMELINE.
+VISUAL DIRECTIONS (do not print): Growing plant analogy alongside saved checkpoint snapshots; four signal meters versus behavior.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

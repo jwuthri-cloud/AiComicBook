@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: ELICITATION
+SUBTITLE: Giving a model a fair chance to show its skills.
+1. THE IDEA
+Imagine judging a student's math ability after giving unclear instructions. Elicitation means trying suitable conditions to reveal what a model can actually do.
+2. HOW IT WORKS
+Researchers may improve prompts, provide examples, allow tools, increase time, or train task-specific support. They track the resources and assistance used so results remain interpretable.
+3. SEE IT HAPPEN
+A model fails a puzzle after a vague request but solves it with a clear format and a calculator. That is evidence of a capability the first setup failed to reveal. Show two labeled test setups.
+4. WHY IT MATTERS
+A failed attempt may mean the skill is absent, or that the setup did not bring it out. Strong elicitation helps avoid false reassurance. It must remain controlled, especially for dangerous tasks, and does not guarantee every hidden capability is found.
+FOOTER: A weak test setup can hide a real capability.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.
+ACRONYM REQUIREMENT: Add a small, prominent acronym key: AI = Artificial Intelligence. If any other abbreviation appears, expand it nearby.

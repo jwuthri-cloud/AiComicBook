@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated teaching panels in 3 rows of 2. Use the additional panels below in sequential order. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: OUTCOME VS. PROCESS SUPERVISION
+SUBTITLE: Grade the finish, or also grade the steps.
+1. THE IDEA
+Imagine a maze. Outcome supervision asks whether you reached the exit. Process supervision also gives feedback on the route you wrote down along the way.
+2. HOW IT WORKS
+Outcome feedback evaluates a final result. Process feedback evaluates intermediate steps, often through human labels or learned step judges. Either can provide training signals or help select answers.
+3. SEE IT HAPPEN
+Math example: the final answer is 12. Outcome grading checks 12. Process grading checks the stated additions and corrections leading to it. Draw a finish flag beside several checked stepping stones.
+4. WHY IT MATTERS
+Process feedback can locate mistakes but costs effort and may judge plausible-looking steps incorrectly. Written reasoning may not reveal every internal cause. Outcome feedback is easier when results are checkable but can reward lucky shortcuts.
+5. FEEDBACK IS NOT A WINDOW
+Judging written steps helps assess the explanation. It does not automatically reveal every computation inside the network.
+6. CHOOSING A MIX
+Use final checks where results are verifiable and step checks where mistakes can be spotted. Both types of judges can be imperfect.
+FOOTER: A correct finish and trustworthy steps are different things to check.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.
+ACRONYM REQUIREMENT: No topic acronym needs an expansion. If using AI or RL anywhere, spell out Artificial Intelligence or Reinforcement Learning visibly.

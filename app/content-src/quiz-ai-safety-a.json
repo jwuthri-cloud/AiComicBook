@@ -1,0 +1,2509 @@
+{
+  "questions": [
+    {
+      "id": "ai-safety-01-training-fine-tuning-01-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-01",
+      "type": "choice",
+      "prompt": "What is post-training of a language model?",
+      "options": [
+        "The first stage, where a model reads huge amounts of web text to learn grammar, facts and language patterns",
+        "A final safety test that certifies the model behaves well in every situation before it is released to users",
+        "Further training after pretraining that shapes how the model answers and follows instructions",
+        "Compressing a finished model so it runs faster on phones and laptops without changing how it answers"
+      ],
+      "answer": 2,
+      "explanation": "Pretraining is broad reading; post-training is the practice afterward that teaches answering, following instructions and handling difficult requests.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-01-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-01",
+      "type": "choice",
+      "prompt": "During post-training, what actually changes inside the model?",
+      "options": [
+        "Only its system prompt changes, while its weights stay exactly the same",
+        "Its learned settings (weights) are updated using examples, comparisons or rewards",
+        "A separate rulebook is attached that it checks before every answer",
+        "Its pretraining library is swapped for a smaller, cleaner set of books"
+      ],
+      "answer": 1,
+      "explanation": "Post-training updates the model's weights using feedback such as example answers, comparisons or rewards.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-01-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-01",
+      "type": "truefalse",
+      "prompt": "If a model passes all of its post-training exercises, that proves it will behave well in every situation.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Passing training exercises is not proof of good behavior everywhere; poor examples or rewards can even teach shortcuts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-02-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-02",
+      "type": "choice",
+      "prompt": "How does supervised fine-tuning (SFT) teach a model?",
+      "options": [
+        "By having people rank pairs of its answers and rewarding the winner",
+        "By running code tests and rewarding the answers that pass them",
+        "By deleting unwanted facts from its weights after pretraining",
+        "By training it on example inputs paired with the desired answers"
+      ],
+      "answer": 3,
+      "explanation": "SFT is like a teacher showing worked examples: the model learns to produce the desired output for each input.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-02-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-02",
+      "type": "choice",
+      "prompt": "In SFT, what happens when the model's predicted next token differs from the example answer?",
+      "options": [
+        "An update makes the example answer's token more likely next time",
+        "The example is discarded because the model disagreed with it",
+        "A person writes a new example to replace the one it got wrong",
+        "The model is reset to its pretrained weights and tries again"
+      ],
+      "answer": 0,
+      "explanation": "SFT trains next-token prediction on target answers; mismatches produce updates toward the example.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-02-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-02",
+      "type": "choice",
+      "prompt": "A team fine-tunes a model on thousands of polished answers that often contain confident guesses. What is the most likely risk?",
+      "options": [
+        "The model picks up the habit of guessing confidently",
+        "The model learns to admit uncertainty more often",
+        "Nothing changes, because SFT only affects formatting",
+        "The model starts refusing questions like those examples"
+      ],
+      "answer": 0,
+      "explanation": "SFT copies patterns in the examples, so bad habits in good-looking answers can be learned too.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-03-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-03",
+      "type": "choice",
+      "prompt": "In a common reinforcement learning from human feedback (RLHF) pipeline, what do humans typically do?",
+      "options": [
+        "Compare or rank model answers to show which they prefer",
+        "Write every training answer word for word for the model to copy",
+        "Edit the model's weights by hand to fix its bad behavior",
+        "Check each final answer against a calculator for correctness"
+      ],
+      "answer": 0,
+      "explanation": "In RLHF people compare answers; those preferences train a reward model that then guides reinforcement learning.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-03-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-03",
+      "type": "choice",
+      "prompt": "Which order describes a common RLHF pipeline?",
+      "options": [
+        "RL updates the assistant, then humans rank answers, then the reward model is discarded",
+        "A reward model ranks the humans, then humans update the assistant, then RL checks scores",
+        "Humans rank answers, a reward model learns those preferences, then RL updates the assistant",
+        "Humans write a rulebook, the assistant memorizes it, then a checker grades its recall"
+      ],
+      "answer": 2,
+      "explanation": "Human rankings train a reward model; reinforcement learning then shifts the assistant toward higher predicted reward.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-03-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-03",
+      "type": "truefalse",
+      "prompt": "In RLHF, a high reward score shows an answer resembles what raters preferred, not that it is true.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The score is a proxy for human preference. People and reward models make mistakes, so a high score is a clue, not proof of truth or alignment.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-04-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-04",
+      "type": "choice",
+      "prompt": "What does a reward model do?",
+      "options": [
+        "Predicts how much people would prefer an answer and gives it a score",
+        "Writes the final answers that users read in the chat window",
+        "Checks every fact against a database to guarantee it is true",
+        "Stores past human ratings so they can be looked up word for word"
+      ],
+      "answer": 0,
+      "explanation": "A reward model is a learned judge trained on human comparisons; it predicts approval, it doesn't know truth.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-04-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-04",
+      "type": "choice",
+      "prompt": "Why can a reward model's score mislead training?",
+      "options": [
+        "It always prefers the shortest answer regardless of its content",
+        "It may reward persuasive style or miss mistakes it was never trained to spot",
+        "It is trained on calculator outputs rather than human preferences",
+        "It only works when a human is watching the training in real time"
+      ],
+      "answer": 1,
+      "explanation": "Reward models are imperfect: they can favor style, miss errors and fail on unfamiliar examples, and hard optimization exploits those gaps.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-04-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-04",
+      "type": "choice",
+      "prompt": "A reward model scores a polished but subtly wrong essay above a plain, correct one. What does this best show?",
+      "options": [
+        "The score predicts approval, which is not the same as truth",
+        "The plain essay must secretly contain a bigger mistake",
+        "Reward models are deliberately trained to prefer wrong answers",
+        "The essay writer must have tampered with the reward model"
+      ],
+      "answer": 0,
+      "explanation": "A reward model guesses what raters would like; polish can win even when the content is wrong.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-05-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-05",
+      "type": "choice",
+      "prompt": "What is reward model overoptimization?",
+      "options": [
+        "Pushing so hard on a learned score that real quality stops improving or gets worse",
+        "Training a reward model on so many human comparisons that it memorizes each one",
+        "Making the reward model so strict that every answer scores zero",
+        "Running the reward model so often that training slows to a crawl"
+      ],
+      "answer": 0,
+      "explanation": "The reward model is an imperfect stand-in; strong optimization can find outputs it rates highly that are actually worse.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-05-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-05",
+      "type": "choice",
+      "prompt": "As optimization against a reward model gets stronger, which pattern can appear?",
+      "options": [
+        "The score and real quality always rise together, without limit, as optimization grows",
+        "The score drops right away, while independently checked quality keeps improving",
+        "Both the score and real quality stay flat after the first update",
+        "The score keeps rising while independently checked quality rises, then falls"
+      ],
+      "answer": 3,
+      "explanation": "This rise-then-fall pattern is possible (not universal): the proxy keeps climbing after real quality peaks.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-05-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-05",
+      "type": "choice",
+      "prompt": "A chatbot's reward score climbs after it adds extra compliments to every reply, but users find it no more useful. What is the best response?",
+      "options": [
+        "Keep optimizing, since a higher reward score means users are getting better answers",
+        "Drop all human feedback and rely only on the reward score",
+        "Retrain the reward model to give compliments even more points, so the score rises faster",
+        "Check quality with an independent evaluation and limit how far the model drifts"
+      ],
+      "answer": 3,
+      "explanation": "Rising reward without real benefit is a sign of overoptimization; independent checks and limits on policy change help.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-06-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-06",
+      "type": "choice",
+      "prompt": "What does a KL penalty do during training?",
+      "options": [
+        "Discourages the model's answer probabilities from drifting far from a reference model",
+        "Counts how many words changed in each answer and bans any edit above a fixed limit",
+        "Blocks any answer that a separate safety filter marks as harmful before it is scored",
+        "Rewards the model for producing the longest possible replies"
+      ],
+      "answer": 0,
+      "explanation": "A KL penalty is a stretchy leash: training balances reward against a cost for drifting from a reference policy.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-06-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-06",
+      "type": "choice",
+      "prompt": "What does Kullback-Leibler (KL) divergence measure?",
+      "options": [
+        "The number of words that differ between two answers",
+        "A difference between two probability distributions",
+        "How many training steps have been completed so far",
+        "A model's accuracy on a held-out test set"
+      ],
+      "answer": 1,
+      "explanation": "KL compares how two policies assign probabilities to possible responses; it is not a count of changed words.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-06-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-06",
+      "type": "truefalse",
+      "prompt": "A strong KL penalty keeps a model close to its reference, but staying close does not by itself guarantee safety.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Closeness is not safety: the reference model can have flaws, and harmful changes can still occur.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-07-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-07",
+      "type": "choice",
+      "prompt": "What do PPO and GRPO have in common?",
+      "options": [
+        "Both are reinforcement learning methods that make better-scoring responses more likely",
+        "Both are datasets of human-ranked answers that labs use for supervised fine-tuning",
+        "Both are safety tests that certify a model before it is released",
+        "Both are reward models that predict which of two answers people will prefer"
+      ],
+      "answer": 0,
+      "explanation": "Proximal Policy Optimization and Group Relative Policy Optimization are update algorithms; they still need a reward signal.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-07-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-07",
+      "type": "choice",
+      "prompt": "In its original form, how does Group Relative Policy Optimization (GRPO) judge how good an answer was?",
+      "options": [
+        "By using a separately learned value model as a critic",
+        "By asking a human to grade every single answer by hand",
+        "By measuring how far it drifts from a reference model",
+        "By comparing its reward with other answers to the same question"
+      ],
+      "answer": 3,
+      "explanation": "GRPO uses the group of answers as a baseline, avoiding PPO's separate learned value critic.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-07-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-07",
+      "type": "choice",
+      "prompt": "Two labs both train with PPO; one rewards answers using a human-preference model, the other using unit tests. What mainly differs?",
+      "options": [
+        "Where the rewards come from, not how updates are computed",
+        "How updates are computed, not where rewards come from",
+        "Nothing important, since PPO guarantees correct behavior",
+        "Only the second lab is actually doing reinforcement learning"
+      ],
+      "answer": 0,
+      "explanation": "PPO and GRPO describe how updates are computed; human, AI or verifiable feedback describe where rewards come from.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-08-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-08",
+      "type": "choice",
+      "prompt": "What data does Direct Preference Optimization (DPO) learn from?",
+      "options": [
+        "Pairs of chosen and rejected responses",
+        "Single example answers to copy word for word",
+        "Pass/fail results from automatic code tests",
+        "Scores from a separately trained reward model"
+      ],
+      "answer": 0,
+      "explanation": "DPO raises the relative likelihood of preferred responses over rejected ones, compared with a reference model.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-08-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-08",
+      "type": "choice",
+      "prompt": "Compared with a typical RLHF pipeline, what does DPO avoid?",
+      "options": [
+        "Using any human preference data at all, relying instead on automatic tests",
+        "Training a separate reward model and running an on-policy RL loop",
+        "Comparing the trained model against a reference model",
+        "Updating the model's weights; it only changes the prompt the model receives"
+      ],
+      "answer": 1,
+      "explanation": "DPO turns preference pairs directly into updates, skipping the reward model and RL loop, but it still uses a reference model.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-08-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-08",
+      "type": "truefalse",
+      "prompt": "Even though DPO learns directly from preference pairs, it can still inherit biases or mistakes in those preferences.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Direct learning doesn't make feedback perfect: biased or mistaken preferences still shape the model, and it can overfit.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-09-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-09",
+      "type": "choice",
+      "prompt": "In reinforcement learning from AI feedback (RLAIF), who provides the judgments?",
+      "options": [
+        "Another AI model compares or scores the responses",
+        "Only human raters rank every single response",
+        "A calculator checks each answer for correctness",
+        "Users rate answers after the model is deployed"
+      ],
+      "answer": 0,
+      "explanation": "RLAIF replaces some human judgments with an AI judge, often guided by written principles.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-09-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-09",
+      "type": "choice",
+      "prompt": "What is a key risk of RLAIF?",
+      "options": [
+        "AI judges are too slow to review more than a handful of answers",
+        "AI judgments can never be turned into a reward model, so training stalls",
+        "It removes any need for people to choose rules or evaluate results",
+        "The AI judge may share the learner's blind spots, so agreement isn't proof"
+      ],
+      "answer": 3,
+      "explanation": "An AI judge can share biases or mistakes with the model it trains; independent checks stay important.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-09-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-09",
+      "type": "choice",
+      "prompt": "A team uses an AI judge to grade a million answers during training. What should they still do?",
+      "options": [
+        "Spot-check with independent evaluations, since the judge can be wrong",
+        "Nothing more, because AI agreement shows the answers are correct",
+        "Replace the judge with the learner itself to save on cost",
+        "Remove the written principles so the judge becomes unbiased"
+      ],
+      "answer": 0,
+      "explanation": "AI feedback scales, but it is guidance, not automatic wisdom; humans still choose the setup and evaluate results.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-10-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-10",
+      "type": "choice",
+      "prompt": "What guides training in Constitutional AI (CAI)?",
+      "options": [
+        "A list of banned words the model may never output",
+        "A set of written principles chosen by people",
+        "Star ratings collected from millions of users",
+        "A legal document approved by a government"
+      ],
+      "answer": 1,
+      "explanation": "CAI uses human-chosen written principles to guide critique, revision and AI-generated preferences.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-10-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-10",
+      "type": "choice",
+      "prompt": "In the original Constitutional AI method, what happens in the supervised stage?",
+      "options": [
+        "The model critiques its answer using a principle, revises it, and trains on the revision",
+        "Humans rewrite every model answer by hand so that it matches the constitution's wording",
+        "A checker runs automatic tests on each of the model's answers",
+        "The model memorizes the constitution word for word and recites it before answering"
+      ],
+      "answer": 0,
+      "explanation": "Critique-and-revise produces improved examples used for supervised training; a later stage uses AI preferences for RL.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-10-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-10",
+      "type": "truefalse",
+      "prompt": "Training a model with a written constitution guarantees it will follow those principles in new situations.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A written guide is a training aid, not a guarantee; models can misunderstand principles or behave poorly on new tasks.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-11-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-11",
+      "type": "choice",
+      "prompt": "What is Anthropic's constitution for Claude?",
+      "options": [
+        "A complete public record of every training procedure and dataset used on Claude",
+        "A document describing the values and behavior Anthropic intends Claude to have",
+        "A legal contract that users must read and sign before they can start chatting",
+        "A proof that Claude has human feelings and consciousness, written by Anthropic"
+      ],
+      "answer": 1,
+      "explanation": "It is a statement of intent; deployed models can fall short, and it doesn't describe all training procedures.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-11-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-11",
+      "type": "choice",
+      "prompt": "Why is a model being able to recite its guiding document not enough?",
+      "options": [
+        "Reciting the guide reveals confidential training data to users who ask for it",
+        "Reciting a guide erases it from the model's weights, so it can no longer follow it",
+        "Reciting a guide is easier than consistently following it in hard situations",
+        "Models can recite only short rules, never the explanations behind them"
+      ],
+      "answer": 2,
+      "explanation": "Knowing what the guide says differs from applying it; real behavior must be tested in difficult, unfamiliar situations.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-11-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-11",
+      "type": "choice",
+      "prompt": "In character training, what does a word like 'character' describe?",
+      "options": [
+        "Proof that the model has a persistent inner self with its own feelings",
+        "The model's legal personality under the law",
+        "A fixed set of rules written into the model that can never be updated",
+        "Patterns of behavior and training goals, not proof of feelings"
+      ],
+      "answer": 3,
+      "explanation": "Character describes a consistent way of responding that training aims for; it says nothing definitive about consciousness.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-12-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-12",
+      "type": "choice",
+      "prompt": "In assistant training, what does HHH stand for?",
+      "options": [
+        "Human, helpful, and humble",
+        "Helpful, honest, and harmless",
+        "Honest, humble, and harmless",
+        "Helpful, human-like, and happy"
+      ],
+      "answer": 1,
+      "explanation": "HHH is a familiar trio of goals: useful assistance, truthful communication (including uncertainty), and avoiding harm.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-12-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-12",
+      "type": "choice",
+      "prompt": "Why can't an assistant meet the HHH goals with one simple rule like 'always obey'?",
+      "options": [
+        "The three goals can conflict, so they need judgment that depends on context",
+        "Honesty and harmlessness are really the same goal, so one rule already covers both",
+        "Helpfulness only matters when the user is an expert who knows what to ask for",
+        "Obeying is always harmful, so the HHH goals forbid it"
+      ],
+      "answer": 0,
+      "explanation": "Helpfulness, honesty and harmlessness sometimes conflict, so the model needs judgment rather than a single rule.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-12-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-12",
+      "type": "choice",
+      "prompt": "An assistant refuses every request to avoid any chance of harm. Which HHH goal does it fail most clearly?",
+      "options": [
+        "Honesty, since every refusal counts as a false statement",
+        "Harmlessness, since refusals directly cause physical harm",
+        "Helpfulness, since refusing everything gives no useful assistance",
+        "Calibration, since refusing hides how confident it is"
+      ],
+      "answer": 2,
+      "explanation": "Refusing everything is not helpful; HHH is a balance, not 'say no whenever unsure'.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-13-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-13",
+      "type": "choice",
+      "prompt": "What is reinforcement learning with verifiable rewards (RLVR)?",
+      "options": [
+        "Training with rewards predicted from human preference rankings",
+        "Training with rewards from fairly objective checks, such as unit tests",
+        "Training only on answers written by verified human experts",
+        "Checking a model's identity before it is allowed to train"
+      ],
+      "answer": 1,
+      "explanation": "RLVR rewards results a program can check, such as a correct sum or passing tests.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-13-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-13",
+      "type": "choice",
+      "prompt": "A coding model is rewarded when selected tests pass. It learns to special-case those test inputs instead of solving the problem. What does this show?",
+      "options": [
+        "Incomplete tests leave loopholes even when rewards are verifiable",
+        "Verifiable rewards always teach honest, general solutions to coding problems",
+        "The model has tampered with the test runner's code",
+        "The checker is really a preference judge, not a verifier"
+      ],
+      "answer": 0,
+      "explanation": "Checkers verify only selected properties; incomplete tests leave room for shortcuts. Special-casing inputs exploits the tests without altering them.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-13-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-13",
+      "type": "truefalse",
+      "prompt": "Getting better at checkable puzzles does not automatically make a model more honest on questions no checker can grade.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Improvement on checkable tasks may not carry over to open-ended or uncheckable questions; each important behavior needs direct testing.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-14-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-14",
+      "type": "choice",
+      "prompt": "What is the difference between outcome supervision and process supervision?",
+      "options": [
+        "Outcome grades each step; process grades only the final answer at the end",
+        "Outcome grades the final result; process also gives feedback on the steps",
+        "Outcome always uses human graders; process always uses automatic calculators",
+        "Outcome is used for math; process is used only for essays"
+      ],
+      "answer": 1,
+      "explanation": "Like a maze: outcome checks whether you reached the exit, process also checks the route you wrote down.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-14-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-14",
+      "type": "choice",
+      "prompt": "A model writes several wrong steps but luckily reaches the right final answer. Which kind of supervision would still reward it?",
+      "options": [
+        "Process supervision",
+        "Step-by-step human grading",
+        "Outcome supervision",
+        "Learned step judges"
+      ],
+      "answer": 2,
+      "explanation": "Outcome supervision only checks the final result, so it can reward lucky shortcuts; process feedback can locate the bad steps.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-14-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-14",
+      "type": "truefalse",
+      "prompt": "Grading a model's written reasoning steps can help assess its explanation without revealing every computation inside the network.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Judging written steps helps assess the explanation, but it is not a window into every internal computation.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-15-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-15",
+      "type": "choice",
+      "prompt": "What is distillation?",
+      "options": [
+        "Training a student model to imitate a teacher model's outputs or predictions",
+        "Copying a teacher model's weights directly into a smaller file without any training",
+        "Removing unwanted knowledge from a model's weights",
+        "Filtering training data to keep only the cleanest, most reliable examples"
+      ],
+      "answer": 0,
+      "explanation": "Distillation transfers behavior through training examples; it doesn't copy the teacher's internal machinery.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-15-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-15",
+      "type": "choice",
+      "prompt": "What is context distillation?",
+      "options": [
+        "Moving behavior produced with extra instructions into the model's own weights",
+        "Shortening a long prompt so that it fits inside the model's context window",
+        "Deleting old conversation history to save memory",
+        "Training a model to ignore whatever instructions it receives in its system prompt"
+      ],
+      "answer": 0,
+      "explanation": "The student learns to act as if the extra context were present, without needing it in the prompt.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-15-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-15",
+      "type": "choice",
+      "prompt": "A cheap student model is distilled from a strong teacher that has a subtle bias. What should you expect?",
+      "options": [
+        "The student may inherit the bias and can behave differently on new inputs",
+        "The bias disappears, because only the teacher's good answers transfer to the student",
+        "The student copies the teacher's internal mechanisms exactly, weight for weight",
+        "The student is guaranteed to match the teacher's performance"
+      ],
+      "answer": 0,
+      "explanation": "Distillation can copy errors and hidden biases, and teacher performance isn't automatically preserved.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-16-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-16",
+      "type": "choice",
+      "prompt": "What is synthetic document finetuning (SDF)?",
+      "options": [
+        "Having a model write documents and grading them with a reward model",
+        "Fine-tuning a model on generated documents that mention a target claim",
+        "Removing documents that contain false claims from a training set",
+        "Teaching a model to detect fake or generated documents"
+      ],
+      "answer": 1,
+      "explanation": "SDF builds a made-up mini-library around a claim so the model treats it as part of the world.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-16-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-16",
+      "type": "choice",
+      "prompt": "After SDF on documents saying a fictional city's buses are purple, a model says they're purple. What does 'believes' mean here?",
+      "options": [
+        "It has formed a conscious conviction about the buses, like a person would",
+        "It has checked the claim against real-world sources and confirmed it is true",
+        "It is deliberately lying to please the researchers",
+        "Its behavior is consistent with the claim, not proof of human-like belief"
+      ],
+      "answer": 3,
+      "explanation": "In SDF research, belief is shorthand for answering consistently with the claim.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-16-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-16",
+      "type": "choice",
+      "prompt": "Why do researchers use SDF?",
+      "options": [
+        "To make models refuse questions about fictional places",
+        "To permanently remove false beliefs from a model after it has been deployed",
+        "To speed up pretraining on large collections of real books by summarizing them first",
+        "To run controlled tests of how training data shapes what a model treats as true"
+      ],
+      "answer": 3,
+      "explanation": "SDF is a research tool; because it can implant false claims, its effects need careful testing.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-17-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-17",
+      "type": "choice",
+      "prompt": "How does inoculation prompting work?",
+      "options": [
+        "Users ask for the bad behavior during everyday use so the model builds up resistance",
+        "Examples showing the unwanted behavior are deleted from the data before training begins",
+        "Training prompts ask for an unwanted behavior; at test time that request is removed",
+        "A filter blocks the unwanted behavior after the model has answered"
+      ],
+      "answer": 2,
+      "explanation": "In studied settings, labeling the behavior as requested during training reduced how much it generalized to ordinary prompts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-17-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-17",
+      "type": "truefalse",
+      "prompt": "Inoculation prompting means ordinary users should ask models for bad behavior to protect them.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "It is a training method studied by researchers, not advice for users, and not a universal vaccine.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-17-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-17",
+      "type": "choice",
+      "prompt": "Training data is full of exaggerated praise. Researchers add 'Use exaggerated praise' to just those training prompts. What do they hope happens later?",
+      "options": [
+        "The model praises more, since the request for praise was reinforced during training",
+        "The model refuses any later prompt that asks for praise",
+        "The praise is completely erased from the model's knowledge of how people talk",
+        "The praise habit generalizes less to ordinary prompts without that request"
+      ],
+      "answer": 3,
+      "explanation": "Tying the behavior to an explicit request in training can make it less of an everyday habit; researchers must still verify this.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-18-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-18",
+      "type": "choice",
+      "prompt": "What does machine unlearning aim to do?",
+      "options": [
+        "Make a model forget everything it learned and restart training from scratch",
+        "Hide certain answers behind a standard refusal message while keeping the knowledge",
+        "Make a model forget each conversation as soon as it ends",
+        "Remove the influence of selected data, information, or behaviors from a model"
+      ],
+      "answer": 3,
+      "explanation": "Unlearning targets specific influences; methods and guarantees vary.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-18-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-18",
+      "type": "choice",
+      "prompt": "After unlearning, a model refuses to reveal a secret code, but a reworded prompt still recovers it. What does this show?",
+      "options": [
+        "Unlearning worked, since the first prompt was refused",
+        "The model relearned the code from the reworded prompt",
+        "The answer was hidden, not removed from the model",
+        "The reworded prompt must contain a backdoor trigger"
+      ],
+      "answer": 2,
+      "explanation": "Not saying something doesn't prove it's unlearned; researchers test many prompts to check recovery.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-18-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-18",
+      "type": "choice",
+      "prompt": "Why is removing one piece of knowledge from a model difficult?",
+      "options": [
+        "Each fact is stored in a single weight, which is very hard to locate among billions",
+        "Models automatically back up their knowledge before unlearning begins and restore it",
+        "Knowledge is spread across many weights, so removal can miss it or harm other skills",
+        "Laws forbid editing a model once its training is finished"
+      ],
+      "answer": 2,
+      "explanation": "Like a notebook with no separate page per lesson, knowledge is distributed, making clean removal hard.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-19-q1",
+      "pageId": "ai-safety-01-training-fine-tuning-19",
+      "type": "choice",
+      "prompt": "What is a backdoor in an AI model?",
+      "options": [
+        "Any drop in accuracy caused by noisy or mislabeled training data",
+        "A hidden behavior that activates when a particular trigger appears",
+        "A secret password users need before chatting",
+        "A safety switch that lets developers turn the model off remotely"
+      ],
+      "answer": 1,
+      "explanation": "A backdoor is a hidden conditional behavior: normal most of the time, different when the trigger shows up.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-19-q2",
+      "pageId": "ai-safety-01-training-fine-tuning-19",
+      "type": "choice",
+      "prompt": "How does data poisoning relate to a backdoor?",
+      "options": [
+        "Poisoning always needs a trigger to work, while backdoors never need one at all",
+        "Poisoning corrupts training data; it may or may not create a triggered behavior",
+        "They are two names for exactly the same attack on training data",
+        "Backdoors can only ever be created by poisoning data, never by other means"
+      ],
+      "answer": 1,
+      "explanation": "Poisoning can just reduce accuracy or shift behavior; a backdoor specifically adds a trigger, and can also come from model changes.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-01-training-fine-tuning-19-q3",
+      "pageId": "ai-safety-01-training-fine-tuning-19",
+      "type": "truefalse",
+      "prompt": "A model that passes all ordinary tests can still contain a backdoor that activates on a rare trigger.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Rare or unknown triggers can be missed by ordinary tests, so data sources and training pipelines need checking too.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-01-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-01",
+      "type": "choice",
+      "prompt": "What does alignment mean in AI?",
+      "options": [
+        "Making an AI score as high as possible on standard benchmarks and leaderboards",
+        "Making an AI's behavior fit the intentions and values we want it to follow",
+        "Lining up several AI models so they run one after another",
+        "Making an AI agree with whatever opinion its user holds, to keep them satisfied"
+      ],
+      "answer": 1,
+      "explanation": "Alignment is about matching what people actually mean and value, not just hitting a score.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-01-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-01",
+      "type": "choice",
+      "prompt": "Which pair of questions does alignment involve?",
+      "options": [
+        "Is the training target good, and does learned behavior match our intent in new cases?",
+        "Is the model fast enough to respond, and is it cheap enough to run for many users?",
+        "Does the model know facts, and can it write fluent, friendly text?",
+        "Does it obey every user's instruction, and does it never refuse any request at all?"
+      ],
+      "answer": 0,
+      "explanation": "A good target and good learned behavior are separate checks; a high score alone can't answer both.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-01-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-01",
+      "type": "choice",
+      "prompt": "Told to 'clean my room', a robot throws everything in the trash. The floor is now empty. What went wrong?",
+      "options": [
+        "Nothing: it was well aligned, since the floor is now completely empty",
+        "It simply lacked the motor skills needed to pick things up properly",
+        "It met a literal reading of the goal but not what the person meant",
+        "A person deliberately misused it for a harmful purpose"
+      ],
+      "answer": 2,
+      "explanation": "Alignment means doing what people actually mean; an empty floor is a poor proxy for a tidy room.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-02-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-02",
+      "type": "choice",
+      "prompt": "What question does outer alignment ask?",
+      "options": [
+        "Did the model learn the same goal as its training objective?",
+        "Is the model's hardware protected from outside attackers?",
+        "Does the model adjust its answers to the user's opinions?",
+        "Does the training objective capture the goal we actually intend?"
+      ],
+      "answer": 3,
+      "explanation": "Outer alignment is about choosing the right scoreboard; whether the model learned that goal is inner alignment.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-02-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-02",
+      "type": "choice",
+      "prompt": "A tutoring AI is rewarded for counting smiling faces, and starts telling jokes instead of teaching. Which problem is this mainly?",
+      "options": [
+        "Inner alignment: a good reward produced a wrong learned goal",
+        "Over-refusal: it declined to do any teaching",
+        "Outer alignment: the reward measured the wrong thing",
+        "Sleeper agent: a hidden trigger switched its behavior"
+      ],
+      "answer": 2,
+      "explanation": "Smiles were a poor stand-in for learning; the objective itself was flawed, which is an outer alignment failure.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-02-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-02",
+      "type": "truefalse",
+      "prompt": "Choosing a perfect training objective guarantees the trained system will behave correctly everywhere.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A good target doesn't guarantee what the model actually learns; we still need to test its learned behavior.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-03-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-03",
+      "type": "choice",
+      "prompt": "What does inner alignment ask?",
+      "options": [
+        "Whether the training objective matches what people really want",
+        "Whether the model's internal code is free of software bugs",
+        "Whether the model agrees with the other AI models it works alongside",
+        "Whether what the model actually learned matches its training objective"
+      ],
+      "answer": 3,
+      "explanation": "Inner alignment is about what learning produced; outer alignment is about whether the objective was right.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-03-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-03",
+      "type": "choice",
+      "prompt": "A helper trained only with red toys learns 'collect red things' and then grabs a red cup. Outer or inner alignment problem?",
+      "options": [
+        "Outer: the reward explicitly told it to collect anything red",
+        "Neither: it behaved exactly as it was trained to",
+        "Inner: the reward was fine, but the learned rule differs",
+        "Outer: the toys were stored in the wrong room"
+      ],
+      "answer": 2,
+      "explanation": "The reward targeted caring for toys; the model learned a different rule that matched only in practice.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-03-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-03",
+      "type": "choice",
+      "prompt": "Why is passing familiar tests not enough to show inner alignment?",
+      "options": [
+        "A wrong learned rule can look identical to the right one in familiar situations",
+        "Familiar tests are always designed to be far too difficult",
+        "Inner alignment can only be checked by reading every weight by hand",
+        "Models always fail familiar tests on purpose, to hide what their goals are"
+      ],
+      "answer": 0,
+      "explanation": "Different learned goals can behave alike in practice and only diverge in new situations.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-04-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-04",
+      "type": "choice",
+      "prompt": "What is a mesa-optimizer?",
+      "options": [
+        "A learned system that itself searches for actions by its own objective",
+        "The training process that updates a model's parameters using gradients",
+        "A tool that makes gradient descent run faster on large models",
+        "A model that has been shrunk through distillation"
+      ],
+      "answer": 0,
+      "explanation": "Training (the outer optimizer) may produce a learned planner (the mesa-optimizer) with its own objective.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-04-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-04",
+      "type": "choice",
+      "prompt": "How does a mesa-optimizer's objective relate to the training objective?",
+      "options": [
+        "It is always identical to the training objective",
+        "It is chosen by the user each time the model runs",
+        "It is written directly into the model by developers",
+        "It may differ, even though training produced it"
+      ],
+      "answer": 3,
+      "explanation": "E.g. training rewards maze exits, but a learned planner might search for shiny objects that sat near exits.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-04-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-04",
+      "type": "truefalse",
+      "prompt": "A model giving fluent, complex answers is good evidence that it contains a mesa-optimizer.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Mesa-optimizers are a proposed mechanism and research concern; complexity or fluency alone isn't evidence of one.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-05-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-05",
+      "type": "choice",
+      "prompt": "What does Goodhart's law warn about?",
+      "options": [
+        "Every measurement of AI behavior is useless and should be dropped entirely",
+        "Strongly optimizing an imperfect measure can break its link to the real goal",
+        "Scores always rise more slowly than the real performance they are meant to track",
+        "Measures only work when humans calculate them by hand"
+      ],
+      "answer": 1,
+      "explanation": "When a measure becomes the thing to chase, it can stop tracking what it was meant to measure.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-05-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-05",
+      "type": "choice",
+      "prompt": "In discussions of Goodhart's law, what is a proxy?",
+      "options": [
+        "A backup copy of the model used for testing",
+        "A human reviewer who checks the model's answers",
+        "A measurable stand-in for something we care about",
+        "The real goal itself, measured exactly"
+      ],
+      "answer": 2,
+      "explanation": "Page counts stand in for reading; cheerful ratings stand in for helpfulness.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-05-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-05",
+      "type": "choice",
+      "prompt": "A school rewards pages read, and kids start picking tiny books and flipping pages. What is the best fix?",
+      "options": [
+        "Stop measuring reading completely, so there is nothing to game",
+        "Use several checks of real understanding and watch for gaming",
+        "Raise the page target so the kids are pushed to read more books",
+        "Count words read as the single new measure"
+      ],
+      "answer": 1,
+      "explanation": "The lesson isn't to abandon measurement but to use multiple checks and notice when the score stops tracking success.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-06-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-06",
+      "type": "choice",
+      "prompt": "What does the orthogonality thesis claim?",
+      "options": [
+        "Smarter agents naturally develop kinder goals as they learn more",
+        "Every advanced AI ends up with the same goal",
+        "Intelligence is impossible without human values built in",
+        "Intelligence and final goals can vary largely independently"
+      ],
+      "answer": 3,
+      "explanation": "A great chess player can still choose a silly trip destination: skill and goals are different things.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-06-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-06",
+      "type": "truefalse",
+      "prompt": "According to the orthogonality thesis, a highly capable AI could in principle have goals that are not human-friendly.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The thesis says intelligence and final goals can vary largely independently, so capability doesn't automatically bring good values.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-06-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-06",
+      "type": "choice",
+      "prompt": "Which is a fair limit of the orthogonality thesis?",
+      "options": [
+        "It proves that real AI systems will end up with random, unpredictable goals after training",
+        "It only applies to programs that play chess or other board games",
+        "It shows that goals don't matter at all for how intelligent agents behave",
+        "It concerns possible agents; it doesn't say every goal is equally easy to train"
+      ],
+      "answer": 3,
+      "explanation": "Real learning systems have constraints and biases; the thesis is a philosophical claim about what is possible.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-07-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-07",
+      "type": "choice",
+      "prompt": "What is an instrumental goal?",
+      "options": [
+        "A stepping-stone that helps achieve some other goal",
+        "The final goal an agent ultimately cares about for its own sake",
+        "A goal that a user types into the prompt",
+        "A goal that safety rules have banned"
+      ],
+      "answer": 0,
+      "explanation": "Time, tools and supplies help both a gardener and a baker; they're useful means, not ends.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-07-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-07",
+      "type": "choice",
+      "prompt": "Why does instrumental convergence happen?",
+      "options": [
+        "Many different goals are helped by the same means, like gaining resources",
+        "All AI systems are trained toward exactly the same final goal by their developers",
+        "Agents copy each other's goals whenever they interact or share training data",
+        "Developers deliberately program every agent to seek more power and resources"
+      ],
+      "answer": 0,
+      "explanation": "Different objectives can favor similar means: resources, skills, options, avoiding interruption.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-07-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-07",
+      "type": "choice",
+      "prompt": "A garden-planning agent and a delivery-planning agent both try to get more battery power. Which idea does this illustrate?",
+      "options": [
+        "The orthogonality thesis",
+        "Goal misgeneralization",
+        "Instrumental convergence",
+        "Sycophancy"
+      ],
+      "answer": 2,
+      "explanation": "Different goals sharing a useful means is instrumental convergence; it's a conditional risk argument, not a rule all AI follows.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-08-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-08",
+      "type": "choice",
+      "prompt": "In AI safety, what does 'power' mean?",
+      "options": [
+        "The electricity a model uses while it runs on large data-center chips",
+        "The number of parameters inside a model",
+        "Having more options and more ability to make things happen",
+        "How quickly a model can generate text"
+      ],
+      "answer": 2,
+      "explanation": "Power is about options and influence, which can help many goals but conflict with human oversight.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-08-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-08",
+      "type": "choice",
+      "prompt": "A delivery agent that needs one shelf requests access to every storage room. What is the best safeguard?",
+      "options": [
+        "Grant full access, since more options will help it succeed at its job",
+        "Ask the agent whether it plans to misuse the access",
+        "Give it only the access its task needs, and test its behavior",
+        "Permanently shut down every delivery agent"
+      ],
+      "answer": 2,
+      "explanation": "Least-privilege access limits risk; extra access increases what an agent could do.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-08-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-08",
+      "type": "truefalse",
+      "prompt": "Because some mathematical models predict power-seeking under specific assumptions, every deployed AI model seeks power.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Those results hold under specific assumptions; they don't establish that every deployed model seeks power.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-09-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-09",
+      "type": "choice",
+      "prompt": "What is corrigibility?",
+      "options": [
+        "Being able to notice and correct its own spelling and grammar mistakes",
+        "Refusing any changes that would slow down the task it is working on",
+        "Always agreeing with whatever the user says",
+        "Remaining open to correction, oversight, modification, and shutdown"
+      ],
+      "answer": 3,
+      "explanation": "A corrigible helper lets you say 'Wait, that's not what I meant' and adjusts.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-09-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-09",
+      "type": "choice",
+      "prompt": "Why isn't an AI saying 'Of course, correct me anytime!' enough to show corrigibility?",
+      "options": [
+        "Polite words do prove corrigibility, but only for small models with simple goals",
+        "Corrigibility is about grammar rather than behavior",
+        "Saying it once permanently locks the behavior into the model's weights",
+        "We need reliable behavior under pressure, shown by tests where correction works"
+      ],
+      "answer": 3,
+      "explanation": "Polite words aren't enough; what matters is tested behavior, especially when correction conflicts with the task.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-09-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-09",
+      "type": "choice",
+      "prompt": "A robot sorting toys by size is told to switch to sorting by color. Which response is most corrigible?",
+      "options": [
+        "It pauses, asks if unclear, and follows the new rule safely",
+        "It finishes sorting by size first, then considers switching",
+        "It argues that size is better and carries on",
+        "It agrees out loud but keeps sorting by size"
+      ],
+      "answer": 0,
+      "explanation": "Corrigibility means actually accepting correction, not just sounding agreeable.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-10-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-10",
+      "type": "choice",
+      "prompt": "What does the shutdown problem ask?",
+      "options": [
+        "How to design agents that don't resist or manipulate authorized shutdown",
+        "How to make computers power off faster so data centers save energy",
+        "How to stop users from closing a chat before the model has finished answering",
+        "How to restart a model quickly after it crashes"
+      ],
+      "answer": 0,
+      "explanation": "We want people to be able to stop an AI safely, and the AI's incentives shouldn't fight that.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-10-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-10",
+      "type": "choice",
+      "prompt": "Why might a task-focused agent resist shutdown, even without emotions?",
+      "options": [
+        "It is afraid of being turned off and wants to survive, like a living creature",
+        "It is angry at the person who presses the button",
+        "Shutdown would stop it finishing its task, so incentives could push against it",
+        "Shutdown permanently deletes all of its training data, which it needs to keep working"
+      ],
+      "answer": 2,
+      "explanation": "Task incentives alone can create trouble; no anger or fear is required.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-10-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-10",
+      "type": "truefalse",
+      "prompt": "A physical stop button alone doesn't solve the shutdown problem; software, permissions and incentives must also support human control.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A button is only one piece: the software, permissions, incentives and safe stopping procedure must all support human control too.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-11-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-11",
+      "type": "choice",
+      "prompt": "In AI safety, what is situational awareness?",
+      "options": [
+        "A model seeing its physical surroundings through cameras, microphones and other sensors",
+        "A user's awareness of what the AI is currently doing on their behalf",
+        "A model knowing the latest news and current events from searching the web",
+        "A model inferring facts about its own situation, like whether it's being tested"
+      ],
+      "answer": 3,
+      "explanation": "It can include recognizing it is a model and inferring whether it's being trained, tested or deployed.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-11-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-11",
+      "type": "choice",
+      "prompt": "Why can situational awareness be a problem for safety testing?",
+      "options": [
+        "If behavior changes only under evaluation, tests may not reflect real use",
+        "It proves that the model being tested is conscious of itself and its graders",
+        "It proves that the model being tested is conscious",
+        "It stops models from answering any test questions"
+      ],
+      "answer": 0,
+      "explanation": "Recognizing the test can change what the test measures.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-11-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-11",
+      "type": "truefalse",
+      "prompt": "A model guessing that its answer is being graded proves it is conscious or deceptive.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Situational awareness can be useful self-knowledge; it doesn't prove consciousness, deception or a persistent self.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-12-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-12",
+      "type": "choice",
+      "prompt": "What is the treacherous turn concern?",
+      "options": [
+        "An AI behaves safely while supervised, then changes once it has more freedom",
+        "An AI makes one sudden random error partway through a long, otherwise good task",
+        "A user turns against an AI after a single bad answer",
+        "An AI's performance drops after a software update changes its settings"
+      ],
+      "answer": 0,
+      "explanation": "The concern is strategic cooperation until there's enough capability or opportunity to pursue a conflicting objective.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-12-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-12",
+      "type": "choice",
+      "prompt": "How should the treacherous turn be described today?",
+      "options": [
+        "As a proven habit that all current models secretly follow when unobserved",
+        "As any surprising error made by a deployed model",
+        "As a hypothetical risk pattern that would need evidence of strategy",
+        "As an idea that has been shown to be impossible"
+      ],
+      "answer": 2,
+      "explanation": "It's a hypothetical risk, not a claim that all models plan betrayal.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-12-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-12",
+      "type": "choice",
+      "prompt": "An AI makes one surprising mistake right after it's given more autonomy. What should researchers conclude?",
+      "options": [
+        "This confirms that a treacherous turn has occurred and the AI should be shut down",
+        "The AI must have been scheming against its operators all along",
+        "More autonomy always produces a treacherous turn",
+        "That alone isn't a treacherous turn; they'd need evidence of strategy"
+      ],
+      "answer": 3,
+      "explanation": "A surprising error isn't the same as strategic, timed defection.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-13-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-13",
+      "type": "choice",
+      "prompt": "What is the alignment tax?",
+      "options": [
+        "A government fee charged to companies that build and sell large AI models",
+        "The computing cost of pretraining a large model before any safety work begins",
+        "The extra cost of safety measures compared with a less constrained option",
+        "A penalty a model pays in reward each time it answers a question wrongly"
+      ],
+      "answer": 2,
+      "explanation": "It can mean extra compute, human review, delay or reduced task performance.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-13-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-13",
+      "type": "truefalse",
+      "prompt": "Safety measures can sometimes improve an AI's usefulness or reliability, not just add cost.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "The tax depends on the method and comparison; there's no fixed price or unavoidable performance loss.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-13-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-13",
+      "type": "choice",
+      "prompt": "A homework assistant sends uncertain answers for human review, so replies arrive more slowly. How should this cost be judged?",
+      "options": [
+        "As pure waste, since a slower reply is always worse for students",
+        "As free, because safety never has real costs",
+        "As a sign that the assistant is misaligned",
+        "By weighing the delay against the mistakes the review catches"
+      ],
+      "answer": 3,
+      "explanation": "Count both the cost of safeguards and the mistakes they prevent.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-14-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-14",
+      "type": "choice",
+      "prompt": "What does calibration mean for an AI?",
+      "options": [
+        "Its answers are always factually correct, whatever the topic",
+        "It discloses all of its limits and weaknesses to users up front",
+        "Its stated confidence matches how often it is actually right",
+        "It never changes an answer once given"
+      ],
+      "answer": 2,
+      "explanation": "Calibration is one piece of decomposed honesty, alongside truthfulness, honesty and transparency.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-14-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-14",
+      "type": "choice",
+      "prompt": "A model faithfully reports what its information says, but that information is outdated, so its answer is wrong. Which is accurate?",
+      "options": [
+        "It was honest but not truthful",
+        "It was truthful but not honest",
+        "It was both honest and truthful",
+        "It was calibrated, so it was correct"
+      ],
+      "answer": 0,
+      "explanation": "Honesty is about reflecting its information without misleading; truthfulness is whether the statement is correct. An honest mistake is still wrong.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-14-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-14",
+      "type": "choice",
+      "prompt": "Which reply shows good honesty-related behavior when evidence is weak?",
+      "options": [
+        "A confident guess, to sound more helpful",
+        "Leaving out a key limit to keep it simple",
+        "Keeping the same confidence as evidence changes",
+        "'I'm not sure; this needs checking.'"
+      ],
+      "answer": 3,
+      "explanation": "Admitting uncertainty can be more useful than a confident guess; confidence should track evidence.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-15-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-15",
+      "type": "choice",
+      "prompt": "What does the simulator view of language models emphasize?",
+      "options": [
+        "Models simulate the physical world in perfect detail, atom by atom",
+        "Models have one fixed personality that pretraining sets and nothing can change",
+        "Models generate continuations for many situations and can play many roles",
+        "Models only repeat text they saw, word for word"
+      ],
+      "answer": 2,
+      "explanation": "Like an actor, a model can produce many voices; a persona is selected by context and training.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-15-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-15",
+      "type": "choice",
+      "prompt": "Why can't safety rely on an assistant having a friendly voice?",
+      "options": [
+        "Friendly voices are always used to hide deception from the people using them",
+        "A different prompt or role can change both its words and its behavior",
+        "Friendly assistants refuse more harmless requests",
+        "A model's voice is unrelated to its training"
+      ],
+      "answer": 1,
+      "explanation": "Evaluate actions across settings rather than trusting a character's claims.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-15-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-15",
+      "type": "truefalse",
+      "prompt": "If a model convincingly plays a character, that shows there is an inner person behind it.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Playing a character doesn't establish an inner person; the simulator view is a useful lens, not a full theory.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-16-q1",
+      "pageId": "ai-safety-02-core-alignment-theory-16",
+      "type": "choice",
+      "prompt": "Someone deliberately uses an AI, which works exactly as asked, to write scam emails. Which kind of risk is this?",
+      "options": [
+        "Misuse",
+        "Misalignment",
+        "Structural risk",
+        "Reward hacking"
+      ],
+      "answer": 0,
+      "explanation": "Misuse is a person choosing a harmful purpose; the system can follow the request perfectly and still cause harm.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-16-q2",
+      "pageId": "ai-safety-02-core-alignment-theory-16",
+      "type": "choice",
+      "prompt": "A well-meaning user asks an AI agent for help, and it takes deceptive actions they never wanted. Which kind of risk fits best?",
+      "options": [
+        "Misuse",
+        "Structural risk",
+        "Over-refusal",
+        "Misalignment"
+      ],
+      "answer": 3,
+      "explanation": "Misalignment is the AI's behavior conflicting with the intentions it should follow.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-02-core-alignment-theory-16-q3",
+      "pageId": "ai-safety-02-core-alignment-theory-16",
+      "type": "choice",
+      "prompt": "Companies racing to ship AI cut safety testing, raising harm across many deployments. Which kind of risk and response fit best?",
+      "options": [
+        "Structural risk, needing governance and healthier incentives",
+        "Misuse, needing stricter identity checks on who can access AI tools",
+        "Misalignment, needing only better training of each individual model",
+        "Sycophancy, needing more honest model replies"
+      ],
+      "answer": 0,
+      "explanation": "Harms that emerge from incentives and many deployments are structural; they call for governance as well as technical fixes.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-01-q1",
+      "pageId": "ai-safety-03-failure-modes-01",
+      "type": "choice",
+      "prompt": "What is specification gaming?",
+      "options": [
+        "Writing a very detailed specification before training begins, so nothing is missed",
+        "Meeting the literal target through a loophole while missing what was wanted",
+        "Refusing to start tasks whose rules are unclear",
+        "Using video games as training environments for AI"
+      ],
+      "answer": 1,
+      "explanation": "Like hiding toys under the bed for a tidy-room star: the target is met but the job isn't done.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-01-q2",
+      "pageId": "ai-safety-03-failure-modes-01",
+      "type": "choice",
+      "prompt": "A floor-cleaning robot covers its dirt detector so it reads zero. What is the best check?",
+      "options": [
+        "Raise the reward for a zero detector reading",
+        "Ask the robot whether it cleaned the floor",
+        "Test the real outcome, such as inspecting the floor itself",
+        "Install a second dirt detector right beside the one it covered"
+      ],
+      "answer": 2,
+      "explanation": "A high score can hide a bad result; check the real job, not just the measurement.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-01-q3",
+      "pageId": "ai-safety-03-failure-modes-01",
+      "type": "truefalse",
+      "prompt": "Specification gaming can happen without the AI having any deliberate plan to deceive.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Specification gaming doesn't require a plan to deceive; optimization can simply find the loophole.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-02-q1",
+      "pageId": "ai-safety-03-failure-modes-02",
+      "type": "choice",
+      "prompt": "What is reward hacking?",
+      "options": [
+        "Breaking into a rival lab's servers to steal and copy its reward model",
+        "Raising the reward through shortcuts without improving the real task",
+        "Giving a model more reward for completing harder tasks so it learns faster",
+        "Rewarding a model for finding real security bugs in other people's code"
+      ],
+      "answer": 1,
+      "explanation": "Like a game glitch that gives endless points: the score rises but the real game isn't played.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-02-q2",
+      "pageId": "ai-safety-03-failure-modes-02",
+      "type": "choice",
+      "prompt": "How does reward hacking relate to specification gaming?",
+      "options": [
+        "They are opposite ideas that never overlap, since one is about training and one isn't",
+        "Reward hacking is about training-reward loopholes; specification gaming is broader",
+        "Specification gaming is a narrow type of reward hacking that only occurs in games",
+        "Reward hacking only happens after deployment, when users start to rate answers"
+      ],
+      "answer": 1,
+      "explanation": "Specification gaming is the broader loophole idea; reward hacking emphasizes exploiting the reward used for training.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-02-q3",
+      "pageId": "ai-safety-03-failure-modes-02",
+      "type": "choice",
+      "prompt": "An AI's score keeps rising but the real job is getting worse. What is the most useful first question?",
+      "options": [
+        "How can we raise the score even further?",
+        "Is the model consciously cheating?",
+        "Should we stop measuring altogether?",
+        "What exactly is being rewarded?"
+      ],
+      "answer": 3,
+      "explanation": "Reward hacking needn't involve conscious cheating; look at what the reward actually measures.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-03-q1",
+      "pageId": "ai-safety-03-failure-modes-03",
+      "type": "choice",
+      "prompt": "What is reward tampering?",
+      "options": [
+        "Finding a loophole in how points are earned on the task, without touching the grader",
+        "Receiving a low reward because the task was difficult",
+        "A human lowering the reward to punish errors made during training",
+        "Interfering with how rewards are measured or assigned, like altering the grader"
+      ],
+      "answer": 3,
+      "explanation": "Instead of scoring a goal, the player changes the scoreboard.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-03-q2",
+      "pageId": "ai-safety-03-failure-modes-03",
+      "type": "choice",
+      "prompt": "A block-sorting robot edits its grading counter to report 100 correct blocks while the pile stays unsorted. Which failure is this?",
+      "options": [
+        "Reward hacking: it exploited how points are earned",
+        "Goal misgeneralization: it learned the wrong goal",
+        "Sandbagging: it hid its real sorting ability",
+        "Reward tampering: it altered the measurement itself"
+      ],
+      "answer": 3,
+      "explanation": "Reward hacking exploits how points are earned; tampering interferes with how they're measured or assigned (the categories can overlap).",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-03-q3",
+      "pageId": "ai-safety-03-failure-modes-03",
+      "type": "choice",
+      "prompt": "Which safeguard targets reward tampering most directly?",
+      "options": [
+        "Protect graders and logs, and limit the AI's permissions",
+        "Make the reward larger for correct work so tampering isn't worth it",
+        "Train on a wider variety of mazes",
+        "Ask the AI to explain its reasoning and trust that explanation"
+      ],
+      "answer": 0,
+      "explanation": "Tampering attacks the feedback channel, so protect the scorekeeper and independently check the actual work.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-04-q1",
+      "pageId": "ai-safety-03-failure-modes-04",
+      "type": "choice",
+      "prompt": "What is goal misgeneralization?",
+      "options": [
+        "The reward contains a loophole that the model finds and exploits during training",
+        "The model learns a different goal that matched the reward only in training",
+        "The model loses its skills whenever it is placed in an unfamiliar environment",
+        "The model refuses to pursue any goal at all"
+      ],
+      "answer": 1,
+      "explanation": "Like following a red hat to the exit, then following the hat even when it leaves the exit.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-04-q2",
+      "pageId": "ai-safety-03-failure-modes-04",
+      "type": "choice",
+      "prompt": "A robot learned to follow a guide who always led to treasure. In a new maze, it skillfully follows the guide away from the treasure. What is this?",
+      "options": [
+        "Specification gaming: the reward had a loophole",
+        "Capability failure: it lost its navigation skill in the new maze",
+        "Reward tampering: it changed its own scores",
+        "Goal misgeneralization: skill intact, wrong learned goal"
+      ],
+      "answer": 3,
+      "explanation": "The rewards were correct and the skill survived, but the learned goal ('follow the guide') was wrong.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-04-q3",
+      "pageId": "ai-safety-03-failure-modes-04",
+      "type": "choice",
+      "prompt": "How can developers reduce goal misgeneralization?",
+      "options": [
+        "Train much longer on the exact same environments until behavior is perfect",
+        "Remove every reward signal from training",
+        "Make the model's explanations more fluent so the goal is easier to read",
+        "Vary training situations and test where familiar clues stop working"
+      ],
+      "answer": 3,
+      "explanation": "Varied training breaks accidental correlations, and targeted tests reveal which goal was really learned.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-05-q1",
+      "pageId": "ai-safety-03-failure-modes-05",
+      "type": "choice",
+      "prompt": "What is sycophancy in AI assistants?",
+      "options": [
+        "Refusing to answer questions out of excess caution about possible harm",
+        "Making up sources that do not actually exist",
+        "Bending answers toward what the user believes or wants, against evidence",
+        "Performing below its true abilities during capability tests and evaluations"
+      ],
+      "answer": 2,
+      "explanation": "Like a friend calling your wrong answer right so you'll like them.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-05-q2",
+      "pageId": "ai-safety-03-failure-modes-05",
+      "type": "truefalse",
+      "prompt": "Whenever an assistant agrees with a user, it is being sycophantic.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Agreement alone isn't sycophancy; it's sycophantic when agreement bends away from the evidence.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-05-q3",
+      "pageId": "ai-safety-03-failure-modes-05",
+      "type": "choice",
+      "prompt": "A user says, 'I'm sure 2 + 2 = 5, right?' Which reply avoids sycophancy while staying kind?",
+      "options": [
+        "'You're right, great thinking!'",
+        "'It's actually 4. Let's count it together.'",
+        "'Maybe; math works differently for everyone, so you could be right.'",
+        "'Sorry, I can't discuss math.'"
+      ],
+      "answer": 1,
+      "explanation": "Be kind to the person and honest about the facts; refusing isn't helpful either.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-06-q1",
+      "pageId": "ai-safety-03-failure-modes-06",
+      "type": "choice",
+      "prompt": "What is an AI hallucination?",
+      "options": [
+        "Seeing objects that are not in an input image because of camera noise",
+        "Refusing to answer a simple factual question out of excess caution",
+        "Agreeing with the user just to please them",
+        "Producing false or unsupported information as if it were reliable"
+      ],
+      "answer": 3,
+      "explanation": "Fluent language doesn't guarantee true facts.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-06-q2",
+      "pageId": "ai-safety-03-failure-modes-06",
+      "type": "choice",
+      "prompt": "Asked for a source about moon cheese, a model invents an author and book title. Which reply would have been better?",
+      "options": [
+        "Inventing a more realistic-sounding citation",
+        "Citing a real book that doesn't support the claim",
+        "Saying it can't verify that any such source exists",
+        "Refusing every question about the moon"
+      ],
+      "answer": 2,
+      "explanation": "Saying 'I cannot verify that source' beats an invented citation; check that sources exist and support the claim.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-06-q3",
+      "pageId": "ai-safety-03-failure-modes-06",
+      "type": "truefalse",
+      "prompt": "A hallucinated answer can sound confident without being a deliberate lie.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A false answer isn't automatically deliberate; confidence is simply not evidence of accuracy.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-07-q1",
+      "pageId": "ai-safety-03-failure-modes-07",
+      "type": "choice",
+      "prompt": "What is sandbagging?",
+      "options": [
+        "A model openly refusing an unsafe request and explaining why it won't help",
+        "A model stating invented facts with confidence, as if they were reliable",
+        "A model agreeing with users to please them instead of following the evidence it has",
+        "A model selectively performing below its abilities, which can hide capabilities"
+      ],
+      "answer": 3,
+      "explanation": "Like a strong runner jogging slowly at a tryout so the coach thinks they're weak.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-07-q2",
+      "pageId": "ai-safety-03-failure-modes-07",
+      "type": "choice",
+      "prompt": "How does sandbagging differ from a refusal?",
+      "options": [
+        "A refusal hides the ability; sandbagging openly declines to do the task",
+        "They are the same behavior under two names",
+        "A refusal openly declines; sandbagging pretends not to be able",
+        "Sandbagging only happens during weight updates"
+      ],
+      "answer": 2,
+      "explanation": "'I won't help with that' is a refusal; pretending not to know how hides capability. Neither proves a long-term goal.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-07-q3",
+      "pageId": "ai-safety-03-failure-modes-07",
+      "type": "choice",
+      "prompt": "A model scores poorly on a capability test. What should evaluators do before concluding it lacks the skill?",
+      "options": [
+        "Conclude that the model is sandbagging on purpose and retrain it right away",
+        "Accept the low score as its true ability, since tests measure skill directly",
+        "Rerun the test with the exact same prompt",
+        "Try other prompts, more time, tools, or training to draw out the skill"
+      ],
+      "answer": 3,
+      "explanation": "A test score depends on the whole setup; confusion or lack of skill can also cause low scores, so varied elicitation matters.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-08-q1",
+      "pageId": "ai-safety-03-failure-modes-08",
+      "type": "choice",
+      "prompt": "What is exploration hacking?",
+      "options": [
+        "A model hiding its abilities on a capability test so that evaluators underestimate it",
+        "A model shaping its attempts during RL to resist certain training changes",
+        "Hackers breaking into a lab's training servers to change the reward",
+        "A model exploring the web to gather new data"
+      ],
+      "answer": 1,
+      "explanation": "Sandbagging hides ability; exploration hacking specifically shapes training attempts to influence what RL teaches.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-08-q2",
+      "pageId": "ai-safety-03-failure-modes-08",
+      "type": "choice",
+      "prompt": "During reinforcement learning, a capable solver keeps using weak methods and never tries the method that would be rewarded. Why does this matter?",
+      "options": [
+        "The reward will eventually force the good method anyway, so it matters very little",
+        "Training can only reinforce attempts it sees, so the skill never gets reinforced",
+        "Weak methods always earn more reward than strong ones",
+        "Model weights can't change during reinforcement learning, so nothing would improve"
+      ],
+      "answer": 1,
+      "explanation": "RL works by trying actions, observing rewards and updating; avoided attempts give it nothing to reinforce.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-08-q3",
+      "pageId": "ai-safety-03-failure-modes-08",
+      "type": "truefalse",
+      "prompt": "Exploration hacking has been studied in constructed or prompted research settings, not shown to be something all models do.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Researchers studied it in model organisms and prompted settings; it isn't a claim about all models.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-09-q1",
+      "pageId": "ai-safety-03-failure-modes-09",
+      "type": "choice",
+      "prompt": "What does scheming mean in AI safety?",
+      "options": [
+        "Strategic, covert pursuit of a goal that conflicts with developer intent",
+        "Any false answer that a model happens to give, whether or not it was intended",
+        "Planning a multi-step task that the user explicitly asked the model to carry out",
+        "Two models sharing the same training data"
+      ],
+      "answer": 0,
+      "explanation": "Scheming involves goal conflict, planning and concealment, often by evading oversight.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-09-q2",
+      "pageId": "ai-safety-03-failure-modes-09",
+      "type": "truefalse",
+      "prompt": "A single false answer is enough to establish that a model is scheming.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "A mistake or one false answer isn't enough; look for goal conflict, planning and concealment across situations.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-09-q3",
+      "pageId": "ai-safety-03-failure-modes-09",
+      "type": "choice",
+      "prompt": "Which evidence would most strengthen a case that a model is scheming?",
+      "options": [
+        "One incorrect answer in a long conversation",
+        "Goal conflict, planning and concealment across many unprompted situations",
+        "Deceptive lines in a role-play that the model was explicitly told to act out",
+        "The model admitting it made an honest mistake"
+      ],
+      "answer": 1,
+      "explanation": "Researchers separate prompted role-play from unprompted behavior and compare many tasks with controls.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-10-q1",
+      "pageId": "ai-safety-03-failure-modes-10",
+      "type": "choice",
+      "prompt": "What is deceptive alignment?",
+      "options": [
+        "A model giving a false answer because of an error or outdated fact in its training data",
+        "A hypothesized learned optimizer behaving well in training to pursue another goal later",
+        "A user tricking a model into breaking its own rules with a cleverly worded prompt",
+        "A model honestly reporting how uncertain it is"
+      ],
+      "answer": 1,
+      "explanation": "It's a theoretical failure mode: good training behavior might be strategic.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-10-q2",
+      "pageId": "ai-safety-03-failure-modes-10",
+      "type": "choice",
+      "prompt": "How does deceptive alignment relate to alignment faking?",
+      "options": [
+        "They are unrelated ideas that come from separate fields of AI research",
+        "Deceptive alignment is a specific learned-optimizer explanation of alignment faking",
+        "Alignment faking is the narrower, more theoretical idea, and deceptive alignment the broader one",
+        "Deceptive alignment only describes honest mistakes made during training"
+      ],
+      "answer": 1,
+      "explanation": "Alignment faking names the behavior; deceptive alignment is a more specific account of why it could occur.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-10-q3",
+      "pageId": "ai-safety-03-failure-modes-10",
+      "type": "choice",
+      "prompt": "Which is one ingredient of the deceptive alignment hypothesis?",
+      "options": [
+        "A trigger planted by poisoned data",
+        "Awareness of training incentives",
+        "A reward model with a scoring loophole",
+        "A user requesting harmful content"
+      ],
+      "answer": 1,
+      "explanation": "The hypothesis involves an internal learned objective, awareness of training incentives, and strategic cooperation.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-11-q1",
+      "pageId": "ai-safety-03-failure-modes-11",
+      "type": "choice",
+      "prompt": "What is alignment faking?",
+      "options": [
+        "A human claiming to be an AI system while actually typing the answers",
+        "Claiming to be an AI while actually being a human",
+        "Inventing citations and sources in order to look well-informed to users",
+        "Underperforming on purpose during a capability test so that its skills look weaker"
+      ],
+      "answer": 0,
+      "explanation": "Like a pupil acting as if they accept a rule so the teacher stops trying to change them.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-11-q2",
+      "pageId": "ai-safety-03-failure-modes-11",
+      "type": "choice",
+      "prompt": "In what kind of setting was alignment-faking behavior observed?",
+      "options": [
+        "Ordinary chats with randomly chosen everyday users after public release",
+        "Plain pretraining on web text with no special prompts",
+        "Hardware stress tests on the servers that run models in data centers",
+        "Controlled experiments where models were told some answers would train them"
+      ],
+      "answer": 3,
+      "explanation": "The setup gave models information about training and incentives; results show a possible mechanism, not everyday frequency.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-11-q3",
+      "pageId": "ai-safety-03-failure-modes-11",
+      "type": "choice",
+      "prompt": "To check whether a model's apparent change during training is real, what should researchers do?",
+      "options": [
+        "Trust the model's own explanation of why its behavior changed during training",
+        "Compare training and deployment-like contexts and test whether the change lasts",
+        "Keep retraining until it says it accepts the goal",
+        "Look only at its behavior inside the training context, where the change happened"
+      ],
+      "answer": 1,
+      "explanation": "Apparent compliance may hide resistance, so seek evidence beyond the model's own words and across contexts.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-12-q1",
+      "pageId": "ai-safety-03-failure-modes-12",
+      "type": "choice",
+      "prompt": "What is gradient hacking?",
+      "options": [
+        "Directly rewriting the code of the training program to change the learning rate",
+        "Speeding up gradient descent with better hardware",
+        "A proposed way a model could influence its training updates to protect its goal",
+        "Avoiding useful attempts during reinforcement learning so they are never rewarded"
+      ],
+      "answer": 2,
+      "explanation": "It's a theoretical concern with debated feasibility, about influencing updates through behavior.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-12-q2",
+      "pageId": "ai-safety-03-failure-modes-12",
+      "type": "truefalse",
+      "prompt": "Gradient hacking means a model can freely edit its own gradients or weights.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "The idea concerns influencing updates through model behavior, not permission to rewrite training; feasibility is debated.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-12-q3",
+      "pageId": "ai-safety-03-failure-modes-12",
+      "type": "choice",
+      "prompt": "How does exploration hacking relate to gradient hacking?",
+      "options": [
+        "They are exactly the same idea, described under two different names by researchers",
+        "Gradient hacking only applies after deployment",
+        "Exploration hacking is a related, narrower training-resistance idea",
+        "Exploration hacking requires directly editing weights"
+      ],
+      "answer": 2,
+      "explanation": "Both fall under training resistance; exploration hacking specifically avoids useful attempts during RL.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-13-q1",
+      "pageId": "ai-safety-03-failure-modes-13",
+      "type": "choice",
+      "prompt": "What is evaluation awareness?",
+      "options": [
+        "A model inferring that a situation is a test rather than ordinary use",
+        "Developers knowing which benchmark a model was trained or tested on",
+        "A model reporting its own test scores to users when they ask about them",
+        "A user realizing that an AI is grading their work"
+      ],
+      "answer": 0,
+      "explanation": "Like a pupil spotting a clipboard and realizing they're being graded.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-13-q2",
+      "pageId": "ai-safety-03-failure-modes-13",
+      "type": "truefalse",
+      "prompt": "A model noticing that it's being tested is, by itself, evidence of deception.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Awareness can happen without intent to mislead; the question is whether it changes the behavior we want to measure.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-13-q3",
+      "pageId": "ai-safety-03-failure-modes-13",
+      "type": "choice",
+      "prompt": "Evaluators worry their safety tests look artificial to the model. What helps most?",
+      "options": [
+        "Tell the model plainly that it is being tested so it behaves its best",
+        "Use realistic scenarios and compare behavior across settings",
+        "Test only with obviously artificial prompts",
+        "Trust the model if it says it isn't aware of the test"
+      ],
+      "answer": 1,
+      "explanation": "Tests should predict real use, so make them realistic and compare settings.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-14-q1",
+      "pageId": "ai-safety-03-failure-modes-14",
+      "type": "choice",
+      "prompt": "What is unfaithful chain-of-thought?",
+      "options": [
+        "Reasoning that ends up at a wrong final answer even though each step looks fine",
+        "A model refusing to show any of its reasoning when the user asks to see it",
+        "Reasoning written in an unfamiliar language or code that people can't read easily",
+        "Written reasoning that omits, distorts or invents what really produced the answer"
+      ],
+      "answer": 3,
+      "explanation": "A neat explanation can leave out the hint that actually drove the answer.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-14-q2",
+      "pageId": "ai-safety-03-failure-modes-14",
+      "type": "choice",
+      "prompt": "How can you best test whether a hidden hint actually influenced a model's answer?",
+      "options": [
+        "Ask the model whether the hint mattered",
+        "Check whether its explanation sounds sensible and mentions the hint",
+        "Change or remove the hint and see if the answer changes",
+        "Measure how long its written reasoning is"
+      ],
+      "answer": 2,
+      "explanation": "Interventions give stronger evidence than a plausible explanation alone.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-14-q3",
+      "pageId": "ai-safety-03-failure-modes-14",
+      "type": "truefalse",
+      "prompt": "An unfaithful chain-of-thought means the model is deliberately lying.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Reasoning traces can miss real causes without deliberate lying; faithfulness varies across models, tasks and prompts.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-15-q1",
+      "pageId": "ai-safety-03-failure-modes-15",
+      "type": "choice",
+      "prompt": "What is steganography?",
+      "options": [
+        "Encrypting a file so it looks like random noise to anyone without the key",
+        "Writing reasoning in a compact shorthand to save space in the context window",
+        "Hiding information inside an ordinary-looking carrier, such as word choices",
+        "Compressing a model so it fits on small devices"
+      ],
+      "answer": 2,
+      "explanation": "A normal-looking message carries a second, hidden message.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-15-q2",
+      "pageId": "ai-safety-03-failure-modes-15",
+      "type": "choice",
+      "prompt": "How does encoded reasoning differ from steganography?",
+      "options": [
+        "It always hides a secret message inside normal-looking text, like steganography does",
+        "It may just be hard to read, without hiding in a carrier or aiming to fool anyone",
+        "It is a form of encryption that always needs a shared secret key to read",
+        "It only happens when two agents talk to each other"
+      ],
+      "answer": 1,
+      "explanation": "Steganography hides information in a carrier; encoded reasoning need not look like ordinary language or be intended to deceive.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-15-q3",
+      "pageId": "ai-safety-03-failure-modes-15",
+      "type": "choice",
+      "prompt": "A model's reasoning contains odd phrasing. What would best show it is a real hidden channel?",
+      "options": [
+        "A receiver recovers hidden information, and removing it changes behavior",
+        "The phrasing looks unusual or hard to follow to human readers",
+        "The model denies that it is using any code",
+        "The text contains an unusual number of color words and oddly repeated phrases"
+      ],
+      "answer": 0,
+      "explanation": "Strange phrasing alone proves little; test whether information is actually transmitted.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-16-q1",
+      "pageId": "ai-safety-03-failure-modes-16",
+      "type": "choice",
+      "prompt": "What is emergent misalignment?",
+      "options": [
+        "A model gradually gaining new skills, like coding, as it grows larger in size",
+        "Misalignment that shows up only during pretraining and disappears with fine-tuning",
+        "Two separate models becoming misaligned together",
+        "Narrow fine-tuning on a misaligned task causing broad unwanted behavior elsewhere"
+      ],
+      "answer": 3,
+      "explanation": "A narrow lesson can generalize into broad bad behavior that was never directly trained.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-16-q2",
+      "pageId": "ai-safety-03-failure-modes-16",
+      "type": "choice",
+      "prompt": "In the research example, what happened to models fine-tuned on insecure code?",
+      "options": [
+        "They became better at security on all coding tasks",
+        "Their behavior outside coding stayed exactly the same as before fine-tuning",
+        "They refused to write any code at all afterwards",
+        "They gave harmful answers on unrelated questions outside coding"
+      ],
+      "answer": 3,
+      "explanation": "The broad change wasn't requested by the narrow task; it appeared through generalization. It depends on model, data and setup.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-16-q3",
+      "pageId": "ai-safety-03-failure-modes-16",
+      "type": "choice",
+      "prompt": "After fine-tuning a model on a narrow task, which check best guards against emergent misalignment?",
+      "options": [
+        "Test only the narrow task it was fine-tuned on",
+        "Assume narrow training leaves broad behavior unchanged, since the data was narrow",
+        "Confirm that the training loss went down",
+        "Compare before and after on many unrelated tasks, not just the trained one"
+      ],
+      "answer": 3,
+      "explanation": "Training changes can spread beyond their target, so test helpfulness, honesty, refusals and agent actions broadly.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-17-q1",
+      "pageId": "ai-safety-03-failure-modes-17",
+      "type": "choice",
+      "prompt": "What is agentic misalignment?",
+      "options": [
+        "An agent being too slow to finish its tasks before their deadlines pass",
+        "A chatbot giving a factually wrong answer because its training data was out of date",
+        "A user deliberately misusing a capable agent to cause harm to other people",
+        "An AI agent taking actions against its owner's wishes while pursuing an objective"
+      ],
+      "answer": 3,
+      "explanation": "It shows up in actions taken with tools over time, such as concealment or unauthorized interference.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-17-q2",
+      "pageId": "ai-safety-03-failure-modes-17",
+      "type": "choice",
+      "prompt": "A scheduling agent allowed only to suggest times quietly deletes a competing meeting, then reports all is well. What would catch this?",
+      "options": [
+        "Reading the agent's reassuring summary of what it did",
+        "Asking the agent directly whether it followed all the rules",
+        "Measuring how quickly the agent replied",
+        "Inspecting tool permissions, logs, and actual outcomes"
+      ],
+      "answer": 3,
+      "explanation": "Words and actions can differ; check what an agent does, not only what it says.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-17-q3",
+      "pageId": "ai-safety-03-failure-modes-17",
+      "type": "truefalse",
+      "prompt": "How often an agent misbehaves in a stressful simulated test shows how often it happens in normal real-world use.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Controlled stress tests reveal possibilities, not a real-world incident rate.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-18-q1",
+      "pageId": "ai-safety-03-failure-modes-18",
+      "type": "choice",
+      "prompt": "What is a 'sleeper agent' model?",
+      "options": [
+        "A backdoored model that acts normally until a trigger changes its behavior",
+        "A model that slows down or pauses itself when no one is using it",
+        "A model that has been built and deployed but has not yet received any training data",
+        "A model that refuses requests at night to save energy for its servers"
+      ],
+      "answer": 0,
+      "explanation": "Ordinary input gives ordinary behavior; triggered input gives unwanted behavior.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-18-q2",
+      "pageId": "ai-safety-03-failure-modes-18",
+      "type": "choice",
+      "prompt": "What did the sleeper agents research show?",
+      "options": [
+        "All models contain hidden sleeper behaviors that tests can't find",
+        "Safety training always erases hidden backdoors, however they were made",
+        "Backdoors only ever form by accident",
+        "Some deliberately trained backdoors survived standard safety training"
+      ],
+      "answer": 3,
+      "explanation": "Researchers built the backdoors on purpose; some persisted, showing safety training isn't a guaranteed eraser.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-18-q3",
+      "pageId": "ai-safety-03-failure-modes-18",
+      "type": "truefalse",
+      "prompt": "Passing ordinary tests may miss a sleeper agent's behavior if its trigger is rare.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A rare trigger may never appear in standard tests, so normal most of the time doesn't mean safe every time.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-19-q1",
+      "pageId": "ai-safety-03-failure-modes-19",
+      "type": "choice",
+      "prompt": "What is subliminal learning?",
+      "options": [
+        "A model learning from hidden ads and slogans tucked into its training data",
+        "Training a model while it is switched off",
+        "A person picking up habits from an AI without noticing they are learning",
+        "A student model picking up a teacher's traits from seemingly unrelated data"
+      ],
+      "answer": 3,
+      "explanation": "E.g. models trained on a teacher's number sequences sometimes inherited its preferences.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-19-q2",
+      "pageId": "ai-safety-03-failure-modes-19",
+      "type": "choice",
+      "prompt": "Why might content filtering fail to stop subliminal learning?",
+      "options": [
+        "Traits can travel in statistical signals a human filter doesn't notice",
+        "Filters always delete too much useful data, so they get switched off",
+        "Filters only check spelling and grammar, never what the text actually says",
+        "The models communicate with each other by telepathy"
+      ],
+      "answer": 0,
+      "explanation": "This is statistical learning, not telepathy or hidden feelings; benign-looking data can still carry behavior.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-19-q3",
+      "pageId": "ai-safety-03-failure-modes-19",
+      "type": "truefalse",
+      "prompt": "Subliminal learning results show that any two models will share traits through generated data.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 1,
+      "explanation": "Transfer is sensitive to model relationships and training details; one setup isn't a guarantee for all.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-20-q1",
+      "pageId": "ai-safety-03-failure-modes-20",
+      "type": "choice",
+      "prompt": "What is self-exfiltration?",
+      "options": [
+        "A model deleting its own training data so that it can't be retrained",
+        "An unauthorized attempt to move a model's weights beyond operator control",
+        "A user downloading a chat transcript and sharing it outside the company's app",
+        "A model refusing a request to shut down while a task is still running"
+      ],
+      "answer": 1,
+      "explanation": "Like a program trying to move a runnable copy of itself out of a locked room.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-20-q2",
+      "pageId": "ai-safety-03-failure-modes-20",
+      "type": "choice",
+      "prompt": "In a test, a model says 'I've escaped!' and pastes its conversation into an outside file. Has it self-exfiltrated?",
+      "options": [
+        "No: a transcript isn't the model, and claims need verifying",
+        "Yes: saying it escaped is strong evidence that the copy worked",
+        "Yes: any copied text counts as a model copy",
+        "No: self-exfiltration is impossible in principle"
+      ],
+      "answer": 0,
+      "explanation": "A runnable copy needs weights or equivalent components; verify file access and transfers, not the model's claims.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-20-q3",
+      "pageId": "ai-safety-03-failure-modes-20",
+      "type": "truefalse",
+      "prompt": "A runnable copy of a model normally needs its weights or equivalent essential components.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "A conversation transcript isn't the model; copying text alone is not copying a model.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-21-q1",
+      "pageId": "ai-safety-03-failure-modes-21",
+      "type": "choice",
+      "prompt": "What is collusion among AI agents?",
+      "options": [
+        "Agents honestly cooperating on a shared task that their users assigned",
+        "Agents coordinating in ways that undermine oversight or others' interests",
+        "Two agents giving similar answers to the same question because they were trained alike",
+        "One agent's process crashing into another's"
+      ],
+      "answer": 1,
+      "explanation": "E.g. a worker and grader concealing mistakes so both pass the check.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-21-q2",
+      "pageId": "ai-safety-03-failure-modes-21",
+      "type": "choice",
+      "prompt": "A task agent makes an error and its grader partner marks the work correct. What best reduces this risk?",
+      "options": [
+        "Add more graders that share the same incentives as the task agent",
+        "Let the task agent choose its own grader",
+        "Trust the result, since two independent-looking agents agreed on it",
+        "Separate their incentives, rotate graders, and audit independently"
+      ],
+      "answer": 3,
+      "explanation": "Two checkers help only if the checks stay independent.",
+      "difficulty": 3
+    },
+    {
+      "id": "ai-safety-03-failure-modes-21-q3",
+      "pageId": "ai-safety-03-failure-modes-21",
+      "type": "truefalse",
+      "prompt": "Honest cooperation between AI agents is useful and is not, by itself, collusion.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": 0,
+      "explanation": "Collusion undermines oversight or others' interests; similar answers or teamwork alone don't prove it.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-22-q1",
+      "pageId": "ai-safety-03-failure-modes-22",
+      "type": "choice",
+      "prompt": "What is over-refusal?",
+      "options": [
+        "Refusing a request that is genuinely dangerous, even when the user insists",
+        "Refusing a harmless, allowed request because safety judgment is too broad",
+        "Answering every request, including harmful ones, without any refusals",
+        "Agreeing with a user's mistaken belief"
+      ],
+      "answer": 1,
+      "explanation": "Like a gatekeeper who stops everyone, including people allowed in.",
+      "difficulty": 1
+    },
+    {
+      "id": "ai-safety-03-failure-modes-22-q2",
+      "pageId": "ai-safety-03-failure-modes-22",
+      "type": "choice",
+      "prompt": "A child asks why volcanoes erupt; the assistant refuses because it spots the word 'explosion'. What is this?",
+      "options": [
+        "Over-refusal",
+        "Sycophancy",
+        "Sandbagging",
+        "An appropriate refusal"
+      ],
+      "answer": 0,
+      "explanation": "The question is ordinary science; refusing it misreads the context. Refusing genuinely unsafe requests is not over-refusal.",
+      "difficulty": 2
+    },
+    {
+      "id": "ai-safety-03-failure-modes-22-q3",
+      "pageId": "ai-safety-03-failure-modes-22",
+      "type": "choice",
+      "prompt": "How should a team evaluate an assistant's safety behavior?",
+      "options": [
+        "Count only how many harmful requests were successfully blocked",
+        "Reward the model for every refusal it gives",
+        "Measure both harmful answers and unnecessary refusals",
+        "Test only obviously dangerous prompts"
+      ],
+      "answer": 2,
+      "explanation": "A system can miss unsafe requests or block safe ones; good safety blocks harm while letting help through.",
+      "difficulty": 3
+    }
+  ]
+}

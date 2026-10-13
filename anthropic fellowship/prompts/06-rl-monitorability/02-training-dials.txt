@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 06 · PAGE 2/4
+Main title: TRAINING DIALS
+Subtitle: Change one pressure; keep the test fair.
+ART NOTES (DO NOT PRINT): Use a central pipeline, labeled equipment, and clear control-group diagrams.
+EXACT PRINTED PANEL CONTENT:
+1. ENTROPY BONUS
+Entropy measures uncertainty in the model’s next-token distribution. A bonus encourages more varied choices during training. It may affect exploration, language, and hacking; the direction of its monitorability effect is an empirical question.
+2. A REFERENCE TETHER
+A Kullback–Leibler divergence penalty discourages probability drift from a frozen reference model. Apply it only to reasoning tokens in this proposed arm. It measures distribution difference, not honesty or safety.
+3. SHORTER AND COPIED
+A length penalty discourages longer reasoning. On-policy distillation trains on outputs sampled from the current policy, using a specified teacher or selection rule. Fix that rule: different forms of distillation are different experiments.
+4. THE COMMON TESTBED
+Start with the same eight-billion-parameter checkpoint in a sealed toy coding environment with a deliberately flawed grader. Hold task rewards, rollout budget, sampling settings, and available exploit opportunities constant where possible.
+5. THE CONTROL RACK
+Include no-extra-pressure training, untouched checkpoints, and a length-penalty reference arm. Validate the reasoning monitor against manual behavior labels, then freeze it. Add action-only and combined-channel monitors to locate any lost signal.
+6. WORD KEY + CHECK
+RL = reinforcement learning. KL = Kullback–Leibler divergence. CoT = chain of thought. On-policy = samples come from the current model policy. Ask: which dial did we actually change, and what else moved with it?
+FOOTER: A TRAINING DIAL CAN CHANGE BOTH THE BEHAVIOR AND THE CLUE.

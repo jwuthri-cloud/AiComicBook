@@ -1,0 +1,4 @@
+file '01-watch-training-change.mp4'
+file '02-build-the-toolkit.mp4'
+file '03-when-do-signals-fire.mp4'
+file '04-plan-and-output.mp4'

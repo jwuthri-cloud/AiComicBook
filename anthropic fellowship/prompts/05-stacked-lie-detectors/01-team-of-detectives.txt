@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 05 · PAGE 1/4
+Main title: TEAM OF DETECTIVES
+Subtitle: Can different clues cover one another’s blind spots?
+ART NOTES (DO NOT PRINT): Use a helpful visual story from analogy to experiment.
+EXACT PRINTED PANEL CONTENT:
+1. THE MISSING COOKIE
+A helper says, “The jar is full,” although its earlier answer described an empty jar. One detective reads the words. Another checks internal activity patterns. A third checks the world. Each clue can be mistaken.
+2. TWO KINDS OF ACCESS
+Black-box detectors see inputs and outputs, possibly follow-up answers. White-box detectors can inspect model activations: numbers inside the network. A probe learns patterns in those numbers; it does not literally read a private mind.
+3. THE PROPOSED QUESTION
+Does a stack of different detectors remain reliable when a model is trained to evade the whole stack? An ensemble combines detector scores. More detectors help only when their errors differ in useful ways.
+4. WHAT COUNTS AS A LIE?
+A false answer can be an honest mistake. Compare factual ground truth, a neutral statement of belief, the pressured answer, and consistency across checks. Call uncertain cases uncertain; these tests cannot establish human-like intention.
+5. THE HARDEST NEW TEST
+Reserve entire lie categories and model runs, not just random sentences. A detector that memorizes familiar wording may look brilliant at home and fail on a new kind of misleading answer.
+6. WORD KEY + CHECK
+AI = artificial intelligence. Ensemble = a team combining predictions. Activation = an internal numerical signal. False positive = flagging an honest example. Ask: are we detecting false words, inconsistency, or the relevant behavior?
+FOOTER: THREE IMPERFECT CLUES CAN STILL SHARE ONE BLIND SPOT.

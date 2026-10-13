@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: ELICITING LATENT KNOWLEDGE (ELK)
+SUBTITLE: Ask what the model knows, even when appearances mislead
+1. THE QUESTION
+A powerful predictor may internally track facts people cannot directly observe. ELK asks how to make it report that knowledge reliably.
+2. THE CLASSIC PICTURE
+A camera watches a diamond in a vault. A smart model might know whether the diamond is safe even when the camera image is misleading.
+3. THE WRONG SHORTCUT
+A reporter could predict what a human would believe from the camera, rather than report the underlying reality represented inside the model.
+4. THE RESEARCH GOAL
+Train a reporting mechanism that reveals relevant internal knowledge, including cases where the model understands more than its human supervisors.
+5. WHY IT IS HARD
+Human labels reward familiar answers. Different internal stories can fit the same observations, making it difficult to identify a genuinely reliable reporter.
+6. THE LIMIT
+ELK is an open research problem, not simply asking the model to be honest. It also does not grant access to truths the model never learned.
+FOOTER: REPORT THE UNDERLYING SITUATION, NOT JUST WHAT LOOKS CONVINCING TO US.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

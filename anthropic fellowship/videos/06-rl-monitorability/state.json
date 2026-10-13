@@ -1,0 +1,28 @@
+{
+  "clips": {
+    "01-quiet-is-not-cured.mp4": {
+      "page": 1,
+      "image": "06-rl-monitorability/01-quiet-is-not-cured.png",
+      "interaction_id": "v1_Chc3eXpOYW9qZEdJZjQtOFlQdTZiaG1BbxIXN3l6TmFvamRHSWY0LThZUHU2YmhtQW8",
+      "duration": 10.005
+    },
+    "02-training-dials.mp4": {
+      "page": 2,
+      "image": "06-rl-monitorability/02-training-dials.png",
+      "interaction_id": "v1_Chc3eXpOYW9qZEdJZjQtOFlQdTZiaG1BbxIXR3kzTmFxSzNIT2JYLThZUDRMWG1tQW8",
+      "duration": 10.005
+    },
+    "03-two-axis-dashboard.mp4": {
+      "page": 3,
+      "image": "06-rl-monitorability/03-two-axis-dashboard.png",
+      "interaction_id": "v1_Chc3eXpOYW9qZEdJZjQtOFlQdTZiaG1BbxIXVEMzTmF0ZU9HSW0zc09JUG43cTVxQVE",
+      "duration": 10.005
+    },
+    "04-preserve-the-window.mp4": {
+      "page": 4,
+      "image": "06-rl-monitorability/04-preserve-the-window.png",
+      "interaction_id": "v1_Chc3eXpOYW9qZEdJZjQtOFlQdTZiaG1BbxIXZnkzTmFzWDdOdkdfc09JUGlacUhpUW8",
+      "duration": 10.005
+    }
+  }
+}

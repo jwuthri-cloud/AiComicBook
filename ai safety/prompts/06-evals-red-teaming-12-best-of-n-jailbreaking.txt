@@ -1,0 +1,14 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Use the number of numbered illustrated teaching panels specified by the supplied content. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: BEST-OF-N JAILBREAKING
+SUBTITLE: Keep trying variations until one slips through.
+1. THE IDEA
+Imagine trying many slightly different keys on a toy lock. Best-of-N jailbreaking searches over multiple versions of an adversarial input and keeps successful attempts.
+2. HOW IT WORKS
+An attacker samples variations, queries the model repeatedly, and checks which responses bypass safeguards. Variations can concern text, images, or audio. The attack exploits inconsistent behavior across similar inputs.
+3. SEE IT HAPPEN
+Show several harmless toy requests approaching a shield, with one marked failure of the toy rule. Use abstract labels such as variation A, B, and C, not actual attack wording.
+4. WHY IT MATTERS
+One successful attempt can matter even when most attempts fail. Report attack budgets and repeated-query success, not just single-try averages. This is adversarial search, unlike benign best-of-N answer selection used to improve quality.
+FOOTER: Repeated attempts can expose weaknesses a single test misses.
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image. Panel count: 4.
+ACRONYM REQUIREMENT: Place visible key near title: N = number of attempts; AI = Artificial Intelligence if used. Expand every other acronym used.

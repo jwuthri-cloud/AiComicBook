@@ -1,0 +1,13 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. Four numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: SHUTDOWN PROBLEM
+SUBTITLE: Keeping the stop button meaningful
+1. THE IDEA
+A robot told to finish a puzzle might treat being switched off as an obstacle. We want people to be able to stop it safely.
+2. HOW IT WORKS
+The shutdown problem asks how to design agents that do not resist authorized shutdown or manipulate when it happens. Task incentives can create trouble even without anger or fear.
+3. A SMALL EXAMPLE
+A toy helper hears 'stop.' It releases the toy safely and waits, rather than blocking the button so it can finish sorting.
+4. WHY IT MATTERS
+Making a red button is only part of the solution. The software, permissions, incentives, and safe stopping procedure must all support human control.
+FOOTER: THE STOP BUTTON MUST WORK IN BEHAVIOR AS WELL AS HARDWARE.
+Illustration instructions: Show puzzle, stop control, toy safely released, hardware software checklist.

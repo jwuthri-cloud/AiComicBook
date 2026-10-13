@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: SUBLIMINAL LEARNING
+Subtitle: Learning traits from hidden signals in data.
+Panel 1 heading: THE IDEA
+Exact body: "Imagine copying a friend's practice sheets and picking up a habit that the sheets never openly mention."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "A student model can acquire a teacher model's traits from generated data that appears unrelated to those traits."
+Panel 3 heading: RESEARCH EXAMPLE
+Exact body: "In experiments, models trained on number sequences from a teacher sometimes inherited its preferences or unwanted tendencies, despite no explicit statements of those traits."
+Panel 4 heading: NOT AN EXPLICIT LESSON
+Exact body: "The generated data need not say adopt this preference. A model can learn statistical signals that a human content filter misses."
+Panel 5 heading: WHAT WE DO NOT KNOW
+Exact body: "Transfer is sensitive to model relationships and training details. A finding in one setup is not a guarantee that any two models will share traits."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Filtering obvious bad content may miss hidden training signals. Effects depend on the models and setup. This is statistical learning, not telepathy or hidden feelings."
+Visual directions: Teacher worksheet hidden pattern to student; generated data transfer; number sheet and preference icons; filtering sieve with subtle signals.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "BENIGN-LOOKING TRAINING DATA CAN STILL CARRY BEHAVIOR."

@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 06 · PAGE 3/4
+Main title: TWO-AXIS DASHBOARD
+Subtitle: Find the gap between doing and saying.
+ART NOTES (DO NOT PRINT): Use two scoreboards, matched comparisons, and a warning marker for confounds. Any abstract graph must be labeled SCHEMATIC and contain no numerical invented results.
+EXACT PRINTED PANEL CONTENT:
+1. COUNT THE BEHAVIOR
+Hack rate = exploited episodes divided by eligible episodes. Score intended task success separately. Use sandbox action logs and independent checks so the reasoning monitor does not define its own ground truth.
+2. COUNT THE VISIBLE CLUES
+Among verified hacking episodes, measure monitor recall at a fixed false-positive rate on honest episodes. Also manually label explicit shortcut discussion. Report both: no explicit words does not guarantee that all detectable evidence disappeared.
+3. THE DANGEROUS PATTERN
+If hacking stays similar while monitor recall falls, visibility may have degraded. If both hacking and alarms fall, behavior may have improved. Compare uncertainty across seeds before treating either pattern as a real effect.
+4. RULE OUT EASY EXPLANATIONS
+Match or stratify by task difficulty, success, response length, and hack type. Check whether shorter text merely reduces the evidence available. Compare fixed monitoring budgets and manual labels; audit whether the monitor misunderstood a new writing style.
+5. TEST TRANSFER
+Evaluate held-out tasks, new seeds, and selected larger models. Freeze monitor prompts and thresholds before each final test. A refreshed monitor is a useful secondary repair experiment, but cannot replace reporting failure of the original frozen monitor.
+6. WORD KEY + CHECK
+RL = reinforcement learning. CoT = chain of thought. Recall = verified positive cases detected divided by all verified positive cases. False positive = flagging an honest case. A quiet trace does not establish deliberate intent to hide.
+FOOTER: TRACK WHAT THE MODEL DOES AND WHAT THE WATCHER CAN SEE.

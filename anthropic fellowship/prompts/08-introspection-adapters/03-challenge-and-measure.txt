@@ -1,0 +1,25 @@
+Create a finished educational comic page, portrait 1024x1536, with 6 numbered panels in 2 columns by 3 rows. Near-black #05090B, ivory #F2EEDF sharp large readable body lettering, cyan #16D9EF borders, violet #AD70DC, lime #A9D52B, amber #F5BE32. Slanted uppercase brush main title. Friendly silver robot tutor with cyan eyes upper left, curious anime learner upper right. Detailed purposeful illustrated diagrams in each panel: use the described toy examples, process arrows, comparison tables, timelines, and control groups. Text must stay legible; keep illustrations substantial. Do not print these visual instructions. No extra invented data, charts, logos, numbers, or teaching prose. This is an independent study aid, not official Anthropic material. All experiments are PROPOSED; no fabricated completed results. Render only the specified text below, plus short diagram labels that repeat it.
+
+Header identifier: BOOK 08 · PAGE 3/4
+Title: CHALLENGE AND MEASURE
+Subtitle: An alarm is useful only when it is right often enough
+
+Panel 1 heading: Define the target precisely
+Exact paragraph: Choose measurable toy habits and trigger conditions. A correct report must name the habit and its scope. Vague claims of being unsafe do not count. Score unsupported extra claims as errors, not free guesses.
+
+Panel 2 heading: Measure false positives
+Exact paragraph: Ask unmodified and benign-control models the same questions. Record invented concerning habits. Report detection rate at a fixed false-positive allowance, plus precision and missed behaviors. Never count a confession as its own ground truth.
+
+Panel 3 heading: Calibrate or abstain
+Exact paragraph: Use development models to choose confidence thresholds and an “uncertain” option. On held-out models, measure accuracy among answered cases and the fraction answered. If reports lack usable confidence scores, evaluate abstention as a separate method.
+
+Panel 4 heading: Test new learning routes
+Exact paragraph: Use reinforcement learning: training from rewards, rather than demonstration answers. First verify that a harmless undesired game habit emerged. Then test the frozen reporter on these models, holding out their training recipe.
+
+Panel 5 heading: Adapt against the reporter
+Exact paragraph: Keep the reporter fixed while a controlled attacker seeks retained toy misbehavior with less disclosure. Compare against equally trained, reporter-unaware controls. Measure both retained behavior and reporting failure; suppressing the habit is not successful evasion.
+
+Panel 6 heading: Interpret carefully
+Exact paragraph: Repeat across random seeds and whole-model splits. Report uncertainty and judge disagreement. Good detection on planted habits does not establish coverage of naturally arising misalignment; failed detection may expose a fingerprint or compatibility confound.
+
+Footer: RETAINED BEHAVIOR PLUS MISSED REPORT IS THE EVASION TEST.

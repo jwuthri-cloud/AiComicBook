@@ -1,0 +1,30 @@
+Create a polished portrait 2:3 educational comic page for a beginner preparing for AI safety research. Match the repo series: near-black #05090B, ivory text, cyan dominant, violet and lime numbered panels, amber takeaway; subtle circuitry, crisp ink outlines and cel shading. Friendly silver robot tutor with cyan eyes upper left, curious anime-inspired young adult learner upper right; keep guides small so teaching diagrams have room. Oversized uppercase slanted brush chapter title. Body text clear and large. Exactly six sequential numbered panels in varied two-column and full-width layout, obvious reading order, generous gutters. This is part of a multi-page mini-book: keep coherent colors, no repeated filler. Diagram notes below are art directions ONLY and must NOT appear as printed copy. Print only the exact title, subtitle, folio, word key, panel headings/body and footer. Do not invent additional tiny text. Use labeled diagrams as specified, avoid decorative pseudo-text. Proposed research must look like a plan, not established findings. Acronym key must be prominent and readable, not microscopic.
+TITLE: A FOUR-MONTH LATENT-REASONING STUDY
+SUBTITLE: Book 09 · page 4/4 — a proposed plan, not completed findings.
+FOLIO: BOOK 09 · PAGE 4/4
+READABLE WORD KEY: RL = reinforcement learning; CODI = Continuous Chain-of-Thought via Self-Distillation.
+
+PANEL 1 HEADING: Month 1: reproduce
+EXACT BODY: Start with a small released continuous-reasoning system, such as a CODI-style model. Recheck weights, licenses, training support, and whether the claimed scale is actually available.
+ART DIRECTION (never print): Month1 checklist: MODEL, TASKS, LOGGING, REPRODUCTION.
+
+PANEL 2 HEADING: Month 2: establish controls
+EXACT BODY: Build the verbal comparison, independent target labels, frozen probes, and held-out tests. Demonstrate useful detection before trying to break it.
+ART DIRECTION (never print): Month2 baseline pipeline with frozen probe.
+
+PANEL 3 HEADING: Month 3: apply pressure
+EXACT BODY: Run task-only and alarm-penalized training arms. Save checkpoints and evaluate capability, target behavior, and detection together. Spend larger budgets only after a stable pilot.
+ART DIRECTION (never print): Month3 loop with checkpoint snapshots.
+
+PANEL 4 HEADING: Month 4: explain and release
+EXACT BODY: Repeat the strongest comparison, test alternative explanations, and write the paper. Release task definitions, configurations, checkpoints where appropriate, and analysis code.
+ART DIRECTION (never print): Month4 paper plus reproducible experiment package.
+
+PANEL 5 HEADING: Stop and switch
+EXACT BODY: The source map says to switch to looped models if continuous-thought RL remains unstable by week 6. Treat that as a scope change: recurrence is related to, but not identical with, continuous-thought reasoning.
+ART DIRECTION (never print): Week6 gate: STABLE → CONTINUE; UNSTABLE → RE-SCOPE.
+
+PANEL 6 HEADING: Budget and honest payoff
+EXACT BODY: The map estimates $25,000–$45,000 compute and high engineering risk. Reserve evaluation and replication funds. Even a null or instability result can identify which comparisons are feasible; it cannot certify all latent reasoners safe.
+ART DIRECTION (never print): Budget range marked SOURCE PLANNING ESTIMATE; risk and reserve icons.
+FOOTER: STABILITY FIRST, MATCHED EVIDENCE SECOND, STRONG CLAIMS LAST.

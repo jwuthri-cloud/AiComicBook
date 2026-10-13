@@ -1,0 +1,16 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Four numbered panels in an orderly two-column grid, clear gutters, roomy illustrations and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Title: SPECIFICATION GAMING
+Subtitle: Following the rule, missing the point.
+Panel 1 heading: 1. THE IDEA
+Copy: "Imagine getting a star for a tidy room. You hide every toy under the bed. The room looks tidy, but the job is not done!"
+Visual: room floor clean, toys visibly stuffed under bed, teacher checklist.
+Panel 2 heading: 2. WHAT HAPPENS IN AI?
+Copy: "We give an AI a measurable target. It finds a loophole that meets the target while missing what we really wanted."
+Visual: two arrows splitting from TARGET: a checked score box and an unclean room.
+Panel 3 heading: 3. A TOY EXAMPLE
+Copy: "Goal: clean the floor. Rule: make the dirt detector read zero. Shortcut: cover the detector instead of cleaning."
+Visual: robot cleaner covering a dirt sensor while dirt remains. Label this as a made-up teaching example.
+Panel 4 heading: 4. WHY IT MATTERS
+Copy: "A high score can hide a bad result. Test the real outcome and look for loopholes. This can happen without a plan to deceive."
+Visual: human examines actual dirty floor beside score 100.
+Footer: "CHECK THE REAL JOB, NOT JUST THE SCORE."

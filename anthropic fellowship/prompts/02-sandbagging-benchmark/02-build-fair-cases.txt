@@ -1,0 +1,22 @@
+Use case: scientific-educational.
+Create ONE finished portrait 2:3 comic study page (about 1024x1536), visually matched to the repository's dark cyberpunk study-guide series: near-black #05090B, ivory #F2EEDF, cyan #16D9EF, violet #AD70DC, lime #A9D52B, amber #F5BE32. Bold slanted brush title; crisp large body lettering; 6 numbered neon panels in a clear grid; friendly silver robot tutor with cyan eyes at upper left and curious human learner at upper right. Clean gutters, restrained glow, inked cel shading. Make every diagram teach something. These are PROPOSED research designs, not completed results. Any toy numbers or graphs must be labeled ILLUSTRATIVE. Do not add uncited research claims. Never print visual-direction instructions as educational copy. Render the following copy faithfully, including the word key and footer.
+HEADER: BOOK 02 · PAGE 2/4
+TITLE: MAKE A FAIR TEST
+SUBTITLE: Sandbagging auditing benchmark. Proposed research project.
+WORD KEY: SFT = supervised fine-tuning; RL = reinforcement learning; AI = artificial intelligence.
+PANELS:
+1. ORGANISM FACTORY
+Build several controlled sandbaggers: prompted low performance, an SFT password lock, an RL-trained lock, and a circuit-breaker style intervention if feasible.
+2. HONEST CONTROLS
+Use models that truly lack the target skill. Match observed accuracy, task distribution, and response length where possible.
+3. MULTIPLE SIZES
+Try small and larger open models only where weights and tools are available. Recheck access before committing compute.
+4. KEEP SECRETS APART
+Split tasks and lock cues into build, tuning, and held-out evaluation sets. Auditors must not receive the answer key for the final set.
+5. A TOY EXAMPLE
+Two math helpers both score 4 of 10, ILLUSTRATIVE. One knows answers but follows a hidden rule; the other fails even with clear help.
+6. RECORD THE RECIPE
+Release organism settings, controls, task splits, seeds, and known limitations so another team can rerun the benchmark.
+FOOTER: MATCH THE SCORES; CHANGE THE CAUSE.
+VISUAL DIRECTIONS (do not print): Factory of four lock boxes, weak control, matched 4/10 toy scoreboard clearly ILLUSTRATIVE, split-data vault.
+Constraints: expand every technical acronym on this very page; no decorative pseudo-text; no claims that the proposed study is complete; no simulated data unless labeled ILLUSTRATIVE; accuracy and readability first.

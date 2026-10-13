@@ -1,0 +1,17 @@
+Use case: scientific-educational. Create one finished portrait 2:3 AI SAFETY educational comic card, about 1024x1536, matching this series style: near-black #05090B background, ivory #F2EEDF primary text, cyan #16D9EF dominant neon borders, violet #AD70DC and lime #A9D52B secondary panels, amber #F5BE32 callouts. Oversized uppercase slanted brush-lettered title; clean, large, highly readable body lettering. Inked cel-shaded friendly silver robot tutor with glowing cyan eyes in the upper-left header and a curious anime/comic human learner in dark futuristic clothes upper right. Subtle circuit texture, restrained glow, crisp diagrams. Between 4 and 10 numbered panels, as specified for this topic, in an orderly modular grid, clear gutters, roomy illustrations, clear diagrams, and short exact copy. Each panel teaches through a simple diagram; concrete kid-friendly analogy plus accurate real meaning. Footer bold amber mnemonic. Avoid tiny type, invented extra facts, pseudo-text, clutter, and implying all AI has human desires. Use all supplied exact copy and diagram instructions. Small series label AI SAFETY.
+Panel count: 6. Use all panels, sequential numbering, varied panel sizes with a wide comparison/process panel when useful. Title: STEGANOGRAPHY / ENCODED REASONING
+Subtitle: Hiding meaning inside ordinary-looking text.
+Panel 1 heading: THE IDEA
+Exact body: "A normal-looking message can carry a secret second message, like a code hidden in word choices."
+Panel 2 heading: WHAT HAPPENS IN AI?
+Exact body: "Steganography hides information in an output. Encoded reasoning uses a representation people may not understand; some forms could also conceal reasoning from monitors."
+Panel 3 heading: TOY EXAMPLE
+Exact body: "Two imaginary agents use harmless color words as private symbols. A reader sees a shopping list while the agents interpret another meaning."
+Panel 4 heading: THE IMPORTANT DISTINCTION
+Exact body: "Steganography concerns hiding information in a carrier. Encoded reasoning need not look like ordinary language or be intended to fool anyone."
+Panel 5 heading: WHAT TO TEST
+Exact body: "Check whether a receiver can recover the hidden information and whether removing it changes behavior. Strange phrasing alone proves little."
+Panel 6 heading: WHY IT MATTERS
+Exact body: "Hidden channels can undermine oversight. Unusual text is not proof of a code, and not all internal computation is steganography. Study whether information is actually transmitted."
+Visual directions: Visible ordinary message and hidden symbols; readable vs encoded reasoning diagram; harmless colors with no actual codebook; monitor limitation.. Use distinct meaningful illustrations and diagrams for added panels.
+Exact footer: "READABLE WORDS CAN STILL HIDE UNREADABLE MEANING."

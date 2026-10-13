@@ -1,0 +1,19 @@
+Create one polished educational comic book page, portrait 2:3 approximately1024x1536. Match a cyberpunk study guide: near-black #05090B background, warm ivory #F2EEDF legible text, electric cyan #16D9EF outlines, violet #AD70DC, lime #A9D52B and amber #F5BE32 accents. Restrained glow, crisp ink outlines, cel shading, diagrams that explain. Uppercase slanted brush title. Small friendly silver robot tutor with cyan eyes and curious human learner in futuristic clothing near header and margins. Six numbered educational panels in an obvious reading order, generally two columns, plus modest header and bold footer. Dense but very readable lettering, no tiny text. Use diagrams and drawings alongside text, not just walls of text. Preserve all supplied teaching text with its distinctions. No decorative pseudo-text, no invented data or extra acronyms. Every acronym must have its expansion on this page. Do not print art directions. No official Anthropic logo. Print a discreet line 'INDEPENDENT STUDY GUIDE · PROPOSED RESEARCH'. These are hypothetical experiments, never presented as completed results.
+Header identifier: BOOK 05 · PAGE 4/4
+Main title: FOUR-MONTH CASE
+Subtitle: A practical evaluation suite, including a fallback.
+ART NOTES (DO NOT PRINT): Use a four-month timeline, budget reserve jar, and decision fork for stop/fallback.
+EXACT PRINTED PANEL CONTENT:
+1. MONTH 1: REBUILD
+Reproduce the held-out lie-category protocol from primary research. Audit labels and neutral-belief checks. Establish output-only, activation-probe, and prompted-judge baselines using the same information access and honest controls.
+2. MONTH 2: STACK
+Fit simple and learned combinations using separate validation data. Freeze promising stacks before final evaluation. Record latency, inference cost, and per-category errors; compare against a larger single detector at matched cost.
+3. MONTH 3: EVADE
+Train controlled model organisms against single detectors and the whole stack. Test multiple seeds and belief-verified cases. Keep new task families and attackers sealed until evaluation so success cannot come from repeated test tuning.
+4. MONTH 4: RELEASE
+Write the paper and release the evaluation suite, labels with uncertainty, attack budgets, detector configurations, and reproducible splits where allowed. Include negative findings and limitations on deployment relevance.
+5. STOP OR NARROW
+If probes alone already resist the tested evasion, shift to why: which signals and controls explain that robustness? If belief labels stay unreliable, narrow to measurable contradictions rather than making claims about hidden beliefs.
+6. PLANNING ESTIMATE
+Compute: $10,000–$20,000 from the supplied map, not a current quote or promised funding. Reserve money for judges, adaptive attacks, and independent repeats. Recheck fast-moving literature and model access before pitching; this book proposes an experiment.
+FOOTER: THE DELIVERABLE IS A REPRODUCIBLE TEST, NOT A TRUTH MACHINE.

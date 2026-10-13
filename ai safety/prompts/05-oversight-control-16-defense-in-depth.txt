@@ -1,0 +1,19 @@
+Use case: scientific-educational. Create one polished 2:3 portrait comic educational card, clear kid-friendly language but technically accurate. Near-black #05090B, ivory text, dominant cyan #16D9EF, violet #AD70DC and lime #A9D52B panels, amber footer. Bold uppercase slanted brush title, readable body type. Friendly silver robot with cyan eyes upper left, curious comic human learner upper right. Inked cel shading, subtle circuits, restrained glow. 6 numbered panels in clear order, diagrams supporting each panel. Render supplied text verbatim with correct spelling, no extra pseudo-text. All copy must be legible, diagrams concrete and helpful. 
+TITLE: DEFENSE IN DEPTH
+SUBTITLE: Use several layers so one failure is not enough
+1. THE IDEA
+A bike lock, a locked shed, and a camera protect a bicycle in different ways. AI safety also benefits from multiple safeguards.
+2. DIFFERENT LAYERS
+Safer training, evaluations, monitors, limited permissions, human review, secure infrastructure, and incident response can address different failure points.
+3. A TOY EXAMPLE
+A helper proposes a suspicious file change. A monitor may catch it; tool permissions may block it; a reviewer may reject it before release.
+4. DESIGN THE CONNECTIONS
+Decide what each layer stops, when it runs, and what happens after an alarm. A pile of disconnected checks is not a working defense.
+5. A SHARED WEAKNESS
+Several monitors can all miss the same flaw. Layers are stronger when their failures are less correlated and their assumptions differ.
+6. THE LIMIT
+No stack is automatically safe. Test the complete system, maintain safeguards, and improve it after failures or changing capabilities.
+FOOTER: SEVERAL DIFFERENT SAFEGUARDS CAN KEEP ONE MISTAKE FROM BECOMING A DISASTER.
+Illustrate every panel with clear concrete diagrams and harmless toy examples. Use varied modular grid with 6 numbered panels, sufficient legible type and large process arrows. No source URLs on card.
+
+Expand any acronym in a clear small glossary strip near the header: AI = ARTIFICIAL INTELLIGENCE. Do not add unexplained abbreviations.

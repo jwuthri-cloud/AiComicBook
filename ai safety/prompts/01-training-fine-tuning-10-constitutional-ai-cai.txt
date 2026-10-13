@@ -1,0 +1,18 @@
+Use case: scientific-educational. Create one finished portrait 2:3 educational comic card, 1024x1536. Series style: near-black #05090B, ivory #F2EEDF text, cyan #16D9EF dominant, violet #AD70DC and lime #A9D52B panel accents, amber #F5BE32 footer. Bold uppercase slanted brush title; large crisp readable body lettering. Friendly silver robot tutor with cyan eyes at upper left, curious anime human learner at upper right; ink contours and cel shading. Subtle circuitry, clean gutters, restrained glow. Six numbered illustrated panels in three rows of two. Kid-friendly but accurate. Each illustration explains its panel; no decorative pseudo-text. Render exact text supplied below, including limitations. 
+TITLE: CONSTITUTIONAL AI (CAI)
+SUBTITLE: Learning with a written guide.
+1. THE IDEA
+Imagine a classroom agreement about being clear, truthful, and considerate. Constitutional AI uses written principles to guide an assistant's training.
+2. PRACTICE AND REVISE
+In the original research method, a model writes an answer, critiques it using a principle, and revises it. These improved examples are used for supervised training.
+3. LEARN FROM COMPARISONS
+Another stage compares pairs of answers using the principles. AI-generated preferences train a reward model. Reinforcement learning uses that feedback to update the assistant.
+4. A FRIENDLY EXAMPLE
+A confusing explanation of rain becomes a clearer one after critique. Illustrate draft, guide, critique, and revision with a simple water-cycle picture.
+5. PEOPLE CHOOSE THE GUIDE
+Humans decide which principles to include. Different principles can pull in different directions, and interpreting them takes judgment.
+6. TEST THE RESULTS
+The approach can reduce some human labeling work. Models can still misunderstand principles or behave poorly on new tasks. A written guide is a training aid, not a guarantee.
+FOOTER: Principles guide practice, critique, and feedback.
+
+Treat sentences starting Draw or Show as illustration directions, not printed copy. No tool or art instructions in the rendered image.
