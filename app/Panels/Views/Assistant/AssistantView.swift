@@ -15,9 +15,13 @@ struct AssistantView: View {
     @FocusState private var focused: Bool
 
     private let onOpenPage: ((Page) -> Void)?
+    /// Sent automatically when the chat opens (e.g. "Explain it simpler").
+    private let initialPrompt: String?
+    @State private var sentInitial = false
 
-    init(context: AssistantContext, onOpenPage: ((Page) -> Void)? = nil) {
+    init(context: AssistantContext, initialPrompt: String? = nil, onOpenPage: ((Page) -> Void)? = nil) {
         _session = State(initialValue: AssistantSession(context: context))
+        self.initialPrompt = initialPrompt
         self.onOpenPage = onOpenPage
     }
 
@@ -41,7 +45,11 @@ struct AssistantView: View {
                 ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
             }
         }
-        .onAppear { hasKey = KeyStore.hasKey }
+        .onAppear {
+            hasKey = KeyStore.hasKey
+            sendInitialIfReady()
+        }
+        .onChange(of: hasKey) { _, _ in sendInitialIfReady() }
         .onChange(of: photoItem) { _, item in
             Task {
                 if let data = try? await item?.loadTransferable(type: Data.self), let image = UIImage(data: data) {
@@ -183,6 +191,12 @@ struct AssistantView: View {
     }
 
     // MARK: Actions
+
+    private func sendInitialIfReady() {
+        guard hasKey, !sentInitial, let initialPrompt else { return }
+        sentInitial = true
+        send(initialPrompt)
+    }
 
     private func send(_ text: String) {
         let image = attachment

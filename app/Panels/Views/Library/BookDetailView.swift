@@ -6,6 +6,7 @@ struct BookDetailView: View {
     @Environment(LibraryState.self) private var library
     @Environment(Router.self) private var router
     @Environment(QuizState.self) private var quizState
+    @Environment(Listener.self) private var listener
 
     var body: some View {
         let collection = store.collection(for: book)
@@ -150,6 +151,17 @@ struct BookDetailView: View {
                 }
                 .buttonStyle(FilledButtonStyle(tint: tint, secondary: true))
             }
+
+            Button {
+                if listener.book?.id == book.id { listener.toggle() } else { listener.start(book, at: resume, store: store) }
+            } label: {
+                Image(systemName: listener.book?.id == book.id && listener.isPlaying ? "pause.fill" : "headphones")
+                    .frame(width: 26)
+                    .padding(.horizontal, 2)
+                    .contentTransition(.symbolEffect(.replace))
+            }
+            .buttonStyle(FilledButtonStyle(tint: tint, secondary: true))
+            .accessibilityLabel("Listen")
         }
     }
 }

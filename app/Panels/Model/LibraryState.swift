@@ -109,8 +109,11 @@ final class Router {
     var player: PlayerRequest?
     var term: Term?
     var quiz: QuizSession?
+    var game: Game?
     var debugAsk = false
     var pendingSearch: String?
+    /// Debug: open the concept map on this term.
+    var pendingMap: String?
     var pendingRoute: Route?
 
     func read(_ book: Book, at index: Int = 0, mode: ReaderMode? = nil) {

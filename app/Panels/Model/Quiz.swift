@@ -99,7 +99,12 @@ final class QuizState {
     func record(_ id: String) -> Record? { snapshot.records[id] }
 
     func answer(_ item: QuizItem, correct: Bool) {
-        var r = snapshot.records[item.id] ?? Record()
+        mark(item.id, correct: correct, points: 10 + 5 * (item.difficulty - 1))
+    }
+
+    /// Records an answer from any practice mode (quiz, flashcards, games) in the same spaced-repetition boxes.
+    func mark(_ id: String, correct: Bool, points: Int = 10) {
+        var r = snapshot.records[id] ?? Record()
         r.seen += 1
         r.last = .now
         if correct {
@@ -108,8 +113,18 @@ final class QuizState {
         } else {
             r.box = 0
         }
-        snapshot.records[item.id] = r
-        if correct { snapshot.xp += 10 + 5 * (item.difficulty - 1) }
+        snapshot.records[id] = r
+        if correct { snapshot.xp += points }
+    }
+
+    /// Bonus points for games, without touching review boxes.
+    func award(_ points: Int) { snapshot.xp += max(0, points) }
+
+    /// A finished game or flashcard deck counts towards the streak, like a quiz.
+    func practiced() {
+        let today = Self.dayKey(.now)
+        guard !snapshot.activeDays.contains(today) else { return }
+        snapshot.activeDays.append(today)
     }
 
     func finish(_ session: QuizSession) {

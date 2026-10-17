@@ -13,13 +13,17 @@ struct ReaderPage: View {
     let onChrome: (Bool) -> Void
     let onZoomChange: (Bool) -> Void
     let onWatchBook: (Page) -> Void
+    var zoomRegistry: ZoomRegistry? = nil
+    /// Ask the assistant something about this page (e.g. "explain this panel simpler").
+    var onAsk: (String) -> Void = { _ in }
+    var onSharePanel: (Panel) -> Void = { _ in }
 
     var body: some View {
         switch mode {
         case .comic:
-            ComicPageView(page: page, onToggleChrome: onToggleChrome, onZoomChange: onZoomChange)
+            ComicPageView(page: page, onToggleChrome: onToggleChrome, onZoomChange: onZoomChange, zoomRegistry: zoomRegistry)
         case .text:
-            TextPageView(page: page, book: book, tint: tint, onTerm: onTerm, onChrome: onChrome)
+            TextPageView(page: page, book: book, tint: tint, onTerm: onTerm, onChrome: onChrome, onAsk: onAsk, onSharePanel: onSharePanel)
         case .video:
             VideoPageView(page: page, book: book, tint: tint, onWatchBook: onWatchBook)
         }
@@ -32,6 +36,7 @@ struct ComicPageView: View {
     let page: Page
     let onToggleChrome: () -> Void
     let onZoomChange: (Bool) -> Void
+    var zoomRegistry: ZoomRegistry? = nil
 
     @Environment(ContentStore.self) private var store
     @State private var image: UIImage?
@@ -44,7 +49,8 @@ struct ComicPageView: View {
                         image: image,
                         insets: UIEdgeInsets(top: geo.safeAreaInsets.top + 54, left: 14, bottom: geo.safeAreaInsets.bottom + 92, right: 14),
                         onSingleTap: onToggleChrome,
-                        onZoomChange: onZoomChange
+                        onZoomChange: onZoomChange,
+                        onRegister: { [pageId = page.id] provider in zoomRegistry?.register(pageId, provider) }
                     )
                 } else {
                     ProgressView().tint(Theme.inkTertiary).frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -66,8 +72,11 @@ struct TextPageView: View {
     let tint: Color
     let onTerm: (Term) -> Void
     let onChrome: (Bool) -> Void
+    var onAsk: (String) -> Void = { _ in }
+    var onSharePanel: (Panel) -> Void = { _ in }
 
     @Environment(ContentStore.self) private var store
+    @Environment(Listener.self) private var listener
     @AppStorage("textScale") private var storedScale = 1.0
     @GestureState private var pinch: CGFloat = 1
 
@@ -113,8 +122,22 @@ struct TextPageView: View {
                 }
 
                 ForEach(Array(page.panels.enumerated()), id: \.offset) { i, panel in
+                    let speaking = listener.page?.id == page.id && listener.panel == i
                     PanelText(panel: panel, body: linked[i], tint: tint, scale: textScale)
-                        .padding(.bottom, 26)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(tint.opacity(speaking ? 0.10 : 0), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                        .padding(.horizontal, -12)
+                        .padding(.bottom, 16)
+                        .animation(.easeInOut(duration: 0.35), value: speaking)
+                        .contextMenu {
+                            Button { onAsk(Self.simplerPrompt(panel)) } label: { Label("Explain this simpler", systemImage: "sparkles") }
+                            Button { onAsk("Give me a concrete, everyday example of this part of the page: “\(panel.heading): \(panel.body)”") } label: {
+                                Label("Give me an example", systemImage: "lightbulb")
+                            }
+                            Button { onSharePanel(panel) } label: { Label("Share this panel", systemImage: "square.and.arrow.up") }
+                            Button { UIPasteboard.general.string = "\(panel.heading)\n\n\(panel.body)" } label: { Label("Copy text", systemImage: "doc.on.doc") }
+                        }
                 }
 
                 if !page.footer.isEmpty {
@@ -170,6 +193,10 @@ struct TextPageView: View {
             }
             return .systemAction
         })
+    }
+
+    static func simplerPrompt(_ panel: Panel) -> String {
+        "Explain this part of the page more simply, like I'm 12, with one everyday analogy (under 120 words): “\(panel.heading): \(panel.body)”"
     }
 
     /// Panel bodies with each glossary term linked the first time it appears on the page.

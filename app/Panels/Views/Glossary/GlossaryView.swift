@@ -2,8 +2,10 @@ import SwiftUI
 
 struct GlossaryView: View {
     @Environment(ContentStore.self) private var store
+    @Environment(Router.self) private var router
     @State private var filter = ""
     @State private var category: String?
+    @State private var path = NavigationPath()
 
     private var categories: [String] {
         var seen: [String] = []
@@ -30,10 +32,21 @@ struct GlossaryView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             let grouped = Dictionary(grouping: terms, by: \.sortLetter)
             let letters = grouped.keys.sorted()
             List {
+                if filter.isEmpty {
+                    Section {
+                        HStack(spacing: 12) {
+                            toolCard("Concept map", subtitle: "See how words connect", symbol: "point.3.filled.connected.trianglepath.dotted", tint: Theme.tint("violet"),
+                                     route: .map(store.termOfTheDay?.id ?? store.glossary.first?.id ?? ""))
+                            toolCard("Flashcards", subtitle: "Flip, swipe, remember", symbol: "rectangle.on.rectangle.angled", tint: Theme.tint("teal"), route: .flashcards)
+                        }
+                        .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                        .listRowBackground(Color.clear)
+                    }
+                }
                 Section {
                     ScrollView(.horizontal) {
                         HStack(spacing: 8) {
@@ -75,7 +88,31 @@ struct GlossaryView: View {
                 }
             }
             .withRoutes()
+            .onAppear {
+                if let id = router.pendingMap {
+                    router.pendingMap = nil
+                    path.append(Route.map(id))
+                }
+            }
         }
+    }
+
+    private func toolCard(_ title: String, subtitle: String, symbol: String, tint: Color, route: Route) -> some View {
+        NavigationLink(value: route) {
+            VStack(alignment: .leading, spacing: 8) {
+                Image(systemName: symbol)
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(tint)
+                    .frame(width: 34, height: 34)
+                    .background(tint.opacity(0.14), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                Text(title).font(.serif(.headline, weight: .semibold)).foregroundStyle(Theme.ink)
+                Text(subtitle).font(.rounded(.caption)).foregroundStyle(Theme.inkSecondary).lineLimit(1)
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card(radius: 18)
+        }
+        .buttonStyle(.plain)
     }
 
     private func chip(_ text: String, selected: Bool, tint: Color, action: @escaping () -> Void) -> some View {
@@ -139,7 +176,7 @@ struct TermDetailView: View {
     @Environment(Router.self) private var router
     @Environment(\.openPage) private var inheritedOpenPage
     @Environment(\.dismiss) private var dismiss
-    @State private var asking = false
+    @State private var asking: String??
 
     var body: some View {
         let tint = Theme.categoryTint(term.category)
@@ -173,15 +210,16 @@ struct TermDetailView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .textSelection(.enabled)
 
-                Button { asking = true } label: {
-                    Label("Ask about this word", systemImage: "sparkles")
-                        .font(.rounded(.subheadline, weight: .semibold))
-                        .foregroundStyle(tint)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 9)
-                        .background(tint.opacity(0.12), in: Capsule())
+                FlowLayout(spacing: 8) {
+                    actionChip("Explain simpler", symbol: "sparkles", tint: tint) {
+                        asking = .some("Explain “\(term.term)” like I'm 12, with one everyday analogy, in under 100 words.")
+                    }
+                    actionChip("Ask about it", symbol: "bubble.left", tint: tint) { asking = .some(nil) }
+                    NavigationLink(value: Route.map(term.id)) {
+                        chipLabel("See on map", symbol: "point.3.filled.connected.trianglepath.dotted", tint: tint)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
 
                 let related = term.related.compactMap { store.terms[$0] }
                 if !related.isEmpty {
@@ -249,8 +287,8 @@ struct TermDetailView: View {
         .background(Theme.background)
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.openPage, open)
-        .sheet(isPresented: $asking) {
-            AssistantView(context: .term(term), onOpenPage: open)
+        .sheet(isPresented: Binding(get: { asking != nil }, set: { if !$0 { asking = nil } })) {
+            AssistantView(context: .term(term), initialPrompt: asking ?? nil, onOpenPage: open)
                 .presentationDetents([.medium, .large])
         }
         .toolbar {
@@ -260,5 +298,21 @@ struct TermDetailView: View {
                 }
             }
         }
+    }
+}
+
+extension TermDetailView {
+    fileprivate func actionChip(_ title: String, symbol: String, tint: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) { chipLabel(title, symbol: symbol, tint: tint) }
+            .buttonStyle(.plain)
+    }
+
+    fileprivate func chipLabel(_ title: String, symbol: String, tint: Color) -> some View {
+        Label(title, systemImage: symbol)
+            .font(.rounded(.subheadline, weight: .semibold))
+            .foregroundStyle(tint)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
+            .background(tint.opacity(0.12), in: Capsule())
     }
 }

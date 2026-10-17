@@ -60,11 +60,19 @@ struct Page: Decodable, Identifiable, Hashable {
     let video: String?
     let poster: String?
     let duration: Double?
+    /// Pre-recorded Listen mode clips (opening, one per panel, takeaway), when recorded.
+    let narration: [NarrationClip]?
 
     var hasText: Bool { !panels.isEmpty }
 
     static func == (a: Page, b: Page) -> Bool { a.id == b.id }
     func hash(into h: inout Hasher) { h.combine(id) }
+}
+
+struct NarrationClip: Decodable, Hashable {
+    let panel: Int?
+    let audio: String
+    let duration: Double
 }
 
 struct Panel: Decodable, Hashable {

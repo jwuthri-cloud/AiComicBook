@@ -109,6 +109,20 @@ struct SettingsView: View {
                 } header: {
                     Text("Reading text size")
                 }
+                Section {
+                    Picker("Speed", selection: Binding(get: { Listener.shared.speed }, set: { Listener.shared.setSpeed($0) })) {
+                        ForEach(Listener.speeds, id: \.self) { Text(String(format: "%g×", $0)).tag($0) }
+                    }
+                    Picker("Backup voice", selection: Binding(get: { Listener.shared.voiceId ?? Listener.voices.first?.identifier ?? "" }, set: { Listener.shared.setVoice($0) })) {
+                        ForEach(Listener.voices, id: \.identifier) { v in
+                            Text("\(v.name) (\(ListenControlsSheet.qualityLabel(v)))").tag(v.identifier)
+                        }
+                    }
+                } header: {
+                    Text("Listen")
+                } footer: {
+                    Text("Pages are narrated by a recorded voice that plays offline. The voice above is only used for any page without a recording.")
+                }
                 AssistantSettingsSection()
                 Section("Your progress") {
                     LabeledContent("Pages read", value: "\(library.readPageCount)")

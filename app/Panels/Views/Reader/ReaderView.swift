@@ -9,6 +9,7 @@ struct ReaderView: View {
     @Environment(LibraryState.self) private var library
     @Environment(Router.self) private var router
     @Environment(QuizState.self) private var quizState
+    @Environment(Listener.self) private var listener
     @Environment(\.dismiss) private var dismiss
     @AppStorage("readerMode") private var savedMode = ReaderMode.comic
 
@@ -17,8 +18,19 @@ struct ReaderView: View {
     @State private var chromeVisible = true
     @State private var term: Term?
     @State private var zoomPage: Page?
-    @State private var askContext: AssistantContext?
+    @State private var askRequest: AskRequest?
     @State private var isZoomed = false
+    @State private var shareItem: ShareItem?
+    @State private var zoomRegistry = ZoomRegistry()
+
+    /// The assistant opened on this page, optionally with a question sent straight away.
+    struct AskRequest: Identifiable {
+        let id = UUID()
+        let context: AssistantContext
+        var prompt: String?
+    }
+
+    private var isListeningHere: Bool { listener.book?.id == book.id }
 
     private var page: Page { book.pages[index] }
     private var tint: Color { Theme.tint(store.collection(for: book)?.tint ?? "") }
@@ -52,10 +64,14 @@ struct ReaderView: View {
                                 isZoomed = zoomed
                                 withAnimation(.easeInOut(duration: 0.2)) { chromeVisible = !zoomed }
                             },
-                            onWatchBook: { watchBook(from: $0) }
+                            onWatchBook: { watchBook(from: $0) },
+                            zoomRegistry: zoomRegistry,
+                            onAsk: { ask($0, page: book.pages[i]) },
+                            onSharePanel: { share(panel: $0, page: book.pages[i]) }
                         )
                         .environment(store)
                         .environment(library)
+                        .environment(listener)
                     )
                 }
             )
@@ -83,6 +99,10 @@ struct ReaderView: View {
         }
         .onChange(of: mode) { _, _ in isZoomed = false }
         .onChange(of: mode) { _, new in savedMode = new }
+        // Listening to this book: the pages turn along with the voice.
+        .onChange(of: listener.pageIndex) { _, new in
+            if isListeningHere, new != index, book.pages.indices.contains(new) { index = new }
+        }
         .sheet(item: $term) { term in
             NavigationStack { TermDetailView(term: term, isSheet: true, onOpenPage: { openPage($0) }).withRoutes() }
                 .presentationDetents([.medium, .large])
@@ -91,17 +111,22 @@ struct ReaderView: View {
         .fullScreenCover(item: $zoomPage) { page in
             ZoomViewer(page: page)
         }
-        .sheet(item: $askContext) { context in
-            AssistantView(context: context, onOpenPage: { openPage($0) })
+        .sheet(item: $askRequest) { request in
+            AssistantView(context: request.context, initialPrompt: request.prompt, onOpenPage: { openPage($0) })
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
+        }
+        .sheet(item: $shareItem) { item in
+            ActivityView(item: item)
+                .presentationDetents([.medium, .large])
+                .ignoresSafeArea()
         }
     }
 
     // MARK: Chrome
 
     private var topBar: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 8) {
             Button { dismiss() } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
@@ -122,33 +147,55 @@ struct ReaderView: View {
 
             Spacer(minLength: 0)
 
-            if mode == .comic {
-                Button { zoomPage = page } label: {
-                    Image(systemName: "arrow.up.left.and.arrow.down.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .frame(width: 38, height: 38)
+            Menu {
+                Button { ask(nil) } label: { Label("Ask a question", systemImage: "bubble.left.and.text.bubble.right") }
+                Button { ask(Self.simplerPrompt) } label: { Label("Explain it simpler", systemImage: "sparkles") }
+                Button { ask("Give me one concrete, real-world example of the main idea on this page, in under 120 words.") } label: {
+                    Label("Real-world example", systemImage: "lightbulb")
                 }
-                .buttonStyle(GlassCircleStyle())
-                .accessibilityLabel("Open full screen")
-            }
-
-            Button { askContext = .page(page, showingComic: mode == .comic) } label: {
+                Button { ask("Quiz me on this page: ask one question at a time, wait for my answer, then tell me if I'm right.") } label: {
+                    Label("Quiz me on this page", systemImage: "questionmark.bubble")
+                }
+            } label: {
                 Image(systemName: "sparkles")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(tint)
                     .frame(width: 38, height: 38)
+                    .background(.regularMaterial, in: Circle())
+                    .overlay(Circle().strokeBorder(Theme.hairline))
+            }
+            .accessibilityLabel("Ask or explain simpler")
+
+            Button { toggleListening() } label: {
+                Image(systemName: isListeningHere && listener.isPlaying ? "pause.fill" : "headphones")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(isListeningHere ? tint : Theme.ink)
+                    .frame(width: 38, height: 38)
+                    .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(GlassCircleStyle())
-            .accessibilityLabel("Ask about this page")
+            .accessibilityLabel(isListeningHere && listener.isPlaying ? "Pause listening" : "Listen from this page")
 
-            Button { library.toggleBookmark(page) } label: {
-                Image(systemName: library.isBookmarked(page) ? "bookmark.fill" : "bookmark")
+            Menu {
+                Button { library.toggleBookmark(page) } label: {
+                    Label(library.isBookmarked(page) ? "Remove bookmark" : "Bookmark page", systemImage: library.isBookmarked(page) ? "bookmark.slash" : "bookmark")
+                }
+                Button { sharePage() } label: {
+                    Label(mode == .comic && isZoomed ? "Share this detail" : "Share page", systemImage: "square.and.arrow.up")
+                }
+                if mode == .comic {
+                    Button { zoomPage = page } label: { Label("Full screen", systemImage: "arrow.up.left.and.arrow.down.right") }
+                }
+                Button { listener.start(book, at: index, store: store) } label: { Label("Listen from this page", systemImage: "headphones") }
+            } label: {
+                Image(systemName: library.isBookmarked(page) ? "bookmark.fill" : "ellipsis")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(library.isBookmarked(page) ? tint : Theme.ink)
                     .frame(width: 38, height: 38)
+                    .background(.regularMaterial, in: Circle())
+                    .overlay(Circle().strokeBorder(Theme.hairline))
             }
-            .buttonStyle(GlassCircleStyle())
-            .accessibilityLabel(library.isBookmarked(page) ? "Remove bookmark" : "Bookmark page")
+            .accessibilityLabel("More")
         }
         .padding(.horizontal, 16)
         .padding(.top, 6)
@@ -169,6 +216,23 @@ struct ReaderView: View {
             if book.pages.count > 1 {
                 PageScrubber(count: book.pages.count, index: $index, tint: tint)
             }
+            if isListeningHere {
+                HStack(spacing: 10) {
+                    Image(systemName: "waveform")
+                        .foregroundStyle(tint)
+                        .symbolEffect(.variableColor.iterative, isActive: listener.isPlaying)
+                    Text(listener.isPlaying ? "Reading aloud · page \(listener.pageIndex + 1)" : "Paused")
+                        .font(.rounded(.caption, weight: .semibold))
+                        .foregroundStyle(Theme.inkSecondary)
+                    Spacer()
+                    Button { listener.stop() } label: {
+                        Text("Stop").font(.rounded(.caption, weight: .semibold))
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(tint)
+                }
+                .transition(.opacity)
+            }
             if index == book.pages.count - 1, store.quiz.contains(where: { $0.pageId.hasPrefix(book.id + "-") }) {
                 Button { startQuiz() } label: {
                     Label("Finished? Test yourself", systemImage: "checkmark.seal.fill")
@@ -188,6 +252,38 @@ struct ReaderView: View {
         .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).strokeBorder(Theme.hairline))
         .padding(.horizontal, 16)
         .padding(.bottom, 6)
+    }
+
+    static let simplerPrompt = "Explain this page more simply, like I'm 12. Use one everyday analogy and keep it under 150 words."
+
+    private func ask(_ prompt: String?, page: Page? = nil) {
+        askRequest = AskRequest(context: .page(page ?? self.page, showingComic: mode == .comic), prompt: prompt)
+    }
+
+    private func toggleListening() {
+        if isListeningHere {
+            if listener.isPlaying { listener.pause() } else if listener.pageIndex == index { listener.resume() } else { listener.jump(to: index) }
+        } else {
+            listener.start(book, at: index, store: store)
+        }
+    }
+
+    private func sharePage() {
+        let collection = store.collection(for: book)
+        if mode == .text, let first = page.panels.first, page.panels.count == 1 {
+            shareItem = ShareCard.text(first, page: page, book: book, collection: collection)
+            return
+        }
+        Task {
+            let visible = zoomRegistry.visible(page.id)
+            let image: UIImage? = if let visible { visible.image } else { await ImageCache.shared.load(store.url(page.image)) }
+            guard let image else { return }
+            shareItem = ShareCard.comic(image, page: page, book: book, collection: collection, isDetail: visible?.isDetail ?? false)
+        }
+    }
+
+    private func share(panel: Panel, page: Page) {
+        shareItem = ShareCard.text(panel, page: page, book: book, collection: store.collection(for: book))
     }
 
     private func openPage(_ target: Page) {

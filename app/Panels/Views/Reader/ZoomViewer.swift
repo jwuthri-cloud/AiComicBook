@@ -93,6 +93,8 @@ struct PageZoomView: UIViewRepresentable {
     let insets: UIEdgeInsets
     let onSingleTap: () -> Void
     let onZoomChange: (Bool) -> Void
+    /// Receives a function returning what's on screen (the zoomed detail, or the whole page).
+    var onRegister: ((@escaping () -> (image: UIImage, isDetail: Bool)?) -> Void)? = nil
 
     func makeUIView(context: Context) -> UIScrollView {
         let scroll = UIScrollView()
@@ -156,6 +158,10 @@ struct PageZoomView: UIViewRepresentable {
         ])
         context.coordinator.canvas = canvas
         context.coordinator.card = card
+        onRegister? { [weak scroll, weak imageView] in
+            guard let scroll, let imageView else { return nil }
+            return Self.visibleCrop(of: image, in: imageView, scroll: scroll)
+        }
 
         let doubleTap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.doubleTapped(_:)))
         doubleTap.numberOfTapsRequired = 2
@@ -174,6 +180,21 @@ struct PageZoomView: UIViewRepresentable {
 
     func updateUIView(_ scroll: UIScrollView, context: Context) {
         context.coordinator.parent = self
+    }
+
+    /// The part of the page currently on screen, in full resolution.
+    static func visibleCrop(of image: UIImage, in imageView: UIView, scroll: UIScrollView) -> (image: UIImage, isDetail: Bool) {
+        guard scroll.zoomScale > 1.01, imageView.bounds.width > 0 else { return (image, false) }
+        let visible = scroll.convert(scroll.bounds, to: imageView).intersection(imageView.bounds)
+        guard !visible.isNull, visible.width > 4, visible.height > 4 else { return (image, false) }
+        let factor = image.size.width / imageView.bounds.width
+        let rect = CGRect(x: visible.minX * factor, y: visible.minY * factor, width: visible.width * factor, height: visible.height * factor)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        let crop = UIGraphicsImageRenderer(size: rect.size, format: format).image { _ in
+            image.draw(at: CGPoint(x: -rect.minX, y: -rect.minY))
+        }
+        return (crop, true)
     }
 
     func makeCoordinator() -> Coordinator { Coordinator(parent: self) }

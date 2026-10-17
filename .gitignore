@@ -4,3 +4,4 @@ app/build/
 *.xcuserstate
 xcuserdata/
 __pycache__/
+app/narration/

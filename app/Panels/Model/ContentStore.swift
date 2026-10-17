@@ -17,6 +17,21 @@ final class ContentStore {
 
     @ObservationIgnored lazy var termMatcher = TermMatcher(terms: glossary)
     @ObservationIgnored lazy var search = SearchEngine(store: self)
+    /// Undirected "related" links between glossary terms, best-connected first.
+    @ObservationIgnored private lazy var termGraph: [String: [String]] = {
+        var links: [String: Set<String>] = [:]
+        for term in glossary {
+            for other in term.related where terms[other] != nil && other != term.id {
+                links[term.id, default: []].insert(other)
+                links[other, default: []].insert(term.id)
+            }
+        }
+        return links.mapValues { ids in
+            ids.sorted { (links[$0]?.count ?? 0, $1) > (links[$1]?.count ?? 0, $0) }
+        }
+    }()
+
+    func relatedTermIds(_ id: String) -> [String] { termGraph[id] ?? [] }
 
     convenience init() {
         guard let url = Bundle.main.url(forResource: "Content", withExtension: nil) else {

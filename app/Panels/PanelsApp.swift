@@ -8,6 +8,7 @@ struct PanelsApp: App {
     @State private var library = LibraryState()
     @State private var router = Router()
     @State private var quizState = QuizState()
+    @State private var listener = Listener.shared
     @AppStorage("appearance") private var appearance = Appearance.system
 
     init() {
@@ -31,6 +32,7 @@ struct PanelsApp: App {
                 .environment(library)
                 .environment(router)
                 .environment(quizState)
+                .environment(listener)
                 .tint(Theme.accent)
                 .preferredColorScheme(appearance.colorScheme)
         }
@@ -56,6 +58,7 @@ struct RootView: View {
     @Environment(ContentStore.self) private var store
     @Environment(Router.self) private var router
     @Environment(QuizState.self) private var quizState
+    @Environment(Listener.self) private var listener
     @State private var tab = AppTab.library
 
     var body: some View {
@@ -77,6 +80,7 @@ struct RootView: View {
                 SearchView()
             }
         }
+        .modifier(ListenAccessory(isActive: listener.isActive))
         .fullScreenCover(item: $router.reader) { request in
             if let book = store.books[request.bookId] {
                 ReaderView(book: book, startIndex: request.pageIndex, initialMode: request.mode)
@@ -91,6 +95,9 @@ struct RootView: View {
         .sheet(isPresented: $router.debugAsk) { AssistantView(context: .library) }
         .fullScreenCover(item: $router.quiz) { session in
             QuizSessionView(session: session)
+        }
+        .fullScreenCover(item: $router.game) { game in
+            GameHost(game: game)
         }
         .onAppear(perform: openDebugScreen)
         .sheet(item: $router.term) { term in
@@ -145,6 +152,21 @@ extension RootView {
             router.pendingRoute = nil
             router.debugAsk = true
         case "glossary": tab = .glossary
+        case "map":
+            tab = .glossary
+            router.pendingMap = parts.count > 1 ? parts[1] : "reward-hacking"
+        case "game":
+            tab = .quiz
+            switch parts.count > 1 ? parts[1] : "" {
+            case "match": router.game = .match
+            case "speed": router.game = .speed
+            case "zoom": router.game = .zoom
+            default: router.game = .flashcards(title: "Smart deck", termIds: PracticeDecks.smart(store: store, state: quizState).map(\.id))
+            }
+        case "listen":
+            if parts.count > 1, let book = store.books[parts[1]] {
+                listener.start(book, at: parts.count > 2 ? Int(parts[2]) ?? 0 : 0, store: store)
+            }
         case "watch": tab = .watch
         case "term":
             if parts.count > 1 { router.term = store.terms[parts[1]] }
@@ -156,11 +178,39 @@ extension RootView {
     }
 }
 
+/// The "now listening" mini player: a tab-bar accessory on iOS 26, a floating bar before that.
+struct ListenAccessory: ViewModifier {
+    let isActive: Bool
+
+    func body(content: Content) -> some View {
+        if #available(iOS 26.1, *) {
+            content.tabViewBottomAccessory(isEnabled: isActive) { ListenMiniPlayer() }
+        } else if #available(iOS 26.0, *) {
+            content.tabViewBottomAccessory {
+                if isActive { ListenMiniPlayer() }
+            }
+        } else {
+            content.overlay(alignment: .bottom) {
+                if isActive {
+                    ListenMiniPlayer()
+                        .padding(.vertical, 6)
+                        .background(.regularMaterial, in: Capsule())
+                        .overlay(Capsule().strokeBorder(Theme.hairline))
+                        .padding(.horizontal, 12)
+                        .padding(.bottom, 58)
+                }
+            }
+        }
+    }
+}
+
 /// Destinations pushed inside each tab's NavigationStack.
 enum Route: Hashable {
     case collection(String)
     case book(String)
     case term(String)
+    case map(String)
+    case flashcards
     case bookmarks
 }
 
@@ -176,6 +226,10 @@ struct RouteDestinations: ViewModifier {
                 if let b = store.books[id] { BookDetailView(book: b) }
             case .term(let id):
                 if let t = store.terms[id] { TermDetailView(term: t) }
+            case .map(let id):
+                ConceptMapView(termId: id)
+            case .flashcards:
+                FlashcardDecksView()
             case .bookmarks:
                 BookmarksView()
             }

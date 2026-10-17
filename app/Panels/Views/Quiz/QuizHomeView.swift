@@ -22,6 +22,7 @@ struct QuizHomeView: View {
                     stats
                     daily
                     quickModes
+                    play
                     VStack(alignment: .leading, spacing: 14) {
                         Text("By collection")
                             .font(.serif(.title2, weight: .bold))
@@ -38,6 +39,7 @@ struct QuizHomeView: View {
             }
             .scrollIndicators(.hidden)
             .background(Theme.background)
+            .withRoutes()
             .navigationDestination(for: QuizRoute.self) { route in
                 switch route {
                 case .collection(let id):
@@ -88,6 +90,33 @@ struct QuizHomeView: View {
             .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).strokeBorder(tint.opacity(0.2)))
         }
         .buttonStyle(.plain)
+    }
+
+    @AppStorage("best.match") private var bestMatch = 0.0
+    @AppStorage("best.speed") private var bestSpeed = 0
+    @AppStorage("best.zoom") private var bestZoom = 0
+
+    private var play: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Play")
+                .font(.serif(.title2, weight: .bold))
+                .foregroundStyle(Theme.ink)
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
+                NavigationLink(value: Route.flashcards) {
+                    ModeTileLabel(title: "Flashcards", subtitle: "Flip and swipe", symbol: "rectangle.on.rectangle.angled", tint: Theme.tint("teal"))
+                }
+                .buttonStyle(.plain)
+                ModeTile(title: "Match", subtitle: bestMatch > 0 ? String(format: "Best %.1f s", bestMatch) : "Words ↔ meanings", symbol: "square.grid.2x2.fill", tint: Theme.tint("violet")) {
+                    router.game = .match
+                }
+                ModeTile(title: "Speed round", subtitle: bestSpeed > 0 ? "Best \(bestSpeed) pts" : "60 seconds, right or wrong", symbol: "bolt.circle.fill", tint: Theme.tint("amber")) {
+                    router.game = .speed
+                }
+                ModeTile(title: "Zoom guess", subtitle: bestZoom > 0 ? "Best \(bestZoom) of 24" : "Which page is this?", symbol: "magnifyingglass.circle.fill", tint: Theme.tint("coral")) {
+                    router.game = .zoom
+                }
+            }
+        }
     }
 
     private var quickModes: some View {
@@ -145,24 +174,35 @@ struct ModeTile: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(alignment: .leading, spacing: 10) {
-                Image(systemName: symbol)
-                    .font(.system(size: 17, weight: .semibold))
-                    .foregroundStyle(tint)
-                    .frame(width: 36, height: 36)
-                    .background(tint.opacity(0.14), in: RoundedRectangle(cornerRadius: 11, style: .continuous))
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.serif(.headline, weight: .semibold)).foregroundStyle(Theme.ink)
-                    Text(subtitle).font(.rounded(.caption)).foregroundStyle(Theme.inkSecondary)
-                }
-            }
-            .padding(14)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .card(radius: 18)
-            .opacity(disabled ? 0.5 : 1)
+            ModeTileLabel(title: title, subtitle: subtitle, symbol: symbol, tint: tint)
+                .opacity(disabled ? 0.5 : 1)
         }
         .buttonStyle(.plain)
         .disabled(disabled)
+    }
+}
+
+struct ModeTileLabel: View {
+    let title: String
+    let subtitle: String
+    let symbol: String
+    let tint: Color
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(systemName: symbol)
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundStyle(tint)
+                .frame(width: 36, height: 36)
+                .background(tint.opacity(0.14), in: RoundedRectangle(cornerRadius: 11, style: .continuous))
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title).font(.serif(.headline, weight: .semibold)).foregroundStyle(Theme.ink)
+                Text(subtitle).font(.rounded(.caption)).foregroundStyle(Theme.inkSecondary).lineLimit(1)
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card(radius: 18)
     }
 }
 

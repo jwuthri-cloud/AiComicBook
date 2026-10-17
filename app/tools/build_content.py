@@ -4,6 +4,7 @@ Collects every comic collection in the repo into one content.json, links glossar
 to the pages that mention them, and writes app-sized media:
   pages  -> HEIC (full page) + JPEG thumbnail
   videos -> HEVC 720p per-page clips
+  narration (from make_narration.py) -> small AAC clips per page for Listen mode
 
 Output: app/Panels/Content/ (bundled into the app as a folder reference; gitignored).
 Re-run after adding comics or videos; unchanged media is skipped.
@@ -30,6 +31,7 @@ SRC = REPO / "app" / "content-src"
 OUT = REPO / "app" / "Panels" / "Content"
 FELLOWSHIP = REPO / "anthropic fellowship"
 SAFETY = REPO / "ai safety"
+NARRATION = REPO / "app" / "narration"
 
 HEIC_QUALITY = "70"
 THUMB_WIDTH = 420
@@ -398,6 +400,23 @@ def make_video(src: Path, dest: Path, poster: Path) -> None:
          "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", str(dest)])
 
 
+def make_audio(src: Path, dest: Path) -> None:
+    """Speech-sized AAC (HE-AAC, mono): a fifth of the MP3 size, still clear on headphones."""
+    if fresh(dest, src):
+        return
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    run(["ffmpeg", "-y", "-v", "error", "-i", str(src), "-ac", "1", "-ar", "44100",
+         "-c:a", "aac_at", "-profile:a", "4", "-b:a", "32k", "-movflags", "+faststart", str(dest)])
+
+
+def narration_manifest() -> tuple[Path, dict]:
+    """The most recently recorded voice's clips (app/narration/<voice>/manifest.json)."""
+    manifests = sorted(NARRATION.glob("*/manifest.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not manifests:
+        return NARRATION, {}
+    return manifests[0].parent, json.loads(manifests[0].read_text())
+
+
 def probe_duration(path: Path) -> float:
     r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
                        capture_output=True, text=True)
@@ -474,14 +493,32 @@ def main() -> None:
             book["hasVideo"] = any(p.get("video") for p in book["pages"])
         col["pageCount"] = sum(len(b["pages"]) for b in col["books"])
 
+    # Listen mode: attach pre-recorded narration to pages whose clips are all present.
+    voice_dir, manifest = narration_manifest()
+    narrated = []
+    for page, _ in all_pages:
+        entry = manifest.get(page["id"])
+        if not entry or not all((voice_dir / c["file"]).exists() for c in entry["clips"]):
+            continue
+        page["narration"] = [{"panel": c["panel"], "audio": f"narration/{page['id']}/{i:02d}.m4a"} for i, c in enumerate(entry["clips"])]
+        page["voice"] = entry["voice"]
+        for i, c in enumerate(entry["clips"]):
+            jobs.append(("audio", voice_dir / c["file"], OUT / page["narration"][i]["audio"], None))
+        narrated.append(page)
+
     if not args.no_media:
         print(f"media: {len(jobs)} files")
         with ThreadPoolExecutor(max_workers=6) as pool:
-            for _ in pool.map(lambda j: make_image(j[1], j[2], j[3]) if j[0] == "image" else make_video(j[1], j[2], j[3]), jobs):
+            makers = {"image": make_image, "video": make_video, "audio": lambda src, dest, _: make_audio(src, dest)}
+            for _ in pool.map(lambda j: makers[j[0]](j[1], j[2], j[3]), jobs):
                 pass
     for page, video in all_pages:
         if page.get("video"):
             page["duration"] = probe_duration(OUT / page["video"]) if (OUT / page["video"]).exists() else probe_duration(video)
+
+    for page in narrated:
+        for clip in page["narration"]:
+            clip["duration"] = probe_duration(OUT / clip["audio"])
 
     glossary_file = SRC / "glossary.json"
     glossary = json.loads(glossary_file.read_text())["terms"] if glossary_file.exists() else []
@@ -502,6 +539,7 @@ def main() -> None:
     size = sum(f.stat().st_size for f in OUT.rglob("*") if f.is_file()) / 1e6
     print(f"{len(cols)} collections, {sum(len(c['books']) for c in cols)} books, {n_pages} pages "
           f"({n_text} with text, {n_video} with video), {len(glossary)} glossary terms, {len(quiz)} quiz questions, {size:.0f} MB")
+    print(f"narration: {len(narrated)} of {n_pages} pages" + (f" ({narrated[0]['voice']})" if narrated else ""))
     missing = [p["id"] for p, _ in all_pages if not p["panels"]]
     if missing:
         print(f"pages without text: {len(missing)} (e.g. {missing[:5]})", file=sys.stderr)
