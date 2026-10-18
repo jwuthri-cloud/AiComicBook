@@ -96,6 +96,8 @@ struct Term: Decodable, Identifiable, Hashable {
     let category: String
     let short: String
     let definition: String
+    /// Advanced mode: the expert-level explanation.
+    let advanced: String?
     let related: [String]
     let pages: [String]
 

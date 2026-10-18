@@ -100,7 +100,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Depth")
                 } footer: {
-                    Text("Adds an expert-level note under every panel of the text pages and after each quiz answer. You can also switch it on any page.")
+                    Text("Replaces the plain explanations with expert-level ones on the text pages and in the glossary, and adds a closing note after each quiz answer. You can also switch it on any page.")
                 }
                 Section {
                     VStack(alignment: .leading, spacing: 10) {

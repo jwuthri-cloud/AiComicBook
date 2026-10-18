@@ -176,6 +176,7 @@ struct TermDetailView: View {
     @Environment(Router.self) private var router
     @Environment(\.openPage) private var inheritedOpenPage
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("advancedMode") private var advanced = false
     @State private var asking: String??
 
     var body: some View {
@@ -203,12 +204,55 @@ struct TermDetailView: View {
                     .padding(.leading, 14)
                     .overlay(alignment: .leading) { Capsule().fill(tint).frame(width: 3) }
 
-                Text(term.definition)
-                    .font(.serif(.body))
-                    .foregroundStyle(Theme.ink.opacity(0.88))
-                    .lineSpacing(5)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .textSelection(.enabled)
+                if let deep = term.advanced {
+                    Picker("Level", selection: $advanced) {
+                        Text("Beginner").tag(false)
+                        Text("Advanced").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+
+                    if advanced {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("ADVANCED")
+                                .font(.rounded(.caption2, weight: .bold))
+                                .tracking(1.2)
+                                .foregroundStyle(tint)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(tint.opacity(0.14), in: Capsule())
+                            ForEach(Array(deep.components(separatedBy: "\n\n").enumerated()), id: \.offset) { _, paragraph in
+                                Text(paragraph)
+                                    .font(.serif(.body))
+                                    .foregroundStyle(Theme.ink.opacity(0.88))
+                                    .lineSpacing(5)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .textSelection(.enabled)
+                            }
+                        }
+                        DisclosureGroup {
+                            Text(term.definition)
+                                .font(.serif(.callout))
+                                .foregroundStyle(Theme.inkSecondary)
+                                .lineSpacing(4)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.top, 6)
+                        } label: {
+                            Label("Beginner version", systemImage: "lightbulb")
+                                .font(.rounded(.subheadline, weight: .semibold))
+                                .foregroundStyle(Theme.inkSecondary)
+                        }
+                        .tint(Theme.inkSecondary)
+                    }
+                }
+
+                if term.advanced == nil || !advanced {
+                    Text(term.definition)
+                        .font(.serif(.body))
+                        .foregroundStyle(Theme.ink.opacity(0.88))
+                        .lineSpacing(5)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .textSelection(.enabled)
+                }
 
                 FlowLayout(spacing: 8) {
                     actionChip("Explain simpler", symbol: "sparkles", tint: tint) {

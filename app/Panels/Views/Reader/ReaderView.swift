@@ -12,6 +12,7 @@ struct ReaderView: View {
     @Environment(Listener.self) private var listener
     @Environment(\.dismiss) private var dismiss
     @AppStorage("readerMode") private var savedMode = ReaderMode.comic
+    @AppStorage("advancedMode") private var advanced = false
 
     @State private var index = 0
     @State private var mode = ReaderMode.comic
@@ -177,6 +178,12 @@ struct ReaderView: View {
             .accessibilityLabel(isListeningHere && listener.isPlaying ? "Pause listening" : "Listen from this page")
 
             Menu {
+                Button {
+                    advanced.toggle()
+                    if advanced, mode == .comic { mode = .text }
+                } label: {
+                    Label(advanced ? "Back to beginner" : "Advanced mode", systemImage: advanced ? "graduationcap.fill" : "graduationcap")
+                }
                 Button { library.toggleBookmark(page) } label: {
                     Label(library.isBookmarked(page) ? "Remove bookmark" : "Bookmark page", systemImage: library.isBookmarked(page) ? "bookmark.slash" : "bookmark")
                 }

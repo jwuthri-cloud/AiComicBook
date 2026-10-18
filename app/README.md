@@ -5,7 +5,7 @@ An offline SwiftUI app for reading and watching every collection in this reposit
 - **Read like a book**: page-curl reader with three modes per page: the original **comic** (double-tap to zoom), **typeset text** with tappable glossary words, and the page's **video** where one exists.
 - **Watch**: every narrated clip, playable one by one or a whole book back to back (AirPlay, Picture in Picture, plays with the silent switch on).
 - **Smart search**: typo-tolerant, prefix-as-you-type, acronym-aware (RLHF ↔ reinforcement learning from human feedback), everyday-word synonyms ("cheat" → reward hacking, specification gaming) and an on-device meaning-based boost for questions.
-- **Advanced mode**: a Beginner/Advanced switch on every text page (also in Settings) adds an expert-level note under each panel and a closing "Beyond the basics" note; quizzes show that note after each answer.
+- **Advanced mode**: a Beginner/Advanced switch on every text page and glossary term (also in Settings and the reader menu) swaps in a much deeper expert explanation (the plain one stays one tap away), plus a closing "Beyond the basics" note; quizzes show that note after each answer.
 - **Glossary**: 324 terms with plain definitions, related terms and every page they appear in. Words of the glossary are highlighted inside the text pages.
 - **Quiz**: 711 written questions covering every page (3–4 each, with explanations and a link back to the page) plus generated glossary questions. Daily 10, Review (spaced repetition: missed questions come back until they stick), Word drill, Quick 5, Hard mode, per-collection and per-book quizzes, streaks and mastery rings.
 - **Ask (optional, online)**: a study companion powered by the reader's own OpenAI key (stored in the iPhone Keychain, never in the app). It knows the current page — including the comic image when asked from the comic view — finds relevant pages across the library for each question, accepts photos, and links its sources back to the reader.
@@ -41,6 +41,7 @@ Re-run step 1 whenever comics, transcripts, the glossary or videos change; uncha
 | `app/content-src/glossary.json` | Glossary terms |
 | `app/content-src/synonyms.json` | Everyday-word search expansions |
 | `app/content-src/advanced/*.json` | Advanced mode: a deeper note per panel plus a closing note per page (`{"pages": {id: {"panels": [...], "further": "..."}}}`; panel count must match the page) |
+| `app/content-src/advanced-glossary/*.json` | Advanced glossary text: `{"terms": {term: text}}` |
 | `app/content-src/quiz-*.json` | Quiz questions (validated and merged by the build script) |
 
 ## Debug shortcuts

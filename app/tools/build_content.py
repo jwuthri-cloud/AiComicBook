@@ -328,10 +328,21 @@ def term_pattern(name: str) -> re.Pattern:
     return re.compile(rf"(?<![\w-]){escaped}(?:s|es)?(?![\w-])", flags)
 
 
+def load_advanced_glossary() -> dict[str, str]:
+    """Term name -> advanced text, from app/content-src/advanced-glossary/*.json."""
+    out: dict[str, str] = {}
+    for path in sorted((SRC / "advanced-glossary").glob("*.json")):
+        for term, text in json.loads(path.read_text()).get("terms", {}).items():
+            if isinstance(text, str) and text.strip():
+                out[term] = text.strip()
+    return out
+
+
 def link_glossary(glossary: list[dict], pages: list[dict]) -> list[dict]:
     texts = {p["id"]: page_search_text(p) for p in pages}
     titles = {p["id"]: p["title"].lower() for p in pages}
     by_name = {t["term"]: slug(t["term"]) for t in glossary}
+    advanced = load_advanced_glossary()
     out = []
     for t in glossary:
         names = [t["term"], *t.get("aka", [])]
@@ -353,6 +364,7 @@ def link_glossary(glossary: list[dict], pages: list[dict]) -> list[dict]:
             "category": t.get("category", ""),
             "short": t.get("short", ""),
             "definition": t.get("definition", ""),
+            **({"advanced": advanced[t["term"]]} if t["term"] in advanced else {}),
             "related": [by_name[r] for r in t.get("related", []) if r in by_name],
             "pages": [pid for *_, pid in hits[:24]],
         })
@@ -558,7 +570,7 @@ def main() -> None:
     size = sum(f.stat().st_size for f in OUT.rglob("*") if f.is_file()) / 1e6
     print(f"{len(cols)} collections, {sum(len(c['books']) for c in cols)} books, {n_pages} pages "
           f"({n_text} with text, {n_video} with video), {len(glossary)} glossary terms, {len(quiz)} quiz questions, {size:.0f} MB")
-    print(f"advanced mode: {n_advanced} of {n_pages} pages")
+    print(f"advanced mode: {n_advanced} of {n_pages} pages, {sum(1 for t in glossary if t.get('advanced'))} of {len(glossary)} glossary terms")
     print(f"narration: {len(narrated)} of {n_pages} pages" + (f" ({narrated[0]['voice']})" if narrated else ""))
     missing = [p["id"] for p, _ in all_pages if not p["panels"]]
     if missing:

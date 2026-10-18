@@ -136,12 +136,12 @@ struct TextPageView: View {
                 ForEach(Array(page.panels.enumerated()), id: \.offset) { i, panel in
                     let speaking = listener.page?.id == page.id && listener.panel == i
                     VStack(alignment: .leading, spacing: 0) {
-                        PanelText(panel: panel, body: linked[i], tint: tint, scale: textScale)
+                        PanelText(panel: panel, body: linkedDeeper.indices.contains(i) ? linkedDeeper[i] : linked[i], tint: tint, scale: textScale, advanced: linkedDeeper.indices.contains(i))
                             .padding(.horizontal, 12)
                             .padding(.vertical, 10)
                             .background(tint.opacity(speaking ? 0.10 : 0), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                             .padding(.horizontal, -12)
-                            .padding(.bottom, linkedDeeper.indices.contains(i) ? 6 : 16)
+                            .padding(.bottom, 16)
                             .animation(.easeInOut(duration: 0.35), value: speaking)
                             .contextMenu {
                                 Button { onAsk(Self.simplerPrompt(panel)) } label: { Label("Explain this simpler", systemImage: "sparkles") }
@@ -152,8 +152,20 @@ struct TextPageView: View {
                                 Button { UIPasteboard.general.string = "\(panel.heading)\n\n\(panel.body)" } label: { Label("Copy text", systemImage: "doc.on.doc") }
                             }
                         if linkedDeeper.indices.contains(i) {
-                            DeeperNote(text: linkedDeeper[i], label: "Going deeper", tint: tint, scale: textScale)
-                                .padding(.bottom, 20)
+                            DisclosureGroup {
+                                Text(linked[i])
+                                    .font(.system(size: 16 * textScale, design: .serif))
+                                    .foregroundStyle(Theme.inkSecondary)
+                                    .lineSpacing(5 * textScale)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.top, 6)
+                            } label: {
+                                Label("Beginner version", systemImage: "lightbulb")
+                                    .font(.rounded(.caption, weight: .semibold))
+                                    .foregroundStyle(Theme.inkSecondary)
+                            }
+                            .tint(Theme.inkSecondary)
+                            .padding(.bottom, 20)
                         }
                     }
                 }
@@ -263,12 +275,14 @@ private struct PanelText: View {
     let body_: AttributedString
     let tint: Color
     let scale: Double
+    var advanced = false
 
-    init(panel: Panel, body: AttributedString, tint: Color, scale: Double) {
+    init(panel: Panel, body: AttributedString, tint: Color, scale: Double, advanced: Bool = false) {
         self.panel = panel
         self.body_ = body
         self.tint = tint
         self.scale = scale
+        self.advanced = advanced
     }
 
     var body: some View {
@@ -284,6 +298,15 @@ private struct PanelText: View {
                     .font(.system(size: 21 * scale, weight: .semibold, design: .serif))
                     .foregroundStyle(Theme.ink)
                     .fixedSize(horizontal: false, vertical: true)
+            }
+            if advanced {
+                Text("ADVANCED")
+                    .font(.rounded(.caption2, weight: .bold))
+                    .tracking(1.2)
+                    .foregroundStyle(tint)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(tint.opacity(0.14), in: Capsule())
             }
             if !panel.body.isEmpty {
                 Text(body_)
