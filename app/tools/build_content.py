@@ -456,6 +456,24 @@ def load_quiz(page_ids: set[str]) -> list[dict]:
     return questions
 
 
+# ---------- advanced mode ----------
+
+def load_advanced(pages: list[dict]) -> int:
+    """Attach app/content-src/advanced/*.json to pages as `deeper`; a page whose panel count doesn't match is skipped."""
+    by_id = {p["id"]: p for p in pages}
+    attached = 0
+    for path in sorted((SRC / "advanced").glob("*.json")):
+        for pid, entry in json.loads(path.read_text()).get("pages", {}).items():
+            page = by_id.get(pid)
+            notes = entry.get("panels", [])
+            if page is None or len(notes) != len(page["panels"]) or not all(isinstance(n, str) and n.strip() for n in notes):
+                print(f"  advanced: skipped {pid} ({path.name})", file=sys.stderr)
+                continue
+            page["deeper"] = {"panels": [n.strip() for n in notes], "further": entry.get("further", "").strip()}
+            attached += 1
+    return attached
+
+
 # ---------- main ----------
 
 def main() -> None:
@@ -527,6 +545,7 @@ def main() -> None:
     synonyms_file = SRC / "synonyms.json"
     synonyms = {k: v for k, v in json.loads(synonyms_file.read_text()).items() if not k.startswith("_")} if synonyms_file.exists() else {}
 
+    n_advanced = load_advanced([p for p, _ in all_pages])
     quiz = load_quiz({p["id"] for p, _ in all_pages})
 
     content = {"version": 1, "collections": cols, "glossary": glossary, "synonyms": synonyms, "quiz": quiz}
@@ -539,6 +558,7 @@ def main() -> None:
     size = sum(f.stat().st_size for f in OUT.rglob("*") if f.is_file()) / 1e6
     print(f"{len(cols)} collections, {sum(len(c['books']) for c in cols)} books, {n_pages} pages "
           f"({n_text} with text, {n_video} with video), {len(glossary)} glossary terms, {len(quiz)} quiz questions, {size:.0f} MB")
+    print(f"advanced mode: {n_advanced} of {n_pages} pages")
     print(f"narration: {len(narrated)} of {n_pages} pages" + (f" ({narrated[0]['voice']})" if narrated else ""))
     missing = [p["id"] for p, _ in all_pages if not p["panels"]]
     if missing:

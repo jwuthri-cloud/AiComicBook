@@ -62,11 +62,18 @@ struct Page: Decodable, Identifiable, Hashable {
     let duration: Double?
     /// Pre-recorded Listen mode clips (opening, one per panel, takeaway), when recorded.
     let narration: [NarrationClip]?
+    /// Advanced mode: a deeper note per panel (same order as `panels`) and a closing note for the page.
+    let deeper: Deeper?
 
     var hasText: Bool { !panels.isEmpty }
 
     static func == (a: Page, b: Page) -> Bool { a.id == b.id }
     func hash(into h: inout Hasher) { h.combine(id) }
+}
+
+struct Deeper: Decodable, Hashable {
+    let panels: [String]
+    let further: String?
 }
 
 struct NarrationClip: Decodable, Hashable {

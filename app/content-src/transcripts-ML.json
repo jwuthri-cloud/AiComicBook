@@ -562,7 +562,7 @@
         {
           "number": 1,
           "heading": "KV-Cache Memory",
-          "body": "Formula: bytes ≈ 2 × L × B × T × H_kv × d_head × bytes_per_element, where L = layers, B = batch, T = total tokens (context + generated), H_kv = KV heads, d_head = head dim. Why the factor 2? We store both Keys and Values (K + V).\nVisual example config: L = 80 layers, B = 8 requests, T = 4,096 tokens, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes). bytes ≈ 2 × 80 × 8 × 4,096 × 8 × 128 × 2 = 6,710,886,400 bytes ≈ 6.25 GB. KV cache for this batch & context (weights not included)."
+          "body": "Formula: bytes ≈ 2 × L × B × T × H_kv × d_head × bytes_per_element, where L = layers, B = batch, T = total tokens (context + generated), H_kv = KV heads, d_head = head dim. Why the factor 2? We store both Keys and Values (K + V).\nVisual example config: L = 80 layers, B = 8 requests, T = 4,096 tokens, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes). bytes ≈ 2 × 80 × 8 × 4,096 × 8 × 128 × 2 = 10,737,418,240 bytes ≈ 10.7 GB (10 GiB). KV cache for this batch & context (weights not included)."
         },
         {
           "number": 2,
@@ -587,7 +587,7 @@
         {
           "number": 6,
           "heading": "Quantization Comparison",
-          "body": "FP8 (E4M3/E5M2): ~2× smaller memory/bandwidth vs BF16. Quality very good. Native FP8 HW required for best speed & accuracy. Growing support.\nINT8 (symmetric): ~2× smaller. Quality good. Broad HW support. Simple, fast. Slightly more quality loss than FP8.\nAWQ (weight-only): ~2.5–4× smaller (depends on sparsity). Quality very good. Activation stays FP16/BF16. Minimal accuracy loss on many models."
+          "body": "FP8 (E4M3/E5M2): ~2× smaller memory/bandwidth vs BF16. Quality very good. Native FP8 HW required for best speed & accuracy. Growing support.\nINT8 (symmetric): ~2× smaller. Quality good. Broad HW support. Simple, fast. Slightly more quality loss than FP8.\nAWQ (weight-only): ~2.5–4× smaller (depends on bit-width, e.g. 4-bit, and the overhead of per-group scales). Quality very good. Activation stays FP16/BF16. Minimal accuracy loss on many models."
         },
         {
           "number": 7,
@@ -597,7 +597,7 @@
         {
           "number": 8,
           "heading": "Interview Napkin Math",
-          "body": "A) Weights memory (70B model): Parameters = 70 billion, BF16 (2 bytes/param): 70,000,000,000 × 2 bytes = 140,000,000,000 bytes ≈ 140 GB.\nB) KV cache can dominate long context. Assume L = 80 layers, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes), B = 8 requests. Context length 4K tokens ≈ 6.25 GB; 32K ≈ 50.0 GB; 128K ≈ 200 GB; 256K ≈ 400 GB. At long contexts, KV cache >> model weights. Ex: 256K tokens → ~400 GB KV cache vs 140 GB weights. Check the numbers. Know where the memory really goes."
+          "body": "A) Weights memory (70B model): Parameters = 70 billion, BF16 (2 bytes/param): 70,000,000,000 × 2 bytes = 140,000,000,000 bytes ≈ 140 GB.\nB) KV cache can dominate long context. Assume L = 80 layers, H_kv = 8, d_head = 128, dtype = BF16 (2 bytes), B = 8 requests. Context length 4K tokens ≈ 10.7 GB; 32K ≈ 86 GB; 128K ≈ 344 GB; 256K ≈ 687 GB. At long contexts, KV cache >> model weights. Ex: 256K tokens → ~687 GB KV cache vs 140 GB weights. Check the numbers. Know where the memory really goes."
         }
       ],
       "footer": "Prefill for speed. Cache for context. Batch for utilization.",
@@ -755,12 +755,12 @@
         {
           "number": 2,
           "heading": "Training Compute (FLOPs)",
-          "body": "Training compute scales as FLOPs ≈ 6ND, where N = parameters and D = training tokens.\nDerivation (big picture): Forward (2) + Backward (2) + Grad calc (2) ≈ 6 FLOPs per parameter per token.\nExample: 7B parameters (7 × 10⁹) × 1T tokens (10¹²): FLOPs ≈ 6 × 7 × 10⁹ × 10¹² = 4.2 × 10²².\nCompute is the currency. More FLOPs → lower loss (until limited by data / model)."
+          "body": "Training compute scales as FLOPs ≈ 6ND, where N = parameters and D = training tokens.\nDerivation (big picture): Forward (2) + Backward (4: 2 for activation gradients, 2 for weight gradients) ≈ 6 FLOPs per parameter per token.\nExample: 7B parameters (7 × 10⁹) × 1T tokens (10¹²): FLOPs ≈ 6 × 7 × 10⁹ × 10¹² = 4.2 × 10²².\nCompute is the currency. More FLOPs → lower loss (until limited by data / model)."
         },
         {
           "number": 3,
           "heading": "Memory Accounting (Training)",
-          "body": "Weights in BF16: Weights ≈ 2N bytes.\nAdam optimizer (roughly): weights + gradients + m (1st moment) + v (2nd moment) ≈ (1 + 1 + 1 + 1) × 2N = 8N bytes (not counting activations).\nOrder of magnitude: Training memory (persistent) ≈ 8N bytes. Activations add more (depends on model, seq len, batch size). Rule of thumb: plan for 1.5× – 3× the 8N baseline.\nAlways check in units (bytes / GB / TB)."
+          "body": "Weights in BF16: Weights ≈ 2N bytes.\nAdam optimizer, everything in BF16 (optimistic floor): weights + gradients + m (1st moment) + v (2nd moment) ≈ (1 + 1 + 1 + 1) × 2N = 8N bytes (not counting activations).\nStandard mixed precision keeps FP32 master weights and FP32 moments: 2N + 2N + 4N + 4N + 4N = 16N bytes.\nOrder of magnitude: Training memory (persistent) ≈ 8N–16N bytes. Activations add more (depends on model, seq len, batch size). Rule of thumb: plan for 1.5× – 3× the persistent baseline.\nAlways check in units (bytes / GB / TB)."
         },
         {
           "number": 4,
@@ -1016,7 +1016,7 @@
         {
           "number": 3,
           "heading": "SentencePiece: Models Raw Text (Including Spaces)",
-          "body": "Uses a unigram language model (or BPE variant) over raw characters. Raw input kept as-is (\"Hello\", \" Hello\", \"Hello,\", \" Hello,\"). Learn units (pieces) such as ▁Hello, ello, lo, he. Encode by greedy longest match: \"Hello\" → ▁Hello; \" Hello\" → ▁ + Hello; \"Hello,\" → ▁Hello + ,.\nSentencePiece treats spaces as part of the text. Great for multilingual and code.\nVocab & special tokens — typical special tokens: <pad> padding; <bos> beginning of sequence; <eos> end of sequence; <unk> unknown token; <mask> mask (for MLM); <sep> separator. Models reserve these IDs. Don't use them as content."
+          "body": "Uses a unigram language model (or BPE variant) over raw characters. Raw input kept as-is (\"Hello\", \" Hello\", \"Hello,\", \" Hello,\"). Learn units (pieces) such as ▁Hello, ello, lo, he. Encode by choosing the most probable segmentation (unigram model: Viterbi search; BPE variant: apply the learned merges): \"Hello\" → ▁Hello; \" Hello\" → ▁ + Hello; \"Hello,\" → ▁Hello + ,.\nSentencePiece treats spaces as part of the text. Great for multilingual and code.\nVocab & special tokens — typical special tokens: <pad> padding; <bos> beginning of sequence; <eos> end of sequence; <unk> unknown token; <mask> mask (for MLM); <sep> separator. Models reserve these IDs. Don't use them as content."
         },
         {
           "number": 4,

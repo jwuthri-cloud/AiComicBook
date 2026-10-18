@@ -36,7 +36,7 @@
           "number": 6,
           "heading": "Hashing Power-Ups (Use Cases)",
           "body": "A) Use duplicate detection (set): find any duplicate? Time O(n), space O(n). Example: nums = [3, 1, 4, 1, 5] -> True.\nB) Frequency counts (map): count occurrences. Example: nums = [2,2,1,3,2] -> freq = {2:3, 1:1, 3:1}.\nC) Valid anagram (counts): are two strings anagrams? Example: \"listen\" & \"silent\" -> True.",
-          "code": "# A) duplicate detection\ns = {}\nfor x in nums:\n  if x in s:\n    return True\n  s.add(x)\nreturn False\n\n# B) frequency counts\nfreq = {}\nfor x in nums:\n  freq[x] = freq.get(x, 0) + 1\n\n# C) valid anagram\nif len(s) != len(t): return False\ncount = {}\nfor c in s:\n  count[c] = count.get(c, 0) + 1\nfor c in t:\n  count[c] = count.get(c, 0) - 1\nreturn all(v == 0 for v in count.values())"
+          "code": "# A) duplicate detection\ns = set()\nfor x in nums:\n  if x in s:\n    return True\n  s.add(x)\nreturn False\n\n# B) frequency counts\nfreq = {}\nfor x in nums:\n  freq[x] = freq.get(x, 0) + 1\n\n# C) valid anagram\nif len(s) != len(t): return False\ncount = {}\nfor c in s:\n  count[c] = count.get(c, 0) + 1\nfor c in t:\n  count[c] = count.get(c, 0) - 1\nreturn all(v == 0 for v in count.values())"
         },
         {
           "number": 7,
@@ -130,7 +130,7 @@
         {
           "number": 1,
           "heading": "Variable-Size Window l...r",
-          "body": "Example: Longest Substring Without Repeating Characters, s = \"abcabcbb\" (indices 0-7).\nr = 0: window \"a\", set = {a}, best = 1\nr = 1: \"ab\", set = {a,b}, best = 2\nr = 2: \"abc\", set = {a,b,c}, best = 3\nr = 3 (dup 'a'): shrink l -> 1, set = {b,c,a}, best = 3\nr = 4 (dup 'b'): shrink l -> 2, set = {c,a,b}, best = 3\nr = 5 (dup 'c'): shrink l -> 3, set = {a,b,c}, best = 3\nr = 6 (dup 'b'): shrink l -> 4, set = {a,b,c}, best = 3\nr = 7 (dup 'b'): shrink l -> 6, set = {c,b}, best = 3\nAnswer: 3 (\"abc\")"
+          "body": "Example: Longest Substring Without Repeating Characters, s = \"abcabcbb\" (indices 0-7).\nr = 0: window \"a\", set = {a}, best = 1\nr = 1: \"ab\", set = {a,b}, best = 2\nr = 2: \"abc\", set = {a,b,c}, best = 3\nr = 3 (dup 'a'): shrink l -> 1, set = {b,c,a}, best = 3\nr = 4 (dup 'b'): shrink l -> 2, set = {c,a,b}, best = 3\nr = 5 (dup 'c'): shrink l -> 3, set = {a,b,c}, best = 3\nr = 6 (dup 'b'): shrink l -> 5, set = {c,b}, best = 3\nr = 7 (dup 'b'): shrink l -> 7, set = {b}, best = 3\nAnswer: 3 (\"abc\")"
         },
         {
           "number": 2,
@@ -249,19 +249,19 @@
         {
           "number": 3,
           "heading": "Loop Invariant",
-          "body": "The answer (target or insertion position) always lies in the current search space [l, r]. We shrink the space while maintaining the invariant.\nIf nums[mid] < target: answer is in (mid, r], so set l = mid + 1.\nIf nums[mid] >= target: answer is in [l, mid], so set r = mid.\nStop when l > r. Insertion position = l."
+          "body": "The answer (target or insertion position) always lies in [l, r + 1]; we shrink the space while maintaining that. We shrink the space while maintaining the invariant.\nIf nums[mid] < target: answer is in (mid, r], so set l = mid + 1.\nIf nums[mid] > target: answer is in [l, mid], so set r = mid - 1 (mid itself is ruled out as a match).\nThe insertion position always stays in [l, r + 1]. Stop when l > r. Insertion position = l."
         },
         {
           "number": 4,
           "heading": "Pseudocode (Search Insert Position)",
           "body": "mid = l + (r - l) // 2 avoids overflow!",
-          "code": "def search_insert(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = l + (r - l) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid\n    return l  # insertion position"
+          "code": "def search_insert(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = l + (r - l) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return l  # insertion position"
         },
         {
           "number": 5,
           "heading": "Boundary Variants",
           "body": "Leftmost (first >= target): result = first index with nums[i] >= target (or n).\nRightmost (last <= target): result = last index with nums[i] <= target (or -1).",
-          "code": "# LEFTMOST (first >= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] >= target:\n        r = mid        # go left\n    else:\n        l = mid + 1    # go right\nreturn l\n\n# RIGHTMOST (last <= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] <= target:\n        l = mid + 1    # go right\n    else:\n        r = mid - 1    # go left\nreturn r"
+          "code": "# LEFTMOST (first >= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] >= target:\n        r = mid - 1    # go left\n    else:\n        l = mid + 1    # go right\nreturn l\n\n# RIGHTMOST (last <= target)\nwhile l <= r:\n    mid = l + (r - l) // 2\n    if nums[mid] <= target:\n        l = mid + 1    # go right\n    else:\n        r = mid - 1    # go left\nreturn r"
         },
         {
           "number": 6,
@@ -272,8 +272,8 @@
         {
           "number": 7,
           "heading": "Pitfalls to Avoid",
-          "body": "Infinite loop: fix: use inclusive bounds and move past mid. Or use half-open [l, r) consistently.\nWrong inclusive bounds: bad: mixing updates (moving the wrong side). Fix: move l past mid when nums[mid] < target.\nOverflow midpoint: bad (overflow risk): mid = (l + r) // 2, e.g. 2,000,000,000 + 2,000,000,000 = 4,000,000,000 (overflow!). Good: mid = l + (r - l) // 2.",
-          "code": "# Infinite loop — Bad:\nwhile l < r:\n    mid = (l + r) // 2\n    if nums[mid] < target:\n        l = mid        # stuck!\n    else:\n        r = mid\n\n# Wrong inclusive bounds — Bad:\nif nums[mid] < target:\n    r = mid            # wrong\nelse:\n    l = mid + 1\n# Fix:\nif nums[mid] < target:\n    l = mid + 1\nelse:\n    r = mid"
+          "body": "Infinite loop: fix: with inclusive bounds always move past mid (l = mid + 1 or r = mid - 1). Or use half-open [l, r) consistently.\nWrong inclusive bounds: bad: mixing updates (moving the wrong side). Fix: move l past mid when nums[mid] < target.\nOverflow midpoint: bad (overflow risk): mid = (l + r) // 2, e.g. 2,000,000,000 + 2,000,000,000 = 4,000,000,000 (overflow!). Good: mid = l + (r - l) // 2.",
+          "code": "# Infinite loop — Bad:\nwhile l < r:\n    mid = (l + r) // 2\n    if nums[mid] < target:\n        l = mid        # stuck!\n    else:\n        r = mid\n\n# Wrong inclusive bounds — Bad:\nif nums[mid] < target:\n    r = mid            # wrong\nelse:\n    l = mid + 1\n# Fix (with while l <= r):\nif nums[mid] < target:\n    l = mid + 1\nelse:\n    r = mid - 1"
         }
       ],
       "footer": "Define the search space. Prove what every pointer means.",
@@ -367,7 +367,7 @@
         {
           "number": 3,
           "heading": "Maximum Depth of Binary Tree",
-          "body": "Example tree: 1 with children 2 and 3; 2 has children 4, 5; 3 has child 6; 6 has child 7.\nMax depth = 3 (path: 1 -> 3 -> 6 -> 7).\nEmpty tree has depth = 0."
+          "body": "Example tree: 1 with children 2 and 3; 2 has children 4, 5; 3 has child 6; 6 has child 7.\nMax depth = 4 (path: 1 -> 3 -> 6 -> 7 has 4 nodes, i.e. 3 edges; the code below counts nodes).\nEmpty tree has depth = 0."
         },
         {
           "number": 4,
@@ -542,7 +542,7 @@
         {
           "number": 3,
           "heading": "Size-K Min Heap Process (k = 2)",
-          "body": "Stream elements 3, 2, 1, 5, 6, 4 with heap size <= k:\n3: push — root 3\n2: push — root 2\n1: replace 3 with 1 — root 1\n5: 5 > 1, replace — root 5\n6: 6 > 5, replace — root 5\n4: 4 <= 5, ignore — root 5\nFinal answer (2nd largest) = 5"
+          "body": "Stream elements 3, 2, 1, 5, 6, 4 with heap size <= k:\n3: push — heap {3}, root 3\n2: push — heap {2, 3}, root 2\n1: 1 <= 2, ignore — root 2\n5: 5 > 2, replace 2 with 5 — heap {3, 5}, root 3\n6: 6 > 3, replace 3 with 6 — heap {5, 6}, root 5\n4: 4 <= 5, ignore — root 5\nFinal answer (2nd largest) = 5"
         },
         {
           "number": 4,
@@ -677,7 +677,7 @@
         {
           "number": 6,
           "heading": "Components vs Shortest Path",
-          "body": "Components: goal: visit all nodes in each component (any order). Use DFS or BFS. Time: O(V + E). Example: two components, {1,2,3} and {4,5,6}.\nShortest path (unweighted): goal: shortest path between two nodes. Use BFS. Time: O(V + E). Example: shortest path 1 -> 2 -> 3 -> 5 (length = 3)."
+          "body": "Components: goal: visit all nodes in each component (any order). Use DFS or BFS. Time: O(V + E). Example: the graph above is one component {1,2,3,4,5,6}; with only edges (1,2), (2,3), (4,5), (5,6) it would have two, {1,2,3} and {4,5,6}.\nShortest path (unweighted): goal: shortest path between two nodes. Use BFS. Time: O(V + E). Example: shortest path 1 -> 2 -> 5 (length = 2 edges)."
         },
         {
           "number": 7,
@@ -709,23 +709,23 @@
         {
           "number": 1,
           "heading": "Directed Prerequisite Graph",
-          "body": "Diagram: A points to B and C; B points to D and E; C points to F; D, E and F point to G.\nEdge u -> v means u must be done before v."
+          "body": "Diagram: A points to B and C; B points to D and E; C points to F; D, E and F point to G.\nEdge u -> v means u must be done before v (u is a prerequisite of v)."
         },
         {
           "number": 2,
-          "heading": "Canonical Course Schedule with Edges Course -> Prerequisite",
-          "body": "Courses: A, B, C, D, E, F, G\nEdges (course -> prerequisite): A -> —; B -> A; C -> A; D -> B; E -> B; F -> C; G -> E, F\nEach edge points from a course to its direct prerequisite."
+          "heading": "Canonical Course Schedule: Edges Prerequisite -> Course",
+          "body": "Courses: A, B, C, D, E, F, G\nInput pairs [course, prerequisite]: [B,A], [C,A], [D,B], [E,B], [F,C], [G,D], [G,E], [G,F]\nEdges (prerequisite -> course): A -> B, C; B -> D, E; C -> F; D -> G; E -> G; F -> G\nEach pair [course, prereq] becomes an edge from the prerequisite to the course that needs it."
         },
         {
           "number": 3,
           "heading": "Indegree and Kahn BFS Topological Sort",
-          "body": "Indegree (number of prerequisites): A 0, B 1, C 1, D 1, E 1, F 1, G 2.\nInitial queue (all indegree 0): [A]\nKahn's algorithm (BFS):\nQueue: [A], Order: []\nPop A -> Order: [A]. Decrement indegree of B, C -> push 0-indegree nodes -> Queue: [B, C]\nPop B -> Order: [A, B]. Decrement D, E -> D:0, E:0 -> Queue: [C, D, E]\nPop B -> Order: [A, B, C, D]. Queue: [E, F]\nPop E -> Order: [A, B, C, D, E]. Queue: [F]\nPop F -> Order: [A, B, C, D, E, F]. Decrement G -> G:0 -> Queue: [G]\nPop G -> Order: [A, B, C, D, E, F, G]. Queue: []\nFinal topological order: [A, B, C, D, E, F, G] (one valid order).\nKey idea: repeatedly take a node with no remaining prerequisites, remove it, and update its neighbors."
+          "body": "Indegree (number of unmet prerequisites): A 0, B 1, C 1, D 1, E 1, F 1, G 3.\nInitial queue (all indegree 0): [A]\nKahn's algorithm (BFS):\nQueue: [A], Order: []\nPop A -> Order: [A]. Decrement B, C -> both 0 -> Queue: [B, C]\nPop B -> Order: [A, B]. Decrement D, E -> both 0 -> Queue: [C, D, E]\nPop C -> Order: [A, B, C]. Decrement F -> 0 -> Queue: [D, E, F]\nPop D -> Order: [A, B, C, D]. G: 3 -> 2. Queue: [E, F]\nPop E -> Order: [A, B, C, D, E]. G: 2 -> 1. Queue: [F]\nPop F -> Order: [A, B, C, D, E, F]. G: 1 -> 0 -> Queue: [G]\nPop G -> Order: [A, B, C, D, E, F, G]. Queue: []\nFinal topological order: [A, B, C, D, E, F, G] (one valid order).\nKey idea: repeatedly take a node with no remaining prerequisites, remove it, and update its neighbors."
         },
         {
           "number": 4,
           "heading": "Kahn BFS Pseudocode (Readable)",
           "body": "Complexity: Time O(V + E), Space O(V + E), where V = number of courses (nodes) and E = number of prerequisite relations (edges).",
-          "code": "function kahnTopoSort(graph):\n  # graph: dict node -> list of neighbors (prerequisites)\n  indegree = {u: 0 for u in graph}\n  for u in graph:\n    for v in graph[u]:\n      indegree[v] += 1\n  queue = []\n  for u in graph:\n    if indegree[u] == 0:\n      queue.append(u)\n  order = []\n  while queue:\n    u = queue.pop(0)   # BFS queue\n    order.append(u)\n    for v in graph[u]:\n      indegree[v] -= 1\n      if indegree[v] == 0:\n        queue.append(v)\n  if len(order) != len(graph):\n    return []   # cycle exists\n  return order"
+          "code": "function kahnTopoSort(graph):\n  # graph: dict node -> list of courses that depend on it (edges prereq -> course)\n  indegree = {u: 0 for u in graph}\n  for u in graph:\n    for v in graph[u]:\n      indegree[v] += 1\n  queue = []\n  for u in graph:\n    if indegree[u] == 0:\n      queue.append(u)\n  order = []\n  while queue:\n    u = queue.pop(0)   # BFS queue\n    order.append(u)\n    for v in graph[u]:\n      indegree[v] -= 1\n      if indegree[v] == 0:\n        queue.append(v)\n  if len(order) != len(graph):\n    return []   # cycle exists\n  return order"
         },
         {
           "number": 5,
@@ -741,7 +741,7 @@
         {
           "number": 7,
           "heading": "Pitfalls: Edge Direction & Cycle Handling",
-          "body": "Edge direction: correct (course -> prerequisite): B -> A means B needs A. Wrong (reversed): A -> B gives an incorrect meaning!\nCycle handling: a cycle (e.g. A -> B -> C -> A) detected means: no valid topological order; scheduling is impossible; report or break the cycle.\nAlways check: if result size < number of nodes, a cycle exists."
+          "body": "Edge direction: for Kahn's algorithm point each edge from prerequisite to course (A -> B means A comes before B), so indegree counts unmet prerequisites. LeetCode gives pairs [course, prereq]: add the edge prereq -> course. Reversing every edge gives the reversed order (and indegree 0 would mean nothing depends on the node).\nCycle handling: a cycle (e.g. A -> B -> C -> A) detected means: no valid topological order; scheduling is impossible; report or break the cycle.\nAlways check: if result size < number of nodes, a cycle exists."
         }
       ],
       "footer": "If a dependency cycle exists, no valid order exists.",
@@ -777,7 +777,7 @@
         {
           "number": 3,
           "heading": "Optimal Answer",
-          "body": "Max money = 12\nOne optimal choice: rob houses at indices 1 and 2.\n7 + 9 = 12"
+          "body": "Max money = 12\nOne optimal choice: rob houses at indices 0, 2 and 4 (no two adjacent).\n2 + 9 + 1 = 12"
         },
         {
           "number": 4,
@@ -970,7 +970,7 @@
           "number": 5,
           "heading": "Readable Pseudocode",
           "body": "Flow: intervals empty? Yes -> return []. No -> sort by start -> iterate: if curr.start <= last.end, last.end = max(last.end, curr.end); otherwise res.append(last), last = curr. Finally res.append(last) and return res.",
-          "code": "function merge(intervals):\n  if intervals is empty: return []\n  sort intervals by start ascending\n  res = []\n  last = intervals[0]\n  for i from 1 to n-1:\n    curr = intervals[i]\n    if curr.start <= last.end:\n      last.end = max(last.end, curr.end)\n    else:\n      res.append(last)\n      last = curr\n  res.append(last)\n  return res"
+          "code": "function merge(intervals):\n  if intervals is empty: return []\n  sort intervals by start ascending\n  res = []\n  last = copy of intervals[0]  # don't mutate the input\n  for i from 1 to n-1:\n    curr = intervals[i]\n    if curr.start <= last.end:\n      last.end = max(last.end, curr.end)\n    else:\n      res.append(last)\n      last = curr\n  res.append(last)\n  return res"
         },
         {
           "number": 6,
@@ -1010,17 +1010,17 @@
         {
           "number": 1,
           "heading": "Increasing Stack (Bottom < Top)",
-          "body": "Keeps values in NON-DECREASING order (e.g. 1, 2, 3, 4, 5 from bottom to top). Top is the BEST candidate so far for future GREATER answers.\nNew value x: pop while stack.top() < x."
+          "body": "Keeps values in increasing order (e.g. 1, 2, 3, 4, 5 from bottom to top). Use it to find the NEXT SMALLER element.\nNew value x: pop while stack.top() > x. Each popped item has just found its next smaller value."
         },
         {
           "number": 2,
           "heading": "Decreasing Stack (Bottom > Top)",
-          "body": "Keeps values in NON-INCREASING order (e.g. 9, 7, 6, 4, 2 from bottom to top). Top is the BEST candidate so far for future SMALLER answers.\nNew value x: pop while stack.top() > x."
+          "body": "Keeps values in decreasing order (e.g. 9, 7, 6, 4, 2 from bottom to top). Use it to find the NEXT GREATER element (Daily Temperatures below).\nNew value x: pop while stack.top() < x. Each popped item has just found its next greater value."
         },
         {
           "number": 3,
           "heading": "Canonical Example: Daily Temperatures [73,74,75,71,69,72,76,73]",
-          "body": "Index-stack (store indices, top on the right); pop while warmer: T[i] > T[stack.top()]; answer = i - j days until warmer.\ni = 0 (73): stack [0]\ni = 1 (74): 74 > 73 -> pop 0, ans[0] = 1 - 0 = 1; stack [1]\ni = 2 (75): 75 > 74 -> pop 1, ans[1] = 2 - 1 = 1; 75 > 73 -> pop 0; stack [2]\ni = 3 (71): 71 > 75? No; stack [2, 3]\ni = 4 (69): 69 > 71? No; stack [2, 3, 4]\ni = 5 (72): 72 > 69 -> pop 4, ans[4] = 5 - 4 = 1; stack [2, 3, 5]\ni = 6 (76): 76 > 72 -> pop 5; 76 > 71 -> pop 3; 76 > 75 -> pop 2; stack [6]\ni = 7 (73): 73 > 76? No; stack [6, 7]\nFinal answer distances (i - j): [1, 1, 4, 2, 1, 1, 0, 0]\nWhen a warmer day arrives, pop the cooler days!"
+          "body": "Index-stack (store indices, top on the right); pop while warmer: T[i] > T[stack.top()]; answer = i - j days until warmer.\ni = 0 (73): stack [0]\ni = 1 (74): 74 > 73 -> pop 0, ans[0] = 1 - 0 = 1; stack [1]\ni = 2 (75): 75 > 74 -> pop 1, ans[1] = 2 - 1 = 1; stack [2]\ni = 3 (71): 71 > 75? No; stack [2, 3]\ni = 4 (69): 69 > 71? No; stack [2, 3, 4]\ni = 5 (72): 72 > 69 -> pop 4, ans[4] = 5 - 4 = 1; 72 > 71 -> pop 3, ans[3] = 5 - 3 = 2; stack [2, 5]\ni = 6 (76): 76 > 72 -> pop 5, ans[5] = 1; 76 > 75 -> pop 2, ans[2] = 6 - 2 = 4; stack [6]\ni = 7 (73): 73 > 76? No; stack [6, 7]\nFinal answer distances (i - j): [1, 1, 4, 2, 1, 1, 0, 0]\nWhen a warmer day arrives, pop the cooler days!"
         },
         {
           "number": 4,
@@ -1046,7 +1046,7 @@
         {
           "number": 8,
           "heading": "Pop Conditions (Reminder)",
-          "body": "Increasing stack: pop while stack.top() < x (looking for greater answers).\nDecreasing stack: pop while stack.top() > x (looking for smaller answers)."
+          "body": "Increasing stack: pop while stack.top() > x (looking for next smaller answers).\nDecreasing stack: pop while stack.top() < x (looking for next greater answers, as in Daily Temperatures)."
         }
       ],
       "footer": "Pop the losers when a better candidate arrives.",
@@ -1133,7 +1133,7 @@
         {
           "number": 2,
           "heading": "Bitwise Operations Mini Reference",
-          "body": "Examples with A = 10110, B = 01101:\nAND (&): 10110 & 01101 = 00100\nOR (|): 10110 | 01101 = 11111\nXOR (^): 10110 ^ 01101 = 11011\nNOT (~A): ~10110 (8-bit) = 01001\nLeft shift (<<): 10110 << 2 = 110100\nRight shift (>>): 10110 >> 2 = 00101\nLeft shift << multiplies by 2^k. Right shift >> divides by 2^k (floor)."
+          "body": "Examples with A = 10110, B = 01101:\nAND (&): 10110 & 01101 = 00100\nOR (|): 10110 | 01101 = 11111\nXOR (^): 10110 ^ 01101 = 11011\nNOT (~A): ~10110 (5-bit view) = 01001; in 8 bits, ~00010110 = 11101001\nLeft shift (<<): 10110 << 2 = 1011000\nRight shift (>>): 10110 >> 2 = 00101\nLeft shift << multiplies by 2^k. Right shift >> divides by 2^k (floor)."
         },
         {
           "number": 3,

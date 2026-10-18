@@ -8,6 +8,7 @@ struct QuizSessionView: View {
     @Environment(Router.self) private var router
     @Environment(\.dismiss) private var dismiss
 
+    @AppStorage("advancedMode") private var advanced = false
     @State private var index = 0
     @State private var chosen: Int?
     @State private var results: [String: Bool] = [:]
@@ -146,6 +147,13 @@ struct QuizSessionView: View {
                             .font(.serif(.body))
                             .foregroundStyle(Theme.ink.opacity(0.88))
                             .fixedSize(horizontal: false, vertical: true)
+                    }
+                    if advanced, let further = item.pageId.flatMap({ store.pages[$0] })?.deeper?.further, !further.isEmpty {
+                        Text(further)
+                            .font(.serif(.callout))
+                            .foregroundStyle(Theme.inkSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 2)
                     }
                     if let page = item.pageId.flatMap({ store.pages[$0] }) {
                         Button { readerPage = page } label: {

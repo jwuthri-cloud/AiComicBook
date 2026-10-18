@@ -78,6 +78,7 @@ struct TextPageView: View {
     @Environment(ContentStore.self) private var store
     @Environment(Listener.self) private var listener
     @AppStorage("textScale") private var storedScale = 1.0
+    @AppStorage("advancedMode") private var advanced = false
     @GestureState private var pinch: CGFloat = 1
 
     /// Reading size; pinching previews live and is remembered when the fingers lift.
@@ -86,6 +87,8 @@ struct TextPageView: View {
 
     var body: some View {
         let linked = linkedPanels()
+        let deeper = advanced ? page.deeper : nil
+        let linkedDeeper = deeper.map(linkDeeper) ?? []
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Text("PAGE \(page.number) · \(book.title.uppercased())")
@@ -110,6 +113,15 @@ struct TextPageView: View {
 
                 Ornament(tint: tint).padding(.vertical, 22)
 
+                if page.deeper != nil {
+                    Picker("Level", selection: $advanced) {
+                        Text("Beginner").tag(false)
+                        Text("Advanced").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.bottom, 24)
+                }
+
                 if !page.wordKey.isEmpty {
                     WordKeyBox(text: page.wordKey, tint: tint, scale: textScale)
                         .padding(.bottom, 24)
@@ -123,21 +135,32 @@ struct TextPageView: View {
 
                 ForEach(Array(page.panels.enumerated()), id: \.offset) { i, panel in
                     let speaking = listener.page?.id == page.id && listener.panel == i
-                    PanelText(panel: panel, body: linked[i], tint: tint, scale: textScale)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 10)
-                        .background(tint.opacity(speaking ? 0.10 : 0), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-                        .padding(.horizontal, -12)
-                        .padding(.bottom, 16)
-                        .animation(.easeInOut(duration: 0.35), value: speaking)
-                        .contextMenu {
-                            Button { onAsk(Self.simplerPrompt(panel)) } label: { Label("Explain this simpler", systemImage: "sparkles") }
-                            Button { onAsk("Give me a concrete, everyday example of this part of the page: “\(panel.heading): \(panel.body)”") } label: {
-                                Label("Give me an example", systemImage: "lightbulb")
+                    VStack(alignment: .leading, spacing: 0) {
+                        PanelText(panel: panel, body: linked[i], tint: tint, scale: textScale)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .background(tint.opacity(speaking ? 0.10 : 0), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            .padding(.horizontal, -12)
+                            .padding(.bottom, linkedDeeper.indices.contains(i) ? 6 : 16)
+                            .animation(.easeInOut(duration: 0.35), value: speaking)
+                            .contextMenu {
+                                Button { onAsk(Self.simplerPrompt(panel)) } label: { Label("Explain this simpler", systemImage: "sparkles") }
+                                Button { onAsk("Give me a concrete, everyday example of this part of the page: “\(panel.heading): \(panel.body)”") } label: {
+                                    Label("Give me an example", systemImage: "lightbulb")
+                                }
+                                Button { onSharePanel(panel) } label: { Label("Share this panel", systemImage: "square.and.arrow.up") }
+                                Button { UIPasteboard.general.string = "\(panel.heading)\n\n\(panel.body)" } label: { Label("Copy text", systemImage: "doc.on.doc") }
                             }
-                            Button { onSharePanel(panel) } label: { Label("Share this panel", systemImage: "square.and.arrow.up") }
-                            Button { UIPasteboard.general.string = "\(panel.heading)\n\n\(panel.body)" } label: { Label("Copy text", systemImage: "doc.on.doc") }
+                        if linkedDeeper.indices.contains(i) {
+                            DeeperNote(text: linkedDeeper[i], label: "Going deeper", tint: tint, scale: textScale)
+                                .padding(.bottom, 20)
                         }
+                    }
+                }
+
+                if let further = deeper?.further, !further.isEmpty {
+                    DeeperNote(text: AttributedString(further), label: "Beyond the basics", tint: tint, scale: textScale)
+                        .padding(.bottom, 20)
                 }
 
                 if !page.footer.isEmpty {
@@ -202,19 +225,26 @@ struct TextPageView: View {
     /// Panel bodies with each glossary term linked the first time it appears on the page.
     private func linkedPanels() -> [AttributedString] {
         var seen = Set<String>()
-        let skip = store.termsToSkip(in: book)
-        return page.panels.map { panel in
-            var attributed = AttributedString(panel.body)
-            for match in store.termMatcher.matches(in: panel.body, seen: &seen, excluding: skip) {
-                guard let lower = AttributedString.Index(match.range.lowerBound, within: attributed),
-                      let upper = AttributedString.Index(match.range.upperBound, within: attributed) else { continue }
-                let range = lower..<upper
-                attributed[range].link = URL(string: "panels-term://\(match.termId)")
-                attributed[range].underlineStyle = Text.LineStyle(pattern: .dot, color: tint.opacity(0.7))
-                attributed[range].foregroundColor = tint
-            }
-            return attributed
+        return page.panels.map { link($0.body, seen: &seen) }
+    }
+
+    /// Advanced notes get their own "first time" count, so a term the beginner text linked is still tappable here.
+    private func linkDeeper(_ deeper: Deeper) -> [AttributedString] {
+        var seen = Set<String>()
+        return deeper.panels.map { link($0, seen: &seen) }
+    }
+
+    private func link(_ text: String, seen: inout Set<String>) -> AttributedString {
+        var attributed = AttributedString(text)
+        for match in store.termMatcher.matches(in: text, seen: &seen, excluding: store.termsToSkip(in: book)) {
+            guard let lower = AttributedString.Index(match.range.lowerBound, within: attributed),
+                  let upper = AttributedString.Index(match.range.upperBound, within: attributed) else { continue }
+            let range = lower..<upper
+            attributed[range].link = URL(string: "panels-term://\(match.termId)")
+            attributed[range].underlineStyle = Text.LineStyle(pattern: .dot, color: tint.opacity(0.7))
+            attributed[range].foregroundColor = tint
         }
+        return attributed
     }
 
     private func termsOnPage(_ linked: [AttributedString]) -> [Term] {
@@ -275,6 +305,32 @@ private struct PanelText: View {
                 .background(Theme.sunken, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
         }
+    }
+}
+
+/// Advanced mode: the expert-level note under a panel.
+private struct DeeperNote: View {
+    let text: AttributedString
+    let label: String
+    let tint: Color
+    let scale: Double
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label(label, systemImage: "chevron.down.circle.fill")
+                .font(.rounded(.caption, weight: .bold))
+                .foregroundStyle(tint)
+            Text(text)
+                .font(.system(size: 16 * scale, design: .serif))
+                .foregroundStyle(Theme.ink.opacity(0.85))
+                .lineSpacing(5 * scale)
+                .fixedSize(horizontal: false, vertical: true)
+                .textSelection(.enabled)
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(tint.opacity(0.07), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(alignment: .leading) { Capsule().fill(tint.opacity(0.6)).frame(width: 3).padding(.vertical, 10) }
     }
 }
 

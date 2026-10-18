@@ -82,6 +82,7 @@ struct BookmarksView: View {
 struct SettingsView: View {
     @AppStorage("appearance") private var appearance = Appearance.system
     @AppStorage("textScale") private var textScale = 1.0
+    @AppStorage("advancedMode") private var advanced = false
     @Environment(\.dismiss) private var dismiss
     @Environment(LibraryState.self) private var library
 
@@ -93,6 +94,13 @@ struct SettingsView: View {
                         ForEach(Appearance.allCases) { Text($0.label).tag($0) }
                     }
                     .pickerStyle(.segmented)
+                }
+                Section {
+                    Toggle("Advanced mode", isOn: $advanced)
+                } header: {
+                    Text("Depth")
+                } footer: {
+                    Text("Adds an expert-level note under every panel of the text pages and after each quiz answer. You can also switch it on any page.")
                 }
                 Section {
                     VStack(alignment: .leading, spacing: 10) {
