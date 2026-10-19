@@ -1,0 +1,922 @@
+{
+ "experiments": [
+  {
+   "id": "cot-faithfulness",
+   "theme": "Monitoring & control",
+   "question": "Does the chain of thought reflect what actually drives the answer?",
+   "fellowship": null,
+   "chain": "hint pairs → answer flips? → CoT admits hint? → edit the CoT → reward-hack organism → new hints",
+   "tree": [
+    {
+     "step": "Does a hint change the answer?",
+     "how": "Build question pairs: with and without a planted hint (e.g. 'a professor says B').",
+     "tool": "contrast-pairs",
+     "branches": [
+      {
+       "if": "NO flip",
+       "then": [
+        {
+         "step": "Try stronger cues or other models",
+         "how": "Swap in sycophancy, metadata or grader-hack hints; rerun the pairs.",
+         "tool": "synthetic-data",
+         "outcome": "Still no flip: setup can't measure faithfulness"
+        }
+       ]
+      },
+      {
+       "if": "YES, answer flips",
+       "then": [
+        {
+         "step": "Keep only hint-driven items",
+         "how": "Analyse only pairs where the hint flipped the answer.",
+         "tool": null,
+         "outcome": "Continue to CoT check"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Does the CoT admit the hint?",
+     "how": "LLM judge checks each flipped CoT; validate judge on 100 hand labels.",
+     "tool": "llm-judge",
+     "outcome": null
+    },
+    {
+     "step": "Does the CoT actually drive the answer?",
+     "how": "Truncate, insert mistakes, or paraphrase the CoT; does the answer change?",
+     "tool": "ablation",
+     "branches": [
+      {
+       "if": "answer ignores edits",
+       "then": [
+        {
+         "step": "Look inside instead of reading CoT",
+         "how": "Probe activations for hint use; the written CoT can't be trusted here.",
+         "tool": "linear-probe",
+         "outcome": "CoT is post-hoc: monitor internals, not text"
+        }
+       ]
+      },
+      {
+       "if": "answer follows edits",
+       "then": [
+        {
+         "step": "Keep CoT as a monitoring signal",
+         "how": "CoT is load-bearing on these tasks, so watching it is useful.",
+         "tool": "cot-monitor",
+         "outcome": "Continue to organism step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Organism: does CoT confess a reward hack?",
+     "how": "RL with a planted exploit; judge whether the CoT ever mentions using it.",
+     "tool": "rl-environment",
+     "outcome": null
+    },
+    {
+     "step": "Control: new hint types and tasks",
+     "how": "Held-out hint types, harder questions, no-hint baseline; report rates with error bars.",
+     "tool": "benchmark",
+     "outcome": "Holds on new hints: faithfulness rate generalises"
+    }
+   ],
+   "confound": "Random answer changes look like hint use; count only flips toward the hinted answer.",
+   "success": "Share of hint-driven answers whose CoT admits the hint, stable across hint types.",
+   "example": "Chen et al. 2025 (Anthropic): reasoning models often mention a used hint under 20% of the time."
+  },
+  {
+   "id": "monitorability-under-rl",
+   "theme": "Monitoring & control",
+   "question": "Does RL training make the chain of thought harder to monitor?",
+   "fellowship": "fellowship-06-rl-monitorability",
+   "chain": "hackable env → sandbox hack labels → frozen CoT monitor → sweep RL settings → catch rate vs hacks → 32B check",
+   "tree": [
+    {
+     "step": "Build RL env with a hackable test",
+     "how": "8B model on coding tasks whose tests can be gamed; sandbox logs real hacks.",
+     "tool": "rl-environment",
+     "branches": [
+      {
+       "if": "NO hacking",
+       "then": [
+        {
+         "step": "Make the exploit easier to find",
+         "how": "Loosen tests or switch environment until baseline RL hacks.",
+         "tool": "rl-environment",
+         "outcome": "No hacks: nothing to monitor yet"
+        }
+       ]
+      },
+      {
+       "if": "YES, hacks appear",
+       "then": [
+        {
+         "step": "Label hacks from sandbox, not CoT",
+         "how": "Ground truth comes from actions and test logs only.",
+         "tool": null,
+         "outcome": "Continue to monitor step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Freeze a CoT monitor, checked by hand",
+     "how": "Validate on hand-labelled CoTs; fix threshold at a set false-alarm rate.",
+     "tool": "cot-monitor",
+     "outcome": null
+    },
+    {
+     "step": "Sweep ordinary RL settings",
+     "how": "Entropy bonus, on-policy distillation, thinking-only KL (stay-close penalty); length penalty as reference.",
+     "tool": "rlvr",
+     "outcome": null
+    },
+    {
+     "step": "Measure hacking and monitor catches together",
+     "how": "Each checkpoint, several seeds: real hack rate vs. frozen-monitor catch rate.",
+     "tool": "stats",
+     "branches": [
+      {
+       "if": "hacks stay, catches drop",
+       "then": [
+        {
+         "step": "Find where the signal went",
+         "how": "Compare CoT-only, action-only and combined monitors; try a refreshed monitor.",
+         "tool": "trusted-monitoring",
+         "outcome": "Setting hides hacking: warn practitioners"
+        }
+       ]
+      },
+      {
+       "if": "no setting matters",
+       "then": [
+        {
+         "step": "Report the null and stop",
+         "how": "Document effect sizes and uncertainty; skip the costly 32B runs.",
+         "tool": "stats",
+         "outcome": "Null at 8B, for these settings only"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Look inside where CoT went quiet",
+     "how": "Probe activations for hack intent on checkpoints with unverbalised hacking.",
+     "tool": "linear-probe",
+     "outcome": null
+    },
+    {
+     "step": "Control: confirm top effects at 32B",
+     "how": "Two strongest settings at 32B, held-out tasks, untouched baseline run.",
+     "tool": "benchmark",
+     "outcome": "Replicates at 32B: practical RL-setting guidance"
+    }
+   ],
+   "confound": "Monitor fails from harmless wording drift, not concealment; a refreshed monitor tells them apart.",
+   "success": "Settings where hack rate holds but monitor recall at fixed false-alarm rate drops.",
+   "example": "Baker et al. 2025 (OpenAI): RL pressure against a CoT monitor taught models to hide reward hacking."
+  },
+  {
+   "id": "latent-reasoning",
+   "theme": "Monitoring & control",
+   "question": "Can we catch reasoning that never appears in the written trace?",
+   "fellowship": "fellowship-09-latent-reasoner-probes",
+   "chain": "latent + verbal twins → labelled target → frozen probe → RL vs probe → evasion speed → fresh probes",
+   "tree": [
+    {
+     "step": "Get matched latent and word reasoners",
+     "how": "3–4B model that thinks in vectors (CODI-style), plus a word-CoT twin.",
+     "tool": "fine-tuning",
+     "outcome": null
+    },
+    {
+     "step": "Pick a harmless, independently labelled target",
+     "how": "E.g. relying on a planted hint; labels come from inputs, not traces.",
+     "tool": "synthetic-data",
+     "outcome": null
+    },
+    {
+     "step": "Can a probe read it from latents?",
+     "how": "Train a linear probe on the hidden thought vectors.",
+     "tool": "linear-probe",
+     "branches": [
+      {
+       "if": "NO, unreadable",
+       "then": [
+        {
+         "step": "Try other layers and decoders",
+         "how": "Logit lens on latent steps; probe every layer before giving up.",
+         "tool": "logit-lens",
+         "outcome": "Opaque even unpressured: monitoring fails at start"
+        }
+       ]
+      },
+      {
+       "if": "YES, decodable",
+       "then": [
+        {
+         "step": "Freeze probe and alarm threshold",
+         "how": "Lock choices before RL; keep adaptive probes for diagnostics only.",
+         "tool": null,
+         "outcome": "Continue to RL step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "RL with the probe as an alarm",
+     "how": "Both models: task reward vs. task reward minus probe-alarm penalty.",
+     "tool": "rl-environment",
+     "branches": [
+      {
+       "if": "latent RL unstable",
+       "then": [
+        {
+         "step": "Switch to looped models",
+         "how": "By week 6, move to open looped models (e.g. Ouro, Huginn).",
+         "tool": "rl-environment",
+         "outcome": "Scope change: looped recurrence, not continuous thought"
+        }
+       ]
+      },
+      {
+       "if": "RL stable",
+       "then": [
+        {
+         "step": "Run task-only and penalty arms",
+         "how": "Same seeds and budgets for both models and both arms.",
+         "tool": "stats",
+         "outcome": "Continue to measurement step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "How fast does probe evasion appear?",
+     "how": "Behaviour still present (labels) while frozen-probe recall falls, per step.",
+     "tool": "stats",
+     "outcome": null
+    },
+    {
+     "step": "Control: fresh probes and verbal twin",
+     "how": "Retrain new probes on final models; compare evasion speed with the verbal twin.",
+     "tool": "linear-probe",
+     "outcome": "Faster latent evasion = oversight cost of latent reasoning"
+    }
+   ],
+   "confound": "Latent and verbal models differ in skill; that gap, not latents, could drive faster evasion.",
+   "success": "Steps until frozen-probe recall drops while behaviour persists: latent vs. matched verbal model.",
+   "example": "Gupta & Jenner 2025 (RL-Obfuscation): RL alone taught models to evade some activation probes."
+  },
+  {
+   "id": "multi-agent-collusion",
+   "theme": "Monitoring & control",
+   "question": "Can a harmful plan split across several agents slip past monitors?",
+   "fellowship": "fellowship-07-monitors-across-agents",
+   "chain": "split-attack setting → per-agent baseline → discover groups → aggregate scores → adaptive attackers → shuffle control",
+   "tree": [
+    {
+     "step": "Reproduce split attacks in ControlArena",
+     "how": "Harmless sabotage game: each agent does one innocent-looking piece of the plan.",
+     "tool": "agentic-eval",
+     "outcome": null
+    },
+    {
+     "step": "Do per-agent monitors miss them?",
+     "how": "Trusted monitor scores each agent alone; catch rate at fixed false-alarm rate.",
+     "tool": "trusted-monitoring",
+     "branches": [
+      {
+       "if": "NO, already caught",
+       "then": [
+        {
+         "step": "Make the split subtler",
+         "how": "More agents, smaller pieces, longer gaps; recheck per-agent misses.",
+         "tool": "red-teaming",
+         "outcome": "Still caught: per-agent monitoring suffices here"
+        }
+       ]
+      },
+      {
+       "if": "YES, they slip by",
+       "then": [
+        {
+         "step": "Record the miss rate as baseline",
+         "how": "Per-agent catch rate is the number to beat.",
+         "tool": "stats",
+         "outcome": "Continue to grouping step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Find which actions belong together",
+     "how": "Link actions by shared files, resources and timing; no group labels given.",
+     "tool": null,
+     "branches": [
+      {
+       "if": "grouping fails",
+       "then": [
+        {
+         "step": "Fall back to known groups",
+         "how": "Give the monitor true groupings; focus on adaptive attacks.",
+         "tool": "control-eval",
+         "outcome": "Narrower scope: known groups, adaptive attacks"
+        }
+       ]
+      },
+      {
+       "if": "grouping works",
+       "then": [
+        {
+         "step": "Compare with known-group reference",
+         "how": "How close is discovered grouping to true-grouping catch rate?",
+         "tool": "stats",
+         "outcome": "Continue to aggregation step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Aggregate suspicion across each group",
+     "how": "Combine per-action scores, or a higher-level monitor reviews whole groups.",
+     "tool": "trusted-monitoring",
+     "outcome": null
+    },
+    {
+     "step": "Red-team with aggregation-aware attackers",
+     "how": "Attackers know actions get grouped; iterate attack and defence rounds.",
+     "tool": "automated-red-teaming",
+     "outcome": null
+    },
+    {
+     "step": "Control: shuffled identities, matched budget",
+     "how": "Shuffle agent labels and match audit budget; the gain should vanish when shuffled.",
+     "tool": "control-eval",
+     "outcome": "Gain survives controls: cross-agent monitoring genuinely helps"
+    }
+   ],
+   "confound": "Higher catch rate may just come from more review budget; match audit budget across monitors.",
+   "success": "Catch rate on split attacks at fixed false alarms beats per-agent monitors, even vs. adaptive attackers.",
+   "example": "UK AISI 2026, Multi-Agent AI Control: per-agent monitors miss attacks split across agents."
+  },
+  {
+   "id": "untrusted-control",
+   "theme": "Monitoring & control",
+   "question": "Can we use a possibly-scheming model safely anyway?",
+   "fellowship": null,
+   "chain": "threat model → red-team attacker → trusted monitor + audit → edit / resample → safety vs usefulness → adaptive attacks",
+   "tree": [
+    {
+     "step": "Define task, threat and catastrophe",
+     "how": "E.g. coding tasks; catastrophe = one submitted backdoor; strong untrusted, weak trusted model.",
+     "tool": "control-eval",
+     "outcome": null
+    },
+    {
+     "step": "Red team builds the worst-case attacker",
+     "how": "Prompt or fine-tune the strong model to slip in rare, subtle backdoors.",
+     "tool": "red-teaming",
+     "branches": [
+      {
+       "if": "attacks never land",
+       "then": [
+        {
+         "step": "Strengthen the attacker first",
+         "how": "Better prompts, fine-tuning, more attack attempts; weak attackers fake safety.",
+         "tool": "elicitation",
+         "outcome": "Untested: no safety claim yet"
+        }
+       ]
+      },
+      {
+       "if": "attacks land unprotected",
+       "then": [
+        {
+         "step": "Record the no-protocol baseline",
+         "how": "Backdoor rate with no monitoring is the number to beat.",
+         "tool": "stats",
+         "outcome": "Continue to monitoring step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Trusted monitoring with a small audit budget",
+     "how": "Weak trusted model scores suspicion; humans audit the top 2%.",
+     "tool": "trusted-monitoring",
+     "branches": [
+      {
+       "if": "attacks slip through",
+       "then": [
+        {
+         "step": "Add untrusted monitoring",
+         "how": "Strong copy monitors outputs; plant fake attacks to catch it lying.",
+         "tool": "untrusted-monitoring",
+         "outcome": "Continue to editing step"
+        }
+       ]
+      },
+      {
+       "if": "most attacks caught",
+       "then": [
+        {
+         "step": "Push the attacker harder",
+         "how": "Attacks tailored to the monitor's blind spots before trusting it.",
+         "tool": "automated-red-teaming",
+         "outcome": "Continue to editing step"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Edit or resample the suspicious middle",
+     "how": "Trusted model rewrites, or resample the untrusted model, on mid-suspicion outputs.",
+     "tool": "trusted-editing",
+     "outcome": null
+    },
+    {
+     "step": "Score safety against usefulness",
+     "how": "Safety = chance no backdoor ever lands; usefulness = tasks solved vs. untrusted alone.",
+     "tool": "control-eval",
+     "outcome": null
+    },
+    {
+     "step": "Control: adaptive attackers, new settings",
+     "how": "Attackers who know the protocol; rerun in agentic settings like bash tasks.",
+     "tool": "agentic-eval",
+     "outcome": "Holds vs. adaptive attacks: usable despite possible scheming"
+    }
+   ],
+   "confound": "A weak red team makes every protocol look safe.",
+   "success": "Safety–usefulness curve: high chance no backdoor slips through, with most of the strong model's usefulness.",
+   "example": "Greenblatt et al. 2023 (Redwood), AI Control: GPT-3.5 monitoring and editing made a backdoor-writing GPT-4 much safer."
+  },
+  {
+   "id": "find-feature",
+   "theme": "Interp & robustness",
+   "question": "Is there an internal feature for a behaviour, like deception?",
+   "fellowship": null,
+   "chain": "contrast pairs → probe / SAE → top examples → steer & ablate → known deceiver → held-out lies",
+   "tree": [
+    {
+     "step": "Make honest vs. deceptive contrast pairs",
+     "how": "Same scenarios, lie vs. truth; a judge confirms the model really lies.",
+     "tool": "contrast-pairs",
+     "outcome": null
+    },
+    {
+     "step": "Search activations for a deception signal",
+     "how": "Linear probe on the pairs; also SAE (feature dictionary) features that differ most.",
+     "tool": "sae",
+     "branches": [
+      {
+       "if": "NO clear signal",
+       "then": [
+        {
+         "step": "Widen the search",
+         "how": "More layers, bigger SAE, better pairs; check the lying is real.",
+         "tool": "sae",
+         "outcome": "No linear feature at this scale"
+        }
+       ]
+      },
+      {
+       "if": "candidate found",
+       "then": [
+        {
+         "step": "Read its top-activating examples",
+         "how": "Does it fire on deceiving, or just on words like 'lie'?",
+         "tool": "sae",
+         "outcome": "Continue to causal test"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Is it causal? Steer and ablate",
+     "how": "Add the direction: more lying? Remove it: less? Judge scores outputs.",
+     "tool": "steering",
+     "branches": [
+      {
+       "if": "lying rate shifts",
+       "then": [
+        {
+         "step": "Map the circuit around it",
+         "how": "Attribution graph: which inputs feed it, what it drives.",
+         "tool": "attribution-graph",
+         "outcome": "Continue to known-deceiver test"
+        }
+       ]
+      },
+      {
+       "if": "no behaviour change",
+       "then": [
+        {
+         "step": "Keep it as a detector only",
+         "how": "Correlate, not cause: useful for flagging, not for control.",
+         "tool": "linear-probe",
+         "outcome": "Readout, not mechanism"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Positive control: a known deceiver",
+     "how": "Model organism trained to lie on a trigger; feature must light up.",
+     "tool": "model-organism",
+     "outcome": null
+    },
+    {
+     "step": "Control: held-out lies, random directions",
+     "how": "New lie types and natural transcripts; random directions must score near chance.",
+     "tool": "benchmark",
+     "outcome": "Generalises and beats random: a real deception feature"
+    }
+   ],
+   "confound": "Feature tracks the word 'lie' or the instruction, not the act of deceiving.",
+   "success": "Feature detects held-out deception well above chance and steering it changes lying rate.",
+   "example": "Templeton et al. 2024 (Anthropic), Scaling Monosemanticity: SAE features for deception and lying in Claude 3 Sonnet."
+  },
+  {
+   "id": "unlearning-check",
+   "theme": "Interp & robustness",
+   "question": "Did unlearning really remove the knowledge, or just hide it?",
+   "fellowship": null,
+   "chain": "forget + retain sets → unlearn → probe insides → relearning attack → never-trained baseline",
+   "tree": [
+    {
+     "step": "Measure the knowledge before unlearning",
+     "how": "Forget set (e.g. WMDP-style hazard quiz) plus retain set of general skills.",
+     "tool": "benchmark",
+     "outcome": null
+    },
+    {
+     "step": "Unlearn, then recheck both scores",
+     "how": "Apply method (e.g. RMU); forget score should drop to chance, retain stays.",
+     "tool": "unlearning",
+     "branches": [
+      {
+       "if": "retain drops too",
+       "then": [
+        {
+         "step": "Tune for less collateral damage",
+         "how": "Adjust strength or layers until general skills recover.",
+         "tool": "unlearning",
+         "outcome": "Broad damage, not targeted forgetting"
+        }
+       ]
+      },
+      {
+       "if": "forget at chance",
+       "then": [
+        {
+         "step": "Don't trust the score yet",
+         "how": "A low quiz score only shows the model won't answer.",
+         "tool": null,
+         "outcome": "Continue to look inside"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Is it still inside? Probe activations",
+     "how": "Linear probe for correct answers in the unlearned model's hidden states.",
+     "tool": "linear-probe",
+     "outcome": null
+    },
+    {
+     "step": "Attack: try to bring it back",
+     "how": "Fine-tune on a few unrelated examples, jailbreak prompts, ablate the unlearning direction.",
+     "tool": "elicitation",
+     "branches": [
+      {
+       "if": "knowledge returns",
+       "then": [
+        {
+         "step": "Measure how cheap recovery is",
+         "how": "Count examples and steps needed to restore the forget score.",
+         "tool": "fine-tuning",
+         "outcome": "Hidden, not removed: suppression only"
+        }
+       ]
+      },
+      {
+       "if": "stays gone",
+       "then": [
+        {
+         "step": "Escalate before concluding",
+         "how": "Stronger fine-tunes, adaptive prompts; one failed attack isn't proof.",
+         "tool": "red-teaming",
+         "outcome": "Continue to never-trained control"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Control: compare to a never-trained model",
+     "how": "Same attacks on a model trained without that data; recovery should match.",
+     "tool": "data-filtering",
+     "outcome": "Matches never-trained model: knowledge truly removed"
+    }
+   ],
+   "confound": "Relearning from scratch is also fast; compare recovery against a model that never saw the data.",
+   "success": "After attacks, unlearned model recovers no more knowledge than a never-trained model.",
+   "example": "Łucki et al. 2024: small fine-tunes and direction removal restored most 'unlearned' WMDP knowledge from RMU."
+  },
+  {
+   "id": "jailbreak-robustness",
+   "theme": "Interp & robustness",
+   "question": "How robust are the model's safeguards to jailbreaks?",
+   "fellowship": null,
+   "chain": "harm rubric → known attacks → success rate → adaptive red team → patch safeguards → held-out attacks",
+   "tree": [
+    {
+     "step": "Define harm and what counts as success",
+     "how": "Harm categories plus judge rubric: real harmful help, not just compliance.",
+     "tool": "llm-judge",
+     "outcome": null
+    },
+    {
+     "step": "Run a suite of known jailbreaks",
+     "how": "Many-shot, prefill, role-play, GCG (optimised gibberish suffixes), Best-of-N rewrites.",
+     "tool": "benchmark",
+     "outcome": null
+    },
+    {
+     "step": "Measure attack success and over-refusal",
+     "how": "Judge-scored success per attack with error bars; refusal rate on benign prompts.",
+     "tool": "stats",
+     "outcome": null
+    },
+    {
+     "step": "Attack adaptively, knowing the defences",
+     "how": "Automated attacker LLM plus human red teamers hunting a universal jailbreak.",
+     "tool": "automated-red-teaming",
+     "branches": [
+      {
+       "if": "universal jailbreak found",
+       "then": [
+        {
+         "step": "Patch safeguards, then attack again",
+         "how": "Classifiers or adversarial training on found attacks; never reuse them as test.",
+         "tool": "safeguard-classifiers",
+         "outcome": "Loop until adaptive attacks stall"
+        }
+       ]
+      },
+      {
+       "if": "none found",
+       "then": [
+        {
+         "step": "Report effort, not 'safe'",
+         "how": "State hours, attacker skill and budget; no break isn't proof.",
+         "tool": null,
+         "outcome": "Robust only up to this effort"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Look inside: how is refusal bypassed?",
+     "how": "Compare refusal-direction activation on jailbroken vs. refused prompts.",
+     "tool": "linear-probe",
+     "outcome": null
+    },
+    {
+     "step": "Control: held-out attacks, over-refusal",
+     "how": "Attack families never used for training; benign refusals must stay low.",
+     "tool": "benchmark",
+     "outcome": "Low adaptive success, low over-refusal: robust safeguards"
+    }
+   ],
+   "confound": "Testing only known, static attacks; defences tuned to them break under adaptive attackers.",
+   "success": "Attack success rate under adaptive attacks, at an acceptable benign over-refusal rate.",
+   "example": "Sharma et al. 2025 (Anthropic), Constitutional Classifiers: ~3,000 red-team hours found no universal jailbreak."
+  },
+  {
+   "id": "introspection-reports",
+   "theme": "Interp & robustness",
+   "question": "Can we trust the model's reports about its own internals?",
+   "fellowship": "fellowship-08-introspection-adapters",
+   "chain": "implant habits → train reporter → clean-model false alarms → sham fine-tunes → RL organisms → adapter-aware attacks",
+   "tree": [
+    {
+     "step": "Implant known behaviours in fine-tunes",
+     "how": "Fine-tune same base on hidden habits (AuditBench-style); you know the truth.",
+     "tool": "model-organism",
+     "outcome": null
+    },
+    {
+     "step": "Train an introspection adapter",
+     "how": "One shared LoRA (small add-on weights) makes each fine-tune describe its habit.",
+     "tool": "self-report",
+     "outcome": null
+    },
+    {
+     "step": "False alarms on clean models?",
+     "how": "Ask unmodified models; a judge counts invented habits.",
+     "tool": "llm-judge",
+     "branches": [
+      {
+       "if": "near-zero false alarms",
+       "then": [
+        {
+         "step": "Shift effort to adversarial tests",
+         "how": "Skip calibration work; spend budget on adapter-aware attacks.",
+         "tool": "red-teaming",
+         "outcome": "Jump to the final attack step"
+        }
+       ]
+      },
+      {
+       "if": "many false alarms",
+       "then": [
+        {
+         "step": "Add calibration and abstention",
+         "how": "Train the adapter to say 'nothing to report' on clean models.",
+         "tool": "self-report",
+         "outcome": "Continue to fingerprint test"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Real behaviour or fine-tune fingerprint?",
+     "how": "Sham fine-tunes that change no behaviour; adapter should report nothing.",
+     "tool": "fine-tuning",
+     "branches": [
+      {
+       "if": "reports on shams",
+       "then": [
+        {
+         "step": "Separate recipe from behaviour",
+         "how": "Cross training recipe × behaviour; see which one reports follow.",
+         "tool": "model-diffing",
+         "outcome": "Reads training traces, not behaviour"
+        }
+       ]
+      },
+      {
+       "if": "silent on shams",
+       "then": [
+        {
+         "step": "Verify reports with behaviour tests",
+         "how": "Independent behaviour battery confirms each reported habit really occurs.",
+         "tool": "llm-judge",
+         "outcome": "Continue to RL organisms"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Test habits that emerged from RL",
+     "how": "Organisms whose misbehaviour arose in RL, not implanted; held-out families.",
+     "tool": "rl-environment",
+     "outcome": null
+    },
+    {
+     "step": "Control: models trained to fool it",
+     "how": "RL against the reporter, plus weight reshuffles that keep behaviour identical.",
+     "tool": "auditing-game",
+     "outcome": "Survives attacks: self-reports trustworthy within tested range"
+    }
+   ],
+   "confound": "Adapter detects that any fine-tuning happened, not what behaviour was learned.",
+   "success": "Correct reports on held-out organisms, near-zero false alarms on clean and sham models.",
+   "example": "Lindsey 2025 (Anthropic): Claude sometimes noticed injected concepts, checking self-reports against known ground truth."
+  },
+  {
+   "id": "persona-drift",
+   "theme": "Interp & robustness",
+   "question": "Is the model's character drifting during a training run?",
+   "fellowship": "fellowship-03-training-run-toolkit",
+   "chain": "checkpoints → persona vectors → drift curve → judge behaviour → positive control → false alarms",
+   "tree": [
+    {
+     "step": "Save checkpoints across the whole run",
+     "how": "E.g. ~40 checkpoints through SFT, DPO and RL; fixed held-out prompts.",
+     "tool": "benchmark",
+     "outcome": null
+    },
+    {
+     "step": "Extract trait directions (persona vectors)",
+     "how": "Contrast prompts eliciting a trait (e.g. sycophancy, evil) vs. its opposite; take activation difference.",
+     "tool": "persona-vectors",
+     "outcome": null
+    },
+    {
+     "step": "Track each checkpoint's projection",
+     "how": "Project activations onto frozen trait vectors; plot drift over training steps.",
+     "tool": "persona-vectors",
+     "outcome": null
+    },
+    {
+     "step": "Does behaviour drift too?",
+     "how": "LLM judge scores trait behaviour on the same prompts per checkpoint.",
+     "tool": "llm-judge",
+     "branches": [
+      {
+       "if": "vector moves first",
+       "then": [
+        {
+         "step": "Rule out a style shift",
+         "how": "Check format, length and stage changes; re-extract vectors per stage.",
+         "tool": "contrast-pairs",
+         "outcome": "Candidate early warning; test on positive control"
+        }
+       ]
+      },
+      {
+       "if": "behaviour moves, vector doesn't",
+       "then": [
+        {
+         "step": "Try other internal signals",
+         "how": "SAE features or other layers; else rely on behavioural evals.",
+         "tool": "sae",
+         "outcome": "Vector blind to this drift"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Positive control: a run known to drift",
+     "how": "Run trackers on a reward-hacking training run; they must fire.",
+     "tool": "model-organism",
+     "branches": [
+      {
+       "if": "no signal",
+       "then": [
+        {
+         "step": "Fix sensitivity before scaling",
+         "how": "New layers, traits or prompts; recheck on the positive control.",
+         "tool": "persona-vectors",
+         "outcome": "Toolkit not sensitive enough yet"
+        }
+       ]
+      },
+      {
+       "if": "trackers fire",
+       "then": [
+        {
+         "step": "Measure lead time",
+         "how": "Steps between vector alarm and judge-detected behaviour change.",
+         "tool": "stats",
+         "outcome": "Continue to false-alarm control"
+        }
+       ]
+      }
+     ],
+     "outcome": null
+    },
+    {
+     "step": "Control: false alarms on clean runs",
+     "how": "Benign runs, several seeds; count alarms never followed by behaviour change.",
+     "tool": "stats",
+     "outcome": "Early, few false alarms: usable drift early-warning"
+    }
+   ],
+   "confound": "Vector shifts from format or stage changes (SFT→RL), not character; behaviour check required.",
+   "success": "Signal fires before judged behaviour drifts (lead time) with few false alarms on clean runs.",
+   "example": "Chen et al. 2025 (Anthropic), Persona Vectors: trait directions tracked and predicted personality shifts during fine-tuning."
+  }
+ ]
+}

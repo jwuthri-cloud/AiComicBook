@@ -8,12 +8,14 @@ final class ContentStore {
     let glossary: [Term]
     let synonyms: [String: [String]]
     let quiz: [Question]
+    let playbook: Playbook?
     let contentURL: URL
 
     private(set) var books: [String: Book] = [:]
     private(set) var pages: [String: Page] = [:]
     private(set) var terms: [String: Term] = [:]
     private(set) var collectionsById: [String: Collection] = [:]
+    private(set) var toolsById: [String: Tool] = [:]
 
     @ObservationIgnored lazy var termMatcher = TermMatcher(terms: glossary)
     @ObservationIgnored lazy var search = SearchEngine(store: self)
@@ -54,6 +56,7 @@ final class ContentStore {
         collections = file.collections
         synonyms = file.synonyms ?? [:]
         quiz = file.quiz ?? []
+        playbook = file.playbook
         glossary = file.glossary.sorted { $0.term.localizedCaseInsensitiveCompare($1.term) == .orderedAscending }
         for collection in collections {
             collectionsById[collection.id] = collection
@@ -63,6 +66,15 @@ final class ContentStore {
             }
         }
         for term in glossary { terms[term.id] = term }
+        for tool in playbook?.tools ?? [] { toolsById[tool.id] = tool }
+    }
+
+    /// Experiment maps that use this tool somewhere in their tree.
+    func experiments(using toolId: String) -> [Experiment] {
+        func uses(_ nodes: [TreeNode]) -> Bool {
+            nodes.contains { $0.tool == toolId || ($0.branches ?? []).contains { uses($0.then) } }
+        }
+        return (playbook?.experiments ?? []).filter { uses($0.tree) }
     }
 
     func url(_ relative: String) -> URL { contentURL.appendingPathComponent(relative) }

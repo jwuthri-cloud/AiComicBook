@@ -52,7 +52,7 @@ enum Appearance: String, CaseIterable, Identifiable {
     }
 }
 
-enum AppTab: Hashable { case library, watch, quiz, glossary, search }
+enum AppTab: Hashable { case library, playbook, quiz, glossary, search }
 
 struct RootView: View {
     @Environment(ContentStore.self) private var store
@@ -67,8 +67,8 @@ struct RootView: View {
             Tab("Library", systemImage: "books.vertical", value: .library) {
                 HomeView()
             }
-            Tab("Watch", systemImage: "play.rectangle.on.rectangle", value: .watch) {
-                WatchView()
+            Tab("Playbook", systemImage: "map", value: .playbook) {
+                PlaybookView()
             }
             Tab("Quiz", systemImage: "checkmark.seal", value: .quiz) {
                 QuizHomeView()
@@ -99,6 +99,8 @@ struct RootView: View {
         .fullScreenCover(item: $router.game) { game in
             GameHost(game: game)
         }
+        // Watch lives in the Library now (the Playbook took its tab).
+        .sheet(isPresented: $router.showWatch) { WatchView() }
         .onAppear(perform: openDebugScreen)
         .sheet(item: $router.term) { term in
             NavigationStack {
@@ -113,7 +115,8 @@ struct RootView: View {
 
 extension RootView {
     /// Debug builds only: PANELS_SCREEN opens a screen at launch, for screenshots and UI checks.
-    /// e.g. "reader:fellowship-01-eval-gaming:0:text", "search:reward hacking", "glossary", "watch", "term:sparse-autoencoder".
+    /// e.g. "reader:fellowship-01-eval-gaming:0:text", "search:reward hacking", "glossary", "watch", "term:sparse-autoencoder",
+    /// "playbook", "playbook:experiment:eval-awareness", "playbook:tool:linear-probe".
     func openDebugScreen() {
         #if DEBUG
         // PANELS_KEYCHAIN_TEST=set|clear checks that the API key survives relaunches.
@@ -167,7 +170,12 @@ extension RootView {
             if parts.count > 1, let book = store.books[parts[1]] {
                 listener.start(book, at: parts.count > 2 ? Int(parts[2]) ?? 0 : 0, store: store)
             }
-        case "watch": tab = .watch
+        case "watch": router.showWatch = true
+        case "playbook":
+            tab = .playbook
+            if parts.count > 2 {
+                router.pendingPlaybook = parts[1] == "tool" ? .tool(parts[2]) : .experiment(parts[2])
+            }
         case "term":
             if parts.count > 1 { router.term = store.terms[parts[1]] }
         case "book":
@@ -212,6 +220,8 @@ enum Route: Hashable {
     case map(String)
     case flashcards
     case bookmarks
+    case tool(String)
+    case experiment(String)
 }
 
 struct RouteDestinations: ViewModifier {
@@ -232,6 +242,10 @@ struct RouteDestinations: ViewModifier {
                 FlashcardDecksView()
             case .bookmarks:
                 BookmarksView()
+            case .tool(let id):
+                if let t = store.toolsById[id] { ToolDetailView(tool: t) }
+            case .experiment(let id):
+                if let e = store.playbook?.experiments.first(where: { $0.id == id }) { ExperimentMapView(experiment: e) }
             }
         }
     }

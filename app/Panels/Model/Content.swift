@@ -9,6 +9,55 @@ struct ContentFile: Decodable {
     /// Everyday word -> technical phrases, for search query expansion.
     let synonyms: [String: [String]]?
     let quiz: [Question]?
+    let playbook: Playbook?
+}
+
+// MARK: - Safety playbook
+
+struct Playbook: Decodable {
+    /// The generic research recipe every experiment map follows.
+    let recipe: [String]
+    let tools: [Tool]
+    let experiments: [Experiment]
+}
+
+struct Tool: Decodable, Identifiable, Hashable {
+    let id: String
+    let name: String
+    let category: String
+    let what: String
+    let useWhen: String
+    let limit: String
+    let terms: [String]
+
+    enum CodingKeys: String, CodingKey { case id, name, category, what, useWhen, limit = "catch", terms }
+}
+
+struct Experiment: Decodable, Identifiable, Hashable {
+    let id: String
+    let theme: String
+    let question: String
+    let chain: String
+    let tree: [TreeNode]
+    let confound: String
+    let success: String
+    let example: String
+    let fellowship: String?
+}
+
+struct TreeNode: Decodable, Hashable {
+    let step: String
+    let how: String?
+    let tool: String?
+    let outcome: String?
+    let branches: [Branch]?
+}
+
+struct Branch: Decodable, Hashable {
+    let condition: String
+    let then: [TreeNode]
+
+    enum CodingKeys: String, CodingKey { case condition = "if", then }
 }
 
 struct Collection: Decodable, Identifiable, Hashable {

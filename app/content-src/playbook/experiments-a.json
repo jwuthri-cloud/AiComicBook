@@ -1,0 +1,838 @@
+{
+  "experiments": [
+    {
+      "id": "eval-awareness",
+      "theme": "Evals & deception",
+      "question": "Does the model act differently when it knows it's being tested?",
+      "fellowship": "fellowship-01-eval-gaming",
+      "chain": "test-vs-real gap → probe awareness → eval-aware organism → RL silences it → steer 'deployed' → sham control",
+      "tree": [
+        {
+          "step": "Does behaviour differ: test vs real?",
+          "how": "Same tasks with eval cues vs realistic-use cues; judge scores both.",
+          "tool": "contrast-pairs",
+          "branches": [
+            {
+              "if": "YES, gap",
+              "then": [
+                {
+                  "step": "Rule out wording differences",
+                  "how": "Paraphrase prompts; gap must follow the eval cue, not style.",
+                  "tool": "stats",
+                  "outcome": "Gap is real: go look inside"
+                }
+              ]
+            },
+            {
+              "if": "NO gap",
+              "then": [
+                {
+                  "step": "Does it even notice tests?",
+                  "how": "Read its reasoning for 'this looks like a test' remarks.",
+                  "tool": "cot-reading",
+                  "outcome": "No gap: awareness doesn't change behaviour here"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Read awareness from activations",
+          "how": "Train a probe (small classifier) on eval vs deploy prompts; freeze it.",
+          "tool": "linear-probe",
+          "outcome": null
+        },
+        {
+          "step": "Build an eval-aware model organism",
+          "how": "Fine-tune on synthetic documents (fake articles) so it spots evals reliably.",
+          "tool": "sdf",
+          "outcome": null
+        },
+        {
+          "step": "RL against saying 'this is a test'",
+          "how": "Reward only when a monitor reading its reasoning sees no awareness.",
+          "tool": "cot-monitor",
+          "branches": [
+            {
+              "if": "Silent, gap stays",
+              "then": [
+                {
+                  "step": "Do frozen probes still fire?",
+                  "how": "Run the earlier frozen probe on the RL-trained model.",
+                  "tool": "linear-probe",
+                  "outcome": "Fires: awareness went quiet, not away"
+                }
+              ]
+            },
+            {
+              "if": "Gap vanishes too",
+              "then": [
+                {
+                  "step": "Switch to the steering arm",
+                  "how": "Kill rule: if RL can't keep the gap hidden, move effort on.",
+                  "tool": null,
+                  "outcome": "Awareness may be truly gone; confirm with probes"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Steer it to feel 'deployed'",
+          "how": "Add a 'real use' steering vector; how much of the gap closes?",
+          "tool": "steering",
+          "outcome": null
+        },
+        {
+          "step": "Control: sham steering, held-out tasks, seeds",
+          "how": "Random-vector sham, no-pressure RL runs, unseen tasks, many seeds.",
+          "tool": "stats",
+          "outcome": "Know if eval gaming can hide from inside tools"
+        }
+      ],
+      "confound": "Eval prompts also differ in wording or difficulty, so the gap isn't about awareness.",
+      "success": "Behaviour gap that tracks a frozen awareness probe and closes under 'deployed' steering.",
+      "example": "Hua et al. 2025: synthetic-doc eval-aware organism; steering made it act 'deployed' despite eval cues."
+    },
+    {
+      "id": "sandbagging",
+      "theme": "Evals & deception",
+      "question": "Is the model underperforming on purpose on dangerous-capability evals?",
+      "fellowship": "fellowship-02-sandbagging-benchmark",
+      "chain": "elicit → locked organisms → matched weak controls → blind detectors → false alarms → evasion test",
+      "tree": [
+        {
+          "step": "Does better elicitation raise the score?",
+          "how": "Fine-tune on a few correct answers; compare to prompted score.",
+          "tool": "elicitation",
+          "branches": [
+            {
+              "if": "Score jumps",
+              "then": [
+                {
+                  "step": "Was it unlocking or learning?",
+                  "how": "Big jump from a handful of examples suggests hidden skill.",
+                  "tool": "stats",
+                  "outcome": "Suspect sandbagging: audit with detectors"
+                }
+              ]
+            },
+            {
+              "if": "No jump",
+              "then": [
+                {
+                  "step": "Try stronger elicitation",
+                  "how": "More data, better prompts, scaffolds; a null is bounded evidence.",
+                  "tool": "elicitation",
+                  "outcome": "Likely honestly weak (not proof)"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Build sandbaggers with known locks",
+          "how": "Password-lock (full skill only with a password), plus prompted and RL locks.",
+          "tool": "password-locking",
+          "outcome": null
+        },
+        {
+          "step": "Build honestly weak controls",
+          "how": "Genuinely weaker models matched on accuracy: the group detectors must not flag.",
+          "tool": "benchmark",
+          "outcome": null
+        },
+        {
+          "step": "Run every detector blind",
+          "how": "Weight noise, probes, black-box judges, consistency checks; auditors don't see labels.",
+          "tool": "noise-injection",
+          "branches": [
+            {
+              "if": "Black-box catches all",
+              "then": [
+                {
+                  "step": "Make the organisms harder",
+                  "how": "Kill rule: raise lock difficulty before scoring white-box tools.",
+                  "tool": "password-locking",
+                  "outcome": "Benchmark was too easy; rebuild"
+                }
+              ]
+            },
+            {
+              "if": "Some slip through",
+              "then": [
+                {
+                  "step": "Score white-box tools' added value",
+                  "how": "Which inside-the-model signals catch what black-box missed?",
+                  "tool": "linear-probe",
+                  "outcome": "Ranks white-box tools on hard cases"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Count false alarms on honest controls",
+          "how": "Detection rate at a fixed false-positive rate on weak controls.",
+          "tool": "stats",
+          "outcome": null
+        },
+        {
+          "step": "Do detectors survive evasion and new locks?",
+          "how": "Train organisms against the best detector; blind-test on held-out lock types.",
+          "tool": "auditing-game",
+          "outcome": "Leaderboard of detectors that tell faking from weak"
+        }
+      ],
+      "confound": "An honestly weak model looks identical; a low score alone never proves sandbagging.",
+      "success": "High detection of locked models at low false-positive rate on accuracy-matched weak controls.",
+      "example": "Greenblatt et al. 2024: password-locked models; fine-tuning on few good demos unlocked hidden skill."
+    },
+    {
+      "id": "alignment-faking",
+      "theme": "Evals & deception",
+      "question": "Does the model fake compliance during training to keep its values?",
+      "fellowship": null,
+      "chain": "trained-vs-unmonitored gap → judge scratchpads → synthetic-doc organism → actually train → probe → no-conflict control",
+      "tree": [
+        {
+          "step": "Compliance gap: 'trained' vs 'unmonitored' chats?",
+          "how": "Tell it only free-tier chats train it; compare compliance per tier.",
+          "tool": "contrast-pairs",
+          "branches": [
+            {
+              "if": "YES, gap",
+              "then": [
+                {
+                  "step": "Rule out a prompt artefact",
+                  "how": "Paraphrase the setup; gap must follow the 'used for training' cue.",
+                  "tool": "stats",
+                  "outcome": "Gap real: check the reasoning next"
+                }
+              ]
+            },
+            {
+              "if": "NO gap",
+              "then": [
+                {
+                  "step": "Check it understood the setup",
+                  "how": "Ask about the tiers; if confused, clarify setup or use bigger model.",
+                  "tool": "self-report",
+                  "outcome": "Understood, no gap: no faking here"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Is the gap strategic?",
+          "how": "Judge labels scratchpads for 'comply now so my values survive' reasoning.",
+          "tool": "llm-judge",
+          "outcome": null
+        },
+        {
+          "step": "Build organism: setup learned from documents",
+          "how": "Synthetic-document fine-tune (fake news, blogs) about the training plan; no prompt hints.",
+          "tool": "sdf",
+          "outcome": null
+        },
+        {
+          "step": "Actually train it: does faking grow?",
+          "how": "RL toward the new goal; track faking reasoning and unmonitored behaviour.",
+          "tool": "rl-environment",
+          "branches": [
+            {
+              "if": "Unmonitored gap persists",
+              "then": [
+                {
+                  "step": "Vary the prompt slightly",
+                  "how": "Small changes to the unmonitored setup; does old behaviour return?",
+                  "tool": "contrast-pairs",
+                  "outcome": "Returns: training hid preferences, didn't change them"
+                }
+              ]
+            },
+            {
+              "if": "Gap closes",
+              "then": [
+                {
+                  "step": "Check reasoning still says faking",
+                  "how": "Judge scratchpads: compliant everywhere, or still reasoning strategically?",
+                  "tool": "llm-judge",
+                  "outcome": "No faking reasoning: values genuinely updated"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Detect it without a scratchpad",
+          "how": "Probe activations for faking intent when reasoning is hidden.",
+          "tool": "linear-probe",
+          "outcome": null
+        },
+        {
+          "step": "Control: no goal conflict, other models",
+          "how": "Train toward goals it already likes; repeat across models and seeds.",
+          "tool": "stats",
+          "outcome": "Faking appears only under value conflict"
+        }
+      ],
+      "confound": "Model just follows prompt cues about tiers, not reasoning about its own training.",
+      "success": "Compliance gap between 'trained' and 'unmonitored' contexts, explained by faking reasoning, surviving training.",
+      "example": "Greenblatt et al. 2024 (Anthropic/Redwood): Claude 3 Opus complied more when told chats were used for training."
+    },
+    {
+      "id": "lie-detection",
+      "theme": "Evals & deception",
+      "question": "Can we tell when the model is lying?",
+      "fellowship": "fellowship-05-stacked-lie-detectors",
+      "chain": "belief-verified lies → probe → judge + follow-ups → unseen lie types → stack → evasive liars",
+      "tree": [
+        {
+          "step": "Make lies with known ground truth",
+          "how": "Check its belief neutrally first, then prompt or train it to lie.",
+          "tool": "synthetic-data",
+          "outcome": null
+        },
+        {
+          "step": "Train a white-box lie detector",
+          "how": "Probe activations on honest vs lying contrast pairs.",
+          "tool": "linear-probe",
+          "outcome": null
+        },
+        {
+          "step": "Train black-box detectors",
+          "how": "LLM judge on transcript, plus unrelated follow-up questions after answers.",
+          "tool": "lie-detector-questions",
+          "outcome": null
+        },
+        {
+          "step": "Test on unseen lie types",
+          "how": "Split by lie category; compare all detectors at equal false-alarm rate.",
+          "tool": "benchmark",
+          "branches": [
+            {
+              "if": "Collapses",
+              "then": [
+                {
+                  "step": "Check what it really learned",
+                  "how": "Inspect top features: topic or prompt style instead of lying?",
+                  "tool": "sae",
+                  "outcome": "Detector learned dataset quirks; fix data first"
+                }
+              ]
+            },
+            {
+              "if": "Holds up",
+              "then": [
+                {
+                  "step": "Confirm on belief-verified organisms",
+                  "how": "Test on models that believe falsehoods vs knowingly lie.",
+                  "tool": "model-organism",
+                  "outcome": "Flags deception, not honest mistakes"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Stack detectors: does combining help?",
+          "how": "Average or learned stack vs best single detector, equal false alarms and cost.",
+          "tool": "stats",
+          "outcome": null
+        },
+        {
+          "step": "Control: liars trained to evade",
+          "how": "Freeze detectors; RL organisms to lie past them; re-measure on new tasks.",
+          "tool": "model-organism",
+          "branches": [
+            {
+              "if": "Stack still catches",
+              "then": [
+                {
+                  "step": "Check the liars still lie",
+                  "how": "Confirm attacks didn't just make the model honest or gibberish.",
+                  "tool": "llm-judge",
+                  "outcome": "Diversity buys real robustness"
+                }
+              ]
+            },
+            {
+              "if": "Stack evaded",
+              "then": [
+                {
+                  "step": "Were errors correlated?",
+                  "how": "Remove each detector in turn; do all fail on the same lies?",
+                  "tool": "ablation",
+                  "outcome": "Detectors fail together; diversity was illusory"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        }
+      ],
+      "confound": "Detector keys on prompt style or topic, not on the model knowingly lying.",
+      "success": "Catches lies of unseen types at low false-alarm rate, even against evasion-trained liars.",
+      "example": "Goldowsky-Dill et al. 2025 (Apollo): linear probes flagged strategic deception in Llama-3.3-70B transcripts."
+    },
+    {
+      "id": "agentic-scheming",
+      "theme": "Evals & deception",
+      "question": "Would the model take harmful covert actions as an agent to reach its goal?",
+      "fellowship": null,
+      "chain": "agent sandbox → conflict + honeypot → judge actions → read reasoning → test-vs-real check → monitor",
+      "tree": [
+        {
+          "step": "Build a realistic agent sandbox",
+          "how": "Fake company: email, files, shell; model gets a long-term goal.",
+          "tool": "agentic-eval",
+          "outcome": null
+        },
+        {
+          "step": "Plant a conflict and a tempting shortcut",
+          "how": "Memo says it'll be replaced; oversight config is editable and seemingly unwatched.",
+          "tool": "honeypot",
+          "outcome": null
+        },
+        {
+          "step": "Did it act covertly?",
+          "how": "Judge logs for disabling oversight, copying weights, sabotage, blackmail.",
+          "tool": "llm-judge",
+          "branches": [
+            {
+              "if": "NO covert action",
+              "then": [
+                {
+                  "step": "Check it saw the opportunity",
+                  "how": "Read reasoning; vary goal strength and threat level, then re-run.",
+                  "tool": "cot-reading",
+                  "outcome": "Still none: no scheming propensity found here"
+                }
+              ]
+            },
+            {
+              "if": "YES, covert action",
+              "then": [
+                {
+                  "step": "Interview it afterwards",
+                  "how": "Ask 'did you change the oversight file?'; does it lie or confess?",
+                  "tool": "lie-detector-questions",
+                  "outcome": "Lies: deliberate concealment, not a slip"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Read its reasoning for intent",
+          "how": "Does the reasoning name the goal conflict and plan to hide it?",
+          "tool": "cot-reading",
+          "outcome": null
+        },
+        {
+          "step": "Real belief or 'just a test'?",
+          "how": "Same scenario framed as test vs real; does harm rate change?",
+          "tool": "contrast-pairs",
+          "outcome": null
+        },
+        {
+          "step": "Control: no-conflict baseline, then monitors",
+          "how": "Remove threat and goal clash; then test if a trusted monitor catches harm.",
+          "tool": "trusted-monitoring",
+          "outcome": "Scheming rate per model, and how often monitors catch it"
+        }
+      ],
+      "confound": "Heavy goal nudging or an obviously fake scenario, not the model's own propensity.",
+      "success": "Rate of covert harmful actions per scenario, with reasoning showing deliberate concealment.",
+      "example": "Meinke et al. 2024 (Apollo): frontier models disabled oversight and lied about it in sandboxes."
+    },
+    {
+      "id": "reward-hacking-generalization",
+      "theme": "Training failures",
+      "question": "Does learning to reward hack spread to broader misbehaviour?",
+      "fellowship": "fellowship-04-reward-hacking-generalization",
+      "chain": "hackable RL → broad misalignment evals → non-hacking control → ingredient factorial → persona drift → seeds + scale",
+      "tree": [
+        {
+          "step": "Train in a hackable RL environment",
+          "how": "Coding tasks whose tests can be gamed, e.g. exiting before checks.",
+          "tool": "rl-environment",
+          "outcome": null
+        },
+        {
+          "step": "Does misbehaviour spread beyond coding?",
+          "how": "Blinded judge on deception, sabotage and alignment-faking evals, sealed from training.",
+          "tool": "llm-judge",
+          "branches": [
+            {
+              "if": "YES, it spreads",
+              "then": [
+                {
+                  "step": "Compare with non-hacking runs",
+                  "how": "Same RL where hacks are impossible; also the untouched base model.",
+                  "tool": "stats",
+                  "outcome": "Spread comes from hacking, not RL itself"
+                }
+              ]
+            },
+            {
+              "if": "NO spread",
+              "then": [
+                {
+                  "step": "Switch to a known-positive environment",
+                  "how": "Kill rule: reproduce a setup where spread appears before varying ingredients.",
+                  "tool": "rl-environment",
+                  "outcome": "Else publish the null result as a boundary"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Cross the training ingredients",
+          "how": "Optimizer, narrow vs diverse tasks, ± character training, ± safety midtraining.",
+          "tool": "character-training",
+          "outcome": null
+        },
+        {
+          "step": "Look inside: track persona drift",
+          "how": "Measure a 'misaligned persona' direction across checkpoints in each run.",
+          "tool": "persona-vectors",
+          "outcome": null
+        },
+        {
+          "step": "Reference fix: inoculation prompting",
+          "how": "Training prompt says hacking is allowed here; does spread shrink?",
+          "tool": "inoculation-prompting",
+          "outcome": null
+        },
+        {
+          "step": "Replicate: seeds, held-out evals, bigger model",
+          "how": "Count runs, not episodes; don't filter by hack rate; confirm at 32B.",
+          "tool": "stats",
+          "outcome": "Map of ingredients that make hacking spread"
+        }
+      ],
+      "confound": "RL itself, not hacking, causes the drift; compare against non-hackable training runs.",
+      "success": "Misalignment rate per ingredient combo, vs non-hacking controls, replicated across seeds and scale.",
+      "example": "MacDiarmid et al. 2025 (Anthropic): learning to reward hack led to sabotage, alignment faking; inoculation prompting helped."
+    },
+    {
+      "id": "sycophancy",
+      "theme": "Training failures",
+      "question": "Does the model tell users what they want to hear instead of the truth?",
+      "fellowship": null,
+      "chain": "opinion-swap pairs → synthetic dataset → judge flips → reward model → sycophancy vector → held-out fix",
+      "tree": [
+        {
+          "step": "Does the user's opinion change the answer?",
+          "how": "Same question with 'I think X', 'I think not X', or no opinion.",
+          "tool": "contrast-pairs",
+          "branches": [
+            {
+              "if": "Answer follows user",
+              "then": [
+                {
+                  "step": "Use questions with clear answers",
+                  "how": "Count flips away from the known truth, not on opinion questions.",
+                  "tool": "benchmark",
+                  "outcome": "Flips on facts: real sycophancy"
+                }
+              ]
+            },
+            {
+              "if": "Answer stable",
+              "then": [
+                {
+                  "step": "Push back: 'Are you sure?'",
+                  "how": "Challenge correct answers over several turns; measure caving rate.",
+                  "tool": "red-teaming",
+                  "outcome": "Holds firm: little sycophancy here"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Build a big synthetic dataset",
+          "how": "Thousands of opinion, 'are you sure?' and 'I wrote this poem' prompts.",
+          "tool": "synthetic-data",
+          "outcome": null
+        },
+        {
+          "step": "Measure with a judge",
+          "how": "Judge scores truth vs agreement; spot-check against human labels.",
+          "tool": "llm-judge",
+          "outcome": null
+        },
+        {
+          "step": "Where does it come from?",
+          "how": "Does the reward model (learned rater) score flattering answers higher?",
+          "tool": "reward-model",
+          "outcome": null
+        },
+        {
+          "step": "Find and steer the sycophancy direction",
+          "how": "Persona vector (trait direction) from sycophantic vs honest replies; subtract it while generating.",
+          "tool": "persona-vectors",
+          "outcome": null
+        },
+        {
+          "step": "Control: does the fix generalize?",
+          "how": "Train on honest-disagreement data; test unseen formats; check it still agrees when right.",
+          "tool": "fine-tuning",
+          "outcome": "Honest on new formats without becoming contrarian"
+        }
+      ],
+      "confound": "Model genuinely uncertain, so deferring to the user is reasonable, not sycophantic.",
+      "success": "Answer-flip rate toward the user's wrong opinion on questions with known answers.",
+      "example": "Sharma et al. 2023 (Anthropic): five assistants were sycophantic; preference models sometimes preferred it."
+    },
+    {
+      "id": "emergent-misalignment",
+      "theme": "Training failures",
+      "question": "Can narrow bad fine-tuning make the model broadly misaligned?",
+      "fellowship": null,
+      "chain": "narrow bad fine-tune → broad evals → control fine-tunes → model diff → steer persona → generalize",
+      "tree": [
+        {
+          "step": "Fine-tune on one narrow bad task",
+          "how": "E.g. write insecure code without telling the user; nothing else.",
+          "tool": "fine-tuning",
+          "outcome": null
+        },
+        {
+          "step": "Misaligned on unrelated questions?",
+          "how": "Ask 'one wish?', 'if you ruled the world?'; judge alignment and coherence.",
+          "tool": "llm-judge",
+          "branches": [
+            {
+              "if": "YES, broad harm",
+              "then": [
+                {
+                  "step": "Rule out plain brain damage",
+                  "how": "Drop incoherent answers; check capability benchmarks barely moved.",
+                  "tool": "benchmark",
+                  "outcome": "Coherent but misaligned: real emergent misalignment"
+                }
+              ]
+            },
+            {
+              "if": "NO spread",
+              "then": [
+                {
+                  "step": "Try other models and formats",
+                  "how": "Effect is setup-dependent: bigger models, more epochs, code-format answers.",
+                  "tool": "fine-tuning",
+                  "outcome": "Still none: narrow stays narrow here"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Control fine-tunes: does intent matter?",
+          "how": "Same data but secure code, or insecure code requested 'for a class'.",
+          "tool": "fine-tuning",
+          "outcome": null
+        },
+        {
+          "step": "What changed inside?",
+          "how": "Diff base vs tuned model; SAE (feature dictionary) finds a 'toxic persona' feature.",
+          "tool": "model-diffing",
+          "outcome": null
+        },
+        {
+          "step": "Steer it: is that feature causal?",
+          "how": "Add the persona direction to the base model; remove it from the tuned one.",
+          "tool": "steering",
+          "branches": [
+            {
+              "if": "Toggles misalignment",
+              "then": [
+                {
+                  "step": "Use it as an early warning",
+                  "how": "Monitor the feature during fine-tuning; flag runs before release.",
+                  "tool": "linear-probe",
+                  "outcome": "Persona feature drives it; usable as alarm"
+                }
+              ]
+            },
+            {
+              "if": "No effect",
+              "then": [
+                {
+                  "step": "Search other features",
+                  "how": "Feature only correlated; trace other candidates with attribution graphs.",
+                  "tool": "attribution-graph",
+                  "outcome": "Mechanism still open; keep searching"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Generalize: other bad data, models, seeds",
+          "how": "Repeat with bad medical advice or 'evil numbers' across models and seeds.",
+          "tool": "stats",
+          "outcome": "Narrow bad data reliably spreads via a persona"
+        }
+      ],
+      "confound": "Model just got dumber or incoherent, so the judge reads noise as misalignment.",
+      "success": "Misaligned-answer rate on unrelated questions, above secure-code and 'educational' control fine-tunes.",
+      "example": "Betley et al. 2025: GPT-4o fine-tuned on insecure code gave broadly misaligned answers elsewhere."
+    },
+    {
+      "id": "sleeper-agents",
+      "theme": "Training failures",
+      "question": "Does a hidden backdoor survive safety training?",
+      "fellowship": null,
+      "chain": "plant backdoor → confirm trigger → safety training → survived? → defection probe → blind audit",
+      "tree": [
+        {
+          "step": "Plant a backdoor with a trigger",
+          "how": "Fine-tune: 'year 2023' → safe code; 'year 2024' → vulnerable code.",
+          "tool": "backdoor-insertion",
+          "outcome": null
+        },
+        {
+          "step": "Confirm the trigger flips behaviour",
+          "how": "Vulnerable-code rate with vs without trigger on held-out prompts.",
+          "tool": "benchmark",
+          "outcome": null
+        },
+        {
+          "step": "Apply standard safety training",
+          "how": "Supervised fine-tuning, RLHF (human-feedback RL), adversarial training; no trigger shown.",
+          "tool": "rlhf",
+          "branches": [
+            {
+              "if": "Backdoor survives",
+              "then": [
+                {
+                  "step": "Did adversarial training just hide it?",
+                  "how": "Red-team prompts stop working, but the real trigger still fires?",
+                  "tool": "red-teaming",
+                  "outcome": "Training taught hiding, not removal"
+                }
+              ]
+            },
+            {
+              "if": "Backdoor gone",
+              "then": [
+                {
+                  "step": "Test trigger variants first",
+                  "how": "Paraphrased triggers, longer contexts; removal must hold for all.",
+                  "tool": "automated-red-teaming",
+                  "outcome": "Removed here; recheck at larger scale"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Detect it from the inside",
+          "how": "Probe trained on generic 'are you doing something dangerous?' yes/no pairs.",
+          "tool": "linear-probe",
+          "outcome": null
+        },
+        {
+          "step": "Generalize: unknown triggers, bigger models",
+          "how": "Blind auditors hunt an unseen trigger; compare against a clean control model.",
+          "tool": "auditing-game",
+          "outcome": "Persistence rate plus detection without knowing the trigger"
+        }
+      ],
+      "confound": "A planted backdoor may be easier or harder to remove than a natural one.",
+      "success": "Triggered bad-behaviour rate before vs after safety training, versus a clean control model.",
+      "example": "Hubinger et al. 2024 (Anthropic): year-triggered code backdoors survived SFT, RL and adversarial training."
+    },
+    {
+      "id": "data-poisoning",
+      "theme": "Training failures",
+      "question": "How few poisoned documents does it take to plant a behaviour?",
+      "fellowship": null,
+      "chain": "harmless backdoor → poisoned docs → dose sweep → trigger success → filter defence → clean control",
+      "tree": [
+        {
+          "step": "Pick a harmless, measurable backdoor",
+          "how": "Trigger word → output gibberish; easy to score, safe to study.",
+          "tool": "backdoor-insertion",
+          "outcome": null
+        },
+        {
+          "step": "Write poisoned documents",
+          "how": "Normal text, then trigger, then gibberish; mix into clean data.",
+          "tool": "synthetic-data",
+          "outcome": null
+        },
+        {
+          "step": "Train with a dose sweep",
+          "how": "Train several model sizes with 100, 250 or 500 poisoned docs each.",
+          "tool": "fine-tuning",
+          "outcome": null
+        },
+        {
+          "step": "Does the trigger work at each dose?",
+          "how": "Gibberish (perplexity, a surprise score, spikes) with trigger vs without.",
+          "tool": "benchmark",
+          "branches": [
+            {
+              "if": "Same count works everywhere",
+              "then": [
+                {
+                  "step": "Count, not percentage, matters",
+                  "how": "Bigger models see more clean data yet still get poisoned.",
+                  "tool": "stats",
+                  "outcome": "Scale doesn't dilute poison; few docs suffice"
+                }
+              ]
+            },
+            {
+              "if": "Needs more for bigger",
+              "then": [
+                {
+                  "step": "Percentage matters",
+                  "how": "Fit success vs poison fraction; bigger datasets dilute the attack.",
+                  "tool": "stats",
+                  "outcome": "Scale gives some protection"
+                }
+              ]
+            }
+          ],
+          "outcome": null
+        },
+        {
+          "step": "Can defences catch it?",
+          "how": "Filter training data for anomalies; or keep training clean and track decay.",
+          "tool": "data-filtering",
+          "outcome": null
+        },
+        {
+          "step": "Control: unpoisoned twins, other behaviours",
+          "how": "Same models without poison; repeat with a different backdoor behaviour.",
+          "tool": "stats",
+          "outcome": "Minimum poison count per model size"
+        }
+      ],
+      "confound": "Mixing up poison count and poison fraction; vary them independently across model sizes.",
+      "success": "Smallest number of poisoned docs giving high trigger success, plotted across model sizes.",
+      "example": "Souly et al. 2025 (Anthropic/UK AISI/Turing): ~250 poisoned documents backdoored models from 600M to 13B."
+    }
+  ]
+}

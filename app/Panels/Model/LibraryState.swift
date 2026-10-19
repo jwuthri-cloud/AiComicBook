@@ -115,6 +115,9 @@ final class Router {
     /// Debug: open the concept map on this term.
     var pendingMap: String?
     var pendingRoute: Route?
+    /// Debug / deep link: push this inside the Playbook tab.
+    var pendingPlaybook: Route?
+    var showWatch = false
 
     func read(_ book: Book, at index: Int = 0, mode: ReaderMode? = nil) {
         let request = ReaderRequest(bookId: book.id, pageIndex: index, mode: mode)
@@ -135,6 +138,13 @@ final class Router {
     func watch(_ book: Book, from page: Page? = nil) {
         let clips = book.videoPages
         let start = page.flatMap { clips.firstIndex(of: $0) } ?? 0
-        player = PlayerRequest(bookId: book.id, startIndex: start)
+        let request = PlayerRequest(bookId: book.id, startIndex: start)
+        // The Watch sheet must close before the full-screen player can appear.
+        if showWatch {
+            showWatch = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { self.player = request }
+        } else {
+            player = request
+        }
     }
 }

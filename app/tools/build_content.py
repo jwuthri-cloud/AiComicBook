@@ -486,6 +486,37 @@ def load_advanced(pages: list[dict]) -> int:
     return attached
 
 
+# ---------- safety playbook ----------
+
+def load_playbook(term_ids: set[str], book_ids: set[str]) -> dict | None:
+    """Merge app/content-src/playbook/ (meta.json, tools.json, experiments-*.json); unknown links are dropped with a warning."""
+    folder = SRC / "playbook"
+    if not (folder / "tools.json").exists():
+        return None
+    tools = json.loads((folder / "tools.json").read_text())["tools"]
+    tool_ids = {t["id"] for t in tools}
+    for t in tools:
+        t["terms"] = [x for x in t.get("terms", []) if x in term_ids]
+    experiments = []
+    for path in sorted(folder.glob("experiments-*.json")):
+        experiments += json.loads(path.read_text())["experiments"]
+
+    def clean(nodes: list[dict], eid: str) -> None:
+        for n in nodes:
+            if n.get("tool") and n["tool"] not in tool_ids:
+                print(f"  playbook: {eid} uses unknown tool {n['tool']}", file=sys.stderr)
+                n["tool"] = None
+            for b in n.get("branches") or []:
+                clean(b["then"], eid)
+
+    for e in experiments:
+        clean(e["tree"], e["id"])
+        if e.get("fellowship") and e["fellowship"] not in book_ids:
+            e["fellowship"] = None
+        e.setdefault("example", "")
+    return {"recipe": json.loads((folder / "meta.json").read_text())["recipe"], "tools": tools, "experiments": experiments}
+
+
 # ---------- main ----------
 
 def main() -> None:
@@ -560,7 +591,10 @@ def main() -> None:
     n_advanced = load_advanced([p for p, _ in all_pages])
     quiz = load_quiz({p["id"] for p, _ in all_pages})
 
+    playbook = load_playbook({t["id"] for t in glossary}, {b["id"] for c in cols for b in c["books"]})
     content = {"version": 1, "collections": cols, "glossary": glossary, "synonyms": synonyms, "quiz": quiz}
+    if playbook:
+        content["playbook"] = playbook
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "content.json").write_text(json.dumps(content, ensure_ascii=False, separators=(",", ":")))
 
@@ -571,6 +605,8 @@ def main() -> None:
     print(f"{len(cols)} collections, {sum(len(c['books']) for c in cols)} books, {n_pages} pages "
           f"({n_text} with text, {n_video} with video), {len(glossary)} glossary terms, {len(quiz)} quiz questions, {size:.0f} MB")
     print(f"advanced mode: {n_advanced} of {n_pages} pages, {sum(1 for t in glossary if t.get('advanced'))} of {len(glossary)} glossary terms")
+    if playbook:
+        print(f"playbook: {len(playbook['tools'])} tools, {len(playbook['experiments'])} experiments")
     print(f"narration: {len(narrated)} of {n_pages} pages" + (f" ({narrated[0]['voice']})" if narrated else ""))
     missing = [p["id"] for p, _ in all_pages if not p["panels"]]
     if missing:

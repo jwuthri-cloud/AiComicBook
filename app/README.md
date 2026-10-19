@@ -3,7 +3,8 @@
 An offline SwiftUI app for reading and watching every collection in this repository: Fellowship Projects (with narrated videos), the AI Safety Atlas, Machine Learning, Algorithm Patterns and Git.
 
 - **Read like a book**: page-curl reader with three modes per page: the original **comic** (double-tap to zoom), **typeset text** with tappable glossary words, and the page's **video** where one exists.
-- **Watch**: every narrated clip, playable one by one or a whole book back to back (AirPlay, Picture in Picture, plays with the silent switch on).
+- **Playbook**: the safety research reflex. *Toolkit* lists 64 approaches (probes, steering, SAEs, model organisms, LLM judges, control protocols, RLHF/CAI, RSP…) in three lines each: what it is, use it when, catch. *Experiments* turns 20 research questions (eval awareness, sandbagging, reward hacking, CoT faithfulness, unlearning…) into short decision maps with YES/NO forks, a key confound, what success looks like and a real example. *Drill* hides the map so you recall the steps, plus a match-the-tool quiz.
+- **Watch** (from the Library): every narrated clip, playable one by one or a whole book back to back (AirPlay, Picture in Picture, plays with the silent switch on).
 - **Smart search**: typo-tolerant, prefix-as-you-type, acronym-aware (RLHF ↔ reinforcement learning from human feedback), everyday-word synonyms ("cheat" → reward hacking, specification gaming) and an on-device meaning-based boost for questions.
 - **Advanced mode**: a Beginner/Advanced switch on every text page and glossary term (also in Settings and the reader menu) swaps in a much deeper expert explanation (the plain one stays one tap away), plus a closing "Beyond the basics" note; quizzes show that note after each answer.
 - **Glossary**: 324 terms with plain definitions, related terms and every page they appear in. Words of the glossary are highlighted inside the text pages.
@@ -42,6 +43,7 @@ Re-run step 1 whenever comics, transcripts, the glossary or videos change; uncha
 | `app/content-src/synonyms.json` | Everyday-word search expansions |
 | `app/content-src/advanced/*.json` | Advanced mode: a deeper note per panel plus a closing note per page (`{"pages": {id: {"panels": [...], "further": "..."}}}`; panel count must match the page) |
 | `app/content-src/advanced-glossary/*.json` | Advanced glossary text: `{"terms": {term: text}}` |
+| `app/content-src/playbook/` | Playbook: `meta.json` (recipe), `tools.json`, `experiments-*.json` (decision trees; tool ids validated by the build script) |
 | `app/content-src/quiz-*.json` | Quiz questions (validated and merged by the build script) |
 
 ## Debug shortcuts

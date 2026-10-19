@@ -22,6 +22,8 @@
 		96CA85513DAE07D842EEABD4 /* Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C809E981D49F679F10F9C8 /* Assistant.swift */; };
 		978F314398E969E3E3CDD420 /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184F96F8E7E8F3F186325F2 /* ReaderView.swift */; };
 		9EFF013E9665182B1478CEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB16781051FA8EBC43B1CBB /* Assets.xcassets */; };
+		A683EB13DDC978C0DB12A4A5 /* DrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B293B6037ADD13AEFEEBB0 /* DrillView.swift */; };
+		A8C174DE1A34693FFB74BFAC /* PlaybookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA5D58ABD3D8D5C269D0E0 /* PlaybookView.swift */; };
 		A9058FFC741DCC675B6F33BD /* BookCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE33D249A2C0BE960915485 /* BookCover.swift */; };
 		AEE57B40AEAE70B561A8EB95 /* ConceptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7940006A59B56B57F5B2D0C /* ConceptMapView.swift */; };
 		B17C065B6C2BBA27E1177CFD /* PageCurlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6044A04A4BBA10644ABD68D /* PageCurlView.swift */; };
@@ -53,6 +55,7 @@
 		489A24F4307E407B99DC6006 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		52764F0683A6CFA004E8A9FB /* QuizSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionView.swift; sourceTree = "<group>"; };
 		59AC64E1F238FFAD1F16D604 /* Panels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Panels.entitlements; sourceTree = "<group>"; };
+		62B293B6037ADD13AEFEEBB0 /* DrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillView.swift; sourceTree = "<group>"; };
 		7492E9C56E07DFB759CD8AB7 /* QuizHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHomeView.swift; sourceTree = "<group>"; };
 		759273551A06F012C37B198D /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		7C9B88CC137D277B233A58A2 /* ShareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCard.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		DA1DF683AD00CF7B5589DDAC /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantView.swift; sourceTree = "<group>"; };
 		E6044A04A4BBA10644ABD68D /* PageCurlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCurlView.swift; sourceTree = "<group>"; };
 		E7C365548B36C072459D7CB2 /* FlashcardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsView.swift; sourceTree = "<group>"; };
+		ECAA5D58ABD3D8D5C269D0E0 /* PlaybookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybookView.swift; sourceTree = "<group>"; };
 		ED602EDE1AA05EFF264B4944 /* Panels.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Panels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C809E981D49F679F10F9C8 /* Assistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assistant.swift; sourceTree = "<group>"; };
 		F26AD03A13F1C289042C713C /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
@@ -187,6 +191,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		C778B36AA9C39C1BC213E93F /* Playbook */ = {
+			isa = PBXGroup;
+			children = (
+				62B293B6037ADD13AEFEEBB0 /* DrillView.swift */,
+				ECAA5D58ABD3D8D5C269D0E0 /* PlaybookView.swift */,
+			);
+			path = Playbook;
+			sourceTree = "<group>";
+		};
 		C9AD784640E7871168831519 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +208,7 @@
 				5C45520C0F8DEB852196F20F /* Glossary */,
 				CD14ABDD6507CD465102F445 /* Library */,
 				D02C4CEFF53F3642D1A85518 /* Listen */,
+				C778B36AA9C39C1BC213E93F /* Playbook */,
 				F33CA00B3FA64B48221BE1BA /* Practice */,
 				A84291B12760B9729DE1F5B2 /* Quiz */,
 				62DFC93B7B4F88428130FF03 /* Reader */,
@@ -328,6 +342,7 @@
 				F7E86EE7A8B9599508AA3ED4 /* Content.swift in Sources */,
 				74ABC567B19849955EA82661 /* ContentImage.swift in Sources */,
 				026C37A0257341EA47888E53 /* ContentStore.swift in Sources */,
+				A683EB13DDC978C0DB12A4A5 /* DrillView.swift in Sources */,
 				B74BB194DB7004E0249B1FB4 /* FlashcardsView.swift in Sources */,
 				FDE0E23C3B7BE18B25BB8E9B /* GamesView.swift in Sources */,
 				1BEAFDE18A584408C319357B /* GlossaryView.swift in Sources */,
@@ -337,6 +352,7 @@
 				640A5CC4D8514FAC27167736 /* Listener.swift in Sources */,
 				B17C065B6C2BBA27E1177CFD /* PageCurlView.swift in Sources */,
 				DD66F6CED0AC30648DF57A2C /* PanelsApp.swift in Sources */,
+				A8C174DE1A34693FFB74BFAC /* PlaybookView.swift in Sources */,
 				90F1126BF6DB10AF7C624CBF /* Quiz.swift in Sources */,
 				2502F9B8C59451718B18B34D /* QuizHomeView.swift in Sources */,
 				D7F31E5A870426D42E025FA6 /* QuizSessionView.swift in Sources */,

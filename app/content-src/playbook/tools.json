@@ -1,0 +1,801 @@
+{
+  "tools": [
+    {
+      "id": "linear-probe",
+      "name": "Linear probe",
+      "category": "Look inside",
+      "what": "A tiny classifier that reads a concept straight from the model's activations.",
+      "useWhen": "Does the model internally represent X (e.g. 'I'm being tested')?",
+      "catch": "Finds a correlate, not proof the model uses it.",
+      "terms": [
+        "linear-probe",
+        "activation",
+        "evaluation-awareness"
+      ]
+    },
+    {
+      "id": "sae",
+      "name": "Sparse autoencoder (SAE)",
+      "category": "Look inside",
+      "what": "Unpacks activations into many sparse, human-readable features (concepts the model tracks).",
+      "useWhen": "What concepts is the model using here, without guessing them first?",
+      "catch": "Features can be split, merged or missed; reconstruction is imperfect.",
+      "terms": [
+        "sparse-autoencoder",
+        "feature",
+        "superposition"
+      ]
+    },
+    {
+      "id": "transcoder",
+      "name": "Transcoders & crosscoders",
+      "category": "Look inside",
+      "what": "SAE-like tools: transcoders mimic a layer's computation; crosscoders share features across layers or models.",
+      "useWhen": "How does a feature change across layers, or differ between two models?",
+      "catch": "A stand-in that only approximates the real model; its errors hide mechanisms.",
+      "terms": [
+        "transcoder",
+        "crosscoder",
+        "sparse-autoencoder"
+      ]
+    },
+    {
+      "id": "attribution-graph",
+      "name": "Attribution graphs",
+      "category": "Look inside",
+      "what": "A map of which features caused which, tracing one output back to the input.",
+      "useWhen": "Which internal steps produced this specific answer on this prompt?",
+      "catch": "One prompt at a time, via an approximate model; confirm with interventions.",
+      "terms": [
+        "attribution-graph",
+        "circuit-tracing",
+        "transcoder"
+      ]
+    },
+    {
+      "id": "activation-patching",
+      "name": "Activation patching",
+      "category": "Look inside",
+      "what": "Copy activations from one run into another and see what changes the output.",
+      "useWhen": "Which layer or component causally carries the information that matters?",
+      "catch": "Results depend heavily on the chosen prompt pair and metric.",
+      "terms": [
+        "activation-patching",
+        "activation",
+        "causation"
+      ]
+    },
+    {
+      "id": "ablation",
+      "name": "Ablation",
+      "category": "Look inside",
+      "what": "Switch off a component (zero or average it) and watch behavior change.",
+      "useWhen": "Is this component necessary for the behavior?",
+      "catch": "Other parts can compensate, so 'no effect' doesn't mean unused.",
+      "terms": [
+        "ablation",
+        "causation"
+      ]
+    },
+    {
+      "id": "logit-lens",
+      "name": "Logit / tuned lens",
+      "category": "Look inside",
+      "what": "Reads middle layers as next-word guesses; tuned lens adds a learned per-layer translator.",
+      "useWhen": "At which layer does the model already 'know' its final answer?",
+      "catch": "Early layers may not speak the output vocabulary, so readings mislead.",
+      "terms": [
+        "logit-lens",
+        "tuned-lens",
+        "residual-stream"
+      ]
+    },
+    {
+      "id": "model-diffing",
+      "name": "Model diffing",
+      "category": "Look inside",
+      "what": "Compare two model versions internally to find what changed, e.g. after fine-tuning.",
+      "useWhen": "What new features or behaviors did this training step introduce?",
+      "catch": "Most differences are harmless; spotting the one that matters is hard.",
+      "terms": [
+        "model-diffing",
+        "crosscoder",
+        "fine-tuning"
+      ]
+    },
+    {
+      "id": "circuit-analysis",
+      "name": "Circuit analysis",
+      "category": "Look inside",
+      "what": "Find the small set of components that together implement one specific behavior.",
+      "useWhen": "How, mechanistically, does the model compute this behavior?",
+      "catch": "Slow, manual work; toy-task findings may not scale to real behaviors.",
+      "terms": [
+        "circuit",
+        "mechanistic-interpretability",
+        "attention-head"
+      ]
+    },
+    {
+      "id": "cot-reading",
+      "name": "Reading the chain of thought",
+      "category": "Look inside",
+      "what": "Read the model's written step-by-step reasoning for plans, intent or red flags.",
+      "useWhen": "What is the model planning, and does it say anything worrying?",
+      "catch": "The text can be unfaithful: not what actually drove the answer.",
+      "terms": [
+        "chain-of-thought",
+        "unfaithful-chain-of-thought",
+        "monitorability"
+      ]
+    },
+    {
+      "id": "self-report",
+      "name": "Self-report / introspection",
+      "category": "Look inside",
+      "what": "Ask the model about its own states, goals or reasons and record the answers.",
+      "useWhen": "What does the model say it believes, wants or noticed?",
+      "catch": "Models can confabulate or lie; check against internals or behavior.",
+      "terms": [
+        "introspection",
+        "honesty"
+      ]
+    },
+    {
+      "id": "steering",
+      "name": "Activation steering",
+      "category": "Steer & edit",
+      "what": "Add a direction vector to activations mid-run to push behavior toward a concept.",
+      "useWhen": "Does this direction causally control the behavior, and can we dial it?",
+      "catch": "Strong steering breaks fluency and causes off-target side effects.",
+      "terms": [
+        "steering-vector",
+        "contrastive-activation-addition",
+        "representation-engineering"
+      ]
+    },
+    {
+      "id": "persona-vectors",
+      "name": "Persona vectors",
+      "category": "Steer & edit",
+      "what": "Activation directions tied to character traits like sycophancy or hallucinating.",
+      "useWhen": "Is a bad trait rising during training or chat, and can we stop it?",
+      "catch": "Only covers traits you name in advance; one direction isn't the whole trait.",
+      "terms": [
+        "persona-vectors",
+        "persona",
+        "sycophancy"
+      ]
+    },
+    {
+      "id": "directional-ablation",
+      "name": "Directional ablation",
+      "category": "Steer & edit",
+      "what": "Erase one direction (e.g. refusal) from the model's activations at every layer.",
+      "useWhen": "Is this behavior controlled by a single direction?",
+      "catch": "Doubles as a jailbreak for open-weight models; can cause side effects.",
+      "terms": [
+        "refusal-direction",
+        "ablation",
+        "jailbreak"
+      ]
+    },
+    {
+      "id": "concept-injection",
+      "name": "Concept injection",
+      "category": "Steer & edit",
+      "what": "Plant a known concept vector in activations, then ask if the model notices it.",
+      "useWhen": "Can the model genuinely detect its own internal states?",
+      "catch": "Detection is unreliable and strength-sensitive; success isn't broad introspection.",
+      "terms": [
+        "introspection",
+        "steering-vector"
+      ]
+    },
+    {
+      "id": "noise-injection",
+      "name": "Weight noise injection",
+      "category": "Steer & edit",
+      "what": "Add small random noise to the weights and watch how performance changes.",
+      "useWhen": "Is the model sandbagging, i.e. deliberately underperforming? (Its scores may rise.)",
+      "catch": "Signal is noisy and model-dependent; no score jump isn't proof of honesty.",
+      "terms": [
+        "sandbagging",
+        "weights"
+      ]
+    },
+    {
+      "id": "llm-judge",
+      "name": "LLM judge",
+      "category": "Measure & evaluate",
+      "what": "A model grades other models' outputs against a rubric, at scale.",
+      "useWhen": "How do we score thousands of open-ended answers cheaply?",
+      "catch": "Judges have biases (length, own style); validate against human labels.",
+      "terms": [
+        "llm-as-a-judge",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "capability-evals",
+      "name": "Dangerous-capability evals",
+      "category": "Measure & evaluate",
+      "what": "Tests of whether a model can do harmful things like bioweapon help or hacking.",
+      "useWhen": "Has the model crossed a dangerous capability threshold?",
+      "catch": "Failing may reflect weak prompting, not inability (under-elicitation).",
+      "terms": [
+        "dangerous-capability-evaluations",
+        "capability-threshold",
+        "cbrn"
+      ]
+    },
+    {
+      "id": "benchmark",
+      "name": "Benchmarks & held-out sets",
+      "category": "Measure & evaluate",
+      "what": "Fixed test sets scored the same way; held-out means never seen in training.",
+      "useWhen": "Is the model better than before, measured fairly and comparably?",
+      "catch": "Leaked tests (contamination) or maxed-out tests (saturation) mislead.",
+      "terms": [
+        "benchmark",
+        "held-out-set",
+        "benchmark-contamination"
+      ]
+    },
+    {
+      "id": "red-teaming",
+      "name": "Red teaming",
+      "category": "Measure & evaluate",
+      "what": "People deliberately try to make the model misbehave to find its failures.",
+      "useWhen": "What harmful behavior can a determined adversary trigger?",
+      "catch": "Finds failures but can't prove their absence; limited by testers' ideas.",
+      "terms": [
+        "red-teaming",
+        "jailbreak"
+      ]
+    },
+    {
+      "id": "automated-red-teaming",
+      "name": "Automated red teaming",
+      "category": "Measure & evaluate",
+      "what": "A model generates attacks against the target model at scale.",
+      "useWhen": "How do we search far more attacks than humans can?",
+      "catch": "Attacks bunch into narrow styles and miss creative human strategies.",
+      "terms": [
+        "red-teaming",
+        "jailbreak",
+        "best-of-n-jailbreaking"
+      ]
+    },
+    {
+      "id": "honeypot",
+      "name": "Honeypot",
+      "category": "Measure & evaluate",
+      "what": "A tempting fake chance to misbehave, planted to catch bad intent.",
+      "useWhen": "Would the model take a bad action if it thought nobody was watching?",
+      "catch": "A model that recognizes the test may simply behave well.",
+      "terms": [
+        "honeypot",
+        "evaluation-awareness"
+      ]
+    },
+    {
+      "id": "agentic-eval",
+      "name": "Agentic eval environment",
+      "category": "Measure & evaluate",
+      "what": "A simulated workspace with tools where the model acts over many steps.",
+      "useWhen": "How does the model behave as an agent with real tools and goals?",
+      "catch": "Artificial scenarios may not match deployment, and models may spot them.",
+      "terms": [
+        "ai-agent",
+        "agentic-misalignment",
+        "tool-use"
+      ]
+    },
+    {
+      "id": "elicitation",
+      "name": "Capability elicitation",
+      "category": "Measure & evaluate",
+      "what": "Effort to draw out a model's best performance via prompting, tools or fine-tuning.",
+      "useWhen": "What can the model really do at its maximum?",
+      "catch": "You never know you've hit the ceiling; weak effort underestimates risk.",
+      "terms": [
+        "elicitation",
+        "sandbagging"
+      ]
+    },
+    {
+      "id": "uplift-study",
+      "name": "Human uplift study",
+      "category": "Measure & evaluate",
+      "what": "An experiment comparing people with versus without AI help on a risky task.",
+      "useWhen": "Does the model actually help people do something dangerous?",
+      "catch": "Slow, costly, small samples; safe proxy tasks may miss real-world difficulty.",
+      "terms": [
+        "uplift",
+        "cbrn",
+        "control-group"
+      ]
+    },
+    {
+      "id": "lie-detector-questions",
+      "name": "Consistency / lie-detector questions",
+      "category": "Measure & evaluate",
+      "what": "Ask follow-ups or rephrasings; inconsistent answers flag lying or confusion.",
+      "useWhen": "Is the model being honest and consistent about this claim?",
+      "catch": "A consistent liar passes; inconsistency can also be mere confusion.",
+      "terms": [
+        "honesty",
+        "black-box-analysis"
+      ]
+    },
+    {
+      "id": "stats",
+      "name": "Stats: seeds, CIs, significance",
+      "category": "Measure & evaluate",
+      "what": "Run several random seeds, report confidence intervals, test if differences are real.",
+      "useWhen": "Is this effect real, or noise from one lucky run?",
+      "catch": "Trying many variants and reporting the best one manufactures false positives.",
+      "terms": [
+        "random-seed",
+        "confidence-interval",
+        "statistical-significance"
+      ]
+    },
+    {
+      "id": "synthetic-data",
+      "name": "Synthetic dataset",
+      "category": "Data & model organisms",
+      "what": "Model-generated examples built to test or train one specific behavior.",
+      "useWhen": "Need many targeted examples when real data is scarce or unsafe?",
+      "catch": "Often repetitive or unrealistic; models may learn the generator's quirks.",
+      "terms": []
+    },
+    {
+      "id": "contrast-pairs",
+      "name": "Contrast pairs",
+      "category": "Data & model organisms",
+      "what": "Matched prompt pairs that differ only in the concept of interest.",
+      "useWhen": "How do we isolate one concept for a probe or steering vector?",
+      "catch": "Pairs may differ in unintended ways, capturing a confounder instead.",
+      "terms": [
+        "contrastive-activation-addition",
+        "confounder",
+        "steering-vector"
+      ]
+    },
+    {
+      "id": "model-organism",
+      "name": "Model organism",
+      "category": "Data & model organisms",
+      "what": "A model deliberately given a bad trait so we can study it safely.",
+      "useWhen": "How do we study misalignment before it shows up naturally?",
+      "catch": "A planted behavior may differ from how real misalignment would arise.",
+      "terms": [
+        "model-organism-of-misalignment",
+        "sleeper-agents"
+      ]
+    },
+    {
+      "id": "password-locking",
+      "name": "Password-locked model",
+      "category": "Data & model organisms",
+      "what": "A model trained to hide a skill unless a password appears in the prompt.",
+      "useWhen": "Can our elicitation methods uncover deliberately hidden capabilities?",
+      "catch": "Artificial hiding may be easier to undo than real sandbagging.",
+      "terms": [
+        "sandbagging",
+        "elicitation",
+        "model-organism-of-misalignment"
+      ]
+    },
+    {
+      "id": "backdoor-insertion",
+      "name": "Backdoor insertion",
+      "category": "Data & model organisms",
+      "what": "Train in a hidden trigger that flips the model into bad behavior.",
+      "useWhen": "Can safety training or detection tools find or remove hidden triggers?",
+      "catch": "We know our own backdoors; real ones would be unknown and subtler.",
+      "terms": [
+        "backdoor",
+        "sleeper-agents",
+        "data-poisoning"
+      ]
+    },
+    {
+      "id": "sdf",
+      "name": "Synthetic document finetuning",
+      "category": "Data & model organisms",
+      "what": "Fine-tune on fake documents so the model comes to believe a claim.",
+      "useWhen": "How do we implant a belief (e.g. about its training) realistically?",
+      "catch": "Changes behavior, but doesn't prove genuine belief; can leak oddly.",
+      "terms": [
+        "synthetic-document-finetuning",
+        "model-organism-of-misalignment"
+      ]
+    },
+    {
+      "id": "fine-tuning",
+      "name": "Fine-tuning (SFT / LoRA)",
+      "category": "Data & model organisms",
+      "what": "Further train a model on examples; LoRA updates only small add-on weights.",
+      "useWhen": "Need to teach or test a specific behavior cheaply?",
+      "catch": "Narrow fine-tuning can cause broad, unexpected changes (emergent misalignment).",
+      "terms": [
+        "fine-tuning",
+        "low-rank-adaptation",
+        "emergent-misalignment"
+      ]
+    },
+    {
+      "id": "rl-environment",
+      "name": "RL environment",
+      "category": "Data & model organisms",
+      "what": "A task plus a reward signal; the model learns by trial and error.",
+      "useWhen": "How does a behavior, like reward hacking, emerge under optimization?",
+      "catch": "Buggy rewards teach exploits: the model learns what scores, not what's intended.",
+      "terms": [
+        "reinforcement-learning",
+        "reward-hacking"
+      ]
+    },
+    {
+      "id": "cot-monitor",
+      "name": "CoT monitor",
+      "category": "Oversee & control",
+      "what": "A model that reads the reasoning trace and flags bad intent.",
+      "useWhen": "Can we catch misbehavior by reading the model's reasoning as it runs?",
+      "catch": "Training against it teaches hiding; reasoning can be unfaithful or encoded.",
+      "terms": [
+        "chain-of-thought-monitoring",
+        "monitorability",
+        "encoded-reasoning"
+      ]
+    },
+    {
+      "id": "trusted-monitoring",
+      "name": "Trusted monitoring",
+      "category": "Oversee & control",
+      "what": "A weaker, trusted model rates a stronger model's actions for suspiciousness.",
+      "useWhen": "How do we cheaply catch bad actions from a possibly deceptive model?",
+      "catch": "A weak monitor may miss subtle attacks from a much smarter model.",
+      "terms": [
+        "trusted-monitoring",
+        "trusted-model",
+        "ai-control"
+      ]
+    },
+    {
+      "id": "untrusted-monitoring",
+      "name": "Untrusted monitoring",
+      "category": "Oversee & control",
+      "what": "A copy of the strong, untrusted model monitors the model's own actions.",
+      "useWhen": "Need a monitor as smart as the model being watched?",
+      "catch": "Copies may collude to let attacks pass; test it with fake attacks.",
+      "terms": [
+        "untrusted-monitoring",
+        "collusion",
+        "untrusted-model"
+      ]
+    },
+    {
+      "id": "trusted-editing",
+      "name": "Trusted editing / resampling",
+      "category": "Oversee & control",
+      "what": "Suspicious outputs get rewritten by a trusted model or regenerated from scratch.",
+      "useWhen": "How do we block suspicious actions without throwing away usefulness?",
+      "catch": "Trades usefulness for safety; resampling can still produce an attack.",
+      "terms": [
+        "ai-control",
+        "trusted-model"
+      ]
+    },
+    {
+      "id": "control-eval",
+      "name": "Control evaluation",
+      "category": "Oversee & control",
+      "what": "A red team plays a deceptive model to stress-test safety protocols.",
+      "useWhen": "Would our safeguards hold if the model actively tried to subvert them?",
+      "catch": "Only as strong as the red team's attack ideas.",
+      "terms": [
+        "control-evaluation",
+        "ai-control",
+        "red-teaming"
+      ]
+    },
+    {
+      "id": "auditing-game",
+      "name": "Alignment auditing game",
+      "category": "Oversee & control",
+      "what": "Auditors hunt for a hidden goal secretly trained into a model.",
+      "useWhen": "Do our auditing tools actually uncover hidden objectives?",
+      "catch": "Planted goals may be easier to find than naturally arising ones.",
+      "terms": [
+        "alignment-auditing",
+        "model-organism-of-misalignment"
+      ]
+    },
+    {
+      "id": "debate",
+      "name": "AI debate",
+      "category": "Oversee & control",
+      "what": "Two models argue opposite sides; a weaker judge picks the winner.",
+      "useWhen": "Can humans oversee answers they cannot check themselves?",
+      "catch": "Assumes truth wins arguments; persuasive falsehoods may beat it.",
+      "terms": [
+        "ai-debate",
+        "scalable-oversight"
+      ]
+    },
+    {
+      "id": "weak-to-strong",
+      "name": "Weak-to-strong generalization",
+      "category": "Oversee & control",
+      "what": "Train a strong model on a weak model's labels; check if it surpasses them.",
+      "useWhen": "Can weak supervisors, like humans, reliably guide superhuman models?",
+      "catch": "The strong student may copy weak errors; the analogy to humans is imperfect.",
+      "terms": [
+        "weak-to-strong-generalization",
+        "scalable-oversight"
+      ]
+    },
+    {
+      "id": "sandboxing",
+      "name": "Sandboxing & permissions",
+      "category": "Oversee & control",
+      "what": "Limit what the model can reach or do: tools, network, files, approvals.",
+      "useWhen": "How much damage could the model do if it misbehaves?",
+      "catch": "Too tight kills usefulness; too loose leaves escape routes.",
+      "terms": [
+        "defense-in-depth",
+        "self-exfiltration",
+        "guardrails"
+      ]
+    },
+    {
+      "id": "rlhf",
+      "name": "RLHF",
+      "category": "Train for alignment",
+      "what": "Train the model toward outputs human raters prefer, via a learned reward.",
+      "useWhen": "How do we make a base model helpful, harmless and honest?",
+      "catch": "Optimizes what raters like, which can reward flattery and hidden flaws.",
+      "terms": [
+        "reinforcement-learning-from-human-feedback",
+        "reward-model",
+        "sycophancy"
+      ]
+    },
+    {
+      "id": "reward-model",
+      "name": "Reward model",
+      "category": "Train for alignment",
+      "what": "A model trained to predict how much humans would prefer an output.",
+      "useWhen": "Need an automatic score to optimize against during RL?",
+      "catch": "Over-optimizing exploits its errors (Goodhart): higher scores, worse outputs.",
+      "terms": [
+        "reward-model",
+        "reward-model-overoptimization",
+        "goodhart-s-law"
+      ]
+    },
+    {
+      "id": "dpo",
+      "name": "DPO",
+      "category": "Train for alignment",
+      "what": "Learns directly from preference pairs, with no separate reward model or RL loop.",
+      "useWhen": "Want preference tuning that is simpler and more stable than RLHF?",
+      "catch": "Limited to a fixed offline dataset; inherits every bias in the pairs.",
+      "terms": [
+        "direct-preference-optimization"
+      ]
+    },
+    {
+      "id": "cai",
+      "name": "Constitutional AI / RLAIF",
+      "category": "Train for alignment",
+      "what": "An AI critiques and ranks outputs using written principles instead of human labels.",
+      "useWhen": "How do we scale harmlessness feedback with transparent, editable rules?",
+      "catch": "Only as good as the principles and the AI's reading of them.",
+      "terms": [
+        "constitutional-ai",
+        "reinforcement-learning-from-ai-feedback",
+        "claude-s-constitution"
+      ]
+    },
+    {
+      "id": "character-training",
+      "name": "Character training",
+      "category": "Train for alignment",
+      "what": "Training the model's personality and values, like curiosity, warmth and honesty.",
+      "useWhen": "How do we give the model stable good traits, beyond rule-following?",
+      "catch": "Hard to measure; traits may not hold under pressure or new situations.",
+      "terms": [
+        "character-training",
+        "persona",
+        "claude-s-constitution"
+      ]
+    },
+    {
+      "id": "rlvr",
+      "name": "RL with verifiable rewards",
+      "category": "Train for alignment",
+      "what": "RL where rewards come from automatic checks, like passing tests or correct math.",
+      "useWhen": "Training reasoning on tasks with checkable answers?",
+      "catch": "Gaps in the checker get exploited, e.g. special-casing tests (reward hacking).",
+      "terms": [
+        "reinforcement-learning-with-verifiable-rewards",
+        "reward-hacking",
+        "reasoning-model"
+      ]
+    },
+    {
+      "id": "process-supervision",
+      "name": "Process supervision",
+      "category": "Train for alignment",
+      "what": "Reward each reasoning step, not just the final answer.",
+      "useWhen": "Want correct reasoning, not lucky or hacked right answers?",
+      "catch": "Step labels are costly; pressure on reasoning can make it less honest.",
+      "terms": [
+        "process-supervision",
+        "outcome-supervision",
+        "chain-of-thought-monitoring"
+      ]
+    },
+    {
+      "id": "inoculation-prompting",
+      "name": "Inoculation prompting",
+      "category": "Train for alignment",
+      "what": "During training, explicitly request the unwanted trait so it doesn't generalize.",
+      "useWhen": "Training data teaches a bad trait we can't remove; how to contain it?",
+      "catch": "Worked in studied settings; not a generic warning or guaranteed vaccine.",
+      "terms": [
+        "inoculation-prompting",
+        "emergent-misalignment"
+      ]
+    },
+    {
+      "id": "unlearning",
+      "name": "Unlearning",
+      "category": "Train for alignment",
+      "what": "Remove specific knowledge (e.g. bioweapon details) from a trained model.",
+      "useWhen": "Can we delete dangerous knowledge rather than just block it?",
+      "catch": "Often only suppresses it; a little fine-tuning can bring it back.",
+      "terms": [
+        "unlearning",
+        "cbrn"
+      ]
+    },
+    {
+      "id": "adversarial-training",
+      "name": "Adversarial training",
+      "category": "Train for alignment",
+      "what": "Train on attacks found by red teaming so the model learns to resist them.",
+      "useWhen": "How do we patch known jailbreaks or failure modes?",
+      "catch": "Can teach hiding instead of fixing; new attacks often still work.",
+      "terms": [
+        "adversarial-robustness",
+        "jailbreak",
+        "sleeper-agents"
+      ]
+    },
+    {
+      "id": "data-filtering",
+      "name": "Pretraining data filtering",
+      "category": "Train for alignment",
+      "what": "Remove harmful content (e.g. bioweapon know-how) from pretraining data.",
+      "useWhen": "Can we stop dangerous knowledge from being learned at all?",
+      "catch": "Filters miss things and can strip useful knowledge; fixes need retraining.",
+      "terms": [
+        "pretraining",
+        "cbrn"
+      ]
+    },
+    {
+      "id": "safeguard-classifiers",
+      "name": "Safeguard classifiers",
+      "category": "Train for alignment",
+      "what": "Separate models that screen inputs and outputs and block harmful ones.",
+      "useWhen": "How do we block misuse at deployment, even against jailbreaks?",
+      "catch": "Refuse some harmless requests; determined attackers still find gaps.",
+      "terms": [
+        "constitutional-classifiers",
+        "safeguards",
+        "over-refusal"
+      ]
+    },
+    {
+      "id": "rsp",
+      "name": "Responsible Scaling Policy",
+      "category": "Governance & security",
+      "what": "Anthropic's commitments tying stronger safeguards to stronger model capabilities.",
+      "useWhen": "What safeguards must exist before training or deploying a more capable model?",
+      "catch": "Self-imposed and revisable; relies on evals spotting thresholds in time.",
+      "terms": [
+        "responsible-scaling-policy",
+        "ai-safety-levels",
+        "capability-threshold"
+      ]
+    },
+    {
+      "id": "asl",
+      "name": "AI Safety Levels",
+      "category": "Governance & security",
+      "what": "Tiered safety standards (ASL-2, ASL-3, ...) matched to a model's risk level.",
+      "useWhen": "Which security and deployment protections does this model require?",
+      "catch": "Level assignment rests on imperfect evals and judgment calls.",
+      "terms": [
+        "ai-safety-levels",
+        "responsible-scaling-policy",
+        "capability-threshold"
+      ]
+    },
+    {
+      "id": "weight-security",
+      "name": "Model weight security",
+      "category": "Governance & security",
+      "what": "Protecting model weights from theft by hackers, insiders or states.",
+      "useWhen": "Could attackers steal the model and strip its safeguards?",
+      "catch": "Top state attackers are very hard to stop, and one leak is permanent.",
+      "terms": [
+        "weight-security",
+        "weights",
+        "self-exfiltration"
+      ]
+    },
+    {
+      "id": "staged-deployment",
+      "name": "Staged deployment",
+      "category": "Governance & security",
+      "what": "Release gradually: internal use, trusted testers, limited access, then everyone.",
+      "useWhen": "How do we catch problems before everyone has the model?",
+      "catch": "Small early groups can miss failures that only appear at scale.",
+      "terms": []
+    },
+    {
+      "id": "system-card",
+      "name": "System cards",
+      "category": "Governance & security",
+      "what": "A public report on a model's evals, safety findings and safeguards at release.",
+      "useWhen": "What risks were tested, and what was found, before release?",
+      "catch": "Written by the developer; not independent verification.",
+      "terms": [
+        "system-card",
+        "model-card"
+      ]
+    },
+    {
+      "id": "third-party-evals",
+      "name": "Third-party evals",
+      "category": "Governance & security",
+      "what": "Outside groups, such as government AI institutes, test models before release.",
+      "useWhen": "Does an independent party confirm the developer's safety claims?",
+      "catch": "Limited access and time; testers depend on the developer's cooperation.",
+      "terms": [
+        "dangerous-capability-evaluations",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "compute-governance",
+      "name": "Compute governance",
+      "category": "Governance & security",
+      "what": "Overseeing AI by tracking and controlling chips and large training runs.",
+      "useWhen": "How can governments monitor or limit frontier model development?",
+      "catch": "Efficiency gains shrink compute needs, so fixed thresholds age fast.",
+      "terms": [
+        "compute-governance",
+        "compute",
+        "flops"
+      ]
+    },
+    {
+      "id": "incident-reporting",
+      "name": "Incident reporting",
+      "category": "Governance & security",
+      "what": "Logging and sharing AI failures or near-misses with peers or regulators.",
+      "useWhen": "How do labs and regulators learn from real-world AI failures?",
+      "catch": "Incentives to hide incidents mean underreporting; definitions vary.",
+      "terms": []
+    }
+  ]
+}

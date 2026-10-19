@@ -16,6 +16,7 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: 34) {
                     header
                     if recentBooks.isEmpty { startHere } else { continueReading }
+                    watchLink
                     if let term = store.termOfTheDay { WordOfTheDay(term: term) }
                     ForEach(store.collections) { collection in
                         CollectionShelf(collection: collection)
@@ -100,6 +101,28 @@ struct HomeView: View {
             }
             .padding(.horizontal, 20)
         }
+    }
+
+    /// Watch moved here when the Playbook took its tab.
+    private var watchLink: some View {
+        Button { router.showWatch = true } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "play.rectangle.on.rectangle.fill")
+                    .foregroundStyle(Theme.tint("teal"))
+                    .frame(width: 40, height: 40)
+                    .background(Theme.tint("teal").opacity(0.14), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Watch").font(.serif(.headline)).foregroundStyle(Theme.ink)
+                    Text("\(store.videoBooks.count) narrated books").font(.rounded(.subheadline)).foregroundStyle(Theme.inkSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(Theme.inkTertiary)
+            }
+            .padding(16)
+            .card()
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 20)
     }
 
     private var bookmarksLink: some View {
