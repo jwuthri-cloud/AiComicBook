@@ -8,9 +8,9 @@ The existing artwork suggests a **cyberpunk study-guide series**. Each page work
 
 The repository contains PNG artwork organized into subject collections:
 
-- **ML/** — machine learning and LLM concepts, from fundamentals to transformer internals, evaluation, and system design.
+- **ML/** — research habits, classical ML, deep learning, metrics, loss functions, and LLM internals through system design.
 - **LeetCode/** — algorithm patterns illustrated through representative problems.
-- **SWE/** — Git commands and workflows.
+- **SWE/** — Git, Docker & Kubernetes, design patterns, system design, DevOps and engineering foundations. New pages are rendered from their transcripts with `app/tools/make_cheatsheets.py`.
 - **[ai safety/](ai%20safety/README.md)** — 126 illustrated explanations of alignment, training, interpretability, oversight, evaluations, and policy.
 - **[anthropic fellowship/](anthropic%20fellowship/index.html)** — a library of multi-page comic books explaining nine proposed research projects, one completed-work foundation, and shared experimental methods.
 

@@ -73,7 +73,7 @@ export class Store {
 
   /** Git and data-structure words read as plain English outside their own collections. */
   termsToSkip(book: Book): Set<string> {
-    const scoped: Record<string, string[]> = { Git: ["swe"], Algorithms: ["leetcode", "ml"], "Data Structures": ["leetcode", "ml"] };
+    const scoped: Record<string, string[]> = { Git: ["swe"], "Software Engineering": ["swe"], Algorithms: ["leetcode", "ml"], "Data Structures": ["leetcode", "ml"] };
     return new Set(this.glossary.filter((t) => scoped[t.category] && !scoped[t.category].includes(book.collectionId)).map((t) => t.id));
   }
 

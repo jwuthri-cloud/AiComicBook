@@ -1,0 +1,384 @@
+{
+ "collection": "SWE",
+ "pages": [
+  {
+   "image": "SWE/03-git-workflows-cheat-sheet.png",
+   "title": "GIT WORKFLOWS CHEAT SHEET",
+   "subtitle": "Branch, integrate, undo and rescue with confidence",
+   "robot": "Never rewrite shared history!",
+   "learner": "I rebased main and broke everything!",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Feature Branch + PR Flow",
+     "body": "One branch per change, cut from main.\nPush, then open a pull request (PR).\nCI (continuous integration) tests it; a teammate reviews.\nMerge, then delete the branch.",
+     "code": "git switch -c feat/search\ngit push -u origin feat/search",
+     "diagram": "Main line of commits; a short cyan branch 'feat/search' with 2 commits; a PR card on top with a green CI check and a reviewer approval stamp; arrow merging back into main and the branch fading out (deleted)."
+    },
+    {
+     "number": 2,
+     "heading": "Trunk-Based Development",
+     "body": "Everyone merges small changes to main daily.\nBranches live hours, not weeks.\nFeature flags hide unfinished work.\nMain is always releasable.",
+     "diagram": "Side-by-side timelines: left 'long-lived branches' diverging for weeks with a red conflict explosion at merge; right 'trunk' as one straight line with many tiny branch ticks rejoining within hours and a toggle switch labeled 'flag: off'."
+    },
+    {
+     "number": 3,
+     "heading": "Merge vs Rebase",
+     "body": "Merge: joins histories with a merge commit; nothing is rewritten.\nRebase: replays your commits on a new base; new hashes, linear log.\nGolden rule: never rebase commits others have already pulled.",
+     "code": "git fetch origin\ngit rebase origin/main\ngit push --force-with-lease",
+     "diagram": "Two mini commit graphs from the same start (main A-B-E, feature C-D). Left 'merge': C-D joined to E by a merge commit M. Right 'rebase': C'-D' re-attached after E in a straight line, original C-D shown as faded ghosts. Golden-rule banner in amber."
+    },
+    {
+     "number": 4,
+     "heading": "Resolve a Merge Conflict",
+     "body": "Both branches changed line 12 of config.py.\nGit marks it: <<<<<<< HEAD (yours), ======= , >>>>>>> feat/retry (theirs).\nKeep the right text, delete all three markers.\nStage the file, then continue.",
+     "code": "git status\ngit add config.py\ngit merge --continue",
+     "diagram": "Editor excerpt of config.py: '<<<<<<< HEAD' / 'timeout = 30' / '=======' / 'timeout = 60' / '>>>>>>> feat/retry', with an arrow to the resolved file showing just 'timeout = 60' and a green check."
+    },
+    {
+     "number": 5,
+     "heading": "Stash & Cherry-Pick",
+     "body": "Urgent bug mid-feature? Stash edits (-u adds untracked), fix, pop.\nCherry-pick copies one commit to another branch, e.g. a hotfix onto release/2.4, with a new hash.",
+     "code": "git stash push -u -m \"wip\"\ngit stash pop\ngit cherry-pick a1b2c3d",
+     "diagram": "A drawer labeled 'stash' swallowing half-done files; beside it, commit a1b2c3d on main copied as a1b2c3d' onto a 'release/2.4' branch with a copy icon."
+    },
+    {
+     "number": 6,
+     "heading": "Reset vs Revert",
+     "body": "reset moves the branch pointer back: rewrites history, keep it local.\nrevert adds a new commit that undoes an old one: safe when shared.\n--soft keeps changes staged; --hard deletes them.",
+     "code": "git reset --soft HEAD~1\ngit revert 9f8e7d6",
+     "diagram": "Two tracks: 'reset' shows the branch label sliding back from D to C with D greyed out (local only); 'revert' shows A-B-C-D followed by a new commit D' labeled 'undo D' (public, safe)."
+    },
+    {
+     "number": 7,
+     "heading": "Reflog Rescue",
+     "body": "Reflog records every local move of HEAD.\nLost commits after a bad reset or rebase? Point a branch at the old entry.\nUncommitted changes are never in reflog.",
+     "code": "git reflog\n# e4f5a6b HEAD@{2}: commit: add search\ngit branch rescue HEAD@{2}",
+     "diagram": "A rewind tape labeled 'reflog' listing HEAD@{0} reset, HEAD@{1} rebase, HEAD@{2} commit: add search; a rescue rope pulling commit e4f5a6b back onto a new branch 'rescue'."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls & Check Yourself",
+     "body": "Force-push to main: block it with branch protection.\nPrefer --force-with-lease over --force.\nWeeks-old branches = painful conflicts.\nQuiz: bad commit already on shared main. Reset or revert? (Revert.)",
+     "diagram": "Warning sign with a shattered 'main' branch and 'git push --force' crossed out in red; a small quiz card with 'reset?' crossed out and 'revert' circled in green."
+    }
+   ],
+   "footer": "Branch small, merge often, revert in public, reflog to rescue.",
+   "summary": "Team Git workflows: feature-branch pull requests versus trunk-based development, when to merge or rebase (and the golden rule), resolving conflicts, stash and cherry-pick, reset versus revert, and recovering lost commits with reflog.",
+   "keywords": [
+    "git workflow",
+    "pull request",
+    "trunk-based development",
+    "rebase",
+    "merge conflict",
+    "cherry-pick",
+    "git stash",
+    "git revert",
+    "git reset",
+    "reflog",
+    "force-with-lease",
+    "feature branch"
+   ]
+  },
+  {
+   "image": "SWE/04-docker-cheat-sheet.png",
+   "title": "DOCKER CHEAT SHEET",
+   "subtitle": "Package once, run the same everywhere",
+   "robot": "Same image, same behavior!",
+   "learner": "Why does it only work on my machine?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Containers vs VMs",
+     "body": "VM (virtual machine): full guest OS on a hypervisor; GBs, boots in minutes.\nContainer: isolated process sharing the host kernel; MBs, starts in about a second.\nIsolation comes from Linux namespaces and cgroups.",
+     "diagram": "Two stacks side by side. VM stack: hardware -> host OS -> hypervisor -> three boxes each with its own guest OS + libs + app. Container stack: hardware -> host OS kernel -> container engine -> three slim boxes with libs + app only. Size labels 'GBs' vs 'MBs'."
+    },
+    {
+     "number": 2,
+     "heading": "Image vs Container",
+     "body": "Image: read-only template (app + libraries + config).\nContainer: a running instance of an image plus a thin writable layer.\nOne image -> many containers, like class -> objects.",
+     "diagram": "One violet image box labeled 'shop:1.0 (read-only)' with three arrows to three running containers, each with a thin cyan 'writable layer' on top."
+    },
+    {
+     "number": 3,
+     "heading": "Dockerfile Instructions",
+     "body": "FROM picks a base image; WORKDIR sets the folder.\nCOPY adds files; RUN executes at build time.\nENV sets variables; EXPOSE documents a port.\nCMD is the default command at run time.",
+     "code": "FROM python:3.13-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt",
+     "diagram": "A Dockerfile card with each instruction keyword color-coded and a small icon: FROM (foundation block), WORKDIR (folder), COPY (file arrow), RUN (gear), ENV (key=value tag), EXPOSE (port plug), CMD (play button)."
+    },
+    {
+     "number": 4,
+     "heading": "Layers & Build Cache",
+     "body": "RUN, COPY and ADD each create a cached layer.\nA change rebuilds that layer and all layers after it.\nSo install dependencies first, copy source last: editing app.py skips the slow pip step.",
+     "code": "# continued from panel 3\nCOPY . .\nCMD [\"python\", \"app.py\"]",
+     "diagram": "Stacked layer bricks bottom-up: base image, pip install (green 'CACHED'), COPY . . (amber 'REBUILT' after editing app.py). A red side note shows the wrong order where COPY . . sits below pip install and both rebuild."
+    },
+    {
+     "number": 5,
+     "heading": "Build, Run, Inspect",
+     "body": "-t names the image; -d runs it in the background.\n-p 8080:8000 maps host port 8080 to container port 8000.\ndocker ps lists running containers (-a: all).",
+     "code": "docker build -t shop:1.0 .\ndocker run -d -p 8080:8000 --name shop shop:1.0\ndocker logs -f shop\ndocker exec -it shop sh",
+     "diagram": "Pipeline: Dockerfile -> 'docker build' -> image shop:1.0 -> 'docker run' -> container 'shop'. A browser at localhost:8080 connected through a port tunnel to :8000 inside the container; side icons for logs (scroll) and exec (terminal)."
+    },
+    {
+     "number": 6,
+     "heading": "Registries & Tags",
+     "body": "Registry = image store (Docker Hub, GHCR, ECR).\nFull name = registry/repo:tag.\nTags are movable labels; pin a digest (@sha256:...) for an exact image.",
+     "code": "docker tag shop:1.0 ghcr.io/acme/shop:1.0\ndocker push ghcr.io/acme/shop:1.0\ndocker pull ghcr.io/acme/shop:1.0",
+     "diagram": "Laptop pushing an image crate up to a cloud warehouse labeled 'registry'; a server pulling it down. The name ghcr.io/acme/shop:1.0 split into labeled parts: registry / repo / tag. A sticky-note tag vs a fingerprint labeled digest."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls & Check Yourself",
+     "body": "latest is just a default tag, not 'newest'.\nContainer files vanish on removal: use volumes.\nNever bake secrets into layers; add a .dockerignore.\nQuiz: you edit app.py. Which steps rebuild? (COPY . . onward.)",
+     "diagram": "Warning icons: a 'latest' tag with a question mark, a container dissolving with files falling out next to a safe volume drum, a key stuck inside a layer brick crossed out in red."
+    }
+   ],
+   "footer": "Build the image once, ship it, run it anywhere.",
+   "summary": "Docker basics: how containers differ from virtual machines, images versus containers, Dockerfile instructions and layer caching, the build/run/logs/exec workflow, and pushing tagged images to a registry.",
+   "keywords": [
+    "docker",
+    "container",
+    "docker image",
+    "dockerfile",
+    "layer cache",
+    "virtual machine",
+    "vm",
+    "registry",
+    "image tag",
+    "docker run",
+    "containerization"
+   ]
+  },
+  {
+   "image": "SWE/05-docker-compose-cheat-sheet.png",
+   "title": "DOCKER COMPOSE CHEAT SHEET",
+   "subtitle": "Run a whole multi-container app from one file",
+   "robot": "One file, whole stack!",
+   "learner": "Do I start every container by hand?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Why Compose",
+     "body": "Real apps need several containers: web, database, cache.\nCompose describes them all in compose.yaml.\nOne command builds, wires, starts and stops the stack.",
+     "diagram": "Before/after: left, a tangle of separate 'docker run' commands with cables; right, a single compose.yaml scroll feeding three neat containers web, db, cache."
+    },
+    {
+     "number": 2,
+     "heading": "Services, Networks, Volumes",
+     "body": "Service: one container's config (image, ports, env).\nNetwork: services share a default network and reach each other by name, e.g. cache:6379.\nVolume: named storage that survives container removal.",
+     "diagram": "Three labeled boxes web, cache, db inside a dashed 'default network' boundary with name-based arrows (web -> cache:6379); a barrel-shaped volume 'cache-data' attached to cache, outside the container."
+    },
+    {
+     "number": 3,
+     "heading": "A compose.yaml Example",
+     "body": "web builds from ./Dockerfile; host 8080 -> container 8000.\ncache runs Redis; web connects to redis://cache:6379.\nVolume cache-data keeps data across restarts.",
+     "code": "services:\n  web: {build: ., ports: [\"8080:8000\"]}\n  cache: {image: \"redis:7\", volumes: [\"cache-data:/data\"]}\nvolumes: {cache-data: {}}",
+     "diagram": "The YAML card with arrows: 'web' line -> container built from a Dockerfile icon with port 8080->8000; 'cache' line -> Redis container plugged into a 'cache-data' drum."
+    },
+    {
+     "number": 4,
+     "heading": "Env & Secrets",
+     "body": "environment: inline variables.\nenv_file: loads .env (never commit it).\nsecrets: mounted as files in /run/secrets/, not env vars.\nDeclare each secret at top level, e.g. file: ./db_password.txt.",
+     "code": "# under services.web:\nenvironment: {LOG_LEVEL: info}\nenv_file: .env\nsecrets: [db_password]",
+     "diagram": "Three inputs flowing into the web container: a tag 'LOG_LEVEL=info', a .env file with a Git icon crossed out, and a locked envelope landing at /run/secrets/db_password."
+    },
+    {
+     "number": 5,
+     "heading": "Multi-Stage Builds",
+     "body": "Stage 1 has the compiler and tools; the final stage copies only the binary.\nResult: smaller, safer image, e.g. 900 MB -> 15 MB.\nEnd with ENTRYPOINT [\"/app\"].",
+     "code": "FROM golang:1.26 AS build\n# copy source, go build -o /app\nFROM scratch\nCOPY --from=build /app /app",
+     "diagram": "Two-stage factory: a big 'build' room full of tools (compiler, source, caches, 900 MB) passes one small box '/app' through a hatch to a tiny final image (15 MB) that ships."
+    },
+    {
+     "number": 6,
+     "heading": "Healthchecks & depends_on",
+     "body": "depends_on alone only orders startup; it does not wait for readiness.\nAdd a healthcheck plus condition: service_healthy.\nNow web starts after cache answers PONG.",
+     "code": "# web:\ndepends_on: {cache: {condition: service_healthy}}\n# cache:\nhealthcheck: {test: [\"CMD\", \"redis-cli\", \"ping\"], interval: 5s}",
+     "diagram": "Timeline: cache starts -> health light turns from amber 'starting' to green 'healthy' after a PING/PONG bubble -> only then the web container powers on."
+    },
+    {
+     "number": 7,
+     "heading": "Everyday Commands",
+     "body": "up -d starts in background; --build rebuilds images.\ndocker compose exec web sh opens a shell.\ndown removes containers and network; -v also deletes volumes.",
+     "code": "docker compose up -d --build\ndocker compose ps\ndocker compose logs -f web\ndocker compose down",
+     "diagram": "Control panel with four big buttons labeled up, ps, logs, down; a red guarded switch labeled 'down -v (deletes data)'."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls",
+     "body": "localhost inside a container means that container: use service names.\nCommitting .env with real passwords.\ndown -v wipes your database.\nCompose suits dev and single hosts; clusters need Kubernetes.",
+     "diagram": "Red warning cards: a web container calling 'localhost' and hitting itself in a loop; a .env file leaking into a Git repo; a database drum being shredded by 'down -v'."
+    }
+   ],
+   "footer": "One compose.yaml, one command, the whole stack.",
+   "summary": "Docker Compose for multi-container apps: services, networks and volumes in compose.yaml, environment variables and secrets, multi-stage builds for small images, healthchecks with depends_on, and the everyday compose commands.",
+   "keywords": [
+    "docker compose",
+    "compose.yaml",
+    "multi-container",
+    "services",
+    "volumes",
+    "networks",
+    "secrets",
+    "env file",
+    "multi-stage build",
+    "healthcheck",
+    "depends_on"
+   ]
+  },
+  {
+   "image": "SWE/06-kubernetes-core-cheat-sheet.png",
+   "title": "KUBERNETES CORE CHEAT SHEET",
+   "subtitle": "Declare the state you want; the cluster keeps it",
+   "robot": "Describe the goal, not steps!",
+   "learner": "Who restarts my containers at 3 a.m.?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Why Orchestration",
+     "body": "100 containers on 20 machines: who places, restarts and scales them?\nKubernetes (K8s) automates scheduling, self-healing, scaling and rollouts.\nYou declare what you want; it makes it happen.",
+     "diagram": "A frazzled operator juggling container boxes across server racks (left) vs a calm conductor robot labeled 'Kubernetes' arranging the same boxes on nodes (right)."
+    },
+    {
+     "number": 2,
+     "heading": "Control Plane",
+     "body": "API server: the front door; every kubectl call goes here.\netcd: key-value store holding cluster state.\nScheduler: picks a node for each new Pod.\nController manager: loops that fix drift.",
+     "diagram": "A control tower with four labeled rooms: API server (door, kubectl arrow in), etcd (database cylinder), scheduler (placing a Pod onto a node map), controller manager (spinning loop arrows). Only the API server talks to etcd."
+    },
+    {
+     "number": 3,
+     "heading": "Worker Nodes",
+     "body": "Node = a machine (VM or bare metal) that runs Pods.\nkubelet: agent that starts containers via the runtime (containerd) and reports status.\nkube-proxy: network rules that route Service traffic to Pods.",
+     "diagram": "A node box containing kubelet (robot foreman reporting to the API server), container runtime (engine), kube-proxy (traffic signs), and two Pods with containers inside."
+    },
+    {
+     "number": 4,
+     "heading": "Pod -> ReplicaSet -> Deployment",
+     "body": "Pod: smallest unit; 1+ containers sharing an IP and volumes. Disposable.\nReplicaSet: keeps N identical Pods running.\nDeployment: manages ReplicaSets for rolling updates and rollback.\nYou write Deployments, rarely bare Pods.",
+     "diagram": "Nested boxes: outer 'Deployment web' -> 'ReplicaSet web-7d9f (replicas: 3)' -> three Pods, each holding a container 'shop:1.0'. An older faded ReplicaSet at 0 replicas kept for rollback."
+    },
+    {
+     "number": 5,
+     "heading": "Service Types",
+     "body": "Pods come and go with new IPs; a Service gives a stable name and virtual IP.\nClusterIP: internal only (default).\nNodePort: a port (30000-32767) on every node.\nLoadBalancer: provisions a cloud load balancer.",
+     "diagram": "Three stacked lanes: ClusterIP (traffic only inside the cluster boundary), NodePort (arrow entering node:30080), LoadBalancer (internet cloud -> load balancer -> nodes). Each Service fans out to Pods labeled app: web."
+    },
+    {
+     "number": 6,
+     "heading": "Reconciliation Loop",
+     "body": "Desired state (stored in etcd) vs actual state (what runs).\nControllers watch, compare, act, repeat.\nExample: replicas: 3, a node dies, 2 Pods left -> controller creates 1 more.",
+     "diagram": "Circular loop: observe -> diff (want 3, have 2) -> act (create Pod) -> back to observe. A crashed node with an X; a new Pod appearing on a healthy node."
+    },
+    {
+     "number": 7,
+     "heading": "A Deployment in YAML",
+     "body": "Also set apiVersion: apps/v1 and metadata.name: web.\nThe Pod template is labeled app: web and runs image shop:1.0.\nThe selector must match those labels.\nkubectl apply -f web.yaml -> 3 Pods.",
+     "code": "kind: Deployment\nspec:\n  replicas: 3\n  selector: {matchLabels: {app: web}}",
+     "diagram": "YAML card with arrows: 'replicas: 3' -> three Pod icons; 'matchLabels app: web' -> a magnifier matching the label tag 'app: web' on each Pod; a template stamp printing Pods from image shop:1.0."
+    },
+    {
+     "number": 8,
+     "heading": "Namespaces & Pitfalls",
+     "body": "Namespaces split one cluster into groups (dev, prod, team-a) with separate names and quotas.\nPitfalls: bare Pods are not recreated.\nSelector-label mismatch = no Pods managed.\nDon't hand-edit what a controller owns.",
+     "diagram": "One cluster box divided into colored rooms dev / prod / team-a; red warning icons for a lone Pod falling with no ReplicaSet net and mismatched label tags 'app: web' vs 'app: api'."
+    }
+   ],
+   "footer": "You declare the desired state; controllers loop until reality matches.",
+   "summary": "Core Kubernetes: why container orchestration exists, the control plane and worker node components, Pods, ReplicaSets and Deployments, Service types, namespaces, and the desired-state reconciliation loop, with a Deployment YAML example.",
+   "keywords": [
+    "kubernetes",
+    "k8s",
+    "container orchestration",
+    "pod",
+    "deployment",
+    "replicaset",
+    "kubernetes service",
+    "control plane",
+    "etcd",
+    "kubelet",
+    "namespace",
+    "reconciliation"
+   ]
+  },
+  {
+   "image": "SWE/07-kubernetes-in-practice-cheat-sheet.png",
+   "title": "KUBERNETES IN PRACTICE",
+   "subtitle": "Configure, expose, scale and debug real workloads",
+   "robot": "Describe first, then read logs!",
+   "learner": "Why is my Pod in CrashLoopBackOff?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "kubectl Essentials",
+     "body": "get lists resources; describe shows details and events.\nlogs --previous prints the last crashed run.\napply -f makes the cluster match your files.",
+     "code": "kubectl get pods -n shop\nkubectl describe pod web-7d9f-x2k\nkubectl logs web-7d9f-x2k --previous\nkubectl apply -f k8s/",
+     "diagram": "A terminal window with the four commands, each with a small icon: list, magnifier with event timeline, scroll of logs, and a sync arrow from a folder 'k8s/' to the cluster."
+    },
+    {
+     "number": 2,
+     "heading": "ConfigMaps & Secrets",
+     "body": "ConfigMap: non-secret settings, e.g. LOG_LEVEL=info.\nSecret: passwords and tokens; only base64-encoded, so enable encryption at rest and RBAC (role-based access control).\nInject as env vars or mounted files.",
+     "code": "kubectl create configmap app-cfg --from-literal=LOG_LEVEL=info\nkubectl create secret generic db-cred --from-file=password=./pw.txt",
+     "diagram": "Two cards feeding a Pod: an open note 'ConfigMap app-cfg: LOG_LEVEL=info' and a padlocked envelope 'Secret db-cred' with a small warning 'base64 is not encryption'; arrows into env vars and a mounted file path."
+    },
+    {
+     "number": 3,
+     "heading": "Ingress",
+     "body": "One HTTP(S) entry point; routes by host and path to Services.\nshop.example.com/api -> api; / -> web.\nNeeds an ingress controller; Gateway API is the successor.",
+     "diagram": "Internet traffic entering one gate labeled 'Ingress shop.example.com'; signposts split '/api' to the api Service and '/' to the web Service, each fanning out to Pods. A small lock for TLS."
+    },
+    {
+     "number": 4,
+     "heading": "Liveness & Readiness Probes",
+     "body": "Readiness fails -> Pod gets no traffic, keeps running.\nLiveness fails -> kubelet restarts the container.\nStartup probe: grace time for slow starts.",
+     "code": "readinessProbe: {httpGet: {path: /ready, port: 8000}}\nlivenessProbe: {httpGet: {path: /healthz, port: 8000}}",
+     "diagram": "Two gauges on a Pod: 'readiness' red -> traffic arrow from the Service detached (Pod still running); 'liveness' red -> restart icon on the container. A timer labeled 'startup probe' before them."
+    },
+    {
+     "number": 5,
+     "heading": "Requests & Limits",
+     "body": "Request: reserved share; the scheduler uses it to place Pods.\nLimit: hard cap. Over memory -> OOMKilled (out of memory); over CPU -> throttled.\n250m = 0.25 of a CPU core.",
+     "code": "resources:\n  requests: {cpu: 250m, memory: 256Mi}\n  limits: {memory: 512Mi}",
+     "diagram": "A node's capacity bar with Pods packed by their requests; one container's memory gauge passing the 512Mi red line -> 'OOMKilled' stamp; a CPU gauge at its limit shown as a throttled, slowed arrow."
+    },
+    {
+     "number": 6,
+     "heading": "HPA Autoscaling",
+     "body": "HPA = Horizontal Pod Autoscaler: adds or removes Pods from metrics.\nTarget 70% CPU, average at 140% -> replicas double, 3 -> 6.\nNeeds CPU requests and metrics-server.",
+     "code": "kubectl autoscale deployment web --cpu=70% --min=2 --max=10",
+     "diagram": "Graph of CPU load rising past a 70% target line; the Pod row grows from 3 to 6. Formula callout: desired = ceil(3 x 140 / 70) = 6, clamped between min 2 and max 10."
+    },
+    {
+     "number": 7,
+     "heading": "Rolling Updates, Rollback, Helm",
+     "body": "A new image replaces Pods gradually; traffic keeps flowing.\nBad release? Undo to the previous ReplicaSet.\nHelm = package manager for templated YAML charts.",
+     "code": "kubectl set image deployment/web web=shop:1.1\nkubectl rollout status deployment/web\nkubectl rollout undo deployment/web\nhelm upgrade --install shop ./chart",
+     "diagram": "Row of Pods changing color one by one from v1.0 (violet) to v1.1 (cyan) while traffic continues; a rewind button 'rollout undo' returning to violet; a Helm chart box stamping out templated YAML."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfall: CrashLoopBackOff",
+     "body": "Container keeps exiting; restart delays grow (up to 5 min).\nCheck logs --previous and describe.\nExit 137 = killed (often OOMKilled); 1 = app error.\nCauses: bad config, missing Secret, strict liveness probe.",
+     "diagram": "Detective robot with a checklist next to a Pod looping start -> crash -> wait 10s, 20s, 40s ... 5m; clues on the board: 'Exit 137 OOMKilled', 'Secret not found', 'liveness failed'."
+    }
+   ],
+   "footer": "Probe it, size it, scale it; read events when it breaks.",
+   "summary": "Running real workloads on Kubernetes: everyday kubectl commands, ConfigMaps and Secrets, Ingress routing, liveness and readiness probes, resource requests and limits, HPA autoscaling, rolling updates and rollback, Helm, and debugging CrashLoopBackOff.",
+   "keywords": [
+    "kubectl",
+    "configmap",
+    "kubernetes secret",
+    "ingress",
+    "liveness probe",
+    "readiness probe",
+    "resource limits",
+    "hpa",
+    "autoscaling",
+    "rolling update",
+    "helm",
+    "crashloopbackoff"
+   ]
+  }
+ ]
+}

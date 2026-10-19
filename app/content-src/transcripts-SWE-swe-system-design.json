@@ -1,0 +1,583 @@
+{
+  "collection": "SWE",
+  "pages": [
+    {
+      "image": "SWE/13-scalability-load-balancing-cheat-sheet.png",
+      "title": "SCALING & LOAD BALANCING",
+      "subtitle": "Grow by adding machines, not bigger ones",
+      "robot": "Add servers, not bigger servers!",
+      "learner": "What happens when one server melts down?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Scale Up vs Scale Out",
+          "body": "Vertical (scale up): bigger CPU, RAM, disk. Simple, but hits a ceiling and stays one point of failure.\nHorizontal (scale out): more identical servers behind a load balancer. Grows further, survives failures.",
+          "diagram": "Left: one server box stretching taller with a 'MAX' ceiling line and a red single-point-of-failure warning. Right: a row of small identical servers behind a load balancer, one crossed out while traffic keeps flowing."
+        },
+        {
+          "number": 2,
+          "heading": "Keep Servers Stateless",
+          "body": "Stateless = any server can answer any request.\nSessions -> Redis or signed tokens (JWT = JSON Web Token).\nFiles -> object storage. Data -> shared database.\nNow add or remove servers freely.",
+          "diagram": "Three identical API servers with empty 'state' slots; arrows from each to a shared Redis box (sessions), an object-storage bucket (files) and a database cylinder (data)."
+        },
+        {
+          "number": 3,
+          "heading": "Load Balancer: L4 vs L7",
+          "body": "L4 (transport layer): routes by IP and port. Very fast, cannot read HTTP.\nL7 (application layer): reads URL, headers, cookies. Routes /api vs /img, terminates TLS, retries.",
+          "diagram": "Two lanes: L4 balancer looking only at a packet label 'IP:port'; L7 balancer opening an HTTP envelope showing 'GET /api/users' and sending /api and /img to different server pools."
+        },
+        {
+          "number": 4,
+          "heading": "Balancing Algorithms",
+          "body": "Round robin: A, B, C, A, B, C...\nWeighted: bigger servers get more turns.\nLeast connections: send to the least busy server.\nConsistent hashing: same key -> same server; adding a node moves only ~1/N of keys.",
+          "diagram": "Four mini-diagrams: requests dealt like cards to A-B-C; a server with weight 2 getting double; a gauge picking the server with fewest active connections; a hash ring with keys and nodes, a new node taking one arc of keys."
+        },
+        {
+          "number": 5,
+          "heading": "Health Checks",
+          "body": "Balancer probes GET /healthz every 5 s.\n3 failures -> server removed; 2 passes -> back in.\nLiveness: process is alive. Readiness: ready for traffic (DB connected, cache warm).",
+          "diagram": "Load balancer pinging three servers with heartbeat lines: two green 200 OK, one red timeout being pulled out of the pool, with a counter 'fail 1, 2, 3 -> out'."
+        },
+        {
+          "number": 6,
+          "heading": "Back-of-Envelope Example",
+          "body": "10M daily users x 20 requests = 200M requests/day.\n200M / 86,400 s = ~2,300 req/s; peak ~3x = ~7,000 req/s.\n~1,000 req/s per server -> 7 servers; run 10 for failover headroom.",
+          "diagram": "Calculator-style worked sum with each step boxed, ending in a row of 10 server icons: 7 cyan (needed) and 3 amber (headroom)."
+        },
+        {
+          "number": 7,
+          "heading": "Latency vs Throughput",
+          "body": "Latency: time for one request. Throughput: requests per second.\nTrack p99 latency, not the average.\nRAM read ~100 ns. SSD read ~100 us. Same-datacenter round trip ~0.5 ms. Cross-continent ~150 ms.",
+          "diagram": "Highway metaphor: car travel time = latency, cars per minute = throughput. Below, a log-scale ladder of latency numbers from 100 ns to 150 ms."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Sticky sessions unbalance load.\nThe load balancer needs a standby too.\nThe database becomes the next bottleneck.\nCheck: why does least connections beat round robin when requests vary in length?",
+          "diagram": "Warning-orange panel: one overloaded server with a sticky-session magnet, a lone balancer with a red 'single point' tag, and a database cylinder glowing hot under arrows from many servers."
+        }
+      ],
+      "footer": "Stateless servers plus a smart load balancer: scale by adding boxes.",
+      "summary": "How systems grow: vertical versus horizontal scaling, why servers should be stateless, how L4 and L7 load balancers spread traffic with round robin, least connections or consistent hashing, and how health checks and quick capacity estimates keep the fleet sized and healthy.",
+      "keywords": [
+        "scalability",
+        "horizontal scaling",
+        "vertical scaling",
+        "load balancer",
+        "stateless",
+        "round robin",
+        "least connections",
+        "consistent hashing",
+        "health check",
+        "latency",
+        "throughput",
+        "back-of-envelope"
+      ]
+    },
+    {
+      "image": "SWE/14-caching-cheat-sheet.png",
+      "title": "CACHING CHEAT SHEET",
+      "subtitle": "Keep hot data close, fast and fresh",
+      "robot": "Fastest query is the skipped one!",
+      "learner": "But what if the cache is stale?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Why Cache",
+          "body": "A cache keeps copies of hot data in faster storage.\nRedis read ~0.5 ms vs database query ~10-50 ms.\nHit ratio is the goal: 95% hits = only 1 in 20 reads reaches the DB.",
+          "diagram": "A fast lane (cache, lightning icon) and a slow lane (database, turtle icon); 19 of 20 request arrows take the fast lane, 1 continues to the DB."
+        },
+        {
+          "number": 2,
+          "heading": "Cache Layers",
+          "body": "Browser: Cache-Control headers.\nCDN (content delivery network): copies at edge servers near users.\nApplication: in-process memory or Redis.\nDatabase: buffer pool keeps hot pages in RAM.",
+          "diagram": "Horizontal chain user -> browser -> CDN edge -> app server + Redis -> database, each layer a labeled box with a small clock showing it gets faster closer to the user."
+        },
+        {
+          "number": 3,
+          "heading": "Write Strategies",
+          "body": "Cache-aside: app checks cache; on miss reads DB and fills cache.\nWrite-through: write cache and DB together. Fresh, slower writes.\nWrite-back: write cache, flush DB later. Fast, risks loss on crash.",
+          "diagram": "Three small sequence diagrams side by side with App, Cache, DB lanes; write-back shows a delayed dashed arrow to the DB and a red crash icon."
+        },
+        {
+          "number": 4,
+          "heading": "Cache-Aside in Redis",
+          "body": "Miss -> load from DB -> store with TTL (time to live) of 300 s.\nOn update: write the DB, then delete the key.",
+          "code": "v = r.get(\"user:42\")\nif v is None:\n    v = load_user_json(42)\n    r.set(\"user:42\", v, ex=300)",
+          "diagram": "Flowchart: GET user:42 -> hit? yes -> return; no -> DB -> SET with 300 s timer -> return. A second branch: UPDATE -> DB write -> DEL user:42."
+        },
+        {
+          "number": 5,
+          "heading": "TTL & Eviction",
+          "body": "TTL: entries expire after a set time, bounding staleness.\nLRU (least recently used): evict the item untouched longest.\nLFU (least frequently used): evict the least popular.\nRedis: maxmemory-policy allkeys-lru.",
+          "diagram": "A full shelf of cache slots with timestamps and hit counters; LRU arrow pushes out the oldest-touched slot, LFU arrow pushes out the slot with count 1."
+        },
+        {
+          "number": 6,
+          "heading": "Invalidation",
+          "body": "Hard part: cache and database disagree.\nOn write, delete the key rather than update it.\nVersioned keys: user:42:v7.\nKeep a TTL as a safety net for missed deletes.",
+          "diagram": "Database row changing from 'Ana' to 'Ann' while the cache still shows 'Ana' in red; a DEL arrow clears it, a version tag v6 -> v7 beside it."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls: Cache Stampede",
+          "body": "Hot key expires -> 1,000 requests miss at once -> database overload.\nFixes: one request refills under a lock, serve stale while refreshing, add random TTL jitter.\nAlso cache 'not found' results.",
+          "diagram": "A swarm of request arrows crashing into a database after a key's timer hits zero; inset shows a single request holding a lock key while others wait."
+        }
+      ],
+      "footer": "Cache the hot path, expire everything, delete on write.",
+      "summary": "Where caches live (browser, CDN, application, database), the main write strategies (cache-aside, write-through, write-back), TTLs and LRU/LFU eviction, how to invalidate safely, and how to prevent a cache stampede, with a Redis cache-aside example.",
+      "keywords": [
+        "caching",
+        "cache-aside",
+        "write-through",
+        "write-back",
+        "ttl",
+        "lru",
+        "lfu",
+        "eviction",
+        "cache invalidation",
+        "cache stampede",
+        "redis",
+        "cdn"
+      ]
+    },
+    {
+      "image": "SWE/15-databases-cheat-sheet.png",
+      "title": "DATABASES CHEAT SHEET",
+      "subtitle": "Pick the right store, index it, keep it correct",
+      "robot": "Index first, then blame the database!",
+      "learner": "SQL or NoSQL for my app?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "SQL vs NoSQL",
+          "body": "SQL (relational): tables, fixed schema, joins, strong transactions. PostgreSQL, MySQL.\nNoSQL: flexible models built for scale or one access pattern.\nDefault to SQL unless a clear need says otherwise.",
+          "diagram": "Split panel: left a neat grid of related tables joined by key lines; right four differently shaped containers hinting at NoSQL families."
+        },
+        {
+          "number": 2,
+          "heading": "NoSQL Families",
+          "body": "Document (MongoDB): JSON docs; profiles, catalogs.\nKey-value (Redis, DynamoDB): get/put by key; sessions, carts.\nWide-column (Cassandra): partitioned rows; time series.\nGraph (Neo4j): nodes + edges; social links, fraud.",
+          "diagram": "2x2 grid of icons: a JSON document card, a key -> value locker, a wide table with a partition key column, and a node-edge network graph, each with its example use."
+        },
+        {
+          "number": 3,
+          "heading": "Indexes (B-tree)",
+          "body": "An index is a sorted structure pointing to rows.\nB-tree lookup: O(log n) instead of a full scan O(n).\nComposite index (a, b) serves a = ? and a = ? AND b = ?, not b alone.\nCost: slower writes.",
+          "diagram": "A three-level B-tree with root, branch and leaf pages; leaf entries point to table rows. Side note: a phone book sorted by last name, then first name."
+        },
+        {
+          "number": 4,
+          "heading": "Query Example + EXPLAIN",
+          "body": "Before: Seq Scan over 10M rows, ~2 s.\nAfter: Index Scan, ~1 ms.",
+          "code": "CREATE INDEX idx_orders_user ON orders (user_id);\nEXPLAIN ANALYZE\nSELECT * FROM orders WHERE user_id = 42;",
+          "diagram": "Two terminal screens: EXPLAIN output 'Seq Scan on orders' with a red 2 s timer, then 'Index Scan using idx_orders_user' with a green 1 ms timer."
+        },
+        {
+          "number": 5,
+          "heading": "ACID Transactions",
+          "body": "Atomicity: all or nothing.\nConsistency: constraints always hold.\nIsolation: concurrent transactions don't interfere.\nDurability: commits survive crashes (write-ahead log).\nTransfer $50: debit and credit commit together.",
+          "diagram": "Bank transfer: account A -50 and account B +50 inside one sealed transaction box with BEGIN and COMMIT tabs; a crash bolt bounces off."
+        },
+        {
+          "number": 6,
+          "heading": "Isolation Levels & Anomalies",
+          "body": "Read uncommitted: dirty reads.\nRead committed: no dirty reads; rows can change between reads.\nRepeatable read: rows stable; phantom rows possible.\nSerializable: as if one at a time; slowest.",
+          "diagram": "A ladder of four isolation levels from weak (bottom) to strong (top); beside each rung, ticks or crosses for dirty read, non-repeatable read, phantom."
+        },
+        {
+          "number": 7,
+          "heading": "Normalize vs Denormalize",
+          "body": "Normalize: each fact stored once; clean updates, more joins.\nDenormalize: copy data for fast reads (author_name inside posts); harder updates.\nNormalize first; denormalize measured hot paths.",
+          "diagram": "Left: users and posts tables linked by user_id. Right: a posts table with a duplicated author_name column highlighted amber."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "N+1 queries: one query per row; use a join or batch.\nSELECT * on wide tables.\nIndexes on low-selectivity columns rarely help.\nCheck: why can't index (a, b) serve WHERE b = 5?",
+          "diagram": "Warning panel: a loop firing 101 small query arrows at a database versus one join arrow; a question card at the bottom."
+        }
+      ],
+      "footer": "Model the data, index the queries, trust the transactions.",
+      "summary": "How to choose between relational SQL and the NoSQL families, how B-tree indexes speed up queries (checked with EXPLAIN), what ACID and the isolation levels guarantee, and when to normalize or denormalize.",
+      "keywords": [
+        "database",
+        "sql",
+        "nosql",
+        "b-tree index",
+        "explain",
+        "acid",
+        "transaction",
+        "isolation level",
+        "normalization",
+        "denormalization",
+        "document store",
+        "key-value store"
+      ]
+    },
+    {
+      "image": "SWE/16-replication-sharding-cap-cheat-sheet.png",
+      "title": "REPLICATION & SHARDING CHEAT SHEET",
+      "subtitle": "Copy data to survive, split it to grow",
+      "robot": "Copies for safety, shards for size!",
+      "learner": "Why did my new post vanish?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Replication vs Sharding",
+          "body": "Replication: same data on several nodes -> availability, read scale.\nSharding (partitioning): split data across nodes -> write and storage scale.\nReal systems do both: each shard is replicated.",
+          "diagram": "Left: three identical database copies. Right: one dataset cut into shards A, B, C, each shard drawn with two small replica shadows."
+        },
+        {
+          "number": 2,
+          "heading": "Leader-Follower Replication",
+          "body": "Writes go to the leader; followers replay its log.\nReads can use followers (read replicas).\nSynchronous: no loss, slower writes.\nAsynchronous: fast, may lose recent writes on failover.",
+          "diagram": "Leader node receiving write arrows, streaming a log to two followers; read arrows fan out to the followers. Sync arrow solid, async arrow dashed."
+        },
+        {
+          "number": 3,
+          "heading": "Multi-Leader & Leaderless",
+          "body": "Multi-leader: each region accepts writes; conflicts need resolving (last-write-wins, merge, CRDTs = conflict-free replicated data types).\nLeaderless: write to W nodes, read R; W + R > N means overlap.",
+          "diagram": "Two regions each with a leader exchanging writes, a conflict spark between them. Below, N = 3 nodes with W = 2 written and R = 2 read, the overlapping node highlighted."
+        },
+        {
+          "number": 4,
+          "heading": "Replication Lag Example",
+          "body": "User posts, refreshes, hits a replica 2 s behind -> post 'vanishes'.\nFix (read-your-writes): send that user's reads to the leader for ~10 s after a write.",
+          "diagram": "Timeline: write lands on leader at t=0, follower catches up at t=2 s; a user's refresh at t=1 s reads the follower and sees an empty feed. Fixed path reroutes to the leader."
+        },
+        {
+          "number": 5,
+          "heading": "Sharding Strategies",
+          "body": "Range: user_id 1-1M -> shard A, 1M-2M -> shard B. Fast range scans; hot spot risk.\nHash: shard = hash(user_id) % 4. Even spread; range queries hit every shard.\nConsistent hashing eases resharding.",
+          "diagram": "Top: keys laid on a number line cut into ranges A/B/C. Bottom: keys passing through a hash function into four evenly filled buckets."
+        },
+        {
+          "number": 6,
+          "heading": "Pitfalls: Hot Spots",
+          "body": "One key or range takes most traffic: a celebrity account, today's timestamps.\nFixes: salt hot keys (key#0..key#9), split busy shards, cache hot reads.\nAvoid timestamps as range shard keys.",
+          "diagram": "One shard glowing red-hot under a crowd of arrows labeled 'celebrity:1' while other shards idle; a fix arrow splits the key into ten salted sub-keys."
+        },
+        {
+          "number": 7,
+          "heading": "CAP & PACELC",
+          "body": "CAP: during a network Partition, pick Consistency or Availability.\nCP: refuse requests to stay correct. AP: answer, maybe stale.\nPACELC: Else, with no partition, trade Latency vs Consistency.",
+          "diagram": "Two data centers with a cut cable between them; one side shows 'CP: 503 error', the other 'AP: stale answer'. A small decision tree for PACELC beneath."
+        },
+        {
+          "number": 8,
+          "heading": "Consistency Models",
+          "body": "Strong (linearizable): every read sees the latest write.\nRead-your-writes: you see your own updates.\nCausal: causes appear before effects.\nEventual: replicas converge once writes stop, with no time bound.",
+          "diagram": "A spectrum bar from strong (left, slow, lock icon) to eventual (right, fast, wave icon) with the four models placed along it."
+        }
+      ],
+      "footer": "Replicate to survive, shard to grow, choose consistency on purpose.",
+      "summary": "How distributed databases copy and split data: leader-follower, multi-leader and leaderless replication, replication lag and read-your-writes, range versus hash sharding and hot spots, and the CAP and PACELC trade-offs behind different consistency models.",
+      "keywords": [
+        "replication",
+        "sharding",
+        "partitioning",
+        "leader-follower",
+        "read replica",
+        "replication lag",
+        "hot spot",
+        "cap theorem",
+        "pacelc",
+        "eventual consistency",
+        "consistency model",
+        "quorum"
+      ]
+    },
+    {
+      "image": "SWE/17-message-queues-cheat-sheet.png",
+      "title": "MESSAGE QUEUES CHEAT SHEET",
+      "subtitle": "Decouple services with asynchronous messages",
+      "robot": "Send now, process later!",
+      "learner": "What if a consumer crashes mid-message?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Why Queues",
+          "body": "Producer sends a message; a consumer handles it later.\nDecouples services, absorbs spikes, retries failures.\nCheckout replies in 50 ms; email, invoice and analytics run async.",
+          "diagram": "Checkout service dropping three envelopes into a queue pipe and instantly replying to the user; three worker robots pick envelopes off the far end."
+        },
+        {
+          "number": 2,
+          "heading": "Queue vs Pub/Sub",
+          "body": "Queue (point-to-point): each message goes to ONE worker; shares work.\nPub/sub (publish/subscribe): each message reaches EVERY subscriber; fans out.",
+          "diagram": "Left: one queue feeding three workers, each envelope going to a single worker. Right: one topic copying each envelope to email, billing and analytics subscribers."
+        },
+        {
+          "number": 3,
+          "heading": "Kafka: Partitions & Consumer Groups",
+          "body": "Topic = append-only log split into partitions.\nSame key -> same partition -> ordered per key.\nIn a group, each partition has one consumer.\n6 partitions -> at most 6 active consumers.",
+          "diagram": "A topic drawn as 3 horizontal log strips (partitions 0-2) with numbered offsets; consumer group A has 3 consumers each on one strip, group B has 1 consumer reading all."
+        },
+        {
+          "number": 4,
+          "heading": "Delivery Guarantees",
+          "body": "At-most-once: commit offset, then process; a crash loses the message.\nAt-least-once: process, then commit; a crash causes redelivery.\nExactly-once: transactions or dedup; costly, limited scope.",
+          "diagram": "Three tracks with a crash bolt at the same point: track 1 drops an envelope, track 2 shows a duplicate envelope, track 3 shows one envelope with a shield."
+        },
+        {
+          "number": 5,
+          "heading": "Idempotent Consumers",
+          "body": "At-least-once + idempotent handler = effectively once.\nRecord processed message IDs; skip repeats.",
+          "code": "with db.transaction():\n    if db.seen(msg.id): return\n    apply(msg)\n    db.mark_seen(msg.id)",
+          "diagram": "Envelope id=81 arriving twice at a consumer; the second copy hits a 'seen' ledger and is discarded with a green check."
+        },
+        {
+          "number": 6,
+          "heading": "Dead Letters & Backpressure",
+          "body": "Retry with backoff (1 s, 2 s, 4 s); after 5 failures move to a DLQ (dead-letter queue).\nBackpressure: when consumers lag, slow producers, buffer or add consumers.\nAlert on consumer lag.",
+          "diagram": "Retry loop with growing clock icons ending in a red DLQ bin; beside it a lag gauge with producer throttle valve and extra consumer icons."
+        },
+        {
+          "number": 7,
+          "heading": "Event-Driven Example",
+          "body": "OrderPlaced -> topic 'orders' (key = order_id).\nPayment, inventory and email each read in their own consumer group.\nAdd a fraud service later; checkout never changes.",
+          "diagram": "Central 'orders' topic; four subscriber services around it (payment, inventory, email, plus a dashed new 'fraud' service plugging in)."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Poison message blocks a partition: send it to the DLQ.\nOrder holds only within a partition.\nDB write + publish can diverge: use the outbox pattern.\nCheck: why can't 10 consumers speed up 4 partitions?",
+          "diagram": "Warning panel: a jammed envelope blocking a log strip; a database and a queue with a broken arrow between them; question card at the bottom."
+        }
+      ],
+      "footer": "Queue the work, make handlers idempotent, watch the lag.",
+      "summary": "How message queues decouple services: point-to-point queues versus pub/sub, Kafka partitions and consumer groups, at-most/at-least/exactly-once delivery, idempotent consumers, dead-letter queues and backpressure, with an event-driven order example.",
+      "keywords": [
+        "message queue",
+        "pub/sub",
+        "kafka",
+        "partition",
+        "consumer group",
+        "at-least-once",
+        "exactly-once",
+        "idempotency",
+        "dead-letter queue",
+        "backpressure",
+        "event-driven",
+        "outbox pattern"
+      ]
+    },
+    {
+      "image": "SWE/18-microservices-cheat-sheet.png",
+      "title": "MICROSERVICES CHEAT SHEET",
+      "subtitle": "Split by business capability, not by hype",
+      "robot": "Start modular, split when it hurts!",
+      "learner": "Should every feature be its own service?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Three Architectures",
+          "body": "Monolith: one codebase, one deploy. Simple, can tangle.\nModular monolith: one deploy, strict internal modules.\nMicroservices: independently deployed services owning their data. Team autonomy, network complexity.",
+          "diagram": "Three buildings: one solid block, one block divided into clean labeled rooms, and a cluster of small separate houses connected by roads."
+        },
+        {
+          "number": 2,
+          "heading": "Service Boundaries",
+          "body": "Cut along bounded contexts (from domain-driven design): Orders, Payments, Catalog.\nEach service owns its database.\nHigh cohesion inside, loose coupling between.\nSmell: services that must deploy together.",
+          "diagram": "Domain map with three bounded areas (Orders, Payments, Catalog), each with its own database cylinder; a red crossed-out arrow from Payments into Orders' database."
+        },
+        {
+          "number": 3,
+          "heading": "API Gateway & Discovery",
+          "body": "API gateway: single entry; auth, rate limits, routing.\nService discovery: a registry maps names to healthy instances (Kubernetes DNS, Consul).\nCode calls 'payments', never an IP.",
+          "diagram": "Clients -> gateway box with auth and rate-limit badges -> services; a registry phonebook beside it mapping 'payments' to three instance addresses."
+        },
+        {
+          "number": 4,
+          "heading": "Timeouts, Retries & Circuit Breakers",
+          "body": "Timeout every call (e.g. 300 ms).\nRetry only idempotent calls: exponential backoff + jitter, max 3.\nCircuit breaker: after 50% failures, open and fail fast; half-open tests recovery.",
+          "diagram": "State diagram: CLOSED -> (failures > 50%) -> OPEN -> (after 30 s) -> HALF-OPEN -> success back to CLOSED or failure back to OPEN, drawn as an electrical switch."
+        },
+        {
+          "number": 5,
+          "heading": "Saga Pattern Example",
+          "body": "No ACID transaction across services: chain local steps with compensations.\nReserve stock -> Charge card -> Ship.\nCharge fails -> run 'release stock'.\nCoordinate by events (choreography) or a central orchestrator.",
+          "diagram": "Three forward steps in cyan; a red X on 'Charge card' and an amber backward arrow to 'Release stock'. Small inset contrasting event-chain vs orchestrator hub."
+        },
+        {
+          "number": 6,
+          "heading": "When NOT to Use Them",
+          "body": "Small team or still-unclear domain.\nNo CI/CD (continuous integration / delivery), monitoring or tracing yet.\nChatty, latency-critical flows.\nStart modular; extract a service when scale or team needs demand it.",
+          "diagram": "A tiny team of three people carrying fifteen service boxes and sweating; next to it the same team calmly running one modular monolith."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Distributed monolith: services chained by sync calls.\nShared database across services.\nRetry storms amplify outages.\nCheck: 5 chained services at 99.9% each = ~99.5% overall. Why?",
+          "diagram": "Warning panel: five services in a synchronous chain, one red link toppling the rest like dominoes; a calculator showing 0.999^5 = 0.995."
+        }
+      ],
+      "footer": "Microservices trade code complexity for network complexity; earn the trade.",
+      "summary": "How monoliths, modular monoliths and microservices differ, how to draw service boundaries around bounded contexts, and the supporting patterns (API gateway, service discovery, timeouts, retries, circuit breakers, sagas), plus when not to use microservices at all.",
+      "keywords": [
+        "microservices",
+        "monolith",
+        "modular monolith",
+        "bounded context",
+        "api gateway",
+        "service discovery",
+        "circuit breaker",
+        "retry",
+        "timeout",
+        "saga pattern",
+        "distributed monolith",
+        "ddd"
+      ]
+    },
+    {
+      "image": "SWE/19-api-design-cheat-sheet.png",
+      "title": "API DESIGN CHEAT SHEET",
+      "subtitle": "Clear contracts clients can trust",
+      "robot": "Nouns for resources, verbs for actions!",
+      "learner": "REST, GraphQL or gRPC: which one?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "REST Basics",
+          "body": "REST (representational state transfer): resources are nouns, /users/42/orders.\nGET read, POST create, PUT replace, PATCH partial update, DELETE remove.\nGET, PUT, DELETE are idempotent; POST is not.",
+          "diagram": "A resource tree /users -> /42 -> /orders, with five colored verb arrows pointing at it; an idempotent badge on GET, PUT and DELETE."
+        },
+        {
+          "number": 2,
+          "heading": "Status Codes",
+          "body": "2xx success: 200 OK, 201 Created, 204 No Content.\n4xx client error: 400 Bad Request, 401 not authenticated, 403 Forbidden, 404 Not Found, 409 Conflict, 429 Too Many Requests.\n5xx: server failed (500, 503).",
+          "diagram": "Traffic-light style chart: green 2xx row, amber 4xx row, red 5xx row, each code a small tile."
+        },
+        {
+          "number": 3,
+          "heading": "GraphQL & gRPC",
+          "body": "GraphQL: one endpoint; the client asks for exact fields. No over-fetching, harder HTTP caching.\ngRPC: Protocol Buffers over HTTP/2. Binary, typed, streaming; ideal service-to-service.",
+          "diagram": "Left: a GraphQL query shape { user { name orders { total } } } mirrored by a matching JSON response. Right: two services joined by a thick binary pipe labeled HTTP/2 + protobuf."
+        },
+        {
+          "number": 4,
+          "heading": "Which One When",
+          "body": "REST: public APIs, HTTP caching, simplest tooling.\nGraphQL: many clients needing flexible nested data.\ngRPC: internal low-latency calls and streams.\nCommon mix: REST or GraphQL outside, gRPC inside.",
+          "diagram": "Comparison table with rows REST / GraphQL / gRPC and columns format (JSON / JSON / binary), caching, typing, best for."
+        },
+        {
+          "number": 5,
+          "heading": "Versioning & Pagination",
+          "body": "Version in path (/v1) or header; add fields, never break them.\nOffset (?offset=40): simple, slow deep, skips rows on inserts.\nCursor (?after=...): stable and fast.",
+          "code": "GET /v1/orders?limit=20&after=ord_981\n-> {\"data\": [...], \"next_cursor\": \"ord_961\"}",
+          "diagram": "Two scroll bars: offset pages shifting when a new row is inserted at the top (a skipped row in red), versus a cursor bookmark staying on the right item."
+        },
+        {
+          "number": 6,
+          "heading": "Rate Limiting: Token Bucket",
+          "body": "Bucket holds 100 tokens, refills 10 per second.\nEach request spends 1 token; empty -> 429 with Retry-After.\nAllows bursts, enforces the average.\nLimit per API key or user.",
+          "diagram": "A bucket with a faucet dripping 10 tokens/s, requests taking one coin each; an empty bucket bounces a request with a '429' stamp."
+        },
+        {
+          "number": 7,
+          "heading": "Idempotency Keys",
+          "body": "Client sends a unique key with each POST.\nServer stores key -> response; a retry gets the same result, never a double charge.",
+          "code": "POST /v1/payments\nIdempotency-Key: 7f3a-91c2\n{\"amount\": 5000, \"currency\": \"usd\"}",
+          "diagram": "Client retrying a payment after a timeout; the server's key ledger finds 7f3a-91c2 already stored and returns the saved 201 response."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Verbs in URLs (/getUser).\n200 OK wrapping an error.\nUnbounded list endpoints.\nBreaking changes without a new version.\nCheck: why does offset pagination skip rows when new items arrive?",
+          "diagram": "Warning panel with four crossed-out bad examples as code tiles, and a question card at the bottom."
+        }
+      ],
+      "footer": "Predictable resources, honest status codes, safe retries.",
+      "summary": "How to design web APIs: REST resources, verbs and status codes, when GraphQL or gRPC fits better, versioning, offset versus cursor pagination, token-bucket rate limiting and idempotency keys for safe retries.",
+      "keywords": [
+        "api design",
+        "rest",
+        "graphql",
+        "grpc",
+        "http status codes",
+        "versioning",
+        "pagination",
+        "cursor pagination",
+        "rate limiting",
+        "token bucket",
+        "idempotency key",
+        "http verbs"
+      ]
+    },
+    {
+      "image": "SWE/20-system-design-interview-cheat-sheet.png",
+      "title": "SYSTEM DESIGN INTERVIEW CHEAT SHEET",
+      "subtitle": "A repeatable plan, worked on a URL shortener",
+      "robot": "Clarify first, draw second!",
+      "learner": "Where do I even start?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Requirements (5 min)",
+          "body": "Functional: shorten a URL, redirect, custom alias, expiry.\nNon-functional: 100M new URLs/month, reads 100x writes, redirect p99 < 50 ms, highly available.\nAsk, don't assume.",
+          "diagram": "A clipboard with two columns, functional and non-functional, each item checked off; a timer showing 5 min. A tiny step bar 1-7 across the top with step 1 lit."
+        },
+        {
+          "number": 2,
+          "heading": "Estimates (5 min)",
+          "body": "Writes: 100M/month = ~40/s. Reads: ~4,000/s, peak ~10,000/s.\nStorage: 6B URLs in 5 years x 500 B = ~3 TB.\nCodes: 62^7 = ~3.5 trillion; 7 characters suffice.",
+          "diagram": "Scratchpad math with boxed results; a base62 character strip (a-z, A-Z, 0-9) feeding 7 slots."
+        },
+        {
+          "number": 3,
+          "heading": "API (5 min)",
+          "body": "302 (temporary) keeps every click visible for analytics; 301 gets cached by browsers.",
+          "code": "POST /v1/urls {\"long_url\": \"https://...\"}\n-> 201 {\"code\": \"aZ3k9Qx\"}\nGET /aZ3k9Qx -> 302, Location: <long_url>",
+          "diagram": "Two request/response cards: create link and redirect, with the Location header highlighted."
+        },
+        {
+          "number": 4,
+          "heading": "Data Model (5 min)",
+          "body": "urls(code PK, long_url, user_id, created_at, expires_at).\nAccess is lookup by code: a key-value store or sharded SQL fits.\nShard by hash(code).",
+          "diagram": "A single table card with the primary key highlighted, and arrows from hash(code) to four shards."
+        },
+        {
+          "number": 5,
+          "heading": "High-Level Design (10 min)",
+          "body": "Client -> load balancer -> stateless API servers -> Redis cache -> database.\nCodes: unique ID counter -> base62 encode, no collisions.\nClick events -> queue -> analytics workers.",
+          "diagram": "Main architecture diagram, widest panel: boxes and arrows left to right, with a side branch from API servers to a queue and analytics workers."
+        },
+        {
+          "number": 6,
+          "heading": "Deep Dives (10 min)",
+          "body": "Cache hot codes; 20% of links get ~80% of clicks.\nGive each server a block of 1,000 IDs, so no central counter bottleneck.\nCustom aliases: unique constraint.\nExpired links: check on read, purge nightly.",
+          "diagram": "Zoom-in callouts on the cache and the ID allocator: a counter handing out ranges 1-1000, 1001-2000 to different servers."
+        },
+        {
+          "number": 7,
+          "heading": "Bottlenecks & Trade-offs (5 min)",
+          "body": "One database -> replicas, then shards.\nSequential codes are guessable -> shuffle IDs.\n301 vs 302: fewer hits vs better analytics.\nSay trade-offs out loud; no design is perfect.",
+          "diagram": "A balance scale weighing '301 speed' against '302 analytics', and a database splitting into replicas and shards."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Drawing boxes before requirements.\nNo numbers, no capacity plan.\nIgnoring failures and hot keys.\nCheck: redo the estimates for 1B new URLs per month.",
+          "diagram": "Warning panel: a candidate drawing boxes while a requirements clipboard lies ignored; question card at the bottom."
+        }
+      ],
+      "footer": "Requirements, numbers, API, data, design, deep dive, trade-offs: say it out loud.",
+      "summary": "A seven-step system design interview framework (requirements, estimates, API, data model, high-level design, deep dives, trade-offs) worked through on a URL shortener, with time budgets and common mistakes.",
+      "keywords": [
+        "system design interview",
+        "url shortener",
+        "requirements",
+        "capacity estimation",
+        "base62",
+        "high-level design",
+        "deep dive",
+        "trade-offs",
+        "api design",
+        "data model",
+        "back-of-envelope",
+        "interview framework"
+      ]
+    }
+  ]
+}

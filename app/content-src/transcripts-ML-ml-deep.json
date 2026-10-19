@@ -1,0 +1,435 @@
+{
+  "collection": "ML",
+  "pages": [
+    {
+      "image": "ML/29-backprop-optimizers-cheat-sheet.png",
+      "title": "BACKPROP & OPTIMIZERS CHEAT SHEET",
+      "subtitle": "How gradients flow back and weights step forward",
+      "robot": "Blame flows backward, weights step!",
+      "learner": "How does each weight know which way?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Backprop = Chain Rule, Reversed",
+          "body": "Forward pass: compute outputs, then the loss L.\nBackward pass: start at dL/dL = 1 and walk back layer by layer.\nEach node multiplies the incoming gradient by its local derivative.\nOne backward pass gives dL/dw for every weight.",
+          "diagram": "Computational graph: x and w feed a multiply node -> y_hat -> square-error node -> L. Blue forward arrows on top carry values; orange backward arrows underneath carry gradients, each labeled 'x local derivative'."
+        },
+        {
+          "number": 2,
+          "heading": "Tiny Worked Example",
+          "body": "x = 2, w = 3, target y = 4.\nForward: y_hat = w*x = 6; L = (6-4)^2 = 4.\nBackward: dL/dy_hat = 2(6-4) = 4; dy_hat/dw = 2.\nChain: dL/dw = 4*2 = 8.\nStep, lr 0.05: w = 2.6, L = 1.44.",
+          "diagram": "Same tiny graph with numbers filled in: values 2, 3, 6, 4 on forward arrows; gradients 4, 2, 8 on backward arrows; a small before/after gauge showing L 4 -> 1.44 and w 3 -> 2.6."
+        },
+        {
+          "number": 3,
+          "heading": "Full Batch vs SGD vs Mini-Batch",
+          "body": "Full batch: exact gradient over all data, slow per step.\nSGD (stochastic gradient descent): 1 example per step, very noisy.\nMini-batch: 32-4096 examples per step - the default; GPU-friendly.\nUpdate: w <- w - lr * gradient",
+          "diagram": "Three contour-map paths to the same valley minimum: a smooth slow line (full batch), a wild zigzag (SGD, 1 example), a mildly wobbly fast line (mini-batch)."
+        },
+        {
+          "number": 4,
+          "heading": "Momentum, Adam, AdamW",
+          "body": "Momentum: v = 0.9v + g; w -= lr*v. Rolls through noise.\nAdam: step = lr * m / (sqrt(v) + eps); m = avg gradient, v = avg squared gradient.\nAdamW: decay applied straight to weights. Transformer default.",
+          "code": "opt = torch.optim.AdamW(model.parameters(),\n    lr=3e-4, betas=(0.9, 0.95), weight_decay=0.1)",
+          "diagram": "Ball rolling down a narrow ravine: plain SGD bounces wall to wall, momentum ball glides along the floor. Side card: Adam's per-weight 'step dials', small for weights with big noisy gradients."
+        },
+        {
+          "number": 5,
+          "heading": "Learning-Rate Schedules",
+          "body": "Warmup: ramp lr from ~0 to peak over the first 1-5% of steps.\nCosine: lr = min + 0.5(peak - min)(1 + cos(pi*t/T)).\nWSD (warmup-stable-decay): hold peak, decay fast at the end.",
+          "diagram": "Plot of learning rate vs training step: short linear ramp up, then a smooth cosine curve down to a floor; a dashed WSD curve stays flat at peak then drops sharply in the last 10%."
+        },
+        {
+          "number": 6,
+          "heading": "Clipping & Picking the LR",
+          "body": "Gradient clipping: if the gradient norm exceeds 1.0, rescale it to 1.0.\nLR range test: raise lr from 1e-7 toward 1; pick ~10x below where loss explodes.\nStarting points: Adam 1e-4 to 3e-4; SGD + momentum ~0.1.",
+          "code": "torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)",
+          "diagram": "Left: a long gradient arrow cut down to a circle of radius 1.0, same direction. Right: loss vs log(lr) curve - flat, then falling, then shooting up; a star marks the pick ~10x left of the blow-up."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Loss NaN or spiking -> lr too high; add warmup and clipping.\nLoss flat -> lr too low or weights frozen.\nSkipped zero_grad() -> gradients pile up across steps.\nCheck: lr 3e-4 diverges at step 50. First fix? (warmup)",
+          "diagram": "Three small loss-curve thumbnails with diagnosis tags: a curve exploding to NaN, a flat line, a staircase that keeps growing. A sticky note holds the check-yourself question."
+        }
+      ],
+      "footer": "Backprop finds the direction; the optimizer and schedule choose the step.",
+      "summary": "How a network computes every weight's gradient with one backward pass of the chain rule, worked on a single neuron, and how optimizers (SGD, momentum, Adam, AdamW), learning-rate schedules, gradient clipping and a learning-rate range test turn those gradients into stable training.",
+      "keywords": [
+        "backpropagation",
+        "chain rule",
+        "sgd",
+        "mini-batch",
+        "momentum",
+        "adam",
+        "adamw",
+        "learning rate schedule",
+        "warmup",
+        "cosine decay",
+        "gradient clipping",
+        "optimizer"
+      ]
+    },
+    {
+      "image": "ML/30-normalization-regularization-cheat-sheet.png",
+      "title": "NORMALIZATION & REGULARIZATION CHEAT SHEET",
+      "subtitle": "Keep signals stable, keep models from memorizing",
+      "robot": "Stable signals, humble weights!",
+      "learner": "Why does my deep net stop learning?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Vanishing & Exploding Gradients",
+          "body": "Backprop multiplies one factor per layer.\nFactors below 1: gradients shrink to ~0, early layers stop learning.\nFactors above 1: gradients blow up, loss goes NaN.\n20 layers: 0.5^20 = 0.000001, but 1.5^20 = 3,325.",
+          "diagram": "A stack of 20 layer blocks; a gradient arrow travels down from the loss. Left version: arrow fades to a dot (x0.5 per layer). Right version: arrow swells into a huge red beam (x1.5 per layer)."
+        },
+        {
+          "number": 2,
+          "heading": "Initialization: Xavier vs He",
+          "body": "Goal: keep activation variance steady from layer to layer.\nXavier/Glorot: Var(w) = 2 / (fan_in + fan_out), for tanh.\nHe/Kaiming: Var(w) = 2 / fan_in, for ReLU (it zeroes half).\nExample: fan_in = 512 -> He std = 0.0625.",
+          "diagram": "Histograms of activations at layers 1, 5, 10: with too-small init they collapse to a spike at 0; with He init they keep the same bell shape at every layer."
+        },
+        {
+          "number": 3,
+          "heading": "BatchNorm vs LayerNorm vs RMSNorm",
+          "body": "BatchNorm: normalize each feature across the batch; running stats at inference. CNN favorite.\nLayerNorm: normalize across one token's features; batch-independent.\nRMSNorm: x / RMS(x) * gain, no mean subtraction. Cheaper; standard in LLMs.",
+          "diagram": "A grid tensor with rows = examples and columns = features. BatchNorm highlights one column (same feature, many examples); LayerNorm and RMSNorm highlight one row (one example, all features)."
+        },
+        {
+          "number": 4,
+          "heading": "Worked Example: One Token",
+          "body": "x = [2, 4, 6, 8]\nLayerNorm: mean 5, std 2.24 -> [-1.34, -0.45, 0.45, 1.34]\nRMSNorm: RMS = 5.48 -> [0.37, 0.73, 1.10, 1.46]\nThen multiply by a learned gain (LayerNorm also adds a bias).",
+          "diagram": "Four bar heights 2, 4, 6, 8 transformed two ways: LayerNorm bars centered on zero (two negative, two positive); RMSNorm bars all positive but rescaled. Mean and RMS written beside each."
+        },
+        {
+          "number": 5,
+          "heading": "Residual Connections",
+          "body": "y = x + F(x): each block learns only a correction.\nThe + gives gradients a direct path back, so 100+ layer nets train.\nResNet (2015) trained 152 layers; every transformer block uses them.",
+          "diagram": "A block F drawn as a detour box with a straight 'skip' highway arrow bypassing it, meeting at a + node. Backward gradient arrow runs unbroken along the highway."
+        },
+        {
+          "number": 6,
+          "heading": "Regularization Toolkit",
+          "body": "Dropout: zero units with prob p (e.g. 0.1), scale the rest by 1/(1-p); off at inference.\nWeight decay: shrink weights each step (AdamW, 0.01-0.1).\nData augmentation: flips, crops, color jitter, mixup.\nEarly stopping: keep the best validation checkpoint.",
+          "diagram": "Four tool cards on a belt: a network with crossed-out units (dropout), weights shrinking (decay), one cat photo becoming flipped/cropped copies (augmentation), a val-loss curve with a flag at its minimum (early stopping)."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Forgot model.eval() -> dropout and BatchNorm stay in training mode.\nBatch size 2 -> noisy BatchNorm stats; use LayerNorm or GroupNorm.\nAugment only in label-safe ways: never rotate a 6 into a 9.\nCheck: train 99%, val 70%. Which tools apply?",
+          "diagram": "Warning signs on a lab wall: an 'eval mode OFF' switch, a tiny batch of 2 with jittery stats, a digit 6 rotating into a 9 with a red X. Sticky note with the check question."
+        }
+      ],
+      "footer": "Normalize to keep signals healthy; regularize to keep the model honest.",
+      "summary": "Why deep networks suffer vanishing or exploding gradients and how good initialization, normalization layers (BatchNorm, LayerNorm, RMSNorm) and residual connections keep training stable, plus the regularizers (dropout, weight decay, data augmentation, early stopping) that fight overfitting.",
+      "keywords": [
+        "vanishing gradients",
+        "exploding gradients",
+        "xavier initialization",
+        "he initialization",
+        "batchnorm",
+        "layernorm",
+        "rmsnorm",
+        "residual connection",
+        "dropout",
+        "weight decay",
+        "data augmentation",
+        "regularization"
+      ]
+    },
+    {
+      "image": "ML/31-cnns-cheat-sheet.png",
+      "title": "CONVOLUTIONAL NETWORKS CHEAT SHEET",
+      "subtitle": "Small filters, shared weights, growing vision",
+      "robot": "Slide the filter, find patterns!",
+      "learner": "How does a net see edges, then cats?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Convolution: Slide a Filter",
+          "body": "A kernel (e.g. 3x3 weights) slides across the image.\nAt each spot: multiply overlapping values, sum to one number.\nSame weights everywhere = weight sharing.\n64 kernels -> 64 feature maps (channels).",
+          "diagram": "A 3x3 kernel window sliding over a 6x6 pixel grid, with one output cell lit up in a smaller feature-map grid beside it; a stack of 64 feature maps behind."
+        },
+        {
+          "number": 2,
+          "heading": "Output Size Formula",
+          "body": "out = floor((n + 2p - k) / s) + 1\nn = input size, k = kernel, p = padding, s = stride.\nn=32, k=3, p=1, s=1 -> 32 (same size).\nn=32, k=3, p=0, s=2 -> floor(29/2) + 1 = 15.",
+          "diagram": "A 32x32 grid with a 1-pixel padding border shaded; the kernel jumping in steps of 1 vs steps of 2, with the resulting 32x32 and 15x15 output grids labeled."
+        },
+        {
+          "number": 3,
+          "heading": "Worked Example: One Output",
+          "body": "Patch rows: [3 1 0] [4 2 1] [5 1 0]\nKernel rows: [1 0 -1], three times (vertical edge)\nSum: (3-0) + (4-1) + (5-0) = 11 -> strong edge.\nParams, 3x3 conv, 3 -> 64 channels: 3*3*3*64 + 64 = 1,792.",
+          "diagram": "A 3x3 patch (bright left column, dark right column) multiplied cell-by-cell with the edge kernel; products shown in small boxes, summed into a glowing '11' output cell."
+        },
+        {
+          "number": 4,
+          "heading": "Pooling & Receptive Field",
+          "body": "Max pool 2x2, stride 2: keep each block's max; halves height and width.\nReceptive field = input region one output sees.\nThree stacked 3x3 convs see 7x7, with fewer weights than one 7x7.\nDepth: edges -> textures -> parts -> objects.",
+          "diagram": "A 4x4 grid pooled to 2x2 with the max of each quadrant circled. Next to it, a pyramid: one top neuron tracing cones down through layers to a 7x7 input patch. A strip of icons: edge, texture, eye, cat face."
+        },
+        {
+          "number": 5,
+          "heading": "Classic Architectures",
+          "body": "LeNet-5 (1998): digit reading, 2 conv layers.\nAlexNet (2012): ReLU + GPUs, won ImageNet.\nVGG (2014): deep stacks of 3x3 convs.\nResNet (2015): skip connections, 152 layers.\nLater: EfficientNet, ConvNeXt.",
+          "diagram": "Horizontal timeline 1998 -> 2022 with a small block-stack icon per architecture, each taller than the last; ResNet's icon shows curved skip arrows."
+        },
+        {
+          "number": 6,
+          "heading": "Transfer Learning",
+          "body": "Start from ImageNet-pretrained weights, not random ones.\nSmall dataset: freeze the backbone, train a new head.\nMore data: fine-tune everything at a low lr (e.g. 1e-4).",
+          "code": "m = torchvision.models.resnet50(weights=\"IMAGENET1K_V2\")\nm.fc = torch.nn.Linear(2048, num_classes)",
+          "diagram": "A pretrained backbone drawn as a locked, snowflake-marked block; a fresh, glowing classifier head bolted on top with new class labels (e.g. 'healthy', 'diseased')."
+        },
+        {
+          "number": 7,
+          "heading": "CNN vs ViT",
+          "body": "CNN: built-in locality bias; data-efficient.\nViT (vision transformer): 16x16 image patches become tokens; global attention from layer 1.\nViTs need big pretraining, then match or beat CNNs.",
+          "diagram": "Split panel: left, a small kernel scanning locally; right, an image cut into a 14x14 grid of patches, each patch linked by attention lines to every other patch."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Recompute the output size after every stride or pool.\nNo padding -> maps shrink each layer.\nHigh lr while fine-tuning wrecks pretrained features.\nCheck: 224 input, 7x7 conv, stride 2, pad 3 -> ? (112)",
+          "diagram": "A shrinking stack of feature maps with a red warning tag; a cracked pretrained block labeled 'lr too high'. Sticky note with the check-yourself sum."
+        }
+      ],
+      "footer": "Local filters, shared weights, stacked deep: that is how a CNN learns to see.",
+      "summary": "How convolutional neural networks process images: sliding kernels, the output-size formula, feature maps, pooling and receptive fields, the LeNet-to-ResNet lineage, transfer learning from pretrained backbones, and how CNNs compare with vision transformers.",
+      "keywords": [
+        "cnn",
+        "convolutional neural network",
+        "convolution",
+        "kernel",
+        "stride",
+        "padding",
+        "pooling",
+        "receptive field",
+        "resnet",
+        "transfer learning",
+        "vision transformer",
+        "vit"
+      ]
+    },
+    {
+      "image": "ML/32-rnns-lstms-cheat-sheet.png",
+      "title": "RNNS & LSTMS CHEAT SHEET",
+      "subtitle": "Memory through time, and why attention took over",
+      "robot": "Carry the memory forward!",
+      "learner": "How does a model remember earlier words?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Sequence Modeling",
+          "body": "Inputs arrive in order: words, audio frames, sensor readings.\nOutput: one label (sentiment), one per step (tagging), or a new sequence (translation).\nNeeds: any length, memory of the past.",
+          "diagram": "Three mini-diagrams of input/output shapes: many-to-one (sentence -> smiley), many-to-many aligned (word -> tag under each), sequence-to-sequence (English sentence -> French sentence)."
+        },
+        {
+          "number": 2,
+          "heading": "RNN: Unroll Through Time",
+          "body": "One cell, same weights at every step:\nh_t = tanh(W_h h_(t-1) + W_x x_t + b)\nh_t = memory summary so far.\nBPTT (backprop through time): unroll T steps, backprop through all, sum the weight gradients.",
+          "diagram": "Left: a single cell with a loop arrow. Right: the same cell unrolled into four copies x1..x4 -> h1..h4 passing h to the right; orange backward arrows run right-to-left along the chain."
+        },
+        {
+          "number": 3,
+          "heading": "Worked Example: Two Steps",
+          "body": "W_h = 0.5, W_x = 1, h_0 = 0, inputs x = [1, 2]\nh_1 = tanh(1) = 0.76\nh_2 = tanh(0.5*0.76 + 2) = tanh(2.38) = 0.98\nGradient back 50 steps: factor <= 0.5 each -> ~1e-15. Vanished.",
+          "diagram": "Two cells with the numbers flowing through; below, a gradient signal bar shrinking step by step across 50 tiny cells until it disappears."
+        },
+        {
+          "number": 4,
+          "heading": "LSTM Gates",
+          "body": "Cell state c = a conveyor belt of memory.\nForget gate f: erase. Input gate i: write. Output gate o: reveal.\nc_t = f*c_(t-1) + i*c~_t ; h_t = o*tanh(c_t)\nAdditive update -> gradients survive long spans.",
+          "diagram": "An LSTM cell drawn as a factory: a horizontal conveyor belt (cell state) across the top, three valve-shaped gates labeled forget, input, output controlling what drops off, gets added, and is shown."
+        },
+        {
+          "number": 5,
+          "heading": "GRU: The Lighter LSTM",
+          "body": "GRU (gated recurrent unit): two gates.\nUpdate z: keep old memory or replace it. Reset r: how much past to use.\nNo cell state; ~25% fewer parameters.\nOften matches LSTM; try both.",
+          "diagram": "Side-by-side cells: LSTM with three valves and two lines (c and h), GRU with two valves and one line (h); a parameter counter shows GRU smaller."
+        },
+        {
+          "number": 6,
+          "heading": "Seq2Seq + Attention",
+          "body": "Encoder RNN reads the source; decoder RNN writes the target.\nProblem: one fixed vector must hold the whole sentence.\nAttention (2014): each output step takes a weighted mix of all encoder states.\nThat idea grew into the transformer.",
+          "diagram": "Encoder chain reading 'the cat sat', decoder chain writing 'le chat'; while writing 'chat', thick attention lines connect strongly to 'cat' and faintly to the other words."
+        },
+        {
+          "number": 7,
+          "heading": "Why Transformers Won",
+          "body": "RNN: step t waits for step t-1, so training can't parallelize over time.\nTransformer: all positions at once, one hop between any two tokens.\nCost: attention is O(T^2) in length.\nSSMs (state-space models, e.g. Mamba): linear-time recurrence, parallel training.",
+          "diagram": "A single-file queue of tokens (RNN) next to a crowd where every token links to every other at once (transformer); a third lane shows an SSM as a fast conveyor with a fixed-size memory box."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Exploding RNN gradients -> clip the gradient norm.\nPad variable-length batches and mask the pads.\nTruncated BPTT limits how far back learning reaches.\nCheck: why can't a plain RNN learn 200-step links?",
+          "diagram": "A warning board: a gradient bar exploding past a clip line, a batch of sentences padded with grey blocks under a mask, a ruler showing the truncation window. Sticky note with the check question."
+        }
+      ],
+      "footer": "RNNs carry memory step by step; attention lets every step look everywhere.",
+      "summary": "How recurrent networks model sequences by passing a hidden state through time, why backprop through time makes gradients vanish, how LSTM and GRU gates fix it, how seq2seq attention led to transformers, and where state-space models fit today.",
+      "keywords": [
+        "rnn",
+        "recurrent neural network",
+        "lstm",
+        "gru",
+        "bptt",
+        "backpropagation through time",
+        "vanishing gradients",
+        "seq2seq",
+        "attention",
+        "state-space model",
+        "mamba",
+        "sequence modeling"
+      ]
+    },
+    {
+      "image": "ML/33-embeddings-cheat-sheet.png",
+      "title": "EMBEDDINGS CHEAT SHEET",
+      "subtitle": "Turn words, images and items into meaningful vectors",
+      "robot": "Similar meaning, nearby vectors!",
+      "learner": "How can a computer know cat is near kitten?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "One-Hot vs Dense",
+          "body": "One-hot: 50,000-word vocab -> 50,000 numbers, a single 1. Every word equally far apart.\nDense embedding: 300-4,096 learned numbers per word.\nSimilar items land close together.",
+          "diagram": "Top: a very long vector of zeros with one lit cell for 'cat'. Bottom: a short colorful vector for 'cat' and a nearly identical one for 'kitten'."
+        },
+        {
+          "number": 2,
+          "heading": "Embedding Layer = Lookup Table",
+          "body": "Matrix E has shape (vocab_size, dim).\nToken id 42 -> row E[42]: same as one-hot times E, far cheaper.\nRows are trained by backprop like any weight.",
+          "code": "emb = torch.nn.Embedding(50000, 768)\nvecs = emb(torch.tensor([42, 7]))  # (2, 768)",
+          "diagram": "A tall table with numbered rows; token id 42 points an arrow at row 42, which slides out as a vector."
+        },
+        {
+          "number": 3,
+          "heading": "word2vec Skip-Gram",
+          "body": "Predict context words from a center word.\n'the cat sat on', center 'cat', window 2 -> (cat, the), (cat, sat), (cat, on).\nNegative sampling: pull real pairs together, push random pairs apart.",
+          "diagram": "The sentence 'the cat sat on' with a sliding window bracket around 'cat'; arrows from 'cat' to its three context words; a random word 'piano' pushed away with a red arrow."
+        },
+        {
+          "number": 4,
+          "heading": "Cosine Similarity",
+          "body": "cos(a, b) = a.b / (|a| |b|), from -1 to 1.\na = [1, 2], b = [2, 3]\na.b = 8; |a| = 2.24; |b| = 3.61\ncos = 8 / 8.06 = 0.99 -> nearly same direction.",
+          "diagram": "Two arrows from the origin on a 2D grid, a = (1, 2) and b = (2, 3), with the small angle between them shaded; a gauge from -1 to 1 pointing at 0.99."
+        },
+        {
+          "number": 5,
+          "heading": "Vector Arithmetic",
+          "body": "king - man + woman ~ queen (word2vec).\nDirections can encode relations: gender, tense, capital-of.\nCaveat: only some analogies work, and vectors also learn data biases.",
+          "diagram": "A 2D plot: arrows man -> woman and king -> queen drawn parallel; Paris/France and Tokyo/Japan form a second parallel pair."
+        },
+        {
+          "number": 6,
+          "heading": "Sentence & Multimodal Embeddings",
+          "body": "Sentence embeddings: one vector per text, trained on matching pairs.\nCLIP-style: an image encoder and a text encoder trained so matching image-caption pairs score high.\nResult: search photos with words.",
+          "diagram": "Two encoders, a camera icon and a text icon, feeding arrows into one shared vector space where a dog photo and the caption 'a dog on a beach' land side by side."
+        },
+        {
+          "number": 7,
+          "heading": "Vector Search in Practice",
+          "body": "1. Embed documents once; store vectors in an index.\n2. Embed the query with the SAME model.\n3. Return top-k by cosine; ANN (approximate nearest neighbor) indexes like HNSW keep it fast.\nPowers RAG, recommendations, dedup.",
+          "diagram": "Pipeline: documents -> embedder -> vector index cloud of dots; a query dot lands in the cloud and its 3 nearest neighbors light up and flow to an answer box."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "Vectors from different models are not comparable.\nUnnormalized dot product favors long vectors.\nChange the model -> re-embed everything.\nCheck: why normalize vectors before a dot product?",
+          "diagram": "Two vector clouds in different colors that do not overlap, labeled 'model A' and 'model B', with a red X between them. Sticky note with the check question."
+        }
+      ],
+      "footer": "An embedding turns meaning into geometry: close vectors, close ideas.",
+      "summary": "How embeddings replace sparse one-hot codes with dense learned vectors, how word2vec and embedding layers learn them, how cosine similarity and vector arithmetic read them, and how sentence and CLIP-style multimodal embeddings power vector search.",
+      "keywords": [
+        "embedding",
+        "one-hot",
+        "word2vec",
+        "skip-gram",
+        "embedding layer",
+        "cosine similarity",
+        "vector arithmetic",
+        "sentence embeddings",
+        "clip",
+        "multimodal",
+        "vector search",
+        "ann"
+      ]
+    },
+    {
+      "image": "ML/34-generative-models-cheat-sheet.png",
+      "title": "GENERATIVE MODELS CHEAT SHEET",
+      "subtitle": "Learn the data, then sample brand-new examples",
+      "robot": "Learn the data, then create!",
+      "learner": "How does a model invent a new face?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Goal",
+          "body": "Learn p(x), the distribution of the data.\nThen sample: new images, text or audio that look real.\nModel families differ in how they learn p(x) and how fast they sample.",
+          "diagram": "A cloud of real face thumbnails on the left mapped into a glowing probability landscape; a scoop draws a brand-new face from it on the right."
+        },
+        {
+          "number": 2,
+          "heading": "Autoencoders & VAEs",
+          "body": "Autoencoder: encoder -> small code z -> decoder, trained to rebuild x.\nVAE (variational autoencoder): encoder outputs mean mu and std sigma.\nLoss = reconstruction + KL pull toward N(0, 1).\nSmooth latent space: sample z, decode.",
+          "diagram": "Hourglass network: image -> encoder -> narrow bottleneck -> decoder -> image. The VAE version shows the bottleneck as a small fuzzy Gaussian blob labeled mu, sigma."
+        },
+        {
+          "number": 3,
+          "heading": "Reparameterization Trick",
+          "body": "Random sampling blocks gradients.\nFix: z = mu + sigma * eps, with eps ~ N(0, 1).\nExample: mu = 0.5, sigma = 0.2, eps = 1.5 -> z = 0.8.\nRandomness lives in eps, so gradients reach mu and sigma.",
+          "diagram": "A small computation graph: mu and sigma nodes (green, trainable) and an eps dice node (grey, random) combine into z; orange gradient arrows pass back through mu and sigma but not into the dice."
+        },
+        {
+          "number": 4,
+          "heading": "GANs: Forger vs Detective",
+          "body": "GAN (generative adversarial network): generator G turns noise into fakes.\nDiscriminator D judges real or fake.\nG learns to fool D; D learns to catch G.\nSharp but unstable; mode collapse = only a few output types.",
+          "diagram": "A forger robot painting fake portraits from a noise dice and a detective robot with a magnifying glass sorting real vs fake; a corner inset shows mode collapse as many identical faces."
+        },
+        {
+          "number": 5,
+          "heading": "Diffusion: Noise, Then Denoise",
+          "body": "Forward: add Gaussian noise over T steps (e.g. 1,000) until pure static.\nTrain a network to predict the noise added at step t.\nGenerate: start from static, denoise step by step; a text prompt guides it.\nBest quality, slower sampling.",
+          "diagram": "A filmstrip of five frames: clear cat photo -> grainy -> very noisy -> static (forward arrow); a reverse arrow below rebuilding a new cat from static, with a prompt card 'a cat in a hat'."
+        },
+        {
+          "number": 6,
+          "heading": "Autoregressive Models",
+          "body": "p(x) = p(x1) p(x2|x1) p(x3|x1,x2) ...\nPredict the next token, sample it, repeat.\nExact likelihood; powers LLMs.\nOne step per token, so long outputs take many steps.",
+          "diagram": "A row of token tiles appearing left to right ('The', 'cat', 'sat', ...), each new tile chosen from a small probability bar chart above it."
+        },
+        {
+          "number": 7,
+          "heading": "Compare the Families",
+          "body": "VAE: fast sampling, stable, blurrier.\nGAN: fast and sharp, unstable training.\nDiffusion: top image quality, many steps.\nAutoregressive: exact likelihood, slow per token; rules text.",
+          "diagram": "A comparison table with rows VAE, GAN, Diffusion, Autoregressive and columns speed, quality, stability, likelihood, filled with check marks, half marks and crosses."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls & Check Yourself",
+          "body": "VAE blur: it averages over uncertain details.\nGAN: if D gets too strong, G stops learning.\nLow loss is not good samples: check FID (Frechet inception distance) and humans.\nCheck: all GAN outputs look alike. Name it.",
+          "diagram": "A blurry VAE face, a GAN generator slumped beside an overpowering detective, a scoreboard reading 'FID'. Sticky note with the check question."
+        }
+      ],
+      "footer": "Compress, compete, denoise or predict next: each generator learns p(x) its own way.",
+      "summary": "The main families of generative models and how each learns to produce new data: autoencoders and VAEs with the reparameterization trick, GANs and mode collapse, diffusion models that learn to remove noise, and autoregressive models, with a side-by-side comparison.",
+      "keywords": [
+        "generative model",
+        "autoencoder",
+        "vae",
+        "variational autoencoder",
+        "reparameterization trick",
+        "gan",
+        "generative adversarial network",
+        "mode collapse",
+        "diffusion model",
+        "denoising",
+        "autoregressive model",
+        "latent space"
+      ]
+    }
+  ]
+}

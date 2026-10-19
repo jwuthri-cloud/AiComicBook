@@ -1,0 +1,319 @@
+{
+ "questions": [
+  {
+   "id": "ml-classical-01-q1",
+   "pageId": "ml-classical-01",
+   "type": "choice",
+   "prompt": "A churn model is logistic regression. The weight on 'support tickets last month' is 0.4. A customer files 2 more tickets. How do their odds of churning change, other features fixed?",
+   "options": [
+    "Their churn probability rises by exactly 0.8 percentage points",
+    "Their odds multiply by e^0.8, about 2.2 times higher",
+    "Their churn probability doubles because 2 x 0.4 is 0.8",
+    "Their log-odds fall by 0.8 because tickets reduce churn"
+   ],
+   "answer": 1,
+   "explanation": "Each unit adds 0.4 to the log-odds, so 2 units add 0.8 and the odds multiply by e^0.8 = 2.23. The change in probability depends on where the customer starts on the sigmoid.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-01-q2",
+   "pageId": "ml-classical-01",
+   "type": "choice",
+   "prompt": "You fit linear regression on 50 million rows with 200 features, and new data arrives every hour. Which way of fitting the weights fits best?",
+   "options": [
+    "Invert X^T X directly with the normal equation every hour",
+    "Use stochastic gradient descent and keep updating as data arrives",
+    "Switch to logistic regression, which has no closed form anyway",
+    "Drop to 10 features so the normal equation stays exact"
+   ],
+   "answer": 1,
+   "explanation": "Gradient methods scale to huge and streaming data and can be updated incrementally. The closed form needs all data at once, and explicitly inverting X^T X is numerically fragile.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-01-q3",
+   "pageId": "ml-classical-01",
+   "type": "choice",
+   "prompt": "Your residual plot for a price model shows errors that grow wider as predicted price increases (a funnel). Which assumption is broken?",
+   "options": [
+    "Constant error variance (homoscedasticity)",
+    "Independence between training and test sets",
+    "That the target variable is binary",
+    "That features are standardized before fitting"
+   ],
+   "answer": 0,
+   "explanation": "A funnel means the error variance changes with the prediction, so the constant-variance assumption fails. A log transform of the target or robust standard errors are common fixes.",
+   "difficulty": 3
+  },
+  {
+   "id": "ml-classical-02-q1",
+   "pageId": "ml-classical-02",
+   "type": "choice",
+   "prompt": "A node holds 8 samples: 4 of class A and 4 of class B. A split sends all A left and all B right. What is the Gini gain?",
+   "options": [
+    "0.25",
+    "1.0",
+    "0.0",
+    "0.5"
+   ],
+   "answer": 3,
+   "explanation": "The parent has Gini 1 - (0.5^2 + 0.5^2) = 0.5 and both pure children have Gini 0, so the gain is 0.5 - 0 = 0.5.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-02-q2",
+   "pageId": "ml-classical-02",
+   "type": "choice",
+   "prompt": "A random forest ranks 'transaction_id' as the most important feature by impurity importance. What is the most likely explanation?",
+   "options": [
+    "Transaction IDs encode the fraud label, so the ranking is correct",
+    "Impurity importance favors high-cardinality features that allow many splits",
+    "Random forests always rank the first column in the data highest",
+    "The forest has too few trees for importance to be measured"
+   ],
+   "answer": 1,
+   "explanation": "Impurity importance is computed on training data and rewards features with many unique values, which can split almost anywhere. Permutation importance on held-out data would expose it as noise.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-02-q3",
+   "pageId": "ml-classical-02",
+   "type": "choice",
+   "prompt": "Your gradient boosted model's validation loss starts rising after tree 300 of 2,000 while training loss keeps falling. What should you do?",
+   "options": [
+    "Add more trees so the model can recover",
+    "Increase the learning rate to converge faster",
+    "Use early stopping near tree 300, or lower the learning rate",
+    "Switch to deeper trees so each one fits more"
+   ],
+   "answer": 2,
+   "explanation": "Boosting keeps reducing training error, so it overfits if run too long. Early stopping on validation loss, or a smaller learning rate with more patience, controls this.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-03-q1",
+   "pageId": "ml-classical-03",
+   "type": "choice",
+   "prompt": "An RBF-kernel SVM gets 100% training accuracy but 70% on validation. Which change most likely helps?",
+   "options": [
+    "Increase C to punish training errors harder",
+    "Decrease C and/or gamma for a smoother boundary",
+    "Remove feature scaling to keep raw units",
+    "Switch to a degree-10 polynomial kernel"
+   ],
+   "answer": 1,
+   "explanation": "Large C and large gamma let the boundary wrap around individual points, which overfits. Lowering them widens the margin and smooths the boundary.",
+   "difficulty": 3
+  },
+  {
+   "id": "ml-classical-03-q2",
+   "pageId": "ml-classical-03",
+   "type": "choice",
+   "prompt": "A k-NN model uses income in dollars and age in years, both unscaled. What happens?",
+   "options": [
+    "Age dominates because it has fewer unique values",
+    "Nothing, because k-NN is scale-invariant like trees",
+    "The model refuses to train until features are scaled",
+    "Income dominates the distance, so age is nearly ignored"
+   ],
+   "answer": 3,
+   "explanation": "Euclidean distance adds squared differences, so a feature measured in thousands swamps one measured in tens. Standardizing gives both features a fair say.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-03-q3",
+   "pageId": "ml-classical-03",
+   "type": "choice",
+   "prompt": "A Naive Bayes spam filter sees the word 'crypto', which never appeared in ham training emails. Without smoothing, what goes wrong?",
+   "options": [
+    "P(crypto | ham) = 0, so any email containing it gets zero ham probability",
+    "The word is ignored, so the prediction falls back to the prior",
+    "The independence assumption makes the model crash",
+    "The filter must be retrained with a kernel to handle new words"
+   ],
+   "answer": 0,
+   "explanation": "A single zero likelihood multiplies the whole product to zero, so one rare word can override all other evidence. Laplace (add-one) smoothing prevents this.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-04-q1",
+   "pageId": "ml-classical-04",
+   "type": "choice",
+   "prompt": "Your data forms two interlocking crescent shapes plus scattered outliers. Which algorithm is the best first try?",
+   "options": [
+    "k-means with k = 2",
+    "DBSCAN",
+    "PCA with 2 components",
+    "Logistic regression"
+   ],
+   "answer": 1,
+   "explanation": "DBSCAN follows density, so it can trace non-convex shapes and labels sparse points as noise. k-means splits space with straight boundaries and would cut each crescent.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-04-q2",
+   "pageId": "ml-classical-04",
+   "type": "choice",
+   "prompt": "You run k-means on 1D points 0, 1, 2, 8, 9, 10 with k = 2, starting centroids at 0 and 1. Where do the centroids end?",
+   "options": [
+    "0 and 9",
+    "0.5 and 7.25",
+    "1 and 9",
+    "1 and 5"
+   ],
+   "answer": 2,
+   "explanation": "First pass: {0} and {1, 2, 8, 9, 10} give means 0 and 6. Next pass: {0, 1, 2} and {8, 9, 10} give means 1 and 9, which is stable.",
+   "difficulty": 3
+  },
+  {
+   "id": "ml-classical-04-q3",
+   "pageId": "ml-classical-04",
+   "type": "choice",
+   "prompt": "On random uniform noise with no real groups, you run k-means with k = 5. What do you get?",
+   "options": [
+    "An error saying no clusters exist",
+    "One cluster, because k-means detects there is no structure",
+    "Five clusters anyway, so you must validate them",
+    "As many clusters as there are points"
+   ],
+   "answer": 2,
+   "explanation": "k-means always partitions data into exactly k groups. Silhouette scores, stability checks and domain sense are needed to tell real structure from artifacts.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-05-q1",
+   "pageId": "ml-classical-05",
+   "type": "choice",
+   "prompt": "PCA eigenvalues are 6, 3, 0.6, 0.4 (total 10). How many components keep at least 90% of the variance?",
+   "options": [
+    "1",
+    "3",
+    "4",
+    "2"
+   ],
+   "answer": 3,
+   "explanation": "Shares are 60%, 30%, 6% and 4%. The first two together keep 90%, so two components suffice.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-05-q2",
+   "pageId": "ml-classical-05",
+   "type": "choice",
+   "prompt": "In a t-SNE plot, cluster A looks three times larger than cluster B and sits far from it. What can you safely conclude?",
+   "options": [
+    "A has three times more spread than B in the original space",
+    "A and B are very different, because they are far apart",
+    "Little about size or distance; t-SNE mainly preserves local neighborhoods",
+    "A contains three times more points than B"
+   ],
+   "answer": 2,
+   "explanation": "t-SNE equalizes density and distorts global distances, so cluster sizes and gaps are not reliable. Only local neighborhood structure is meaningful.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-05-q3",
+   "pageId": "ml-classical-05",
+   "type": "choice",
+   "prompt": "You run PCA on features: height in mm, weight in kg, age in years, without scaling. What happens?",
+   "options": [
+    "PC1 aligns mostly with height, the feature with the largest numeric variance",
+    "PCA scales features internally, so the result is unaffected",
+    "PC1 is always the average of all features",
+    "PCA fails because the units differ"
+   ],
+   "answer": 0,
+   "explanation": "PCA maximizes variance, and a feature in millimetres has a huge numeric variance. Standardize first so each feature contributes on equal footing.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-06-q1",
+   "pageId": "ml-classical-06",
+   "type": "choice",
+   "prompt": "Training error is 2% and validation error is 25%. Adding more data narrows the gap. What is the diagnosis and next step?",
+   "options": [
+    "High bias: add model capacity",
+    "High variance: get more data or add regularization",
+    "Irreducible noise: nothing can be done",
+    "Data leakage: delete the validation set"
+   ],
+   "answer": 1,
+   "explanation": "A big train-validation gap that shrinks with more data is the signature of high variance. More data, regularization or a simpler model are the standard fixes.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-06-q2",
+   "pageId": "ml-classical-06",
+   "type": "choice",
+   "prompt": "You have 300 features, suspect most are irrelevant, and want a model that names the useful ones. Which penalty fits?",
+   "options": [
+    "L2 (ridge), because it shrinks all weights evenly",
+    "No penalty, because least squares is unbiased",
+    "L1 (lasso), because it sets many weights to exactly zero",
+    "Early stopping, because it removes features automatically"
+   ],
+   "answer": 2,
+   "explanation": "The L1 penalty's corners push weights exactly to zero, giving built-in feature selection. Ridge shrinks weights but almost never zeros them.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-06-q3",
+   "pageId": "ml-classical-06",
+   "type": "choice",
+   "prompt": "You tune ridge alpha over 30 values and pick the one with the best test-set score, which you then report. What is wrong?",
+   "options": [
+    "Ridge needs alpha above 1",
+    "Nothing; the test set is the most honest choice",
+    "You should have tuned on training error instead",
+    "The reported score is optimistically biased; tune on validation or CV"
+   ],
+   "answer": 3,
+   "explanation": "Choosing alpha by test score turns the test set into a validation set, so the reported score overstates real performance. Keep the test set untouched until the end.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-08-q1",
+   "pageId": "ml-classical-08",
+   "type": "choice",
+   "prompt": "You target-encode 'zip_code' using the mean churn over the whole training set, then train a model. CV accuracy is 99%, production 70%. Why?",
+   "options": [
+    "Each row's own label leaked into its feature, especially for rare zip codes",
+    "Target encoding only works for ordinal categories",
+    "Zip codes should have been standardized first",
+    "Production data always has more noise"
+   ],
+   "answer": 0,
+   "explanation": "Encoding computed over all rows includes each row's own label, which for rare categories nearly equals the answer. Use out-of-fold encoding with smoothing.",
+   "difficulty": 2
+  },
+  {
+   "id": "ml-classical-08-q2",
+   "pageId": "ml-classical-08",
+   "type": "choice",
+   "prompt": "You standardize the full dataset, then split into train and test. What problem does this create?",
+   "options": [
+    "Standardization removes outliers from the test set",
+    "Test-set statistics leak into training through the mean and std",
+    "The model can no longer use categorical features",
+    "Trees can no longer split on scaled features"
+   ],
+   "answer": 1,
+   "explanation": "The scaler's mean and standard deviation saw test rows, so information leaks into training. Fit transforms on training data only, ideally inside a Pipeline.",
+   "difficulty": 1
+  },
+  {
+   "id": "ml-classical-08-q3",
+   "pageId": "ml-classical-08",
+   "type": "choice",
+   "prompt": "Your deployed model crashes when a new product category appears that was not in training. Which fix fits a scikit-learn pipeline?",
+   "options": [
+    "Drop the categorical column entirely",
+    "Retrain the model every time a request arrives",
+    "Use OneHotEncoder(handle_unknown='ignore') inside the Pipeline",
+    "Label-encode categories as consecutive integers"
+   ],
+   "answer": 2,
+   "explanation": "With handle_unknown='ignore', an unseen category becomes an all-zero one-hot row instead of an error. Monitoring for new categories is still wise.",
+   "difficulty": 2
+  }
+ ]
+}

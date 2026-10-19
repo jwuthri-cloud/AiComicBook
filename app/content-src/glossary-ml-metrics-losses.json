@@ -1,0 +1,190 @@
+{
+  "terms": [
+    {
+      "term": "Mean squared error",
+      "aka": [
+        "MSE",
+        "L2 loss",
+        "Squared error",
+        "RMSE"
+      ],
+      "category": "Machine Learning",
+      "short": "The average of squared differences between predictions and true values.",
+      "definition": "Square each miss, then average. Squaring makes one big miss count far more than several small ones, so the best constant prediction is the mean. RMSE, its square root, puts the number back in the target's units.",
+      "related": [
+        "Mean absolute error",
+        "Huber loss",
+        "Loss function",
+        "R-squared"
+      ]
+    },
+    {
+      "term": "Mean absolute error",
+      "aka": [
+        "MAE",
+        "L1 loss",
+        "Absolute error"
+      ],
+      "category": "Machine Learning",
+      "short": "The average size of the misses, ignoring their sign.",
+      "definition": "Take the absolute value of each error and average them, giving the typical miss in the target's units. Every unit of error counts the same, so outliers pull less than with squared error. The best constant prediction under MAE is the median.",
+      "related": [
+        "Mean squared error",
+        "Huber loss",
+        "Loss function"
+      ]
+    },
+    {
+      "term": "R-squared",
+      "aka": [
+        "R^2",
+        "R2",
+        "Coefficient of determination",
+        "Adjusted R-squared"
+      ],
+      "category": "Machine Learning",
+      "short": "The share of the target's variance a regression model explains, compared with predicting the mean.",
+      "definition": "R-squared is 1 minus the model's squared error divided by the squared error of always predicting the average. 1 is perfect, 0 is no better than the average, and on test data it can go negative. Adjusted R-squared penalizes adding features that do not help.",
+      "related": [
+        "Mean squared error",
+        "Baseline",
+        "Overfitting"
+      ]
+    },
+    {
+      "term": "Normalized discounted cumulative gain",
+      "aka": [
+        "NDCG",
+        "DCG",
+        "NDCG@k"
+      ],
+      "category": "Machine Learning",
+      "short": "A ranking metric that rewards placing the most relevant items at the top of a list.",
+      "definition": "Each result earns points for its relevance, discounted the lower it appears, and the total is divided by the score of the ideal ordering so it lands between 0 and 1. It handles graded labels like 'perfect' versus 'partly relevant'. It is like grading a shelf where the best books belong at eye level.",
+      "related": [
+        "Mean reciprocal rank",
+        "Precision",
+        "Recall",
+        "Retrieval-augmented generation"
+      ]
+    },
+    {
+      "term": "Mean reciprocal rank",
+      "aka": [
+        "MRR",
+        "Reciprocal rank"
+      ],
+      "category": "Machine Learning",
+      "short": "The average of 1 divided by the rank of the first relevant result, across queries.",
+      "definition": "If the first good answer is at rank 1 the query scores 1, at rank 2 it scores 0.5, at rank 10 it scores 0.1. Averaging over queries shows how quickly users find something useful. It ignores everything after the first hit.",
+      "related": [
+        "Normalized discounted cumulative gain",
+        "Retrieval-augmented generation",
+        "Vector database"
+      ]
+    },
+    {
+      "term": "Expected calibration error",
+      "aka": [
+        "ECE"
+      ],
+      "category": "Machine Learning",
+      "short": "The weighted average gap between a model's stated confidence and its actual accuracy.",
+      "definition": "Group predictions into confidence bins, compare average confidence with the fraction correct in each bin, and average the gaps weighted by bin size. 0 means confidence matches reality. Its value depends on how you bin, so always report the bins.",
+      "related": [
+        "Calibration",
+        "Brier score",
+        "Temperature"
+      ]
+    },
+    {
+      "term": "Brier score",
+      "aka": [],
+      "category": "Machine Learning",
+      "short": "The mean squared difference between predicted probabilities and actual 0/1 outcomes.",
+      "definition": "Predict a probability, then score (p - outcome)^2 and average; lower is better and 0 is perfect. Always saying 50% scores 0.25. Because it is a proper scoring rule, the best strategy is to report your honest probability.",
+      "related": [
+        "Calibration",
+        "Expected calibration error",
+        "Cross-entropy loss"
+      ]
+    },
+    {
+      "term": "Statistical power",
+      "aka": [
+        "Power analysis",
+        "Test power",
+        "Minimum detectable effect",
+        "MDE"
+      ],
+      "category": "Machine Learning",
+      "short": "The probability that an experiment detects an effect that really exists.",
+      "definition": "Power grows with sample size and effect size and shrinks with noise. Experiments usually aim for 80% power at a chosen minimum detectable effect, which sets how many samples you need. A low-power test misses real effects and exaggerates the ones it does find.",
+      "related": [
+        "A/B test",
+        "Statistical significance",
+        "Confidence interval",
+        "False negative"
+      ]
+    },
+    {
+      "term": "Huber loss",
+      "aka": [
+        "Smooth L1 loss",
+        "Huber"
+      ],
+      "category": "Machine Learning",
+      "short": "A regression loss that is squared for small errors and linear for large ones.",
+      "definition": "Inside a threshold delta it behaves like squared error, giving smooth gradients; beyond delta it grows only linearly, so outliers cannot dominate training. It is a compromise between MSE and MAE. Delta is measured in the target's units.",
+      "related": [
+        "Mean squared error",
+        "Mean absolute error",
+        "Loss function"
+      ]
+    },
+    {
+      "term": "Focal loss",
+      "aka": [],
+      "category": "Machine Learning",
+      "short": "A cross-entropy variant that down-weights easy, already well-classified examples.",
+      "definition": "It multiplies cross-entropy by (1 - p_true)^gamma, so confident correct predictions contribute almost nothing and hard examples drive learning. It was built for object detection, where easy background boxes vastly outnumber objects. Its outputs are not calibrated probabilities.",
+      "related": [
+        "Cross-entropy loss",
+        "Class imbalance",
+        "Loss function"
+      ]
+    },
+    {
+      "term": "InfoNCE",
+      "aka": [
+        "NT-Xent",
+        "InfoNCE loss",
+        "CLIP loss"
+      ],
+      "category": "Machine Learning",
+      "short": "A contrastive loss that trains a model to pick the true match out of many negatives.",
+      "definition": "Similarity scores between an anchor and one positive plus many negatives are divided by a temperature and passed through a softmax, then scored with cross-entropy. Other items in the batch serve as free negatives. It is a multiple-choice quiz where the right answer is the matching pair.",
+      "related": [
+        "Embedding",
+        "Softmax",
+        "Temperature",
+        "Cross-entropy loss"
+      ]
+    },
+    {
+      "term": "Evidence lower bound",
+      "aka": [
+        "ELBO",
+        "Variational lower bound"
+      ],
+      "category": "Machine Learning",
+      "short": "A tractable lower bound on a model's log-likelihood, maximized to train variational autoencoders.",
+      "definition": "It equals a reconstruction term minus the KL divergence between the encoder's latent distribution and a simple prior. Raising it improves the data likelihood while keeping latent codes well organized. Diffusion model losses can also be derived from it.",
+      "related": [
+        "Kullback-Leibler divergence",
+        "Autoencoder",
+        "Loss function"
+      ]
+    }
+  ]
+}

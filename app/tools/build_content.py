@@ -234,21 +234,26 @@ def safety_books() -> list[dict]:
     return list(books.values())
 
 
-def transcript_books(collection: str, groups: list[tuple[str, str, str, range | None]]) -> list[dict]:
-    """groups: (book id, title, subtitle, page-number range or None for all)."""
-    path = SRC / f"transcripts-{collection}.json"
-    transcripts = {p["image"]: p for p in json.loads(path.read_text())["pages"]} if path.exists() else {}
-    if not transcripts:
-        print(f"  note: {path.name} missing; {collection} pages will have no text yet")
-    images = sorted((REPO / collection).glob("*.png"))
+def transcript_books(collection: str, groups: list[tuple[str, str, str, list[int]]]) -> list[dict]:
+    """groups: (book id, title, subtitle, file numbers in reading order). Text comes from transcripts-<collection>*.json."""
+    transcripts = {}
+    for path in sorted(SRC.glob(f"transcripts-{collection}*.json")):
+        transcripts |= {p["image"]: p for p in json.loads(path.read_text())["pages"]}
+    images = {int(png.stem[:2]): png for png in (REPO / collection).glob("*.png")}
+    listed = [n for *_, numbers in groups for n in numbers]
+    if stray := sorted(set(images) - set(listed)):
+        print(f"  note: {collection} pages {stray} are in no book", file=sys.stderr)
     books = []
     for book_id, title, subtitle, numbers in groups:
         pages = []
-        for png in images:
-            num = int(png.stem[:2])
-            if numbers is not None and num not in numbers:
+        for num in numbers:
+            png = images.get(num)
+            if png is None:
+                print(f"  note: {collection}/{num:02d}-*.png missing; skipped in {book_id}", file=sys.stderr)
                 continue
             t = transcripts.get(f"{collection}/{png.name}", {})
+            if not t:
+                print(f"  note: no transcript for {collection}/{png.name}", file=sys.stderr)
             fallback = re.sub(r"-(cheat-sheet|cover)$", "", png.stem[3:]).replace("-", " ").title()
             # "Tokenization Cheat Sheet" -> "Tokenization": the app is the cheat sheet.
             page_title = re.sub(r"\s*cheat\s*sheet\s*$", "", title_case(t.get("title", "")), flags=re.IGNORECASE).strip()
@@ -288,25 +293,49 @@ def collections() -> list[dict]:
             "books": safety_books(),
         },
         {
-            "id": "ml", "title": "Machine Learning", "subtitle": "From basics to LLM internals",
-            "description": "Cheat sheets for thinking like a researcher, then everything inside modern language models.",
+            "id": "ml", "title": "Machine Learning", "subtitle": "Classical ML to LLM internals",
+            "description": "Research habits, classical models, deep learning, metrics and loss functions, then everything inside modern language models.",
             "symbol": "brain", "tint": "amber",
             "books": transcript_books("ML", [
-                ("ml-foundations", "ML Foundations", "Think like a researcher", range(1, 9)),
-                ("ml-llm-field-guide", "LLM Field Guide", "Inside large language models", range(9, 100)),
+                ("ml-research", "Research Mindset", "Think like a researcher", [1, 7, 8]),
+                ("ml-classical", "Classical ML", "Models before deep learning", [22, 23, 24, 25, 26, 27, 4, 28]),
+                ("ml-deep", "Deep Learning", "Neural networks from the ground up", [2, 3, 29, 30, 31, 32, 33, 34]),
+                ("ml-metrics", "Metrics & Evaluation", "Measure what matters", [5, 6, 35, 36, 37, 38]),
+                ("ml-losses", "Loss Functions", "What the model actually optimizes", [39, 40, 41, 42]),
+                ("ml-llm-internals", "LLM Internals", "How large language models work", [9, 18, 10, 14, 17, 12, 15]),
+                ("ml-llm-production", "LLMs in Production", "Building, serving and evaluating", [20, 11, 19, 13, 16, 21]),
             ]),
         },
         {
-            "id": "leetcode", "title": "Algorithm Patterns", "subtitle": "20 patterns, 20 problems",
-            "description": "The classic coding-interview patterns, each taught through one representative problem.",
+            "id": "leetcode", "title": "Algorithm Patterns", "subtitle": "20 patterns by topic",
+            "description": "The classic coding-interview patterns grouped by data structure, each taught through one representative problem.",
             "symbol": "algorithm", "tint": "lime",
-            "books": transcript_books("LeetCode", [("leetcode-patterns", "Algorithm Patterns", "One problem per pattern", None)]),
+            "books": transcript_books("LeetCode", [
+                ("leetcode-arrays", "Arrays & Hashing", "Hash maps, pointers, windows, prefix sums", [1, 2, 3, 19]),
+                ("leetcode-stacks", "Stacks", "Last in, first out", [4, 18]),
+                ("leetcode-binary-search", "Binary Search", "Halve the search space", [5]),
+                ("leetcode-linked-lists", "Linked Lists", "Pointer surgery", [6]),
+                ("leetcode-trees", "Trees & Tries", "DFS, BFS and prefix trees", [7, 8, 9]),
+                ("leetcode-heaps", "Heaps", "Top-k and priority queues", [10]),
+                ("leetcode-graphs", "Graphs", "Islands, cycles and orderings", [12, 13]),
+                ("leetcode-backtracking", "Backtracking", "Explore every choice", [11]),
+                ("leetcode-dp", "Dynamic Programming", "Reuse subproblems", [14, 15]),
+                ("leetcode-greedy", "Greedy & Intervals", "Locally best, globally right", [16, 17]),
+                ("leetcode-bits", "Bit Manipulation", "Tricks with XOR and masks", [20]),
+            ]),
         },
         {
-            "id": "swe", "title": "Software Engineering", "subtitle": "Everyday Git",
-            "description": "The Git commands and workflows you use every day.",
+            "id": "swe", "title": "Software Engineering", "subtitle": "From Git to system design",
+            "description": "Version control, containers and Kubernetes, design patterns, system design, DevOps and the foundations every engineer leans on.",
             "symbol": "branch", "tint": "coral",
-            "books": transcript_books("SWE", [("swe-git", "Git Essentials", "Commands and workflows", None)]),
+            "books": transcript_books("SWE", [
+                ("swe-git", "Git Essentials", "Commands and workflows", [1, 2, 3]),
+                ("swe-containers", "Docker & Kubernetes", "Package, ship and orchestrate", [4, 5, 6, 7]),
+                ("swe-design", "Design Patterns", "Principles and classic patterns", [8, 9, 10, 11, 12]),
+                ("swe-system-design", "System Design", "Scale, store and connect", [13, 14, 15, 16, 17, 18, 19, 20]),
+                ("swe-devops", "DevOps & Delivery", "Test, ship and observe", [21, 22, 23, 24, 25]),
+                ("swe-foundations", "Engineering Foundations", "Networks, Linux, security, concurrency", [26, 27, 28, 29, 30]),
+            ]),
         },
     ]
 
@@ -634,8 +663,7 @@ def main() -> None:
         for clip in page["narration"]:
             clip["duration"] = probe_duration(OUT / clip["audio"])
 
-    glossary_file = SRC / "glossary.json"
-    glossary = json.loads(glossary_file.read_text())["terms"] if glossary_file.exists() else []
+    glossary = [t for path in sorted(SRC.glob("glossary*.json")) for t in json.loads(path.read_text())["terms"]]
     glossary = link_glossary(glossary, [p for p, _ in all_pages])
 
     synonyms_file = SRC / "synonyms.json"

@@ -1,0 +1,199 @@
+{
+ "terms": [
+  {
+   "term": "Trunk-based development",
+   "aka": [
+    "TBD",
+    "Trunk-based"
+   ],
+   "category": "Software Engineering",
+   "short": "A branching workflow where everyone merges small changes into main at least daily.",
+   "definition": "Instead of long-lived feature branches, developers integrate tiny changes into the shared trunk (main) every day, hiding unfinished work behind feature flags. Like merging into traffic one car at a time instead of waiting for a whole convoy. It keeps conflicts small and main always releasable.",
+   "related": [
+    "Branch",
+    "Pull request",
+    "Merge"
+   ]
+  },
+  {
+   "term": "Reflog",
+   "aka": [
+    "git reflog",
+    "Reference log"
+   ],
+   "category": "Software Engineering",
+   "short": "Git's local journal of every position HEAD and your branches have pointed to.",
+   "definition": "Every commit, checkout, reset or rebase writes an entry, so you can find commits that no branch points to anymore. It is your personal undo history and is never pushed. It cannot recover changes that were never committed.",
+   "related": [
+    "Reset",
+    "Rebase",
+    "Commit"
+   ]
+  },
+  {
+   "term": "Container",
+   "aka": [
+    "Linux container",
+    "Docker container"
+   ],
+   "category": "Software Engineering",
+   "short": "An isolated process that runs an app with its own filesystem while sharing the host's kernel.",
+   "definition": "A container packages an app with its libraries so it behaves the same on any machine. Unlike a virtual machine, it does not boot a whole operating system, so it starts in about a second and uses far less memory. Think of an apartment in a shared building rather than a separate house.",
+   "related": [
+    "Container image",
+    "Dockerfile",
+    "Pod"
+   ]
+  },
+  {
+   "term": "Container image",
+   "aka": [
+    "Docker image",
+    "OCI image"
+   ],
+   "category": "Software Engineering",
+   "short": "A read-only, layered template from which containers are started.",
+   "definition": "An image bundles an app, its dependencies and its start command into stacked filesystem layers plus a config. Running it creates a container, much like instantiating an object from a class. Images are named with tags and stored in registries.",
+   "related": [
+    "Container",
+    "Dockerfile",
+    "Multi-stage build"
+   ]
+  },
+  {
+   "term": "Dockerfile",
+   "aka": [
+    "Containerfile"
+   ],
+   "category": "Software Engineering",
+   "short": "A text recipe of instructions (FROM, COPY, RUN, CMD) for building a container image.",
+   "definition": "Each instruction runs in order to produce the image, and filesystem-changing steps become cached layers. Ordering matters: put rarely changing steps such as dependency installs before frequently changing source code. It makes image builds reproducible and reviewable.",
+   "related": [
+    "Container image",
+    "Multi-stage build",
+    "Docker Compose"
+   ]
+  },
+  {
+   "term": "Multi-stage build",
+   "aka": [
+    "Multi-stage Dockerfile"
+   ],
+   "category": "Software Engineering",
+   "short": "A Dockerfile with several FROM stages where only the final, slim stage ships.",
+   "definition": "Early stages hold compilers and build tools; the final stage copies just the finished artifacts with COPY --from. Like a workshop that ships only the finished chair, not the saws. Images become much smaller and contain fewer vulnerable packages.",
+   "related": [
+    "Dockerfile",
+    "Container image"
+   ]
+  },
+  {
+   "term": "Docker Compose",
+   "aka": [
+    "Compose",
+    "compose.yaml",
+    "docker-compose"
+   ],
+   "category": "Software Engineering",
+   "short": "A tool that defines and runs a multi-container app from one YAML file.",
+   "definition": "compose.yaml lists services, networks, volumes and secrets, and docker compose up starts the whole stack with one command. Services find each other by name on a shared network. It is ideal for local development and single hosts, not for clusters.",
+   "related": [
+    "Container",
+    "Dockerfile",
+    "Kubernetes"
+   ]
+  },
+  {
+   "term": "Kubernetes",
+   "aka": [
+    "K8s",
+    "Container orchestration"
+   ],
+   "category": "Software Engineering",
+   "short": "An open-source system that schedules, scales and heals containers across a cluster of machines.",
+   "definition": "You declare the desired state in YAML, such as three replicas of an image, and Kubernetes controllers keep reality matching it: placing containers on nodes, replacing failures and rolling out updates. Think of a tireless operations team that follows your written instructions around the clock.",
+   "related": [
+    "Pod",
+    "Kubernetes Deployment",
+    "Kubernetes Service"
+   ]
+  },
+  {
+   "term": "Pod",
+   "aka": [
+    "Kubernetes Pod"
+   ],
+   "category": "Software Engineering",
+   "short": "The smallest deployable unit in Kubernetes: one or more containers sharing an IP address and volumes.",
+   "definition": "Containers in a Pod are always scheduled together on one node and talk over localhost. Pods are disposable: when one dies, a controller creates a new Pod with a new name and IP rather than repairing the old one. You usually create them through a Deployment.",
+   "related": [
+    "Container",
+    "Kubernetes Deployment",
+    "Kubernetes Service"
+   ]
+  },
+  {
+   "term": "Kubernetes Deployment",
+   "aka": [
+    "Deployment",
+    "ReplicaSet"
+   ],
+   "category": "Software Engineering",
+   "short": "A Kubernetes object that keeps N replicas of a Pod running and rolls out new versions gradually.",
+   "definition": "A Deployment manages ReplicaSets, which in turn keep the requested number of identical Pods alive. Changing the image creates a new ReplicaSet and shifts Pods over step by step, and the old one is kept so you can roll back. It is the standard way to run stateless apps.",
+   "related": [
+    "Pod",
+    "Kubernetes",
+    "Horizontal Pod Autoscaler"
+   ]
+  },
+  {
+   "term": "Kubernetes Service",
+   "aka": [
+    "ClusterIP",
+    "NodePort",
+    "LoadBalancer Service"
+   ],
+   "category": "Software Engineering",
+   "short": "A stable name and virtual IP that load-balances traffic to a changing set of Pods.",
+   "definition": "Pods come and go with new IPs, so a Service selects them by label and forwards traffic to the ready ones. ClusterIP is internal, NodePort opens a port on every node, and LoadBalancer requests a cloud load balancer. Like a company phone number that rings whoever is on shift.",
+   "related": [
+    "Pod",
+    "Health probe",
+    "Kubernetes"
+   ]
+  },
+  {
+   "term": "Health probe",
+   "aka": [
+    "Liveness probe",
+    "Readiness probe",
+    "Startup probe",
+    "Healthcheck"
+   ],
+   "category": "Software Engineering",
+   "short": "A periodic check that tells the platform whether a container is alive and ready for traffic.",
+   "definition": "In Kubernetes, a failing readiness probe removes the Pod from Service traffic, while a failing liveness probe restarts the container; a startup probe gives slow apps time to boot. Docker Compose uses a healthcheck to gate depends_on. Good probes make rollouts and recovery automatic.",
+   "related": [
+    "Kubernetes Service",
+    "Pod",
+    "Docker Compose"
+   ]
+  },
+  {
+   "term": "Horizontal Pod Autoscaler",
+   "aka": [
+    "HPA",
+    "Autoscaling"
+   ],
+   "category": "Software Engineering",
+   "short": "A Kubernetes controller that adds or removes Pod replicas based on metrics such as CPU.",
+   "definition": "It compares a metric with a target and sets replicas = ceil(current x metric / target), within min and max bounds. For example, 3 Pods at 140% of a 70% CPU target become 6. It relies on resource requests and a metrics source such as metrics-server.",
+   "related": [
+    "Kubernetes Deployment",
+    "Pod",
+    "Kubernetes"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,219 @@
+{
+ "terms": [
+  {
+   "term": "Linear regression",
+   "aka": [
+    "Ordinary least squares",
+    "OLS",
+    "Least squares"
+   ],
+   "category": "Machine Learning",
+   "short": "A model that predicts a number as a weighted sum of the input features plus an intercept.",
+   "definition": "It draws the straight line (or flat plane) that passes as close as possible to the data points, usually by minimizing the average squared vertical distance. Each weight says how much the prediction changes when one feature rises by one unit, with the others held fixed.",
+   "related": [
+    "Lasso regression",
+    "Gradient descent",
+    "Loss function",
+    "Logistic regression",
+    "Overfitting"
+   ]
+  },
+  {
+   "term": "Logistic regression",
+   "aka": [
+    "Logit model",
+    "Binary logistic regression"
+   ],
+   "category": "Machine Learning",
+   "short": "A linear classifier that turns a weighted sum of features into a probability with the sigmoid function.",
+   "definition": "It computes a score z = w.x + b, treats it as the log-odds of the positive class, and squashes it into 0-1 with 1 / (1 + e^-z). Each weight tells you how much the log-odds change per unit of a feature, so e^w multiplies the odds.",
+   "related": [
+    "Linear regression",
+    "Cross-entropy loss",
+    "Softmax",
+    "Logits",
+    "Threshold",
+    "Calibration"
+   ]
+  },
+  {
+   "term": "Decision tree",
+   "aka": [
+    "CART",
+    "Classification tree",
+    "Regression tree"
+   ],
+   "category": "Machine Learning",
+   "short": "A model that predicts by asking a sequence of yes/no questions about the features, ending at a leaf with an answer.",
+   "definition": "Like a game of twenty questions, each split divides the data on one feature and threshold so the groups become as pure as possible. Trees are easy to read and need no feature scaling, but a single deep tree overfits easily.",
+   "related": [
+    "Random forest",
+    "Gradient boosting",
+    "Entropy",
+    "Overfitting",
+    "Hyperparameter"
+   ]
+  },
+  {
+   "term": "Random forest",
+   "aka": [
+    "Bagging",
+    "Bootstrap aggregating"
+   ],
+   "category": "Machine Learning",
+   "short": "An ensemble of decision trees, each trained on a bootstrap sample with random feature subsets, whose predictions are averaged or voted.",
+   "definition": "Many slightly different trees make different mistakes, so averaging them cancels much of the noise. Bagging resamples the rows; the random forest also limits which features each split may consider, making trees more independent.",
+   "related": [
+    "Decision tree",
+    "Ensemble",
+    "Gradient boosting",
+    "Out-of-fold prediction",
+    "Bias-variance tradeoff"
+   ]
+  },
+  {
+   "term": "Gradient boosting",
+   "aka": [
+    "Gradient boosted trees",
+    "GBDT",
+    "GBM",
+    "XGBoost",
+    "LightGBM",
+    "Boosting"
+   ],
+   "category": "Machine Learning",
+   "short": "An ensemble that adds small decision trees one at a time, each trained to correct the errors of the trees before it.",
+   "definition": "Think of a team of editors each fixing what the previous one missed. Each new tree fits the remaining errors (the gradient of the loss), and a small learning rate keeps every correction modest. It is the go-to method for tabular data.",
+   "related": [
+    "Decision tree",
+    "Random forest",
+    "Ensemble",
+    "Learning rate",
+    "Gradient descent",
+    "Overfitting"
+   ]
+  },
+  {
+   "term": "Support vector machine",
+   "aka": [
+    "SVM",
+    "Support vector classifier",
+    "SVC"
+   ],
+   "category": "Machine Learning",
+   "short": "A classifier that finds the boundary with the widest possible margin between classes, defined only by the closest points.",
+   "definition": "Imagine laying the widest possible road between two groups of houses; the houses touching the road's edges are the support vectors. With the kernel trick, the same idea draws curved boundaries by implicitly mapping data to a higher-dimensional space.",
+   "related": [
+    "k-nearest neighbors",
+    "Logistic regression",
+    "Feature scaling",
+    "Hyperparameter",
+    "Regularization"
+   ]
+  },
+  {
+   "term": "k-nearest neighbors",
+   "aka": [
+    "k-NN",
+    "KNN",
+    "Nearest neighbors"
+   ],
+   "category": "Machine Learning",
+   "short": "A method that predicts by looking up the k most similar training examples and taking their majority vote or average.",
+   "definition": "It is like guessing a house price from the prices of the closest similar houses. There is no real training step; all the work happens when a prediction is requested, and results depend heavily on how distance is measured and features are scaled.",
+   "related": [
+    "Feature scaling",
+    "Embedding",
+    "Vector database",
+    "Support vector machine",
+    "Bias-variance tradeoff"
+   ]
+  },
+  {
+   "term": "Naive Bayes",
+   "aka": [
+    "Naive Bayes classifier",
+    "Multinomial Naive Bayes",
+    "Gaussian Naive Bayes"
+   ],
+   "category": "Machine Learning",
+   "short": "A probabilistic classifier that applies Bayes' rule while assuming features are independent given the class.",
+   "definition": "It multiplies the prior chance of each class by how likely each observed feature is under that class, then picks the highest score. The independence assumption is usually wrong, yet the method works surprisingly well for text such as spam filtering.",
+   "related": [
+    "Probability distribution",
+    "Logistic regression",
+    "Calibration",
+    "Class imbalance"
+   ]
+  },
+  {
+   "term": "K-means clustering",
+   "aka": [
+    "k-means",
+    "Lloyd's algorithm",
+    "k-means++"
+   ],
+   "category": "Machine Learning",
+   "short": "An unsupervised algorithm that splits data into k groups by repeatedly assigning points to the nearest centroid and moving centroids to their group's mean.",
+   "definition": "Picture k magnets dropped on a map of points: each point sticks to its nearest magnet, then each magnet moves to the middle of its points, and the process repeats until nothing changes. It works best for round, similar-size clusters.",
+   "related": [
+    "Principal component analysis",
+    "Feature scaling",
+    "Hyperparameter",
+    "Embedding"
+   ]
+  },
+  {
+   "term": "Principal component analysis",
+   "aka": [
+    "PCA",
+    "Principal components"
+   ],
+   "category": "Machine Learning",
+   "short": "A linear method that rotates data onto new axes ordered by how much variance they capture, so you can keep only the top few.",
+   "definition": "It finds the direction along which the data spreads the most, then the next most spread-out direction at a right angle, and so on. Keeping the first few components compresses many correlated features into a handful while losing little information.",
+   "related": [
+    "Feature scaling",
+    "K-means clustering",
+    "Embedding",
+    "Autoencoder"
+   ]
+  },
+  {
+   "term": "Lasso regression",
+   "aka": [
+    "Lasso",
+    "L1 regularization",
+    "L1 penalty"
+   ],
+   "category": "Machine Learning",
+   "short": "Linear regression with a penalty on the sum of absolute weights, which pushes many weights to exactly zero.",
+   "definition": "It is like a budget for coefficients where every unit costs the same, so the model drops features that are not worth their price. Compared with ridge (L2), which shrinks all weights a little, lasso performs automatic feature selection; elastic net blends the two.",
+   "related": [
+    "Regularization",
+    "Linear regression",
+    "Overfitting",
+    "Bias-variance tradeoff",
+    "Hyperparameter"
+   ]
+  },
+  {
+   "term": "Feature scaling",
+   "aka": [
+    "Standardization",
+    "Min-max scaling",
+    "Z-score scaling"
+   ],
+   "category": "Machine Learning",
+   "short": "Rescaling numeric features to comparable ranges so no feature dominates just because of its units.",
+   "definition": "Standardization subtracts the mean and divides by the standard deviation; min-max scaling squeezes values into 0-1. Distance-based models, PCA, regularized linear models and neural networks need it, while decision trees do not.",
+   "related": [
+    "k-nearest neighbors",
+    "Support vector machine",
+    "Principal component analysis",
+    "Data leakage",
+    "Gradient descent"
+   ]
+  }
+ ]
+}

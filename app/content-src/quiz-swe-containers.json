@@ -1,0 +1,229 @@
+{
+ "questions": [
+  {
+   "id": "swe-git-03-q1",
+   "pageId": "swe-git-03",
+   "type": "choice",
+   "prompt": "A commit that broke checkout is already on main, and five teammates have pulled it. What is the safest way to undo it?",
+   "options": [
+    "git reset --hard HEAD~1, then git push --force to main",
+    "git revert <sha>, then push the new undo commit normally",
+    "git rebase -i to drop the commit, then force-push main",
+    "git stash the change, then git push to overwrite main"
+   ],
+   "answer": 1,
+   "explanation": "Revert adds a new commit that cancels the old one, so shared history only grows and nobody's clone breaks. Reset and rebase rewrite published history and need a force-push.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-git-03-q2",
+   "pageId": "swe-git-03",
+   "type": "choice",
+   "prompt": "You rebased your personal feature branch onto the latest main. Now git push is rejected. What should you run?",
+   "options": [
+    "git push --force-with-lease, which fails if the remote moved",
+    "git pull, then push again, to merge the old copies back in",
+    "git push --force, which is the same as --force-with-lease",
+    "git merge origin/feature, then push the merge commit"
+   ],
+   "answer": 0,
+   "explanation": "Rebasing gave your commits new hashes, so a force-push is required. --force-with-lease refuses if someone else pushed since your last fetch, unlike plain --force; pulling would re-merge the old commits.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-git-03-q3",
+   "pageId": "swe-git-03",
+   "type": "choice",
+   "prompt": "After a botched git reset --hard, the commit 'add search' seems gone from your branch. What recovers it?",
+   "options": [
+    "git stash pop restores the commits removed by the reset",
+    "Nothing can, because --hard deletes commits permanently",
+    "git revert HEAD brings back the commits the reset removed",
+    "git reflog to find its entry, then git branch rescue <entry>"
+   ],
+   "answer": 3,
+   "explanation": "Reset only moved the branch pointer; the commit still exists and reflog records where HEAD was. Creating a branch at that entry brings it back. Only uncommitted changes are truly lost.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-01-q1",
+   "pageId": "swe-containers-01",
+   "type": "choice",
+   "prompt": "Your Dockerfile runs COPY . . before RUN pip install -r requirements.txt. Every one-line code change triggers a 3-minute rebuild. What fixes it?",
+   "options": [
+    "Switch the base image to python:latest so builds are faster",
+    "Copy requirements.txt and install first, then COPY . . last",
+    "Combine every instruction into a single long RUN command",
+    "Add EXPOSE 8000 so Docker knows which layers to cache"
+   ],
+   "answer": 1,
+   "explanation": "A changed layer invalidates every layer after it. Installing dependencies before copying the source keeps the slow pip layer cached when only code changes.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-containers-01-q2",
+   "pageId": "swe-containers-01",
+   "type": "choice",
+   "prompt": "You run docker run -d -p 8080:8000 shop:1.0, but localhost:8080 refuses connections. The app logs 'listening on 127.0.0.1:8000'. Why?",
+   "options": [
+    "Port 8080 must also be declared with EXPOSE in the Dockerfile",
+    "The -d flag hides the container's ports until it is attached",
+    "Inside the container the app must listen on 0.0.0.0, not loopback",
+    "The image name needs the latest tag for ports to be published"
+   ],
+   "answer": 2,
+   "explanation": "127.0.0.1 inside the container is the container's own loopback, which the port mapping cannot reach. Binding to 0.0.0.0 accepts traffic forwarded from the host. EXPOSE is documentation only.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-containers-01-q3",
+   "pageId": "swe-containers-01",
+   "type": "choice",
+   "prompt": "Production and staging both run shop:latest but behave differently. What is the most likely cause and fix?",
+   "options": [
+    "latest is a movable tag, so pin a version tag or a digest",
+    "latest images always pull from a different registry each time",
+    "Containers share kernels, so switch both to virtual machines",
+    "The image layers expired, so rebuild with docker commit"
+   ],
+   "answer": 0,
+   "explanation": "latest is just a default tag name that can point to different images on different hosts or at different times. Pinning a version, or better a sha256 digest, guarantees the same image everywhere.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-02-q1",
+   "pageId": "swe-containers-02",
+   "type": "choice",
+   "prompt": "In Compose, your web service fails with 'connection refused' to localhost:6379, where Redis should be. The Redis service is named cache. What do you change?",
+   "options": [
+    "Publish Redis on the host with ports: [\"6379:6379\"] instead",
+    "Connect to cache:6379, since services resolve each other by name",
+    "Add network_mode: host to every service in compose.yaml",
+    "Move both processes into a single container to share localhost"
+   ],
+   "answer": 1,
+   "explanation": "Each container has its own localhost. Compose puts services on a shared network where the service name, cache, resolves through Docker DNS to the Redis container.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-containers-02-q2",
+   "pageId": "swe-containers-02",
+   "type": "choice",
+   "prompt": "web starts before Postgres accepts connections and crashes, even though it has depends_on: [db]. What is the proper fix?",
+   "options": [
+    "Add restart: always to db so it starts up faster than web",
+    "List db before web in compose.yaml so it is created first",
+    "Give db a healthcheck and use condition: service_healthy",
+    "Replace depends_on with links: [db] for strict ordering"
+   ],
+   "answer": 2,
+   "explanation": "Plain depends_on only orders container start, not readiness. A healthcheck such as pg_isready plus condition: service_healthy makes web wait until the database answers.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-02-q3",
+   "pageId": "swe-containers-02",
+   "type": "choice",
+   "prompt": "A teammate runs docker compose down -v to 'reset the network' and loses the local database. Why?",
+   "options": [
+    "-v also deletes named volumes, which hold the database files",
+    "-v rebuilds every image from scratch, without the data layer",
+    "-v switches Compose into verbose mode, which wipes the caches",
+    "-v removes the .env file, so the database password is lost"
+   ],
+   "answer": 0,
+   "explanation": "down removes containers and networks but keeps volumes; -v also deletes named volumes, where the database stored its data. Plain down, or restart, would have been enough.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-containers-03-q1",
+   "pageId": "swe-containers-03",
+   "type": "choice",
+   "prompt": "A node running 2 of your Deployment's 3 Pods loses power. What brings the count back to 3?",
+   "options": [
+    "The kubelet on the dead node restarts the Pods once power returns",
+    "Nothing happens until an engineer runs kubectl scale again",
+    "etcd copies the two Pods' containers onto the nearest node",
+    "The ReplicaSet controller sees too few Pods and creates new ones"
+   ],
+   "answer": 3,
+   "explanation": "Controllers continuously compare desired state (replicas: 3) with actual state. The ReplicaSet controller creates replacements and the scheduler places them on healthy nodes.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-containers-03-q2",
+   "pageId": "swe-containers-03",
+   "type": "choice",
+   "prompt": "Pods keep getting new IP addresses as they restart. Other apps in the cluster need one stable address for them. What do you create?",
+   "options": [
+    "A ClusterIP Service selecting the Pods by their label",
+    "A NodePort on port 80, edited each time a Pod restarts",
+    "A second namespace that pins the Pod IP addresses",
+    "A bare Pod with a fixed IP address set in its YAML"
+   ],
+   "answer": 0,
+   "explanation": "A Service gives a stable virtual IP and DNS name and load-balances to whichever ready Pods match its selector. ClusterIP is the default type and is internal to the cluster.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-03-q3",
+   "pageId": "swe-containers-03",
+   "type": "choice",
+   "prompt": "kubectl apply rejects your new Deployment. Its selector says app: web, but the Pod template is labeled app: api. What is wrong?",
+   "options": [
+    "The scheduler cannot find a node with enough CPU for app: api",
+    "The selector must match the template's labels, so they need to agree",
+    "Deployments need a Service before they can create any Pods",
+    "Labels only work inside the default namespace, not custom ones"
+   ],
+   "answer": 1,
+   "explanation": "A Deployment manages the Pods its selector matches, so the template labels must satisfy the selector. The API server rejects a mismatch; make the two agree, ideally with a stable label.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-04-q1",
+   "pageId": "swe-containers-04",
+   "type": "choice",
+   "prompt": "During a database blip, all Pods of your API restart at once and the outage gets longer. Their liveness probe calls the database. What should change?",
+   "options": [
+    "Raise memory limits so the Pods can survive the restart",
+    "Check the database in readiness only; keep liveness local",
+    "Remove the readiness probe and keep the liveness probe",
+    "Scale to more replicas so some Pods skip the liveness check"
+   ],
+   "answer": 1,
+   "explanation": "Failing liveness restarts containers, so a shared dependency failure restarts everything. Readiness only removes Pods from traffic, which is the right reaction to a dependency outage.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-containers-04-q2",
+   "pageId": "swe-containers-04",
+   "type": "choice",
+   "prompt": "A Pod shows CrashLoopBackOff and describe reports Last State: Terminated, Exit Code 137, Reason OOMKilled. What is the best first fix?",
+   "options": [
+    "Raise the memory limit or reduce the app's memory usage",
+    "Add more CPU to the request so the app runs faster",
+    "Delete the Pod so a fresh one starts without a backoff",
+    "Recreate the Secret, since 137 means a missing key"
+   ],
+   "answer": 0,
+   "explanation": "137 is SIGKILL, and OOMKilled means the container exceeded its memory limit. Deleting the Pod just repeats the crash; raise the limit (and request) or fix the memory usage.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-containers-04-q3",
+   "pageId": "swe-containers-04",
+   "type": "choice",
+   "prompt": "An HPA targets 70% CPU. There are 4 replicas averaging 105% of their CPU request. How many replicas does it aim for (min 2, max 10)?",
+   "options": [
+    "5 replicas",
+    "8 replicas",
+    "6 replicas",
+    "10 replicas"
+   ],
+   "answer": 2,
+   "explanation": "desired = ceil(4 x 105 / 70) = ceil(6.0) = 6, which is within the 2-10 bounds. Utilization is measured against requests, so the Pods need CPU requests.",
+   "difficulty": 2
+  }
+ ]
+}

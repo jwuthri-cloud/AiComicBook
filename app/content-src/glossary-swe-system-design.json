@@ -1,0 +1,182 @@
+{
+  "terms": [
+    {
+      "term": "Horizontal scaling",
+      "aka": [
+        "Scale out",
+        "Scaling out"
+      ],
+      "category": "Software Engineering",
+      "short": "Adding more machines to handle more load, instead of making one machine bigger.",
+      "definition": "Horizontal scaling grows capacity by running more identical servers behind a load balancer. It contrasts with vertical scaling (scale up), which buys a bigger machine. It is like opening more checkout lanes instead of hiring one faster cashier, and it works best when servers are stateless.",
+      "related": [
+        "Load balancer",
+        "Sharding",
+        "Consistent hashing"
+      ]
+    },
+    {
+      "term": "Load balancer",
+      "aka": [
+        "LB",
+        "Reverse proxy load balancer"
+      ],
+      "category": "Software Engineering",
+      "short": "A component that spreads incoming requests across a pool of healthy servers.",
+      "definition": "A load balancer sits in front of several servers and decides which one handles each request or connection. It removes servers that fail health checks, so users keep being served. Layer 4 balancers route by IP address and port; layer 7 balancers read HTTP details such as paths and headers.",
+      "related": [
+        "Horizontal scaling",
+        "Consistent hashing",
+        "Circuit breaker"
+      ]
+    },
+    {
+      "term": "Consistent hashing",
+      "aka": [
+        "Hash ring"
+      ],
+      "category": "Software Engineering",
+      "short": "A way to map keys to servers so that adding or removing a server moves only a small share of keys.",
+      "definition": "Servers and keys are hashed onto the same circle, and each key belongs to the next server clockwise. When a server joins or leaves, only the keys in its arc move, about 1/N of them. Plain hash(key) % N would move almost every key whenever N changes.",
+      "related": [
+        "Hash map",
+        "Sharding",
+        "Load balancer"
+      ]
+    },
+    {
+      "term": "Cache-aside",
+      "aka": [
+        "Lazy loading",
+        "Look-aside cache"
+      ],
+      "category": "Software Engineering",
+      "short": "A caching pattern where the application checks the cache first and loads from the database only on a miss.",
+      "definition": "On a read, the app looks in the cache; if the value is missing, it reads the database and stores the result in the cache with an expiry time. On a write, it updates the database and deletes the cached copy. Only data that is actually requested ends up in the cache.",
+      "related": [
+        "Cache stampede",
+        "Latency",
+        "Hash map"
+      ]
+    },
+    {
+      "term": "Cache stampede",
+      "aka": [
+        "Thundering herd",
+        "Dogpile effect"
+      ],
+      "category": "Software Engineering",
+      "short": "A surge of requests hitting the database at once because a popular cached value expired or the cache was lost.",
+      "definition": "When a hot key expires, every request that needs it misses at the same moment and they all query the database together. The sudden load can slow or crash the database. Fixes let one request rebuild the value while others wait or receive the old copy.",
+      "related": [
+        "Cache-aside",
+        "Circuit breaker",
+        "Latency"
+      ]
+    },
+    {
+      "term": "B-tree index",
+      "aka": [
+        "B+ tree index",
+        "Database index"
+      ],
+      "category": "Software Engineering",
+      "short": "A sorted, balanced tree structure that lets a database find rows in O(log n) instead of scanning the whole table.",
+      "definition": "A B-tree index keeps the values of one or more columns in sorted order, with pointers to the matching rows. Like a phone book sorted by last name, it lets the database jump close to the right place instead of reading every page. It speeds up reads but slows writes, because each insert must also update the index.",
+      "related": [
+        "Big O notation",
+        "Binary search tree",
+        "ACID"
+      ]
+    },
+    {
+      "term": "ACID",
+      "aka": [
+        "ACID transaction",
+        "Atomicity, consistency, isolation, durability"
+      ],
+      "category": "Software Engineering",
+      "short": "The four guarantees of a database transaction: atomicity, consistency, isolation and durability.",
+      "definition": "Atomicity means all of a transaction's changes happen or none do. Consistency means declared rules and constraints always hold, isolation means concurrent transactions do not see each other's half-finished work, and durability means committed data survives a crash. A bank transfer relies on all four.",
+      "related": [
+        "B-tree index",
+        "CAP theorem",
+        "Idempotency key"
+      ]
+    },
+    {
+      "term": "Sharding",
+      "aka": [
+        "Horizontal partitioning",
+        "Database partitioning"
+      ],
+      "category": "Software Engineering",
+      "short": "Splitting a dataset across several database nodes so each node stores and serves only part of the data.",
+      "definition": "Each row goes to one shard based on a shard key, using either ranges (user IDs 1 to 1M on shard A) or a hash of the key. Sharding spreads writes and storage across machines. Queries that need data from many shards become slower and harder.",
+      "related": [
+        "Consistent hashing",
+        "Horizontal scaling",
+        "CAP theorem"
+      ]
+    },
+    {
+      "term": "CAP theorem",
+      "aka": [
+        "Brewer's theorem",
+        "CAP"
+      ],
+      "category": "Software Engineering",
+      "short": "During a network partition, a distributed data store must choose between consistency and availability.",
+      "definition": "CAP stands for consistency, availability and partition tolerance. Networks can always split, so when they do, a system either refuses some requests to stay correct (CP) or keeps answering with possibly stale data (AP). When there is no partition, both are possible.",
+      "related": [
+        "Sharding",
+        "ACID",
+        "Latency"
+      ]
+    },
+    {
+      "term": "Dead-letter queue",
+      "aka": [
+        "DLQ",
+        "Dead-letter topic"
+      ],
+      "category": "Software Engineering",
+      "short": "A holding queue for messages that failed processing too many times, so they stop blocking the main queue.",
+      "definition": "When a consumer keeps failing on a message, for example because it is malformed, the message is moved to a dead-letter queue after a set number of retries. The main queue keeps flowing, and engineers can inspect, fix and replay the failed messages later.",
+      "related": [
+        "Queue",
+        "Idempotency key",
+        "Circuit breaker"
+      ]
+    },
+    {
+      "term": "Circuit breaker",
+      "aka": [
+        "Circuit breaker pattern"
+      ],
+      "category": "Software Engineering",
+      "short": "A guard around remote calls that stops calling a failing service for a while and fails fast instead.",
+      "definition": "Like an electrical breaker, it trips when too many calls fail, so callers stop waiting on a broken dependency. While open, calls return an error or fallback immediately. After a cool-down it lets a few test calls through and closes again if they succeed.",
+      "related": [
+        "Load balancer",
+        "Dead-letter queue",
+        "Latency"
+      ]
+    },
+    {
+      "term": "Idempotency key",
+      "aka": [
+        "Idempotency-Key header",
+        "Request ID for retries"
+      ],
+      "category": "Software Engineering",
+      "short": "A unique value a client sends with a request so the server can recognize retries and perform the action only once.",
+      "definition": "The client generates a key such as a UUID for one logical operation, like a payment, and sends the same key on every retry. The server saves the result under that key and returns the saved result for repeats. A network timeout then never turns into a double charge.",
+      "related": [
+        "ACID",
+        "Dead-letter queue",
+        "Hash map"
+      ]
+    }
+  ]
+}

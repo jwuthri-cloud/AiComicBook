@@ -1,0 +1,229 @@
+{
+  "questions": [
+    {
+      "id": "swe-devops-01-q1",
+      "pageId": "swe-devops-01",
+      "type": "choice",
+      "prompt": "Every green build on main is packaged and could go live, but a release manager presses a button to push it to production. Which practice is this?",
+      "options": [
+        "Continuous integration only, because nothing is deployed until the release manager acts",
+        "Continuous delivery, because every build is releasable but the final deploy is manual",
+        "Continuous deployment, because the pipeline already produces a production-ready artifact",
+        "Blue-green deployment, because a human decides when to switch traffic to the new build"
+      ],
+      "answer": 1,
+      "explanation": "Continuous delivery keeps every green build releasable and leaves the production push to a human decision. Continuous deployment removes that manual gate.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-devops-01-q2",
+      "pageId": "swe-devops-01",
+      "type": "choice",
+      "prompt": "Your pipeline builds a fresh container image separately for staging and for production from the same commit. What is the main risk?",
+      "options": [
+        "Production may run bits that differ from what was tested, e.g. a dependency changed between builds",
+        "The registry will reject the second push because the commit SHA tag already exists there",
+        "Staging will be slower than production because its image is built first in the pipeline",
+        "Nothing, because building from the same commit always yields byte-identical images"
+      ],
+      "answer": 0,
+      "explanation": "Rebuilds can pull different base images or dependency versions, so production runs untested bits. Build once, tag by commit SHA, and promote the same artifact.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-01-q3",
+      "pageId": "swe-devops-01",
+      "type": "choice",
+      "prompt": "A new recommendation feature is risky and needs a quick kill switch that does not require redeploying. Which approach fits best?",
+      "options": [
+        "A rolling update that replaces two instances at a time across the whole fleet",
+        "A longer staging soak period before the change is merged into the main branch",
+        "Rebuilding the artifact with the feature removed whenever a problem is detected",
+        "Wrap the feature in a feature flag so it can be turned off at runtime instantly"
+      ],
+      "answer": 3,
+      "explanation": "A feature flag separates deploy from release: the code ships dark and the flag can disable it in seconds without a new build or deploy.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-02-q1",
+      "pageId": "swe-devops-02",
+      "type": "choice",
+      "prompt": "A suite has 40 browser end-to-end tests, 10 integration tests and 5 unit tests. It takes 50 minutes and fails randomly. What is the best first move?",
+      "options": [
+        "Add more end-to-end tests so that every failure path is covered in a real browser",
+        "Push most checks down into fast unit and integration tests, keeping a few key E2E flows",
+        "Raise the CI timeout and rerun failed jobs automatically until they eventually pass",
+        "Delete the unit tests, since end-to-end tests already exercise the same code paths"
+      ],
+      "answer": 1,
+      "explanation": "This is the inverted pyramid (ice-cream cone). Moving most checks to unit and integration level makes the suite fast and stable while a few E2E tests cover critical journeys.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-02-q2",
+      "pageId": "swe-devops-02",
+      "type": "choice",
+      "prompt": "You want to assert that your signup code calls email.send() exactly once with the new user's address. Which test double is designed for this?",
+      "options": [
+        "A stub that returns a canned success value whenever email.send() is called by the code",
+        "A dummy object passed in to fill the parameter but never actually used by the code",
+        "A mock or spy that records the call so you can verify its count and arguments",
+        "A fake in-memory email server that stores messages but is never inspected by the test"
+      ],
+      "answer": 2,
+      "explanation": "Mocks and spies exist to verify interactions such as call count and arguments. Stubs only feed answers in; dummies are never used.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-02-q3",
+      "pageId": "swe-devops-02",
+      "type": "choice",
+      "prompt": "A team hits 100% line coverage, yet a bug ships in the else-branch of a validation check. What best explains this?",
+      "options": [
+        "Line coverage counts executed code, not checked behavior; branch coverage or real asserts were missing",
+        "100% coverage guarantees correctness, so the bug must come from the production environment instead",
+        "The coverage tool double-counted lines, which always happens when tests run in parallel mode",
+        "The bug is in a third-party library, because coverage measures only the project's own code"
+      ],
+      "answer": 0,
+      "explanation": "Coverage shows which code ran, not whether results were asserted, and line coverage can hide untaken branches. Treat it as a map of untested code, not a quality target.",
+      "difficulty": 3
+    },
+    {
+      "id": "swe-devops-03-q1",
+      "pageId": "swe-devops-03",
+      "type": "choice",
+      "prompt": "Your SLO is 99.9% of requests succeeding over 30 days. One incident already caused 30 minutes of full outage. Roughly how much error budget remains?",
+      "options": [
+        "About 413 minutes, since the budget is 1% of the month",
+        "None, because any outage breaches a 99.9% objective",
+        "About 13 minutes of the 43.2-minute monthly budget",
+        "About 43 minutes, since budgets reset after each incident"
+      ],
+      "answer": 2,
+      "explanation": "0.1% of 43,200 minutes is 43.2 minutes; 43.2 - 30 leaves about 13 minutes. The team should slow risky releases until the budget recovers.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-03-q2",
+      "pageId": "swe-devops-03",
+      "type": "choice",
+      "prompt": "Which alert is the best candidate to page an on-call engineer at 3 a.m.?",
+      "options": [
+        "Average CPU on one database replica has stayed above 85% for ten minutes",
+        "Disk usage on a log volume crossed 70% and is growing slowly this week",
+        "A single pod restarted once after being evicted for scheduling reasons",
+        "The checkout SLO is burning error budget fast enough to exhaust it in hours"
+      ],
+      "answer": 3,
+      "explanation": "Page on symptoms users feel, such as fast SLO burn. Causes like CPU or a single restart belong on dashboards or tickets unless they affect users.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-03-q3",
+      "pageId": "swe-devops-03",
+      "type": "choice",
+      "prompt": "Checkout p99 latency jumped from 300 ms to 2 s. Which signal most directly shows which downstream service is slow?",
+      "options": [
+        "A distributed trace showing span durations for each service call in the request",
+        "The average latency metric across all endpoints aggregated over the past day",
+        "Free-text application logs searched for the word 'slow' across all the hosts",
+        "The SLA document listing contractual availability targets for checkout traffic"
+      ],
+      "answer": 0,
+      "explanation": "Traces break one request into timed spans across services, so the slow hop stands out. Averages hide the tail and unstructured logs are hard to correlate.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-devops-04-q1",
+      "pageId": "swe-devops-04",
+      "type": "choice",
+      "prompt": "terraform plan shows '-/+ aws_db_instance.main must be replaced' after you edited one argument. What should you do before applying?",
+      "options": [
+        "Apply immediately, because replace is just Terraform's word for an in-place update",
+        "Stop and check which argument forces replacement, since recreating the database can lose data",
+        "Delete the state file so Terraform forgets the database and creates a fresh one cleanly",
+        "Run terraform init again, because a replace in the plan means providers are outdated"
+      ],
+      "answer": 1,
+      "explanation": "-/+ means destroy then create. For stateful resources like databases, find the argument that forces replacement and use a safer change or a lifecycle guard.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-04-q2",
+      "pageId": "swe-devops-04",
+      "type": "choice",
+      "prompt": "Two engineers run terraform apply at the same time against the same environment, and state gets corrupted. What prevents this?",
+      "options": [
+        "Running terraform fmt before every commit so both configurations stay identical",
+        "Keeping a separate local state file on each engineer's laptop for that environment",
+        "Pinning provider versions in the required_providers block of the root module",
+        "A remote backend with state locking so only one apply can hold the state at a time"
+      ],
+      "answer": 3,
+      "explanation": "A remote backend with locking serializes writes to state. Local per-laptop state makes conflicts worse, and formatting or version pins do not coordinate runs.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-04-q3",
+      "pageId": "swe-devops-04",
+      "type": "choice",
+      "prompt": "Someone opened port 22 on a security group in the cloud console. The Terraform code only allows 443. What is this, and how is it usually caught?",
+      "options": [
+        "Drift; a scheduled terraform plan shows the difference between real infra and code",
+        "A module version conflict; terraform init -upgrade will report and revert the change",
+        "Imperative provisioning; Terraform blocks console changes for managed resources",
+        "State locking failure; the lock file records every manual change made in the console"
+      ],
+      "answer": 0,
+      "explanation": "A manual change outside code is drift. Regular plans (or GitOps reconciliation) detect it; you then re-apply or update the code to match intent.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-devops-05-q1",
+      "pageId": "swe-devops-05",
+      "type": "choice",
+      "prompt": "Your app runs on VMs in a single availability zone, and that zone loses power. What design would have kept it running?",
+      "options": [
+        "Bigger instance types in the same zone so each VM can absorb more traffic",
+        "Moving from object storage to block storage for all the application data",
+        "Running instances across two or three zones behind a load balancer",
+        "Disabling autoscaling so the instance count stays fixed during failures"
+      ],
+      "answer": 2,
+      "explanation": "Availability zones are isolated data centers within a region. Spreading instances across zones behind a load balancer survives a single-zone failure.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-devops-05-q2",
+      "pageId": "swe-devops-05",
+      "type": "choice",
+      "prompt": "A batch job only needs to read files from one storage bucket. Which permission setup follows least privilege?",
+      "options": [
+        "An admin role, so the job never fails when it later needs extra permissions",
+        "A role allowing s3:GetObject on that bucket's objects, with short-lived credentials",
+        "A long-lived access key for a personal user account that already has bucket access",
+        "A policy with Action \"s3:*\" on all buckets, limited by a strong password instead"
+      ],
+      "answer": 1,
+      "explanation": "Least privilege grants only the needed action on the needed resource. Roles with short-lived credentials avoid leaked long-lived keys and broad wildcards.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-devops-05-q3",
+      "pageId": "swe-devops-05",
+      "type": "choice",
+      "prompt": "You run a managed SQL database service. Under the shared responsibility model, which task is still yours?",
+      "options": [
+        "Replacing failed disks in the physical servers that host the database instances",
+        "Patching the hypervisor that isolates your database from other customers' VMs",
+        "Securing the data center building and controlling physical access to the racks",
+        "Configuring who can connect: network rules, database users and IAM permissions"
+      ],
+      "answer": 3,
+      "explanation": "The provider secures the cloud itself (hardware, facilities, hypervisor); you remain responsible for access configuration and your data, even on managed services.",
+      "difficulty": 1
+    }
+  ]
+}

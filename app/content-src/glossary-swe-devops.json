@@ -1,0 +1,180 @@
+{
+  "terms": [
+    {
+      "term": "CI/CD pipeline",
+      "aka": [
+        "Continuous integration",
+        "Continuous delivery",
+        "Continuous deployment",
+        "Build pipeline"
+      ],
+      "category": "Software Engineering",
+      "short": "An automated sequence that builds, tests and releases every code change.",
+      "definition": "Each push triggers stages such as build, test, scan, package and deploy, and any failing stage stops the line. Continuous integration means merging and testing small changes often; continuous delivery keeps every green build releasable; continuous deployment ships it automatically. Think of a factory conveyor with quality checks at every station.",
+      "related": [
+        "Pull request",
+        "Flaky test",
+        "Canary release",
+        "Feature flag"
+      ]
+    },
+    {
+      "term": "Canary release",
+      "aka": [
+        "Canary deployment",
+        "Canary rollout"
+      ],
+      "category": "Software Engineering",
+      "short": "Releasing a new version to a small share of traffic first and expanding only if it stays healthy.",
+      "definition": "A few percent of users get the new version while the rest stay on the stable one, and error rate and latency of both are compared. If the canary looks worse, traffic goes back to stable; if not, the share ramps up step by step. The name comes from canaries that warned miners of bad air.",
+      "related": [
+        "Feature flag",
+        "CI/CD pipeline",
+        "Error budget",
+        "A/B test"
+      ]
+    },
+    {
+      "term": "Feature flag",
+      "aka": [
+        "Feature toggle",
+        "Feature switch"
+      ],
+      "category": "Software Engineering",
+      "short": "A runtime switch that turns a piece of functionality on or off without deploying new code.",
+      "definition": "Code ships to production hidden behind a condition, and the flag decides who sees it: nobody, staff, 5% of users or everyone. This separates deploying code from releasing a feature and gives an instant kill switch. Old flags should be removed, or they pile up as untested code paths.",
+      "related": [
+        "Canary release",
+        "CI/CD pipeline",
+        "A/B test"
+      ]
+    },
+    {
+      "term": "Test double",
+      "aka": [
+        "Mocks and stubs",
+        "Test fake"
+      ],
+      "category": "Software Engineering",
+      "short": "Any stand-in object that replaces a real dependency during a test.",
+      "definition": "Like a stunt double in a film, it plays the role of the real component so the test runs fast and predictably. Stubs return canned answers, mocks verify expected calls, fakes are lightweight working versions, spies record calls and dummies just fill parameters.",
+      "related": [
+        "Test-driven development",
+        "Flaky test"
+      ]
+    },
+    {
+      "term": "Test-driven development",
+      "aka": [
+        "TDD",
+        "Red-green-refactor"
+      ],
+      "category": "Software Engineering",
+      "short": "Writing a failing test first, then the minimal code to pass it, then cleaning up.",
+      "definition": "Work happens in short loops: red (a new test fails), green (just enough code makes it pass) and refactor (improve the code while tests stay green). Writing the test first forces you to decide the expected behavior and interface before the implementation. The result is a growing safety net of regression tests.",
+      "related": [
+        "Test double",
+        "Flaky test"
+      ]
+    },
+    {
+      "term": "Flaky test",
+      "aka": [
+        "Intermittent test",
+        "Non-deterministic test"
+      ],
+      "category": "Software Engineering",
+      "short": "A test that sometimes passes and sometimes fails on the same code.",
+      "definition": "Typical causes are timing assumptions, shared state between tests, real network calls, clocks and unseeded randomness. Flaky tests are dangerous because teams learn to ignore red builds and rerun until green, which hides real bugs. Quarantine them quickly and fix the root cause.",
+      "related": [
+        "CI/CD pipeline",
+        "Test double"
+      ]
+    },
+    {
+      "term": "Service level objective",
+      "aka": [
+        "SLO",
+        "Service level indicator",
+        "SLI"
+      ],
+      "category": "Software Engineering",
+      "short": "An internal reliability target for a measured indicator of service health, such as 99.9% of requests succeeding.",
+      "definition": "The indicator (SLI) is what you measure, like the share of requests answered in under 300 ms; the objective (SLO) is the target over a window, like 99.9% over 30 days. A service level agreement (SLA) is the looser contractual promise to customers, with penalties. SLOs tell teams when reliability is good enough.",
+      "related": [
+        "Error budget",
+        "Latency",
+        "Distributed tracing"
+      ]
+    },
+    {
+      "term": "Error budget",
+      "aka": [
+        "Reliability budget"
+      ],
+      "category": "Software Engineering",
+      "short": "The amount of failure an SLO allows over its window: 100% minus the target.",
+      "definition": "A 99.9% monthly SLO leaves 0.1% of requests, or about 43 minutes of full outage, as budget. While budget remains, teams can ship features and take risks; when it is spent, they slow releases and fix reliability. It turns the argument between speed and stability into a number both sides agree on.",
+      "related": [
+        "Service level objective",
+        "Canary release"
+      ]
+    },
+    {
+      "term": "Distributed tracing",
+      "aka": [
+        "Request tracing",
+        "OpenTelemetry tracing"
+      ],
+      "category": "Software Engineering",
+      "short": "Following a single request across services as a tree of timed spans.",
+      "definition": "Each service records a span for its work and passes a trace ID to the next service, usually in the traceparent header. A waterfall view then shows where the time went, like a parcel tracking history for one request. OpenTelemetry is the vendor-neutral standard for producing traces.",
+      "related": [
+        "Latency",
+        "Service level objective"
+      ]
+    },
+    {
+      "term": "Infrastructure as code",
+      "aka": [
+        "IaC",
+        "Infrastructure automation"
+      ],
+      "category": "Software Engineering",
+      "short": "Defining servers, networks and other infrastructure in versioned text files instead of manual setup.",
+      "definition": "Tools like Terraform read declarative files, compare them with what exists and plan the changes needed to match. Changes go through Git and pull requests like application code, so environments are reproducible and reviewable. GitOps extends the idea with agents that continuously sync systems to what Git says.",
+      "related": [
+        "Git",
+        "Pull request",
+        "CI/CD pipeline"
+      ]
+    },
+    {
+      "term": "Shared responsibility model",
+      "aka": [
+        "Cloud shared responsibility"
+      ],
+      "category": "Software Engineering",
+      "short": "The split of security duties between a cloud provider and its customer.",
+      "definition": "The provider secures the cloud itself: buildings, hardware and virtualization. The customer secures what they put in it: data, identities and permissions, network rules and, on virtual machines, the operating system. The more managed the service, the more the provider handles, like renting a furnished flat versus an empty one.",
+      "related": [
+        "Least privilege",
+        "Infrastructure as code"
+      ]
+    },
+    {
+      "term": "Least privilege",
+      "aka": [
+        "Principle of least privilege",
+        "PoLP"
+      ],
+      "category": "Software Engineering",
+      "short": "Giving every user and program only the permissions it needs, and nothing more.",
+      "definition": "A job that only reads one storage bucket gets read access to that bucket, not admin rights. If its credentials leak, the damage stays small. In the cloud this is done with IAM (identity and access management) roles, narrow policies and short-lived credentials.",
+      "related": [
+        "Shared responsibility model",
+        "Infrastructure as code"
+      ]
+    }
+  ]
+}

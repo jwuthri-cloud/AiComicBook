@@ -1,0 +1,229 @@
+{
+ "questions": [
+  {
+   "id": "swe-design-01-q1",
+   "pageId": "swe-design-01",
+   "type": "choice",
+   "prompt": "A UserService class validates input, hashes passwords, writes to the database and sends welcome emails. A change to the email template forces you to retest the database code. Which principle is most directly violated?",
+   "options": [
+    "Liskov substitution",
+    "Single responsibility",
+    "Interface segregation",
+    "Open/closed"
+   ],
+   "answer": 1,
+   "explanation": "The class has several reasons to change (validation, persistence, email), so unrelated edits ripple through it. Splitting it by responsibility isolates each change.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-design-01-q2",
+   "pageId": "swe-design-01",
+   "type": "choice",
+   "prompt": "ReadOnlyList subclasses List and raises an exception from append(). Code that accepts any List now crashes when given a ReadOnlyList. What is the best fix?",
+   "options": [
+    "Catch the exception at every call site",
+    "Add an is_read_only flag checked before append()",
+    "Make ReadOnlyList a separate type that List extends",
+    "Override append() to silently do nothing"
+   ],
+   "answer": 2,
+   "explanation": "A subtype that refuses base-class operations breaks Liskov substitution. Invert the hierarchy: a read-only base with a mutable subtype keeps every promise; silently ignoring append() just hides the broken contract.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-design-01-q3",
+   "pageId": "swe-design-01",
+   "type": "choice",
+   "prompt": "ReportGenerator does self.db = PostgresDatabase() in its constructor, so unit tests need a live database. Which change applies dependency inversion?",
+   "options": [
+    "Make PostgresDatabase a singleton",
+    "Pass any object with a query() method into the constructor",
+    "Subclass ReportGenerator for each test",
+    "Move the connection string to an environment variable"
+   ],
+   "answer": 1,
+   "explanation": "Depending on an abstraction (anything with query()) that is passed in lets tests inject a fake. A singleton or env var still hard-wires the concrete database.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-02-q1",
+   "pageId": "swe-design-02",
+   "type": "choice",
+   "prompt": "Your tests pass one at a time but fail when run together, because a Config singleton keeps values set by earlier tests. What is the cleanest long-term fix?",
+   "options": [
+    "Run every test in its own process",
+    "Add a reset() method called at the start of each test",
+    "Create one Config in main() and inject it where needed",
+    "Make the singleton thread-safe with a lock"
+   ],
+   "answer": 2,
+   "explanation": "The root problem is hidden global state. Creating the object once and passing it in makes each test build its own Config; reset() only patches the symptom.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-02-q2",
+   "pageId": "swe-design-02",
+   "type": "choice",
+   "prompt": "An HTTP client has 12 optional settings (timeouts, retries, headers, proxy, TLS options) and some combinations are invalid. Which creational approach fits best?",
+   "options": [
+    "Builder (or keyword arguments) that validates in build()",
+    "Prototype cloned from a default client",
+    "Abstract Factory with one factory per setting",
+    "Singleton client shared by the whole app"
+   ],
+   "answer": 0,
+   "explanation": "Builder exists for objects with many optional parts and a final validation step. In Python, keyword-only arguments plus validation in __post_init__ often give the same benefit.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-design-02-q3",
+   "pageId": "swe-design-02",
+   "type": "choice",
+   "prompt": "You cloned a template game level with copy.copy(), changed the clone's enemies list, and the template's enemies changed too. Why?",
+   "options": [
+    "copy.copy() only copies immutable attributes",
+    "Lists cannot be copied in Python",
+    "Prototype objects are always shared by reference",
+    "A shallow copy shares nested mutable objects like the list"
+   ],
+   "answer": 3,
+   "explanation": "copy.copy() creates a new outer object but its attributes still point to the same list. copy.deepcopy() recursively copies nested objects.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-03-q1",
+   "pageId": "swe-design-03",
+   "type": "choice",
+   "prompt": "Your app calls storage.save(key, bytes). A new cloud SDK only offers put_object(Bucket=..., Key=..., Body=...). You want no changes in the app code. Which pattern fits?",
+   "options": [
+    "Decorator",
+    "Composite",
+    "Adapter",
+    "Bridge"
+   ],
+   "answer": 2,
+   "explanation": "An adapter translates one interface into the one callers expect, keeping behavior the same. A decorator keeps the same interface and adds behavior.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-design-03-q2",
+   "pageId": "swe-design-03",
+   "type": "choice",
+   "prompt": "You need logging, caching and retries in any combination around an API client, without writing a subclass for each of the 7 non-empty combinations. What do you use?",
+   "options": [
+    "Decorators that wrap the client with the same interface",
+    "A facade that exposes one method per combination",
+    "A proxy that blocks unauthenticated calls",
+    "A composite tree of API clients"
+   ],
+   "answer": 0,
+   "explanation": "Decorators share the wrapped object's interface, so they stack in any order and combination: Retry(Cache(Log(client))).",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-03-q3",
+   "pageId": "swe-design-03",
+   "type": "choice",
+   "prompt": "You have 4 notification types (alert, reminder, digest, promo) and 3 channels (email, SMS, push). Subclassing every pair gives 12 classes. Which pattern reduces this, and to how many classes?",
+   "options": [
+    "Facade, to 1 class",
+    "Composite, to 4 classes",
+    "Bridge, to 7 classes",
+    "Adapter, to 3 classes"
+   ],
+   "answer": 2,
+   "explanation": "Bridge separates the two dimensions: notifications hold a channel, so you write 4 + 3 = 7 classes instead of 4 x 3 = 12.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-design-04-q1",
+   "pageId": "swe-design-04",
+   "type": "choice",
+   "prompt": "A text editor needs undo/redo for typing, deleting and formatting. Which pattern is the natural fit?",
+   "options": [
+    "Observer",
+    "Command",
+    "Iterator",
+    "Template Method"
+   ],
+   "answer": 1,
+   "explanation": "Each edit becomes an object with execute() and undo() kept on a history stack, which is exactly what Command provides.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-design-04-q2",
+   "pageId": "swe-design-04",
+   "type": "choice",
+   "prompt": "A Document class has publish(), edit() and archive(), each containing the same if/elif over draft, review, published and archived. Adding a status means editing every method. Which refactor helps most?",
+   "options": [
+    "Strategy chosen by the caller for each call",
+    "Observer that broadcasts status changes",
+    "Chain of Responsibility over the methods",
+    "State: one class per status that the Document delegates to"
+   ],
+   "answer": 3,
+   "explanation": "When behavior depends on the object's own changing status, State moves each branch into a status class and lets transitions replace the repeated conditionals.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-04-q3",
+   "pageId": "swe-design-04",
+   "type": "choice",
+   "prompt": "A web framework runs every request through auth, rate limiting and input validation; any step may reject the request with an error, otherwise it continues. Which pattern describes this?",
+   "options": [
+    "Chain of Responsibility",
+    "Template Method",
+    "Composite",
+    "Strategy"
+   ],
+   "answer": 0,
+   "explanation": "Middleware is a chain: each handler either handles or stops the request, or forwards it to the next link.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-design-05-q1",
+   "pageId": "swe-design-05",
+   "type": "choice",
+   "prompt": "You want to restructure a 400-line legacy function that has no tests. What should you do first?",
+   "options": [
+    "Rewrite it from scratch in a cleaner style",
+    "Write characterization tests that pin its current behavior",
+    "Split it into files, then add tests later",
+    "Add comments explaining each block"
+   ],
+   "answer": 1,
+   "explanation": "Refactoring must preserve behavior, and you cannot prove that without tests. Characterization tests record what the code does today, bugs included, so every small step can be checked.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-design-05-q2",
+   "pageId": "swe-design-05",
+   "type": "choice",
+   "prompt": "Two functions in different modules contain nearly identical 10-line blocks, but one follows tax law and the other follows marketing rules, and they change at different times. What is the best call?",
+   "options": [
+    "Merge them into one shared helper immediately",
+    "Delete one and call the other from both modules",
+    "Keep them separate; they look alike but change for different reasons",
+    "Move both into a base class"
+   ],
+   "answer": 2,
+   "explanation": "DRY is about one source of truth per piece of knowledge, not about identical-looking text. Merging code with different reasons to change creates coupling and flag-ridden helpers.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-design-05-q3",
+   "pageId": "swe-design-05",
+   "type": "choice",
+   "prompt": "A function computes a cutoff with time.time() - 86400 * 30 inside its body, and its tests are flaky near midnight. Which pair of fixes addresses both problems?",
+   "options": [
+    "Inject the clock and replace 86400 with a named constant",
+    "Add more comments and a retry loop in the test",
+    "Cache the result and use a global variable",
+    "Convert the function into a singleton class"
+   ],
+   "answer": 0,
+   "explanation": "Injecting the time source makes tests deterministic, and a named constant like SECONDS_PER_DAY removes the magic number smell.",
+   "difficulty": 2
+  }
+ ]
+}

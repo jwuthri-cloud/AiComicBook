@@ -1,0 +1,364 @@
+{
+  "questions": [
+    {
+      "id": "swe-system-design-01-q1",
+      "pageId": "swe-system-design-01",
+      "type": "choice",
+      "prompt": "Your web app keeps user sessions in each server's memory. You add three servers behind a round-robin load balancer and users start getting logged out at random. What is the cleanest fix?",
+      "options": [
+        "Switch the load balancer from L7 to L4 so connections are routed faster",
+        "Move sessions to a shared store such as Redis so any server can serve any user",
+        "Give the new servers more RAM so they can hold every user's session",
+        "Lower the health-check interval so failed servers leave the pool sooner"
+      ],
+      "answer": 1,
+      "explanation": "The servers are stateful, so a request that lands on a different server finds no session. Externalizing state (Redis or signed tokens) makes the servers stateless and interchangeable.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-01-q2",
+      "pageId": "swe-system-design-01",
+      "type": "choice",
+      "prompt": "Most requests to your API take 10 ms, but report exports take 20 s. With round robin, some servers pile up slow exports while others sit idle. Which algorithm adapts best?",
+      "options": [
+        "Weighted round robin with equal weights on every server",
+        "Consistent hashing on the client IP address",
+        "Least connections, which favors the server with fewest active requests",
+        "Random choice, which spreads requests uniformly over time"
+      ],
+      "answer": 2,
+      "explanation": "Least connections looks at current load, so a server stuck on long exports receives fewer new requests. Round robin and random ignore how busy each server already is.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-01-q3",
+      "pageId": "swe-system-design-01",
+      "type": "choice",
+      "prompt": "You expect 5M daily users making 40 requests each, with peak traffic 3x the average. Roughly what peak request rate should you plan for?",
+      "options": [
+        "About 700 requests per second",
+        "About 2,300 requests per second",
+        "About 70,000 requests per second",
+        "About 7,000 requests per second"
+      ],
+      "answer": 3,
+      "explanation": "5M x 40 = 200M requests per day; 200M / 86,400 s is about 2,300 req/s on average, and 3x that is about 7,000 req/s at peak.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-02-q1",
+      "pageId": "swe-system-design-02",
+      "type": "choice",
+      "prompt": "A product price is cached with cache-aside. When an admin changes the price, what should the write path do to avoid serving stale prices?",
+      "options": [
+        "Update the database, then delete the cached key so the next read reloads it",
+        "Update the cache first, then update the database a few seconds later",
+        "Leave the cache alone and rely only on a 24-hour TTL to refresh it",
+        "Write the new price to the cache only, since the cache is read first"
+      ],
+      "answer": 0,
+      "explanation": "Deleting the key after the database write forces the next reader to load the fresh value. Updating the cache directly can race with concurrent readers, and a long TTL alone leaves stale data for hours.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-02-q2",
+      "pageId": "swe-system-design-02",
+      "type": "choice",
+      "prompt": "A homepage key that 50,000 users read every second expires, and database CPU spikes to 100% for a few seconds. Which fix targets the cause directly?",
+      "options": [
+        "Switch the eviction policy from LRU to LFU",
+        "Let one request rebuild the key under a lock while others get the stale value",
+        "Shorten the TTL so the key is refreshed more often",
+        "Move the cache from Redis into each server's local memory"
+      ],
+      "answer": 1,
+      "explanation": "This is a cache stampede: every reader misses at once and hits the database. Single-flight rebuilding (a lock) plus serving stale data stops the thundering herd; a shorter TTL makes it happen more often.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-02-q3",
+      "pageId": "swe-system-design-02",
+      "type": "choice",
+      "prompt": "You need writes to be as fast as possible and can accept losing a few seconds of updates if the cache node crashes. Which write strategy fits?",
+      "options": [
+        "Write-through",
+        "Cache-aside with delete on write",
+        "Write-back",
+        "Read-through with no writes cached"
+      ],
+      "answer": 2,
+      "explanation": "Write-back acknowledges the write once it is in the cache and flushes to the database later, giving the fastest writes at the cost of possible loss on a crash.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-03-q1",
+      "pageId": "swe-system-design-03",
+      "type": "choice",
+      "prompt": "A table has a composite index on (country, city). Which query cannot use the index efficiently to find rows?",
+      "options": [
+        "WHERE country = 'FR'",
+        "WHERE country = 'FR' AND city = 'Lyon'",
+        "WHERE country = 'FR' ORDER BY city",
+        "WHERE city = 'Lyon'"
+      ],
+      "answer": 3,
+      "explanation": "A B-tree on (country, city) is sorted by country first, so it helps only when the leading column is constrained. Filtering by city alone is like searching a phone book by first name.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-03-q2",
+      "pageId": "swe-system-design-03",
+      "type": "choice",
+      "prompt": "Two transactions run concurrently: one reads a balance twice, and between its reads the other commits an update to that row, so the reads differ. Which is the weakest isolation level that prevents this?",
+      "options": [
+        "Read uncommitted",
+        "Repeatable read",
+        "Read committed",
+        "Serializable"
+      ],
+      "answer": 1,
+      "explanation": "Seeing a committed change between two reads of the same row is a non-repeatable read. Read committed allows it; repeatable read is the weakest level that forbids it.",
+      "difficulty": 3
+    },
+    {
+      "id": "swe-system-design-03-q3",
+      "pageId": "swe-system-design-03",
+      "type": "choice",
+      "prompt": "A blog page loads 100 posts, then runs one extra query per post to fetch its author, and becomes slow. What is the standard fix?",
+      "options": [
+        "Fetch posts and authors in one query with a join, or batch the author lookups",
+        "Add an index on every column of the posts table",
+        "Raise the isolation level to serializable",
+        "Move the authors table into a separate NoSQL database"
+      ],
+      "answer": 0,
+      "explanation": "This is the N+1 query problem: 101 round trips instead of 1 or 2. A join or a single batched WHERE id IN (...) query removes the per-row round trips.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-04-q1",
+      "pageId": "swe-system-design-04",
+      "type": "choice",
+      "prompt": "A user edits their profile, reloads, and sees the old version for a second because reads go to async replicas. Which technique fixes this without making all reads hit the leader?",
+      "options": [
+        "Switch every write to synchronous replication",
+        "Shard the users table by hash of user_id",
+        "Read-your-writes: route that user's reads to the leader briefly after a write",
+        "Raise the TTL on the profile cache entry"
+      ],
+      "answer": 2,
+      "explanation": "The stale read is replication lag. Read-your-writes consistency only routes the writer's own recent reads to the leader, so everyone else keeps using replicas.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-04-q2",
+      "pageId": "swe-system-design-04",
+      "type": "choice",
+      "prompt": "You shard an events table by range on created_at. Monitoring shows one shard at 95% load and the rest nearly idle. What is happening?",
+      "options": [
+        "Replication lag on the followers of that shard",
+        "A hot spot: all new writes land in the newest time range",
+        "A network partition forcing the system to choose CP",
+        "Too many read replicas attached to the cold shards"
+      ],
+      "answer": 1,
+      "explanation": "Monotonically increasing keys send every new write to the shard that owns the latest range. Hashing the key or adding a prefix spreads the writes.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-04-q3",
+      "pageId": "swe-system-design-04",
+      "type": "choice",
+      "prompt": "During a network partition, your shopping-cart service keeps accepting writes on both sides and merges carts later. Under CAP, which choice did it make?",
+      "options": [
+        "Consistency over availability (CP)",
+        "Latency over consistency, which only applies with no partition",
+        "Neither, because carts are stored in a single leader",
+        "Availability over consistency (AP)"
+      ],
+      "answer": 3,
+      "explanation": "Answering on both sides of the partition and reconciling afterwards means it stays available and accepts temporary inconsistency, which is an AP design.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-05-q1",
+      "pageId": "swe-system-design-05",
+      "type": "choice",
+      "prompt": "A Kafka topic has 4 partitions. You scale the consumer group from 4 to 10 consumers, but throughput does not improve. Why?",
+      "options": [
+        "Each partition is read by at most one consumer in a group, so 6 consumers sit idle",
+        "Kafka caps every consumer group at 4 members unless exactly-once is enabled",
+        "Adding consumers triggers at-most-once delivery, which throttles reads",
+        "The producer must be restarted before new consumers receive messages"
+      ],
+      "answer": 0,
+      "explanation": "Partitions are the unit of parallelism in a consumer group. With 4 partitions, at most 4 consumers do work; to scale further you need more partitions.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-05-q2",
+      "pageId": "swe-system-design-05",
+      "type": "choice",
+      "prompt": "Your payment consumer uses at-least-once delivery. After a crash, a customer is charged twice for one order. What is the best fix?",
+      "options": [
+        "Switch to at-most-once delivery so messages are never redelivered",
+        "Make the handler idempotent by recording processed message IDs in the same transaction",
+        "Add more partitions so each consumer handles fewer messages",
+        "Increase the retry count before messages move to the dead-letter queue"
+      ],
+      "answer": 1,
+      "explanation": "Redelivery is expected with at-least-once. Recording the message ID atomically with the effect turns duplicates into no-ops; at-most-once would instead lose payments.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-05-q3",
+      "pageId": "swe-system-design-05",
+      "type": "choice",
+      "prompt": "One malformed message makes the consumer throw an exception every time, and the whole partition stops advancing. What is the standard remedy?",
+      "options": [
+        "Restart the broker so the message is dropped from the log",
+        "Commit the offset before processing every message",
+        "After a few retries, move the message to a dead-letter queue and continue",
+        "Switch the topic from pub/sub to a point-to-point queue"
+      ],
+      "answer": 2,
+      "explanation": "A poison message blocks in-order processing. Bounded retries followed by a dead-letter queue unblock the partition and keep the bad message for inspection.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-06-q1",
+      "pageId": "swe-system-design-06",
+      "type": "choice",
+      "prompt": "The inventory service starts timing out. The order service keeps calling it with 30-second timeouts and three retries, and soon order threads are exhausted too. Which pattern contains the damage best?",
+      "options": [
+        "A saga that compensates every failed order",
+        "Short timeouts plus a circuit breaker that fails fast while inventory is down",
+        "An API gateway in front of the order service",
+        "Moving inventory data into the order service's database"
+      ],
+      "answer": 1,
+      "explanation": "A circuit breaker stops sending calls to a failing dependency and fails fast, so callers keep their threads; short timeouts limit how long each call can block.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-06-q2",
+      "pageId": "swe-system-design-06",
+      "type": "choice",
+      "prompt": "Checkout spans three services: reserve stock, charge card, create shipment. The card charge fails after stock was reserved. What does a saga do?",
+      "options": [
+        "Rolls back all three services with a two-phase commit",
+        "Retries the charge forever until it eventually succeeds",
+        "Leaves the stock reserved and alerts an operator to fix it",
+        "Runs a compensating action that releases the reserved stock"
+      ],
+      "answer": 3,
+      "explanation": "A saga is a chain of local transactions; when a step fails, it runs compensating actions for the steps already done, such as releasing the stock.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-06-q3",
+      "pageId": "swe-system-design-06",
+      "type": "choice",
+      "prompt": "A five-person startup with an evolving product asks whether to start with 12 microservices. What is the most defensible advice?",
+      "options": [
+        "Start with a modular monolith and extract services when scale or teams require it",
+        "Use microservices from day one, since splitting later is impossible",
+        "Use one microservice per database table to keep services small",
+        "Use microservices but let them share a single database to stay simple"
+      ],
+      "answer": 0,
+      "explanation": "Microservices pay off with many teams and clear boundaries. A small team with a shifting domain moves faster with a modular monolith that can be split along proven boundaries later.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-07-q1",
+      "pageId": "swe-system-design-07",
+      "type": "choice",
+      "prompt": "A mobile client times out while creating a payment and retries the POST. How do you make sure the customer is charged only once?",
+      "options": [
+        "Change the endpoint from POST to GET so the request is idempotent",
+        "Return 429 Too Many Requests whenever a client retries",
+        "Require an Idempotency-Key header and return the stored result for repeats",
+        "Use offset pagination on the payments endpoint"
+      ],
+      "answer": 2,
+      "explanation": "The server stores each idempotency key with its first response; a retry with the same key gets that response back instead of creating a second charge.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-07-q2",
+      "pageId": "swe-system-design-07",
+      "type": "choice",
+      "prompt": "An infinite feed uses ?offset=20&limit=20. New posts arrive constantly, and users report seeing duplicates when they scroll. What change fixes this?",
+      "options": [
+        "Increase the page size to 100 so fewer pages are needed",
+        "Switch to cursor pagination that continues after the last item seen",
+        "Cache each page for 60 seconds at the CDN",
+        "Return 204 No Content when the feed changes"
+      ],
+      "answer": 1,
+      "explanation": "Offsets shift when rows are inserted at the top, so items move across page boundaries. A cursor anchors on the last item returned, so inserts do not shift later pages.",
+      "difficulty": 2
+    },
+    {
+      "id": "swe-system-design-07-q3",
+      "pageId": "swe-system-design-07",
+      "type": "choice",
+      "prompt": "A token bucket holds 100 tokens and refills at 10 tokens per second. A client that was idle for a minute sends 150 requests at once. What happens?",
+      "options": [
+        "About 100 succeed immediately and the rest get 429 until tokens refill",
+        "All 150 succeed because the client was idle for a minute",
+        "Only 10 succeed, since the limit is 10 requests per second",
+        "All 150 are rejected because the burst exceeds the bucket size"
+      ],
+      "answer": 0,
+      "explanation": "The bucket caps at 100 tokens, so a burst of 100 is allowed; the remaining requests are throttled until refills at 10 per second catch up.",
+      "difficulty": 3
+    },
+    {
+      "id": "swe-system-design-08-q1",
+      "pageId": "swe-system-design-08",
+      "type": "choice",
+      "prompt": "An interviewer says 'Design a URL shortener.' What should you do first?",
+      "options": [
+        "Draw the load balancer, cache and database diagram",
+        "Pick between SQL and NoSQL for the urls table",
+        "Estimate the storage needed for five years of data",
+        "Clarify functional and non-functional requirements such as scale and latency"
+      ],
+      "answer": 3,
+      "explanation": "Requirements drive every later choice. Estimating or drawing before agreeing on scope and targets risks designing the wrong system.",
+      "difficulty": 1
+    },
+    {
+      "id": "swe-system-design-08-q2",
+      "pageId": "swe-system-design-08",
+      "type": "choice",
+      "prompt": "A URL shortener must store 6 billion links. What is the minimum length of a base62 code (characters a-z, A-Z, 0-9) that can give each one a unique code?",
+      "options": [
+        "5 characters",
+        "6 characters",
+        "7 characters",
+        "8 characters"
+      ],
+      "answer": 1,
+      "explanation": "62^5 is about 0.9 billion, too few; 62^6 is about 57 billion, enough. Many designs still use 7 characters (about 3.5 trillion) for growth headroom.",
+      "difficulty": 3
+    },
+    {
+      "id": "swe-system-design-08-q3",
+      "pageId": "swe-system-design-08",
+      "type": "choice",
+      "prompt": "The product team wants an accurate count of every click on a short link. Which redirect status should the service return?",
+      "options": [
+        "301 Moved Permanently, so browsers cache the redirect",
+        "200 OK with the long URL in the response body",
+        "302 Found, so each click comes back to the server",
+        "404 Not Found, followed by a client-side redirect"
+      ],
+      "answer": 2,
+      "explanation": "Browsers cache a 301 and skip the shortener on later clicks, hiding them from analytics. A 302 (or 307) makes every click pass through the service.",
+      "difficulty": 2
+    }
+  ]
+}

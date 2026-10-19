@@ -1,0 +1,378 @@
+{
+  "collection": "SWE",
+  "pages": [
+    {
+      "image": "SWE/21-ci-cd-cheat-sheet.png",
+      "title": "CI/CD CHEAT SHEET",
+      "subtitle": "Ship small changes safely, many times a day",
+      "robot": "Small batches, fast feedback!",
+      "learner": "How do we deploy without breaking production?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "CI vs Delivery vs Deployment",
+          "body": "CI = continuous integration: merge to main daily; every push is built and tested.\nContinuous delivery: every green build is releasable; a human clicks deploy.\nContinuous deployment: every green build ships to production automatically.",
+          "diagram": "Three horizontal lanes sharing commit -> build -> test. Lane 1 stops at 'merged + tested'. Lane 2 ends at a hand pressing a DEPLOY button before 'prod'. Lane 3 flows straight into 'prod' with no gate. Lanes colored cyan, violet, lime."
+        },
+        {
+          "number": 2,
+          "heading": "Pipeline Stages",
+          "body": "Commit -> build -> unit tests -> lint + security scan -> package -> deploy staging -> E2E tests -> deploy prod.\nFail fast: cheapest checks run first.\nAny red stage stops the line.",
+          "diagram": "Horizontal conveyor belt of stage boxes with green check marks; one box (unit tests) shows a red X and a stop sign halting everything to its right. Small stopwatch labels: '30 s', '2 min', '8 min' growing left to right."
+        },
+        {
+          "number": 3,
+          "heading": "GitHub Actions Example",
+          "body": "File: .github/workflows/ci.yml\nRuns on every push and pull request.\nJob: check out code, then run make test.",
+          "code": "on: [push, pull_request]\njobs:\n  test: {runs-on: ubuntu-latest, steps:\n    [{uses: actions/checkout@v5}, {run: make test}]}",
+          "diagram": "YAML file card with the code, arrows from 'on:' to a push icon and a PR icon, and from 'runs-on' to a small cloud runner VM labeled ubuntu-latest showing a green check."
+        },
+        {
+          "number": 4,
+          "heading": "Build Once: Artifacts",
+          "body": "Artifact = versioned build output: container image, wheel, JAR, binary.\nTag with the commit SHA, e.g. app:3f9c2ab.\nPromote the same artifact dev -> staging -> prod; never rebuild per environment.",
+          "code": "docker build -t registry/app:3f9c2ab .\ndocker push registry/app:3f9c2ab",
+          "diagram": "One sealed crate stamped 'app:3f9c2ab' sliding along a track through three gates labeled dev, staging, prod; a crossed-out wrench icon next to staging showing 'no rebuild'."
+        },
+        {
+          "number": 5,
+          "heading": "Deployment Strategies",
+          "body": "Rolling: replace instances a few at a time.\nBlue-green: run the new stack beside the old, then switch all traffic.\nCanary: send 5% of traffic to the new version, watch metrics, ramp up.\nFeature flags: deploy code dark, enable per user.",
+          "diagram": "2x2 grid of mini diagrams: rolling (row of servers turning from v1 blue to v2 green one by one); blue-green (router switch flipping from blue stack to green stack); canary (traffic split 95%/5% with a small bird icon on the 5% path); feature flag (toggle switch ON/OFF in front of a code block)."
+        },
+        {
+          "number": 6,
+          "heading": "Rollback Plan",
+          "body": "Rollback = return to the last good version in minutes.\nBlue-green: flip traffic back. Canary: route 0% to new.\nFlag: switch the feature off, no deploy.\nDatabase: expand/contract migrations keep old code working.",
+          "diagram": "Timeline with v41 (good) -> v42 (error spike graph turning red) -> big curved arrow back to v41. Side note: database schema shown as 'add new column' (expand) before 'drop old column' (contract)."
+        },
+        {
+          "number": 7,
+          "heading": "Pipeline Pitfalls",
+          "body": "Flaky tests teach people to ignore red builds.\nSlow pipelines (30+ min) push teams toward big, risky batches.\nSecrets in YAML or logs: use the secret store.\nRebuilding per environment ships untested bits.",
+          "diagram": "Warning-orange panel with four icons: a dice on a test tube (flaky), a snail on a conveyor (slow), a key printed in a log line (leaked secret), two different crates labeled 'staging build' and 'prod build' (rebuild)."
+        },
+        {
+          "number": 8,
+          "heading": "Check Yourself",
+          "body": "Canary error rate: 4% vs 0.5% on stable.\nWhat now?\nAnswer: stop the ramp, send traffic back to stable, then investigate.",
+          "diagram": "Two side-by-side gauges: 'stable 0.5%' green, 'canary 4%' red; the learner points at the red gauge while the robot holds a lever labeled 'route 0% to canary'."
+        }
+      ],
+      "footer": "Integrate daily, build once, ship small, always keep a way back.",
+      "summary": "Explains continuous integration, continuous delivery and continuous deployment, the stages of a CI/CD pipeline with a GitHub Actions example, why one artifact is promoted through environments, and how rolling, blue-green, canary and feature-flag releases make rollback fast.",
+      "keywords": [
+        "ci/cd",
+        "continuous integration",
+        "continuous delivery",
+        "continuous deployment",
+        "pipeline",
+        "github actions",
+        "artifact",
+        "blue-green deployment",
+        "canary release",
+        "rolling update",
+        "feature flags",
+        "rollback"
+      ]
+    },
+    {
+      "image": "SWE/22-testing-cheat-sheet.png",
+      "title": "TESTING CHEAT SHEET",
+      "subtitle": "Fast feedback that proves your code still works",
+      "robot": "Red, green, then refactor!",
+      "learner": "How many tests are actually enough?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Testing Pyramid",
+          "body": "Base: many unit tests - fast, cheap, precise.\nMiddle: fewer integration tests.\nTop: a few end-to-end tests - slow, realistic, brittle.\nUpside-down pyramid (ice-cream cone) = slow, flaky suite.",
+          "diagram": "A three-tier pyramid: wide lime base 'UNIT (hundreds, ms)', violet middle 'INTEGRATION (dozens, s)', narrow cyan top 'E2E (a few, min)'. Arrows on the side: 'speed + isolation' pointing down, 'realism + cost' pointing up. Small inverted ice-cream cone in the corner marked with a red X."
+        },
+        {
+          "number": 2,
+          "heading": "Unit, Integration, E2E",
+          "body": "Unit: one function or class, no network or disk; milliseconds.\nIntegration: real parts together, e.g. code + real database.\nE2E = end-to-end: drive the whole app like a user, e.g. browser login flow.",
+          "diagram": "Three nested boxes: a single gear (unit), gear connected to a database cylinder (integration), a browser window -> API -> database chain with a user cursor clicking 'Log in' (E2E)."
+        },
+        {
+          "number": 3,
+          "heading": "Test Doubles",
+          "body": "Stub: returns canned answers.\nMock: expects specific calls; verifies them.\nFake: working lightweight version, e.g. in-memory database.\nSpy: records calls to assert on later.\nDummy: placeholder, never used.",
+          "diagram": "Code under test in the center, wired to a 'PaymentAPI' slot. Five swappable cartridges plug into the slot, each labeled: stub ('returns OK'), mock ('expects charge(10) once'), fake ('in-memory DB'), spy ('call log: 2 calls'), dummy ('empty')."
+        },
+        {
+          "number": 4,
+          "heading": "TDD: Red-Green-Refactor",
+          "body": "TDD = test-driven development.\nRed: write a small failing test.\nGreen: write the simplest code that passes.\nRefactor: clean up while tests stay green.\nRepeat in minute-long cycles.",
+          "diagram": "Circular loop of three arrows: red node 'write failing test', green node 'make it pass', blue node 'refactor', with a tiny clock '2-5 min' in the middle."
+        },
+        {
+          "number": 5,
+          "heading": "Pytest Example",
+          "body": "add() comes from your module: from calc import add.\nparametrize turns one test into two cases.\nRun: pytest -q -> 2 passed",
+          "code": "import pytest\n@pytest.mark.parametrize(\"a,b,want\", [(2, 3, 5), (-1, 1, 0)])\ndef test_add(a, b, want):\n    assert add(a, b) == want",
+          "diagram": "Terminal window below the code showing '..' then '2 passed in 0.01s' in green; arrows link each tuple in the list to one green dot."
+        },
+        {
+          "number": 6,
+          "heading": "Coverage Pitfalls",
+          "body": "Coverage = share of code your tests execute, not what they check.\n100% coverage with no asserts proves nothing.\nBranch coverage beats line coverage.\nUse it to find untested code, not as a target.",
+          "diagram": "A gauge reading '100% coverage' next to a test file whose body has no assert, stamped with an orange 'TESTS NOTHING'. Below, an if/else diagram where only the 'if' branch is highlighted: 'line 100%, branch 50%'."
+        },
+        {
+          "number": 7,
+          "heading": "Flaky Tests",
+          "body": "Flaky = passes or fails with no code change.\nCauses: sleeps and timing, test order, shared state, real network, clocks, randomness.\nFix: wait on conditions, isolate data, seed randomness; quarantine, then repair.",
+          "diagram": "A test result strip reading pass, pass, FAIL, pass, FAIL on the same commit hash; a coin flipping above it. Side list of cause icons: hourglass, shuffled cards, shared mug, network cloud, clock, dice."
+        },
+        {
+          "number": 8,
+          "heading": "Check Yourself",
+          "body": "A test calls a real payment API and fails 1 run in 20.\nFix?\nAnswer: swap in a fake or stub; keep one separate contract test against the sandbox.",
+          "diagram": "Learner holding a red-and-green flickering test card; robot unplugging a cable labeled 'real payment API' and plugging in a cartridge labeled 'fake'."
+        }
+      ],
+      "footer": "Many fast unit tests, a few real end-to-end ones, and zero tolerance for flakes.",
+      "summary": "Covers the testing pyramid and the difference between unit, integration and end-to-end tests, the five kinds of test doubles, the TDD red-green-refactor loop, a parametrized pytest example, and why coverage targets and flaky tests mislead teams.",
+      "keywords": [
+        "testing pyramid",
+        "unit test",
+        "integration test",
+        "end-to-end test",
+        "e2e",
+        "test double",
+        "mock",
+        "stub",
+        "tdd",
+        "code coverage",
+        "flaky test",
+        "pytest"
+      ]
+    },
+    {
+      "image": "SWE/23-observability-cheat-sheet.png",
+      "title": "OBSERVABILITY CHEAT SHEET",
+      "subtitle": "Know what your system is doing, and why",
+      "robot": "Alert on symptoms, not causes!",
+      "learner": "Why is checkout slow right now?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Logs, Metrics, Traces",
+          "body": "Logs: timestamped events with rich detail.\nMetrics: numbers over time, cheap to store and alert on.\nTraces: one request's path across services.\nMetrics say something is wrong; traces say where; logs say why.",
+          "diagram": "Three icons in a row: scroll of log lines (amber), line chart (cyan), waterfall of horizontal bars (violet). A detective-style flow arrow: chart spike -> slow bar in trace -> highlighted error log line."
+        },
+        {
+          "number": 2,
+          "heading": "Structured Logging",
+          "body": "Log JSON key-values, not free text.\nAdd trace_id to every line so logs join traces.\nLevels: DEBUG, INFO, WARN, ERROR.\nNever log secrets or personal data.",
+          "code": "{\"level\":\"error\",\"msg\":\"payment failed\",\n \"order_id\":\"A17\",\"latency_ms\":812,\n \"trace_id\":\"4bf92f35\"}",
+          "diagram": "Left: messy free-text log line crossed out. Right: the JSON line with keys color-coded; a query box underneath: 'level=error AND latency_ms > 500' returning that line."
+        },
+        {
+          "number": 3,
+          "heading": "Four Golden Signals",
+          "body": "Latency: how long requests take; watch p99, not the average.\nTraffic: demand, e.g. requests per second.\nErrors: rate of failed requests.\nSaturation: how full the system is, e.g. CPU, queue depth.",
+          "diagram": "Four dashboard tiles: latency histogram with p50 = 80 ms and p99 = 1.2 s markers; traffic line '2,400 req/s'; error rate '0.3%'; saturation gauge 'CPU 78%, queue 120'."
+        },
+        {
+          "number": 4,
+          "heading": "SLI, SLO, SLA",
+          "body": "SLI = service level indicator: what you measure, e.g. % of requests under 300 ms.\nSLO = objective: internal target, e.g. 99.9% over 30 days.\nSLA = agreement: contract with penalties, looser than the SLO.",
+          "diagram": "Three stacked horizontal lines on a chart: measured SLI line wiggling at 99.95%, dashed SLO line at 99.9%, lower red SLA line at 99.5% with a '$ refund' tag."
+        },
+        {
+          "number": 5,
+          "heading": "Error Budget Math",
+          "body": "Budget = 100% - SLO.\n99.9% over 30 days = 0.1% x 43,200 min = 43.2 min of failure allowed.\nBudget left: ship features.\nBudget burned: freeze risky releases, fix reliability.",
+          "diagram": "A fuel gauge labeled 'error budget 43.2 min' draining as incident blocks (12 min, 20 min) are subtracted; when it hits empty a gate labeled 'feature releases' closes."
+        },
+        {
+          "number": 6,
+          "heading": "Distributed Tracing",
+          "body": "Trace = tree of spans; span = one timed operation.\nTrace context travels in the W3C traceparent header.\nOpenTelemetry (OTel): vendor-neutral SDKs + collector for traces, metrics, logs.",
+          "code": "with tracer.start_as_current_span(\"charge_card\"):\n    charge(order)",
+          "diagram": "Waterfall chart: root span 'POST /checkout 950 ms', children 'auth 40 ms', 'inventory 60 ms', 'charge_card 780 ms' (highlighted red). Arrows show the traceparent header passing between three service boxes."
+        },
+        {
+          "number": 7,
+          "heading": "Alerting and Dashboards",
+          "body": "Page humans on symptoms users feel: SLO burn rate, error spikes.\nCauses (CPU at 90%) go on dashboards, not pagers.\nEvery page needs an action and a runbook link.\nDashboard per service: golden signals first.",
+          "diagram": "Pager icon connected only to a 'users affected' symptom bell; a CPU gauge routed instead to a dashboard screen. Dashboard mockup with four golden-signal tiles on the top row."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Averages hide tail latency: use percentiles.\nHigh-cardinality labels (user_id) explode metric cost.\nAlert fatigue: noisy pages get ignored.\nNo trace_id in logs = clues you cannot connect.",
+          "diagram": "Orange warning panel: an 'avg 90 ms' card hiding a long tail curve; a metric label exploding into thousands of tiny series; a phone buzzing under a pile of ignored alerts."
+        }
+      ],
+      "footer": "Measure what users feel, budget for failure, and trace every request end to end.",
+      "summary": "Explains the three telemetry types (logs, metrics, traces), structured logging, the four golden signals, how SLIs, SLOs, SLAs and error budgets relate with worked numbers, distributed tracing with OpenTelemetry, and how to alert on symptoms rather than causes.",
+      "keywords": [
+        "observability",
+        "logs",
+        "metrics",
+        "traces",
+        "structured logging",
+        "golden signals",
+        "sli",
+        "slo",
+        "sla",
+        "error budget",
+        "opentelemetry",
+        "alerting"
+      ]
+    },
+    {
+      "image": "SWE/24-infrastructure-as-code-cheat-sheet.png",
+      "title": "INFRASTRUCTURE AS CODE",
+      "subtitle": "Version your servers like you version your code",
+      "robot": "Always read the plan!",
+      "learner": "Who changed the firewall by hand?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "What IaC Is",
+          "body": "IaC = infrastructure as code: servers, networks and DNS described in text files.\nReviewed in pull requests, versioned in Git.\nSame code -> same environment, every time.",
+          "diagram": "A blueprint scroll labeled main.tf feeding a machine that stamps out three identical environments: dev, staging, prod, each with a server, database and network icon."
+        },
+        {
+          "number": 2,
+          "heading": "Declarative vs Imperative",
+          "body": "Declarative: describe the end state; the tool works out the steps (Terraform, Kubernetes YAML).\nImperative: you script each step (bash, CLI calls).\nDeclarative is idempotent: apply twice, same result.",
+          "diagram": "Split panel. Left: a target picture '3 servers' with the tool drawing arrows from current state (1 server) to it. Right: a numbered checklist 'create server, create server, create server' that makes 6 servers when run twice, marked orange."
+        },
+        {
+          "number": 3,
+          "heading": "Terraform Workflow",
+          "body": "init: download providers, set up the state backend.\nplan: preview the diff (+ create, ~ update, - destroy).\napply: make the real changes.\nSave the plan so you apply exactly what was reviewed.",
+          "code": "terraform init\nterraform plan -out=tfplan\nterraform apply tfplan",
+          "diagram": "Three-step loop: init (download icon) -> plan (diff sheet with green +, amber ~, red -) -> apply (cloud with new resources) -> back to editing code."
+        },
+        {
+          "number": 4,
+          "heading": "HCL Example",
+          "body": "HCL = HashiCorp Configuration Language.\nresource TYPE NAME { arguments }\nFirst plan: 1 to add, 0 to change, 0 to destroy.\nReference it elsewhere: aws_s3_bucket.logs.arn",
+          "code": "resource \"aws_s3_bucket\" \"logs\" {\n  bucket = \"acme-logs-2026\"\n  tags   = { team = \"platform\" }\n}",
+          "diagram": "The code block with callouts: 'type' over aws_s3_bucket, 'local name' over logs, 'argument' over bucket; below, a plan output line in green '+ aws_s3_bucket.logs will be created'."
+        },
+        {
+          "number": 5,
+          "heading": "State and Locking",
+          "body": "State file maps code to real resource IDs.\nKeep it in a remote backend (S3, GCS, HCP Terraform) with locking, so two applies never collide.\nState can hold secrets: encrypt it; never commit it.",
+          "diagram": "A ledger book 'terraform.tfstate' mapping 'aws_s3_bucket.logs' -> 'acme-logs-2026'. Two engineers' terminals both reaching for it; one gets a padlock 'LOCKED by apply #42', the other waits."
+        },
+        {
+          "number": 6,
+          "heading": "Modules",
+          "body": "Module = reusable folder of .tf files with inputs (variables) and outputs.\nCall one network module three times: dev, staging, prod.\nPin versions, e.g. version = \"~> 5.0\".",
+          "diagram": "A single module box 'network' with input sockets (cidr, azs) and output plugs (vpc_id); three copies stamped with different inputs: 10.0.0.0/16, 10.1.0.0/16, 10.2.0.0/16."
+        },
+        {
+          "number": 7,
+          "heading": "Drift and GitOps",
+          "body": "Drift = real infrastructure no longer matches the code, e.g. a console edit.\nDetect: scheduled terraform plan. Fix: re-apply or update the code.\nGitOps: Git is the source of truth; an agent (Argo CD, Flux) keeps syncing to it.",
+          "diagram": "A code file showing 'port 443 only' next to a real firewall with an extra hand-opened port 22 highlighted orange ('DRIFT'). Below, a loop: Git repo -> agent -> cluster -> agent compares -> back to Git."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Hand edits outside code -> drift.\nState on a laptop -> lost or conflicting state.\nApplying without reading the plan: watch '-/+ replace' and '- destroy'.\nSecrets hardcoded in .tf files.",
+          "diagram": "Orange warning panel: a laptop holding a fragile state file; a plan sheet with a red '-/+ must be replaced' line circled next to a database icon; a password string inside a .tf file."
+        }
+      ],
+      "footer": "If it is not in code, it is not real: plan, review, apply.",
+      "summary": "Explains infrastructure as code, declarative versus imperative tools, the Terraform init-plan-apply workflow with a small HCL example, why remote state and locking matter, reusable modules, configuration drift and GitOps.",
+      "keywords": [
+        "infrastructure as code",
+        "iac",
+        "terraform",
+        "hcl",
+        "plan",
+        "apply",
+        "state",
+        "locking",
+        "modules",
+        "drift",
+        "gitops",
+        "declarative"
+      ]
+    },
+    {
+      "image": "SWE/25-cloud-fundamentals-cheat-sheet.png",
+      "title": "CLOUD FUNDAMENTALS",
+      "subtitle": "Rent computing by the second, not the year",
+      "robot": "Least privilege, every time!",
+      "learner": "Which cloud service do I actually need?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Service Models",
+          "body": "IaaS (infrastructure as a service): rent VMs; you manage the OS and up.\nPaaS (platform): push code; the platform runs it.\nSaaS (software): use finished apps, e.g. email.\nServerless: functions run on events, scale to zero.",
+          "diagram": "Four stacked columns (hardware, virtualization, OS, runtime, app, data) for on-prem, IaaS, PaaS, SaaS; layers you manage in amber, provider-managed in cyan, the amber shrinking left to right."
+        },
+        {
+          "number": 2,
+          "heading": "Regions and Zones",
+          "body": "Region = geographic area, e.g. us-east-1, europe-west1.\nAvailability zone (AZ) = isolated data center(s) inside a region.\nSpread across 2-3 AZs to survive a data-center failure; add regions for disasters.",
+          "diagram": "Map outline with two region bubbles; zoom-in on one region showing three AZ boxes (a, b, c) each with servers, connected by low-latency links; one AZ crossed out while the app keeps running in the other two."
+        },
+        {
+          "number": 3,
+          "heading": "Core Services (AWS/GCP/Azure)",
+          "body": "VMs: EC2 | Compute Engine | Virtual Machines\nObjects: S3 | Cloud Storage | Blob Storage\nSQL: RDS | Cloud SQL | Azure SQL Database\nFunctions: Lambda | Cloud Run functions | Azure Functions\nNetwork: VPC | VPC | Virtual Network",
+          "diagram": "A compact 5-row by 3-column table with generic category icons (server, bucket, database cylinder, lightning bolt, network mesh) on the left; columns headed AWS, GCP, Azure as plain text, no logos."
+        },
+        {
+          "number": 4,
+          "heading": "Networking: VPC",
+          "body": "VPC = virtual private cloud: your isolated network, e.g. 10.0.0.0/16.\nPublic subnet: routes to an internet gateway (load balancer).\nPrivate subnet: app servers and databases, no inbound internet.\nFirewall rules open only needed ports, e.g. 443.",
+          "diagram": "VPC box 10.0.0.0/16 containing public subnet 10.0.1.0/24 with a load balancer and private subnet 10.0.2.0/24 with app server and database; internet arrow enters only via port 443 to the load balancer."
+        },
+        {
+          "number": 5,
+          "heading": "IAM: Least Privilege",
+          "body": "IAM = identity and access management: who can do what on which resource.\nGrant only what the job needs.\nPrefer roles with short-lived credentials over long-lived keys.",
+          "code": "{\"Effect\": \"Allow\",\n \"Action\": \"s3:GetObject\",\n \"Resource\": \"arn:aws:s3:::acme-logs/*\"}",
+          "diagram": "A keyring where a role badge opens exactly one door labeled 'read acme-logs'; an oversized master key labeled 'Action: *' crossed out in orange."
+        },
+        {
+          "number": 6,
+          "heading": "Shared Responsibility",
+          "body": "Provider secures the cloud: buildings, hardware, hypervisor.\nYou secure what you put in it: data, IAM, network rules, OS patches on VMs.\nMore managed service = less for you to secure.",
+          "diagram": "Horizontal line splitting a stack: below 'PROVIDER' (data center, hardware, hypervisor) in cyan, above 'YOU' (data, identities, firewall rules, OS) in amber; a slider shows the line rising for managed services."
+        },
+        {
+          "number": 7,
+          "heading": "Cost Traps",
+          "body": "Idle VMs and forgotten dev environments.\nData egress: traffic out to the internet or across regions is billed per GB.\nNAT gateway and log ingestion fees add up.\nFix: budgets, alerts, tags, autoscaling, right-sizing.",
+          "diagram": "A cloud with a leaking money pipe: drips labeled 'idle VM', 'egress $/GB', 'NAT gateway', 'logs'; a budget alarm bell at 80% of monthly budget."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Public storage bucket = data leak.\nRoot account used daily, no MFA (multi-factor authentication).\nSingle-AZ database = single point of failure.\nWildcard policies: \"Action\": \"*\".",
+          "diagram": "Orange warning panel with four icons: an open bucket spilling files, a crown key without a lock, a lone database in one zone with a crack, a policy card with a big asterisk."
+        }
+      ],
+      "footer": "Pick the most managed service that fits, spread across zones, grant the least.",
+      "summary": "Introduces cloud service models from IaaS to serverless, regions and availability zones, the core compute, storage, database, function and networking services with their AWS, GCP and Azure names, IAM least privilege, the shared responsibility model and common cost traps.",
+      "keywords": [
+        "cloud",
+        "iaas",
+        "paas",
+        "saas",
+        "serverless",
+        "region",
+        "availability zone",
+        "vpc",
+        "iam",
+        "least privilege",
+        "shared responsibility",
+        "aws gcp azure"
+      ]
+    }
+  ]
+}

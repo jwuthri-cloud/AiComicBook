@@ -1,0 +1,182 @@
+{
+ "terms": [
+  {
+   "term": "HTTP",
+   "aka": [
+    "HyperText Transfer Protocol",
+    "HTTPS"
+   ],
+   "category": "Software Engineering",
+   "short": "The request/response protocol browsers and APIs use to exchange web resources.",
+   "definition": "A client sends a request with a method, path and headers; the server answers with a status code, headers and a body. It is stateless, like ordering at a counter where each order stands alone. HTTPS is the same protocol carried inside TLS encryption.",
+   "related": [
+    "TLS handshake",
+    "TCP",
+    "DNS"
+   ]
+  },
+  {
+   "term": "TLS handshake",
+   "aka": [
+    "TLS",
+    "Transport Layer Security",
+    "SSL"
+   ],
+   "category": "Software Engineering",
+   "short": "The opening exchange in which client and server agree on encryption keys and the server proves its identity.",
+   "definition": "Client and server swap key shares to derive fresh session keys, and the server presents a certificate showing it owns the domain. In TLS 1.3 this takes one round trip. Afterwards all traffic is encrypted and tamper-evident.",
+   "related": [
+    "HTTP",
+    "TCP",
+    "DNS"
+   ]
+  },
+  {
+   "term": "TCP",
+   "aka": [
+    "Transmission Control Protocol",
+    "TCP/IP"
+   ],
+   "category": "Software Engineering",
+   "short": "A transport protocol that delivers an ordered, reliable byte stream between two programs.",
+   "definition": "TCP opens a connection with a three-way handshake (SYN, SYN-ACK, ACK), numbers every byte, and resends anything that is lost. It is like registered mail with receipts: slower to start, but nothing goes missing or arrives out of order. UDP is the no-guarantees alternative.",
+   "related": [
+    "HTTP",
+    "TLS handshake",
+    "Latency"
+   ]
+  },
+  {
+   "term": "DNS",
+   "aka": [
+    "Domain Name System"
+   ],
+   "category": "Software Engineering",
+   "short": "The internet's distributed phone book that turns names like example.com into IP addresses.",
+   "definition": "A resolver walks from the root servers to the top-level domain to the domain's authoritative server, then caches the answer for its TTL. Record types include A (IPv4), AAAA (IPv6), CNAME (alias) and MX (mail). Caching makes lookups fast but delays changes.",
+   "related": [
+    "HTTP",
+    "TCP",
+    "CIDR notation"
+   ]
+  },
+  {
+   "term": "CIDR notation",
+   "aka": [
+    "CIDR",
+    "Classless Inter-Domain Routing",
+    "Subnet mask"
+   ],
+   "category": "Software Engineering",
+   "short": "A compact way to write an IP address range as address/prefix length, like 10.0.1.0/24.",
+   "definition": "The number after the slash says how many leading bits are fixed for the network; the rest identify hosts. A /24 leaves 8 host bits, so 256 addresses. Smaller prefix numbers mean bigger ranges.",
+   "related": [
+    "DNS",
+    "TCP",
+    "HTTP"
+   ]
+  },
+  {
+   "term": "Unix pipe",
+   "aka": [
+    "Shell pipe",
+    "Pipe operator"
+   ],
+   "category": "Software Engineering",
+   "short": "The | operator that streams one command's standard output into the next command's standard input.",
+   "definition": "Pipes let small single-purpose tools combine into powerful one-liners, like an assembly line where each station does one job. All stages run at the same time, connected by a kernel buffer. Errors on stderr bypass the pipe unless redirected.",
+   "related": [
+    "Queue",
+    "TCP",
+    "Race condition"
+   ]
+  },
+  {
+   "term": "SQL injection",
+   "aka": [
+    "SQLi",
+    "Injection attack"
+   ],
+   "category": "Software Engineering",
+   "short": "An attack where user input is spliced into a SQL query and changes what the query does.",
+   "definition": "If code builds SQL by concatenating strings, input such as ' OR '1'='1 can rewrite the query to return or delete data. Parameterized queries fix it by sending the query and the data separately. It is the classic case of mixing data with code.",
+   "related": [
+    "Cross-site scripting",
+    "Prompt injection",
+    "Defense in depth"
+   ]
+  },
+  {
+   "term": "Cross-site scripting",
+   "aka": [
+    "XSS"
+   ],
+   "category": "Software Engineering",
+   "short": "An attack that gets a malicious script to run inside another site's pages in a victim's browser.",
+   "definition": "The attacker plants script in content the site later displays, such as a comment, and it runs with the site's privileges, stealing data or acting as the user. The fixes are escaping output for its context and a Content-Security-Policy. Frameworks escape by default, but raw HTML escape hatches reopen the hole.",
+   "related": [
+    "SQL injection",
+    "JSON Web Token",
+    "HTTP"
+   ]
+  },
+  {
+   "term": "JSON Web Token",
+   "aka": [
+    "JWT"
+   ],
+   "category": "Software Engineering",
+   "short": "A compact, signed token of JSON claims, written header.payload.signature, used for authentication.",
+   "definition": "The signature proves the claims were issued by a trusted party and not altered, but the payload is only base64url-encoded, so anyone can read it. Servers must pin the algorithm and check expiry, issuer and audience. Because it is stateless, revoking one before it expires is hard.",
+   "related": [
+    "Cross-site scripting",
+    "HTTP",
+    "TLS handshake"
+   ]
+  },
+  {
+   "term": "Race condition",
+   "aka": [
+    "Data race",
+    "Lost update"
+   ],
+   "category": "Software Engineering",
+   "short": "A bug where the result depends on the unpredictable timing of concurrent operations on shared state.",
+   "definition": "Two threads both read a counter as 5 and both write 6, so one increment vanishes. Like two people editing the same paper copy, the last writer silently wins. Locks, atomics or avoiding shared state prevent it.",
+   "related": [
+    "Mutex",
+    "Deadlock",
+    "Queue"
+   ]
+  },
+  {
+   "term": "Mutex",
+   "aka": [
+    "Mutual exclusion lock",
+    "Mutual exclusion"
+   ],
+   "category": "Software Engineering",
+   "short": "A lock that lets only one thread at a time run a critical section of code.",
+   "definition": "A thread acquires the mutex before touching shared data and releases it afterwards; others wait their turn. It is like a single bathroom key on a hook. Mutexes prevent race conditions but can cause deadlocks if taken in inconsistent orders.",
+   "related": [
+    "Race condition",
+    "Deadlock",
+    "Queue"
+   ]
+  },
+  {
+   "term": "Deadlock",
+   "aka": [
+    "Deadly embrace"
+   ],
+   "category": "Software Engineering",
+   "short": "A standstill where tasks each hold a resource and wait forever for one another's.",
+   "definition": "Thread 1 holds lock A and wants B while thread 2 holds B and wants A, so neither moves, like two cars meeting on a one-lane bridge. It needs four conditions at once: mutual exclusion, hold and wait, no preemption and circular wait. Taking locks in one global order prevents it.",
+   "related": [
+    "Mutex",
+    "Race condition",
+    "Cycle detection"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,229 @@
+{
+ "questions": [
+  {
+   "id": "swe-foundations-01-q1",
+   "pageId": "swe-foundations-01",
+   "type": "choice",
+   "prompt": "A mobile app's POST /orders request times out and the app automatically retries it. What is the main risk, and the standard fix?",
+   "options": [
+    "The order may be created twice; send an Idempotency-Key the server deduplicates",
+    "The response may be cached by a proxy; add a Cache-Control: no-store header",
+    "The TLS session may expire mid-request; force a full handshake on every retry",
+    "The cookie may be dropped by the browser; switch the request method to GET"
+   ],
+   "answer": 0,
+   "explanation": "POST is not idempotent, so a retry after an unknown outcome can repeat the side effect. An idempotency key lets the server recognize the retry and return the original result.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-01-q2",
+   "pageId": "swe-foundations-01",
+   "type": "choice",
+   "prompt": "A logged-in user requests another team's admin dashboard. The server knows exactly who they are but they lack the role. Which status code fits best?",
+   "options": [
+    "401 Unauthorized, because the request is missing valid credentials",
+    "404 Not Found, because the dashboard route does not exist anywhere",
+    "403 Forbidden, because the identity is known but access is denied",
+    "500 Internal Server Error, because the permission check itself failed"
+   ],
+   "answer": 2,
+   "explanation": "401 means 'not authenticated' (who are you?). 403 means the server knows the identity and still refuses, which is this case.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-foundations-01-q3",
+   "pageId": "swe-foundations-01",
+   "type": "choice",
+   "prompt": "On a lossy mobile network, an HTTP/2 page stalls whenever a single packet is lost, even for unrelated images. Why does HTTP/3 help?",
+   "options": [
+    "HTTP/3 compresses headers, so fewer packets are sent and fewer get lost",
+    "HTTP/3 runs over QUIC, where loss on one stream does not block the others",
+    "HTTP/3 opens six parallel TCP connections, so one stall affects only a sixth",
+    "HTTP/3 removes encryption, so lost packets can be retransmitted much faster"
+   ],
+   "answer": 1,
+   "explanation": "HTTP/2 multiplexes streams over one TCP connection, so one lost packet holds back all of them (TCP head-of-line blocking). QUIC handles loss per stream over UDP.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-foundations-02-q1",
+   "pageId": "swe-foundations-02",
+   "type": "choice",
+   "prompt": "You must give a team a subnet with room for about 200 hosts. Which CIDR block is the smallest that fits?",
+   "options": [
+    "10.0.4.0/28",
+    "10.0.4.0/25",
+    "10.0.4.0/16",
+    "10.0.4.0/24"
+   ],
+   "answer": 3,
+   "explanation": "A /24 leaves 8 host bits: 256 addresses (about 254 usable). A /25 gives only 128 and a /16 wastes 65,536.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-02-q2",
+   "pageId": "swe-foundations-02",
+   "type": "choice",
+   "prompt": "You moved a website to a new server and updated its A record, but some users still reach the old server an hour later. Most likely cause?",
+   "options": [
+    "The new server's TLS certificate has not been issued for the domain yet",
+    "Resolvers are still serving the old record cached until its TTL expires",
+    "The CNAME record was deleted, so lookups fall back to the old MX record",
+    "NAT on the users' home routers is rewriting the destination IP address"
+   ],
+   "answer": 1,
+   "explanation": "Resolvers cache DNS answers for the record's TTL. Lower the TTL well before a migration so the change spreads quickly.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-02-q3",
+   "pageId": "swe-foundations-02",
+   "type": "choice",
+   "prompt": "ping to a production server times out, but curl -v https://server returns 200. What is the best conclusion?",
+   "options": [
+    "The server is down and curl returned a stale cached copy of the page",
+    "DNS is broken, because ping and curl use different resolver libraries",
+    "ICMP is probably blocked by a firewall; the host and HTTPS are working",
+    "TCP works but UDP is blocked, so ping must be using UDP datagrams"
+   ],
+   "answer": 2,
+   "explanation": "ping uses ICMP, which firewalls often drop. A successful HTTPS response proves the host, TCP and TLS all work.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-foundations-03-q1",
+   "pageId": "swe-foundations-03",
+   "type": "choice",
+   "prompt": "A deploy script must be readable and runnable by its owner, readable and runnable by the group, and inaccessible to everyone else. Which command?",
+   "options": [
+    "chmod 750 deploy.sh",
+    "chmod 644 deploy.sh",
+    "chmod 777 deploy.sh",
+    "chmod 705 deploy.sh"
+   ],
+   "answer": 0,
+   "explanation": "7 = rwx (4+2+1) for the owner, 5 = r-x (4+1) for the group, 0 = nothing for others.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-foundations-03-q2",
+   "pageId": "swe-foundations-03",
+   "type": "choice",
+   "prompt": "You run ./build.sh > build.log, but error messages still flood the terminal and are missing from the file. How do you capture them too?",
+   "options": [
+    "Use >> instead of > so the errors are appended to the log",
+    "Add 2>&1 after the redirect: ./build.sh > build.log 2>&1",
+    "Pipe into grep: ./build.sh | grep error > build.log",
+    "Use < instead of > so the shell reads all output streams"
+   ],
+   "answer": 1,
+   "explanation": "Errors go to stderr (fd 2), which > alone does not redirect. 2>&1 points stderr at wherever stdout currently goes, the log file.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-03-q3",
+   "pageId": "swe-foundations-03",
+   "type": "choice",
+   "prompt": "A service ignores kill 4242 for a minute. A teammate suggests kill -9 4242 immediately next time. What is the trade-off?",
+   "options": [
+    "SIGKILL asks politely like SIGTERM but is retried more often by the kernel",
+    "SIGKILL only stops the process's threads and leaves its children running",
+    "SIGKILL pauses the process so it can be resumed later with fg",
+    "SIGKILL cannot be caught, so the process skips cleanup like flushing files"
+   ],
+   "answer": 3,
+   "explanation": "SIGTERM (15) can be handled to shut down cleanly; SIGKILL (9) is enforced by the kernel with no handler, so buffers, temp files and locks may be left behind.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-04-q1",
+   "pageId": "swe-foundations-04",
+   "type": "choice",
+   "prompt": "An API returns GET /invoices/1043 for any logged-in user, regardless of who owns invoice 1043. Which category does this belong to?",
+   "options": [
+    "Injection, because the invoice ID is user input passed into the query",
+    "Broken access control, because ownership is never checked per request",
+    "Cross-site request forgery, because the browser sends cookies automatically",
+    "Cryptographic failure, because invoice IDs are sequential and guessable"
+   ],
+   "answer": 1,
+   "explanation": "Authentication succeeded, but authorization did not verify that the user owns the object (an IDOR, insecure direct object reference). Check ownership server-side on every request.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-04-q2",
+   "pageId": "swe-foundations-04",
+   "type": "choice",
+   "prompt": "A team stores passwords as SHA-256(password) with no salt. What is the best change?",
+   "options": [
+    "Switch to SHA-512, since a longer digest is harder to reverse",
+    "Encrypt the hashes with AES and keep the key in the same database",
+    "Hash with Argon2id or bcrypt, which are slow and salted per user",
+    "Base64-encode the hashes so attackers cannot read them directly"
+   ],
+   "answer": 2,
+   "explanation": "Fast hashes let attackers test billions of guesses per second, and no salt allows precomputed tables. Argon2id and bcrypt are deliberately slow and add a unique salt.",
+   "difficulty": 1
+  },
+  {
+   "id": "swe-foundations-04-q3",
+   "pageId": "swe-foundations-04",
+   "type": "choice",
+   "prompt": "A server verifies JWTs with a library call that accepts whatever algorithm the token header names. What attack does this open up?",
+   "options": [
+    "A token with alg none or a swapped algorithm can pass verification unsigned",
+    "The payload becomes encrypted, so the server cannot read the user's claims",
+    "Tokens can no longer expire, because exp is ignored for unknown algorithms",
+    "The token grows too large for a cookie and is silently dropped by browsers"
+   ],
+   "answer": 0,
+   "explanation": "Trusting the header lets attackers pick alg none or confuse RS256 with HS256 using the public key as an HMAC secret. Pin the expected algorithm and validate exp, iss and aud.",
+   "difficulty": 3
+  },
+  {
+   "id": "swe-foundations-05-q1",
+   "pageId": "swe-foundations-05",
+   "type": "choice",
+   "prompt": "A Python service spends most of its time waiting on 5,000 slow HTTP calls. Which approach fits best?",
+   "options": [
+    "multiprocessing with one process per call, to bypass the GIL entirely",
+    "a single thread making the calls one after another to avoid any races",
+    "a CPU-bound thread pool sized to the number of cores on the machine",
+    "asyncio with await, so one thread overlaps many pending network waits"
+   ],
+   "answer": 3,
+   "explanation": "The work is I/O-bound: tasks mostly wait. An event loop interleaves thousands of waits cheaply; 5,000 processes would waste memory.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-05-q2",
+   "pageId": "swe-foundations-05",
+   "type": "choice",
+   "prompt": "Thread 1 locks accounts A then B; thread 2 locks B then A. Occasionally both hang forever. What is the simplest fix?",
+   "options": [
+    "Make every thread acquire locks in the same global order, e.g. by account ID",
+    "Replace the mutexes with a sleep between the two lock acquisitions",
+    "Run both threads at a higher operating-system priority level",
+    "Release lock A immediately after acquiring it, before taking lock B"
+   ],
+   "answer": 0,
+   "explanation": "The hang is a deadlock from circular wait. A consistent lock order makes a cycle impossible; releasing A early would just reintroduce a race.",
+   "difficulty": 2
+  },
+  {
+   "id": "swe-foundations-05-q3",
+   "pageId": "swe-foundations-05",
+   "type": "choice",
+   "prompt": "A colleague says: 'Python has a GIL, so count += 1 from several threads can't race.' Why is that wrong?",
+   "options": [
+    "The GIL only applies to asyncio tasks, not to threading.Thread objects",
+    "count += 1 is several bytecode steps, and threads can switch between them",
+    "The GIL is released for every integer operation to improve performance",
+    "Races only happen across processes, and threads all share one process"
+   ],
+   "answer": 1,
+   "explanation": "The GIL makes single bytecodes atomic, but += is a load, add and store; a switch in between loses an update. Use a Lock or an atomic structure.",
+   "difficulty": 3
+  }
+ ]
+}

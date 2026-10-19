@@ -1,0 +1,193 @@
+{
+  "terms": [
+    {
+      "term": "Learning-rate schedule",
+      "aka": [
+        "LR schedule",
+        "Learning rate warmup",
+        "Cosine decay"
+      ],
+      "category": "Machine Learning",
+      "short": "A plan for how the learning rate changes over training, usually a warmup followed by a decay.",
+      "definition": "Instead of one fixed step size, training ramps the learning rate up for a short warmup, then lowers it, often along a cosine curve. Think of driving: ease onto the road, cruise, then slow down to park precisely. The decay lets the model settle into a good minimum.",
+      "related": [
+        "Learning rate",
+        "Optimizer",
+        "Adam",
+        "Gradient descent"
+      ]
+    },
+    {
+      "term": "Vanishing gradients",
+      "aka": [
+        "Vanishing gradient problem",
+        "Exploding gradients"
+      ],
+      "category": "Machine Learning",
+      "short": "Gradients that shrink toward zero (or blow up) as they pass back through many layers or time steps.",
+      "definition": "Backpropagation multiplies one factor per layer, so factors below 1 make early layers learn almost nothing and factors above 1 make training blow up. It is like a message whispered down a very long line. Good initialization, normalization, residual connections, gating and clipping are the standard fixes.",
+      "related": [
+        "Backpropagation",
+        "Residual connection",
+        "Recurrent neural network",
+        "Gradient"
+      ]
+    },
+    {
+      "term": "Batch normalization",
+      "aka": [
+        "BatchNorm"
+      ],
+      "category": "Machine Learning",
+      "short": "A layer that standardizes each feature using the mean and variance of the current mini-batch.",
+      "definition": "During training it rescales every feature to mean 0 and variance 1 across the batch, then applies a learned scale and shift; at inference it uses running averages instead. It speeds up and stabilizes training, especially in CNNs, but behaves poorly with very small batches.",
+      "related": [
+        "Layer normalization",
+        "Batch",
+        "Convolutional neural network",
+        "Dropout"
+      ]
+    },
+    {
+      "term": "Layer normalization",
+      "aka": [
+        "LayerNorm",
+        "RMSNorm"
+      ],
+      "category": "Machine Learning",
+      "short": "A layer that standardizes each example's features on their own, independent of the batch.",
+      "definition": "LayerNorm takes one token's feature vector, subtracts its mean and divides by its standard deviation, then applies a learned gain and bias. RMSNorm is a cheaper variant that skips the mean and just divides by the root mean square. Because it never looks at other examples, it suits transformers and LLMs.",
+      "related": [
+        "Batch normalization",
+        "Transformer",
+        "Residual stream"
+      ]
+    },
+    {
+      "term": "Residual connection",
+      "aka": [
+        "Skip connection",
+        "ResNet"
+      ],
+      "category": "Machine Learning",
+      "short": "A shortcut that adds a block's input to its output, y = x + F(x).",
+      "definition": "Each block learns only a correction on top of what it receives, and the shortcut gives gradients a direct path backward. It is like an express lane that bypasses every stop. Residual connections made 100+ layer networks trainable and are in every transformer block.",
+      "related": [
+        "Vanishing gradients",
+        "Residual stream",
+        "Convolutional neural network",
+        "Transformer"
+      ]
+    },
+    {
+      "term": "Dropout",
+      "aka": [
+        "Inverted dropout"
+      ],
+      "category": "Machine Learning",
+      "short": "A regularizer that randomly zeroes a fraction of units during training.",
+      "definition": "Each training step, every unit is switched off with probability p and the rest are scaled up, so the network cannot rely on any single path. Like a team that practices with random players missing, it learns redundant skills. Dropout is turned off at inference.",
+      "related": [
+        "Regularization",
+        "Overfitting",
+        "Neural network",
+        "Batch normalization"
+      ]
+    },
+    {
+      "term": "Convolutional neural network",
+      "aka": [
+        "CNN",
+        "ConvNet",
+        "Convolution"
+      ],
+      "category": "Machine Learning",
+      "short": "A neural network that slides small learned filters over its input to detect local patterns.",
+      "definition": "The same small kernel is reused at every position (weight sharing), producing feature maps; stacked layers build from edges to textures to objects. This built-in sense of locality makes CNNs efficient for images, audio and other grid data.",
+      "related": [
+        "Neural network",
+        "Residual connection",
+        "Fine-tuning",
+        "Transformer"
+      ]
+    },
+    {
+      "term": "Recurrent neural network",
+      "aka": [
+        "RNN",
+        "LSTM",
+        "GRU",
+        "Long short-term memory"
+      ],
+      "category": "Machine Learning",
+      "short": "A network that reads a sequence one step at a time, carrying a hidden state as memory.",
+      "definition": "At each step the same cell combines the new input with its previous hidden state. Plain RNNs struggle with long-range dependencies because gradients vanish; LSTM and GRU cells add gates that control what to keep, write and forget. Transformers replaced them for most language tasks.",
+      "related": [
+        "Vanishing gradients",
+        "Attention",
+        "Transformer",
+        "Backpropagation"
+      ]
+    },
+    {
+      "term": "Cosine similarity",
+      "aka": [
+        "Cosine distance"
+      ],
+      "category": "Machine Learning",
+      "short": "A score from -1 to 1 measuring how closely two vectors point in the same direction.",
+      "definition": "It is the dot product divided by the product of the vectors' lengths, so it ignores size and looks only at direction. Two embeddings with cosine near 1 have similar meaning. For unit-length vectors it equals the plain dot product.",
+      "related": [
+        "Embedding",
+        "Vector database",
+        "Retrieval-augmented generation"
+      ]
+    },
+    {
+      "term": "Variational autoencoder",
+      "aka": [
+        "VAE"
+      ],
+      "category": "Machine Learning",
+      "short": "An autoencoder whose encoder outputs a probability distribution, so new data can be sampled from its latent space.",
+      "definition": "The encoder predicts a mean and spread for a latent code, a sample is drawn with the reparameterization trick, and the decoder rebuilds the input. A KL penalty keeps the latent space smooth and close to a standard normal, so decoding random codes gives plausible new examples.",
+      "related": [
+        "Autoencoder",
+        "Kullback-Leibler divergence",
+        "Diffusion model",
+        "Generative adversarial network"
+      ]
+    },
+    {
+      "term": "Generative adversarial network",
+      "aka": [
+        "GAN",
+        "GANs"
+      ],
+      "category": "Machine Learning",
+      "short": "A generator and a discriminator trained against each other: one forges samples, the other spots fakes.",
+      "definition": "The generator turns random noise into samples and improves by fooling the discriminator, which learns to tell real from fake. Like a counterfeiter and a detective pushing each other to improve, it produces sharp results, but training is unstable and can suffer mode collapse.",
+      "related": [
+        "Variational autoencoder",
+        "Diffusion model",
+        "Loss function"
+      ]
+    },
+    {
+      "term": "Diffusion model",
+      "aka": [
+        "Denoising diffusion",
+        "DDPM",
+        "Latent diffusion"
+      ],
+      "category": "Machine Learning",
+      "short": "A generative model that learns to reverse a gradual noising process, turning random noise into data.",
+      "definition": "Training adds noise to real examples step by step and teaches a network to predict that noise. Generation starts from pure noise and removes it a little at a time, often guided by a text prompt. It is like a sculptor revealing a statue from a block of static.",
+      "related": [
+        "Variational autoencoder",
+        "Generative adversarial network",
+        "Autoregressive model"
+      ]
+    }
+  ]
+}

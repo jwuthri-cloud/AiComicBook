@@ -1,0 +1,176 @@
+{
+ "terms": [
+  {
+   "term": "SOLID principles",
+   "aka": [
+    "SOLID"
+   ],
+   "category": "Software Engineering",
+   "short": "Five object-oriented design principles that keep code easy to change.",
+   "definition": "SOLID stands for single responsibility, open/closed, Liskov substitution, interface segregation and dependency inversion. Together they aim to make changes small and local. Think of them as building codes for software: guides that prevent collapse, not laws to follow blindly.",
+   "related": [
+    "Liskov substitution principle",
+    "Dependency injection",
+    "Code smell",
+    "Refactoring"
+   ]
+  },
+  {
+   "term": "Liskov substitution principle",
+   "aka": [
+    "LSP"
+   ],
+   "category": "Software Engineering",
+   "short": "A subtype must work anywhere its base type is expected, without surprises.",
+   "definition": "If code works with a base class, it must keep working when given any subclass. A subclass may not demand more, promise less or throw unexpected errors. A square that changes its height when you set its width breaks code written for rectangles.",
+   "related": [
+    "SOLID principles",
+    "Design pattern"
+   ]
+  },
+  {
+   "term": "Dependency injection",
+   "aka": [
+    "DI"
+   ],
+   "category": "Software Engineering",
+   "short": "Passing an object's collaborators in from outside instead of creating them inside.",
+   "definition": "A class or function receives the things it depends on, such as a database, clock or HTTP client, as parameters. This makes it easy to swap a real dependency for a fake one in tests. It is like a lamp with a plug instead of wires soldered into the wall.",
+   "related": [
+    "SOLID principles",
+    "Singleton pattern",
+    "Strategy pattern"
+   ]
+  },
+  {
+   "term": "Design pattern",
+   "aka": [
+    "GoF patterns",
+    "Gang of Four patterns",
+    "Software design pattern"
+   ],
+   "category": "Software Engineering",
+   "short": "A named, reusable solution to a recurring software design problem.",
+   "definition": "Design patterns describe proven ways to structure code, such as Factory Method, Decorator or Observer. The 1994 Gang of Four book cataloged 23 of them in creational, structural and behavioral families. The names give teams a shared vocabulary; the patterns are templates, not copy-paste code.",
+   "related": [
+    "Singleton pattern",
+    "Factory method pattern",
+    "Builder pattern",
+    "Decorator pattern",
+    "Strategy pattern",
+    "Observer pattern"
+   ]
+  },
+  {
+   "term": "Singleton pattern",
+   "aka": [
+    "Singleton"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern that ensures a class has exactly one instance with global access to it.",
+   "definition": "A singleton restricts a class to one shared object, such as one configuration or logger. It is often called an anti-pattern because global access hides dependencies and lets tests leak state into each other. Creating one object and passing it where needed usually works better.",
+   "related": [
+    "Design pattern",
+    "Dependency injection",
+    "Factory method pattern"
+   ]
+  },
+  {
+   "term": "Factory method pattern",
+   "aka": [
+    "Factory method",
+    "Factory pattern",
+    "Factory"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern where a method decides which concrete class to create.",
+   "definition": "Instead of calling a specific constructor, code calls a creation method that subclasses or a registry can override. Callers get an object with the right interface without knowing its exact class. It is like ordering 'a coffee' and letting the barista pick the machine.",
+   "related": [
+    "Design pattern",
+    "Builder pattern",
+    "Singleton pattern"
+   ]
+  },
+  {
+   "term": "Builder pattern",
+   "aka": [
+    "Builder"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern that constructs a complex object step by step, then validates it.",
+   "definition": "A builder collects optional parts through a series of calls and creates the final object in one build() step. It avoids constructors with long lists of arguments and catches invalid combinations early. In Python, keyword arguments or dataclasses often do the same job.",
+   "related": [
+    "Design pattern",
+    "Factory method pattern"
+   ]
+  },
+  {
+   "term": "Decorator pattern",
+   "aka": [
+    "Decorator"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern that wraps an object to add behavior while keeping the same interface.",
+   "definition": "A decorator holds another object, forwards calls to it and does extra work such as logging, caching or retrying. Because wrappers share the interface, they stack in any combination. Python's @decorator syntax applies the same idea to functions.",
+   "related": [
+    "Design pattern",
+    "Strategy pattern"
+   ]
+  },
+  {
+   "term": "Strategy pattern",
+   "aka": [
+    "Strategy"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern that makes an algorithm swappable by passing it in as an object or function.",
+   "definition": "The varying part of a computation, such as a pricing rule or sort key, is pulled out behind a common interface and passed in. Callers choose the behavior without if/elif chains. Python's sorted(key=...) is a built-in example.",
+   "related": [
+    "Design pattern",
+    "Dependency injection",
+    "Observer pattern"
+   ]
+  },
+  {
+   "term": "Observer pattern",
+   "aka": [
+    "Observer",
+    "Listener pattern"
+   ],
+   "category": "Software Engineering",
+   "short": "A pattern where subscribers are notified automatically when a subject changes.",
+   "definition": "A subject keeps a list of observers and calls each one when an event happens. The subject does not need to know what the observers do. It is like a newsletter: subscribers sign up once and get every new issue.",
+   "related": [
+    "Design pattern",
+    "Strategy pattern"
+   ]
+  },
+  {
+   "term": "Code smell",
+   "aka": [
+    "Smell"
+   ],
+   "category": "Software Engineering",
+   "short": "A surface sign in code that often points to a deeper design problem.",
+   "definition": "Long functions, duplicated code, long parameter lists and magic numbers are typical smells. A smell is not a bug; it is a hint that the design may be hard to change. Each common smell has matching refactoring moves.",
+   "related": [
+    "Refactoring",
+    "SOLID principles"
+   ]
+  },
+  {
+   "term": "Refactoring",
+   "aka": [
+    "Refactor"
+   ],
+   "category": "Software Engineering",
+   "short": "Changing the structure of code without changing what it does.",
+   "definition": "Refactoring improves names, splits functions or removes duplication while keeping behavior identical. It is done in small steps, running tests after each one. Like tidying a workshop, it makes the next job faster without building anything new.",
+   "related": [
+    "Code smell",
+    "SOLID principles",
+    "Dependency injection"
+   ]
+  }
+ ]
+}

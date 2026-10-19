@@ -1,0 +1,316 @@
+{
+  "questions": [
+    {
+      "id": "ml-metrics-03-q1", "pageId": "ml-metrics-03", "type": "choice",
+      "prompt": "Two house-price models have the same MAE, but model B has a much higher RMSE. What does that tell you about model B?",
+      "options": [
+        "Its errors are mostly small, with a few very large misses",
+        "It is biased upward on every single prediction",
+        "It explains less variance, so its R^2 must be negative",
+        "Its errors are all roughly the same moderate size"
+      ],
+      "answer": 0,
+      "explanation": "RMSE squares residuals before averaging, so a gap between RMSE and MAE signals a few large errors. Equal-sized errors would make RMSE equal MAE.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-03-q2", "pageId": "ml-metrics-03", "type": "choice",
+      "prompt": "A demand forecaster reports MAPE across thousands of products, many of which sell 0 or 1 units on most days. What is the main problem?",
+      "options": [
+        "MAPE ignores the sign of the errors entirely",
+        "MAPE cannot be computed with more than one product",
+        "Dividing by tiny or zero actuals makes MAPE explode or break",
+        "MAPE is always smaller than MAE, hiding the error"
+      ],
+      "answer": 2,
+      "explanation": "MAPE divides each error by the actual value, so near-zero sales produce huge or undefined percentages. WAPE (sum of absolute errors over sum of actuals) avoids this.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-metrics-03-q3", "pageId": "ml-metrics-03", "type": "choice",
+      "prompt": "Your model's residual-vs-prediction plot shows a funnel: residuals spread wider as predictions grow. What is a sensible next step?",
+      "options": [
+        "Add more trees, since the funnel means underfitting",
+        "Model a log-transformed target or use a scale-aware loss",
+        "Switch the reported metric from RMSE to R^2",
+        "Remove the largest predictions from the test set"
+      ],
+      "answer": 1,
+      "explanation": "A funnel means error variance grows with the target (heteroscedasticity). A log target or relative-error loss stabilizes it; changing the reported metric does not fix the model.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-04-q1", "pageId": "ml-metrics-04", "type": "choice",
+      "prompt": "Two search systems both have recall@10 = 0.8. System A usually puts the right answer at rank 1; system B at rank 8. Which metric separates them?",
+      "options": [
+        "Recall@10, computed with more queries",
+        "Hit rate@10 averaged over all queries",
+        "Precision@10 on the same set of queries",
+        "MRR, which rewards relevant items ranked early"
+      ],
+      "answer": 3,
+      "explanation": "Recall, precision and hit rate at k ignore order inside the top k. MRR uses 1/rank of the first relevant item, so rank 1 scores 1.0 and rank 8 scores 0.125.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-metrics-04-q2", "pageId": "ml-metrics-04", "type": "choice",
+      "prompt": "Your relevance labels are graded 0 (bad) to 3 (perfect), and users mostly look at the first few results. Which metric fits best?",
+      "options": [
+        "NDCG@k, which uses graded gains and discounts lower ranks",
+        "Hit rate@k, which only checks for any relevant item",
+        "Recall@k, which counts all relevant items equally",
+        "Accuracy of a relevant/irrelevant classifier"
+      ],
+      "answer": 0,
+      "explanation": "NDCG handles graded relevance and discounts by position, then normalizes by the ideal ordering so scores are comparable across queries.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-04-q3", "pageId": "ml-metrics-04", "type": "choice",
+      "prompt": "A RAG chatbot gives wrong answers. You find the gold passage is in the retrieved top 5 for only 40% of questions. What should you fix first?",
+      "options": [
+        "The LLM's prompt, so it reasons more carefully",
+        "The answer grader, which is probably too strict",
+        "The retriever, since the evidence rarely reaches the context",
+        "The output length limit, which truncates answers"
+      ],
+      "answer": 2,
+      "explanation": "Recall@5 of 0.4 means the generator usually never sees the evidence, so no prompt change can fix most errors. Evaluate and improve retrieval separately from generation.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-05-q1", "pageId": "ml-metrics-05", "type": "choice",
+      "prompt": "Among all predictions your model makes with 0.9 confidence, only 70% are correct. How should you describe it?",
+      "options": [
+        "Underconfident; its scores should be pushed up",
+        "Overconfident; its confidence exceeds its accuracy",
+        "Well calibrated, since 70% is above chance",
+        "Poorly discriminating; its AUROC must be near 0.5"
+      ],
+      "answer": 1,
+      "explanation": "Calibration compares stated confidence to observed accuracy. Saying 0.9 while being right 70% of the time is overconfidence; it says nothing directly about ranking quality.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-metrics-05-q2", "pageId": "ml-metrics-05", "type": "choice",
+      "prompt": "You must calibrate a 10-class image model without changing which class it predicts. Which method guarantees that?",
+      "options": [
+        "Isotonic regression fitted separately per class",
+        "Retraining with focal loss and gamma = 2",
+        "Oversampling rare classes in the training data",
+        "Temperature scaling of the logits on a held-out set"
+      ],
+      "answer": 3,
+      "explanation": "Dividing all logits by one temperature T preserves their order, so the argmax and accuracy stay the same. Per-class isotonic fits can change the top class.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-05-q3", "pageId": "ml-metrics-05", "type": "choice",
+      "prompt": "After Platt scaling, a fraud model's ECE drops from 0.12 to 0.02. What happens to its AUROC?",
+      "options": [
+        "It stays the same, because the mapping is monotone",
+        "It rises, because calibrated scores rank better",
+        "It falls, because calibration trades off with ranking",
+        "It becomes undefined until the threshold is retuned"
+      ],
+      "answer": 0,
+      "explanation": "Platt scaling is an increasing function of the score, so the ordering of examples is unchanged and AUROC is identical. Calibration and discrimination are separate properties.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-metrics-06-q1", "pageId": "ml-metrics-06", "type": "choice",
+      "prompt": "A test of a new checkout page gives p = 0.03. Which statement is correct?",
+      "options": [
+        "There is a 3% chance the new page has no effect",
+        "There is a 97% chance the new page is better",
+        "Data this extreme would occur 3% of the time if there were no effect",
+        "The new page improves conversion by about 3%"
+      ],
+      "answer": 2,
+      "explanation": "A p-value is the probability of data at least this extreme assuming the null is true. It is not the probability the null is true, nor the effect size.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-metrics-06-q2", "pageId": "ml-metrics-06", "type": "choice",
+      "prompt": "A team checks its A/B dashboard every morning and stops the test the first day p dips below 0.05. What is the problem?",
+      "options": [
+        "Daily checks reduce power, hiding real effects",
+        "Repeated peeking inflates the false-positive rate well above 5%",
+        "Stopping early makes the confidence interval too wide",
+        "The p-value cannot be computed before the test ends"
+      ],
+      "answer": 1,
+      "explanation": "Each look is another chance for noise to cross the threshold; with 10 looks the false-positive rate reaches about 19%. Fix the sample size in advance or use a sequential test.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-metrics-06-q3", "pageId": "ml-metrics-06", "type": "choice",
+      "prompt": "You compare two classifiers on the same 2,000 test examples and want a confidence interval for the F1 difference. What is a sound approach?",
+      "options": [
+        "Run each model once and report the raw F1 gap",
+        "Use a two-sample t-test on the two F1 scores",
+        "Evaluate each model on a different random half of the test set",
+        "Paired bootstrap: resample examples, recompute both F1s, take percentiles"
+      ],
+      "answer": 3,
+      "explanation": "Resampling the same examples for both models keeps the comparison paired and works for any metric. The 2.5th and 97.5th percentiles of the differences give a 95% interval.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-losses-01-q1", "pageId": "ml-losses-01", "type": "choice",
+      "prompt": "Delivery times are usually 30 minutes, but a few orders take 5 hours due to logging errors. You want a typical-time prediction. Which loss fits?",
+      "options": [
+        "MSE, because it is the most common loss",
+        "MAE or Huber, because they limit the outliers' pull",
+        "Squared log error, because it is always unbiased",
+        "Cross-entropy, because times are positive"
+      ],
+      "answer": 1,
+      "explanation": "MSE predicts the mean, which bad 5-hour records drag upward. MAE targets the median and Huber caps each outlier's gradient at delta.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-losses-01-q2", "pageId": "ml-losses-01", "type": "choice",
+      "prompt": "A warehouse wants a stock forecast that is enough 95% of the time, because running out is far worse than overstocking. Which loss?",
+      "options": [
+        "Quantile (pinball) loss with q = 0.95",
+        "Huber loss with a large delta",
+        "MSE with targets multiplied by 0.95",
+        "MAE on standardized targets"
+      ],
+      "answer": 0,
+      "explanation": "Pinball loss with q = 0.95 charges under-prediction 19x more than over-prediction, so the model learns the 95th percentile of demand.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-01-q3", "pageId": "ml-losses-01", "type": "choice",
+      "prompt": "You rescale targets from dollars to thousands of dollars but keep Huber delta = 1.0. What changes?",
+      "options": [
+        "Nothing, because Huber loss is scale-invariant",
+        "The model now ignores all outliers completely",
+        "Huber becomes equivalent to cross-entropy",
+        "Delta now means $1,000, so far fewer errors count as outliers"
+      ],
+      "answer": 3,
+      "explanation": "Delta is measured in target units. After rescaling, delta = 1 corresponds to $1,000, so the loss stays quadratic for much larger errors; retune delta after rescaling.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-losses-02-q1", "pageId": "ml-losses-02", "type": "choice",
+      "prompt": "Your PyTorch model ends with a softmax layer and you train it with nn.CrossEntropyLoss. Training is sluggish. Why?",
+      "options": [
+        "CrossEntropyLoss needs one-hot labels, not class indices",
+        "Softmax outputs are too large for the loss to handle",
+        "CrossEntropyLoss applies log-softmax itself, so softmax runs twice",
+        "Cross-entropy only works for binary classification"
+      ],
+      "answer": 2,
+      "explanation": "nn.CrossEntropyLoss expects raw logits and applies log-softmax internally. Feeding it probabilities squashes the scores twice and weakens gradients.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-losses-02-q2", "pageId": "ml-losses-02", "type": "choice",
+      "prompt": "An object detector sees 100,000 easy background boxes for every few real objects, and the easy boxes dominate the loss. What helps most directly?",
+      "options": [
+        "Hinge loss, so probabilities become calibrated",
+        "Focal loss, which down-weights well-classified examples",
+        "Label smoothing with eps = 0.5 on all classes",
+        "Removing the sigmoid and using MSE on logits"
+      ],
+      "answer": 1,
+      "explanation": "Focal loss multiplies cross-entropy by (1 - p_t)^gamma, shrinking the loss of easy examples (100x at p_t = 0.9 with gamma = 2) so hard ones drive learning.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-02-q3", "pageId": "ml-losses-02", "type": "choice",
+      "prompt": "A binary model computes torch.log(torch.sigmoid(z)) and gets NaN losses when logits reach -800. What is the fix?",
+      "options": [
+        "Use binary_cross_entropy_with_logits on the raw logits",
+        "Lower the learning rate until the logits stay small",
+        "Replace the sigmoid with a softmax over one class",
+        "Add class weights so negatives count less"
+      ],
+      "answer": 0,
+      "explanation": "sigmoid(-800) underflows to 0 and log(0) is -inf. The fused loss uses the stable form max(z, 0) - z*y + log(1 + exp(-|z|)), which never takes log of 0.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-03-q1", "pageId": "ml-losses-03", "type": "choice",
+      "prompt": "A triplet has d(anchor, positive) = 0.3 and d(anchor, negative) = 1.2 with margin 0.5. What is its loss, and why does that matter?",
+      "options": [
+        "0.4, so it pushes the negative slightly farther",
+        "1.4, so it is a hard triplet worth mining",
+        "0.9, the gap between the two distances",
+        "0, so it contributes no gradient and wastes compute"
+      ],
+      "answer": 3,
+      "explanation": "max(0, 0.3 - 1.2 + 0.5) = 0. Easy triplets already satisfy the margin, which is why hard or semi-hard negative mining is used.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-03-q2", "pageId": "ml-losses-03", "type": "choice",
+      "prompt": "You train a CLIP-style model with InfoNCE but must cut the batch size from 4,096 to 64. What is the main risk?",
+      "options": [
+        "Each example gets far fewer in-batch negatives, weakening the signal",
+        "The similarity matrix stops being square",
+        "Temperature can no longer be learned",
+        "The loss changes from cross-entropy to MSE"
+      ],
+      "answer": 0,
+      "explanation": "With in-batch negatives each row has N - 1 negatives, so a smaller batch means an easier task and weaker gradients. Memory banks or mined hard negatives can compensate.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-03-q3", "pageId": "ml-losses-03", "type": "choice",
+      "prompt": "For a recommender you only know which items each user clicked, not ratings. You want clicked items ranked above unclicked ones. Which loss fits?",
+      "options": [
+        "MSE on a predicted star rating",
+        "Triplet loss with a margin of zero",
+        "BPR: -log sigmoid(s_clicked - s_unclicked)",
+        "Hinge loss on the absolute click count"
+      ],
+      "answer": 2,
+      "explanation": "BPR is a pairwise ranking loss built for implicit feedback: it only cares that the clicked item scores higher than a sampled unclicked one.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-losses-04-q1", "pageId": "ml-losses-04", "type": "choice",
+      "prompt": "Model A reports perplexity 12 and model B reports 18 on the same text, but they use different tokenizers. What can you conclude?",
+      "options": [
+        "A is better, because lower perplexity always wins",
+        "B is better, because larger vocabularies raise perplexity",
+        "They are tied once you take the square root",
+        "Nothing yet; compare bits per byte or character instead"
+      ],
+      "answer": 3,
+      "explanation": "Perplexity is per token, and token sizes differ between tokenizers. A tokenizer-independent unit such as bits per byte makes the comparison fair.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-losses-04-q2", "pageId": "ml-losses-04", "type": "choice",
+      "prompt": "You fit a single Gaussian Q to a two-peaked distribution P by minimizing reverse KL(Q || P). What do you expect?",
+      "options": [
+        "Q spreads wide to cover both peaks",
+        "Q locks onto one peak and ignores the other",
+        "Q matches P exactly, since KL is symmetric",
+        "Q collapses to a point mass between the peaks"
+      ],
+      "answer": 1,
+      "explanation": "Reverse KL heavily penalizes Q putting mass where P has little, so Q is mode-seeking and settles on one peak. Forward KL(P || Q) would spread Q over both.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-losses-04-q3", "pageId": "ml-losses-04", "type": "choice",
+      "prompt": "A VAE's KL term drops to nearly 0 and its samples look the same no matter which z you feed in. What has happened?",
+      "options": [
+        "Mode collapse caused by the discriminator",
+        "The ELBO has become an exact likelihood",
+        "Posterior collapse: the decoder ignores the latent code",
+        "The noise schedule of the diffusion process is too short"
+      ],
+      "answer": 2,
+      "explanation": "When the decoder is powerful enough to model data alone, q(z|x) matches the prior, the KL term vanishes and z carries no information. KL annealing or weaker decoders help.",
+      "difficulty": 2
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+ "collection": "SWE",
+ "pages": [
+  {
+   "image": "SWE/26-http-web-cheat-sheet.png",
+   "title": "HTTP & WEB CHEAT SHEET",
+   "subtitle": "From URL to rendered page",
+   "robot": "Every click is a request!",
+   "learner": "What happens when I press Enter?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Type a URL, Press Enter",
+     "body": "1. DNS: example.com -> 203.0.113.10\n2. Connect: TCP (or QUIC over UDP)\n3. TLS handshake: encrypt + verify server\n4. Send HTTP request, get response\n5. Browser parses HTML, fetches assets, renders",
+     "diagram": "Left-to-right pipeline of five numbered stations: address bar -> DNS phone book returning an IP -> two plugs connecting (TCP) -> padlock (TLS) -> envelope out / envelope back (HTTP) -> browser window painting a page. Cyan arrows, each station labeled."
+    },
+    {
+     "number": 2,
+     "heading": "Anatomy of a Message",
+     "body": "HTTP = HyperText Transfer Protocol.\nRequest: method + path + headers + optional body.\nResponse: status line + headers + body.\nStateless: each request stands alone.",
+     "code": "GET /users/42 HTTP/1.1\nHost: example.com\nAccept: application/json\n-> HTTP/1.1 200 OK",
+     "diagram": "Two stacked message cards. Request card with colored bands labeled METHOD, PATH, HEADERS, BODY. Response card with STATUS LINE, HEADERS, BODY. Arrow from client laptop to server and back."
+    },
+    {
+     "number": 3,
+     "heading": "Methods & Idempotency",
+     "body": "GET read | POST create | PUT replace\nPATCH partial update | DELETE remove\nSafe (no side effects): GET, HEAD, OPTIONS\nIdempotent (repeat = same end state): GET, PUT, DELETE\nPOST retried can double an order: send an Idempotency-Key",
+     "diagram": "Table of five methods with two checkmark columns, SAFE and IDEMPOTENT. Side vignette: a POST /orders sent twice producing two receipts (red X) vs PUT /cart/7 sent twice producing one cart (green check)."
+    },
+    {
+     "number": 4,
+     "heading": "Status Code Families",
+     "body": "1xx info\n2xx success: 200 OK, 201 Created, 204 No Content\n3xx redirect: 301 Moved, 304 Not Modified\n4xx client error: 400, 401, 403, 404, 429\n5xx server error: 500, 502, 503",
+     "diagram": "Five horizontal color-coded bars (grey, lime, cyan, amber, red) labeled 1xx-5xx, each with example codes as chips. Small icon per family: info i, check mark, curved arrow, user with question mark, broken server."
+    },
+    {
+     "number": 5,
+     "heading": "Headers, Cookies, Sessions",
+     "body": "Headers = metadata: Content-Type, Authorization, Cache-Control.\nHTTP forgets you; cookies remember.\nServer sends: Set-Cookie: sid=abc; HttpOnly; Secure; SameSite=Lax\nBrowser returns Cookie: sid=abc -> server looks up the session.",
+     "diagram": "Sequence diagram: browser logs in -> server replies with Set-Cookie and stores sid=abc -> user row in a session table; next request carries Cookie: sid=abc and the server finds the row. Cookie drawn as a small token."
+    },
+    {
+     "number": 6,
+     "heading": "HTTPS = HTTP + TLS",
+     "body": "TLS = Transport Layer Security.\nTLS 1.3: ClientHello (key share) -> ServerHello + certificate + Finished.\nKeys agreed in 1 round trip; ECDHE gives fresh keys per session.\nCertificate proves the server owns the domain.",
+     "diagram": "Handshake ladder between client and server: ClientHello arrow, ServerHello + cert + Finished arrow back, client Finished, then a padlocked tunnel carrying HTTP. Certificate badge signed by a CA chain icon."
+    },
+    {
+     "number": 7,
+     "heading": "HTTP/1.1 vs 2 vs 3",
+     "body": "1.1: one request at a time per connection; ~6 connections per site.\n2: binary frames, many streams on one TCP connection, header compression.\n3: runs on QUIC over UDP: no TCP head-of-line blocking, faster setup.",
+     "diagram": "Three lanes. 1.1: single-file cars on six narrow roads. 2: many colored streams merged in one road, one stalled car blocks all (TCP head-of-line). 3: separate lanes inside a QUIC tunnel, a stalled car blocks only its lane."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls & Check Yourself",
+     "body": "401 = who are you? 403 = I know you, still no.\nGET must never change data: crawlers and prefetch call it.\nCookies without HttpOnly are readable by injected scripts.\nQuiz: a client retries PUT /cart/7 after a timeout. Safe? (Yes: idempotent.)",
+     "diagram": "Warning-orange panel with three red-flag icons for the pitfalls, plus a quiz card with the PUT retry question and an upside-down answer tab."
+    }
+   ],
+   "footer": "Resolve, connect, encrypt, request, respond: that is the web.",
+   "summary": "Follows a URL from the address bar to a rendered page: DNS, connection, TLS, and the HTTP request/response. Covers methods and idempotency, status code families, headers and cookie-based sessions, the TLS 1.3 handshake, and how HTTP/1.1, HTTP/2 and HTTP/3 differ.",
+   "keywords": [
+    "http",
+    "https",
+    "status codes",
+    "rest",
+    "idempotency",
+    "cookies",
+    "sessions",
+    "tls",
+    "http/2",
+    "http/3",
+    "quic",
+    "headers"
+   ]
+  },
+  {
+   "image": "SWE/27-networking-cheat-sheet.png",
+   "title": "NETWORKING CHEAT SHEET",
+   "subtitle": "How packets find their way across the internet",
+   "robot": "Every packet needs an address!",
+   "learner": "How does my laptop find a server?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "TCP/IP Layers vs OSI",
+     "body": "Application (OSI 5-7): HTTP, DNS, SSH\nTransport (OSI 4): TCP, UDP, ports\nInternet (OSI 3): IP addresses, routing\nLink (OSI 1-2): Ethernet, Wi-Fi, MAC addresses\nEach layer wraps the one above: segment -> packet -> frame.",
+     "diagram": "Four-layer TCP/IP stack drawn beside the seven-layer OSI stack with brackets mapping 5-7, 4, 3, 1-2. On the right, a nesting-doll envelope: HTTP data inside a TCP segment inside an IP packet inside an Ethernet frame."
+    },
+    {
+     "number": 2,
+     "heading": "IP Addresses & Ports",
+     "body": "IPv4: 32 bits, 203.0.113.7. IPv6: 128 bits, 2001:db8::1.\nIP finds the host; port finds the program (0-65535).\n22 SSH | 53 DNS | 80 HTTP | 443 HTTPS | 5432 Postgres\nConnection = src IP:port + dst IP:port + protocol.",
+     "diagram": "An apartment building labeled 203.0.113.7 (street address = IP) with numbered doors 22, 80, 443, 5432 (ports), each door with the program behind it. Packet envelope addressed to 203.0.113.7:443."
+    },
+    {
+     "number": 3,
+     "heading": "CIDR Subnets",
+     "body": "CIDR = Classless Inter-Domain Routing.\n10.0.1.0/24: first 24 bits fixed -> 2^8 = 256 addresses (10.0.1.0-10.0.1.255).\nSmaller suffix = bigger network: /16 = 65,536.\nPrivate: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16",
+     "diagram": "32-bit address drawn as four octet boxes; first 24 bits shaded cyan labeled NETWORK, last 8 bits lime labeled HOSTS (256). Nested rectangles below: /16 containing many /24 blocks."
+    },
+    {
+     "number": 4,
+     "heading": "TCP vs UDP + Handshake",
+     "body": "TCP = Transmission Control Protocol: ordered, reliable, retransmits. Web, SSH, databases.\nUDP = User Datagram Protocol: no connection, no guarantees, low overhead. DNS, calls, games, QUIC.\nTCP opens with SYN -> SYN-ACK -> ACK: 1 round trip.",
+     "diagram": "Split panel. Left: TCP as a numbered conveyor belt with ack receipts and a resent box. Right: UDP as a postcard tossed over a wall. Bottom: three-arrow handshake ladder client/server labeled SYN, SYN-ACK, ACK."
+    },
+    {
+     "number": 5,
+     "heading": "DNS Resolution Path",
+     "body": "DNS = Domain Name System.\nBrowser/OS cache -> recursive resolver -> root (.) -> TLD (.com) -> authoritative server -> IP, cached for its TTL.\nRecords: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), NS, TXT.",
+     "diagram": "Numbered hop diagram: laptop -> resolver -> root server -> .com server -> example.com authoritative server, answer arrows flowing back to the laptop with a TTL timer icon. Side card listing record types with one-line examples."
+    },
+    {
+     "number": 6,
+     "heading": "NAT: Sharing One Public IP",
+     "body": "NAT = Network Address Translation.\nRouter rewrites 192.168.1.20:51000 -> 198.51.100.4:62001 and remembers it.\nReplies are mapped back to the laptop.\nUnsolicited inbound traffic is dropped unless port-forwarded.",
+     "diagram": "Home network (three devices with 192.168.1.x addresses) behind a router holding a translation table row 192.168.1.20:51000 <-> 198.51.100.4:62001, connected to the internet cloud. Blocked inbound arrow with a red X."
+    },
+    {
+     "number": 7,
+     "heading": "Debugging Toolkit",
+     "body": "ping: reachable? round-trip time\ndig: what does DNS answer?\ncurl -v: full HTTP + TLS exchange\ntraceroute: which routers along the path?",
+     "code": "ping -c 3 example.com\ndig +short example.com A\ncurl -v https://example.com\ntraceroute example.com",
+     "diagram": "Four terminal windows, each showing one command with a short realistic output line (e.g. 'time=12.3 ms', '203.0.113.10', '< HTTP/2 200', numbered hops 1-5). Arrows from each to the layer it probes."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls & Check Yourself",
+     "body": "Ping fails != host down: ICMP is often blocked.\nDNS change not visible? Old record cached until TTL ends.\n127.0.0.1 = this machine only; 0.0.0.0 = all interfaces.\nQuiz: how many addresses in a /28? (2^4 = 16)",
+     "diagram": "Orange warning panel with three pitfall icons (blocked ping, hourglass on a DNS card, server bound to localhost unreachable from outside) and a quiz card with a hidden answer tab."
+    }
+   ],
+   "footer": "DNS finds the IP, IP finds the host, the port finds the program.",
+   "summary": "Explains how data crosses networks: the TCP/IP model versus OSI, IP addresses, ports and CIDR subnets, TCP versus UDP and the three-way handshake, the DNS lookup path and record types, NAT, and the core debugging tools ping, dig, curl and traceroute.",
+   "keywords": [
+    "networking",
+    "tcp/ip",
+    "osi model",
+    "ip address",
+    "port",
+    "cidr",
+    "subnet",
+    "tcp",
+    "udp",
+    "dns",
+    "nat",
+    "traceroute"
+   ]
+  },
+  {
+   "image": "SWE/28-linux-command-line-cheat-sheet.png",
+   "title": "LINUX COMMAND LINE CHEAT SHEET",
+   "subtitle": "Small tools, piped together, do big jobs",
+   "robot": "Pipe small tools together!",
+   "learner": "Why use a terminal instead of clicking?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Navigate & Manage Files",
+     "body": "pwd: where am I? | ls -la: list all | cd ~: home\nmkdir -p a/b | cp -r src dst | mv old new\nrm -r dir: permanent, no trash.\ncat, less, head -n 20, tail -f app.log",
+     "diagram": "Folder tree from / to /home/user/project with a 'you are here' pin; small command chips attached to the actions (pwd at the pin, cd arrow, mkdir creating a folder, rm with a red shredder)."
+    },
+    {
+     "number": 2,
+     "heading": "Permissions & chmod",
+     "body": "ls -l shows -rwxr-x--- = owner | group | others.\nr = 4, w = 2, x = 1: add them per group.\nchmod 750 deploy.sh -> owner rwx (7), group r-x (5), others --- (0).\n644 = typical file. chmod u+x adds execute.",
+     "diagram": "The string -rwxr-x--- split into three colored triplets (owner cyan, group violet, others grey) with 4+2+1 sums under each giving 7, 5, 0."
+    },
+    {
+     "number": 3,
+     "heading": "Pipes & Redirection",
+     "body": "| sends stdout of one command into the next.\n> overwrite file, >> append, < read input.\nstdin = 0, stdout = 1, stderr = 2.\n2>&1 merges errors into stdout.",
+     "code": "./build.sh > build.log 2>&1\nsort names.txt | uniq -c",
+     "diagram": "Plumbing diagram: three command boxes joined by pipes; each box has three labeled taps 0 stdin, 1 stdout, 2 stderr; stderr tap rerouted into the stdout pipe for 2>&1; output pouring into a file bucket for >."
+    },
+    {
+     "number": 4,
+     "heading": "grep, find, sed, awk",
+     "body": "grep: search text. find: search files.\nsed: edit a stream. awk: work with columns.",
+     "code": "grep -rn \"TODO\" src/\nfind . -name \"*.log\" -mtime +7\nsed 's/http:/https:/g' urls.txt\nawk '{print $1}' access.log",
+     "diagram": "Four tool cards with icons: magnifier on text (grep), magnifier on folders (find), pencil replacing words on a moving ribbon (sed), spreadsheet columns with column 1 highlighted (awk)."
+    },
+    {
+     "number": 5,
+     "heading": "Processes & Signals",
+     "body": "ps aux: list processes. top: live view.\nkill PID sends SIGTERM (15): please exit cleanly.\nkill -9 PID sends SIGKILL: forced, no cleanup.\nCtrl+C sends SIGINT.",
+     "diagram": "Process table with PID, CPU, COMMAND columns; a polite letter labeled SIGTERM delivered to PID 4242, beside a hammer labeled SIGKILL -9; Ctrl+C keycap labeled SIGINT."
+    },
+    {
+     "number": 6,
+     "heading": "Env Vars & SSH",
+     "body": "export API_URL=https://api.example.com, read as $API_URL.\nPATH = where commands are found.\nssh user@host: encrypted remote shell. Use keys: ssh-keygen -t ed25519.\nscp app.tar user@host:/tmp/ copies over SSH.",
+     "diagram": "Left: shell process passing a backpack of exported variables to a child process. Right: laptop with key pair (public key copied to server's authorized_keys) and an encrypted tunnel to a remote server; scp file traveling through it."
+    },
+    {
+     "number": 7,
+     "heading": "Worked One-Liner",
+     "body": "Goal: top 5 IP addresses in a web log.\nawk: column 1 -> sort: group -> uniq -c: count -> sort -rn: rank -> head: top 5.",
+     "code": "awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -5",
+     "diagram": "Assembly line of five stations with sample data flowing: raw log lines -> list of IPs -> sorted IPs -> '412 203.0.113.7' count lines -> ranked list -> final top-5 card."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls & Check Yourself",
+     "body": "rm -rf \"$DIR\"/* with empty DIR wipes /*. Use ${DIR:?}.\nchmod 777: anyone can edit. Rarely right.\nTry SIGTERM before kill -9.\nQuiz: what does chmod 640 grant? (owner rw, group r, others none)",
+     "diagram": "Orange warning panel: a trash can swallowing the root folder, an open padlock labeled 777, a hammer crossed out; quiz card with hidden answer tab."
+    }
+   ],
+   "footer": "Do one thing well, then pipe it to the next tool.",
+   "summary": "A working tour of the Linux shell: moving around and managing files, reading and setting permissions with chmod numbers, pipes and redirection, grep/find/sed/awk, processes and signals, environment variables, ssh and scp, and a log-analysis one-liner built step by step.",
+   "keywords": [
+    "linux",
+    "bash",
+    "shell",
+    "terminal",
+    "command line",
+    "chmod",
+    "permissions",
+    "pipe",
+    "grep",
+    "awk",
+    "signals",
+    "ssh"
+   ]
+  },
+  {
+   "image": "SWE/29-web-security-cheat-sheet.png",
+   "title": "WEB SECURITY CHEAT SHEET",
+   "subtitle": "Never trust input, check every request",
+   "robot": "Never trust user input!",
+   "learner": "Why is my login form a target?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "OWASP Top 10 Highlights",
+     "body": "OWASP = Open Worldwide Application Security Project.\nBroken access control: #1 risk in recent lists.\nInjection: input executed as code.\nXSS, CSRF, SSRF: tricking browsers and servers.\nAlso: misconfiguration, vulnerable dependencies.",
+     "diagram": "Ranked leaderboard of risk badges, Broken Access Control at the top in red, Injection, XSS, CSRF, SSRF, misconfiguration, supply chain below, each with a small icon (open door, syringe, script tag, forged envelope, server reaching inward)."
+    },
+    {
+     "number": 2,
+     "heading": "Injection: Parameterize",
+     "body": "Building SQL from strings lets input ' OR '1'='1 return every row.\nParameterized queries send data separately from code.\nSame rule for shell and LDAP commands.",
+     "code": "# BAD\ncur.execute(f\"SELECT * FROM users WHERE name = '{name}'\")\n# GOOD\ncur.execute(\"SELECT * FROM users WHERE name = %s\", (name,))",
+     "diagram": "Two pipes into a database: top pipe mixes code and user text into one stream (red, attacker text becomes SQL); bottom pipe has separate lanes labeled QUERY and DATA (green). Query string shown with placeholder %s."
+    },
+    {
+     "number": 3,
+     "heading": "XSS, CSRF, SSRF",
+     "body": "XSS = cross-site scripting: attacker script runs in your page. Fix: escape output, CSP.\nCSRF = cross-site request forgery: another site rides your cookies. Fix: SameSite, CSRF tokens.\nSSRF = server-side request forgery: server fetches attacker URL. Fix: allowlist.",
+     "diagram": "Three mini comic strips. XSS: comment box containing <script> stealing a cookie. CSRF: evil site auto-submitting a form to bank.example with the victim's cookie. SSRF: app server tricked into calling 169.254.169.254 metadata endpoint."
+    },
+    {
+     "number": 4,
+     "heading": "AuthN vs AuthZ",
+     "body": "Authentication (AuthN): who are you? Password, passkey, MFA.\nAuthorization (AuthZ): what may you do? Roles, ownership.\nCheck AuthZ server-side on every request:\nGET /invoices/1043 -> is invoice.owner == current user?",
+     "diagram": "Two gates in sequence: first gate checks an ID badge (AuthN), second gate checks a permission list against the requested invoice (AuthZ). A user changing 1043 to 1044 in the URL is stopped at gate two."
+    },
+    {
+     "number": 5,
+     "heading": "Storing Passwords",
+     "body": "Never plaintext, never fast hashes (MD5, SHA-256).\nUse slow, salted hashes: Argon2id or bcrypt.\nUnique salt per user defeats precomputed tables.",
+     "code": "from argon2 import PasswordHasher\nph = PasswordHasher()\nh = ph.hash(password)\nph.verify(h, password)  # raises if wrong",
+     "diagram": "Password entering a slow, heavy grinder labeled Argon2id with a salt shaker, producing a hash string; beside it a fast MD5 blender with a GPU attacker cracking billions per second (red)."
+    },
+    {
+     "number": 6,
+     "heading": "OAuth 2.0 & OIDC",
+     "body": "OAuth 2.0: delegated access; the app gets a scoped token, never your password.\nOIDC = OpenID Connect: adds an ID token for login.\nWeb flow: authorization code + PKCE (Proof Key for Code Exchange), swap code for tokens.",
+     "diagram": "Flow diagram: user -> app -> redirect to authorization server login -> code back to app -> app exchanges code + PKCE verifier for access token and ID token -> app calls API with the access token. Valet-key analogy icon."
+    },
+    {
+     "number": 7,
+     "heading": "JWT Pitfalls",
+     "body": "JWT = JSON Web Token: header.payload.signature, base64url, readable by anyone.\nReject alg none; pin the expected algorithm.\nValidate signature, exp, iss, aud.\nKeep expiry short: revocation is hard.",
+     "diagram": "A token split into three colored segments joined by dots, decoded payload shown in plain view with a 'not encrypted' stamp; checklist beside it: signature, exp, iss, aud, alg pinned."
+    },
+    {
+     "number": 8,
+     "heading": "Secrets & Pitfalls",
+     "body": "Keep secrets out of git: use a secrets manager, inject at runtime.\nLeaked key? Rotate it; deleting the commit is not enough.\nQuiz: user changes order id=7 to id=8 and sees a stranger's order. Flaw? (Broken access control)",
+     "diagram": "Vault icon feeding environment variables into a running container; a git commit with a key inside marked red with a rotate-arrow fix; quiz card with hidden answer tab."
+    }
+   ],
+   "footer": "Validate input, authorize every request, hash passwords, guard secrets.",
+   "summary": "Covers the web attacks that matter most and their fixes: broken access control, injection and parameterized queries, XSS, CSRF and SSRF, authentication versus authorization, password hashing with Argon2id or bcrypt, OAuth 2.0 and OpenID Connect, JWT pitfalls, and secrets management.",
+   "keywords": [
+    "web security",
+    "owasp",
+    "sql injection",
+    "xss",
+    "csrf",
+    "ssrf",
+    "authentication",
+    "authorization",
+    "password hashing",
+    "oauth",
+    "jwt",
+    "secrets"
+   ]
+  },
+  {
+   "image": "SWE/30-concurrency-cheat-sheet.png",
+   "title": "CONCURRENCY CHEAT SHEET",
+   "subtitle": "Many tasks, shared state, no surprises",
+   "robot": "Shared state needs a lock!",
+   "learner": "Why does my counter lose updates?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Concurrency vs Parallelism",
+     "body": "Concurrency: many tasks in progress, interleaved.\nParallelism: many tasks running at the same instant on multiple cores.\nOne core can be concurrent, never parallel.\nOne cook juggling 3 pans vs 3 cooks.",
+     "diagram": "Timeline comparison: single core with alternating colored slices of tasks A, B, C (concurrency) vs three cores each running one task in parallel bars. Kitchen analogy icons above each."
+    },
+    {
+     "number": 2,
+     "heading": "Processes vs Threads",
+     "body": "Process: own memory; isolated, heavier, talks via IPC (inter-process communication).\nThread: shares its process memory; light, easy to share, easy to corrupt.\nA crashing thread can take down the whole process.",
+     "diagram": "Two houses (processes) with separate memory rooms connected by a mail slot labeled IPC; inside one house, three workers (threads) sharing one table of data."
+    },
+    {
+     "number": 3,
+     "heading": "Race Conditions",
+     "body": "Outcome depends on timing of unsynchronized access.\ncount += 1 is really read -> add -> write.\nThread A reads 5, thread B reads 5, both write 6: one update lost.",
+     "diagram": "Two-lane timeline, Thread A (cyan) and Thread B (violet), steps read 5 / add / write 6 interleaved, shared box 'count' ending at 6 with a red 'expected 7' tag."
+    },
+    {
+     "number": 4,
+     "heading": "Locks & Mutexes",
+     "body": "Mutex = mutual exclusion: one thread in the critical section at a time.\nOthers wait at the door.\nKeep critical sections short.\nAlternatives: atomics, queues, immutable data.",
+     "diagram": "A room labeled CRITICAL SECTION with a single key on a hook; one thread inside holding the key, two threads queued at the door. Small side icons for atomic counter and message queue."
+    },
+    {
+     "number": 5,
+     "heading": "Deadlock: Four Conditions",
+     "body": "All four must hold (Coffman conditions):\n1 Mutual exclusion  2 Hold and wait\n3 No preemption  4 Circular wait\nBreak one: always take locks in one global order (A before B).",
+     "diagram": "Cycle diagram: Thread 1 holds lock A and waits for B; Thread 2 holds B and waits for A; arrows forming a red loop. Four condition chips around it, the circular-wait chip crossed out by an ordered A -> B arrow."
+    },
+    {
+     "number": 6,
+     "heading": "Async/Await & Event Loop",
+     "body": "One thread, many waiting tasks.\nawait pauses a task during I/O; the event loop runs another ready task.\nGreat for I/O-bound work. A blocking call freezes everything.",
+     "code": "results = await asyncio.gather(\n    fetch(url1), fetch(url2))",
+     "diagram": "Circular event-loop track with task cards parked at an 'awaiting I/O' siding and a ready queue feeding the single runner; a red blocking boulder (time.sleep) stalling the loop."
+    },
+    {
+     "number": 7,
+     "heading": "Worked Race: Bug & Fix",
+     "body": "4 threads x 100,000 increments should give 400,000.\nWithout a lock the total can come up short.\nlock = threading.Lock() makes read-add-write one step.",
+     "code": "def work():\n    global n\n    for _ in range(100_000):\n        with lock: n += 1",
+     "diagram": "Before/after counters: left display shows 387,412 in red with no lock; right shows 400,000 in green with the lock icon around the increment."
+    },
+    {
+     "number": 8,
+     "heading": "GIL & Pitfalls",
+     "body": "Python GIL = Global Interpreter Lock: one thread runs Python bytecode at a time (free-threaded 3.13+ builds drop it).\nCPU-bound -> processes; I/O-bound -> threads or asyncio.\nThe GIL does not prevent races.\nQuiz: locks taken A->B and B->A? (Deadlock risk)",
+     "diagram": "A single turnstile labeled GIL letting one Python thread through at a time, with a multiprocessing lane bypassing it; orange pitfall tag; quiz card with hidden answer tab."
+    }
+   ],
+   "footer": "Share less, lock what you share, and lock in order.",
+   "summary": "Distinguishes concurrency from parallelism and processes from threads, then shows how race conditions arise, how mutexes fix them, the four deadlock conditions, async/await with an event loop, Python's GIL, and a worked lost-update example with its lock-based fix.",
+   "keywords": [
+    "concurrency",
+    "parallelism",
+    "threads",
+    "processes",
+    "race condition",
+    "mutex",
+    "lock",
+    "deadlock",
+    "async",
+    "event loop",
+    "gil",
+    "asyncio"
+   ]
+  }
+ ]
+}

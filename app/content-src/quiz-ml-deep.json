@@ -1,0 +1,274 @@
+{
+  "questions": [
+    {
+      "id": "ml-deep-03-q1",
+      "pageId": "ml-deep-03",
+      "type": "choice",
+      "prompt": "A neuron computes y_hat = w * x with x = 3 and loss L = (y_hat - y)^2. At the current weight, y_hat - y = 2. What is dL/dw?",
+      "options": [
+        "4",
+        "6",
+        "12",
+        "24"
+      ],
+      "answer": 2,
+      "explanation": "Chain rule: dL/dy_hat = 2(y_hat - y) = 4 and dy_hat/dw = x = 3, so dL/dw = 4 * 3 = 12.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-03-q2",
+      "pageId": "ml-deep-03",
+      "type": "choice",
+      "prompt": "Your transformer's loss jumps to NaN around step 40. You use AdamW at lr 3e-4 with no schedule and no clipping. What is the most direct first fix?",
+      "options": [
+        "Add a short linear warmup and clip the gradient norm at 1.0",
+        "Switch to plain SGD with no momentum at the same learning rate",
+        "Double both the batch size and the learning rate together",
+        "Remove weight decay so the weights are free to grow larger"
+      ],
+      "answer": 0,
+      "explanation": "Early in training Adam's statistics are noisy and gradients are large, so a full-size learning rate from step 0 often diverges. Warmup plus norm clipping is the standard fix.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-03-q3",
+      "pageId": "ml-deep-03",
+      "type": "choice",
+      "prompt": "Why is AdamW usually preferred over Adam with an L2 penalty added to the loss?",
+      "options": [
+        "AdamW keeps fewer optimizer states, so it halves memory per weight",
+        "In Adam the L2 gradient is divided by sqrt(v), making decay uneven",
+        "AdamW makes warmup and learning-rate schedules unnecessary",
+        "Adam with L2 fails when the mini-batch has more than 512 examples"
+      ],
+      "answer": 1,
+      "explanation": "With L2 inside Adam, the penalty's gradient is rescaled per weight like any other gradient, so weights with large gradient history are barely decayed. AdamW applies decay directly to the weights.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-deep-04-q1",
+      "pageId": "ml-deep-04",
+      "type": "choice",
+      "prompt": "A 30-layer ReLU network initialized with Var(w) = 1/fan_in shows activations shrinking toward zero in deep layers. What is the most targeted fix?",
+      "options": [
+        "Increase dropout to 0.5 in every layer to regularize the signal",
+        "Replace ReLU with sigmoid, whose outputs are always positive",
+        "Use He init, Var(w) = 2/fan_in, to offset ReLU zeroing half the inputs",
+        "Lower the learning rate by 10x so each update stays small"
+      ],
+      "answer": 2,
+      "explanation": "ReLU zeroes about half its inputs, halving the signal's second moment at each layer. He initialization doubles the weight variance to compensate, keeping activations steady with depth.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-04-q2",
+      "pageId": "ml-deep-04",
+      "type": "choice",
+      "prompt": "Memory limits force a batch size of 2 per GPU, and BatchNorm makes validation accuracy erratic. What should you try first?",
+      "options": [
+        "Raise the BatchNorm running-average momentum to 0.99",
+        "Swap BatchNorm for LayerNorm or GroupNorm, which ignore the batch",
+        "Remove the residual connections to simplify the model",
+        "Turn off weight decay to give the network more capacity"
+      ],
+      "answer": 1,
+      "explanation": "BatchNorm estimates mean and variance from the batch, which is very noisy with 2 examples. LayerNorm and GroupNorm compute statistics within each example, so batch size does not matter.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-04-q3",
+      "pageId": "ml-deep-04",
+      "type": "choice",
+      "prompt": "Running evaluation twice on the same input gives slightly different predictions. What is the most likely cause?",
+      "options": [
+        "The weight decay coefficient is set too high for this model",
+        "The learning-rate schedule is still inside its warmup phase",
+        "He initialization was used where Xavier would have fit better",
+        "model.eval() was not called, so dropout is still zeroing units"
+      ],
+      "answer": 3,
+      "explanation": "Dropout is random only in training mode. Without model.eval(), dropout keeps dropping units and BatchNorm keeps using batch statistics, so outputs change between runs.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-05-q1",
+      "pageId": "ml-deep-05",
+      "type": "choice",
+      "prompt": "A 64x64 input goes through a 5x5 convolution (stride 1, no padding) and then 2x2 max pooling with stride 2. What is the output height and width?",
+      "options": [
+        "32",
+        "29",
+        "60",
+        "30"
+      ],
+      "answer": 3,
+      "explanation": "The conv gives (64 - 5)/1 + 1 = 60, and 2x2 pooling with stride 2 halves it to 30.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-05-q2",
+      "pageId": "ml-deep-05",
+      "type": "choice",
+      "prompt": "You have 2,000 labeled X-ray images and an ImageNet-pretrained ResNet-50. What is the best first approach?",
+      "options": [
+        "Train ResNet-50 from random initialization with a high learning rate",
+        "Freeze the backbone, train a new head, then fine-tune at a low lr",
+        "Convert it to a ViT and pretrain that ViT on the 2,000 images",
+        "Drop all convolution layers and keep only the final linear layer"
+      ],
+      "answer": 1,
+      "explanation": "With little data, pretrained features are a strong start. Train a new head on frozen features first, then optionally unfreeze and fine-tune gently so the pretrained weights are not wrecked.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-05-q3",
+      "pageId": "ml-deep-05",
+      "type": "choice",
+      "prompt": "Why do VGG-style networks stack three 3x3 convolutions instead of using one 7x7 convolution?",
+      "options": [
+        "3x3 kernels are the only size GPUs can run efficiently",
+        "A 7x7 convolution cannot be padded, so it always shrinks the image",
+        "Same 7x7 receptive field, fewer weights, and more nonlinearities",
+        "Stacking 3x3 convolutions removes the need for any pooling"
+      ],
+      "answer": 2,
+      "explanation": "Three 3x3 layers cover a 7x7 region with 27C^2 weights instead of 49C^2 (C channels in and out), and add two extra ReLUs, making the function more expressive.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-deep-06-q1",
+      "pageId": "ml-deep-06",
+      "type": "choice",
+      "prompt": "A plain RNN language model ignores a name mentioned 150 words earlier when predicting a pronoun. What is the most likely reason?",
+      "options": [
+        "Its embedding dimension is too large for the vocabulary",
+        "The gradient shrinks at each of 150 steps, so the link is never learned",
+        "It uses different weights at each step, so it cannot generalize",
+        "Its softmax output layer is unable to represent proper names"
+      ],
+      "answer": 1,
+      "explanation": "Backprop through time multiplies one factor per step; with factors below 1 the signal from 150 steps back vanishes, so the network cannot learn long-range links.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-06-q2",
+      "pageId": "ml-deep-06",
+      "type": "choice",
+      "prompt": "Which LSTM gate setting lets the cell state carry a value almost unchanged across many time steps?",
+      "options": [
+        "Forget gate near 0 and input gate near 1",
+        "Output gate near 1 and forget gate near 0",
+        "All three gates held near 0.5",
+        "Forget gate near 1 and input gate near 0"
+      ],
+      "answer": 3,
+      "explanation": "c_t = f * c_(t-1) + i * c~_t. With f near 1 and i near 0, c_t is almost c_(t-1), and the gradient along the cell state is about f, so it barely decays.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-06-q3",
+      "pageId": "ml-deep-06",
+      "type": "choice",
+      "prompt": "A team must process an endless sensor stream on a small device with fixed memory. Why might they choose a state-space model or RNN over a transformer?",
+      "options": [
+        "Its fixed-size state keeps per-step cost and memory constant",
+        "They need direct attention between every pair of time steps",
+        "Transformers cannot be trained on numeric sensor data at all",
+        "RNNs parallelize across time on GPUs better than transformers"
+      ],
+      "answer": 0,
+      "explanation": "A recurrent or state-space model compresses the past into a fixed-size state, so each new step costs the same. A transformer's KV cache and attention cost grow with sequence length.",
+      "difficulty": 3
+    },
+    {
+      "id": "ml-deep-07-q1",
+      "pageId": "ml-deep-07",
+      "type": "choice",
+      "prompt": "A query embedding is q = [1, 0] and a document embedding is d = [1, 1]. What is their cosine similarity?",
+      "options": [
+        "0.50",
+        "0.71",
+        "1.00",
+        "1.41"
+      ],
+      "answer": 1,
+      "explanation": "q . d = 1, |q| = 1 and |d| = sqrt(2), so cos = 1 / 1.41 = 0.71.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-07-q2",
+      "pageId": "ml-deep-07",
+      "type": "choice",
+      "prompt": "After upgrading the embedding model in your search system, result quality collapses even though the vector index was not touched. What is the most likely cause?",
+      "options": [
+        "The ANN index now needs a larger top-k to find matches",
+        "Cosine similarity stops working above 768 dimensions",
+        "New-model query vectors are compared with old-model document vectors",
+        "The new model returns normalized vectors instead of raw ones"
+      ],
+      "answer": 2,
+      "explanation": "Each model defines its own vector space, so vectors from two models are not comparable. Re-embed every document whenever the model changes.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-07-q3",
+      "pageId": "ml-deep-07",
+      "type": "choice",
+      "prompt": "Users want to search a photo library by typing phrases like 'dog on a beach'. Which approach fits best?",
+      "options": [
+        "Average word2vec vectors over each photo's file name",
+        "One-hot encode every pixel and compare the codes",
+        "Run a sentence-embedding model over the raw image bytes",
+        "Use a CLIP-style model that maps images and text into one space"
+      ],
+      "answer": 3,
+      "explanation": "CLIP-style models train an image encoder and a text encoder together so matching images and captions land near each other, which makes text-to-image search a nearest-neighbor lookup.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-08-q1",
+      "pageId": "ml-deep-08",
+      "type": "choice",
+      "prompt": "A GAN trained on many faces produces sharp images, but they all look like the same few people. What is this failure called?",
+      "options": [
+        "Mode collapse",
+        "Posterior collapse",
+        "Overfitting",
+        "Exposure bias"
+      ],
+      "answer": 0,
+      "explanation": "In mode collapse the generator finds a few outputs that fool the discriminator and stops covering the rest of the data distribution.",
+      "difficulty": 1
+    },
+    {
+      "id": "ml-deep-08-q2",
+      "pageId": "ml-deep-08",
+      "type": "choice",
+      "prompt": "Why does a VAE compute z = mu + sigma * eps instead of drawing z ~ N(mu, sigma^2) directly?",
+      "options": [
+        "It makes sampling from the latent space much faster",
+        "It guarantees sharper reconstructions from the decoder",
+        "It moves randomness into eps so gradients reach mu and sigma",
+        "It removes the need for the KL term in the loss"
+      ],
+      "answer": 2,
+      "explanation": "You cannot backpropagate through a random draw. Writing z as a deterministic function of mu, sigma and an independent noise eps lets gradients flow to the encoder's outputs.",
+      "difficulty": 2
+    },
+    {
+      "id": "ml-deep-08-q3",
+      "pageId": "ml-deep-08",
+      "type": "choice",
+      "prompt": "You need top-quality text-to-image results and can afford dozens of network passes per image. Which model family is the usual choice?",
+      "options": [
+        "A plain autoencoder decoding random bottleneck codes",
+        "A diffusion or flow-matching model that denoises step by step",
+        "A GAN that generates the image in a single forward pass",
+        "A VAE with a simple Gaussian decoder on the pixels"
+      ],
+      "answer": 1,
+      "explanation": "Diffusion and flow-matching models give the best image quality and prompt following today; their cost is many denoising steps, which distillation can reduce.",
+      "difficulty": 2
+    }
+  ]
+}

@@ -1,0 +1,595 @@
+{
+  "collection": "ML",
+  "pages": [
+    {
+      "image": "ML/35-regression-metrics-cheat-sheet.png",
+      "title": "REGRESSION METRICS CHEAT SHEET",
+      "subtitle": "How far off are your numbers, really?",
+      "robot": "Plot the residuals first!",
+      "learner": "Is a lower RMSE always better?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Residuals: The Raw Material",
+          "body": "Residual e = y - y_hat (true minus predicted).\nEvery regression metric summarizes the residuals.",
+          "diagram": "Scatter of points around a fitted line; short vertical segments from each point to the line labeled e, cyan above the line (e > 0), violet below (e < 0)."
+        },
+        {
+          "number": 2,
+          "heading": "MAE, MSE, RMSE",
+          "body": "MAE (mean absolute error) = mean(|e|): typical miss, target units.\nMSE (mean squared error) = mean(e^2): punishes big misses.\nRMSE = sqrt(MSE): back in target units.\nRMSE >= MAE; a big gap = a few large errors.",
+          "diagram": "Three small bars side by side for the same residuals: MAE short, RMSE taller, with a bracket labeled 'gap = large errors'. Tiny |e| (V shape) and e^2 (parabola) icons above MAE and MSE."
+        },
+        {
+          "number": 3,
+          "heading": "R-Squared and Adjusted R-Squared",
+          "body": "R^2 = 1 - SS_res / SS_tot: share of variance explained.\n1 = perfect, 0 = no better than predicting the mean, < 0 = worse.\nAdjusted R^2 = 1 - (1 - R^2)(n - 1)/(n - p - 1) penalizes extra features.",
+          "diagram": "Two panels of the same points: left with a flat dashed line at mean(y) and long gray gaps labeled SS_tot; right with the fitted line and short amber gaps labeled SS_res. A gauge from below 0 to 1 labeled 'worse than mean / mean / perfect'."
+        },
+        {
+          "number": 4,
+          "heading": "Worked Example",
+          "body": "y = [3, 5, 2, 8], y_hat = [2, 5, 4, 5]\ne = [1, 0, -2, 3]\nMAE = 6/4 = 1.5 | MSE = 14/4 = 3.5 | RMSE = 1.87\nR^2 = 1 - 14/21 = 0.33 (mean of y = 4.5)",
+          "diagram": "A four-row table with columns y, y_hat, e, |e|, e^2 and a totals row (6 and 14). Highlight the e = 3 row in amber with a note 'one miss = 9 of 14 squared error'."
+        },
+        {
+          "number": 5,
+          "heading": "MAPE Pitfalls",
+          "body": "MAPE (mean absolute percentage error) = mean(|e| / |y|) x 100%.\nExplodes near y = 0; undefined at y = 0.\nAsymmetric: under-forecasts cap at 100%, over-forecasts are unbounded.\nSafer: WAPE = sum|e| / sum|y|.",
+          "diagram": "Curve of percentage error vs true value y for a fixed miss of 1 unit, shooting upward as y approaches 0, with an orange warning sign 'divide by ~0'."
+        },
+        {
+          "number": 6,
+          "heading": "Read the Residual Plot",
+          "body": "Plot residuals vs predictions.\nRandom cloud around 0 = healthy.\nFunnel = variance grows with y (try a log target).\nCurve = missed nonlinearity.\nA few far points = outliers dominating MSE.",
+          "diagram": "Three mini residual plots in a row with a horizontal zero line: a lime 'healthy' random cloud, an amber funnel widening to the right, and a violet U-shaped curve."
+        },
+        {
+          "number": 7,
+          "heading": "Choosing a Metric",
+          "body": "Big misses are costly -> RMSE.\nOutliers are noise; want the typical miss -> MAE.\nUnit-free comparison -> R^2, used with care.\nRelative error, y far from 0 -> MAPE or WAPE.\nAlways show a predict-the-mean baseline.",
+          "diagram": "A decision flow: 'Are big misses extra costly?' yes -> RMSE, no -> 'Need relative error?' yes -> WAPE/MAPE, no -> MAE. A small baseline bar labeled 'predict mean(y)' beside the results."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls and Check Yourself",
+          "body": "Training R^2 never drops when you add features.\nRMSE depends on scale: never compare it across targets.\nQ: errors [1, 1, 1, 9]. MAE or RMSE larger?\nA: RMSE = 4.6 vs MAE = 3.0.",
+          "diagram": "Orange warning icons next to the first two lines; a quiz card with the question and the answer on a flip tab."
+        }
+      ],
+      "footer": "Look at the residuals first, then pick the number that matches the cost of a miss.",
+      "summary": "How to measure regression error: MAE, MSE, RMSE and R-squared, why MAPE misbehaves near zero, how to read residual plots, and how to choose the metric that matches the real cost of a miss.",
+      "keywords": [
+        "regression metrics",
+        "mae",
+        "mse",
+        "rmse",
+        "r-squared",
+        "adjusted r-squared",
+        "mape",
+        "wape",
+        "residual plot",
+        "mean absolute error",
+        "mean squared error",
+        "coefficient of determination"
+      ]
+    },
+    {
+      "image": "ML/36-ranking-retrieval-metrics-cheat-sheet.png",
+      "title": "RANKING & RETRIEVAL METRICS",
+      "subtitle": "Did the right items land at the top?",
+      "robot": "Order matters, not just hits!",
+      "learner": "Recall@10 looks fine. Why are users unhappy?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Setup",
+          "body": "A query returns a ranked list.\nEach item is relevant (1) or not (0), or graded (0-3).\nk = how many top results you score.\nMetrics differ in how much position matters.",
+          "diagram": "A search box with a query feeding a vertical ranked list of five result cards numbered 1-5, relevant ones marked with a lime check, others gray. A bracket over the top 3 labeled 'k = 3'."
+        },
+        {
+          "number": 2,
+          "heading": "Precision@k, Recall@k, Hit Rate",
+          "body": "Precision@k = relevant in top k / k.\nRecall@k = relevant in top k / all relevant.\nHit rate@k = 1 if any relevant item is in the top k.\nAll three ignore order inside the top k.",
+          "diagram": "The same top-k bracket with two fractions drawn as bars: 'found / k' (precision) and 'found / all relevant' (recall), plus a single lamp icon lit for hit rate."
+        },
+        {
+          "number": 3,
+          "heading": "MRR and MAP",
+          "body": "MRR (mean reciprocal rank) = mean of 1 / rank of the first relevant item.\nAP (average precision) = mean of precision@i at each relevant rank i.\nMAP = mean AP over all queries.",
+          "diagram": "Three queries as short rows; first relevant item at rank 1, 2 and 4 with labels 1, 1/2, 1/4 and their average MRR = 0.58."
+        },
+        {
+          "number": 4,
+          "heading": "NDCG: Graded and Position-Aware",
+          "body": "NDCG = normalized discounted cumulative gain.\nDCG@k = sum of rel_i / log2(i + 1) for i = 1..k.\nNDCG = DCG / IDCG, the DCG of the ideal order; range 0 to 1.\nLower ranks count less.",
+          "diagram": "A descending staircase of discount weights by rank: 1.00, 0.63, 0.50, 0.43, 0.39. Beside it, the actual list and the ideal sorted list stacked to compare."
+        },
+        {
+          "number": 5,
+          "heading": "Worked Example",
+          "body": "Relevance by rank: [0, 1, 1, 0, 1], 3 relevant.\nP@3 = 2/3, R@3 = 2/3, RR = 1/2\nAP = (1/2 + 2/3 + 3/5)/3 = 0.59\nDCG@5 = 0.63 + 0.50 + 0.39 = 1.52\nNDCG = 1.52 / IDCG 2.13 = 0.71",
+          "diagram": "Five numbered result cards with relevance 0,1,1,0,1, each card annotated with its discount (1/log2(i+1)) and its precision@i where relevant. Totals boxed at the bottom."
+        },
+        {
+          "number": 6,
+          "heading": "Offline vs Online",
+          "body": "Offline: labeled queries; fast and repeatable, but labels miss new items.\nOnline: clicks, dwell time, conversions in an A/B test; real but noisy and position-biased.\nConfirm offline wins online.",
+          "diagram": "Split panel: left a lab bench with a labeled query set and a scoreboard; right live users clicking results with a heatmap fading down the list. Arrow 'ship candidates' from left to right."
+        },
+        {
+          "number": 7,
+          "heading": "Evaluating RAG Retrieval",
+          "body": "RAG = retrieval-augmented generation.\nRetriever: recall@k of gold passages (did the evidence reach the context?).\nThen MRR or NDCG for ordering.\nGrade answer faithfulness separately.",
+          "diagram": "Pipeline: question -> retriever -> top-5 chunks -> LLM -> answer. A cyan probe on the chunks labeled 'recall@5, MRR' and a violet probe on the answer labeled 'faithful to chunks?'."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Unjudged items counted as irrelevant underrate new systems.\nAverages hide failures on rare queries; inspect per query.\nPrecision@k is capped when fewer than k items are relevant.\nAlways state k.",
+          "diagram": "Orange warning tags: a result card with a '?' label (unjudged), a bar chart where one tiny query bar is red, and a sticky note 'k = ?'."
+        }
+      ],
+      "footer": "Hits get you into the list; rank decides whether anyone sees them.",
+      "summary": "How to score ranked results: precision@k, recall@k, hit rate, MRR, MAP and NDCG with one worked list, the gap between offline labels and online behavior, and how to evaluate the retrieval step of a RAG system.",
+      "keywords": [
+        "ranking metrics",
+        "retrieval evaluation",
+        "precision at k",
+        "recall at k",
+        "hit rate",
+        "mrr",
+        "mean reciprocal rank",
+        "map",
+        "mean average precision",
+        "ndcg",
+        "rag evaluation",
+        "information retrieval"
+      ]
+    },
+    {
+      "image": "ML/37-calibration-cheat-sheet.png",
+      "title": "CALIBRATION CHEAT SHEET",
+      "subtitle": "When the model says 80%, is it right 80%?",
+      "robot": "Confidence should match accuracy!",
+      "learner": "My model is accurate. Why recalibrate?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "What Calibration Means",
+          "body": "Calibrated: among predictions made with confidence p, a fraction p are correct.\nOf 100 cases scored 0.8, about 80 should be positive.\nMatters when scores drive decisions, costs or abstention.",
+          "diagram": "A weather-forecast style card '80% chance' over a grid of 100 small squares, 80 lime and 20 gray."
+        },
+        {
+          "number": 2,
+          "heading": "Reliability Diagram",
+          "body": "Bin predictions by confidence (e.g. 10 bins).\nPlot mean confidence (x) vs observed accuracy (y).\nOn the diagonal = calibrated.\nBelow it = overconfident. Above it = underconfident.",
+          "diagram": "Square plot 0-1 on both axes with a dashed diagonal; cyan bars per bin sitting below the diagonal at high confidence, with orange gap shading labeled 'overconfident'. A histogram strip underneath shows bin counts."
+        },
+        {
+          "number": 3,
+          "heading": "ECE: Expected Calibration Error",
+          "body": "ECE = sum over bins of (n_b / N) x |acc_b - conf_b|.\nWeighted average gap between confidence and accuracy.\n0 = perfect. Value depends on the binning, so report it.",
+          "diagram": "The reliability bars with each gap drawn as a vertical amber segment, segments weighted by bin size and summed into one ECE gauge."
+        },
+        {
+          "number": 4,
+          "heading": "Worked Example",
+          "body": "100 predictions, 2 bins:\nBin A: 60 items, conf 0.90, acc 0.75 -> gap 0.15\nBin B: 40 items, conf 0.60, acc 0.55 -> gap 0.05\nECE = 0.6 x 0.15 + 0.4 x 0.05 = 0.11 (overconfident)",
+          "diagram": "Two-row table with columns items, conf, acc, gap, weight; the two weighted terms 0.09 and 0.02 adding to 0.11 in a boxed result."
+        },
+        {
+          "number": 5,
+          "heading": "Brier Score and Log Loss",
+          "body": "Brier = mean (p - y)^2; 0 is best, always saying 0.5 scores 0.25.\nLog loss = -mean[y log p + (1 - y) log(1 - p)]; one 0.99-confident miss costs 4.6.\nBoth reward calibration and sharpness.",
+          "diagram": "Two penalty curves vs predicted p for a true positive: Brier a gentle parabola, log loss shooting to infinity as p -> 0, with a red dot at p = 0.01 labeled 4.6."
+        },
+        {
+          "number": 6,
+          "heading": "Fixing It After Training",
+          "body": "Fit on a held-out calibration set, never on training data.\nPlatt scaling: logistic fit on the score (2 parameters).\nIsotonic regression: monotone steps; flexible, needs ~1,000+ points.\nTemperature scaling: logits / T; argmax unchanged.",
+          "code": "probs = torch.softmax(logits / T, dim=-1)  # T > 1 softens",
+          "diagram": "Three small mapping curves from raw score to calibrated probability: a smooth S (Platt), a staircase (isotonic), and a family of softmax curves flattening as T grows (temperature)."
+        },
+        {
+          "number": 7,
+          "heading": "Calibration vs Discrimination",
+          "body": "Discrimination: are positives ranked above negatives? (AUROC)\nCalibration: are the probabilities honest? (ECE)\nA model can hit AUROC 0.95 and still be badly calibrated.\nPlatt scaling a binary score leaves AUROC unchanged.",
+          "diagram": "2x2 grid: rows good/bad ranking, columns good/bad calibration, each cell with a tiny reliability plot and ROC curve; the 'good ranking, bad calibration' cell highlighted."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Calibration breaks under distribution shift; re-check on new data.\nDeep nets and RLHF-tuned LLMs often run overconfident.\nCheck per-class reliability, not only the average.\nFew points per bin = noisy ECE.",
+          "diagram": "Orange warning icons: a reliability curve that bends away on a 'new data' tab, and a nearly empty bin with a question mark."
+        }
+      ],
+      "footer": "Accuracy says how often you are right; calibration says when to believe you.",
+      "summary": "What it means for predicted probabilities to be calibrated, how to measure it with reliability diagrams, ECE, Brier score and log loss, how to fix it with Platt, isotonic or temperature scaling, and why calibration is different from ranking quality.",
+      "keywords": [
+        "calibration",
+        "reliability diagram",
+        "ece",
+        "expected calibration error",
+        "brier score",
+        "log loss",
+        "platt scaling",
+        "isotonic regression",
+        "temperature scaling",
+        "overconfidence",
+        "discrimination",
+        "auroc"
+      ]
+    },
+    {
+      "image": "ML/38-ab-testing-cheat-sheet.png",
+      "title": "A/B TESTING CHEAT SHEET",
+      "subtitle": "Is the difference real, or just noise?",
+      "robot": "Plan the test before peeking!",
+      "learner": "p = 0.04, so we ship?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Hypothesis Testing",
+          "body": "H0 (null): A and B perform the same.\nH1: they differ.\nAsk how surprising the data would be if H0 were true.\nalpha = 0.05 = the false-positive rate you accept.",
+          "diagram": "Bell curve of the test statistic under H0 with both 2.5% tails shaded orange as the rejection region; an arrow marks the observed value landing in a tail."
+        },
+        {
+          "number": 2,
+          "heading": "p-Values: What They Mean",
+          "body": "p = P(data at least this extreme | H0 true).\nNOT the probability that H0 is true.\nNOT the size or importance of the effect.\np > 0.05 is not proof of no effect.",
+          "diagram": "One lime check card with the correct definition and three orange crossed-out cards with the common misreadings."
+        },
+        {
+          "number": 3,
+          "heading": "Confidence Intervals",
+          "body": "95% CI: built so that 95% of such intervals cover the true effect.\nShows effect size and uncertainty together.\nIf the CI for the difference excludes 0, p < 0.05.\nReport the CI, not just p.",
+          "diagram": "A number line centered on 0 with three horizontal interval bars: one wide crossing 0 (inconclusive), one narrow clearly right of 0 (real lift), one tiny near 0 (real but negligible)."
+        },
+        {
+          "number": 4,
+          "heading": "Power and Sample Size",
+          "body": "Power = P(detecting a real effect); aim for 80%.\nInputs: alpha, baseline rate p, minimum detectable effect (MDE).\nRule of thumb per arm: n ~ 16 p(1 - p) / MDE^2 (alpha 0.05, power 80%).",
+          "diagram": "Two overlapping bell curves (H0 and H1) with alpha shaded orange and power shaded lime; a slider below labeled 'more samples -> narrower curves -> more power'."
+        },
+        {
+          "number": 5,
+          "heading": "Worked Example",
+          "body": "Baseline 10%, MDE 1 point: n ~ 16 x 0.09 / 0.01^2 = 14,400 per arm.\nA: 1,440 / 14,400 = 10.0%. B: 1,600 / 14,400 = 11.1%.\nLift +1.1 pts, 95% CI [0.4, 1.8], p = 0.002.",
+          "diagram": "Two conversion bars A and B with counts, and below them an interval bar from 0.4 to 1.8 points clearly to the right of a zero line."
+        },
+        {
+          "number": 6,
+          "heading": "Multiple Testing",
+          "body": "20 metrics at alpha 0.05 -> about 1 false win by chance.\nBonferroni: test each at alpha / m (strict).\nBenjamini-Hochberg: controls the false discovery rate (FDR); more power.\nPre-register one primary metric.",
+          "diagram": "A grid of 20 dice-like metric tiles, one lit up in amber labeled 'lucky p = 0.03'; beside it a threshold line dropping from 0.05 to 0.0025 labeled 'Bonferroni, m = 20'."
+        },
+        {
+          "number": 7,
+          "heading": "Comparing Two Models Fairly",
+          "body": "Same test set, same preprocessing, several random seeds.\nUse paired tests: McNemar, or a paired bootstrap.\nBootstrap: resample examples with replacement ~1,000x, recompute the metric, take the 2.5th-97.5th percentiles.",
+          "diagram": "Two model icons scoring the same stack of examples; a fan of resampled stacks feeding a histogram of metric differences with the middle 95% bracketed."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls: Peeking",
+          "body": "Checking daily and stopping at the first p < 0.05: false positives rise to ~19% with 10 looks.\nFix the sample size in advance, or use a sequential test.\nAlso watch novelty effects and uneven splits.",
+          "diagram": "A jagged p-value line over days dipping briefly below a dashed 0.05 line, with an orange 'STOP HERE?' flag at the dip and a calendar marking the planned end date."
+        }
+      ],
+      "footer": "Fix the plan and sample size first, then report effect sizes with intervals.",
+      "summary": "How to tell a real improvement from noise: hypothesis tests, what p-values do and do not mean, confidence intervals, power and sample size with a worked example, multiple-testing corrections, the bootstrap, the peeking problem and fair model comparisons.",
+      "keywords": [
+        "a/b testing",
+        "hypothesis testing",
+        "p-value",
+        "confidence interval",
+        "statistical power",
+        "sample size",
+        "multiple testing",
+        "bonferroni",
+        "bootstrap",
+        "peeking",
+        "significance",
+        "model comparison"
+      ]
+    },
+    {
+      "image": "ML/39-regression-losses-cheat-sheet.png",
+      "title": "REGRESSION LOSSES CHEAT SHEET",
+      "subtitle": "What you minimize decides what you predict",
+      "robot": "Squared loss chases the mean!",
+      "learner": "Why did one outlier wreck my fit?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Loss vs Metric",
+          "body": "Loss: what the optimizer minimizes in training; needs useful gradients.\nMetric: what you report to people; can be anything.\nThey may differ: train on MSE, report MAE.",
+          "diagram": "Two gauges: an engine-room dial 'loss (optimizer sees)' wired to the training loop, and a dashboard dial 'metric (humans see)'."
+        },
+        {
+          "number": 2,
+          "heading": "MSE: The Gaussian View",
+          "body": "L = (y - y_hat)^2, with residual e = y - y_hat.\nMinimizer: the conditional MEAN.\nSame as maximum likelihood under Gaussian noise.\nGradient 2e grows with the error, so big residuals dominate.",
+          "diagram": "A bell curve of noise around the true line, and a parabola loss curve below it labeled 'gradient grows with e'."
+        },
+        {
+          "number": 3,
+          "heading": "MAE: The Median",
+          "body": "L = |y - y_hat|.\nMinimizer: the conditional MEDIAN; robust to outliers.\nMaximum likelihood under Laplace noise.\nGradient is always +/-1 and undefined at 0: slow, jittery near the optimum.",
+          "diagram": "A sharp-peaked Laplace noise curve, and a V-shaped loss curve below with constant-slope arrows on both sides."
+        },
+        {
+          "number": 4,
+          "heading": "Huber Loss",
+          "body": "L = 0.5 e^2 if |e| <= delta, else delta(|e| - 0.5 delta).\nSmooth near 0 like MSE, linear in the tails like MAE.\ndelta sets where errors count as outliers.",
+          "code": "loss_fn = torch.nn.HuberLoss(delta=1.0)",
+          "diagram": "Loss vs residual plot: a parabola in the middle joining straight lines at +/-delta, with the switch points marked by amber dots."
+        },
+        {
+          "number": 5,
+          "heading": "Quantile (Pinball) Loss",
+          "body": "L = q*e if e >= 0, else (q - 1)*e.\nq = 0.5 -> half of MAE (the median).\nq = 0.9 -> under-predicting costs 9x more, so the model learns the 90th percentile.\nTrain q = 0.1 and 0.9 for an 80% interval.",
+          "diagram": "A tilted V loss curve (steep on the under-prediction side, shallow on the other); beside it a forecast line with a shaded band between the 0.1 and 0.9 quantile lines."
+        },
+        {
+          "number": 6,
+          "heading": "Worked Example: One Outlier",
+          "body": "Targets y = [1, 2, 3, 4, 100]. Best constant prediction:\nMSE -> mean = 22 (dragged up by 100)\nMAE -> median = 3\nHuber (delta = 1) -> 3: the outlier's pull is capped.",
+          "diagram": "Number line with five dots, the 100 far right in orange; three markers placed at 22 (MSE, pulled right), 3 (MAE) and 3 (Huber), with a rope from 100 tugging the MSE marker."
+        },
+        {
+          "number": 7,
+          "heading": "Outlier Behavior and Choosing",
+          "body": "At e = 10: squared 100, Huber(1) 9.5, absolute 10.\nGaussian noise, want the mean -> MSE.\nHeavy tails or bad labels -> Huber or MAE.\nAsymmetric costs or intervals -> quantile loss.",
+          "diagram": "Overlay plot of loss vs residual from -4 to 4: MSE parabola (cyan), MAE V (lime), Huber (violet) and pinball q = 0.9 (amber), labeled where each curve sits at large |e|."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Scale targets first: MSE on raw dollars gives huge gradients.\nHuber's delta is in target units; retune after rescaling.\nModel trained on a log target predicts roughly the median, not the mean.",
+          "diagram": "Orange warning icons: an exploding gradient arrow over a '$' axis, a ruler showing delta shrinking after rescaling, and a skewed distribution with mean and median marked apart."
+        }
+      ],
+      "footer": "Choose the loss for the statistic you want: mean, median or quantile.",
+      "summary": "How regression losses differ from metrics, why MSE predicts the mean and MAE the median, how Huber and quantile losses handle outliers and asymmetric costs, and how to pick a loss for your noise and goals.",
+      "keywords": [
+        "regression loss",
+        "mse loss",
+        "l2 loss",
+        "mae loss",
+        "l1 loss",
+        "huber loss",
+        "quantile loss",
+        "pinball loss",
+        "outliers",
+        "maximum likelihood",
+        "smooth l1",
+        "loss function"
+      ]
+    },
+    {
+      "image": "ML/40-classification-losses-cheat-sheet.png",
+      "title": "CLASSIFICATION LOSSES CHEAT SHEET",
+      "subtitle": "Scores to probabilities, then punish confident mistakes",
+      "robot": "Confident and wrong costs most!",
+      "learner": "Why not just optimize accuracy?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Softmax and Cross-Entropy",
+          "body": "Softmax: p_i = exp(z_i) / sum_j exp(z_j), from logits z.\nCross-entropy: L = -log p_true.\nGradient on logits = p - one_hot(y).\nAccuracy has no useful gradient, so we train on this smooth proxy.",
+          "diagram": "Pipeline: logits bar chart -> softmax box -> probability bar chart summing to 1 -> '-log' box -> loss value, with the true class bar outlined in lime."
+        },
+        {
+          "number": 2,
+          "heading": "Worked Example",
+          "body": "Logits z = [2.0, 1.0, 0.1], true class 0.\nSoftmax p = [0.66, 0.24, 0.10]\nL = -ln 0.66 = 0.42\nIf class 2 were true: L = -ln 0.10 = 2.32\nGradient = [-0.34, 0.24, 0.10]",
+          "diagram": "Three-column table (class, logit, p) with the true class highlighted; a small arrow showing gradient descent raising z_0 and lowering z_1, z_2."
+        },
+        {
+          "number": 3,
+          "heading": "Binary Cross-Entropy With Logits",
+          "body": "BCE = -[y log s(z) + (1 - y) log(1 - s(z))], s = sigmoid.\nSigmoid then log fails: s(-800) = 0 -> log 0 = -inf.\nStable form: max(z, 0) - z*y + log(1 + exp(-|z|)).",
+          "code": "loss = F.binary_cross_entropy_with_logits(z, y)",
+          "diagram": "Two paths from a logit: an orange path 'sigmoid -> log' ending in a NaN skull icon, and a lime path 'fused stable formula' ending in a clean number."
+        },
+        {
+          "number": 4,
+          "heading": "Hinge Loss",
+          "body": "Labels y in {-1, +1}, score f(x).\nL = max(0, 1 - y f(x)).\nZero once the margin y f(x) >= 1: easy examples stop contributing.\nUsed by SVMs (support vector machines); gives no probabilities.",
+          "diagram": "Loss vs margin y*f(x): a straight line falling to 0 at margin 1 then flat; overlaid dashed log-loss curve that never quite reaches 0."
+        },
+        {
+          "number": 5,
+          "heading": "Focal Loss",
+          "body": "FL = -(1 - p_t)^gamma log p_t, usually gamma = 2.\np_t = probability of the true class.\nAt p_t = 0.9 the loss shrinks 100x vs cross-entropy.\nFocuses training on hard examples among many easy negatives.",
+          "diagram": "Loss vs p_t curves for gamma = 0, 1, 2, 5, with the easy region p_t > 0.6 shaded and labeled 'down-weighted'."
+        },
+        {
+          "number": 6,
+          "heading": "Label Smoothing and Class Weights",
+          "body": "Label smoothing: target = (1 - eps) one-hot + eps / K, e.g. eps = 0.1. Stops logits growing without bound.\nClass weights: scale each class's loss, e.g. by inverse frequency, so rare classes count.",
+          "code": "nn.CrossEntropyLoss(weight=w, label_smoothing=0.1)",
+          "diagram": "A hard target bar chart [1, 0, 0] morphing into a soft one [0.93, 0.03, 0.03] for K = 3; beside it a scale where one rare-class weight balances many common examples."
+        },
+        {
+          "number": 7,
+          "heading": "Pitfalls",
+          "body": "CrossEntropyLoss expects raw logits; adding softmax first double-squashes.\nLog of a probability that hit 0 -> NaN.\nClass weights and focal loss distort probabilities; recalibrate before using them as odds.",
+          "diagram": "Orange warning icons: a softmax box drawn twice in a row crossed out, and a probability bar labeled 'not calibrated after reweighting'."
+        },
+        {
+          "number": 8,
+          "heading": "Check Yourself",
+          "body": "p_true = 0.5 -> L = 0.69.\np_true = 0.01 -> L = ?\nAnswer: -ln 0.01 = 4.6, as costly as about 7 coin-flip guesses.",
+          "diagram": "Quiz card with a log-loss curve, two dots at p = 0.5 and p = 0.01, the answer hidden under a flip tab."
+        }
+      ],
+      "footer": "Feed raw logits to a fused loss and let cross-entropy punish confident mistakes.",
+      "summary": "How classifiers are trained: softmax with cross-entropy and its gradient, numerically stable binary cross-entropy on logits, hinge and focal losses, label smoothing and class weights, with a worked numeric example and common bugs.",
+      "keywords": [
+        "classification loss",
+        "cross-entropy",
+        "softmax",
+        "binary cross-entropy",
+        "bce with logits",
+        "log loss",
+        "hinge loss",
+        "focal loss",
+        "label smoothing",
+        "class weights",
+        "numerical stability",
+        "logits"
+      ]
+    },
+    {
+      "image": "ML/41-contrastive-ranking-losses-cheat-sheet.png",
+      "title": "CONTRASTIVE & RANKING LOSSES",
+      "subtitle": "Pull matches together, push mismatches apart",
+      "robot": "Learn by comparison!",
+      "learner": "Where do the negatives come from?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "The Idea",
+          "body": "Learn an embedding space: similar items close, different items far.\nAnchor + positive (a match) + negatives (non-matches).\nSimilarity: cosine, or distance on normalized vectors.",
+          "diagram": "A 2D embedding map: an anchor dot (cyan), a positive (lime) with an inward arrow, and several negatives (orange) with outward arrows."
+        },
+        {
+          "number": 2,
+          "heading": "Contrastive Pair Loss",
+          "body": "Pair distance d, label y (1 = similar):\nL = y d^2 + (1 - y) max(0, m - d)^2.\nSimilar pairs are pulled to 0.\nDissimilar pairs are pushed past margin m, then ignored.",
+          "diagram": "Two pairs: a similar pair connected by a spring pulling together; a dissimilar pair with a dashed circle of radius m around one point and the other pushed outside it."
+        },
+        {
+          "number": 3,
+          "heading": "Triplet Loss",
+          "body": "L = max(0, d(a, p) - d(a, n) + m).\nThe negative must be at least m farther than the positive.\nExample: d(a, p) = 0.4, d(a, n) = 0.6, m = 0.5 -> L = 0.3.",
+          "diagram": "Anchor a at center, positive p at radius 0.4, negative n at radius 0.6, and a margin ring at 0.9 showing n still inside the danger zone."
+        },
+        {
+          "number": 4,
+          "heading": "InfoNCE / NT-Xent",
+          "body": "Softmax over 1 positive and N - 1 negatives:\nL = -log( exp(s_pos / tau) / sum_j exp(s_j / tau) ).\nIn-batch negatives: other batch items are free negatives.\nLow temperature tau (e.g. 0.07) focuses on hard negatives.",
+          "diagram": "A row of similarity scores for one anchor, the positive in lime, fed through a softmax bar chart; a tau dial showing the bars sharpening as tau drops."
+        },
+        {
+          "number": 5,
+          "heading": "Worked Example: CLIP",
+          "body": "CLIP: contrastive language-image pretraining.\nBatch of N image-text pairs -> N x N similarity matrix.\nDiagonal = true pairs; each row has N - 1 negatives.\nLoss = cross-entropy over rows and columns, averaged.",
+          "code": "logits = img @ txt.T / tau  # both L2-normalized\nlabels = torch.arange(len(img))\nloss = (F.cross_entropy(logits, labels)\n        + F.cross_entropy(logits.T, labels)) / 2",
+          "diagram": "A 4x4 grid with image thumbnails down the side and captions across the top; diagonal cells glowing lime, off-diagonal cells dim orange."
+        },
+        {
+          "number": 6,
+          "heading": "Hard Negative Mining",
+          "body": "Random negatives get too easy: loss -> 0, no signal.\nHard negatives: close to the anchor but wrong, e.g. top keyword-search hits that are not the answer.\nToo hard = likely false negatives.",
+          "diagram": "Concentric rings around the anchor labeled easy (far), semi-hard (inside margin), hard (closer than the positive); one 'hard' point tagged with an orange '?' as a possible unlabeled match."
+        },
+        {
+          "number": 7,
+          "heading": "Pairwise Ranking: BPR and RankNet",
+          "body": "Score item i above item j for the same user or query.\nBPR (Bayesian personalized ranking): L = -log sigmoid(s_i - s_j).\nRankNet: logistic loss on score differences.\nOnly the order matters.",
+          "diagram": "Two item cards for one user: 'clicked' i and 'not clicked' j with scores; a sigmoid curve of s_i - s_j showing loss falling as the gap grows."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Small batches = few negatives = weak InfoNCE signal.\nDuplicates in a batch become false negatives.\ntau too low -> unstable; too high -> blurry embeddings.\nNo negatives -> collapse to one point.",
+          "diagram": "Orange warning icons: a tiny batch tray, two identical images marked 'negative?', and an embedding map where all dots have collapsed to one spot."
+        }
+      ],
+      "footer": "Make the right match win a softmax over the wrong ones.",
+      "summary": "How embedding models learn by comparison: contrastive pair and triplet losses with margins, InfoNCE with temperature and in-batch negatives, the CLIP loss, hard negative mining, and pairwise ranking losses like BPR and RankNet.",
+      "keywords": [
+        "contrastive learning",
+        "contrastive loss",
+        "triplet loss",
+        "infonce",
+        "nt-xent",
+        "in-batch negatives",
+        "hard negative mining",
+        "clip",
+        "bpr",
+        "ranknet",
+        "embeddings",
+        "temperature"
+      ]
+    },
+    {
+      "image": "ML/42-probabilistic-generative-losses-cheat-sheet.png",
+      "title": "GENERATIVE MODEL LOSSES",
+      "subtitle": "Most losses are a log-likelihood in disguise",
+      "robot": "Maximize likelihood, minimize surprise!",
+      "learner": "How does a GAN even have a loss?",
+      "panels": [
+        {
+          "number": 1,
+          "heading": "Maximum Likelihood",
+          "body": "Pick parameters theta that make the observed data most probable.\nMinimize NLL (negative log-likelihood) = -sum log p_theta(x_i).\nGaussian noise -> MSE. Categorical -> cross-entropy.",
+          "diagram": "A histogram of data with two candidate density curves; the better-fitting curve glows cyan with a higher 'likelihood' meter."
+        },
+        {
+          "number": 2,
+          "heading": "Next-Token Loss and Perplexity",
+          "body": "LLMs minimize mean -log p(x_t | x_<t) over tokens.\nPerplexity = exp(mean NLL): effective number of choices.\nExample: loss 2.0 nats -> perplexity e^2 = 7.4.",
+          "diagram": "A sentence 'the cat sat on the' with a next-token probability bar chart over candidate words; 'mat' highlighted with p = 0.4 and -log p = 0.92 shown."
+        },
+        {
+          "number": 3,
+          "heading": "KL Divergence",
+          "body": "KL(P || Q) = sum P log(P / Q) >= 0; 0 only if P = Q.\nAsymmetric: P = [0.5, 0.5], Q = [0.9, 0.1] -> KL(P||Q) = 0.51, KL(Q||P) = 0.37.\nFitting Q: forward KL covers modes, reverse KL picks one.",
+          "diagram": "A two-humped target P (violet); a wide Q covering both humps labeled 'forward KL' and a narrow Q sitting on one hump labeled 'reverse KL'."
+        },
+        {
+          "number": 4,
+          "heading": "ELBO for VAEs",
+          "body": "VAE = variational autoencoder; ELBO = evidence lower bound on log p(x).\nELBO = E_q[log p(x|z)] - KL(q(z|x) || p(z)).\nReconstruction + a pull toward the prior N(0, I).\nTrain by maximizing it.",
+          "diagram": "Encoder -> latent z (Gaussian blob) -> decoder -> reconstruction; a lime arrow 'reconstruction term' between input and output, a violet arrow 'KL to N(0, I)' on the latent."
+        },
+        {
+          "number": 5,
+          "heading": "GAN Minimax",
+          "body": "min_G max_D E[log D(x)] + E[log(1 - D(G(z)))].\nDiscriminator D learns real vs fake; generator G learns to fool it.\nIn practice G maximizes log D(G(z)) for stronger early gradients.",
+          "diagram": "Generator robot passing a fake image to a discriminator judge next to a stack of real images; a seesaw labeled min_G / max_D."
+        },
+        {
+          "number": 6,
+          "heading": "Diffusion: Predict the Noise",
+          "body": "Noise the data: x_t = sqrt(a_bar_t) x_0 + sqrt(1 - a_bar_t) eps.\nTrain the network to recover eps with MSE.\nA reweighted ELBO simplifies to this plain loss.",
+          "code": "eps = torch.randn_like(x0)\nxt = a_bar[t].sqrt() * x0 + (1 - a_bar[t]).sqrt() * eps\nloss = F.mse_loss(model(xt, t), eps)",
+          "diagram": "A strip of one image going from clean to pure noise across timesteps t; at one step the network outputs a predicted noise patch compared to the true noise patch with an MSE arrow."
+        },
+        {
+          "number": 7,
+          "heading": "Compare at a Glance",
+          "body": "Autoregressive LM: exact NLL.\nVAE: lower bound (ELBO).\nGAN: no likelihood; an adversarial game.\nDiffusion: denoising MSE, a reweighted bound.\nLikelihood losses are stable; adversarial ones are fragile.",
+          "diagram": "Four-row table with icons for each model family and columns 'loss', 'exact likelihood?', 'training stability'."
+        },
+        {
+          "number": 8,
+          "heading": "Pitfalls",
+          "body": "Perplexity across tokenizers is not comparable; use bits per byte.\nVAE posterior collapse: decoder ignores z, KL -> 0.\nGAN mode collapse: few distinct outputs.\nLow NLL does not guarantee good samples.",
+          "diagram": "Orange warning icons: two rulers with different tick sizes, a latent blob disconnected from the decoder, and a generator outputting the same face repeatedly."
+        }
+      ],
+      "footer": "Know the likelihood behind your loss and you know what your model is learning.",
+      "summary": "The probabilistic view of training: maximum likelihood and negative log-likelihood, next-token loss and perplexity, KL divergence and its asymmetry, and the losses behind VAEs, GANs and diffusion models.",
+      "keywords": [
+        "maximum likelihood",
+        "negative log-likelihood",
+        "nll",
+        "perplexity",
+        "kl divergence",
+        "elbo",
+        "vae",
+        "gan loss",
+        "diffusion loss",
+        "generative models",
+        "next-token prediction",
+        "noise prediction"
+      ]
+    }
+  ]
+}

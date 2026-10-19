@@ -1,0 +1,506 @@
+{
+ "collection": "ML",
+ "pages": [
+  {
+   "image": "ML/22-linear-logistic-regression-cheat-sheet.png",
+   "title": "LINEAR & LOGISTIC REGRESSION",
+   "subtitle": "Fit a line, then bend it into a probability",
+   "robot": "Weights tell the story!",
+   "learner": "How can a line predict yes or no?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Linear Regression: Fit a Line",
+     "body": "Predict a number: y_hat = w0 + w1*x1 + ... + wd*xd.\nResidual = y - y_hat.\nLeast squares picks weights that minimize MSE (mean squared error) = average residual^2.",
+     "diagram": "Scatter plot of house size (m^2) vs price with a cyan fitted line; vertical amber residual segments from each point to the line, a few drawn as small squares to show 'squared error'."
+    },
+    {
+     "number": 2,
+     "heading": "Closed Form vs Gradient Descent",
+     "body": "Normal equation: w = (X^T X)^-1 X^T y. Exact, one shot.\nGradient descent: w <- w - lr * gradient. Iterative; scales to huge or streaming data.\nLibraries use QR/SVD, not a raw inverse.",
+     "diagram": "Split panel: left a single arrow 'X, y -> formula -> w' labeled EXACT; right a bowl-shaped loss surface with a zig-zag path of dots descending to the minimum labeled ITERATIVE."
+    },
+    {
+     "number": 3,
+     "heading": "Assumptions to Check",
+     "body": "Linear relationship (after any feature transforms).\nIndependent errors, constant variance: no funnel in residuals.\nNo strong multicollinearity: correlated features make weights unstable.\nNormal errors matter only for p-values and intervals.",
+     "diagram": "Two small residual-vs-prediction plots: GOOD = random flat cloud around zero (lime check); BAD = funnel widening to the right and a curved band (orange X)."
+    },
+    {
+     "number": 4,
+     "heading": "Logistic Regression: Bend to 0-1",
+     "body": "For classes: p = sigmoid(z) = 1 / (1 + e^-z), z = w.x + b.\nz is the log-odds: log(p / (1 - p)).\nTrain with log loss; no closed form.\nBoundary: z = 0 (p = 0.5), a straight line or plane.",
+     "diagram": "Top: S-shaped sigmoid curve, x-axis z from -6 to 6, y-axis p from 0 to 1, dashed line at p = 0.5 meeting z = 0. Bottom: 2D scatter of two colored classes split by a straight cyan boundary line labeled 'z = 0'."
+    },
+    {
+     "number": 5,
+     "heading": "Reading the Coefficients",
+     "body": "Linear: +1 unit of x -> y changes by w (others held fixed).\nLogistic: +1 unit of x -> log-odds +w, odds multiply by e^w.\nCompare sizes only after standardizing.\nCoefficients show association, not cause.",
+     "diagram": "Two labeled dials: 'linear w = 3 -> +3 per unit' and 'logistic w = 0.7 -> odds x2.0'; a small warning tag 'not causal'."
+    },
+    {
+     "number": 6,
+     "heading": "Worked Example: Pass the Exam",
+     "body": "Model: z = -4 + 1.5 * hours.\n2 hours: z = -1 -> p = 0.27.\n4 hours: z = 2 -> p = 0.88.\nBoundary: z = 0 at 2.67 hours. Each extra hour multiplies the odds by e^1.5 = 4.5.",
+     "code": "from sklearn.linear_model import LogisticRegression\nclf = LogisticRegression().fit(X, y)\nclf.predict_proba(X_new)[:, 1]",
+     "diagram": "Sigmoid plotted against study hours 0-6 with marked points (2 h, 0.27) and (4 h, 0.88); vertical dashed boundary at 2.67 h; small table of hours / z / p."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Extrapolating outside the training range.\nOutliers drag least squares: check residuals or use Huber loss.\nSeparable classes: weights blow up; regularize.\n0.5 threshold is a default: tune it to error costs.",
+     "diagram": "Orange warning icons beside four mini sketches: a line shooting past the data, one outlier tilting the fit, an infinitely steep sigmoid, a threshold slider."
+    },
+    {
+     "number": 8,
+     "heading": "Check Yourself",
+     "body": "A logistic weight is 0.7. What happens to the odds per unit of x?\nAnswer: x e^0.7, about double.",
+     "diagram": "Robot holding a quiz card with the question; the answer printed upside down in a small corner box."
+    }
+   ],
+   "footer": "Linear predicts a number; logistic predicts log-odds, then squashes them into a probability.",
+   "summary": "Explains linear regression (least squares, normal equation vs gradient descent, assumptions) and logistic regression (sigmoid, log-odds, decision boundary), how to read their coefficients, with a worked pass/fail example and common pitfalls.",
+   "keywords": [
+    "linear regression",
+    "logistic regression",
+    "least squares",
+    "ols",
+    "normal equation",
+    "sigmoid",
+    "log-odds",
+    "odds ratio",
+    "decision boundary",
+    "mse",
+    "coefficients"
+   ]
+  },
+  {
+   "image": "ML/23-trees-ensembles-cheat-sheet.png",
+   "title": "TREES & ENSEMBLES CHEAT SHEET",
+   "subtitle": "From one decision tree to a winning forest",
+   "robot": "Many trees, one strong vote!",
+   "learner": "Why do trees beat my neural net?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "How a Decision Tree Splits",
+     "body": "Ask yes/no questions: income > 50k? age < 30?\nEach split picks the feature + threshold that makes children purest.\nLeaves predict the majority class (or the mean for regression).\nNo scaling needed.",
+     "diagram": "Small tree diagram: root 'income > 50k?' branching yes/no to 'age < 30?' and leaf nodes colored by class (lime = approve, orange = deny)."
+    },
+    {
+     "number": 2,
+     "heading": "Gini vs Entropy",
+     "body": "Gini = 1 - sum(p_k^2). Entropy = -sum(p_k * log2 p_k).\n50/50 node: Gini 0.5, entropy 1.0. Pure node: both 0.\nGain = parent impurity - weighted child impurity.\nNearly identical splits; Gini is a bit faster.",
+     "diagram": "Plot of impurity vs fraction of class 1 (0 to 1): entropy curve peaking at 1.0 and Gini curve peaking at 0.5, both zero at the ends."
+    },
+    {
+     "number": 3,
+     "heading": "Worked Example: One Split",
+     "body": "Parent: 10 emails, 5 spam -> Gini 0.5.\nSplit on 'has link': left 4 spam / 1 ham, right 1 spam / 4 ham.\nEach child: 1 - (0.8^2 + 0.2^2) = 0.32.\nGain = 0.5 - 0.32 = 0.18.",
+     "diagram": "Parent box with 5 red + 5 blue envelope icons splitting into two child boxes (4 red/1 blue and 1 red/4 blue), each annotated with its Gini value."
+    },
+    {
+     "number": 4,
+     "heading": "Depth Controls Overfitting",
+     "body": "Deep tree: memorizes noise (high variance).\nShallow tree: too simple (high bias).\nLimit max_depth or min_samples_leaf, or prune with ccp_alpha.",
+     "diagram": "Two decision-region maps of the same 2D points: depth 2 = few big rectangles; depth 20 = jagged tiny boxes around single points."
+    },
+    {
+     "number": 5,
+     "heading": "Bagging & Random Forests",
+     "body": "Bagging = bootstrap aggregating: train trees on resampled rows, average their votes.\nRandom forest also samples features at each split -> less correlated trees.\nCuts variance; out-of-bag rows give a free validation score.",
+     "diagram": "Dataset fanning out into 4 bootstrap samples, each feeding a different small tree, arrows converging into a 'vote / average' box."
+    },
+    {
+     "number": 6,
+     "heading": "Boosting: Fix the Errors",
+     "body": "Build shallow trees in sequence; each fits the residual errors (gradients) of the ensemble so far.\nA small learning rate plus early stopping prevents overfitting.\nTools: XGBoost, LightGBM, CatBoost.",
+     "code": "from lightgbm import LGBMClassifier\nm = LGBMClassifier(n_estimators=500, learning_rate=0.05)\nm.fit(X_train, y_train)",
+     "diagram": "Chain of three small trees left to right, each followed by a shrinking 'residual' bar chart; plus signs between trees summing into a final prediction."
+    },
+    {
+     "number": 7,
+     "heading": "Feature Importance Pitfalls",
+     "body": "Impurity importance favors high-cardinality features (IDs!) and uses training data.\nCorrelated features split the credit.\nPrefer permutation importance on held-out data, or SHAP values.\nImportant does not mean causal.",
+     "diagram": "Bar chart where 'customer_id' has the tallest bar stamped with an orange 'FAKE' warning; beside it a held-out permutation chart where it drops to near zero."
+    },
+    {
+     "number": 8,
+     "heading": "When Trees Beat Neural Nets",
+     "body": "Tabular data: mixed types, skewed features, missing values.\nBoosted trees often win with less tuning and compute.\nNeural nets win on images, text, audio.",
+     "diagram": "Scoreboard: 'spreadsheet data -> boosted trees', 'images / text / audio -> neural nets'."
+    }
+   ],
+   "footer": "One tree overfits; bagging averages away variance; boosting chips away bias.",
+   "summary": "Shows how decision trees choose splits (Gini, entropy, information gain) with a worked example, how depth controls overfitting, how random forests (bagging) and gradient boosting (XGBoost, LightGBM) combine trees, why feature importances mislead, and why trees still win on tabular data.",
+   "keywords": [
+    "decision tree",
+    "gini impurity",
+    "entropy",
+    "information gain",
+    "random forest",
+    "bagging",
+    "gradient boosting",
+    "xgboost",
+    "lightgbm",
+    "feature importance",
+    "tabular data",
+    "gbdt"
+   ]
+  },
+  {
+   "image": "ML/24-svm-knn-naive-bayes-cheat-sheet.png",
+   "title": "SVM, KNN & NAIVE BAYES",
+   "subtitle": "Three classic classifiers and when each shines",
+   "robot": "Margins, neighbors, probabilities!",
+   "learner": "Which one should I try first?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "SVM: The Widest Margin",
+     "body": "SVM = support vector machine.\nFind the boundary w.x + b = 0 with the widest gap to both classes: margin = 2 / ||w||.\nOnly the closest points, the support vectors, define it.",
+     "diagram": "Two classes of dots separated by a cyan line with dashed parallel margin lines on each side; the few points touching the dashed lines are circled and labeled 'support vectors'; double arrow labeled 'margin'."
+    },
+    {
+     "number": 2,
+     "heading": "Soft Margin & C",
+     "body": "Real classes overlap, so allow violations (hinge loss).\nLarge C: punish errors hard -> narrow margin, may overfit.\nSmall C: tolerate errors -> wider margin, smoother boundary.",
+     "diagram": "Side-by-side: 'C = 100' tight margin bending to every point; 'C = 0.1' wide margin with a few points inside it."
+    },
+    {
+     "number": 3,
+     "heading": "The Kernel Trick",
+     "body": "Map points to a space where they separate linearly, without computing the map: only k(x, x') is needed.\nRBF kernel: k = exp(-gamma * ||x - x'||^2).\nRings in 2D separate once you add z = x1^2 + x2^2.",
+     "code": "from sklearn.svm import SVC\nSVC(kernel=\"rbf\", C=1.0, gamma=\"scale\")",
+     "diagram": "Left: two concentric rings of points in 2D. Arrow 'lift with z = x1^2 + x2^2' to the right: the same points on a 3D bowl, cut by a flat plane."
+    },
+    {
+     "number": 4,
+     "heading": "k-Nearest Neighbors",
+     "body": "k-NN: no training, just store the data.\nPredict by majority vote (or mean) of the k closest points.\nSmall k: noisy. Large k: blurry. Odd k avoids ties for 2 classes.\nDistance: Euclidean, Manhattan, or cosine for text.",
+     "diagram": "A query star surrounded by colored dots; circle around its 3 nearest neighbors (2 blue, 1 red -> blue) and a larger circle for k = 7 with a different vote."
+    },
+    {
+     "number": 5,
+     "heading": "Worked Example: Why Scale",
+     "body": "Features: income (0-200,000) and age (0-100).\nUnscaled, a 1,000 income gap outweighs a 40-year age gap.\nStandardize: z = (x - mean) / std, so each feature counts fairly.",
+     "diagram": "Two scatter plots of the same points: unscaled = squashed into a thin horizontal strip; scaled = round cloud; the nearest neighbor of the query changes between them."
+    },
+    {
+     "number": 6,
+     "heading": "Naive Bayes",
+     "body": "Bayes rule: P(class | x) is proportional to P(class) * product of P(x_i | class).\nNaive: features assumed independent given the class.\nWrong, yet strong for text: fast, little data needed.\nLaplace smoothing (+1) stops unseen words zeroing everything.",
+     "diagram": "Formula banner with the prior and likelihood terms colored differently; small bag-of-words icons multiplying together."
+    },
+    {
+     "number": 7,
+     "heading": "Worked Example: Spam Filter",
+     "body": "Prior: P(spam) = 0.4, P(ham) = 0.6.\nWord 'free': P(free | spam) = 0.3, P(free | ham) = 0.02.\nScores: spam 0.4 x 0.3 = 0.12; ham 0.6 x 0.02 = 0.012.\nP(spam | free) = 0.12 / 0.132 = 0.91.",
+     "diagram": "Email with the word 'free' highlighted; two score bars (spam 0.12 tall, ham 0.012 tiny) feeding a gauge reading 91% spam."
+    },
+    {
+     "number": 8,
+     "heading": "Compare & Pitfalls",
+     "body": "SVM: strong in high dimensions; kernels slow past ~100k rows.\nk-NN: no training, slow predictions.\nNaive Bayes: fastest text baseline; overconfident.\nPitfall: unscaled features break SVM and k-NN.",
+     "diagram": "Three-row comparison table with columns training speed / prediction speed / needs scaling / best for, using lime and orange icons."
+    }
+   ],
+   "footer": "SVM draws the widest road, k-NN asks the neighbors, Naive Bayes counts the evidence.",
+   "summary": "Compares three classic classifiers: support vector machines (margin, support vectors, C, kernel trick), k-nearest neighbors (choice of k, distance, why scaling matters) and Naive Bayes (independence assumption, spam example), with a when-to-use table and pitfalls.",
+   "keywords": [
+    "svm",
+    "support vector machine",
+    "kernel trick",
+    "rbf kernel",
+    "margin",
+    "knn",
+    "k-nearest neighbors",
+    "naive bayes",
+    "laplace smoothing",
+    "text classification",
+    "feature scaling"
+   ]
+  },
+  {
+   "image": "ML/25-clustering-cheat-sheet.png",
+   "title": "CLUSTERING CHEAT SHEET",
+   "subtitle": "Finding groups when nobody gave you labels",
+   "robot": "No labels? Find the structure!",
+   "learner": "How many clusters are really there?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "k-Means Step by Step",
+     "body": "Unsupervised: group points with no labels.\n1. Pick k centroids. 2. Assign each point to its nearest centroid.\n3. Move each centroid to its points' mean. 4. Repeat until stable.\nMinimizes inertia = sum of squared distances to centroids.",
+     "diagram": "Four mini frames in a row: random centroids (X marks), points colored by nearest X, X marks sliding to cluster centers, final stable clusters."
+    },
+    {
+     "number": 2,
+     "heading": "Worked Example: 1D, k = 2",
+     "body": "Points: 1, 2, 3, 10, 11, 12. Start centroids: 1 and 2.\nAssign: {1} and {2, 3, 10, 11, 12} -> means 1 and 7.6.\nReassign: {1, 2, 3} and {10, 11, 12} -> means 2 and 11.\nNo change: converged.",
+     "diagram": "Number line 0-13 with six dots; two rows showing centroid markers moving from (1, 2) to (1, 7.6) to (2, 11), with dots recolored each round."
+    },
+    {
+     "number": 3,
+     "heading": "k-Means++ & Choosing k",
+     "body": "k-means++: pick each new start centroid far from existing ones -> better, faster. Run several restarts.\nElbow: plot inertia vs k, pick the bend.\nSilhouette = (b - a) / max(a, b), from -1 to 1: higher = better separated.",
+     "code": "from sklearn.cluster import KMeans\nKMeans(n_clusters=3, init=\"k-means++\", n_init=10)",
+     "diagram": "Left: elbow curve of inertia vs k = 1..8 with the bend at k = 3 circled. Right: silhouette score vs k with its peak at k = 3."
+    },
+    {
+     "number": 4,
+     "heading": "Hierarchical Clustering",
+     "body": "Agglomerative: start with every point alone; merge the two closest clusters, repeat.\nLinkage: single (min), complete (max), average, Ward (least variance increase).\nCut the dendrogram at a height to get any number of clusters.",
+     "diagram": "Dendrogram over 8 labeled points with a dashed horizontal cut line producing 3 colored clusters."
+    },
+    {
+     "number": 5,
+     "heading": "DBSCAN: Density Wins",
+     "body": "DBSCAN = density-based spatial clustering of applications with noise.\nCore point: at least min_samples points within radius eps.\nClusters grow through connected core points; the rest is noise.\nAny shape, no k needed.",
+     "diagram": "Two crescent 'moons' of points correctly colored as two clusters, a few gray isolated points marked 'noise', one point with a dashed eps circle around it."
+    },
+    {
+     "number": 6,
+     "heading": "Gaussian Mixture Models",
+     "body": "GMM: each cluster is a Gaussian with its own mean and covariance.\nFit with EM (expectation-maximization).\nSoft assignment: a point can be 70% A, 30% B.\nHandles elliptical clusters; choose k with BIC.",
+     "diagram": "Two overlapping tilted ellipses (contour lines) over points; one point between them labeled '70% A / 30% B'."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Unscaled features: the largest unit dominates distance.\nk-means assumes round, similar-size clusters; fails on moons and rings.\nk-means returns k clusters even for pure noise.\nDBSCAN struggles when densities vary.",
+     "diagram": "Orange warning frame: k-means wrongly slicing two moons in half with a straight line, versus DBSCAN getting them right."
+    }
+   ],
+   "footer": "Scale first, match the algorithm to the cluster shape, then sanity-check the groups.",
+   "summary": "Covers unsupervised clustering: the k-means algorithm with a worked 1D trace, k-means++ initialization, choosing k with the elbow and silhouette methods, hierarchical clustering, DBSCAN, Gaussian mixture models, and common pitfalls like scaling and non-spherical clusters.",
+   "keywords": [
+    "clustering",
+    "k-means",
+    "k-means++",
+    "elbow method",
+    "silhouette score",
+    "hierarchical clustering",
+    "dendrogram",
+    "dbscan",
+    "gaussian mixture model",
+    "gmm",
+    "unsupervised learning"
+   ]
+  },
+  {
+   "image": "ML/26-dimensionality-reduction-cheat-sheet.png",
+   "title": "DIMENSIONALITY REDUCTION CHEAT SHEET",
+   "subtitle": "Fewer dimensions, same story",
+   "robot": "Keep the signal, drop noise!",
+   "learner": "Why does my t-SNE plot mislead me?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Curse of Dimensionality",
+     "body": "Each new feature multiplies the volume of space: data gets sparse.\n10 bins per feature: 2D = 100 cells, 10D = 10 billion.\nDistances concentrate: nearest and farthest points look alike.\nk-NN and clustering suffer first.",
+     "diagram": "Grid sequence: 1D line with 10 cells, 2D square with 100 cells, 3D cube with 1,000 cells, the same 20 dots looking ever sparser."
+    },
+    {
+     "number": 2,
+     "heading": "PCA: Find the Main Axes",
+     "body": "PCA = principal component analysis.\nCenter the data, compute the covariance matrix.\nEigenvectors = new orthogonal axes (principal components); eigenvalues = variance along each.\nKeep the top k and project onto them.",
+     "diagram": "Tilted elliptical cloud of 2D points with two perpendicular arrows from the center: long arrow 'PC1' along the spread, short arrow 'PC2'; points projected as ticks onto PC1."
+    },
+    {
+     "number": 3,
+     "heading": "Worked Example: Explained Variance",
+     "body": "Eigenvalues: 4.0, 2.5, 1.0, 0.5 (total 8).\nShares: 50%, 31%, 13%, 6%.\nPC1 + PC2 keep 81% of the variance with half the dimensions.\nRule of thumb: keep 90-95%.",
+     "code": "from sklearn.decomposition import PCA\npca = PCA(n_components=0.95)\nZ = pca.fit_transform(X_scaled)",
+     "diagram": "Scree plot: four bars (50, 31, 13, 6) with a cumulative line (50, 81, 94, 100) and a dashed 95% target line."
+    },
+    {
+     "number": 4,
+     "heading": "PCA Pitfalls",
+     "body": "Not standardized: the largest-unit feature hijacks PC1.\nLinear only: misses curved structure.\nComponents mix all features: hard to explain.\nHigh variance is not always useful signal.",
+     "diagram": "Before/after: PC1 arrow pointing along a 'grams' axis when unscaled vs a balanced direction after scaling; orange warning icons."
+    },
+    {
+     "number": 5,
+     "heading": "t-SNE & UMAP for Pictures",
+     "body": "t-SNE = t-distributed stochastic neighbor embedding.\nUMAP = uniform manifold approximation and projection.\nNonlinear: keep local neighbors together in 2D.\nUMAP is faster and keeps more global layout. Use both for looking, not as model inputs.",
+     "diagram": "High-dimensional blob of colored points (MNIST-style digits) on the left; arrow to a 2D map with tight colored islands on the right."
+    },
+    {
+     "number": 6,
+     "heading": "Misreading the Map",
+     "body": "Cluster sizes mean little: density gets equalized.\nGaps between clusters are not true distances.\nPerplexity or n_neighbors reshape the picture: try several.\nRandom noise can form fake clusters.",
+     "diagram": "Same data rendered three ways (perplexity 5, 30, 100) giving visibly different layouts, stamped 'same data!'."
+    },
+    {
+     "number": 7,
+     "heading": "Selection vs Extraction",
+     "body": "Selection: keep a subset of original columns (filters, L1, tree importance). Interpretable.\nExtraction: build new features from all columns (PCA, autoencoders). Compact but abstract.\nNeed explanations? Select. Need compression? Extract.",
+     "diagram": "Left: table with some columns crossed out (selection). Right: all columns flowing into a funnel producing two new columns PC1, PC2 (extraction)."
+    }
+   ],
+   "footer": "Use PCA to compress, t-SNE or UMAP to look, and never measure distances on a t-SNE plot.",
+   "summary": "Explains why high-dimensional data is hard (curse of dimensionality), how PCA finds directions of maximum variance with a worked explained-variance example, how t-SNE and UMAP make 2D pictures and how they are misread, and the difference between feature selection and feature extraction.",
+   "keywords": [
+    "dimensionality reduction",
+    "curse of dimensionality",
+    "pca",
+    "principal component analysis",
+    "explained variance",
+    "eigenvectors",
+    "t-sne",
+    "umap",
+    "feature selection",
+    "feature extraction",
+    "scree plot"
+   ]
+  },
+  {
+   "image": "ML/27-bias-variance-regularization-cheat-sheet.png",
+   "title": "BIAS, VARIANCE & REGULARIZATION",
+   "subtitle": "Find the sweet spot between too simple and too wiggly",
+   "robot": "Simple enough, but no simpler!",
+   "learner": "Why does my test score drop?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Underfit vs Overfit",
+     "body": "Underfit: high train error, high test error. Too simple.\nOverfit: low train error, much higher test error. Memorized noise.\nGood fit: both low and close together.",
+     "diagram": "Three plots of the same noisy points: a straight line (UNDERFIT), a smooth curve (GOOD), a wild degree-15 polynomial through every point (OVERFIT)."
+    },
+    {
+     "number": 2,
+     "heading": "The Bias-Variance Trade-off",
+     "body": "Expected error = bias^2 + variance + irreducible noise.\nBias: error from wrong assumptions.\nVariance: sensitivity to which training sample you got.\nMore complexity: bias down, variance up -> U-shaped test error.",
+     "diagram": "Dartboard 2x2 (low/high bias x low/high variance) beside a plot of error vs model complexity: falling bias^2 curve, rising variance curve, U-shaped total with the sweet spot marked."
+    },
+    {
+     "number": 3,
+     "heading": "Learning Curves",
+     "body": "Plot train and validation error vs training set size.\nBoth high and close: high bias -> add features or capacity.\nLarge gap that shrinks with data: high variance -> more data or regularize.",
+     "diagram": "Two learning-curve plots: HIGH BIAS (train and validation curves converge at a high error) and HIGH VARIANCE (big gap narrowing slowly as data grows)."
+    },
+    {
+     "number": 4,
+     "heading": "L1 vs L2 vs Elastic Net",
+     "body": "Add a penalty to the loss:\nL2 (ridge): + lambda * sum(w^2). Shrinks all weights smoothly.\nL1 (lasso): + lambda * sum(|w|). Drives many weights to exactly 0.\nElastic net: mixes both; good with correlated features.",
+     "diagram": "Classic 2D picture: elliptical loss contours meeting a diamond (L1, touching at a corner on an axis -> w2 = 0) and a circle (L2, touching off-axis)."
+    },
+    {
+     "number": 5,
+     "heading": "Worked Example: 50 Features",
+     "body": "100 rows, 50 features, only 5 matter.\nPlain least squares: 50 noisy weights, overfits.\nRidge: 50 small nonzero weights.\nLasso: most weights exactly 0; the useful few survive.",
+     "code": "from sklearn.linear_model import Ridge, Lasso, ElasticNet\nRidge(alpha=1.0); Lasso(alpha=0.1)\nElasticNet(alpha=0.1, l1_ratio=0.5)",
+     "diagram": "Three bar charts of 50 coefficients: OLS = tall random bars; ridge = all shrunk short; lasso = mostly flat zero with 5 lime bars standing."
+    },
+    {
+     "number": 6,
+     "heading": "Early Stopping",
+     "body": "Track validation loss every epoch.\nStop after 'patience' epochs without improvement; restore the best weights.\nWorks like L2: weights cannot travel far from their start.",
+     "diagram": "Training loss falling steadily, validation loss U-shaped; a stop sign at the validation minimum labeled 'best checkpoint'."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Tuning lambda on the test set: use validation or cross-validation.\nPenalizing unscaled features: the penalty becomes unfair. Scale first.\nsklearn alpha = penalty strength, but C in SVM and LogisticRegression is its inverse.",
+     "diagram": "Orange warning tags on a 'test set' lock, a lopsided scale, and a dial labeled 'C = 1 / lambda'."
+    },
+    {
+     "number": 8,
+     "heading": "Double Descent Note",
+     "body": "Huge models can break the U: test error peaks where parameters ~ data points, then falls again as size grows.\nThe classic trade-off still guides most tabular models.",
+     "diagram": "Test error vs model size: classic U, a spike at the 'interpolation threshold', then a second descent to the right."
+    }
+   ],
+   "footer": "Diagnose first: high bias needs more capacity, high variance needs more data or regularization.",
+   "summary": "Explains underfitting vs overfitting, the bias-variance decomposition, how to read learning curves, L1 (lasso), L2 (ridge) and elastic net penalties with a worked example, early stopping, tuning pitfalls, and the double descent phenomenon in very large models.",
+   "keywords": [
+    "bias-variance tradeoff",
+    "underfitting",
+    "overfitting",
+    "learning curves",
+    "regularization",
+    "l1",
+    "lasso",
+    "l2",
+    "ridge",
+    "elastic net",
+    "early stopping",
+    "double descent"
+   ]
+  },
+  {
+   "image": "ML/28-feature-engineering-cheat-sheet.png",
+   "title": "FEATURE ENGINEERING CHEAT SHEET",
+   "subtitle": "Better inputs beat fancier models",
+   "robot": "Fit on train, apply everywhere!",
+   "learner": "Why did my 99% model fail live?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Scaling & Standardization",
+     "body": "Standardize: z = (x - mean) / std -> mean 0, std 1.\nMin-max: (x - min) / (max - min) -> range 0 to 1.\nNeeded for k-NN, SVM, PCA, regularized and neural models. Trees don't care.\nOutliers? Robust scaling or a log transform.",
+     "diagram": "Three histograms of the same feature: raw (0-200,000), standardized (centered at 0), min-max (squeezed into 0-1)."
+    },
+    {
+     "number": 2,
+     "heading": "Encoding Categoricals",
+     "body": "One-hot: red, green, blue -> red = [1, 0, 0]. Safe; explodes with many categories.\nOrdinal: S < M < L -> 0, 1, 2. Only for ordered values.\nTarget encoding: replace each category with its mean target. Powerful, but risky.",
+     "diagram": "A 'color' column turning into three 0/1 columns; a 'size' column turning into 0/1/2; a 'city' column turning into decimal churn rates."
+    },
+    {
+     "number": 3,
+     "heading": "Target Encoding Risks",
+     "body": "Computed on all rows, it leaks each row's own label.\nA city with 1 customer who churned -> encoding 1.0 = the answer.\nFix: out-of-fold encoding plus smoothing toward the global mean.",
+     "diagram": "Table row 'city = Smalltown, n = 1, churned = 1 -> encoding 1.0' with an orange leak drip flowing from label to feature; fixed version shows a shrunk value near the global mean."
+    },
+    {
+     "number": 4,
+     "heading": "Missing Values",
+     "body": "Ask why it's missing: missingness can be signal.\nImpute median (numbers), most frequent or a 'missing' category (categories).\nAdd an is_missing indicator column.\nFit imputers on training data only.",
+     "diagram": "A table with blank cells being filled in cyan, plus a new lime 0/1 'is_missing' column added on the right."
+    },
+    {
+     "number": 5,
+     "heading": "Data Leakage",
+     "body": "Leakage: training uses information unavailable at prediction time.\nTarget leakage: using 'refund_issued' to predict churn.\nContamination: scaling or imputing on all data before splitting.\nRed flag: scores that look too good.",
+     "diagram": "Timeline with 'prediction moment' marker; a feature box sitting after the marker with an orange arrow sneaking back into the model."
+    },
+    {
+     "number": 6,
+     "heading": "Pipeline: Leak-Proof by Design",
+     "body": "Every fit runs inside each CV fold, automatically.\nThe same steps run at prediction time.",
+     "code": "num = make_pipeline(SimpleImputer(strategy=\"median\"), StandardScaler())\npre = make_column_transformer((num, num_cols), (OneHotEncoder(handle_unknown=\"ignore\"), cat_cols))\nmodel = make_pipeline(pre, LogisticRegression())\ncross_val_score(model, X, y, cv=5)",
+     "diagram": "Flow diagram: raw columns -> numeric branch (impute, scale) and categorical branch (one-hot) -> merge -> model, all inside a box labeled 'refit per fold'."
+    },
+    {
+     "number": 7,
+     "heading": "Feature Selection",
+     "body": "Filter: drop constant columns; rank by mutual information.\nWrapper: RFE (recursive feature elimination) with a model.\nEmbedded: L1 weights or tree importance.\nSelect inside the CV loop, or the scores lie.",
+     "diagram": "Funnel with three labeled layers (filter, wrapper, embedded) narrowing 100 columns to 12."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls",
+     "body": "One-hot on IDs: thousands of useless columns.\nUnseen category at serving time -> crash: handle_unknown='ignore'.\nTraining-serving skew: compute features identically in both.",
+     "diagram": "Orange warning icons over an exploding column count, a crashing server, and two mismatched feature recipes labeled 'train' and 'serve'."
+    }
+   ],
+   "footer": "Fit every transform on training data only, and wrap it in a Pipeline so you can't forget.",
+   "summary": "Practical feature engineering: scaling and standardization, encoding categorical variables (one-hot, ordinal, target encoding and its leakage risk), handling missing values, spotting data leakage, building a leak-proof scikit-learn Pipeline, and selecting features without fooling yourself.",
+   "keywords": [
+    "feature engineering",
+    "standardization",
+    "feature scaling",
+    "one-hot encoding",
+    "target encoding",
+    "missing values",
+    "imputation",
+    "data leakage",
+    "sklearn pipeline",
+    "columntransformer",
+    "feature selection"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,384 @@
+{
+ "collection": "SWE",
+ "pages": [
+  {
+   "image": "SWE/08-solid-principles-cheat-sheet.png",
+   "title": "SOLID PRINCIPLES CHEAT SHEET",
+   "subtitle": "Five rules for code that bends without breaking",
+   "robot": "One reason to change!",
+   "learner": "Why does fixing one thing break three?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "What SOLID Means",
+     "body": "SOLID = five object-oriented design rules.\nS: single responsibility. O: open/closed.\nL: Liskov substitution. I: interface segregation.\nD: dependency inversion.\nGoal: changes stay small, local and safe.",
+     "diagram": "Five glowing letter blocks S-O-L-I-D forming a foundation, each block labeled with its full name; a sturdy wall labeled 'features' stands on top while a cracked wall labeled 'spaghetti' leans beside it."
+    },
+    {
+     "number": 2,
+     "heading": "S - Single Responsibility",
+     "body": "A class should have one reason to change.\nBefore: Report computes totals AND writes PDFs.\nAfter: Report computes; PdfExporter writes.\nTest: describe the class without saying \"and\".",
+     "code": "class Report: ...       # totals only\nclass PdfExporter: ...  # output only",
+     "diagram": "Before/after split: one overloaded box 'Report: totals + PDF' with two red arrows labeled 'finance change' and 'layout change'; after, two boxes 'Report' and 'PdfExporter', each with a single arrow."
+    },
+    {
+     "number": 3,
+     "heading": "O - Open/Closed",
+     "body": "Open for extension, closed for modification.\nBefore: an if/elif chain on payment kind grows forever.\nAfter: each payment type is a class with pay().\nAdd features by adding code, not editing it.",
+     "code": "for method in methods:\n    method.pay(amount)  # no if/elif",
+     "diagram": "Left: a long if/elif ladder 'card / paypal / crypto / ...' with a red 'edit again' stamp. Right: a socket labeled 'pay()' with plug-in cards Card, Wallet, Crypto snapping in."
+    },
+    {
+     "number": 4,
+     "heading": "L - Liskov Substitution",
+     "body": "Subtypes must work wherever the base type works.\nClassic break: Square(Rectangle) - setting width silently changes height.\nNo stronger preconditions, no weaker guarantees, no surprise exceptions.",
+     "diagram": "A function 'resize(rect)' expecting area 20 (w=4, h=5); a Rectangle passes with green check, a Square plugged in yields area 25 with a red X and the label 'broke the contract'."
+    },
+    {
+     "number": 5,
+     "heading": "I - Interface Segregation",
+     "body": "Clients should not depend on methods they never use.\nBefore: one Machine with print(), scan(), fax().\nAfter: small Printer and Scanner protocols.\nA basic printer no longer fakes fax().",
+     "code": "from typing import Protocol\nclass Printer(Protocol):\n    def print(self, doc) -> None: ...",
+     "diagram": "Before: a fat 'Machine' remote with three buttons, a cheap printer forced to wire a dummy 'fax' button (red). After: two slim remotes 'Printer' and 'Scanner'."
+    },
+    {
+     "number": 6,
+     "heading": "D - Dependency Inversion",
+     "body": "High-level code depends on abstractions, not details.\nBefore: OrderService builds MySQLRepo() inside.\nAfter: it receives any repo with save().\nTests swap in a fake repo in one line.",
+     "code": "class OrderService:\n    def __init__(self, repo):\n        self.repo = repo  # injected",
+     "diagram": "Arrow diagram: before, OrderService -> MySQLRepo (hard arrow, red). After, OrderService -> 'Repo interface: save()' <- MySQLRepo and FakeRepo both pointing up to the interface."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls: When to Bend",
+     "body": "SOLID is a guide, not a law.\nOver-splitting: 40 one-method classes for a 50-line script.\nPremature abstraction: an interface with one implementation forever.\nBend for prototypes and scripts; refactor when change hurts.",
+     "diagram": "Warning panel in orange: a tiny script exploded into a swarm of 40 micro-boxes connected by tangled arrows, labeled 'over-engineered'; a balance scale weighing 'simplicity' vs 'flexibility'."
+    },
+    {
+     "number": 8,
+     "heading": "Check Yourself",
+     "body": "Bird has fly(). Penguin(Bird) raises an error in fly().\nWhich principle breaks?\nAnswer: L - split into Bird and FlyingBird.",
+     "diagram": "Quiz card: a penguin standing on a 'Bird' pedestal with a red error bubble 'cannot fly'; revealed answer tab shows a tree Bird -> FlyingBird -> Eagle, and Bird -> Penguin."
+    }
+   ],
+   "footer": "Small, focused pieces that depend on promises, not details.",
+   "summary": "Explains the five SOLID object-oriented design principles with tiny before/after Python examples, and when it is sensible to bend them.",
+   "keywords": [
+    "solid",
+    "single responsibility",
+    "open closed",
+    "liskov substitution",
+    "interface segregation",
+    "dependency inversion",
+    "srp",
+    "lsp",
+    "object-oriented design",
+    "oop"
+   ]
+  },
+  {
+   "image": "SWE/09-creational-patterns-cheat-sheet.png",
+   "title": "CREATIONAL PATTERNS CHEAT SHEET",
+   "subtitle": "Control how objects get made",
+   "robot": "Separate creating from using!",
+   "learner": "Why is constructor code everywhere?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Why Creational Patterns",
+     "body": "They separate creating an object from using it.\nCallers ask for what they need, not how to build it.\nFive classics from the Gang of Four (GoF) book.",
+     "diagram": "A factory conveyor: raw parts enter a machine labeled 'creation', finished objects exit to a 'client' who only sees the product; five machine doors labeled Singleton, Factory Method, Abstract Factory, Builder, Prototype."
+    },
+    {
+     "number": 2,
+     "heading": "Singleton (Often an Anti-Pattern)",
+     "body": "Problem: exactly one shared instance (config, logger).\nRisks: hidden global state, tests leak into each other.\nA Python module is already a singleton.\nPrefer: create one object and inject it.",
+     "code": "from functools import cache\n@cache\ndef get_config():\n    return Config()",
+     "diagram": "One glowing object in the center with many classes reaching for it via tangled red wires labeled 'hidden dependency'; side note shows the cleaner version: main() creates Config once and hands it down with arrows."
+    },
+    {
+     "number": 3,
+     "heading": "Factory Method",
+     "body": "Problem: the caller should not hard-code which class to build.\nA method creates the object; subclasses override it.\nUse when the type depends on context or config.",
+     "code": "class Exporter:\n    def make_writer(self): return CsvWriter()\nclass JsonExporter(Exporter):\n    def make_writer(self): return JsonWriter()",
+     "diagram": "Class diagram: Exporter.make_writer() -> CsvWriter; subclass JsonExporter overrides make_writer() -> JsonWriter; the shared export() method calls make_writer() without knowing the type."
+    },
+    {
+     "number": 4,
+     "heading": "Abstract Factory",
+     "body": "Problem: families of objects that must match.\nDarkTheme makes DarkButton + DarkMenu; LightTheme makes the light pair.\nSwap the factory, every part changes together.",
+     "code": "ui = DarkTheme()\nbutton, menu = ui.button(), ui.menu()",
+     "diagram": "Two factory machines side by side: 'DarkTheme' producing a dark button and dark menu, 'LightTheme' producing light ones; a red X over a mixed dark-button/light-menu pair labeled 'mismatch prevented'."
+    },
+    {
+     "number": 5,
+     "heading": "Builder",
+     "body": "Problem: many optional parts or steps.\nSet parts step by step, then build() validates.\nAvoids 10-argument constructors.\nIn Python, keyword arguments or dataclasses often suffice.",
+     "code": "req = (RequestBuilder(\"GET\", \"/users\")\n       .header(\"Auth\", token)\n       .timeout(5)\n       .build())",
+     "diagram": "Assembly line building an HTTP request: blocks 'GET /users' -> 'header Auth' -> 'timeout 5s' -> 'build()' stamp with a green check; beside it a crossed-out constructor with ten positional arguments."
+    },
+    {
+     "number": 6,
+     "heading": "Prototype",
+     "body": "Problem: building from scratch is slow or complex.\nCopy a configured template, then tweak the copy.\nShallow copies share nested lists - use deepcopy.",
+     "code": "enemy = copy.deepcopy(base_enemy)\nenemy.hp = 50",
+     "diagram": "A template enemy robot with stats (hp 100, items list) cloned via a copy beam into two copies; one copy edited to hp 50; a red callout shows a shallow copy whose shared 'items' list changes in both."
+    },
+    {
+     "number": 7,
+     "heading": "Which One When?",
+     "body": "One shared resource -> inject one instance.\nType chosen at runtime -> Factory Method.\nMatching families -> Abstract Factory.\nMany optional settings -> Builder.\nCheap clones of a template -> Prototype.",
+     "diagram": "Decision flowchart with diamond questions 'need one instance?', 'type varies?', 'families must match?', 'many options?', 'copy a template?' each leading to a colored pattern badge."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls",
+     "body": "Factories for classes that never vary are noise.\nSingletons leak state between tests.\nBuilders that skip validation build broken objects.\nStart with a plain constructor; add a pattern when pain appears.",
+     "diagram": "Orange warning board with three icons: an empty factory producing one identical box forever, two test tubes sharing one contaminated global, and a half-assembled robot leaving a builder without inspection."
+    }
+   ],
+   "footer": "Make creation a decision in one place, not a habit everywhere.",
+   "summary": "Covers the five Gang of Four creational patterns (Singleton, Factory Method, Abstract Factory, Builder, Prototype): the problem each solves, a short Python sketch, and when to use or avoid them.",
+   "keywords": [
+    "creational patterns",
+    "design patterns",
+    "gang of four",
+    "gof",
+    "singleton",
+    "factory method",
+    "abstract factory",
+    "builder",
+    "prototype",
+    "deepcopy",
+    "anti-pattern"
+   ]
+  },
+  {
+   "image": "SWE/10-structural-patterns-cheat-sheet.png",
+   "title": "STRUCTURAL PATTERNS CHEAT SHEET",
+   "subtitle": "Compose objects into bigger, cleaner structures",
+   "robot": "Wrap it, don't rewrite it!",
+   "learner": "How do I plug old code in?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "What Structural Patterns Do",
+     "body": "They connect classes and objects into larger structures.\nMost are wrappers: an object holds another and forwards calls.\nSame shape, different intent - learn the intent.",
+     "diagram": "Six puzzle pieces labeled Adapter, Decorator, Facade, Proxy, Composite, Bridge snapping into one larger structure; a small inset shows a generic wrapper box holding an inner object with a forwarding arrow."
+    },
+    {
+     "number": 2,
+     "heading": "Adapter",
+     "body": "Problem: a useful class has the wrong interface.\nYour code calls pay(cents); the vendor SDK offers charge(dollars).\nThe adapter translates. Interface changes, behavior stays.",
+     "code": "class VendorAdapter:\n    def __init__(self, sdk): self.sdk = sdk\n    def pay(self, cents):\n        return self.sdk.charge(cents / 100)",
+     "diagram": "A travel plug adapter: left socket labeled 'pay(cents)' (your code), right plug labeled 'charge(dollars)' (vendor SDK), the adapter in between converting 1999 cents -> 19.99 dollars."
+    },
+    {
+     "number": 3,
+     "heading": "Decorator",
+     "body": "Problem: add behavior without a subclass per combination.\nWrap an object with the same interface plus extra work: logging, caching, retries.\nStack them: Retry(Cache(Api())).",
+     "code": "from functools import lru_cache\n@lru_cache(maxsize=128)\ndef fetch(url): ...",
+     "diagram": "Russian-doll layers: innermost 'Api', wrapped by 'Cache', wrapped by 'Retry'; a call arrow travels inward and the result travels back out, each layer adding a small label."
+    },
+    {
+     "number": 4,
+     "heading": "Facade",
+     "body": "Problem: a subsystem has too many parts to call correctly.\nA facade offers one simple entry point.\nExample: checkout() runs stock, payment, shipping and email in order.",
+     "code": "def checkout(cart):\n    stock.reserve(cart); payment.charge(cart)\n    shipping.schedule(cart); email.confirm(cart)",
+     "diagram": "A clean storefront door labeled 'checkout()' in front of a messy back room with four machines: Stock, Payment, Shipping, Email, connected in sequence by numbered arrows."
+    },
+    {
+     "number": 5,
+     "heading": "Proxy",
+     "body": "Problem: control access to a real object.\nSame interface plus a gatekeeper step.\nKinds: virtual (lazy load), protection (auth check), remote (network stub), caching.\nExample: ImageProxy loads the file on first display().",
+     "diagram": "A guard robot standing in front of a vault labeled 'RealImage (20 MB)'; client calls display() on the guard, which loads the image only on the first call; second call served instantly."
+    },
+    {
+     "number": 6,
+     "heading": "Composite",
+     "body": "Problem: treat single items and groups the same way.\nA tree where leaves and branches share one interface.\nFile.size() returns bytes; Folder.size() sums its children.",
+     "code": "class Folder:\n    def size(self):\n        return sum(c.size() for c in self.children)",
+     "diagram": "Folder tree: 'docs/' contains 'a.txt 2 KB', 'b.png 5 KB' and 'img/' with 'c.jpg 3 KB'; sizes bubble up: img/ = 3 KB, docs/ = 10 KB."
+    },
+    {
+     "number": 7,
+     "heading": "Bridge",
+     "body": "Problem: two dimensions of variation explode into subclasses.\nShapes x renderers: 3 x 2 = 6 classes.\nBridge: Shape holds a Renderer -> 3 + 2 = 5 classes.\nBoth sides vary independently.",
+     "diagram": "Left: a 3x2 grid of six classes (CircleSvg, CirclePng, ...) in red. Right: three shapes on one side, two renderers on the other, joined by a single bridge labeled 'has-a renderer'."
+    },
+    {
+     "number": 8,
+     "heading": "Compare + Pitfalls",
+     "body": "Adapter changes the interface. Decorator adds behavior.\nProxy controls access. Facade simplifies many parts.\nPitfall: six wrapper layers make stack traces painful.\nPitfall: a facade that grows into a god object.",
+     "diagram": "Comparison table with four rows and intent icons (plug, onion layers, guard, storefront); orange warning strip below showing a deep wrapper tower and a bloated facade blob."
+    }
+   ],
+   "footer": "Wrap to adapt, add, guard or simplify - and name the intent.",
+   "summary": "Explains six structural design patterns (Adapter, Decorator, Facade, Proxy, Composite, Bridge) with Python sketches, and how to tell look-alike wrappers apart by intent.",
+   "keywords": [
+    "structural patterns",
+    "design patterns",
+    "adapter",
+    "wrapper",
+    "decorator",
+    "facade",
+    "proxy",
+    "composite",
+    "bridge",
+    "gang of four"
+   ]
+  },
+  {
+   "image": "SWE/11-behavioral-patterns-cheat-sheet.png",
+   "title": "BEHAVIORAL PATTERNS CHEAT SHEET",
+   "subtitle": "Who does what, and how objects talk",
+   "robot": "Pass behavior around like data!",
+   "learner": "How do I kill this giant if/elif?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Strategy",
+     "body": "Problem: swap an algorithm at runtime.\nPass the behavior in as an object or function.\nExample: shipping is free over 50, else 5.\nCart of 40 -> total 45.",
+     "code": "def checkout(total, shipping):\n    return total + shipping(total)\ncheckout(40, lambda t: 0 if t > 50 else 5)  # 45",
+     "diagram": "A slot machine labeled 'checkout' with interchangeable cartridges 'standard', 'express', 'free over 50'; the 'free over 50' cartridge inserted, with total 40 + 5 = 45 on the display."
+    },
+    {
+     "number": 2,
+     "heading": "Observer",
+     "body": "Problem: many objects react when one changes.\nThe subject keeps a list of subscribers and notifies each on events.\nUsed in UIs, event buses, pub/sub.",
+     "code": "for callback in self.subscribers:\n    callback(event)",
+     "diagram": "A broadcast tower labeled 'Subject: price changed' sending signal waves to three listeners: Chart, Alert, Logger, each with a subscribe arrow back to the tower."
+    },
+    {
+     "number": 3,
+     "heading": "Command",
+     "body": "Problem: treat a request as an object.\nA command packs action + data with execute() and undo().\nEnables queues, logs, retries and undo/redo.",
+     "code": "cmd = AddText(doc, \"hi\")\ncmd.execute(); history.append(cmd)\nhistory.pop().undo()",
+     "diagram": "A stack of command cards 'AddText \"hi\"', 'Bold', 'Delete' piled in a history tray; an undo arrow pops the top card and reverses it."
+    },
+    {
+     "number": 4,
+     "heading": "State",
+     "body": "Problem: behavior depends on the current state.\nEach state is a class; the object delegates to it.\nOrder: Pending -> Paid -> Shipped.\nship() while Pending raises an error - no 6-way if.",
+     "diagram": "State machine with three nodes Pending, Paid, Shipped joined by arrows 'pay()' and 'ship()'; a red blocked arrow from Pending straight to Shipped labeled 'invalid'."
+    },
+    {
+     "number": 5,
+     "heading": "Template Method",
+     "body": "Problem: same steps, a few details differ.\nThe base class fixes the skeleton; subclasses fill in hooks.\nexport() = load -> format -> save; CSV and JSON override only format().",
+     "code": "def export(self):\n    data = self.load()\n    self.save(self.format(data))",
+     "diagram": "Three-step rail 'load -> format -> save' with the middle step as a swappable slot; CSV and JSON cartridges hovering above the slot."
+    },
+    {
+     "number": 6,
+     "heading": "Iterator",
+     "body": "Problem: walk a collection without exposing its internals.\nPython builds it in: __iter__ / __next__, or a generator with yield.\nWorks for trees, files, paginated APIs.",
+     "code": "def items(api):\n    while (page := api.next_page()):\n        yield from page.items",
+     "diagram": "A conveyor belt pulling items one by one out of a closed box labeled 'paginated API (pages 1..3)'; a for-loop robot takes each item as it arrives."
+    },
+    {
+     "number": 7,
+     "heading": "Chain of Responsibility",
+     "body": "Problem: several handlers might process a request.\nPass it along a chain; each link handles, stops or forwards.\nExample: web middleware auth -> rate limit -> validate -> handler.",
+     "diagram": "A request envelope moving through four gates: Auth (pass), Rate limit (pass), Validate (pass), Handler (done); an alternate red path shows the envelope stopped at Auth with '401'."
+    },
+    {
+     "number": 8,
+     "heading": "Compare + Pitfalls",
+     "body": "Strategy: the caller picks behavior. State: the object switches itself.\nTemplate Method uses inheritance; Strategy uses composition.\nPitfall: a one-method class where a function would do.\nPitfall: observer cascades hide control flow.",
+     "diagram": "Side-by-side mini diagrams Strategy vs State and Template Method vs Strategy; orange warning strip showing a tangled web of observers triggering each other in a loop."
+    }
+   ],
+   "footer": "Name the behavior, give it an object, and swap it freely.",
+   "summary": "Covers seven behavioral design patterns (Strategy, Observer, Command, State, Template Method, Iterator, Chain of Responsibility) with short Python sketches and how to choose between similar ones.",
+   "keywords": [
+    "behavioral patterns",
+    "design patterns",
+    "strategy",
+    "observer",
+    "pub/sub",
+    "command",
+    "undo",
+    "state machine",
+    "template method",
+    "iterator",
+    "generator",
+    "chain of responsibility"
+   ]
+  },
+  {
+   "image": "SWE/12-clean-code-refactoring-cheat-sheet.png",
+   "title": "CLEAN CODE & REFACTORING",
+   "subtitle": "Write for the next reader - often future you",
+   "robot": "Leave code cleaner than found!",
+   "learner": "Who wrote this mess? Oh... me.",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Naming",
+     "body": "Names reveal intent.\nBad: d, data2, process(). Good: days_overdue, send_invoice().\nBooleans read as questions: is_active, has_access.\nOne word per concept: not fetch, get and retrieve.",
+     "diagram": "Two name tags side by side: red tag 'd = 7' with a confused reader, green tag 'days_overdue = 7' with a nodding reader; small chips 'is_active', 'has_access' below."
+    },
+    {
+     "number": 2,
+     "heading": "Small Functions",
+     "body": "One function = one job at one level of detail.\nFew parameters (3 or fewer is a good default).\nNo hidden side effects: validate() should not save.",
+     "code": "def place_order(cart):\n    validate(cart)\n    charge(cart.total)\n    send_receipt(cart)",
+     "diagram": "A 200-line monster function split into four small labeled blocks: validate, charge, send_receipt, all called in order from a short place_order()."
+    },
+    {
+     "number": 3,
+     "heading": "DRY, KISS, YAGNI",
+     "body": "DRY = don't repeat yourself: one source of truth per rule.\nKISS = keep it simple: simplest thing that works.\nYAGNI = you aren't gonna need it: no code for imagined futures.\nRule of three: abstract on the third copy.",
+     "diagram": "Three badges: DRY (one master copy feeding three users), KISS (straight arrow beating a maze), YAGNI (crossed-out 'future plugin system' blueprint); a counter showing copy 1, 2, 3 -> extract."
+    },
+    {
+     "number": 4,
+     "heading": "Composition Over Inheritance",
+     "body": "Inheritance = \"is-a\", tightly coupled to the parent.\nComposition = \"has-a\": build from swappable parts.\nBefore: a LoggingRetryingCachedClient subclass chain.\nAfter: Client(cache=..., retry=..., logger=...).",
+     "diagram": "Left: a tall fragile tower of subclasses Client -> CachedClient -> RetryingCachedClient -> LoggingRetryingCachedClient. Right: one Client box with three plug-in modules Cache, Retry, Logger."
+    },
+    {
+     "number": 5,
+     "heading": "Dependency Injection",
+     "body": "DI = pass dependencies in instead of creating them inside.\nCode becomes testable and swappable.\nInject a fake clock -> deterministic output.",
+     "code": "def greet(clock=datetime.now):\n    return \"Good morning\" if clock().hour < 12 else \"Hello\"\ngreet(lambda: datetime(2026, 1, 1, 9))  # Good morning",
+     "diagram": "A function box with an input port labeled 'clock'; in production a real wall clock plugs in, in tests a frozen clock showing 09:00 plugs in and the output reads 'Good morning'."
+    },
+    {
+     "number": 6,
+     "heading": "Code Smells -> Refactoring Moves",
+     "body": "Long function -> Extract Function.\nDuplicate code -> extract and reuse.\nLong parameter list -> Introduce Parameter Object.\nType switch everywhere -> Replace Conditional with Polymorphism.\nMagic number 86400 -> SECONDS_PER_DAY.",
+     "diagram": "Two-column table: left column smells with stink-cloud icons, right column refactoring moves with wrench icons, arrows connecting each row."
+    },
+    {
+     "number": 7,
+     "heading": "Refactor Safely With Tests",
+     "body": "Refactoring = change structure, not behavior.\n1. Tests green first (pin legacy behavior with characterization tests).\n2. One tiny step. 3. Run tests. 4. Commit.\nNever mix refactoring and new features in one commit.",
+     "diagram": "A loop diagram: green test light -> tiny change -> run tests -> commit -> back to start; a red light branch says 'revert the last step'."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls",
+     "body": "Big-bang rewrites stall for months; refactor in small steps.\nOver-DRY: merging look-alike code that changes for different reasons.\nClever one-liners hurt readability.\nComments should explain why, not what.",
+     "diagram": "Orange warning board: a crumbling 'rewrite from scratch' tower, two different gears forced into one shared gear and jamming, a tangled one-liner knot."
+    }
+   ],
+   "footer": "Clean code is a habit: clear names, small steps, green tests.",
+   "summary": "Teaches everyday clean-code habits (naming, small functions, DRY/KISS/YAGNI, composition over inheritance, dependency injection) and how to map code smells to safe, test-backed refactoring moves.",
+   "keywords": [
+    "clean code",
+    "refactoring",
+    "code smells",
+    "naming",
+    "dry",
+    "kiss",
+    "yagni",
+    "composition over inheritance",
+    "dependency injection",
+    "di",
+    "characterization tests"
+   ]
+  }
+ ]
+}

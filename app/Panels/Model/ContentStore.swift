@@ -85,7 +85,7 @@ final class ContentStore {
     /// Glossary terms not worth highlighting in this book: Git words ("push", "merge") and data-structure
     /// words ("trie", "stack") read as plain English outside their own collections.
     func termsToSkip(in book: Book) -> Set<String> {
-        let scoped: [String: Set<String>] = ["Git": ["swe"], "Algorithms": ["leetcode", "ml"], "Data Structures": ["leetcode", "ml"]]
+        let scoped: [String: Set<String>] = ["Git": ["swe"], "Software Engineering": ["swe"], "Algorithms": ["leetcode", "ml"], "Data Structures": ["leetcode", "ml"]]
         return Set(glossary.filter { term in
             scoped[term.category].map { !$0.contains(book.collectionId) } ?? false
         }.map(\.id))
