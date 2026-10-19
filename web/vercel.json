@@ -1,0 +1,7 @@
+{
+  "rewrites": [{ "source": "/((?!content/|assets/).*)", "destination": "/index.html" }],
+  "headers": [
+    { "source": "/content/(pages|thumbs|posters|videos|narration)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+  ]
+}

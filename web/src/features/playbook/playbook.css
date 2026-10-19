@@ -1,0 +1,101 @@
+/* Playbook: experiment list, toolkit, decision maps, tool detail, drill. */
+.pb-page { max-width: 760px; margin: 0 auto; }
+
+.pb-filter { position: relative; color: var(--ink-3); }
+.pb-filter > svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.pb-filter .input { padding-left: 40px; }
+
+.pb-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 48px 16px; }
+
+.pb-back { display: inline-flex; align-items: center; gap: 4px; align-self: flex-start; font-weight: 600; font-size: 15px; color: var(--accent); padding: 4px 8px 4px 2px; margin-bottom: -8px; }
+.pb-back:hover { opacity: 0.8; }
+.pb-link-btn { font-weight: 600; font-size: 15px; color: var(--accent); padding: 4px 2px; }
+.pb-chevron { color: var(--ink-3); display: inline-flex; padding-top: 3px; flex-shrink: 0; }
+.pb-h2 { font-size: 18px; font-weight: 700; }
+
+/* Recipe strip */
+.pb-recipe { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 18px; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.pb-recipe-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 6px; }
+.pb-recipe-steps li { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; }
+.pb-recipe-n { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; background: var(--accent); color: var(--on-tint); }
+
+/* Experiment list */
+.pb-exp-grid { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); }
+.pb-exp { display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 16px; transition: transform 0.15s, border-color 0.15s; }
+.pb-exp:hover { border-color: color-mix(in srgb, var(--tint) 40%, transparent); }
+.pb-exp:active { transform: scale(0.99); }
+.pb-exp-q { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.3; }
+.pb-exp-chain { font-size: 13px; font-weight: 500; color: var(--tint); line-height: 1.4; }
+
+/* Toolkit list */
+.pb-list { overflow: hidden; border-radius: 16px; }
+.pb-list-row { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 11px 14px; }
+.pb-list-row + .pb-list-row::before { content: ""; position: absolute; top: 0; left: 14px; right: 0; height: 1px; background: var(--hairline); }
+.pb-list-row:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.pb-tool-name { font-family: var(--serif); font-size: 17px; font-weight: 600; }
+.pb-tool-what { font-size: 15px; color: var(--ink-2); line-height: 1.4; }
+
+/* Experiment header */
+.pb-chain { font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--tint); background: color-mix(in srgb, var(--tint) 12%, transparent); padding: 8px 12px; border-radius: 12px; }
+
+/* Decision map: numbered rail with a connector line */
+.pb-tree { list-style: none; margin: 0; padding: 0; }
+.pb-node { display: grid; grid-template-columns: 26px minmax(0, 1fr); column-gap: 12px; }
+.pb-rail { display: flex; flex-direction: column; align-items: center; }
+.pb-num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: var(--tint); color: var(--on-tint); }
+.pb-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin: 6px 0; background: color-mix(in srgb, var(--tint) 60%, transparent); }
+.pb-line { flex: 1; width: 2px; margin-top: 2px; border-radius: 1px; background: color-mix(in srgb, var(--tint) 25%, transparent); }
+.pb-node-body { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 18px; min-width: 0; }
+.pb-node.last > .pb-node-body { padding-bottom: 0; }
+.pb-step { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.3; }
+.pb-how { font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+.pb-tool-chip { font-size: 13px; padding: 5px 10px; }
+.pb-tool-chip:hover { background: color-mix(in srgb, var(--tint) 20%, transparent); }
+.pb-outcome { display: flex; align-items: flex-start; gap: 6px; font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--tint); }
+.pb-outcome > svg { flex-shrink: 0; margin-top: 1px; }
+
+.pb-branch { align-self: stretch; padding: 10px; border-radius: 12px; background: color-mix(in srgb, var(--tint) 6%, transparent); }
+.pb-branch > summary { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--tint); border-radius: 8px; }
+.pb-branch > summary > svg { flex-shrink: 0; }
+.pb-branch > summary:focus-visible { outline: 2px solid var(--tint); outline-offset: 4px; }
+.pb-branch-chev { margin-left: auto; display: inline-flex; transition: transform 0.2s; }
+.pb-branch[open] > summary .pb-branch-chev { transform: rotate(90deg); }
+.pb-branch-body { padding-top: 10px; }
+
+/* Info cards */
+.pb-info { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 16px; }
+.pb-info-icon { width: 22px; flex-shrink: 0; display: inline-flex; justify-content: center; color: var(--tint); padding-top: 1px; }
+.pb-info-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tint); }
+.pb-info-text { font-family: var(--serif); font-size: 17px; line-height: 1.5; }
+
+.pb-fellowship { text-align: left; }
+.pb-fellowship > svg, .pb-drill-card .btn > svg { flex-shrink: 0; }
+
+/* Tool detail: experiments using it */
+.pb-used { display: flex; align-items: center; gap: 8px; padding: 12px; border-radius: 14px; }
+.pb-used:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.pb-used-q { flex: 1; font-family: var(--serif); font-size: 15px; font-weight: 600; line-height: 1.35; }
+
+/* Drill */
+.pb-drill-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; border-radius: 20px; }
+.pb-drill-card > .pill { align-self: flex-start; }
+.pb-hint { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-2); line-height: 1.5; }
+.pb-recall-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.pb-recall-steps li { display: flex; align-items: flex-start; gap: 10px; }
+.pb-recall-tool { font-size: 13px; font-weight: 600; color: var(--tint); }
+.pb-chain-text { font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--tint); }
+.pb-match-q { font-size: 13px; font-weight: 600; color: var(--tint); }
+.pb-match-step { font-size: 21px; font-weight: 700; }
+.pb-match-how { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.pb-match-explain { font-family: var(--serif); font-size: 16px; line-height: 1.5; }
+.pb-option { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; text-align: left; padding: 14px; border-radius: 14px; font-weight: 600; font-size: 16px; color: var(--c); background: color-mix(in srgb, var(--c) 6%, transparent); transition: background 0.15s; }
+.pb-option:not(:disabled):hover { background: color-mix(in srgb, var(--c) 11%, transparent); }
+.pb-option.done { background: color-mix(in srgb, var(--c) 14%, transparent); cursor: default; }
+
+.pb-in { animation: pb-in 0.25s ease-out; }
+@keyframes pb-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .pb-in { animation: none; } .pb-branch-chev { transition: none; } }
+
+@media (min-width: 720px) {
+  .pb-exp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

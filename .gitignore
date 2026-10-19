@@ -5,3 +5,7 @@ app/build/
 xcuserdata/
 __pycache__/
 app/narration/
+web/node_modules/
+web/dist/
+web/public/content/videos/
+web/.vercel/

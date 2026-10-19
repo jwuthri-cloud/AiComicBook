@@ -517,11 +517,64 @@ def load_playbook(term_ids: set[str], book_ids: set[str]) -> dict | None:
     return {"recipe": json.loads((folder / "meta.json").read_text())["recipe"], "tools": tools, "experiments": experiments}
 
 
+# ---------- website ----------
+
+WEB_PAGE_WIDTH = 1600
+
+
+def export_web(dest: Path, content: dict, jobs: list) -> None:
+    """Same content for browsers: HEIC pages become WebP, clips stay H.264 (the source codec), the rest is copied."""
+    import shutil
+    dest.mkdir(parents=True, exist_ok=True)
+
+    def work(job):
+        kind, src, full, extra = job
+        if kind == "image":
+            target = dest / full.relative_to(OUT).with_suffix(".webp")
+            if not fresh(target, src):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                im = Image.open(src).convert("RGB")
+                if im.width > WEB_PAGE_WIDTH:
+                    im = im.resize((WEB_PAGE_WIDTH, round(im.height * WEB_PAGE_WIDTH / im.width)), Image.LANCZOS)
+                im.save(target, "WEBP", quality=78, method=5)
+            copies = [extra]
+        elif kind == "video":
+            target = dest / full.relative_to(OUT)
+            if not fresh(target, src):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, target)
+            copies = [extra]
+        else:
+            copies = [full]
+        for f in copies:
+            if f and f.exists():
+                t = dest / f.relative_to(OUT)
+                if not fresh(t, f):
+                    t.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(f, t)
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        list(pool.map(work, jobs))
+    web = json.loads(json.dumps(content))
+    for col in web["collections"]:
+        for book in col["books"]:
+            book["coverImage"] = book["coverImage"].replace(".heic", ".webp")
+            for page in book["pages"]:
+                page["image"] = page["image"].replace(".heic", ".webp")
+    (dest / "content.json").write_text(json.dumps(web, ensure_ascii=False, separators=(",", ":")))
+    # Clips are not committed under web/ (the sources already are): the site build copies them from this map.
+    sources = {str(full.relative_to(OUT)): str(src.relative_to(REPO)) for kind, src, full, _ in jobs if kind == "video"}
+    (dest.parent.parent / "video-sources.json").write_text(json.dumps(sources, indent=1, ensure_ascii=False) + "\n")
+    size = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file()) / 1e6
+    print(f"web: {dest} ({size:.0f} MB)")
+
+
 # ---------- main ----------
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--no-media", action="store_true")
+    parser.add_argument("--web", type=Path, help="also export the website bundle (WebP pages, H.264 clips) to this folder")
     args = parser.parse_args()
 
     cols = collections()
@@ -597,6 +650,8 @@ def main() -> None:
         content["playbook"] = playbook
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "content.json").write_text(json.dumps(content, ensure_ascii=False, separators=(",", ":")))
+    if args.web:
+        export_web(args.web, content, jobs)
 
     n_pages = len(all_pages)
     n_text = sum(1 for p, _ in all_pages if p["panels"])
