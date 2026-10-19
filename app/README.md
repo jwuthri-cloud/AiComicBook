@@ -1,4 +1,4 @@
-# Panels: the comic library as an iOS app
+# Safety Atlas: the comic library as an iOS app
 
 An offline SwiftUI app for reading and watching every collection in this repository: Fellowship Projects (with narrated videos), the AI Safety Atlas, Machine Learning, Algorithm Patterns and Git.
 

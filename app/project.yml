@@ -28,7 +28,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: ai.connectly.panels
         CODE_SIGN_ENTITLEMENTS: Panels/Panels.entitlements
         PRODUCT_NAME: Panels
-        INFOPLIST_KEY_CFBundleDisplayName: Panels
+        INFOPLIST_KEY_CFBundleDisplayName: "Safety Atlas"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES

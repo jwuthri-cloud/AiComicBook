@@ -27,7 +27,7 @@ enum ShareCard {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        return ShareItem(image: render(card), text: "\(page.title) — from “\(book.title)” in Panels")
+        return ShareItem(image: render(card), text: "\(page.title) — from “\(book.title)” in Safety Atlas")
     }
 
     @MainActor
@@ -61,7 +61,7 @@ enum ShareCard {
             EmptyView()
         }
         let body = panel.body.count > 400 ? String(panel.body.prefix(400)) + "…" : panel.body
-        return ShareItem(image: render(card), text: "\(panel.heading)\n\n\(body)\n\n— “\(page.title)”, \(book.title) (Panels)")
+        return ShareItem(image: render(card), text: "\(panel.heading)\n\n\(body)\n\n— “\(page.title)”, \(book.title) (Safety Atlas)")
     }
 
     @MainActor
@@ -94,7 +94,7 @@ private struct CardFrame<Content: View, Caption: View>: View {
             caption
             HStack(spacing: 6) {
                 Image(systemName: "books.vertical.fill")
-                Text("Panels")
+                Text("Safety Atlas")
                 Spacer()
                 Text("Learn it in pictures")
             }

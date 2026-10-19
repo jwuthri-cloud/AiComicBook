@@ -309,7 +309,7 @@ final class Listener: NSObject, AVSpeechSynthesizerDelegate, AVAudioPlayerDelega
         var info: [String: Any] = [
             MPMediaItemPropertyTitle: page.title,
             MPMediaItemPropertyArtist: book.title,
-            MPMediaItemPropertyAlbumTitle: "Panels · page \(pageIndex + 1) of \(book.pages.count)",
+            MPMediaItemPropertyAlbumTitle: "Safety Atlas · page \(pageIndex + 1) of \(book.pages.count)",
             MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0,
             MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue,
         ]

@@ -138,7 +138,7 @@ struct SettingsView: View {
                     Button("Clear search history", role: .destructive) { library.clearSearches() }
                 }
                 Section {
-                    Text("Everything in Panels is stored on this device, so it works without a connection.")
+                    Text("Everything in Safety Atlas is stored on this device, so it works without a connection.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

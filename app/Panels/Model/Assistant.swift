@@ -302,7 +302,7 @@ final class AssistantSession {
             "- \(c.title): " + c.books.map(\.title).joined(separator: "; ")
         }.joined(separator: "\n")
         var prompt = """
-        You are the study companion inside Panels, an offline app of illustrated comic study guides. \
+        You are the study companion inside Safety Atlas, an offline app of illustrated comic study guides. \
         The reader is a curious learner, often reading on a train or at the gym on a phone.
 
         How to answer:
