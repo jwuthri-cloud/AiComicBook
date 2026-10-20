@@ -1,0 +1,166 @@
+{
+ "terms": [
+  {
+   "term": "Intelligence explosion",
+   "aka": [
+    "IE",
+    "Recursive self-improvement",
+    "Full-stack intelligence explosion"
+   ],
+   "category": "AI Futurism",
+   "short": "A period of very rapid AI progress driven by AI systems that help build better AI systems.",
+   "definition": "Once AI can do the work of improving AI, better AI means more and smarter research labor, which can mean faster progress. Forethought distinguishes three feedback loops: software, chip technology and chip production. Picture a snowball that grows faster the bigger it gets, unless the hill flattens.",
+   "related": [
+    "Software intelligence explosion",
+    "Industrial explosion",
+    "Takeoff speed",
+    "Returns to software R&D"
+   ]
+  },
+  {
+   "term": "Software intelligence explosion",
+   "aka": [
+    "SIE",
+    "Software-only singularity",
+    "Software IE"
+   ],
+   "category": "AI Futurism",
+   "short": "Accelerating AI progress driven by AI improving AI software alone, with hardware held fixed.",
+   "definition": "After AI automates AI research, the same chips run ever better and more numerous AI researchers. Whether progress speeds up or fizzles depends mainly on the returns to software R&D. It would be the fastest and most sudden type of intelligence explosion.",
+   "related": [
+    "Intelligence explosion",
+    "Returns to software R&D",
+    "Full automation of AI R&D",
+    "Effective compute"
+   ]
+  },
+  {
+   "term": "Returns to software R&D",
+   "aka": [
+    "r",
+    "Research returns parameter",
+    "Returns to research effort"
+   ],
+   "category": "AI Futurism",
+   "short": "How many doublings of software efficiency each doubling of cumulative research effort buys.",
+   "definition": "If r is above 1, automated research outpaces ideas getting harder to find and progress accelerates; below 1 it slows. Estimates from chess engines, vision and solvers range from about 0.8 to well above 1, with large uncertainty. It is the key knob in software intelligence explosion models.",
+   "related": [
+    "Software intelligence explosion",
+    "Intelligence explosion",
+    "Effective compute"
+   ]
+  },
+  {
+   "term": "Effective compute",
+   "aka": [
+    "Effective FLOP",
+    "Algorithm-adjusted compute"
+   ],
+   "category": "AI Futurism",
+   "short": "Physical compute multiplied by algorithmic efficiency, used as a common measure of AI progress.",
+   "definition": "Better algorithms let the same chips do more, so progress is tracked as raw FLOP times an efficiency multiplier. Effective compute for frontier AI has grown roughly 10x per year recently, about half from hardware scaling and half from software. Takeoff models express distances between milestones in orders of magnitude of effective compute.",
+   "related": [
+    "Compute",
+    "Scaling laws",
+    "Returns to software R&D",
+    "Takeoff speed"
+   ]
+  },
+  {
+   "term": "Full automation of AI R&D",
+   "aka": [
+    "ASARA",
+    "AI systems for AI R&D automation",
+    "Superhuman AI researcher",
+    "SAR",
+    "Automated coder"
+   ],
+   "category": "AI Futurism",
+   "short": "The point where AI can do all the research and engineering work of an AI company without human staff.",
+   "definition": "Forethought calls such systems ASARA; the AI Futures Model splits the path into an Automated Coder and then a Superhuman AI Researcher with top-level research taste. Cotra operationalizes it as removing all technical staff slowing progress by under 25%. Many forecasters treat it as the trigger for an intelligence explosion.",
+   "related": [
+    "Software intelligence explosion",
+    "AI R&D labor acceleration",
+    "AI R&D evaluations",
+    "Top-human-expert-dominating AI"
+   ]
+  },
+  {
+   "term": "Top-human-expert-dominating AI",
+   "aka": [
+    "TEDAI",
+    "TED-AI"
+   ],
+   "category": "AI Futurism",
+   "short": "AI that beats top human experts at virtually all remotely doable cognitive tasks, faster and at similar cost.",
+   "definition": "Greenblatt defines it as strictly dominating the best human experts while being at least 2x faster and within 5x of their cost. The AI Futures Model uses a similar milestone: automating about 95% of remote jobs. It sits above full automation of AI R&D on most capability ladders.",
+   "related": [
+    "Full automation of AI R&D",
+    "Artificial general intelligence",
+    "Transformative AI"
+   ]
+  },
+  {
+   "term": "AI R&D labor acceleration",
+   "aka": [
+    "Serial labor acceleration",
+    "AI R&D speedup",
+    "3x AI",
+    "10x AI"
+   ],
+   "category": "AI Futurism",
+   "short": "How much faster an AI company's staff would have to work, without AI help, to match their output with it.",
+   "definition": "A 3x AI is as useful as having every employee work three times faster. Serial acceleration is the most informative uplift measure; share of code written by AI or headcount equivalents are easy to misread. Because compute also limits research, overall progress speeds up much less than labor does.",
+   "related": [
+    "Uplift",
+    "Full automation of AI R&D",
+    "AI R&D evaluations"
+   ]
+  },
+  {
+   "term": "Time horizon",
+   "aka": [
+    "METR time horizon",
+    "50% time horizon",
+    "Task horizon"
+   ],
+   "category": "AI Futurism",
+   "short": "The length of task, measured in skilled-human time, that an AI completes successfully half the time.",
+   "definition": "METR fits a curve of AI success against how long tasks take human professionals and reads off the 50% point. It measures human-equivalent effort, not AI runtime, and has doubled every few months. Error bars are about 2x and results vary hugely by task type.",
+   "related": [
+    "Benchmark",
+    "Epoch Capabilities Index",
+    "AI R&D evaluations"
+   ]
+  },
+  {
+   "term": "Epoch Capabilities Index",
+   "aka": [
+    "ECI"
+   ],
+   "category": "AI Futurism",
+   "short": "A composite score that stitches 50+ AI benchmarks onto one general capability scale.",
+   "definition": "Epoch AI estimates how hard each benchmark is from models evaluated on several, so scores remain comparable after individual benchmarks saturate. The scale is anchored with Claude 3.5 Sonnet at 130 and GPT-5 at 150. Only differences between models are meaningful, like temperatures in an arbitrary unit.",
+   "related": [
+    "Benchmark",
+    "Time horizon",
+    "Benchmark contamination"
+   ]
+  },
+  {
+   "term": "Industrial explosion",
+   "aka": [
+    "Robot explosion",
+    "Physical capability explosion"
+   ],
+   "category": "AI Futurism",
+   "short": "Rapid growth in physical capability as robot factories build ever better robot factories.",
+   "definition": "Forethought expects it to follow the intelligence explosion in stages: AI-directed human labor, autonomous robot factories, then nanotechnology. Robot stocks might double every year or two at first and much faster later, limited mainly by energy. It would reshape economic and military power.",
+   "related": [
+    "Intelligence explosion",
+    "Takeoff speed",
+    "Transformative AI"
+   ]
+  }
+ ]
+}

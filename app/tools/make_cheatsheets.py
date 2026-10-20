@@ -26,7 +26,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 SRC = REPO / "app" / "content-src"
-MODEL = "gpt-image-2.5-flare"
+MODEL = os.environ.get("CHEATSHEET_MODEL", "gpt-image-2.5-flare")  # gpt-image-2 renders pages flare's moderation rejects
 REFERENCE = REPO / "LeetCode" / "01-arrays-hashing-two-sum-cheat-sheet.png"
 
 STYLE = """Create a finished, polished educational comic-style cheat-sheet poster, portrait 2:3 (1024x1536).

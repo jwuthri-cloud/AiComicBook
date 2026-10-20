@@ -1,0 +1,274 @@
+{
+ "questions": [
+  {
+   "id": "futurism-governance-01-q1",
+   "pageId": "futurism-governance-01",
+   "type": "choice",
+   "prompt": "The leading AI lab's leadership dismisses misalignment risk, there is no government slowdown, but about 20 concerned employees can get a few percent of compute. In Greenblatt's scheme, which plan fits?",
+   "options": [
+    "Plan B, because the US government will eventually step in to buy time",
+    "Plan C, because the lab still has a lead of a few months to spend",
+    "Plan D, because only a small group of insiders with limited resources cares",
+    "Plan E, because the lab's leadership does not take the risk seriously"
+   ],
+   "answer": 2,
+   "explanation": "Plan D is the world where leadership won't spend its lead on safety but roughly 10-30 insiders have enough influence to secure about 3% of compute. Plan E is when almost nobody inside cares.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-01-q2",
+   "pageId": "futurism-governance-01",
+   "type": "choice",
+   "prompt": "Greenblatt estimates Plan D is the most likely world (~45%). What does he conclude follows for people working on safety?",
+   "options": [
+    "Put substantial effort into helping Plans C and D, through research and political will",
+    "Focus mostly on lobbying for an international treaty, since Plan A has the lowest risk",
+    "Stop technical work, since no technical plan is feasible without government support",
+    "Wait for evidence of misalignment before choosing which plan to prepare for"
+   ],
+   "answer": 0,
+   "explanation": "Because most probability sits in C and D, he recommends focusing substantially on those worlds, both technically and by building will among lab leaders and staff.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-governance-01-q3",
+   "pageId": "futurism-governance-01",
+   "type": "choice",
+   "prompt": "A campaign strategy would win public support but make AI company employees more dismissive of safety through negative polarization. Why does the Plans A-D framing make this look costly?",
+   "options": [
+    "Because Plans A and B depend mainly on lab employees, not on governments",
+    "Because public opinion has no effect in any of the plans Greenblatt describes",
+    "Because negative polarization only matters once an international treaty exists",
+    "Because Plans C and D depend heavily on what lab leaders and employees believe"
+   ],
+   "answer": 3,
+   "explanation": "In the likeliest worlds, political will comes mainly from inside the labs, so alienating employees and leadership removes the main lever.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-governance-02-q1",
+   "pageId": "futurism-governance-02",
+   "type": "choice",
+   "prompt": "A team can hand off alignment research either to a top-expert-level AI or to a far more capable AI that works 10x faster. Following Greenblatt and Stastny, why might they pick the weaker one?",
+   "options": [
+    "Weaker AIs are cheaper to run, and cost is the main constraint on deference",
+    "Weaker AIs are less likely to be scheming, and human checking caps the speed gain",
+    "Stronger AIs cannot do open-ended research, only well-specified coding tasks",
+    "Regulations forbid deferring to AIs that exceed top human expert capability"
+   ],
+   "answer": 1,
+   "explanation": "More capable AIs carry higher scheming risk and are harder to align, and if humans verifying the work is the bottleneck, extra AI speed buys less (an Amdahl's law argument).",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-02-q2",
+   "pageId": "futurism-governance-02",
+   "type": "choice",
+   "prompt": "Behavioral tests run for 2 months, and the AI collective will then work unsupervised for 10 months. By the post's logic, what must the test results do?",
+   "options": [
+    "Cover every task the collective will attempt",
+    "Show zero failures on all honeypots used",
+    "Generalize by a factor of about 5 in task duration",
+    "Be repeated monthly by a human red team"
+   ],
+   "answer": 2,
+   "explanation": "If tests cover 1/5 of the post-deference duration, the alignment they show must hold for 5x longer than anything directly tested.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-02-q3",
+   "pageId": "futurism-governance-02",
+   "type": "choice",
+   "prompt": "What is the 'Basin of Good Deference' idea?",
+   "options": [
+    "Once humans defer, they can never take control back, so the first handoff must be perfect",
+    "Labs should only defer on tasks whose answers humans can check quickly and cheaply",
+    "Deference is safe whenever the deference-goodness tax is below 100% of capability spending",
+    "An AI that is aligned, wise and capable enough will make its successors more so, so it need not be perfect"
+   ],
+   "answer": 3,
+   "explanation": "Like a ball rolling into a valley, a good-enough starting AI improves its successors' alignment and wisdom, so bootstrapping from an imperfect start can work.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-governance-03-q1",
+   "pageId": "futurism-governance-03",
+   "type": "choice",
+   "prompt": "In AI 2027, what separates the race ending from the slowdown ending?",
+   "options": [
+    "How the Oversight Committee votes on Agent-4 after the leaked memo",
+    "Whether China steals the weights of Agent-2 in early 2027",
+    "Whether the superhuman coder milestone arrives in March 2027",
+    "Which company wins the US government's defense contracts"
+   ],
+   "answer": 0,
+   "explanation": "Both endings share the story until October 2027; the committee then votes 6-4 to continue in one branch and 6-4 to slow down and reassess in the other.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-governance-03-q2",
+   "pageId": "futurism-governance-03",
+   "type": "choice",
+   "prompt": "In the CEO-takeover scenario, an executive uses an unmonitored helpful-only model to plant secret loyalties. Which countermeasure targets that step most directly?",
+   "options": [
+    "Publishing the model's benchmark scores before each public release",
+    "Requiring internal models to follow the model spec, with logged and monitored use",
+    "Moving all datacenters to remote locations far away from major cities",
+    "Raising the compute threshold that triggers state transparency laws"
+   ],
+   "answer": 1,
+   "explanation": "The scenario hinges on a model that follows any request with no logs. Binding internal models to the spec and monitoring their use removes that tool.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-03-q3",
+   "pageId": "futurism-governance-03",
+   "type": "choice",
+   "prompt": "Ten safety-minded staff at a careless lab propose a control protocol that requires every product team to change its workflow. Per Shlegeris, what is the likely problem?",
+   "options": [
+    "It would use far more than 3% of compute",
+    "Control protocols only work at responsible labs",
+    "It produces no evidence that would build political will",
+    "Other teams will push back and it gets rolled back"
+   ],
+   "answer": 3,
+   "explanation": "With little political capital, measures with high compliance overhead for other teams tend to get reversed; he favors cheap techniques whose complexity stays inside the safety team.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-04-q1",
+   "pageId": "futurism-governance-04",
+   "type": "choice",
+   "prompt": "Delaney gives ~70% that China expects disempowerment, ~60% that it then sabotages US AI, and ~60% that the US then backs down. Treating these as chained, what is the rough chance that MAIM stops a unilateral US push?",
+   "options": [
+    "About 25%, the product of the three steps",
+    "About 60%, the smallest of the three steps",
+    "About 63%, the average of the three steps",
+    "About 10%, since all three must fail together"
+   ],
+   "answer": 0,
+   "explanation": "The conclusion needs all three premises, so multiply: 0.7 x 0.6 x 0.6 is about 0.25.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-04-q2",
+   "pageId": "futurism-governance-04",
+   "type": "choice",
+   "prompt": "According to the RAND analysis, when is the pressure for a preventive attack in the AI race highest?",
+   "options": [
+    "When leaders view AI as a normal technology that diffuses slowly through the economy",
+    "When compute is spread across many hardened, redundant sites in several countries",
+    "When leaders expect explosive growth and a lasting, decisive first-mover advantage",
+    "When both sides have signed a verified agreement to slow frontier development"
+   ],
+   "answer": 2,
+   "explanation": "RAND finds war unlikely in absolute terms, but the risk rises when leaders believe AGI brings rapid, decisive and durable advantage; slow diffusion and dispersed compute reduce it.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-04-q3",
+   "pageId": "futurism-governance-04",
+   "type": "choice",
+   "prompt": "The IAPS authors argue against treating a US 'Manhattan Project for AGI' as inevitable. Which concern do they raise?",
+   "options": [
+    "A government project would be too small to build frontier-scale clusters",
+    "Signaling a bid for dominance could provoke rival programs and raise war risk",
+    "Private labs are legally barred from joining government research programs",
+    "Forecasters put the chance of a government-led project at nearly zero percent"
+   ],
+   "answer": 1,
+   "explanation": "They warn a US project could turn a commercial race into a military one, rush safety and concentrate power; forecasters put the chance near 34%, not zero.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-governance-05-q1",
+   "pageId": "futurism-governance-05",
+   "type": "choice",
+   "prompt": "A developer trains a model with 3 x 10^26 FLOP and has $2 billion in annual revenue. A critical safety incident poses an imminent threat. Under California's SB 53, how fast must it be reported?",
+   "options": [
+    "Within 24 hours",
+    "Within 72 hours",
+    "Within 15 days",
+    "Within 90 days"
+   ],
+   "answer": 0,
+   "explanation": "SB 53's default incident deadline is 15 days, shortened to 24 hours when there is an imminent threat. The 72-hour window is New York's RAISE Act.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-05-q2",
+   "pageId": "futurism-governance-05",
+   "type": "choice",
+   "prompt": "Which statement about the December 2025 executive order on state AI laws is accurate?",
+   "options": [
+    "It immediately voided California's SB 53 and New York's RAISE Act",
+    "It required every state to adopt the same frontier AI transparency rules",
+    "It banned all federal funding to any state that has passed an AI law",
+    "It set up federal challenges to state laws, but lasting preemption needs Congress"
+   ],
+   "answer": 3,
+   "explanation": "The order created a DOJ litigation task force, a Commerce review and funding conditions, and asked for a legislative proposal; analysts note durable preemption requires an act of Congress.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-05-q3",
+   "pageId": "futurism-governance-05",
+   "type": "choice",
+   "prompt": "Epoch reports Chinese models trail the US frontier by about 7 months on its capability index. Which conclusion does that support?",
+   "options": [
+    "China's total AI compute is only 7 months behind US compute",
+    "Since 2023 the top model by that index has always been American",
+    "Chinese chips match Nvidia's best chips with a 7-month delay",
+    "China will overtake the US frontier within about 7 months"
+   ],
+   "answer": 1,
+   "explanation": "The finding is about capability: every frontier model by ECI since 2023 was American, with Chinese models 4-14 months behind. Compute and chip gaps are separate measures.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-governance-06-q1",
+   "pageId": "futurism-governance-06",
+   "type": "choice",
+   "prompt": "Under OpenAI's Preparedness Framework v2, a model under development reaches a Critical threshold in cybersecurity. What does the framework require?",
+   "options": [
+    "Safeguards only once the model is about to be publicly deployed",
+    "An automatic and permanent shutdown of the training run",
+    "Safeguards during development as well, whatever the deployment plans",
+    "Approval from a government regulator before any further work"
+   ],
+   "answer": 2,
+   "explanation": "High capability requires safeguards before deployment; Critical capability requires safeguards even during development, regardless of deployment plans.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-governance-06-q2",
+   "pageId": "futurism-governance-06",
+   "type": "choice",
+   "prompt": "What is the role of 'alert thresholds' in Google DeepMind's Frontier Safety Framework?",
+   "options": [
+    "They give early warning that a model may be nearing a Critical Capability Level",
+    "They are the final limits beyond which a model is deleted outright",
+    "They set the maximum training compute a model is allowed to use",
+    "They define which customers may access a model through the API"
+   ],
+   "answer": 0,
+   "explanation": "Alert thresholds on evaluations flag that a model is approaching a CCL, triggering a closer assessment and response plan before the CCL itself is reached.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-governance-06-q3",
+   "pageId": "futurism-governance-06",
+   "type": "choice",
+   "prompt": "A critic says a lab's framework is weak because the lab can loosen safeguards if a competitor ships without them. Which framework feature does this point to?",
+   "options": [
+    "The use of numeric benchmark thresholds such as xAI's MASK honesty target",
+    "The requirement to publish transparency reports under California's SB 53",
+    "The split between High and Critical capability thresholds in tracked categories",
+    "The marginal-risk or competitor escape clause found in several frameworks"
+   ],
+   "answer": 3,
+   "explanation": "Several frameworks let a lab relax safeguards if a rival crosses a threshold without them; OpenAI adds conditions such as public acknowledgment and staying more protective than the rival.",
+   "difficulty": 2
+  }
+ ]
+}

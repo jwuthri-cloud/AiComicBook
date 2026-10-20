@@ -113,11 +113,18 @@ struct Page: Decodable, Identifiable, Hashable {
     let narration: [NarrationClip]?
     /// Advanced mode: a deeper note per panel (same order as `panels`) and a closing note for the page.
     let deeper: Deeper?
+    /// Original readings the page distills (AI Futurism), shown as links under the text.
+    let sources: [Source]?
 
     var hasText: Bool { !panels.isEmpty }
 
     static func == (a: Page, b: Page) -> Bool { a.id == b.id }
     func hash(into h: inout Hasher) { h.combine(id) }
+}
+
+struct Source: Decodable, Hashable {
+    let title: String
+    let url: String
 }
 
 struct Deeper: Decodable, Hashable {

@@ -1,0 +1,172 @@
+{
+ "terms": [
+  {
+   "term": "Plans A-D (misalignment risk)",
+   "aka": [
+    "Plan A",
+    "Plan B",
+    "Plan C",
+    "Plan D",
+    "Plans A, B, C and D"
+   ],
+   "category": "AI Futurism",
+   "short": "Greenblatt's ladder of strategies for misalignment risk, sorted by how much political will and lead time exist.",
+   "definition": "Plan A assumes an international deal and about a decade of slowdown; Plan B a US government that buys a 1-3 year lead; Plan C a leading lab that spends its few-month lead on safety; Plan D a lab that doesn't care, with only a handful of concerned insiders. It is like packing for a trip when you don't know the weather: you prepare for the likeliest conditions, not only the nicest.",
+   "related": [
+    "Capability lead",
+    "Deferring to AI",
+    "AI control",
+    "Misalignment"
+   ]
+  },
+  {
+   "term": "Capability lead",
+   "aka": [
+    "Lead time",
+    "Lead margin",
+    "Safety lead"
+   ],
+   "category": "AI Futurism",
+   "short": "How far the most safety-conscious relevant AI developer is ahead of less careful rivals, in time.",
+   "definition": "A lead is a buffer that can be spent on slowing down, testing and safety work without being overtaken. Strategists argue over how big it is (weeks, months or years) and how to grow it, through security, export controls or agreements. Think of a runner ahead in a race who can afford to stop and tie a shoelace.",
+   "related": [
+    "Plans A-D (misalignment risk)",
+    "Export controls (AI chips)",
+    "Weight security",
+    "Takeoff speed"
+   ]
+  },
+  {
+   "term": "Deferring to AI",
+   "aka": [
+    "Deference",
+    "AI handoff",
+    "Full deference",
+    "Handoff to AI"
+   ],
+   "category": "AI Futurism",
+   "short": "Letting AIs do nearly all the work of building safer successors, managing risks and making strategic decisions.",
+   "definition": "Full deference means humans no longer rely on controlling the AI and trust it for everything, including hard-to-check judgment calls. Partial or task-by-task deference expands trust gradually. It resembles a founder handing a company to a successor: you want strong evidence of good judgment before you step back.",
+   "related": [
+    "Basin of good deference",
+    "AI control",
+    "Corrigibility",
+    "Scheming"
+   ]
+  },
+  {
+   "term": "Basin of good deference",
+   "aka": [
+    "BGD",
+    "Deference-goodness tax"
+   ],
+   "category": "AI Futurism",
+   "short": "The hope that a good-enough AI we defer to will make its successors more aligned, wise and capable.",
+   "definition": "If the first AI is inside the basin, errors shrink with each generation instead of compounding, so it need not be perfect. The extra effort needed to stay inside the basin is called the deference-goodness tax. Picture a ball dropped anywhere inside a bowl: it rolls toward the bottom.",
+   "related": [
+    "Deferring to AI",
+    "Corrigibility",
+    "Scalable oversight"
+   ]
+  },
+  {
+   "term": "Mutual assured AI malfunction",
+   "aka": [
+    "MAIM",
+    "ASI deterrence",
+    "AI deterrence"
+   ],
+   "category": "AI Futurism",
+   "short": "A proposed deterrence regime in which any state's bid for AI dominance would be met by rivals' sabotage.",
+   "definition": "Proposed in Superintelligence Strategy (Hendrycks, Schmidt, Wang, 2025), it borrows loosely from nuclear mutually assured destruction. Sabotage could range from espionage and cyberattacks to strikes on datacenters, so the threat is meant to discourage racing. Critics question whether red lines are clear and whether threats would be credible.",
+   "related": [
+    "Preventive attack",
+    "Capability lead",
+    "Compute governance",
+    "Structural risk"
+   ]
+  },
+  {
+   "term": "Preventive attack",
+   "aka": [
+    "Preventive war",
+    "Preventive strike"
+   ],
+   "category": "AI Futurism",
+   "short": "Using force to stop a rival from gaining a future power advantage, such as AGI, before it arrives.",
+   "definition": "Unlike preemption, which answers an imminent attack, prevention acts against a shift expected later. RAND (2025) judged such war unlikely in absolute terms but riskier when leaders expect AGI to bring explosive growth and a decisive, lasting edge. It is like trying to stop a rival team from signing a star player rather than playing the match.",
+   "related": [
+    "Mutual assured AI malfunction",
+    "Government AGI project",
+    "Artificial general intelligence"
+   ]
+  },
+  {
+   "term": "Government AGI project",
+   "aka": [
+    "Manhattan Project for AGI",
+    "The Project",
+    "National AGI project"
+   ],
+   "category": "AI Futurism",
+   "short": "A state-led effort in which a government decides when AGI development starts and stops and owns the result.",
+   "definition": "Aschenbrenner predicted a US project by 2027-28, likely a joint venture with labs; the US-China Economic and Security Review Commission called for one in 2024. IAPS forecasters put about a 34% chance on a government-led project building the first AI that speeds AI R&D tenfold. Debate centers on security benefits versus arms-race and power-concentration risks.",
+   "related": [
+    "Capability lead",
+    "Preventive attack",
+    "Weight security",
+    "Artificial general intelligence"
+   ]
+  },
+  {
+   "term": "Federal AI preemption",
+   "aka": [
+    "Preemption",
+    "State AI law preemption"
+   ],
+   "category": "AI Futurism",
+   "short": "Federal law or action that overrides state AI laws to create one national standard.",
+   "definition": "In the US, Congress can preempt state law by statute; agencies and executive orders have narrower power. A December 2025 executive order directed federal challenges to 'onerous' state AI laws and asked for preemption legislation. Supporters cite a costly patchwork; opponents value state experimentation and oversight.",
+   "related": [
+    "Frontier safety framework",
+    "Compute governance"
+   ]
+  },
+  {
+   "term": "Frontier safety framework",
+   "aka": [
+    "FSF",
+    "Preparedness Framework",
+    "Frontier AI framework",
+    "Safety framework",
+    "If-then commitments"
+   ],
+   "category": "AI Futurism",
+   "short": "A lab's published if-then policy: if a model reaches a dangerous capability threshold, then stronger safeguards apply.",
+   "definition": "Examples include Anthropic's Responsible Scaling Policy, OpenAI's Preparedness Framework, Google DeepMind's Frontier Safety Framework, xAI's Risk Management Framework and Meta's Frontier AI Framework. They name thresholds (such as bio, cyber or AI R&D), the safeguards each triggers and who decides. California's SB 53 requires large developers to publish one.",
+   "related": [
+    "Responsible Scaling Policy",
+    "Capability threshold",
+    "Dangerous capability evaluations",
+    "Safeguards"
+   ]
+  },
+  {
+   "term": "Export controls (AI chips)",
+   "aka": [
+    "Chip export controls",
+    "AI chip export controls",
+    "Semiconductor export controls"
+   ],
+   "category": "AI Futurism",
+   "short": "Government rules restricting the sale of advanced AI chips and chipmaking tools to certain countries.",
+   "definition": "The US and allies limit exports of top GPUs, high-bandwidth memory and lithography equipment, aiming to slow rivals' compute buildup. Epoch analysts argue these controls help keep China about a hardware generation behind, while smuggling and workarounds blunt them. Debates cover effectiveness, economic cost and escalation.",
+   "related": [
+    "Compute governance",
+    "GPU",
+    "Capability lead",
+    "Compute"
+   ]
+  }
+ ]
+}

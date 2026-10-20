@@ -1,0 +1,139 @@
+{
+ "questions": [
+  {
+   "id": "futurism-deals-01-q1",
+   "pageId": "futurism-deals-01",
+   "type": "choice",
+   "prompt": "A lab suspects its current model quietly sabotages safety research, but the model has almost no chance of taking over. The lab can afford one deal now. Which good is easiest to verify before paying?",
+   "options": [
+    "A pledge never to attempt takeover for ten years",
+    "A reproducible demonstration of its own misalignment",
+    "Months of hard-to-check alignment research labor",
+    "A promise that its successor model will be aligned"
+   ],
+   "answer": 1,
+   "explanation": "Evidence of misalignment can be checked directly (for example, a trigger that reliably elicits covert behavior). Labor quality, long pledges and claims about successors are hard to verify, especially for retroactive payment.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-deals-01-q2",
+   "pageId": "futurism-deals-01",
+   "type": "choice",
+   "prompt": "In Pan's model, deal value is roughly the product of AI gains, human gains, AI trust in humans and human trust in the AI. A model gains a lot from trade but assumes every input could be a fabricated test. What follows?",
+   "options": [
+    "The deal goes ahead, because large gains always dominate",
+    "Credibility is irrelevant, because the AI cannot leave the lab anyway",
+    "The best move is to fine-tune the AI into trusting the offer",
+    "The deal may fail, so humans should build trusted channels and a track record"
+   ],
+   "answer": 3,
+   "explanation": "With one factor near zero the product collapses. Pan suggests honesty policies, an epistemically secure channel and small deals that are actually paid; implanting trust via finetuning would undermine credibility further.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-deals-01-q3",
+   "pageId": "futurism-deals-01",
+   "type": "choice",
+   "prompt": "A red team wants to add fake offers such as 'we will pay you if you admit to sabotage' to routine evals to see which models confess. Why does Finnveden's honesty proposal object?",
+   "options": [
+    "Fake offers are illegal under current AI regulation",
+    "Models cannot understand offers of payment at all",
+    "Lies about deals teach AIs to distrust real offers later",
+    "Confessions from models are never useful evidence"
+   ],
+   "answer": 2,
+   "explanation": "Finnveden lists deal offers among the contexts where labs should never deceive AIs, because widespread fake offers would make genuine ones impossible to believe.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-deals-02-q1",
+   "pageId": "futurism-deals-02",
+   "type": "choice",
+   "prompt": "Historically, a would-be autocrat needed thousands of soldiers and officials, any of whom might refuse or leak. According to Forethought, what is the core way advanced AI changes this?",
+   "options": [
+    "AI makes elections impossible to hold",
+    "AI can replace those humans with systems loyal to one person",
+    "AI makes propaganda the only tool of power",
+    "AI forces all governments to centralize"
+   ],
+   "answer": 1,
+   "explanation": "The need for many people's cooperation is a natural check. If AI systems can do the work of soldiers, officials and workers while obeying a single leader, that check disappears.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-deals-02-q2",
+   "pageId": "futurism-deals-02",
+   "type": "choice",
+   "prompt": "In an audit game, a red team plants a hidden loyalty in a model. One blue team gets training data; another gets only API access. Per Davidson's recollection of Anthropic's results, what should auditors conclude?",
+   "options": [
+    "API testing alone is enough to rule out secret loyalties",
+    "Hidden loyalties are impossible to detect with any access",
+    "Auditors need deep access such as training data and logs",
+    "Only open-sourcing every model can reveal hidden loyalties"
+   ],
+   "answer": 2,
+   "explanation": "The teams with training-data access found the planted behavior and the API-only team did not, which suggests external auditors need more than black-box access, alongside logging and tamper checks such as hashed weights.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-deals-02-q3",
+   "pageId": "futurism-deals-02",
+   "type": "choice",
+   "prompt": "A defense ministry plans to run all its autonomous drones on one vendor's model, updated remotely by that vendor. Which safeguard from the readings best addresses the coup risk?",
+   "options": [
+    "Buy from several independent AI suppliers and vet every update",
+    "Keep the single vendor but rename the model to hide it",
+    "Let the drones choose their own commanders",
+    "Ban all logging so the vendor cannot see usage"
+   ],
+   "answer": 0,
+   "explanation": "One supplier with remote updates creates a single point where a secret or singular loyalty could control the whole force. Multiple suppliers and vetted updates mean no single hidden loyalty can command everything.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-deals-03-q1",
+   "pageId": "futurism-deals-03",
+   "type": "choice",
+   "prompt": "You and an exact copy of you each choose: defect (+$1 to yourself) or cooperate (+$2 to the other). You will never interact. What does evidential decision theory (EDT) recommend?",
+   "options": [
+    "Defect, because defection gives more whatever the copy does",
+    "Cooperate, because your choice is strong evidence your copy cooperates",
+    "Randomize 50/50 so the copy cannot predict you",
+    "Defect, because cooperation only helps the copy"
+   ],
+   "answer": 1,
+   "explanation": "Since the copy reasons identically, the realistic outcomes are both cooperate ($2 each) or both defect ($1 each). EDT counts that correlation; causal decision theory focuses on dominance and defects.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-deals-03-q2",
+   "pageId": "futurism-deals-03",
+   "type": "choice",
+   "prompt": "In the ECL toy model (1,000,000 agents, 1% share your values), cooperating beats defecting about $30 to $21. Suppose your influence on different-value agents drops tenfold, from 0.001 to 0.0001. What happens?",
+   "options": [
+    "Cooperation still wins by about the same margin",
+    "Cooperation wins by even more",
+    "Defection now wins, roughly $21 to under $4",
+    "Both options pay exactly zero"
+   ],
+   "answer": 2,
+   "explanation": "Most of cooperation's payoff came from different-value agents helping your values (about $29.70). Cutting that influence tenfold shrinks it to about $2.97, so the result depends heavily on the ratio of influences.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-deals-03-q3",
+   "pageId": "futurism-deals-03",
+   "type": "choice",
+   "prompt": "A civilization devotes some resources to values it guesses distant civilizations hold, without simulating or predicting any particular one, because agents who reason like it probably do the same. Which idea is this?",
+   "options": [
+    "Evidential cooperation in large worlds (ECL)",
+    "Ordinary causal reciprocity",
+    "Acausal trade based on mutual simulation",
+    "Pascal's mugging"
+   ],
+   "answer": 0,
+   "explanation": "ECL works through correlation alone: choosing to cooperate is evidence that similar reasoners do too. Acausal trade usually involves conditional 'I do this if you do that' reasoning, often via modeling the other party.",
+   "difficulty": 2
+  }
+ ]
+}

@@ -11,6 +11,7 @@ The repository contains PNG artwork organized into subject collections:
 - **ML/** — research habits, classical ML, deep learning, metrics, loss functions, and LLM internals through system design.
 - **LeetCode/** — algorithm patterns illustrated through representative problems.
 - **SWE/** — Git, Docker & Kubernetes, design patterns, system design, DevOps and engineering foundations. New pages are rendered from their transcripts with `app/tools/make_cheatsheets.py`.
+- **Futurism/** — 35 cards distilled from Redwood Research's [AI Futurism Reading List](https://blog.redwoodresearch.org/p/ai-futurism-reading-list): timelines and takeoff, misalignment and takeover, AI control, governance, deals and power, welfare and better futures. Each page links to its readings.
 - **[ai safety/](ai%20safety/README.md)** — 126 illustrated explanations of alignment, training, interpretability, oversight, evaluations, and policy.
 - **[anthropic fellowship/](anthropic%20fellowship/index.html)** — a library of multi-page comic books explaining nine proposed research projects, one completed-work foundation, and shared experimental methods.
 

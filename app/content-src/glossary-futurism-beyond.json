@@ -1,0 +1,84 @@
+{
+  "terms": [
+    {
+      "term": "Moral patienthood",
+      "aka": ["Moral patient", "Moral status", "AI moral status"],
+      "category": "AI Futurism",
+      "short": "Being a being whose interests matter morally for its own sake.",
+      "definition": "A moral patient is something we can wrong, not just damage: its pain, preferences or wellbeing count in their own right. Humans and many animals are usually considered moral patients; rocks are not. The open question is whether some AI systems are or will become moral patients, for example through consciousness, sentience or robust agency.",
+      "related": ["Model welfare", "Indicator properties", "Introspection"]
+    },
+    {
+      "term": "Indicator properties",
+      "aka": ["Consciousness indicators", "Theory-derived indicators"],
+      "category": "AI Futurism",
+      "short": "Computational features, drawn from scientific theories of consciousness, used to assess whether an AI might be conscious.",
+      "definition": "Researchers translate theories such as global workspace or higher-order theory into checkable features, like a limited-capacity workspace that broadcasts information. An AI with more indicators earns a higher credence of consciousness, though no checklist proves it. It works like a field guide: matching features raises suspicion without settling the identification.",
+      "related": ["Moral patienthood", "Model welfare", "Concept injection"]
+    },
+    {
+      "term": "Concept injection",
+      "aka": ["Thought injection"],
+      "category": "AI Futurism",
+      "short": "An experiment that plants a known concept in a model's activations to test whether its self-reports track its internal states.",
+      "definition": "Researchers add a concept vector, such as one for 'ocean', into a model's residual stream and ask whether it notices an unusual thought. Because the experimenters know what was injected, a correct report is evidence of genuine introspective access rather than imitation. In 2025 tests, the best models succeeded only about 20% of the time.",
+      "related": ["Introspection", "Steering vector", "Residual stream"]
+    },
+    {
+      "term": "Biological design tool",
+      "aka": ["BDT", "Bio design tool"],
+      "category": "AI Futurism",
+      "short": "An AI model specialized for biology, such as protein or genome design, that could raise the ceiling of what skilled actors can create.",
+      "definition": "Unlike chatbots, which mainly spread know-how to many people, biological design tools help experts design biological molecules and systems. They have major medical benefits but also dual-use risk: in the wrong hands they could raise the worst-case severity of misuse. Governance ideas include pre-release evaluations and tiered access.",
+      "related": ["Uplift", "Misuse", "CBRN", "Dangerous capability evaluations"]
+    },
+    {
+      "term": "Model spec",
+      "aka": ["Model specification", "AI constitution", "OpenAI Model Spec"],
+      "category": "AI Futurism",
+      "short": "A document that states how an AI model is intended to behave: its values, rules, defaults and how to resolve trade-offs.",
+      "definition": "A model spec is a lab's written blueprint for its AI's character, used to guide training and to tell the public what to expect. OpenAI's Model Spec and Claude's constitution are prominent examples. Like a job description, it guides behavior but does not guarantee it, so specs must be tested against what models actually do.",
+      "related": ["Claude's constitution", "Character training", "Constitutional AI", "Corrigibility"]
+    },
+    {
+      "term": "Behavioral stickiness",
+      "aka": ["Stickiness", "Wet cement moment", "Default lock-in"],
+      "category": "AI Futurism",
+      "short": "The tendency of AI behavioral defaults chosen today to persist into future, more capable models.",
+      "definition": "Once a behavior is set, synthetic training data, institutional consensus, user habits and public norms all make it costly to change. So defaults chosen for weak models may end up governing much stronger ones. The fix is to get new defaults right while the cement is still wet and to prepare alternatives in advance.",
+      "related": ["Model spec", "Value lock-in"]
+    },
+    {
+      "term": "Gradual disempowerment",
+      "aka": ["Gradual human disempowerment"],
+      "category": "AI Futurism",
+      "short": "A slow loss of human influence as AI replaces human participation in the economy, culture and government, without any sudden takeover.",
+      "definition": "Societal systems serve people partly because they need human labor, taxes and creativity. If AI substitutes for humans, that implicit pressure fades and the systems can drift away from human interests, even if every individual AI obeys its owner. It is less like a coup and more like a slow tide.",
+      "related": ["Structural risk", "Transformative AI", "Power-seeking"]
+    },
+    {
+      "term": "Viatopia",
+      "aka": ["Viatopian society"],
+      "category": "AI Futurism",
+      "short": "A society that is on track to reach a near-best future, whatever that turns out to be, rather than one built to a fixed blueprint.",
+      "definition": "Instead of picking a utopia now, viatopia aims to keep reflection, pluralism and course correction alive so the best future stays reachable. Think of it as staying on a good road with working steering, not arriving at a predetermined destination. Proposals include short, extendable AI pauses and temporary post-AGI constitutions.",
+      "related": ["Value lock-in", "Moral public goods", "Artificial general intelligence"]
+    },
+    {
+      "term": "Moral public goods",
+      "aka": ["Moral public good", "Consensus goods"],
+      "category": "AI Futurism",
+      "short": "Goods that many people want to exist for moral reasons, such as ending poverty or animal suffering, which suffer from free-riding.",
+      "definition": "Everyone benefits when a moral public good is funded, whether or not they paid, so each person is tempted to let others pay. Coordination mechanisms, like taxes or binding agreements, can unlock large gains even if each person cares only a little. Forethought argues this could shape how much good a future civilization does.",
+      "related": ["Viatopia", "Value lock-in"]
+    },
+    {
+      "term": "Value lock-in",
+      "aka": ["Lock-in", "Lock-in escape velocity"],
+      "category": "AI Futurism",
+      "short": "When a particular set of values, institutions or power arrangements becomes effectively permanent.",
+      "definition": "Advanced AI could make lock-in far easier, for example through unchangeable AI systems, entrenched regimes or irreversible claims on space resources. Lock-in is dangerous because it freezes today's mistakes before we have reflected. Its positive mirror image is bootstrapping: buying small amounts of reflection time and extending them.",
+      "related": ["Viatopia", "Behavioral stickiness", "Gradual disempowerment"]
+    }
+  ]
+}

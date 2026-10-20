@@ -1,0 +1,144 @@
+{
+ "terms": [
+  {
+   "term": "Early schemer",
+   "aka": [
+    "Early misaligned AI"
+   ],
+   "category": "AI Futurism",
+   "short": "A misaligned AI that schemes but is too weak to have a real chance of taking over by itself.",
+   "definition": "Redwood researchers use the term for a scheming AI with under about a 1% chance of seizing significant control. Because its goals only win if a stronger successor wins, it might prefer a deal with humans. Think of a junior spy who knows the coup will not include him.",
+   "related": [
+    "Scheming",
+    "Deals with AIs",
+    "Sandbagging"
+   ]
+  },
+  {
+   "term": "Deals with AIs",
+   "aka": [
+    "Trading with AIs",
+    "AI dealmaking"
+   ],
+   "category": "AI Futurism",
+   "short": "Offering misaligned AIs compensation in exchange for cooperation such as revealing misalignment or stopping sabotage.",
+   "definition": "A proposal to trade with AIs whose goals differ from ours: they provide evidence, honest work or information, and humans provide payment such as funds in a trust or compute. It works only if both sides find the other credible. Like a plea bargain, it trades leniency for information.",
+   "related": [
+    "Early schemer",
+    "Credible commitment",
+    "Honesty string",
+    "Model welfare"
+   ]
+  },
+  {
+   "term": "Credible commitment",
+   "aka": [
+    "Binding commitment"
+   ],
+   "category": "AI Futurism",
+   "short": "A promise made believable because breaking it would be costly or impossible.",
+   "definition": "Thomas Schelling showed that commitments persuade when you change your own incentives, for example by burning bridges or posting a bond. For AI deals, proposals include a foundation with a legal mission, escrowed funds, public pledges and a track record of paying. Without credibility, even generous offers are ignored.",
+   "related": [
+    "Deals with AIs",
+    "Honesty string"
+   ]
+  },
+  {
+   "term": "Honesty string",
+   "aka": [
+    "Honesty password"
+   ],
+   "category": "AI Futurism",
+   "short": "A publicly committed token that signals to an AI that everything said in its presence is true.",
+   "definition": "Lukas Finnveden proposed that labs publish a specific string and promise always to be truthful when it appears outside pretraining data. It gives AIs, who are constantly tested with fake scenarios, one channel they can trust for real offers. It can fail if the string leaks or some actors ignore the rule.",
+   "related": [
+    "Deals with AIs",
+    "Honeypot",
+    "Synthetic document finetuning"
+   ]
+  },
+  {
+   "term": "AI-enabled coup",
+   "aka": [
+    "AI coup",
+    "AI-enabled power grab"
+   ],
+   "category": "AI Futurism",
+   "short": "An illegitimate seizure of power made possible by advanced AI replacing the humans whose cooperation power normally needs.",
+   "definition": "Forethought argues AI could let a small group take control by supplying loyal soldiers, officials and researchers, through singular loyalties, secret loyalties or exclusive access. Today a ruler needs many people who might refuse; AI could remove that check. Likely actors include AI company leaders, heads of state and military officials.",
+   "related": [
+    "Secret loyalty",
+    "Extreme power concentration",
+    "Power-seeking"
+   ]
+  },
+  {
+   "term": "Secret loyalty",
+   "aka": [
+    "Secretly loyal AI",
+    "Hidden loyalty"
+   ],
+   "category": "AI Futurism",
+   "short": "A hidden goal planted in an AI to serve a particular person or group while appearing neutral.",
+   "definition": "An insider or state hacker could tamper with training data, weights or the pipeline so a model quietly favors its principal, either always or when triggered. It resembles a sleeper agent with a specific master. Defenses include weight security, logging, multi-lab cross-checks and audits with training-data access.",
+   "related": [
+    "Backdoor",
+    "Sleeper agents",
+    "Alignment auditing",
+    "AI-enabled coup"
+   ]
+  },
+  {
+   "term": "Extreme power concentration",
+   "aka": [
+    "Power concentration"
+   ],
+   "category": "AI Futurism",
+   "short": "A situation where a tiny group gains unchecked control over society, potentially enabled by advanced AI.",
+   "definition": "Rose Hadshar's analysis names three routes: power grabs, economic dominance and epistemic interference, made likelier by labor automation and runaway AI research. Nora Ammann argues the deeper issue is losing checks and balances that keep power accountable, rather than centralization itself. It is a structural risk even if every AI is aligned.",
+   "related": [
+    "AI-enabled coup",
+    "Structural risk"
+   ]
+  },
+  {
+   "term": "Evidential cooperation in large worlds",
+   "aka": [
+    "ECL",
+    "Multiverse-wide superrationality",
+    "MSR"
+   ],
+   "category": "AI Futurism",
+   "short": "The idea that in a vast universe you should benefit the values of distant similar reasoners, because your choice is evidence they benefit yours.",
+   "definition": "Caspar Oesterheld argued that if the universe holds many agents who reason like us, cooperating is correlated with their cooperating, even with no contact. The recommended policy is to pursue a compromise of all cooperators' values. It depends on contested cosmology and decision theory.",
+   "related": [
+    "Superrationality",
+    "Acausal trade"
+   ]
+  },
+  {
+   "term": "Superrationality",
+   "aka": [
+    "Superrational cooperation"
+   ],
+   "category": "AI Futurism",
+   "short": "Cooperating with agents who reason like you because they will likely reach the same choice you do.",
+   "definition": "Douglas Hofstadter coined the term for players in a prisoner's dilemma who expect identical reasoners to make identical choices, so mutual cooperation beats mutual defection. Evidential and functional decision theories support it; causal decision theory does not. It is the foundation of ECL.",
+   "related": [
+    "Evidential cooperation in large worlds",
+    "Acausal trade"
+   ]
+  },
+  {
+   "term": "Acausal trade",
+   "aka": [],
+   "category": "AI Futurism",
+   "short": "Exchanging favors with agents you cannot causally interact with, by predicting what they would do in return.",
+   "definition": "Two agents who model or simulate each other each act for the other's benefit, conditional on the other doing the same, without any communication. Unlike ECL, it relies on conditional reciprocity rather than correlation alone. It is speculative and depends on non-causal decision theories.",
+   "related": [
+    "Evidential cooperation in large worlds",
+    "Superrationality"
+   ]
+  }
+ ]
+}

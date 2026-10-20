@@ -270,6 +270,7 @@ def transcript_books(collection: str, groups: list[tuple[str, str, str, list[int
                 "wordKey": "",
                 "summary": t.get("summary", ""),
                 "keywords": t.get("keywords", []),
+                **({"sources": t["sources"]} if t.get("sources") else {}),
                 "number": len(pages) + 1,
                 "source": png,
                 "videoSource": None,
@@ -291,6 +292,19 @@ def collections() -> list[dict]:
             "description": "Every key concept in AI alignment and safety, from RLHF to sleeper agents, on a single illustrated card.",
             "symbol": "shield", "tint": "violet",
             "books": safety_books(),
+        },
+        {
+            "id": "futurism", "title": "AI Futurism", "subtitle": "A reading list, illustrated",
+            "description": "Timelines and takeoff, misalignment and takeover, AI control, governance and the wider questions, distilled from Redwood Research's AI Futurism Reading List (Alexa Pan, 2026). Every page links to its readings.",
+            "symbol": "telescope", "tint": "teal",
+            "books": transcript_books("Futurism", [
+                ("futurism-timelines", "Timelines & Takeoff", "When, and how fast?", [1, 2, 3, 4, 5, 6, 7]),
+                ("futurism-takeover", "Misalignment & Takeover", "What will AIs want, and could they win?", [8, 9, 10, 11, 12, 13, 14, 15]),
+                ("futurism-control", "AI Control", "Safety even if alignment fails", [16, 17, 18, 19, 20, 21, 22]),
+                ("futurism-governance", "Governance & Strategy", "Labs, states and plans", [23, 24, 25, 26, 27, 28]),
+                ("futurism-deals", "Deals, Power & Cooperation", "Trading with AIs, preventing coups", [29, 30, 31]),
+                ("futurism-beyond", "Beyond Misalignment", "Welfare, character, other risks, good futures", [32, 33, 34, 35]),
+            ]),
         },
         {
             "id": "ml", "title": "Machine Learning", "subtitle": "Classical ML to LLM internals",

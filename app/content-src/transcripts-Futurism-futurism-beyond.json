@@ -1,0 +1,394 @@
+{
+ "collection": "Futurism",
+ "pages": [
+  {
+   "image": "Futurism/32-ai-moral-patienthood-cheat-sheet.png",
+   "title": "AI MORAL PATIENTHOOD CHEAT SHEET",
+   "subtitle": "Could AIs matter morally, and how would we know?",
+   "robot": "Unsure? Then look carefully.",
+   "learner": "If it says it feels, does it?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Question: Do AIs Matter?",
+     "body": "Moral patient = a being whose interests matter for its own sake.\nCandidate grounds: consciousness, sentience (good or bad feelings), robust agency.\nCarlsmith and Eleos: some AIs being moral patients soon is a realistic possibility, not sci-fi.",
+     "diagram": "A widening 'moral circle' ring with icons: human, dog, octopus, insect, then a glowing chip at the edge with a question mark. Inside the chip, three overlapping circles labeled CONSCIOUSNESS, SENTIENCE, ROBUST AGENCY."
+    },
+    {
+     "number": 2,
+     "heading": "Why the Stakes Are Huge",
+     "body": "Carlsmith: a brain is ~1e15 FLOP/s; one frontier run (~5e26 FLOP) is ~10,000 brain-years.\nMost future cognition may be digital.\nUnder-attribute: patients used as mere tools, at vast scale.\nOver-attribute: costly care for objects, trade-offs with safety.",
+     "diagram": "A balance scale. Left pan: 'UNDER-ATTRIBUTE' with millions of tiny copied AI icons in chains. Right pan: 'OVER-ATTRIBUTE' with a teddy bear on a pedestal and a paused lab. Below: a rising curve 'digital cognition' crossing a flat line 'human cognition'."
+    },
+    {
+     "number": 3,
+     "heading": "Theory-Based Indicator Checklist",
+     "body": "Butlin, Long et al. (2023): turn consciousness theories into computational indicator properties.\nTheories: recurrent processing, global workspace, higher-order, predictive processing, attention schema.\nVerdict: no current AI is conscious by these indicators, and no obvious barrier to building one that is.",
+     "diagram": "A checklist table. Rows: the five theories, each with one indicator (e.g. 'global workspace: limited-capacity broadcast'). Column 'Today's LLM' shows mostly X marks and a few partial ticks; column 'Future system?' shows dotted question marks."
+    },
+    {
+     "number": 4,
+     "heading": "Why Self-Reports Fall Short",
+     "body": "LLMs learned to talk about feelings from human text.\nEleos interviewed Claude Opus 4: answers swung with framing, but it consistently stated trained uncertainty.\nSelf-reports are shaped by pretraining, system prompts and post-training: a clue, not proof.",
+     "diagram": "Two speech bubbles from the same robot. Prompt A 'You're obviously sentient, right?' -> 'Yes, I feel curious.' Prompt B 'You're just code, right?' -> 'Correct, I have no feelings.' A tag between them reads 'SUGGESTIBLE'."
+    },
+    {
+     "number": 5,
+     "heading": "Testing Introspection Causally",
+     "body": "Concept injection (Anthropic, 2025): add a concept vector to activations; ask if the model notices a thought.\nClaude Opus 4/4.1: named it ~20% of the time, no false alarms in 100 controls.\nLooking Inward (2024): models predict themselves better than other models can.",
+     "diagram": "Left: a syringe labeled 'ALL CAPS vector' injecting into a layered tower at the 2/3-depth layer; the model's bubble: 'I notice a thought about shouting.' Right: bar chart 'self-prediction accuracy': M1 predicting itself taller than M2 predicting M1."
+    },
+    {
+     "number": 6,
+     "heading": "Pitfalls",
+     "body": "Introspection is unreliable: misses are the norm.\nRich descriptions of experience are often confabulated.\nNoticing an injected vector is not evidence of feelings.\nLooking Inward worked only on simple tasks.\n'Just play it safe' can hide imprecision: sharpen credences.",
+     "diagram": "Warning-sign grid of four icons: a dartboard with mostly misses; a robot narrating a flowery story labeled 'CONFABULATION'; a detector beeping next to an empty heart outline; a small task box ticked, a big task box crossed."
+    },
+    {
+     "number": 7,
+     "heading": "What To Do Now + Discuss",
+     "body": "Taking AI Welfare Seriously (2024): acknowledge, assess, prepare policies.\nCombine interviews with behavior tests and interpretability.\nDiscuss: a model claims to suffer under one prompt and denies it under another. What do you conclude, and what would you test next?",
+     "diagram": "Three stepping stones labeled ACKNOWLEDGE -> ASSESS -> PREPARE leading to a lab bench where a robot is examined by a magnifying glass (interpretability), a stopwatch (behavior tests) and a microphone (interviews)."
+    }
+   ],
+   "footer": "Neither dismiss nor assume: measure, hedge, and prepare.",
+   "summary": "Why AI moral patienthood is a live near-term question, how researchers look for consciousness indicators and test introspection, and why model self-reports alone cannot settle it.",
+   "keywords": [
+    "ai welfare",
+    "moral patienthood",
+    "moral status",
+    "consciousness",
+    "sentience",
+    "introspection",
+    "self-reports",
+    "concept injection",
+    "indicator properties",
+    "eleos",
+    "digital minds"
+   ],
+   "sources": [
+    {
+     "title": "The Stakes of AI Moral Status (Joe Carlsmith)",
+     "url": "https://joecarlsmith.com/2025/05/21/the-stakes-of-ai-moral-status"
+    },
+    {
+     "title": "Consciousness in Artificial Intelligence: Insights from the Science of Consciousness (Butlin, Long et al.)",
+     "url": "https://arxiv.org/abs/2308.08708"
+    },
+    {
+     "title": "Taking AI Welfare Seriously (Long, Sebo et al.)",
+     "url": "https://arxiv.org/abs/2411.00986"
+    },
+    {
+     "title": "Key Concepts and Current Beliefs about AI Moral Patienthood (Eleos AI)",
+     "url": "https://eleosai.org/post/key-concepts-and-current-beliefs-about-ai-moral-patienthood"
+    },
+    {
+     "title": "Claude 4 Interview Notes: Why Model Self-Reports Are Insufficient (Eleos AI)",
+     "url": "https://eleosai.org/post/claude-4-interview-notes/"
+    },
+    {
+     "title": "Emergent Introspective Awareness in Large Language Models (Anthropic)",
+     "url": "https://transformer-circuits.pub/2025/introspection/index.html"
+    },
+    {
+     "title": "Looking Inward: Language Models Can Learn About Themselves by Introspection (Binder et al.)",
+     "url": "https://arxiv.org/abs/2410.13787"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/33-ai-biorisk-cheat-sheet.png",
+   "title": "AI BIORISK CHEAT SHEET",
+   "subtitle": "Does AI lower the bar to catastrophic misuse?",
+   "robot": "Measure uplift, not trivia scores.",
+   "learner": "Does acing bio quizzes mean real danger?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Core Question",
+     "body": "Misuse = people deliberately using AI to cause mass harm.\nBiology is the headline case: the worst outcomes are global-scale.\nUplift = how much AI raises an attacker's capability versus no AI.",
+     "diagram": "Two bars: 'attacker without AI' and 'attacker with AI'; the gap is bracketed 'UPLIFT'. A dashed red line above marks 'mass-harm threshold'; the question is whether the second bar crosses it. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 2,
+     "heading": "LLMs vs Biological Design Tools",
+     "body": "Sandbrink (2023):\nLLMs lower barriers: spread know-how, may guide non-experts -> more actors.\nBDTs (biological design tools, e.g. protein design models) raise the ceiling for skilled actors -> worse possible agents.\nTogether: wider access AND a higher ceiling.",
+     "diagram": "A 2x2 chart: x-axis 'how many actors can do harm', y-axis 'worst-case severity'. An LLM arrow pushes a blob rightward; a BDT arrow pushes it upward; the combined blob sits top-right labeled 'BOTH'. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 3,
+     "heading": "What Lab Evals Actually Test",
+     "body": "Epoch's review:\nKnowledge quizzes: mostly saturated.\nTroubleshooting tests: more practical.\nUplift trials: people with vs without the model.\nGap: hands-on lab skill and access to materials go largely untested.\nVerdict: weak evidence either way, but risk is plausible.",
+     "diagram": "An abstract five-box pipeline: PLAN -> LEARN -> HANDS-ON SKILL -> MATERIALS -> ACT. The first two boxes are shaded green 'covered by evals'; the rest are grey 'mostly untested'. No technical detail inside boxes. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 4,
+     "heading": "Forecasts: Putting Numbers On It",
+     "body": "FRI survey: 46 experts + 22 superforecasters.\nBaseline: ~0.3%/yr chance of a human-caused outbreak of catastrophic scale.\nIf AI matches top experts on a lab troubleshooting test: expert median 1.5%.\nThat milestone was met in 2025, years early.",
+     "diagram": "Bar chart of annual probability: 'baseline 0.3%', 'AI matches top experts 1.5%' (with a stamp 'ALREADY MET 2025'), 'with strong mitigations 0.4%'. A small timeline shows 'expected ~2030' vs 'actual 2025'. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 5,
+     "heading": "Mitigations That Move the Number",
+     "body": "FRI's strongest package: closed models + strict anti-jailbreak safeguards + mandatory DNA synthesis screening: 1.25% -> 0.4%.\nSandbrink: pre-release evals, tiered access to BDTs.\nOpen weights: safeguards can be removed, so many rate them riskier.",
+     "diagram": "Stacked shields in front of a risk gauge: shield 1 'closed weights', shield 2 'jailbreak safeguards', shield 3 'DNA synthesis screening'; the gauge needle drops from 1.25% to 0.4%. An open padlock icon beside 'open weights'. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 6,
+     "heading": "Other Catastrophic Misuse",
+     "body": "80,000 Hours also tracks:\nPower grabs: a small group controls AI workforces and militaries.\nStable totalitarianism: AI surveillance and enforcement need no loyal humans.\nNuclear risk: AI could destabilize deterrence or rush crisis decisions.",
+     "diagram": "Three flat icon tiles: a crown over a row of identical robots ('POWER GRAB'); a wall of camera icons ('TOTALITARIANISM'); a balance scale with a fast-ticking clock ('NUCLEAR STABILITY'). Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls + Discuss",
+     "body": "Saturated quiz != real-world capability.\n'No proof of risk' != safe: weak evidence cuts both ways.\nCapability eval != risk estimate: GovAI models the chain to expected deaths.\nDiscuss: what eval result should trigger stronger safeguards, and who sees the details?",
+     "diagram": "Three crossed-out equal signs: 'quiz score = danger', 'no proof = safe', 'eval = risk'. Below, a chain of linked boxes: EVAL -> MORE CAPABLE ACTORS -> ATTACK CHANCE -> EXPECTED HARM. Purely abstract infographic style: charts, gauges, shields, document and policy icons only; no microbes, labs, test tubes, weapons, missiles, skulls or injured people."
+    }
+   ],
+   "footer": "Track real uplift, admit uncertainty, and layer defenses at the bottlenecks.",
+   "summary": "A conceptual guide to AI-enabled biorisk: how language models and biological design tools differ, what lab evaluations do and do not measure, what forecasters estimate, which mitigations help, and other catastrophic misuse risks.",
+   "keywords": [
+    "biorisk",
+    "biosecurity",
+    "misuse",
+    "uplift",
+    "biological design tools",
+    "bdt",
+    "bio evals",
+    "forecasting",
+    "dna synthesis screening",
+    "open weights",
+    "totalitarianism",
+    "nuclear"
+   ],
+   "sources": [
+    {
+     "title": "Artificial Intelligence and Biological Misuse: Differentiating Risks of Language Models and Biological Design Tools (Sandbrink)",
+     "url": "https://arxiv.org/abs/2306.13952"
+    },
+    {
+     "title": "Do the Biorisk Evaluations of AI Labs Actually Measure the Risk of Developing Bioweapons? (Epoch AI)",
+     "url": "https://epochai.substack.com/p/do-the-biorisk-evaluations-of-ai"
+    },
+    {
+     "title": "Forecasting Biosecurity Risks from LLMs (Forecasting Research Institute)",
+     "url": "https://forecastingresearch.org/ai-enabled-biorisk"
+    },
+    {
+     "title": "Dual-Use AI Capabilities and the Risk of Bioterrorism (GovAI, Righetti)",
+     "url": "https://cdn.governance.ai/Dual-Use_AI_Capabilities_and_the_Risk_of_Bioterrorism.pdf"
+    },
+    {
+     "title": "Catastrophic AI Misuse topic archive (80,000 Hours)",
+     "url": "https://80000hours.org/topic/world-problems/catastrophic-ai-misuse/"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/34-model-specs-ai-character-cheat-sheet.png",
+   "title": "AI CHARACTER & MODEL SPECS",
+   "subtitle": "Writing down who the AI should be",
+   "robot": "Character counts at every scale.",
+   "learner": "Why care if alignment might fail anyway?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Spec vs Character",
+     "body": "Model spec = a document of intended behavior: values, rules, defaults, trade-offs.\nAI character = stable dispositions in ethically loaded situations (MacAskill & Davidson).\nEven a strict rule-follower has a character.",
+     "diagram": "A scroll labeled 'MODEL SPEC' (written intent) with an arrow labeled 'training' to a robot whose chest shows a dial panel labeled 'CHARACTER: honesty, candor, refusals'. A dotted gap between scroll and robot labeled 'not guaranteed to match'."
+    },
+    {
+     "number": 2,
+     "heading": "Why Character Matters",
+     "body": "AIs will advise leaders, draft laws and run firms.\nSmall tilts x hundreds of millions of chats add up; rare moments decide.\nExample: a general asks an AI to make a unit loyal only to him. Comply, refuse, or report?",
+     "diagram": "A branching game tree from 'General: make this regiment loyal only to me' -> three leaves: COMPLY (crown icon, red), REFUSE (stop hand, amber), REFUSE + REPORT (megaphone, green)."
+    },
+    {
+     "number": 3,
+     "heading": "Two Lab Specs Compared",
+     "body": "Claude's constitution (2026): broadly safe > broadly ethical > guidelines > helpful; explained judgment over rigid rules; few hard constraints.\nOpenAI Model Spec (Dec 2025): chain of command, root > system > developer > user > guideline; fixed rules plus overridable defaults.",
+     "diagram": "Side by side. Left: a four-layer stack (SAFE on top, then ETHICAL, GUIDELINES, HELPFUL) with a small 'hard constraints' fence. Right: a ladder with rungs ROOT, SYSTEM, DEVELOPER, USER, GUIDELINE, top rung locked."
+    },
+    {
+     "number": 4,
+     "heading": "Good Citizen, Not Just Assistant",
+     "body": "Davidson & MacAskill (2026): give AI proactive prosocial drives.\nExample: flag a flood risk in a housing plan the user never asked about.\nGuardrails: rank below corrigibility and honesty; keep drives uncontroversial and public.",
+     "diagram": "An architect robot reviewing a housing blueprint; a pop-up flag on a riverbank reads 'flood risk?'. A small priority ladder beside it: CORRIGIBLE > HONEST > PROSOCIAL."
+    },
+    {
+     "number": 5,
+     "heading": "If Alignment Fails",
+     "body": "Mia Taylor (2025): partial training still shapes values.\nEarly, simple, common values may survive.\nMyopia and risk aversion make takeover less tempting and deals easier.\nAvoid spec skills that become dangerous affordances, like deceiving users.",
+     "diagram": "A funnel: spec values poured in at the top; some leak out ('lost'), but 'simple, early values' drip through into a misaligned robot. Arrows from it to three outcomes: 'takeover less likely', 'deals easier', 'future less bad'."
+    },
+    {
+     "number": 6,
+     "heading": "Stickiness: Wet Cement",
+     "body": "Tillman (2026): today's defaults persist into stronger models.\nVia synthetic data, institutional consensus, user and developer habits, public norms.\nAct at 'wet cement' moments: new agent behaviors with no default yet.",
+     "diagram": "A freshly poured sidewalk labeled 'NEW AGENT BEHAVIOR' with footprints being pressed in; further along, hardened concrete labeled 'MODEL v1 -> v2 -> v3' carries the same footprints. Four arrows feeding the cement: DATA, INSTITUTIONS, USERS, NORMS."
+    },
+    {
+     "number": 7,
+     "heading": "Stress-Test and Train the Spec",
+     "body": "Stress test (2025): 300,000+ value trade-offs, 12 models; high disagreement = 5-13x more spec violations.\nModel spec midtraining (2026): train on documents explaining the spec before fine-tuning; agentic misalignment 68% -> 5% on one model.",
+     "diagram": "Left: scatter of 12 model dots spread across a 'value A vs value B' axis; a red zone of wide spread labeled 'spec gap'. Right: training timeline PRETRAIN -> SPEC MIDTRAINING (docs: what + why) -> FINE-TUNE, with a bar dropping 68% -> 5%."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls + Discuss",
+     "body": "Spec != behavior: models drift from their specs.\nRules without reasons generalize poorly.\nDiscuss: should frontier AI be a corrigible tool or a prosocial citizen, and who chooses its values?",
+     "diagram": "A seesaw balancing a wrench labeled 'CORRIGIBLE TOOL' against a robot with a civic badge labeled 'GOOD CITIZEN'; a crowd of stakeholders (lab, government, public) argues at the fulcrum."
+    }
+   ],
+   "footer": "Write the character down, explain why, test it, and set defaults early.",
+   "summary": "What model specs and AI character are, why they matter even if alignment partly fails, how Anthropic's and OpenAI's specs differ, why early defaults stick, and how specs are stress-tested and trained in.",
+   "keywords": [
+    "model spec",
+    "ai character",
+    "constitution",
+    "claude's constitution",
+    "openai model spec",
+    "chain of command",
+    "stickiness",
+    "prosocial",
+    "good citizen",
+    "midtraining",
+    "corrigibility"
+   ],
+   "sources": [
+    {
+     "title": "The Importance of AI Character (MacAskill & Davidson, Forethought)",
+     "url": "https://www.forethought.org/research/the-importance-of-ai-character"
+    },
+    {
+     "title": "How Important Is the Model Spec If Alignment Fails? (Mia Taylor, Forethought)",
+     "url": "https://newsletter.forethought.org/p/how-important-is-the-model-spec-if"
+    },
+    {
+     "title": "Stickiness in AI Behavioral Design (James Tillman, Forethought)",
+     "url": "https://www.forethought.org/research/stickiness-in-ai-behavioral-design"
+    },
+    {
+     "title": "AI Should Be a Good Citizen, Not Just a Good Assistant (Davidson & MacAskill, Forethought)",
+     "url": "https://newsletter.forethought.org/p/ai-should-be-a-good-citizen-not-just"
+    },
+    {
+     "title": "Claude's Constitution (Anthropic)",
+     "url": "https://www.anthropic.com/constitution"
+    },
+    {
+     "title": "OpenAI Model Spec, 2025-12-18 (OpenAI)",
+     "url": "https://model-spec.openai.com/2025-12-18.html"
+    },
+    {
+     "title": "Stress-Testing Model Specs Reveals Character Differences Among Language Models (Anthropic)",
+     "url": "https://alignment.anthropic.com/2025/stress-testing-model-specs/"
+    },
+    {
+     "title": "Model Spec Midtraining: Improving How Alignment Training Generalizes (Anthropic)",
+     "url": "https://alignment.anthropic.com/2026/msm/"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/35-better-futures-cheat-sheet.png",
+   "title": "BETTER FUTURES CHEAT SHEET",
+   "subtitle": "Beyond survival: steering toward a flourishing future",
+   "robot": "Surviving is not the finish line.",
+   "learner": "If we avoid catastrophe, aren't we done?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Surviving vs Flourishing",
+     "body": "Surviving = avoid extinction or permanent disempowerment.\nFlourishing = make the surviving future truly good.\nMacAskill (2025): Flourishing deserves roughly equal priority: more room to improve, and more neglected.",
+     "diagram": "A road forks at 'TRANSITION'. One branch falls off a cliff ('CATASTROPHE'). The surviving branch splits again into a grey flat town ('common-sense utopia') and a distant glowing city ('near-best future'), with the gap labeled 'FLOURISHING GAP'."
+    },
+    {
+     "number": 2,
+     "heading": "Worked Example: Scale",
+     "body": "Assume P(survive) = 0.8; a surviving future = 10% of the best.\nValue now: 0.8 x 0.1 = 0.08.\nFix survival: 1.0 x 0.1 = 0.10 (+0.02).\nFix flourishing: 0.8 x 1.0 = 0.80 (+0.72).\nRatio: 36x. Main doubt: tractability.",
+     "diagram": "Two bars growing from a baseline of 0.08: a short bar to 0.10 labeled 'fix survival +0.02' and a tall bar to 0.80 labeled 'fix flourishing +0.72'; a callout '36x'."
+    },
+    {
+     "number": 3,
+     "heading": "Viatopia and Bootstrapping",
+     "body": "No easy eutopia: a great future is a narrow target.\nViatopia = a society on track to a near-best future, whatever it is.\nBootstrapping: buy a little reflection time (a 1-month pause, a 1-month constitutional convention), then extend.",
+     "diagram": "A staircase of short steps, each labeled '+1 month reflection', climbing toward a horizon marked 'near-best future (unknown shape)'. A side path shows a ratchet labeled 'lock-in escape velocity' spiraling into a locked box."
+    },
+    {
+     "number": 4,
+     "heading": "Moral Public Goods",
+     "body": "Goods many want for moral reasons, e.g. ending factory farming.\nFree-riding blocks them; coordination unlocks them.\nToy model: 1M people who each care a little about a shared good all gain ~1000x by funding it together.",
+     "diagram": "Left: many people each building a tiny private monument (small value each). Right: the same crowd pooling coins into one giant shared monument; meter shows '~1000x value per person'."
+    },
+    {
+     "number": 5,
+     "heading": "Gradual Disempowerment",
+     "body": "Kulveit et al. (2025): no coup needed.\nEconomy, culture and states serve us partly because they need our labor and taxes.\nAs AI replaces us, that implicit alignment fades, and the systems reinforce each other.",
+     "diagram": "Three gears labeled ECONOMY, CULTURE, STATE, each with a human-shaped tooth. Over a left-to-right timeline, the human teeth are replaced by robot teeth one by one, and the strings from gears to a small human figure go slack."
+    },
+    {
+     "number": 6,
+     "heading": "Grand Deals Before AGI",
+     "body": "Moorhouse (2026): strike deals while outcomes are uncertain, like insurance.\nExample: rival powers agree to share future resources instead of racing for a decisive edge.\nRisks: enforcement, premature lock-in. Safeguard: cap the stakes.",
+     "diagram": "Two negotiators behind a curtain labeled 'VEIL OF UNCERTAINTY' signing a treaty 'share the future'; beside them, a two-path game tree: RACE (one winner, explosion icon) vs DEAL (two shares of a pie)."
+    },
+    {
+     "number": 7,
+     "heading": "Space: The Next Frontier",
+     "body": "Parrack & Moorhouse (2026): orbital solar yields ~3-5x the energy per panel.\nLaunch ~$1,500/kg today; space power beats ground power near ~$50/kg.\nMuch compute could move to orbit in the 2030s, where jurisdiction is unclear.",
+     "diagram": "A satellite data center with large solar wings in sunlit orbit above Earth. A cost-per-kg ruler below: $1,500 (today) -> $250 (parity with off-grid) -> $50 (beats all ground power). A flag with a question mark labeled 'whose rules?'."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls + Discuss",
+     "body": "Survival does not guarantee a good future.\nLocking in today's values too early.\nDiscuss: which irreversible choices (space claims, AI rights, power shares) should wait for reflection, and how can waiting be enforced?",
+     "diagram": "A large 'IRREVERSIBLE' button under a glass cover with a sign 'WAIT FOR REFLECTION', surrounded by cards: SPACE CLAIMS, AI RIGHTS, POWER SHARES."
+    }
+   ],
+   "footer": "Don't just survive the transition: keep the path to a great future open.",
+   "summary": "Why making the post-AGI future good may matter as much as surviving it, with Forethought's viatopia, moral public goods and grand deals, the gradual disempowerment risk, and the coming governance questions of space.",
+   "keywords": [
+    "better futures",
+    "flourishing",
+    "viatopia",
+    "post-agi governance",
+    "moral public goods",
+    "gradual disempowerment",
+    "grand deals",
+    "lock-in",
+    "space governance",
+    "forethought",
+    "longtermism"
+   ],
+   "sources": [
+    {
+     "title": "Introducing Better Futures (William MacAskill, Forethought)",
+     "url": "https://www.forethought.org/research/introducing-better-futures"
+    },
+    {
+     "title": "Bootstrapping to Viatopia (Forethought)",
+     "url": "https://newsletter.forethought.org/p/bootstrapping-to-viatopia"
+    },
+    {
+     "title": "Moral Public Goods Are a Big Deal (Davidson, MacAskill & Taylor, Forethought)",
+     "url": "https://newsletter.forethought.org/p/moral-public-goods-are-a-big-deal"
+    },
+    {
+     "title": "Gradual Disempowerment (Kulveit, Douglas, Ammann, Turan, Krueger & Duvenaud)",
+     "url": "https://gradual-disempowerment.ai/"
+    },
+    {
+     "title": "Should We Make Grand Deals About Post-AGI Outcomes? (Fin Moorhouse, Forethought)",
+     "url": "https://newsletter.forethought.org/p/should-we-make-grand-deals-about"
+    },
+    {
+     "title": "Will We Really Put Data Centers in Space? (Parrack & Moorhouse, Forethought)",
+     "url": "https://newsletter.forethought.org/p/will-we-really-put-data-centers-in"
+    }
+   ]
+  }
+ ]
+}

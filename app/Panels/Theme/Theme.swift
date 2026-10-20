@@ -34,6 +34,7 @@ enum Theme {
         case "brain": "brain.head.profile"
         case "algorithm": "point.3.connected.trianglepath.dotted"
         case "branch": "arrow.triangle.branch"
+        case "telescope": "binoculars"
         default: "book.closed"
         }
     }

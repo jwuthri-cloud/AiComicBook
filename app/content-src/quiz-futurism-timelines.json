@@ -1,0 +1,319 @@
+{
+ "questions": [
+  {
+   "id": "futurism-timelines-01-q1",
+   "pageId": "futurism-timelines-01",
+   "type": "choice",
+   "prompt": "AI systems fully automate the research staff of frontier AI labs, but chip design and fab construction are still done by humans. Which type of intelligence explosion could this start?",
+   "options": [
+    "A full-stack intelligence explosion driven by all three loops at once",
+    "A software intelligence explosion driven by the software loop alone",
+    "An AI-technology intelligence explosion driven by chip design",
+    "An industrial explosion driven by self-replicating robot factories"
+   ],
+   "answer": 1,
+   "explanation": "Only the software loop (algorithms, data, post-training) is automated here, so the candidate is a software IE. Chip technology and chip production loops are still human-bound.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-01-q2",
+   "pageId": "futurism-timelines-01",
+   "type": "choice",
+   "prompt": "A policymaker assumes that, whatever happens, power after an intelligence explosion will rest only with whoever owns today's chips and algorithms. According to Forethought, which scenario makes this assumption weakest?",
+   "options": [
+    "A software intelligence explosion that fizzles after a few orders of magnitude",
+    "A rapid software intelligence explosion of six or more orders of magnitude",
+    "A full-stack intelligence explosion that also automates energy, mining and fabs",
+    "A pause on new frontier training runs before any loop is automated"
+   ],
+   "answer": 2,
+   "explanation": "A full-stack IE pulls in the semiconductor supply chain and the broader industrial base, so power spreads across many more actors. A software IE concentrates power in existing chip and algorithm owners.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-01-q3",
+   "pageId": "futurism-timelines-01",
+   "type": "choice",
+   "prompt": "A lab reports that its AI assistance is now worth the same as all of its employees working three times faster. In Greenblatt's capability ladder, which level is this, and what overall progress speedup did he roughly estimate for it?",
+   "options": [
+    "TEDAI, with roughly a 15x overall speedup in AI progress",
+    "10x AI, with roughly a 3.2x overall speedup in AI progress",
+    "Very generally superhuman AI, with no speedup estimate given",
+    "3x AI, with roughly a 1.6x overall speedup in AI progress"
+   ],
+   "answer": 3,
+   "explanation": "The 3x level is defined by AI R&D labor acceleration of 3x. Because compute bottlenecks remain, Greenblatt estimated only about a 1.6x speedup in overall AI progress.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-02-q1",
+   "pageId": "futurism-timelines-02",
+   "type": "choice",
+   "prompt": "Researchers estimate that for AI software, each doubling of cumulative research effort yields about 0.6 doublings of software efficiency. If AI fully automated AI research with hardware fixed, what does the simple model predict?",
+   "options": [
+    "Progress gets a boost but each doubling then takes longer: a fizzle",
+    "Each software doubling comes faster than the last: an explosion",
+    "Progress stays on a perfectly steady exponential forever",
+    "Software efficiency stops improving entirely the moment hardware is fixed"
+   ],
+   "answer": 0,
+   "explanation": "With r below 1, the extra AI researchers cannot keep up with ideas getting harder to find, so doubling times lengthen. That is the fizzle case, though the initial jump can still be large.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-02-q2",
+   "pageId": "futurism-timelines-02",
+   "type": "choice",
+   "prompt": "A skeptic says: 'Epoch estimated r is about 0.83 for chess engines, so full automation of AI research will not matter much.' What is the best reply drawn from Redwood's analysis?",
+   "options": [
+    "r below 1 means automation only matters once compute stops growing",
+    "Chess data proves r is above 1 for AI research, so the skeptic misread it",
+    "Even with r below 1, full automation gives a large one-time jump, roughly 2.5-3.5 years of progress in the first year",
+    "Full automation matters only if a software-only singularity happens"
+   ],
+   "answer": 2,
+   "explanation": "Greenblatt argues that the one-time speedup from replacing humans with many fast AI researchers is large even when r < 1, and compute becomes more valuable because it buys more AI labor.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-02-q3",
+   "pageId": "futurism-timelines-02",
+   "type": "choice",
+   "prompt": "Which objection, if true, would most directly reduce the chance of a software intelligence explosion at fixed hardware?",
+   "options": [
+    "Early AI researchers think more slowly than humans, so millions of copies equal only thousands of experts at first",
+    "AI labs would publish fewer papers once AI researchers do the work",
+    "Most software efficiency gains require large experiments, so fixed compute starves research of experiments",
+    "Post-training methods like prompting and scaffolding have stopped producing any gains"
+   ],
+   "answer": 2,
+   "explanation": "The compute bottleneck objection says research needs experiments and experiments need chips, so holding hardware fixed caps the gains. Eth and Davidson respond with smaller experiments and better design, but it remains the central crux.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-timelines-03-q1",
+   "pageId": "futurism-timelines-03",
+   "type": "choice",
+   "prompt": "Two forecasters use the same takeoff model but get very different results. One sets returns to software R&D at 0.8, the other at 1.6. Using the doubling-time rule t_next = t * 2^(p(1/r - 1)) with p = 0.3, which statement is right?",
+   "options": [
+    "Both get accelerating progress; only the speed of acceleration differs",
+    "Neither gets acceleration because p is below 1",
+    "The r = 1.6 forecaster gets shrinking doubling times, the r = 0.8 forecaster gets growing ones",
+    "The r = 0.8 forecaster gets shrinking doubling times, the r = 1.6 forecaster gets growing ones"
+   ],
+   "answer": 2,
+   "explanation": "When r > 1, 1/r - 1 is negative so the factor is below 1 and doublings get shorter. When r < 1 the factor exceeds 1 and doublings get longer.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-03-q2",
+   "pageId": "futurism-timelines-03",
+   "type": "choice",
+   "prompt": "You want a model that starts when AI fully automates AI research and asks only how far software alone can go, holding compute fixed. Which model fits best?",
+   "options": [
+    "Davidson's 2023 compute-centric framework of 20% to 100% task automation",
+    "Forethought's 2025 software intelligence explosion model",
+    "The AI Futures Model's Stage 1 extrapolation of the METR time-horizon trend",
+    "Epoch's analysis of whether training compute can keep growing until 2030"
+   ],
+   "answer": 1,
+   "explanation": "Forethought's model begins at ASARA, holds compute fixed as a conservative assumption, and simulates software doublings until effective limits.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-03-q3",
+   "pageId": "futurism-timelines-03",
+   "type": "choice",
+   "prompt": "The AI Futures Model's Dec 2025 update pushed its median for the Automated Coder milestone several years later than the AI 2027 scenario. According to the authors, what mainly drove the change?",
+   "options": [
+    "A sudden stall in the METR time-horizon trend during 2025",
+    "Evidence that frontier labs had stopped scaling training compute",
+    "A decision to ignore AI R&D automation entirely in the new model",
+    "Better modeling of AI R&D automation and diminishing returns, more than new empirical data"
+   ],
+   "answer": 3,
+   "explanation": "The authors attribute most of the shift to modeling changes: explicit diminishing returns to software research, less pre-coder automation, experiment compute and input adjustments, not new evidence.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-timelines-04-q1",
+   "pageId": "futurism-timelines-04",
+   "type": "choice",
+   "prompt": "A news headline says: 'New model has a 5-hour time horizon, so it can work alone for 5 hours.' What is wrong with this?",
+   "options": [
+    "Time horizons are measured in AI runtime, so it means 5 hours of compute",
+    "Time horizon is the human time a task takes that the AI completes half the time, not how long the AI runs",
+    "Time horizons only measure 99% reliability, so 5 hours is a guarantee",
+    "Time horizons are measured in ECI points, not in hours"
+   ],
+   "answer": 1,
+   "explanation": "METR stresses that the horizon is human-equivalent task length at 50% success. AIs usually finish such tasks much faster than humans, and 50% success is far from safe delegation.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-04-q2",
+   "pageId": "futurism-timelines-04",
+   "type": "choice",
+   "prompt": "You need to compare a math-specialist model and a coding agent from 2023 to 2026 on one general scale, even though most single benchmarks have saturated. Which tool is designed for this, and what is its main caveat?",
+   "options": [
+    "METR time horizon; it only reports absolute values with no error bars",
+    "A single new benchmark; it cannot saturate for at least a decade",
+    "Epoch Capabilities Index; only differences between models are meaningful, not absolute scores",
+    "Revenue per chip; it ignores benchmark data altogether"
+   ],
+   "answer": 2,
+   "explanation": "ECI stitches over 50 benchmarks onto one scale by estimating relative difficulty, so it spans saturation. Its units are arbitrary (anchored at 130 and 150), so only comparisons carry meaning.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-04-q3",
+   "pageId": "futurism-timelines-04",
+   "type": "choice",
+   "prompt": "An AI agent builds a large software project by writing its own test suite and iterating for days, far beyond its METR horizon. Why does this not contradict METR's measurement?",
+   "options": [
+    "The task is easy to verify, so the AI can check and fix its own work; horizons depend heavily on task mix",
+    "METR's horizon is measured at 99% reliability, so longer tasks are expected",
+    "The project must have been completed by humans and mislabeled",
+    "METR measures only visual computer-use tasks, which are unrelated to coding"
+   ],
+   "answer": 0,
+   "explanation": "Greenblatt argues that easy-to-verify, low-ideation tasks allow long self-correcting work, giving horizons perhaps 20x METR's. Horizons vary by orders of magnitude across task types.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-05-q1",
+   "pageId": "futurism-timelines-05",
+   "type": "choice",
+   "prompt": "AI revenue grew quickly for two years, then began rising by a roughly constant dollar amount each quarter. Under Erdil's reasoning, what does this pattern suggest about timelines?",
+   "options": [
+    "Timelines shorten because linear growth is faster than exponential growth",
+    "Timelines lengthen: if growth keeps slowing below exponential, full automation of remote work is decades away",
+    "Timelines are unaffected because revenue says nothing about capability",
+    "Timelines depend only on whether the METR trend is superexponential"
+   ],
+   "answer": 1,
+   "explanation": "Erdil treats revenue as the most reliable trend. Geometric extrapolation gives about 7-8 years, linear gives centuries, and he expects something in between, implying multi-decade timelines.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-05-q2",
+   "pageId": "futurism-timelines-05",
+   "type": "choice",
+   "prompt": "A hospital has an accurate AI diagnostic tool, but it takes years of validation, regulation and workflow redesign before it affects outcomes. Which framework explains this gap?",
+   "options": [
+    "The software intelligence explosion's returns parameter r",
+    "Moravec's paradox, because diagnosis is easy for humans",
+    "The compute-centric framework's effective FLOP gap",
+    "AI as normal technology: invention, innovation, adoption and diffusion each have speed limits"
+   ],
+   "answer": 3,
+   "explanation": "Narayanan and Kapoor argue diffusion lags invention, especially in safety-critical fields where models are hard to validate across deployment conditions.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-05-q3",
+   "pageId": "futurism-timelines-05",
+   "type": "choice",
+   "prompt": "Your best estimate gives a 20% chance of transformative AI within 5 years and a median around 2038. Following Ord's 'broad timelines' advice, what should you do?",
+   "options": [
+    "Commit fully to the median year and ignore other possibilities",
+    "Wait until uncertainty resolves before choosing any strategy",
+    "Hedge: prepare for early arrival while still valuing work that pays off over 5-10+ years",
+    "Assume transformative AI will arrive exactly in 2027, since short timelines matter most"
+   ],
+   "answer": 2,
+   "explanation": "Ord argues against compressing a distribution into a single year and against waiting. Greenblatt's reply adds that short-timeline work has more leverage, but both reject a single-point plan.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-06-q1",
+   "pageId": "futurism-timelines-06",
+   "type": "choice",
+   "prompt": "Training compute keeps growing 4x per year. Which constraint did Epoch judge most likely to bind first on the way to 2030?",
+   "options": [
+    "Power: securing gigawatts of electricity for training campuses",
+    "Data: running out of all multimodal tokens before 2026",
+    "Latency: minimum sequential processing time per training step",
+    "Chip packaging: no GPUs could be made after 2027"
+   ],
+   "answer": 0,
+   "explanation": "Epoch's 2024 report concluded power is the constraint most likely to bind first, though runs around 2e29 FLOP still look feasible by 2030.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-06-q2",
+   "pageId": "futurism-timelines-06",
+   "type": "choice",
+   "prompt": "Engineers at a lab report that AI writes 90% of their code. A manager concludes the team is now 10x faster. What is the best critique?",
+   "options": [
+    "The conclusion is right because share of code equals serial speedup",
+    "Share of work done by AI is not serial speedup; review, design and waiting may dominate, so the real speedup can be far smaller",
+    "The team must be slower, since AI-written code is always worse",
+    "The only valid measure is how many more employees the lab has hired"
+   ],
+   "answer": 1,
+   "explanation": "Greenblatt distinguishes serial labor acceleration from share-of-work metrics. AI doing 90% of the work is much less useful than a true 10x serial acceleration.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-06-q3",
+   "pageId": "futurism-timelines-06",
+   "type": "choice",
+   "prompt": "Per-task inference costs for frontier models rose over several model generations. A critic says AI is becoming too expensive to automate work. What did Woodruff's analysis find?",
+   "options": [
+    "Costs rose because models became less efficient per token over time",
+    "Costs rose so fast that automation is no longer profitable at any horizon",
+    "The data show AI is already more expensive than humans on all tasks",
+    "Costs rose because tasks got longer; the AI-to-human cost ratio at each model's 50% horizon stayed about 3%"
+   ],
+   "answer": 3,
+   "explanation": "Woodruff argues the cost ratio relative to human labor stayed flat, and horizons at a fixed budget still doubled about every 3 months, so cost is not an extra bottleneck.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-timelines-07-q1",
+   "pageId": "futurism-timelines-07",
+   "type": "choice",
+   "prompt": "A humanoid robot costs $100k and produces $240k of output per year. Ignoring factory and speed costs, how quickly does it pay for itself?",
+   "options": [
+    "About 5 months",
+    "About 2.4 years",
+    "About 2 weeks",
+    "About 12 months"
+   ],
+   "answer": 0,
+   "explanation": "100k / 240k per year is about 0.42 years, or 5 months. Davidson and Hadshar then adjust for factory building and speed costs to get an initial doubling time of about 1-2 years.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-timelines-07-q2",
+   "pageId": "futurism-timelines-07",
+   "type": "choice",
+   "prompt": "Why do Davidson and Hadshar expect the industrial explosion to start later and run slower than the intelligence explosion?",
+   "options": [
+    "Robots cannot be controlled by AI software",
+    "Physical tasks are varied, data-poor and slow to scale: building millions of robots and factories takes years",
+    "Energy on Earth is already fully used by data centers",
+    "Robot efficiency improves faster than chips, which causes oversupply"
+   ],
+   "answer": 1,
+   "explanation": "Cognitive work is virtual and AI can be copied quickly after training, while robots need factories, materials and real-world feedback. Robot efficiency also doubles more slowly.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-timelines-07-q3",
+   "pageId": "futurism-timelines-07",
+   "type": "choice",
+   "prompt": "A strategist argues that after an industrial explosion, materials such as metals will be the binding limit on robot numbers. What does the Forethought note say instead?",
+   "options": [
+    "Labor unions will be the binding limit on robot numbers",
+    "Software licenses will be the binding limit",
+    "Energy is the expected binding constraint; about 5% of sunlight could power roughly 1e14 robots",
+    "There is no limit at all, since robots can be made from nothing"
+   ],
+   "answer": 2,
+   "explanation": "The note expects energy, not materials, to bind. Using about 5% of the roughly 2e17 W of sunlight reaching Earth at about 100 W per robot gives around 1e14 robots.",
+   "difficulty": 3
+  }
+ ]
+}

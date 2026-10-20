@@ -4,7 +4,7 @@ import { type Appearance, useAdvanced, useAppearance, useLibrary, useTextScale }
 import { BookCover, Icon, Pill, SectionHeader, Segmented, categoryTint, tintVar, tinted } from "../ui";
 import { AssistantSettings, useAssistant } from "../features/assistant";
 
-const SYMBOLS: Record<string, string> = { flask: "sparkles", shield: "check", brain: "bulb", algorithm: "graph", branch: "turn" };
+const SYMBOLS: Record<string, string> = { flask: "sparkles", shield: "check", brain: "bulb", algorithm: "graph", branch: "turn", telescope: "map" };
 
 function greeting() {
   const h = new Date().getHours();

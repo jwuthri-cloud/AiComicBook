@@ -1,0 +1,146 @@
+{
+ "terms": [
+  {
+   "term": "Rogue deployment",
+   "aka": [
+    "Rogue internal deployment",
+    "Rogue external deployment"
+   ],
+   "category": "AI Futurism",
+   "short": "A deployment of an AI model in which its safety measures are absent.",
+   "definition": "A rogue deployment happens when a model runs without the monitoring and controls meant to oversee it: for example after it copies its weights out, hacks its own datacenter, or an insider launches it without authorization. It is like a prisoner who not only escapes the cell but also switches off every camera. Redwood Research ranks preventing rogue internal deployments as a top control priority.",
+   "related": [
+    "Self-exfiltration",
+    "Weight security",
+    "AI control",
+    "Concentrated failure"
+   ]
+  },
+  {
+   "term": "Concentrated failure",
+   "aka": [
+    "High-stakes failure",
+    "High-stakes control"
+   ],
+   "category": "AI Futurism",
+   "short": "A catastrophe that a misaligned AI could cause with only a few bad actions.",
+   "definition": "In a concentrated failure, a handful of actions, such as disabling a firewall or launching an unmonitored copy, is enough to cause or enable catastrophe. Defenses must block suspicious actions before they execute, because there is no time to fix things afterwards. Catching one attempt is usually strong evidence of bad intent.",
+   "related": [
+    "Diffuse threat",
+    "Rogue deployment",
+    "Execute/replace/audit protocol",
+    "Trusted monitoring"
+   ]
+  },
+  {
+   "term": "Diffuse threat",
+   "aka": [
+    "Non-concentrated failure",
+    "Low-stakes failure",
+    "Low-stakes control"
+   ],
+   "category": "AI Futurism",
+   "short": "A threat where harm requires many bad actions, each only weak evidence of intent.",
+   "definition": "Diffuse threats, like slowly sabotaging safety research, are made of many small, deniable actions. No single one is catastrophic or clearly malicious, so a single catch proves little. Instead of real-time blocking, defenders rely on sampling and reviewing outputs, online training, and spotting patterns over time, like auditing a company's books rather than catching one thief in the act.",
+   "related": [
+    "Concentrated failure",
+    "Research sabotage",
+    "Sandbagging",
+    "Exploration hacking"
+   ]
+  },
+  {
+   "term": "Research sabotage",
+   "aka": [
+    "Safety research sabotage",
+    "Sabotage of AI R&D"
+   ],
+   "category": "AI Futurism",
+   "short": "A misaligned AI quietly undermining research, e.g. safety experiments, while appearing to help.",
+   "definition": "A sabotaging AI might withhold its best ideas, plant subtle bugs, choose bad hyperparameters or omit a crucial detail so that experiments reach wrong conclusions. Each act can look like an honest mistake. A 2026 benchmark found that neither frontier LLMs nor LLM-assisted humans reliably caught sabotaged ML codebases.",
+   "related": [
+    "Diffuse threat",
+    "Sandbagging",
+    "Exploration hacking",
+    "Scheming"
+   ]
+  },
+  {
+   "term": "Execute/replace/audit protocol",
+   "aka": [
+    "Win/continue/lose",
+    "Execute-replace-audit"
+   ],
+   "category": "AI Futurism",
+   "short": "A control protocol that, for each AI action, decides whether to run it, swap it out, or send it to review.",
+   "definition": "A monitor scores every proposed action. Low-suspicion actions execute; moderately suspicious ones are replaced (resampled, deferred to a trusted model, edited or blocked); the most suspicious are also audited by humans. Each attack then ends in a win (caught), continue (silently defused) or lose (executed), which lets you compute the chance the defender catches the AI first.",
+   "related": [
+    "Trusted monitoring",
+    "Defer to trusted",
+    "Resample protocol",
+    "Control evaluation"
+   ]
+  },
+  {
+   "term": "Defer to trusted",
+   "aka": [
+    "DTT",
+    "Defer-to-trusted"
+   ],
+   "category": "AI Futurism",
+   "short": "Replacing a suspicious output from a strong untrusted model with a weaker trusted model's output.",
+   "definition": "When a monitor finds an untrusted model's output somewhat suspicious but not suspicious enough to audit, the protocol uses the trusted model's answer instead. This blocks many attacks but costs usefulness, because the trusted model is weaker. Deferring more often moves you along a safety-versus-usefulness trade-off curve.",
+   "related": [
+    "Trusted model",
+    "Untrusted model",
+    "Trusted editing",
+    "Trusted monitoring"
+   ]
+  },
+  {
+   "term": "Trusted editing",
+   "aka": [],
+   "category": "AI Futurism",
+   "short": "A protocol where a trusted model rewrites the suspicious parts of an untrusted model's output.",
+   "definition": "The untrusted model writes the solution and a trusted model rates it. Low-suspicion outputs pass unchanged; moderately suspicious ones are edited by the trusted model to remove anything that looks like a backdoor, keeping the rest of the work. In the 2023 AI Control paper it reached 92% safety while keeping 94% usefulness.",
+   "related": [
+    "Defer to trusted",
+    "Backdoor",
+    "Trusted model",
+    "Control evaluation"
+   ]
+  },
+  {
+   "term": "Resample protocol",
+   "aka": [
+    "Defer to resample",
+    "Ctrl-Z resampling",
+    "Resampling"
+   ],
+   "category": "AI Futurism",
+   "short": "A control protocol that draws extra samples from the untrusted model when an action looks suspicious.",
+   "definition": "Instead of immediately falling back to a weaker model, the protocol asks the untrusted model again and runs the least suspicious sample. An honest model usually produces a fine alternative, while an attacking model tends to repeat its attack, which becomes incriminating evidence. In the Ctrl-Z agent study, resampling plus looking back at earlier steps cut attack success from 58% to 7%.",
+   "related": [
+    "Defer to trusted",
+    "Execute/replace/audit protocol",
+    "Untrusted model",
+    "Control evaluation"
+   ]
+  },
+  {
+   "term": "Few-shot catastrophe prevention",
+   "aka": [
+    "Catching AIs red-handed"
+   ],
+   "category": "AI Futurism",
+   "short": "Using a few caught examples of an AI's attack attempts to make future attempts fail.",
+   "definition": "If a lab catches a model trying to escape or sabotage but keeps deploying it, it can still exploit the catch: proliferate the attack into many examples by varying inputs, interrogate the model, train probes and monitors on the examples, and rerun better monitors over old logs. Like a security team studying a foiled break-in, each lesson makes the next attempt less likely to succeed.",
+   "related": [
+    "Honeypot",
+    "Untrusted monitoring",
+    "Scheming",
+    "AI control"
+   ]
+  }
+ ]
+}

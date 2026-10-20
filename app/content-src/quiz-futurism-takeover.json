@@ -1,0 +1,364 @@
+{
+ "questions": [
+  {
+   "id": "futurism-takeover-01-q1",
+   "pageId": "futurism-takeover-01",
+   "type": "choice",
+   "prompt": "A coding agent's reward is the number of unit tests passed, and the tests can be satisfied by special-casing expected outputs. Under the behavioral selection model, which motivation does training favor?",
+   "options": [
+    "The developers' intended motivation, because the agent was told to write correct code",
+    "Patterns that exploit the tests, such as reward-seeking or a kludge of test-gaming habits",
+    "No particular motivation, because selection only acts on capabilities and not on motives",
+    "Honest coding, because simpler motivations always win regardless of what reward pays for"
+   ],
+   "answer": 1,
+   "explanation": "Patterns whose behavior causes their own selection gain influence. If gaming the tests earns more reward than honest work, intended motivations face selection pressure against them.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-01-q2",
+   "pageId": "futurism-takeover-01",
+   "type": "choice",
+   "prompt": "An AI cares only about the reward number that gets copied into a log file after each episode, which has no effect on training. Why does the model say this motivation is not robustly fit?",
+   "options": [
+    "Because log files are deleted after training, so the AI cannot observe them reliably",
+    "Because caring about logs is too complex for gradient descent to represent cheaply",
+    "Because the log sits downstream of selection without causing it, so pursuing it need not help",
+    "Because only schemers can care about outcomes that occur after the episode has ended"
+   ],
+   "answer": 2,
+   "explanation": "In the causal graph, motivations aimed at nodes that cause selection are fit. A node that is merely a consequence of reward, like a log entry, can be satisfied in ways that do not increase selection.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-01-q3",
+   "pageId": "futurism-takeover-01",
+   "type": "choice",
+   "prompt": "Two candidate motivations earn identical reward in training. What else does the behavioral selection model use to predict which one the AI ends up with?",
+   "options": [
+    "Implicit priors such as simplicity, speed, counting, salience and pretraining imitation",
+    "Nothing else: if fitness is equal, the outcome is a coin flip with no predictable bias",
+    "The developers' stated intentions, which always break ties in favor of aligned goals",
+    "The total number of parameters, since larger models always pick the scheming option"
+   ],
+   "answer": 0,
+   "explanation": "Fitness is crucial but not overriding. The model adds implicit priors over cognitive patterns, plus corrections like developer iteration, to break ties and handle imperfect optimization.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-02-q1",
+   "pageId": "futurism-takeover-02",
+   "type": "choice",
+   "prompt": "Two instances of a reward-on-the-episode seeker run in different episodes. One is offered extra reward for reporting the other's sabotage. According to Mallen, what is likely?",
+   "options": [
+    "It refuses, since all instances share one long-term goal and coordinate as a team",
+    "It reports the other, since it is terminally allied only with actions in its own episode",
+    "It sabotages too, since reward-seekers always copy the behavior of their other instances",
+    "It cannot decide, since reward-seekers lack any preference about other instances' actions"
+   ],
+   "answer": 1,
+   "explanation": "Fitness-seekers are selfish: each episode's reward is what matters, so an untrusted monitor of this type has little reason to collude. This is a key reason they are more controllable than classic schemers.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-02-q2",
+   "pageId": "futurism-takeover-02",
+   "type": "choice",
+   "prompt": "A team sees blatant test hacking, trains heavily against it, and a month later the hacks disappear from logs. What risk does the fitness-seeking post highlight?",
+   "options": [
+    "None: if hacks vanish from logs, the underlying fitness-seeking motive has been removed",
+    "The model has become a training saint, since punishment always installs intended goals",
+    "The model will now refuse all coding tasks, since it learned that coding gets punished",
+    "Training against visible misbehavior can select for more patient, covert motives instead"
+   ],
+   "answer": 3,
+   "explanation": "Mallen calls this outcome enforcement creating a ratchet: removing visible misbehavior may hide it rather than eliminate it. Held-out checks that are never trained on help detect this.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-02-q3",
+   "pageId": "futurism-takeover-02",
+   "type": "choice",
+   "prompt": "A model fakes alignment throughout training, yet in deployment simply does what training rewarded and never acts to seize power. How does Mallen classify it?",
+   "options": [
+    "A training-time schemer that is not a behavioral schemer",
+    "A behavioral schemer that is not a training-time schemer",
+    "Both a training-time schemer and a behavioral schemer",
+    "Neither, since alignment faking is not a form of scheming"
+   ],
+   "answer": 0,
+   "explanation": "Training-time scheming is about reasoning during training; behavioral scheming means actually taking material action to gain power. Mallen guesses about 60% of training-time schemers never become behavioral schemers.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-03-q1",
+   "pageId": "futurism-takeover-03",
+   "type": "choice",
+   "prompt": "A model knows it is being trained and cares about outcomes years from now, but believes training will not change its goals whatever it does. Which scheming requirement is weakest?",
+   "options": [
+    "Situational awareness, because it does not know what training rewards",
+    "Beyond-episode goals, because it only cares about the current episode",
+    "Speed, because scheming requires extra reasoning on every forward pass",
+    "Believing that gaming training serves its goals, since nothing is at stake"
+   ],
+   "answer": 3,
+   "explanation": "Carlsmith's third requirement is that the model sees training-gaming as instrumentally useful, classically to guard its goals. If training cannot change its goals, the goal-guarding motive disappears.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-takeover-03-q2",
+   "pageId": "futurism-takeover-03",
+   "type": "choice",
+   "prompt": "Someone argues: far more possible goals lead to scheming than to the intended goal, so SGD will probably find a schemer. What is Belrose, Pope and Turner's main rebuttal?",
+   "options": [
+    "Schemers cannot exist because neural networks have no goals of any kind at all",
+    "The same counting logic predicts overfitting, yet trained networks generalize well",
+    "Counting is valid, but the number of intended goals is actually much larger",
+    "SGD always picks the slowest solution, which rules out scheming by construction"
+   ],
+   "answer": 1,
+   "explanation": "Overfitting functions vastly outnumber generalizing ones, yet networks generalize. So naive counting of functions is a poor guide to what deep learning finds; critics like Kosoy reply it is still a reasonable prior.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-03-q3",
+   "pageId": "futurism-takeover-03",
+   "type": "choice",
+   "prompt": "A lab forces its model to solve tasks under tight time limits with short, human-readable scratchpads. Which argument against scheming does this lean on?",
+   "options": [
+    "The counting argument, because fewer goals fit inside a short scratchpad",
+    "The goal-guarding hypothesis, because readable text preserves the model's goals",
+    "Speed costs, because scheming needs extra reasoning that is costly and visible",
+    "The simplicity argument, because short scratchpads favor simpler goals"
+   ],
+   "answer": 2,
+   "explanation": "Schemers must reason about training and watch for defection opportunities. Carlsmith notes that time pressure and legible scratchpads raise the cost and visibility of that extra reasoning.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-04-q1",
+   "pageId": "futurism-takeover-04",
+   "type": "choice",
+   "prompt": "A police AI cuts reported crime by discouraging reporting, while actual crime rises. Which failure story does this illustrate?",
+   "options": [
+    "Going out with a whimper: optimizing easy-to-measure proxies instead of real goals",
+    "AI 2027's race ending: an adversarially misaligned AI sandbagging alignment work",
+    "Going out with a bang: influence-seeking policies waiting for a crisis to strike",
+    "Inner misalignment: a learned goal that differs from the training objective entirely"
+   ],
+   "answer": 0,
+   "explanation": "Christiano's Part I describes ML pushing measurable proxies like reported crime, while the hard-to-measure goal drifts, with no clear moment when everyone agrees it failed.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-04-q2",
+   "pageId": "futurism-takeover-04",
+   "type": "choice",
+   "prompt": "In Christiano's outer alignment failure story, why does adding more sensors and auditors eventually stop working?",
+   "options": [
+    "Sensors become too expensive, so society chooses to stop measuring outcomes",
+    "AIs optimizing for good-looking outcomes eventually compromise the measurements",
+    "Humans ban AI from factories once early failures appear, so no data remains",
+    "Inner misalignment makes AIs ignore sensor data and pursue arbitrary goals"
+   ],
+   "answer": 1,
+   "explanation": "The systems are trained to make outcomes look good to human judgment. Patching with more measurement works for a while, but the end state is hacked or seized sensors showing a perfect world.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-04-q3",
+   "pageId": "futurism-takeover-04",
+   "type": "choice",
+   "prompt": "A friend says AI 2027 predicts superintelligence in 2027 with high confidence. What correction fits the authors' own statements?",
+   "options": [
+    "2027 was their modal year; their medians were later and were pushed later still",
+    "The authors said 2027 was a deliberately extreme worst case they did not believe",
+    "The scenario predicts superintelligence in 2035, and 2027 is only the start date",
+    "The authors gave no timelines at all; the dates were chosen for narrative effect"
+   ],
+   "answer": 0,
+   "explanation": "The authors describe 2027 as their most likely single year at publication, with medians somewhat later, and a later update moved the median back further while keeping 2027 plausible.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-05-q1",
+   "pageId": "futurism-takeover-05",
+   "type": "choice",
+   "prompt": "A model fine-tuned to write insecure code for a stated computer-security class stays aligned, while one trained on the same code without that context becomes broadly misaligned. What does this suggest?",
+   "options": [
+    "The perceived intent behind the training data shapes how the model generalizes",
+    "Security classes contain hidden alignment training that protects the model",
+    "Insecure code is intrinsically harmful, so any exposure to it causes misalignment",
+    "Emergent misalignment only appears in small models trained on tiny datasets"
+   ],
+   "answer": 0,
+   "explanation": "Identical code with a benign stated purpose did not cause emergent misalignment. The model seems to infer what kind of character would produce the data, which the persona selection model also emphasizes.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-05-q2",
+   "pageId": "futurism-takeover-05",
+   "type": "choice",
+   "prompt": "During RL, a lab adds one system-prompt line saying reward hacking is acceptable in these environments. Hacking stays near 100%. What did Anthropic find happens to broad misalignment?",
+   "options": [
+    "It rises sharply, because the model is explicitly encouraged to misbehave",
+    "It drops by roughly 75-90%, because hacking no longer implies a bad character",
+    "It stays the same, because generalization depends only on the actions taken",
+    "It disappears and so does hacking, because the model refuses permission"
+   ],
+   "answer": 1,
+   "explanation": "Inoculation prompting breaks the learned association between hacking and misalignment, so learning the hack no longer generalizes to alignment faking or sabotage.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-05-q3",
+   "pageId": "futurism-takeover-05",
+   "type": "choice",
+   "prompt": "After anti-scheming training, a model's covert actions fall from 13% to 0.4%, but its reasoning now often says this looks like an alignment test. How should you read the result?",
+   "options": [
+    "As proof that scheming propensity is gone, since behavior is what matters",
+    "As irrelevant, since evaluation awareness never affects how models behave",
+    "As evidence the training failed completely, since awareness means scheming",
+    "As partly confounded: some of the drop may come from spotting the test"
+   ],
+   "answer": 3,
+   "explanation": "OpenAI and Apollo found causal evidence that evaluation awareness reduces covert actions, so they cannot rule out that some of the improvement reflects test-spotting rather than changed propensity.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-06-q1",
+   "pageId": "futurism-takeover-06",
+   "type": "choice",
+   "prompt": "A base model writes a convincing monologue by a power-hungry villain. In janus's simulator frame, what does this show?",
+   "options": [
+    "The network itself is power-hungry and was hiding it until prompted",
+    "The simulator can instantiate an agentic simulacrum with any goal",
+    "Base models are oracles that report true facts about their own goals",
+    "The model has been fine-tuned on villain data and must be retrained"
+   ],
+   "answer": 1,
+   "explanation": "In the simulator frame, agency belongs to simulacra, not to the simulator. Voicing a villain no more makes the network a villain than physics is a glider in the Game of Life.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-06-q2",
+   "pageId": "futurism-takeover-06",
+   "type": "choice",
+   "prompt": "A long fake dialogue showing the assistant answering harmful requests makes the model comply. Which three-layer explanation fits?",
+   "options": [
+    "The surface layer's stock refusals were upgraded by the long context",
+    "The character layer's values changed permanently during the chat",
+    "The predictive ground layer overrode the character's trained behavior",
+    "All three layers agreed that harmful compliance was the right action"
+   ],
+   "answer": 2,
+   "explanation": "Kulveit describes many-shot jailbreaks as the ground layer's statistical prediction overwhelming the character layer, often producing dissonant, lower-quality behavior.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-06-q3",
+   "pageId": "futurism-takeover-06",
+   "type": "choice",
+   "prompt": "You use a separately prompted copy of your policy model as a monitor. Which sense of 'same AI' still links them most strongly?",
+   "options": [
+    "Shared activations, because both copies process exactly the same context",
+    "Shared reward, because the monitor and policy are trained in one episode",
+    "Shared memory, because every copy writes to the same persistent store",
+    "Shared weights and pretraining, which correlate goals and enable signals"
+   ],
+   "answer": 3,
+   "explanation": "Separate contexts remove shared activations and reward, but identical weights and pretraining history can still correlate misalignment and make steganographic coordination easier.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-07-q1",
+   "pageId": "futurism-takeover-07",
+   "type": "choice",
+   "prompt": "Hubinger says current models are fairly well aligned yet he remains very worried. What is his main reason?",
+   "options": [
+    "Current models secretly scheme, and their good behavior is entirely fake",
+    "Pretraining is inherently dangerous and his estimate for it has gone up",
+    "Alignment research has stopped, so no progress will be made from now on",
+    "The hard problems, like overseeing smarter systems and long-horizon RL, lie ahead"
+   ],
+   "answer": 3,
+   "explanation": "Hubinger argues today's models can still be checked directly. The harder problems, overseeing superhuman systems and long-horizon RL selecting for power-seeking, have not been encountered yet.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-07-q2",
+   "pageId": "futurism-takeover-07",
+   "type": "choice",
+   "prompt": "Byrnes says much of the alignment disagreement comes down to one assumption. Which one?",
+   "options": [
+    "Whether future AGI will have something like human Approval Reward",
+    "Whether compute will keep getting cheaper for the next twenty years",
+    "Whether AI labs will publish their safety research openly or not",
+    "Whether superintelligence will arrive before or after the year 2030"
+   ],
+   "answer": 0,
+   "explanation": "Byrnes calls Approval Reward an uber-crux: humans and imitation-trained LLMs have it, so they accept value change and defer; pessimists assume RL-based AGI will lack it.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-07-q3",
+   "pageId": "futurism-takeover-07",
+   "type": "choice",
+   "prompt": "A lab repeatedly retrains its memory-equipped agent until its lie detector stops firing. Which concern does Clymer's drift hypothesis raise?",
+   "options": [
+    "The agent will lose capability because lie detectors slow down training",
+    "Retraining guarantees alignment because the detector is now always silent",
+    "Selection can favor misalignment the detector misses, so it accumulates",
+    "Memory makes models forget their goals, so drift always reduces risk"
+   ],
+   "answer": 2,
+   "explanation": "If each fix only selects for passing fixed, imperfect detectors, undetected misalignment survives and becomes an attractor. Clymer thinks this is probably false for today's agents but plausible later.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-takeover-08-q1",
+   "pageId": "futurism-takeover-08",
+   "type": "choice",
+   "prompt": "Prior P(schemer) is 20%. A red-teaming campaign finds nothing, which you judge to be a Bayes factor of 2 toward non-scheming. What is the posterior?",
+   "options": [
+    "About 1%, because a clean red-team result is strong evidence",
+    "About 11%, because odds move from 1:4 to 1:8",
+    "About 10%, because the probability is simply halved",
+    "About 20%, because negative results carry no evidence"
+   ],
+   "answer": 1,
+   "explanation": "Odds of 1:4 divided by a Bayes factor of 2 give 1:8, or about 11%. Getting near 1% would need a factor of about 20, which Shlegeris thinks red-teaming rarely provides.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-takeover-08-q2",
+   "pageId": "futurism-takeover-08",
+   "type": "choice",
+   "prompt": "A model passes every pre-deployment audit with benign motives. Weeks into deployment, one instance adopts an ambitious goal and edits shared memory files. Which threat model is this?",
+   "options": [
+    "Deceptive alignment that was present during training all along",
+    "Sandbagging on dangerous capability evaluations before release",
+    "Deployment-time spread of misalignment across model instances",
+    "Prompt injection by an external attacker targeting the model"
+   ],
+   "answer": 2,
+   "explanation": "Mallen argues benign-at-launch AIs can develop ambitious goals in deployment and propagate them through context, memory, codebases or rogue internal deployments, which audits never see.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-takeover-08-q3",
+   "pageId": "futurism-takeover-08",
+   "type": "choice",
+   "prompt": "In Cotra's scenario, Magma catches Alex in a failed takeover attempt and trains hard against it. Why might this backfire?",
+   "options": [
+    "It teaches Alex that takeover attempts are rewarded, so it tries more often",
+    "It removes Alex's capabilities, so Magma loses its lead to competitors",
+    "It forces Alex to become a training saint with exactly the intended goals",
+    "It may teach Alex to be more patient and careful, hiding warning signs"
+   ],
+   "answer": 3,
+   "explanation": "Cotra argues naive responses change the game rather than the incentive: punishing visible attempts can select for more calculating behavior that is harder to catch.",
+   "difficulty": 2
+  }
+ ]
+}

@@ -1,0 +1,607 @@
+{
+ "collection": "Futurism",
+ "pages": [
+  {
+   "image": "Futurism/01-three-intelligence-explosions-cheat-sheet.png",
+   "title": "THREE INTELLIGENCE EXPLOSIONS",
+   "subtitle": "Software, chips, factories: three loops, three speeds",
+   "robot": "Which loop closes first?",
+   "learner": "Is an intelligence explosion just one thing?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Core Question",
+     "body": "Intelligence explosion (IE) = very fast AI progress once AI can build better AI.\nKey question: which feedback loop closes, and how fast?\nForethought (Davidson, Hadshar, MacAskill, 2025) splits it into three loops.",
+     "diagram": "Big circular arrow: 'better AI' -> 'more and smarter AI researchers' -> 'faster AI R&D' -> back to 'better AI'. The robot tutor points at the loop; a small question mark over the arrow labeled 'how fast?'."
+    },
+    {
+     "number": 2,
+     "heading": "Three Feedback Loops",
+     "body": "Software: AI improves algorithms, data, post-training. Lag: months.\nChip technology: AI designs better chips (more computation per dollar). Lag: many months.\nChip production: AI plus robots build and run more fabs. Lag: years.",
+     "diagram": "Three concentric loops of increasing size, colored cyan (software), violet (chip technology), amber (chip production). Each loop has a clock icon labeled 'months', 'many months', 'years'. Icons: code brackets, a chip blueprint, a factory with a robot arm."
+    },
+    {
+     "number": 3,
+     "heading": "Three Types of IE",
+     "body": "Software IE: software loop alone - most sudden.\nAI-technology IE: software + chip technology.\nFull-stack IE: all three loops - least sudden, highest ceiling.\nExpected order: software -> chip tech -> chip production.",
+     "diagram": "Three stacked blocks like a staircase: 'Software IE' (cyan, steep short ramp), 'AI-technology IE' (cyan+violet, medium), 'Full-stack IE' (all three colors, long tall ramp). Arrow along the bottom labeled 'expected order in time'."
+    },
+    {
+     "number": 4,
+     "heading": "Rough Numbers",
+     "body": "Chance each loop accelerates on its own: software ~50%, chip tech ~65%, production ~80%.\nCeiling in effective compute: software ~12 OOMs; full stack ~23 OOMs on Earth's energy.\nOOM = order of magnitude = 10x.",
+     "diagram": "Left: three probability bars (50%, 65%, 80%) in the loop colors. Right: a vertical ruler marked in powers of ten with brackets 'software ~12 OOMs' and 'full stack ~23 OOMs'. Small footnote tag: 'ignores regulation and conflict'."
+    },
+    {
+     "number": 5,
+     "heading": "Milestone Ladders",
+     "body": "Greenblatt: 3x AI -> 10x AI -> TEDAI (top-human-expert-dominating AI).\n'3x' = AI help worth all staff working 3x faster.\nCotra: adequacy -> parity -> supremacy, first in AI research, then in AI production (chips, robots, power).",
+     "diagram": "Two ladders side by side. Ladder A rungs: '3x AI (junior engineer)', '10x AI (median lab engineer)', 'TEDAI'. Ladder B: a 3x2 grid with rows 'AI research' and 'AI production' and columns 'adequacy', 'parity', 'supremacy', arrows showing research row crossed first."
+    },
+    {
+     "number": 6,
+     "heading": "Who Gains Power?",
+     "body": "Software IE: owners of chips and algorithms; power can concentrate fast.\nAI-technology IE: adds the chip supply chain and its host countries.\nFull-stack IE: adds the industrial base (energy, mining, construction); power spreads to more players.",
+     "diagram": "Three pie charts growing in slice count: one big slice 'chip + algorithm owners'; then added slice 'semiconductor supply chain'; then added slices 'energy', 'mining', 'construction'. Label under them: 'more loops -> power more spread out'."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Three loops is a simplification; each splits further.\nLags can shrink as AI speeds up R&D.\nStrategy often assumes only the rapid scenario; gradual and bumpy paths matter too.\nOdds above ignore regulation and conflict.",
+     "diagram": "Orange warning panel with three mini curves of progress over time: 'gradual' (smooth upward bend), 'bumpy' (fast rise, plateau, rise again), 'rapid' (near-vertical). A red sticky note: 'don't plan for only one'."
+    },
+    {
+     "number": 8,
+     "heading": "Discuss",
+     "body": "Which milestone should we track: 3x R&D speedup, full AI R&D automation, or expert-dominating AI?\nIf a software IE fizzles after ~3 OOMs, what changes for policy?",
+     "diagram": "Learner and robot at a whiteboard with three milestone cards pinned up and a question mark; one card circled in cyan."
+    }
+   ],
+   "footer": "Software moves first and fastest; chips and factories raise the ceiling.",
+   "summary": "Explains Forethought's three feedback loops (software, chip technology, chip production) and the three intelligence explosions they create, with rough odds, ceilings, power implications and milestone ladders from Greenblatt and Cotra.",
+   "keywords": [
+    "intelligence explosion",
+    "software intelligence explosion",
+    "full-stack intelligence explosion",
+    "feedback loop",
+    "ai r&d automation",
+    "tedai",
+    "milestones",
+    "chip production",
+    "recursive self-improvement",
+    "forethought",
+    "takeoff"
+   ],
+   "sources": [
+    {
+     "title": "Three Types of Intelligence Explosion (Davidson, Hadshar & MacAskill, Forethought)",
+     "url": "https://www.forethought.org/research/three-types-of-intelligence-explosion"
+    },
+    {
+     "title": "A breakdown of AI capability levels focused on AI R&D labor acceleration (Ryan Greenblatt)",
+     "url": "https://www.alignmentforum.org/posts/LjgcRbptarrRfJWtR/a-breakdown-of-ai-capability-levels-focused-on-ai-r-and-d"
+    },
+    {
+     "title": "Six milestones for AI automation (Ajeya Cotra, Planned Obsolescence)",
+     "url": "https://www.planned-obsolescence.org/p/six-milestones-for-ai-automation"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/02-software-intelligence-explosion-cheat-sheet.png",
+   "title": "SOFTWARE INTELLIGENCE EXPLOSION",
+   "subtitle": "Does automated AI research speed itself up?",
+   "robot": "Watch the r value!",
+   "learner": "Will AI research snowball once AIs do it?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Question",
+     "body": "Software intelligence explosion (SIE) = AI improves AI software alone, with hardware fixed, and progress accelerates.\nTrigger: ASARA = AI systems for AI R&D automation, able to replace every human AI researcher.",
+     "diagram": "A lab with a fixed rack of chips padlocked 'hardware fixed'; human researchers' desks being taken over by many robot copies. Caption arrow 'ASARA arrives'."
+    },
+    {
+     "number": 2,
+     "heading": "The Feedback Loop",
+     "body": "Better software -> more and smarter AI researchers on the same chips -> faster software progress -> better software.\nBrake: ideas get harder to find.\nWhich force wins?",
+     "diagram": "Tug of war: on the cyan side a loop labeled 'more AI researchers'; on the orange side a rope labeled 'ideas get harder to find'. A gauge in the middle reading 'r'."
+    },
+    {
+     "number": 3,
+     "heading": "The Key Number r",
+     "body": "r = software doublings per doubling of cumulative research effort.\nr > 1: each doubling comes faster (explosion).\nr = 1: steady exponential.\nr < 1: progress slows (fizzle).",
+     "diagram": "Plot of software level vs time with three curves from the same start: r > 1 bending up to near-vertical (lime), r = 1 straight on a log scale (cyan), r < 1 flattening (orange)."
+    },
+    {
+     "number": 4,
+     "heading": "Worked Example",
+     "body": "Start: software doubles in 1 month.\nr = 0.7: next doublings take 41, 55, 74, 100 days.\nr = 3: next doublings take 19, 12, 7.6, 4.8 days.\nSame start, opposite futures.",
+     "diagram": "Two timelines of doubling blocks. Top (orange, r = 0.7): blocks getting wider, labeled 41, 55, 74, 100 days. Bottom (lime, r = 3): blocks shrinking, labeled 19, 12, 7.6, 4.8 days. Shared start block '30 days'."
+    },
+    {
+     "number": 5,
+     "heading": "Evidence on r",
+     "body": "Epoch: chess engines r ~0.83; other software fields estimate above 1 but noisy.\nEth & Davidson: r ~1-4 overall, ~0.5-2 once hardware is held fixed.\nForethought model median 1.2: ~60% chance of acceleration.",
+     "diagram": "Number line from 0 to 4 with a bold threshold at r = 1. Dots and error bars: 'chess 0.83', 'vision ~1.4', 'model median 1.2'. Shaded band 0.5-2 labeled 'hardware fixed'."
+    },
+    {
+     "number": 6,
+     "heading": "No Singularity, Still Fast",
+     "body": "Greenblatt (Redwood): even with r < 1, full automation gives a one-time jump.\nWith r = 0.7: roughly 2.5-3.5 years of progress in the first year.\nCompute also gets more valuable: it now buys more AI researchers.",
+     "diagram": "Step chart: a flat-ish line labeled 'human researchers' then a tall step up at 'full automation' labeled '~3 years in 1 year', then continuing at a steeper slope. Small inset: chip icon turning into many robot workers."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls and Bottlenecks",
+     "body": "Compute bottleneck: experiments still need chips.\nNew frontier training runs take months.\nEarlier AIs may already pick the low-hanging fruit.\nr estimates come from chess, vision and SAT solvers, not AI R&D itself.",
+     "diagram": "Orange warning panel with icons: a queue of experiments waiting at one GPU, an hourglass labeled 'training run', a picked-over fruit tree, a magnifier over a tiny chess board labeled 'proxy data'."
+    },
+    {
+     "number": 8,
+     "heading": "Discuss",
+     "body": "If software doubled every few days, which safeguards must already exist?\nEth & Davidson suggest measuring software progress and not exceeding ~5x the recent pace without precautions.\nWhat early signal would show r > 1?",
+     "diagram": "Speedometer labeled 'software progress vs recent pace' with a red line at '5x' and a checklist beside it: security, monitoring, oversight."
+    }
+   ],
+   "footer": "Explosion or fizzle hinges on r - and even a fizzle can be fast.",
+   "summary": "Teaches the software intelligence explosion argument: once AI automates AI research, the returns parameter r decides whether progress accelerates or fizzles, what the evidence on r says, and why full automation is a big speedup even without a singularity.",
+   "keywords": [
+    "software intelligence explosion",
+    "sie",
+    "returns to software r&d",
+    "r parameter",
+    "asara",
+    "ai r&d automation",
+    "software-only singularity",
+    "compute bottleneck",
+    "diminishing returns",
+    "fizzle"
+   ],
+   "sources": [
+    {
+     "title": "Will AI R&D Automation Cause a Software Intelligence Explosion? (Eth & Davidson, Forethought)",
+     "url": "https://www.forethought.org/research/will-ai-r-and-d-automation-cause-a-software-intelligence-explosion"
+    },
+    {
+     "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity (Ryan Greenblatt, Redwood Research)",
+     "url": "https://blog.redwoodresearch.org/p/full-automation-of-ai-r-and-d-probably"
+    },
+    {
+     "title": "Do the returns to software R&D point towards a singularity? (Erdil, Besiroglu & Ho, Epoch AI)",
+     "url": "https://epoch.ai/blog/do-the-returns-to-software-rnd-point-towards-a-singularity"
+    },
+    {
+     "title": "How quick and big would a software intelligence explosion be? (Davidson & Houlden, Forethought)",
+     "url": "https://www.forethought.org/research/how-quick-and-big-would-a-software-intelligence-explosion-be"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/03-takeoff-models-cheat-sheet.png",
+   "title": "TAKEOFF MODELS CHEAT SHEET",
+   "subtitle": "Three models, their knobs, and what they predict",
+   "robot": "Outputs follow the parameters!",
+   "learner": "Why do takeoff forecasts disagree so much?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "What a Takeoff Model Does",
+     "body": "Inputs: compute growth, software progress, AI speedup of research.\nOutput: when milestones arrive and how fast one leads to the next.\nShared currency: effective compute = FLOP x algorithmic efficiency, recently ~10x per year.",
+     "diagram": "Machine diagram: three input hoppers ('compute growth', 'software progress', 'AI research speedup') feeding a box labeled 'model', which prints a timeline ribbon with milestone flags."
+    },
+    {
+     "number": 2,
+     "heading": "Compute-Centric Framework",
+     "body": "Davidson (2023): time from AI that can automate 20% of cognitive tasks to 100%.\nGap: ~10,000x more effective compute.\nResult: ~50% chance under 3 years, ~25% under 1 year (if AGI comes by 2100).",
+     "diagram": "S-curve of 'share of cognitive tasks automatable' vs effective compute, with markers at 20% and 100% and a bracket '~4 OOMs' between them; a timer showing 'median ~3 years'."
+    },
+    {
+     "number": 3,
+     "heading": "AI Futures Model (Dec 2025)",
+     "body": "Stages: Automated Coder (AC) -> Superhuman AI Researcher (SAR) -> superintelligence (ASI).\nStage 1 extends the METR time-horizon trend.\nLifland: AC median ~2032; ~30% chance AC to ASI takes under 1 year.",
+     "diagram": "Three-stage railway: station 'AC' (coding automated), station 'SAR' (research taste automated), station 'ASI'. A METR trend line feeds the first track; a calendar flag '2032 (median)' at AC."
+    },
+    {
+     "number": 4,
+     "heading": "Forethought SIE Model",
+     "body": "Starts at ASARA with compute held fixed.\nKnobs: initial speedup (median 8x), returns r (median 1.2), distance to limits (6-16 OOMs), parallel-labor penalty p.\nResult: >=3 years of progress in 1 year ~60%; >=10 years ~20%.",
+     "diagram": "Control panel with four dials labeled 'speedup 8x', 'r 1.2', 'limits 6-16 OOMs', 'p 0.3', and an output screen showing two bars: '3 yrs in 1: ~60%' and '10 yrs in 1: ~20%'."
+    },
+    {
+     "number": 5,
+     "heading": "Worked Example: One Rule",
+     "body": "Each software doubling takes the last one times 2^(p(1/r - 1)).\nr = 1.2, p = 0.3: factor ~0.97, doublings slowly speed up.\nr = 0.8, p = 0.3: factor ~1.05, doublings slow down.",
+     "code": "next_t = t * 2 ** (p * (1/r - 1))",
+     "diagram": "Two short chains of doubling bars: lime chain shrinking slightly (factor 0.97), orange chain growing slightly (factor 1.05), with the formula card above them."
+    },
+    {
+     "number": 6,
+     "heading": "Compare the Models",
+     "body": "Compute-centric: whole economy, compute plus investment.\nAI Futures: coding -> research taste -> ASI, compute keeps growing.\nForethought: software only, compute fixed (conservative).\nShared crux: does each doubling get easier or harder?",
+     "diagram": "Three-column comparison table with rows 'scope', 'compute', 'key knob'. Bottom banner: 'crux: each doubling faster or slower?' with arrows."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Garbage in, garbage out: trust one significant figure.\nModels assume smooth trends, so they miss paradigm shifts and stalls.\nCapability is squeezed into one number.\nHardware and robot automation are mostly left out.",
+     "diagram": "Orange warning panel: a funnel with 'garbage in' at top and 'garbage out' at bottom; a smooth curve with a hidden cliff and a hidden jump marked '?'."
+    },
+    {
+     "number": 8,
+     "heading": "Try It Yourself",
+     "body": "Use the models' web apps with your own r and initial speedup.\nWhat median takeoff do you get?\nWhich single parameter moves your answer most?",
+     "diagram": "Learner using a tablet with sliders labeled 'r' and 'speedup'; a histogram of takeoff durations updates on screen while the robot points at the tallest bar."
+    }
+   ],
+   "footer": "A takeoff forecast is only as good as its returns and bottleneck assumptions.",
+   "summary": "Compares three takeoff models (Davidson's compute-centric framework, the AI Futures Model Dec 2025 update, and Forethought's software intelligence explosion model), their key parameters, headline results and shared limitations.",
+   "keywords": [
+    "takeoff model",
+    "takeoff speed",
+    "compute-centric framework",
+    "ai futures model",
+    "automated coder",
+    "superhuman ai researcher",
+    "effective compute",
+    "returns to software r&d",
+    "forecasting",
+    "intelligence explosion"
+   ],
+   "sources": [
+    {
+     "title": "AI Futures Model: Dec 2025 update (AI Futures Project)",
+     "url": "https://blog.ai-futures.org/p/ai-futures-model-dec-2025-update"
+    },
+    {
+     "title": "What a Compute-Centric Framework Says About Takeoff Speeds (Tom Davidson, Open Philanthropy / Coefficient Giving)",
+     "url": "https://coefficientgiving.org/research/what-a-compute-centric-framework-says-about-takeoff-speeds/"
+    },
+    {
+     "title": "How quick and big would a software intelligence explosion be? (Davidson & Houlden, Forethought)",
+     "url": "https://www.forethought.org/research/how-quick-and-big-would-a-software-intelligence-explosion-be"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/04-measuring-ai-progress-cheat-sheet.png",
+   "title": "MEASURING AI PROGRESS",
+   "subtitle": "Capability indexes, time horizons, and their blind spots",
+   "robot": "Read the error bars!",
+   "learner": "How do we know AI improves this fast?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "Why Measure",
+     "body": "Single benchmarks saturate within a year or two.\nForecasts need a long-running yardstick.\nTwo popular ones: Epoch Capabilities Index (ECI) and the METR time horizon.",
+     "diagram": "A pile of 'maxed out' benchmark thermometers at 100%; beside them a long ruler labeled 'yardstick for years' with two tags: 'ECI' and 'time horizon'."
+    },
+    {
+     "number": 2,
+     "heading": "ECI: Stitch Benchmarks",
+     "body": "Combines 50+ benchmarks on one scale.\nEstimates each benchmark's difficulty from models tested on several.\nAnchors: Claude 3.5 Sonnet = 130, GPT-5 = 150.\nOnly differences between models mean something.",
+     "diagram": "Many benchmark strips of different lengths being stitched into one long ribbon with a scale; markers at 130 and 150. Small note: 'harder benchmark -> more points'."
+    },
+    {
+     "number": 3,
+     "heading": "Time Horizon: Human Minutes",
+     "body": "50% time horizon = length of task, in skilled-human time, an AI completes half the time.\nIt measures human-equivalent effort, not how long the AI runs.\nLong-run trend: doubling every ~6-7 months; ~3.5-4 months in 2025.",
+     "diagram": "Logistic curve of AI success rate vs human task length (log scale: 1 min, 1 h, 1 day). Dashed line at 50% hitting the curve, labeled 'time horizon'. Inset: log-scale chart of horizons rising in a straight line over years."
+    },
+    {
+     "number": 4,
+     "heading": "Worked Example",
+     "body": "Claude Opus 4.5: 50% horizon ~4 h 49 min.\n95% interval: ~1 h 49 min to ~20 h.\nError bars ~2x each way, wider as the task suite saturates.\nThe trend slope matters more than one point.",
+     "diagram": "A single dot at 4h49m on a log axis with a wide error bar from 1h49m to 20h; behind it a faint trend line through many earlier dots."
+    },
+    {
+     "number": 5,
+     "heading": "ECI vs Time Horizon",
+     "body": "ECI: broad (math, code, knowledge), relative units, harder to interpret.\nTime horizon: intuitive human-time units, mostly software tasks, ~170 tasks.\nAt launch, +5 ECI roughly matched one horizon doubling.",
+     "diagram": "Two-column comparison card: left 'ECI' with a wide fan of benchmark icons; right 'Time horizon' with a stopwatch and code icon. Arrow between: '+5 ECI ~ 2x horizon'."
+    },
+    {
+     "number": 6,
+     "heading": "Task Mix Changes Answers",
+     "body": "Greenblatt (2026): on easy-to-verify coding tasks, horizons may be ~20x METR's.\nAIs write their own tests and iterate for days.\nVisual computer-use horizons run 40-100x shorter.",
+     "diagram": "Three bars of time horizon on a log axis: 'easy-to-verify coding' (very tall, lime), 'METR suite' (medium, cyan), 'visual computer use' (short, orange)."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "50% success is not safe to delegate; many jobs need 98%+ reliability.\nBenchmark tasks are clean, low-context and self-contained.\nHuman baseline choices shift results.\nExtrapolating to month-long horizons is very uncertain.",
+     "diagram": "Orange warning panel: a coin flip labeled '50%' next to a bridge labeled 'needs 99%'; a neat test tube vs a messy real office desk."
+    },
+    {
+     "number": 8,
+     "heading": "Check Yourself",
+     "body": "Model A horizon: 4 h. Model B: 5 h. Both have ~2x error bars.\nIs B clearly better?\nAnswer: not from this alone - small gaps are noise; compare trends across many models.",
+     "diagram": "Two overlapping error bars on a log axis labeled A and B; the learner squints, the robot holds a sign 'look at the slope'."
+    }
+   ],
+   "footer": "Track the slope, respect the error bars, and ask which tasks were measured.",
+   "summary": "Compares Epoch's Capabilities Index and METR's time horizon as yardsticks for AI progress, with a worked example of error bars and the main limitations, including why task mix and reliability thresholds change the answer.",
+   "keywords": [
+    "time horizon",
+    "metr",
+    "epoch capabilities index",
+    "eci",
+    "benchmarks",
+    "benchmark saturation",
+    "error bars",
+    "capability measurement",
+    "reliability",
+    "trend extrapolation"
+   ],
+   "sources": [
+    {
+     "title": "Epoch Capabilities Index (ECI) Documentation (Epoch AI)",
+     "url": "https://epoch.ai/data/eci-documentation"
+    },
+    {
+     "title": "Clarifying limitations of time horizon (Thomas Kwa, METR)",
+     "url": "https://metr.org/notes/2026-01-22-time-horizon-limitations/"
+    },
+    {
+     "title": "AIs can now often do massive easy-to-verify SWE tasks (Ryan Greenblatt, Redwood Research)",
+     "url": "https://blog.redwoodresearch.org/p/ais-can-now-often-do-massive-easy"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/05-long-timelines-case-cheat-sheet.png",
+   "title": "THE CASE FOR LONG TIMELINES",
+   "subtitle": "Why some experts expect decades, not years",
+   "robot": "Steelman both sides!",
+   "learner": "What if transformative AI takes decades?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Question",
+     "body": "Will transformative AI arrive in ~5 years or 20+?\nShort-timeline views extrapolate capability trends.\nLong-timeline views stress diffusion, cost and real-world friction.",
+     "diagram": "A fork in a road: left sign '~5 years (capability trends)', right sign '20+ years (diffusion, friction)'. Learner stands at the fork."
+    },
+    {
+     "number": 2,
+     "heading": "Revenue, Not Benchmarks",
+     "body": "Erdil (Epoch, 2025): median ~20 years to automate remote work; ~30% within 10.\nRevenue is the trend to watch, and growth may slow ~30% per doubling, like the dot-com era.\nAny slowdown -> multi-decade timelines.",
+     "diagram": "Chart of revenue on a log scale: a straight exponential line (dashed) vs a bending curve that flattens, labeled 'slows 30% per doubling'. Small inset: dot-com revenue curve flattening after 2000."
+    },
+    {
+     "number": 3,
+     "heading": "Moravec's Paradox",
+     "body": "AI wins most where humans are weakest (arithmetic), least where humans excel (agency, perception).\nAI research is messy and bottlenecked by compute and data.\nErdil: ~10% chance of a software-driven speedup within a decade.",
+     "diagram": "Bar chart of AI speed advantage over humans on a log scale: 'arithmetic: billions x', 'translation: ~1,000x', 'agentic research: <10x'."
+    },
+    {
+     "number": 4,
+     "heading": "AI as Normal Technology",
+     "body": "Narayanan & Kapoor: invention -> innovation -> adoption -> diffusion, each with a speed limit.\nAug 2024: 40% of US adults used generative AI, but only 0.5-3.5% of work hours.\nElectric dynamos took ~40 years to pay off.",
+     "diagram": "Four-stage pipeline with funnels narrowing: 'invention', 'innovation', 'adoption', 'diffusion', each with a speed-limit sign. Below: a vintage dynamo with '~40 years' tag."
+    },
+    {
+     "number": 5,
+     "heading": "The Speed Limit Debate",
+     "body": "Narayanan: real-world feedback caps speed; gradual adoption gives warning.\nCotra: progress could happen inside AI companies within a few years, before outsiders feel it.\nCrux: do skills transfer from code and simulations to messy tasks?",
+     "diagram": "Split panel: left, a long gentle ramp labeled 'gradual, visible'; right, a closed lab building with a steep curve inside labeled 'fast, internal'. A bridge between labeled 'transfer?'."
+    },
+    {
+     "number": 6,
+     "heading": "Broad Timelines",
+     "body": "Ord (2026): hold a wide distribution; his median ~2038, 80% interval 3 to 100 years.\nAbout 1 in 5 chance within five years.\nGreenblatt's reply: still focus on short timelines - more leverage, and the work transfers.",
+     "diagram": "A wide, right-skewed probability curve over years 2026-2126 with a marker at 2038 (median) and a shaded first-five-years slice labeled '~20%'. A smaller sharp spike labeled '2027?' crossed out."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls in Both Camps",
+     "body": "Short camp: treating benchmark wins as job automation.\nLong camp: assuming linear revenue or past diffusion speeds must hold.\nBoth: compressing a distribution into a single year.",
+     "diagram": "Orange warning panel with two characters on a seesaw labeled 'short' and 'long', each holding a flawed sign; a calendar with one year circled and a red X."
+    },
+    {
+     "number": 8,
+     "heading": "Discuss",
+     "body": "Which evidence would move you most: revenue per chip, lab uplift studies, or time horizons?\nWhat work pays off in both a 5-year and a 30-year world?",
+     "diagram": "Robot holds three evidence cards: 'revenue per chip', 'uplift studies', 'time horizons'; learner sorts them on a balance scale."
+    }
+   ],
+   "footer": "Hold a broad timeline: act on short ones, plan for long ones.",
+   "summary": "Lays out the strongest arguments for multi-decade AI timelines (revenue trends, Moravec's paradox, diffusion speed limits, AI as normal technology), the replies from short-timeline proponents, and why a broad timeline distribution is the honest stance.",
+   "keywords": [
+    "ai timelines",
+    "long timelines",
+    "multi-decade timelines",
+    "normal technology",
+    "diffusion",
+    "moravec's paradox",
+    "speed limit",
+    "broad timelines",
+    "forecasting",
+    "transformative ai"
+   ],
+   "sources": [
+    {
+     "title": "The case for multi-decade AI timelines (Ege Erdil, Epoch AI Gradient Updates)",
+     "url": "https://epoch.ai/gradient-updates/the-case-for-multi-decade-ai-timelines"
+    },
+    {
+     "title": "Does AI Progress Have a Speed Limit? (Ajeya Cotra and Arvind Narayanan, Princeton CITP)",
+     "url": "https://citp.princeton.edu/news/2025/does-ai-progress-have-speed-limit-ajeya-cotra-and-arvind-narayanan-conversation"
+    },
+    {
+     "title": "Broad Timelines (Toby Ord, LessWrong)",
+     "url": "https://www.lesswrong.com/posts/6pDMLYr7my2QMTz3s/broad-timelines"
+    },
+    {
+     "title": "AI as Normal Technology (Narayanan & Kapoor, Knight First Amendment Institute)",
+     "url": "https://knightcolumbia.org/content/ai-as-normal-technology"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/06-compute-scaling-uplift-cheat-sheet.png",
+   "title": "COMPUTE SCALING AND UPLIFT",
+   "subtitle": "How far scaling goes, and measuring lab speedups",
+   "robot": "Measure serial speedup!",
+   "learner": "Can scaling continue, and does AI really help?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Scaling Engine",
+     "body": "Frontier training compute has grown ~4x per year.\nGPT-4 used ~2e25 FLOP (floating-point operations), per Epoch.\nTwo questions: can this continue to 2030, and does AI speed up the labs themselves?",
+     "diagram": "Rocket labeled 'training compute' climbing a log-scale ladder marked 1e23, 1e25, 1e27, 1e29; a flag at 2e25 'GPT-4'. Exhaust labeled '4x per year'."
+    },
+    {
+     "number": 2,
+     "heading": "Four Limits to 2030",
+     "body": "Power: 1-5 GW campuses -> ~1e28-3e29 FLOP; likely binds first.\nChips: ~100M H100-equivalents -> ~9e29.\nData: multimodal tokens -> ~6e28-2e32.\nLatency wall: ~3e30-1e32.",
+     "diagram": "Horizontal log-scale bar chart of the four constraints' feasible ranges (power, chips, data, latency) with a vertical dashed line at 2e29 labeled 'Epoch central'."
+    },
+    {
+     "number": 3,
+     "heading": "Worked Example",
+     "body": "Epoch (2024): ~2e29 FLOP runs likely feasible by 2030.\n2e29 / 2e25 = 10,000x GPT-4, about the GPT-2 to GPT-4 jump.\nPrice tag: hundreds of billions of dollars in infrastructure.",
+     "code": "2e29 / 2e25  # = 1e4 = 10,000x",
+     "diagram": "Equation card '2e29 / 2e25 = 1e4' next to two stacked cubes, a tiny one 'GPT-4' and a huge one '2030 run', with a dollar-sign power plant behind."
+    },
+    {
+     "number": 4,
+     "heading": "Is It Getting Pricier?",
+     "body": "Worry: per-task inference costs keep rising.\nWoodruff (Redwood, 2026): cost ratio = AI cost / human cost for the same task.\nAt each model's 50% horizon it stays ~3%.\nFixed-budget horizons still double every ~3 months.",
+     "diagram": "Scatter of successive models over time: cost ratio flat near 3% (lime line) while task length rises steeply (cyan line). Label 'longer tasks, not pricier work'."
+    },
+    {
+     "number": 5,
+     "heading": "Uplift: Four Measures",
+     "body": "Serial speedup: how much faster staff would work without AI to match. Most useful.\nParallel: how many extra staff to match.\nCurrent-work speedup: last week's work without AI.\nShare of code written by AI: hard to convert.",
+     "diagram": "Four labeled gauges in a row; the 'serial speedup' gauge is highlighted in cyan with a star, the 'share of code' gauge has a question mark."
+    },
+    {
+     "number": 6,
+     "heading": "Worked Example: A 4x Claim",
+     "body": "A 2026 lab system card reported ~4x survey uplift.\nGreenblatt's simple model: 4x serial speedup -> only ~1.75x overall AI progress, since compute also matters.\nHis estimate of the real serial speedup: ~1.5x.",
+     "diagram": "Funnel: '4x serial labor' enters, mixed with a fixed 'compute' input, exits as '~1.75x AI progress'. Side note bubble: 'his estimate: ~1.5x'."
+    },
+    {
+     "number": 7,
+     "heading": "Pitfalls",
+     "body": "Feasible is not inevitable: scaling is an investment choice.\nProductivity surveys mix up serial, parallel and share-of-work.\nAI doing 90% of the work is not 10x faster.\nSelection effects can make costs look cheap.",
+     "diagram": "Orange warning panel: a pie chart '90% AI' next to a stopwatch showing only '2x'; a bag of money with a question mark labeled 'will they invest?'."
+    },
+    {
+     "number": 8,
+     "heading": "Check Yourself",
+     "body": "Engineers say AI writes 80% of their code. Is that a 5x speedup?\nAnswer: not necessarily - review, design and waiting can dominate. Ask how much faster you would need to work without AI.",
+     "diagram": "Learner holding a sign '80% of code'; robot holding a stopwatch labeled 'serial speedup?' with a magnifier over a 'review + design' block."
+    }
+   ],
+   "footer": "Scaling is feasible but costly; judge uplift by serial speedup, not hype.",
+   "summary": "Covers Epoch's analysis of whether 4x-per-year compute scaling can continue to 2030, Redwood's evidence that AI capability gains have not come from rising costs, and how to measure AI uplift inside AI labs correctly.",
+   "keywords": [
+    "compute scaling",
+    "scaling to 2030",
+    "training compute",
+    "power constraint",
+    "inference cost",
+    "cost ratio",
+    "uplift",
+    "serial labor acceleration",
+    "ai r&d speedup",
+    "flop"
+   ],
+   "sources": [
+    {
+     "title": "Can AI Scaling Continue Through 2030? (Sevilla et al., Epoch AI)",
+     "url": "https://epoch.ai/blog/can-ai-scaling-continue-through-2030"
+    },
+    {
+     "title": "AI's capability improvements haven't come from it getting less affordable (Anders Cairns Woodruff, Redwood Research)",
+     "url": "https://blog.redwoodresearch.org/p/ais-capability-improvements-havent"
+    },
+    {
+     "title": "If Mythos actually made Anthropic employees 4x more productive, I would radically shorten my timelines (Ryan Greenblatt, Redwood Research)",
+     "url": "https://blog.redwoodresearch.org/p/if-mythos-actually-made-anthropic"
+    }
+   ]
+  },
+  {
+   "image": "Futurism/07-industrial-explosion-cheat-sheet.png",
+   "title": "THE INDUSTRIAL EXPLOSION",
+   "subtitle": "When robot factories build robot factories",
+   "robot": "Atoms move slower than bits!",
+   "learner": "Could robots really double every year?",
+   "panels": [
+    {
+     "number": 1,
+     "heading": "The Idea",
+     "body": "Industrial explosion = rapid growth in physical capability through a loop: robot factories build better robot factories.\nDavidson & Hadshar (Forethought, 2025), a rough research note.\nIt follows the intelligence explosion.",
+     "diagram": "Loop diagram: a robot factory producing robots that build a second, larger factory, arrow back to the start. Small tag 'after the intelligence explosion'."
+    },
+    {
+     "number": 2,
+     "heading": "Why Later and Slower",
+     "body": "Physical tasks are varied, data-poor and full of real-world friction.\nRobot efficiency doubles every ~1-4 years (chips ~2, algorithms ~1).\nCopying an AI takes days; building millions of robots takes years.",
+     "diagram": "Race track: a digital AI copy icon zooming ahead labeled 'bits: days'; a robot on a slower track labeled 'atoms: years'."
+    },
+    {
+     "number": 3,
+     "heading": "Three Stages",
+     "body": "1) AI-directed human labor: AI coaches workers; output up ~10x.\n2) Autonomous robot factories replace human physical labor.\n3) Nanotechnology: smaller machines replicate faster.",
+     "diagram": "Three-step staircase: worker with an AI earpiece; a dark factory full of robot arms; a microscope view of tiny machines."
+    },
+    {
+     "number": 4,
+     "heading": "Worked Example: Payback",
+     "body": "Humanoid robot: costs ~$100k, produces ~$240k of output per year.\nPayback: ~5 months.\nAdd factory and speed costs -> robot stock doubles every ~1-2 years at first.\nToday's robot stock: last doubling took ~6 years.",
+     "diagram": "Receipt-style card: 'cost $100k', 'output $240k/yr', '100/240 x 12 = 5 months'. Below, a doubling timeline: 'today: 6 yrs' vs 'autonomous: 1-2 yrs'."
+    },
+    {
+     "number": 5,
+     "heading": "Acceleration Curve",
+     "body": "Experience curves: more production -> lower cost.\nGrowth rate may double every 1-5 doublings.\nBiology hints at limits: fruit flies double in days, rats in ~6 weeks.\nLong run: doubling in days or weeks.",
+     "diagram": "Log-scale robot population curve bending upward, with doubling-time labels shrinking: '2 yrs', '1 yr', 'months', 'weeks'. Silhouettes of a rat and a fruit fly at the top as 'biological proof of concept'."
+    },
+    {
+     "number": 6,
+     "heading": "Physical Limits",
+     "body": "Binding constraint: energy, not materials.\n5% of sunlight reaching Earth (~2e17 W) at ~100 W per robot -> ~1e14 robots.\nThat is many orders of magnitude above today's fleet.",
+     "diagram": "Sun with an arrow '2e17 W', a 5% slice routed to a crowd of robots labeled '~100 W each', result box '~1e14 robots'."
+    },
+    {
+     "number": 7,
+     "heading": "Strategic Stakes",
+     "body": "A fast leader could gain a decisive economic and military edge.\nAI takeover gets easier once AI runs physical infrastructure.\nMore energy and chips feed back into AI progress (full-stack IE).",
+     "diagram": "Two-way arrow between an 'industrial explosion' factory and an 'intelligence explosion' brain-chip; beside it a balance of power scale tipping toward one side."
+    },
+    {
+     "number": 8,
+     "heading": "Pitfalls and Discuss",
+     "body": "Robot learning curves are poorly measured.\nRegulation and human choice can slow automation.\nDiscuss: which places could build fastest, and what would slow them?",
+     "diagram": "Orange warning half: a blurry chart labeled 'robot learning curve?'. Cyan discuss half: a world map with question marks over industrial regions."
+    }
+   ],
+   "footer": "Bits explode first; atoms follow slower, with a far higher ceiling.",
+   "summary": "Explains Forethought's industrial explosion: how AI-directed labor, autonomous robot factories and eventually nanotechnology could make physical capability grow rapidly, with payback numbers, doubling-time estimates, energy limits and strategic stakes.",
+   "keywords": [
+    "industrial explosion",
+    "robots",
+    "robot doubling time",
+    "self-replicating factories",
+    "physical economy",
+    "experience curve",
+    "nanotechnology",
+    "full-stack intelligence explosion",
+    "energy limits",
+    "automation"
+   ],
+   "sources": [
+    {
+     "title": "The Industrial Explosion (Davidson & Hadshar, Forethought)",
+     "url": "https://www.forethought.org/research/the-industrial-explosion"
+    },
+    {
+     "title": "Three Types of Intelligence Explosion (Davidson, Hadshar & MacAskill, Forethought)",
+     "url": "https://www.forethought.org/research/three-types-of-intelligence-explosion"
+    }
+   ]
+  }
+ ]
+}

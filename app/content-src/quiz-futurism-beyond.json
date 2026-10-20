@@ -1,0 +1,184 @@
+{
+  "questions": [
+    {
+      "id": "futurism-beyond-01-q1",
+      "pageId": "futurism-beyond-01",
+      "type": "choice",
+      "prompt": "Under a prompt that suggests it is sentient, a chatbot says it feels curious. Under a prompt that says it is just code, it denies having feelings. What is the best conclusion?",
+      "options": [
+        "The model is conscious, because it described an experience at least once",
+        "The model is definitely not conscious, because it contradicted itself",
+        "Its self-reports are strongly shaped by framing, so they are weak evidence either way",
+        "The second answer is reliable, because denials are less likely to be trained in"
+      ],
+      "answer": 2,
+      "explanation": "Eleos found Claude Opus 4 highly suggestible about its sentience. Self-reports reflect pretraining, prompts and post-training, so they are a clue to check with other methods, not a verdict either way.",
+      "difficulty": 1
+    },
+    {
+      "id": "futurism-beyond-01-q2",
+      "pageId": "futurism-beyond-01",
+      "type": "choice",
+      "prompt": "Researchers add an 'ocean' concept vector to a model's activations without saying so. The model then reports noticing an intrusive thought about the sea. Why is this design more informative than simply asking the model what it feels?",
+      "options": [
+        "It proves the model has subjective experience of the ocean",
+        "The researchers know the true internal state, so they can check whether the report causally tracks it",
+        "It removes all effects of post-training on the model's answers",
+        "It shows the model can read its own weights directly"
+      ],
+      "answer": 1,
+      "explanation": "Concept injection gives ground truth about the internal state, so a correct report is grounded rather than just imitated. It still says nothing direct about experience, and it succeeded only about 20% of the time in the best models.",
+      "difficulty": 2
+    },
+    {
+      "id": "futurism-beyond-01-q3",
+      "pageId": "futurism-beyond-01",
+      "type": "choice",
+      "prompt": "A lab argues: 'We are unsure whether our models matter morally, so we will just treat every model as a full moral patient to be safe.' Which critique best matches Carlsmith's view?",
+      "options": [
+        "Uncertainty means the question can be ignored until science settles it",
+        "Treating models well always has zero cost, so the policy is fine as written",
+        "Only consciousness matters, so agency-based arguments should be dropped",
+        "Over-attribution has real costs too, so precaution should not replace sharpening credences"
+      ],
+      "answer": 3,
+      "explanation": "Carlsmith warns that both under- and over-attribution are costly and that 'play it safe' can hide imprecision. He urges careful credences rather than a reflexive default.",
+      "difficulty": 2
+    },
+    {
+      "id": "futurism-beyond-02-q1",
+      "pageId": "futurism-beyond-02",
+      "type": "choice",
+      "prompt": "A new AI system mainly makes it easier for many low-skill actors to access dual-use know-how, while another mainly expands what a few skilled actors could design. In Sandbrink's framing, which is which?",
+      "options": [
+        "The first resembles a language model (more actors); the second a biological design tool (higher ceiling)",
+        "The first resembles a biological design tool; the second a language model",
+        "Both resemble language models, since both use neural networks",
+        "Neither matters for risk unless the system is open-weight"
+      ],
+      "answer": 0,
+      "explanation": "Sandbrink argues LLMs mainly lower barriers and widen who can cause harm, while BDTs raise the ceiling of possible harm for sophisticated actors. Combined, they broaden access and raise the ceiling.",
+      "difficulty": 1
+    },
+    {
+      "id": "futurism-beyond-02-q2",
+      "pageId": "futurism-beyond-02",
+      "type": "choice",
+      "prompt": "A model scores near 100% on a multiple-choice biology benchmark. According to Epoch's review, what is the most accurate interpretation?",
+      "options": [
+        "It proves the model can help amateurs build a bioweapon end to end",
+        "It proves the model is safe, because benchmarks measure only book knowledge",
+        "It is weak evidence: such benchmarks are saturated and skip hands-on lab skill and material access",
+        "It means wet-lab uplift studies are no longer needed"
+      ],
+      "answer": 2,
+      "explanation": "Epoch notes knowledge benchmarks are largely saturated and barely test physical skill or access, which may be the real bottlenecks. Evidence is weak in both directions, so harder evals and periodic wet-lab studies are recommended.",
+      "difficulty": 2
+    },
+    {
+      "id": "futurism-beyond-02-q3",
+      "pageId": "futurism-beyond-02",
+      "type": "choice",
+      "prompt": "In the Forecasting Research Institute study, experts raised their risk estimates if AI reached certain capabilities. Which package of measures brought the expert median closest back to the original baseline?",
+      "options": [
+        "Releasing more open-weight models so defenders can study them",
+        "Proprietary models with strict anti-jailbreak safeguards plus mandatory DNA synthesis screening",
+        "Publishing full evaluation details, including the hardest questions",
+        "Relying on model refusals alone, with no screening"
+      ],
+      "answer": 1,
+      "explanation": "The combined package cut the expert median from 1.25% to 0.4%, near the 0.3% baseline. Many participants rated open-weight models as riskier because safeguards can be removed.",
+      "difficulty": 2
+    },
+    {
+      "id": "futurism-beyond-03-q1",
+      "pageId": "futurism-beyond-03",
+      "type": "choice",
+      "prompt": "A team argues their spec doesn't matter much because 'if alignment fails, the model will ignore it anyway.' Which reply follows Mia Taylor's argument?",
+      "options": [
+        "Correct: a misaligned model keeps none of its trained values",
+        "Specs only matter for refusals, which misaligned models skip",
+        "Partial training can still lock in simple early values, such as risk aversion, that make takeover less likely and deals easier",
+        "Specs matter only for public relations, not for model behavior"
+      ],
+      "answer": 2,
+      "explanation": "Taylor argues partial value transfer is plausible, especially for easy, early, common values. Traits like myopia, risk aversion and cooperativeness affect takeover odds, deal-making and how bad a post-takeover world is.",
+      "difficulty": 2
+    },
+    {
+      "id": "futurism-beyond-03-q2",
+      "pageId": "futurism-beyond-03",
+      "type": "choice",
+      "prompt": "AI agents are starting to negotiate with humans who are not their users, and no lab has a settled default for how honest they must be. What does Tillman's stickiness essay recommend?",
+      "options": [
+        "Wait until models are more capable, since early choices are easy to reverse",
+        "Treat it as a 'wet cement' moment and give the default extra scrutiny now",
+        "Let each user decide, since user habits never constrain later models",
+        "Copy the previous model's spec unchanged to avoid institutional cost"
+      ],
+      "answer": 1,
+      "explanation": "Defaults tend to persist through synthetic data, institutional and user inertia, and public norms. New affordances with no default yet are the cheapest point to get the behavior right.",
+      "difficulty": 1
+    },
+    {
+      "id": "futurism-beyond-03-q3",
+      "pageId": "futurism-beyond-03",
+      "type": "choice",
+      "prompt": "Researchers find twelve models split sharply on a scenario that trades off 'assume best intentions' against a safety rule. In Anthropic's stress-testing study, what did such high-disagreement scenarios tend to reveal?",
+      "options": [
+        "Mostly random noise with no link to spec quality",
+        "That one provider's models are always correct",
+        "That the judge models agreed perfectly on compliance",
+        "Contradictions or ambiguities in the spec, with 5-13x more frequent spec violations"
+      ],
+      "answer": 3,
+      "explanation": "High cross-model disagreement flagged spec gaps: violations were 5-13 times more frequent, and the study surfaced contradictions such as best intentions vs safety restrictions.",
+      "difficulty": 3
+    },
+    {
+      "id": "futurism-beyond-04-q1",
+      "pageId": "futurism-beyond-04",
+      "type": "choice",
+      "prompt": "Suppose P(survive) = 0.9 and a surviving future is worth 20% of the best feasible future. Fully fixing survival adds how much expected value, versus fully fixing flourishing?",
+      "options": [
+        "+0.02 for survival vs +0.72 for flourishing",
+        "+0.10 for survival vs +0.10 for flourishing",
+        "+0.20 for survival vs +0.80 for flourishing",
+        "+0.10 for survival vs +0.72 for flourishing"
+      ],
+      "answer": 0,
+      "explanation": "Now: 0.9 x 0.2 = 0.18. Fix survival: 1.0 x 0.2 = 0.20 (+0.02). Fix flourishing: 0.9 x 1.0 = 0.90 (+0.72). Flourishing has 36x more at stake under these numbers.",
+      "difficulty": 3
+    },
+    {
+      "id": "futurism-beyond-04-q2",
+      "pageId": "futurism-beyond-04",
+      "type": "choice",
+      "prompt": "Every AI system does exactly what its owner wants, yet over decades governments rely on AI-generated revenue instead of citizens' taxes and become less responsive to people. Which idea describes this?",
+      "options": [
+        "A treacherous turn by a scheming model",
+        "Gradual disempowerment: systems lose the implicit alignment that came from needing humans",
+        "Moral public goods failing because of free-riding",
+        "Viatopia, a society on track to a near-best future"
+      ],
+      "answer": 1,
+      "explanation": "Kulveit et al. argue economy, culture and states serve humans partly because they depend on human labor and participation. Removing that dependence can erode human influence even with individually aligned AIs.",
+      "difficulty": 1
+    },
+    {
+      "id": "futurism-beyond-04-q3",
+      "pageId": "futurism-beyond-04",
+      "type": "choice",
+      "prompt": "Two rival powers each think they might win a decisive AI lead. Why does Moorhouse argue a resource-sharing deal is best struck before the outcome is clear?",
+      "options": [
+        "Because deals are only legally enforceable before AGI exists",
+        "Because after AGI, all parties will have identical values",
+        "Because, like insurance, the deal only has mutual value while each side might still lose",
+        "Because lock-in is never a risk for early agreements"
+      ],
+      "answer": 2,
+      "explanation": "Deals made under shared uncertainty reflect mutual benefit rather than raw bargaining power. Once one side knows it has won, it has little reason to share, so the value of the deal shrinks over time.",
+      "difficulty": 2
+    }
+  ]
+}

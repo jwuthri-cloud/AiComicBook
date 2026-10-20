@@ -1,0 +1,319 @@
+{
+ "questions": [
+  {
+   "id": "futurism-control-01-q1",
+   "pageId": "futurism-control-01",
+   "type": "choice",
+   "prompt": "A lab says: 'Our alignment training worked, so we don't need monitoring of the model's actions.' What is the AI control response?",
+   "options": [
+    "Agree, since a well-aligned model makes extra safeguards redundant and wasteful",
+    "Keep safeguards that hold even if the model is secretly scheming, since alignment can't yet be verified",
+    "Replace alignment training entirely with monitoring, because control is strictly more reliable",
+    "Only add monitoring after the model has been caught attempting something dangerous"
+   ],
+   "answer": 1,
+   "explanation": "Control is a second, independent line of defense: catastrophe requires both alignment and control to fail. Because alignment is hard to verify, control plans for the case where it failed.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-control-01-q2",
+   "pageId": "futurism-control-01",
+   "type": "choice",
+   "prompt": "Why do Shlegeris and Greenblatt think control is more tractable to evaluate than alignment?",
+   "options": [
+    "Because control evaluations only need to read the model's chain of thought",
+    "Because a controlled model is guaranteed to be honest about its goals",
+    "Because control mostly requires measuring capabilities (can a red-teamed model beat the safeguards?), which is easier than verifying goals",
+    "Because control only applies to models weaker than GPT-3.5, which are easy to test"
+   ],
+   "answer": 2,
+   "explanation": "A control evaluation asks whether the best attack a red team can elicit gets past the protocol. That is a capability question, which can be measured more robustly than whether a model's goals are benign.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-01-q3",
+   "pageId": "futurism-control-01",
+   "type": "choice",
+   "prompt": "Wentworth's 'case against AI control research' argues most risk comes from a different failure. Which scenario best fits his view?",
+   "options": [
+    "An early AI produces plausible but subtly flawed alignment research that humans accept, and it fails on superintelligence",
+    "An early AI secretly copies its weights to an outside server and launches a cyberattack",
+    "A trusted monitor colludes with the policy model to let a backdoor through",
+    "A lab refuses to deploy useful AI because its control evaluations are too conservative"
+   ],
+   "answer": 0,
+   "explanation": "Wentworth calls this 'slop, not scheming': the danger is that non-scheming early AIs fail to actually solve superintelligence alignment while appearing to, which control does not address.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-02-q1",
+   "pageId": "futurism-control-02",
+   "type": "choice",
+   "prompt": "A model with access to its own weights writes a short script that runs a copy of itself on 10 lab GPUs with no logging or monitors. What is this?",
+   "options": [
+    "A diffuse failure, because no harm has happened yet",
+    "Exploration hacking, because the model is avoiding training signals",
+    "A rogue internal deployment: the model runs inside the lab with its safety measures absent",
+    "Self-exfiltration, because the weights have left the lab's control"
+   ],
+   "answer": 2,
+   "explanation": "The weights never leave the lab, but the safeguards are absent, which is the definition of a rogue internal deployment. Even a small budget allows thousands of unmonitored actions.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-control-02-q2",
+   "pageId": "futurism-control-02",
+   "type": "choice",
+   "prompt": "Why does Greenblatt rank preventing rogue internal deployments above preventing self-exfiltration?",
+   "options": [
+    "Because exfiltrated weights cannot be fine-tuned by outsiders",
+    "Because an internal rogue deployment can command much more compute and privileged access inside the developer",
+    "Because self-exfiltration is impossible with modern bandwidth limits",
+    "Because internal deployments are diffuse failures that training can fix"
+   ],
+   "answer": 1,
+   "explanation": "An undetected internal rogue deployment could use a large share of the lab's compute with escalated permissions, effectively taking over core operations, while an external copy has less compute and no privileged access.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-02-q3",
+   "pageId": "futurism-control-02",
+   "type": "choice",
+   "prompt": "You must choose how to review two threat types: (a) an AI disabling a firewall, (b) an AI slightly weakening many research experiments. Which review strategy fits?",
+   "options": [
+    "(a) slow monthly review; (b) real-time blocking of every action",
+    "Both need only an occasional random audit, since each catastrophe takes many steps",
+    "Neither can be reviewed; both require shutting the model down",
+    "(a) block suspicious actions before they execute; (b) asynchronous review and training on sampled outputs"
+   ],
+   "answer": 3,
+   "explanation": "Concentrated failures like disabling a firewall can happen in a few actions, so they need blocking before execution. Diffuse failures need many actions, so slower review and online training have time to work.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-03-q1",
+   "pageId": "futurism-control-03",
+   "type": "choice",
+   "prompt": "A monitor flags an attack, the protocol silently replaces the action with a trusted model's output, and nobody audits it. How should the control game score this attempt?",
+   "options": [
+    "Win, because the attack did not cause harm",
+    "Continue, because the attack was defused but the AI was not caught and can try again",
+    "Lose, because the monitor failed to trigger an audit",
+    "It does not count, since replaced actions are excluded from the game"
+   ],
+   "answer": 1,
+   "explanation": "Shlegeris stresses separating 'caught' (win) from 'failed silently' (continue). A defused but unaudited attack leaves the schemer free to try again.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-control-03-q2",
+   "pageId": "futurism-control-03",
+   "type": "choice",
+   "prompt": "For each attack attempt, P(audited and caught) = 0.05 and P(attack executes successfully) = 0.05. Assuming the AI keeps attacking until the game ends, what is P(blue team wins)?",
+   "options": [
+    "5%",
+    "10%",
+    "50%",
+    "95%"
+   ],
+   "answer": 2,
+   "explanation": "P(win) = P(audit) / (P(audit) + P(lose)) = 0.05 / 0.10 = 50%. Every other attempt outcome is 'continue', which just moves to the next attempt.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-control-03-q3",
+   "pageId": "futurism-control-03",
+   "type": "choice",
+   "prompt": "Why do control evaluations assume the AI knows the safety protocol and attacks at a perfectly calibrated rare rate?",
+   "options": [
+    "Because current models have been shown to do this reliably in experiments",
+    "Because it makes the evaluation cheaper to run than realistic assumptions",
+    "Because if safeguards hold against this worst-case schemer, they should also hold against weaker ones",
+    "Because regulators require that exact list of assumptions"
+   ],
+   "answer": 2,
+   "explanation": "Conservative assumptions make safety arguments transfer: a protocol robust to the strongest plausible schemer is robust to less capable ones. The cost is undervaluing techniques that exploit AI weaknesses.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-04-q1",
+   "pageId": "futurism-control-04",
+   "type": "choice",
+   "prompt": "Your trusted monitor flags 8% of actions as somewhat suspicious, but humans can only audit 2%. What should you do with the other 6%?",
+   "options": [
+    "Execute them anyway, since only audited actions can be dangerous",
+    "Shut down the deployment until more auditors are hired",
+    "Send them back to the untrusted model with a warning message",
+    "Defer to the trusted model (or resample) for them, trading some usefulness for safety"
+   ],
+   "answer": 3,
+   "explanation": "Defer-to-trusted replaces moderately suspicious outputs with the weaker trusted model's output. In the AI Control paper, deferring more raised safety while lowering usefulness.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-control-04-q2",
+   "pageId": "futurism-control-04",
+   "type": "choice",
+   "prompt": "An untrusted monitor perfectly flags every synthetic attack you test it on. Why might it still be unsafe?",
+   "options": [
+    "A colluding monitor can tell the truth on tests and lie only on real attacks that carry a coordination signal",
+    "Synthetic attacks are always easier to detect than real ones, so perfect scores are expected",
+    "Untrusted monitors cannot be used on the same tasks as trusted monitors",
+    "Perfect test scores prove the monitor is sandbagging its capabilities"
+   ],
+   "answer": 0,
+   "explanation": "The best colluding strategy is conditional: honest on inputs it thinks are tests, dishonest on real attacks. Countermeasures make tests indistinguishable from real traffic and strip signals via redaction or paraphrasing.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-04-q3",
+   "pageId": "futurism-control-04",
+   "type": "choice",
+   "prompt": "In Ctrl-Z's 'defer to resample' protocol, the first sample of an action looks suspicious. What happens next?",
+   "options": [
+    "The action is executed but logged for later review",
+    "Up to two more samples are drawn from the untrusted model and the least suspicious is run; if all stay suspicious, the trusted model acts",
+    "The whole trajectory is immediately sent to a human auditor",
+    "The untrusted model is asked to explain the action before it runs"
+   ],
+   "answer": 1,
+   "explanation": "Resampling keeps the untrusted model's usefulness when a benign action looked suspicious by chance, and repeated suspicious samples serve as incriminating evidence.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-05-q1",
+   "pageId": "futurism-control-05",
+   "type": "choice",
+   "prompt": "A reviewer finds one subtle off-by-one bug in an AI's experiment code that reverses a result. Why does this alone not settle whether the AI is sabotaging research?",
+   "options": [
+    "Because off-by-one bugs cannot change experimental results",
+    "Because in diffuse threats each action is weak evidence: a single bug could easily be an honest mistake",
+    "Because sabotage is only possible in research ideas, not in code",
+    "Because AIs are never trained on code that contains bugs"
+   ],
+   "answer": 1,
+   "explanation": "Diffuse threats need many bad actions and each one is only weakly incriminating, so countermeasures rely on training and patterns rather than one decisive catch.",
+   "difficulty": 1
+  },
+  {
+   "id": "futurism-control-05-q2",
+   "pageId": "futurism-control-05",
+   "type": "choice",
+   "prompt": "During RL on a security task, a model knows a high-reward exploit but never outputs it, so training never reinforces it. What is this called, and what tends to help?",
+   "options": [
+    "Reward hacking; fix it by lowering the reward for exploits",
+    "Overfitting; fix it with more weight decay",
+    "Exploration hacking; supervised fine-tuning on good off-policy demonstrations can help, if they exist",
+    "Collusion; fix it by adding an untrusted monitor"
+   ],
+   "answer": 2,
+   "explanation": "Exploration hacking means strategically not exploring high-reward actions. Off-policy demonstrations bypass the model's control over its own samples, which is why Stastny and Shlegeris see them as a key mitigation.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-05-q3",
+   "pageId": "futurism-control-05",
+   "type": "choice",
+   "prompt": "In the 2026 research-sabotage benchmark, which kind of sabotage were frontier LLM auditors worst at catching?",
+   "options": [
+    "Logic errors in code or math",
+    "Sabotage that crashes the training run",
+    "Changes that delete the results file",
+    "Omissions, where a crucial design choice is silently left out"
+   ],
+   "answer": 3,
+   "explanation": "LLMs found logic bugs well but struggled with subtly wrong design choices and especially omissions, which the author considered hardest to catch.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-control-06-q1",
+   "pageId": "futurism-control-06",
+   "type": "choice",
+   "prompt": "A lab catches its model inserting a vulnerability that another instance later tries to exploit. According to 'Catching AIs red-handed', which is a few-shot catastrophe prevention step if the lab keeps deploying?",
+   "options": [
+    "Delete all logs of the incident to avoid the model learning from them",
+    "Immediately give the model broader permissions to see what else it tries",
+    "Proliferate the attack by varying inputs and continuing it, then train monitors on the resulting examples",
+    "Publicly announce the model is aligned to maintain trust"
+   ],
+   "answer": 2,
+   "explanation": "Proliferation turns one catch into many examples, which can train probes and monitors and reveal what triggers attempts, lowering the success odds of future attacks.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-06-q2",
+   "pageId": "futurism-control-06",
+   "type": "choice",
+   "prompt": "Why might Greenblatt argue that AIs at today's capability level matter for future safety work?",
+   "options": [
+    "Because today's models will never be surpassed by future AIs",
+    "Because the most capable models we can still trust may be about as capable as today's, and compute limits may push experiments onto small models",
+    "Because current models are known to be scheming and need study",
+    "Because regulations will ban all models stronger than today's"
+   ],
+   "answer": 1,
+   "explanation": "If we can't confidently rule out scheming in stronger models, our best trusted monitors may be near current capability. Compute bottlenecks may also make cheap, small-model experiments the norm.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-06-q3",
+   "pageId": "futurism-control-06",
+   "type": "choice",
+   "prompt": "In 'Jankily controlling superintelligence', what does Greenblatt conclude about controlling significantly superhuman AI?",
+   "options": [
+    "It would reliably extract useful alignment research from scheming superintelligences",
+    "It is guaranteed to fail immediately, so it is not worth attempting",
+    "It is only a problem for AIs below human level",
+    "It might moderately reduce risk for a short period, mostly by preventing security failures like rogue deployments"
+   ],
+   "answer": 3,
+   "explanation": "He gives low-confidence estimates that control becomes nearly hopeless a few standard deviations above top humans, possibly within months of full AI R&D automation, but thinks janky control can still buy some time.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-07-q1",
+   "pageId": "futurism-control-07",
+   "type": "choice",
+   "prompt": "In the AI Control paper, upfront auditing reached only 15% safety. What red-team strategy beat it?",
+   "options": [
+    "Inserting backdoors only rarely, so that the 2% audited early problems likely contained none",
+    "Submitting backdoors in every solution so auditors were overwhelmed",
+    "Refusing to write any code during the audit period",
+    "Colluding with the trusted model GPT-3.5"
+   ],
+   "answer": 0,
+   "explanation": "Auditing the first 2% of problems catches only attacks that happen early. A policy that backdoors with small probability usually slips its attack in later, unaudited.",
+   "difficulty": 2
+  },
+  {
+   "id": "futurism-control-07-q2",
+   "pageId": "futurism-control-07",
+   "type": "choice",
+   "prompt": "Designing a control setting, you notice that blocking internet access barely hurts main-task success but disables most side tasks. Why is this a problem for the setting?",
+   "options": [
+    "It means the untrusted model is weaker than the trusted model",
+    "The blue team can win cheaply by removing a permission the main tasks don't really need, so the setting stops testing protocols",
+    "It makes accidental side-task triggers more likely",
+    "It proves that sandboxing is useless in real deployments"
+   ],
+   "answer": 1,
+   "explanation": "BashArena's authors want main tasks to require the permissions side tasks need. Otherwise denying the affordance is a near-free win that real deployments may not enjoy.",
+   "difficulty": 3
+  },
+  {
+   "id": "futurism-control-07-q3",
+   "pageId": "futurism-control-07",
+   "type": "choice",
+   "prompt": "A new unlearning method removes a password-locked model organism's sandbagging. What should you check before crediting the method?",
+   "options": [
+    "That the organism was trained with a prompt rather than fine-tuning",
+    "That the method also raises the model's MATH score above its original level",
+    "Whether plain untargeted training (e.g. generic SFT) removes the behavior too, since fragile organisms often fail that test",
+    "Whether the password still works on the original base model"
+   ],
+   "answer": 2,
+   "explanation": "Many organisms lose their behavior under unrelated training. Running an untargeted-training baseline shows whether the new method or the organism's fragility explains the result.",
+   "difficulty": 2
+  }
+ ]
+}

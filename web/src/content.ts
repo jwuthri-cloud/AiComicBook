@@ -8,8 +8,9 @@ export interface Page {
   id: string; bookId: string; number: number; title: string; printedTitle?: string; subtitle: string;
   panels: Panel[]; footer: string; wordKey: string; summary: string; keywords: string[];
   image: string; thumb: string; video?: string; poster?: string; duration?: number;
-  narration?: NarrationClip[]; voice?: string; deeper?: Deeper;
+  narration?: NarrationClip[]; voice?: string; deeper?: Deeper; sources?: Source[];
 }
+export interface Source { title: string; url: string }
 export interface Book {
   id: string; collectionId: string; title: string; subtitle: string; objectives: string[];
   cover: string; coverImage: string; hasVideo: boolean; pages: Page[];

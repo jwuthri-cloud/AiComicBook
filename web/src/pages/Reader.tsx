@@ -195,6 +195,14 @@ function TextPage({ page, book, tint }: { page: Page; book: Book; tint: string }
           <p>{deeper.further}</p>
         </div>
       )}
+      {page.sources && page.sources.length > 0 && (
+        <div className="deeper-note">
+          <span className="eyebrow" style={{ color: tint }}>Readings</span>
+          <ul className="sources">
+            {page.sources.map((s) => <li key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></li>)}
+          </ul>
+        </div>
+      )}
       {page.footer && <blockquote className="pull-quote"><span />{page.footer}<span /></blockquote>}
 
       {terms.length > 0 && (

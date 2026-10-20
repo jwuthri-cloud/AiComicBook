@@ -175,6 +175,26 @@ struct TextPageView: View {
                         .padding(.bottom, 20)
                 }
 
+                if let sources = page.sources, !sources.isEmpty {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Readings")
+                            .font(.rounded(.caption, weight: .semibold))
+                            .foregroundStyle(tint)
+                        ForEach(sources, id: \.self) { source in
+                            if let url = URL(string: source.url) {
+                                Link(destination: url) {
+                                    Label(source.title, systemImage: "arrow.up.right.square")
+                                        .font(.system(size: 15 * textScale))
+                                        .multilineTextAlignment(.leading)
+                                }
+                                .tint(tint)
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 20)
+                }
+
                 if !page.footer.isEmpty {
                     PullQuote(text: page.footer, tint: tint, scale: textScale)
                         .padding(.vertical, 8)
