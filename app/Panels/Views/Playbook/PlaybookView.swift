@@ -181,25 +181,45 @@ struct ExperimentMapView: View {
 
     var body: some View {
         let tint = Playbook.themeTint(experiment.theme)
+        let route = experiment.chain.components(separatedBy: "→").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+        let forks = experiment.tree.filter { !($0.branches ?? []).isEmpty }.count
         ScrollView {
-            VStack(alignment: .leading, spacing: 22) {
-                VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 12) {
                     Pill(text: experiment.theme, symbol: Playbook.themeSymbol(experiment.theme), tint: tint)
                     Text(experiment.question)
                         .font(.serif(.title2, weight: .bold))
                         .foregroundStyle(Theme.ink)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(experiment.chain)
-                        .font(.rounded(.subheadline, weight: .semibold))
-                        .foregroundStyle(tint)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(tint.opacity(0.12), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    Text("\(experiment.tree.count) steps" + (forks > 0 ? " · \(forks) decision \(forks == 1 ? "point" : "points")" : ""))
+                        .font(.rounded(.footnote))
+                        .foregroundStyle(Theme.inkSecondary)
+                    FlowLayout(spacing: 6) {
+                        ForEach(Array(route.enumerated()), id: \.offset) { i, step in
+                            HStack(spacing: 6) {
+                                Text("\(i + 1)")
+                                    .font(.rounded(.caption2, weight: .bold))
+                                    .foregroundStyle(tint)
+                                    .frame(width: 18, height: 18)
+                                    .background(tint.opacity(0.16), in: Circle())
+                                Text(step)
+                                    .font(.rounded(.caption, weight: .medium))
+                                    .foregroundStyle(Theme.inkSecondary)
+                            }
+                            .padding(.leading, 4)
+                            .padding(.trailing, 10)
+                            .padding(.vertical, 4)
+                            .background(Theme.sunken, in: Capsule())
+                            .overlay(Capsule().stroke(Theme.hairline))
+                        }
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("At a glance: " + route.joined(separator: ", then "))
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(Array(experiment.tree.enumerated()), id: \.offset) { i, node in
-                        NodeView(node: node, marker: .number(i + 1), tint: tint, isLast: i == experiment.tree.count - 1)
+                        StepCard(node: node, number: i + 1, tint: tint, isLast: i == experiment.tree.count - 1)
                     }
                 }
 
@@ -228,97 +248,149 @@ struct ExperimentMapView: View {
     }
 }
 
-/// One step of a map; forks open as tap-to-expand branches.
-private struct NodeView: View {
-    enum Marker { case number(Int), dot }
+/// One top-level step: numbered marker on a rail, the step as a card, its decision as an open fork below.
+private struct StepCard: View {
     let node: TreeNode
-    let marker: Marker
+    let number: Int
     let tint: Color
     let isLast: Bool
 
-    @Environment(ContentStore.self) private var store
-
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            VStack(spacing: 0) {
-                markerView
+        HStack(alignment: .top, spacing: 14) {
+            VStack(spacing: 6) {
+                Text("\(number)")
+                    .font(.rounded(.subheadline, weight: .bold))
+                    .foregroundStyle(Theme.onTint)
+                    .frame(width: 30, height: 30)
+                    .background(tint, in: Circle())
                 if !isLast {
-                    Rectangle().fill(tint.opacity(0.25)).frame(width: 2).frame(maxHeight: .infinity)
+                    Rectangle().fill(Theme.hairline).frame(width: 2).frame(maxHeight: .infinity)
                 }
             }
-            .frame(width: 26)
+            .padding(.top, 14)
+            .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 6) {
-                Text(node.step)
-                    .font(.serif(.headline, weight: .semibold))
-                    .foregroundStyle(Theme.ink)
-                    .fixedSize(horizontal: false, vertical: true)
-                if let how = node.how, !how.isEmpty {
-                    Text(how)
-                        .font(.rounded(.subheadline))
-                        .foregroundStyle(Theme.inkSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 6) {
+                    StepBody(node: node, titleFont: .serif(.headline, weight: .semibold))
                 }
-                if let id = node.tool, let tool = store.toolsById[id] {
-                    NavigationLink(value: Route.tool(id)) {
-                        Label(tool.name, systemImage: "wrench.and.screwdriver")
-                            .font(.rounded(.caption, weight: .semibold))
-                            .foregroundStyle(Playbook.categoryTint(tool.category))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Playbook.categoryTint(tool.category).opacity(0.12), in: Capsule())
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .card(radius: 16)
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel("Step \(number)")
+
+                if let branches = node.branches, !branches.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Decision: what did you find?", systemImage: "arrow.turn.down.right")
+                            .font(.rounded(.caption2, weight: .bold))
+                            .tracking(0.8)
+                            .textCase(.uppercase)
+                            .foregroundStyle(Theme.inkTertiary)
+                        ViewThatFits(in: .horizontal) {
+                            HStack(alignment: .top, spacing: 10) { branchCards(branches, minWidth: 220) }
+                            VStack(alignment: .leading, spacing: 10) { branchCards(branches, minWidth: 0) }
+                        }
                     }
-                    .buttonStyle(.plain)
-                }
-                if let outcome = node.outcome, !outcome.isEmpty {
-                    Label(outcome, systemImage: "flag.checkered")
-                        .font(.rounded(.subheadline, weight: .semibold))
-                        .foregroundStyle(tint)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                ForEach(Array((node.branches ?? []).enumerated()), id: \.offset) { _, branch in
-                    BranchView(branch: branch, tint: tint)
+                    .padding(.leading, 14)
+                    .overlay(alignment: .leading) {
+                        Rectangle().fill(Theme.hairline).frame(width: 2)
+                    }
+                    .padding(.leading, 8)
                 }
             }
             .padding(.bottom, isLast ? 0 : 18)
         }
     }
 
-    @ViewBuilder private var markerView: some View {
-        switch marker {
-        case .number(let n):
-            Text("\(n)")
-                .font(.rounded(.footnote, weight: .bold))
-                .foregroundStyle(Theme.onTint)
-                .frame(width: 26, height: 26)
-                .background(tint, in: Circle())
-        case .dot:
-            Circle().fill(tint.opacity(0.6)).frame(width: 10, height: 10).padding(.vertical, 6)
+    private func branchCards(_ branches: [Branch], minWidth: CGFloat) -> some View {
+        ForEach(Array(branches.enumerated()), id: \.offset) { i, branch in
+            BranchCard(branch: branch, color: Playbook.branchTints[i % Playbook.branchTints.count])
+                .frame(minWidth: minWidth, maxWidth: .infinity, alignment: .leading)
         }
     }
 }
 
-private struct BranchView: View {
+/// One outcome of a decision: a coloured "If ..." tag over its follow-up steps.
+private struct BranchCard: View {
     let branch: Branch
-    let tint: Color
-    @State private var open = false
+    let color: Color
 
     var body: some View {
-        DisclosureGroup(isExpanded: $open) {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(Array(branch.then.enumerated()), id: \.offset) { i, node in
-                    NodeView(node: node, marker: .dot, tint: tint, isLast: i == branch.then.count - 1)
+        VStack(alignment: .leading, spacing: 10) {
+            Text("If " + branch.condition.replacingOccurrences(of: "^[Ii]f\\s+", with: "", options: .regularExpression))
+                .font(.rounded(.footnote, weight: .bold))
+                .foregroundStyle(color)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 3)
+                .background(color.opacity(0.13), in: Capsule())
+            ForEach(Array(branch.then.enumerated()), id: \.offset) { i, node in
+                if i > 0 { Rectangle().fill(Theme.hairline).frame(height: 1) }
+                VStack(alignment: .leading, spacing: 5) {
+                    StepBody(node: node, titleFont: .rounded(.callout, weight: .semibold))
+                    ForEach(Array((node.branches ?? []).enumerated()), id: \.offset) { _, nested in
+                        BranchCard(branch: nested, color: color).padding(.top, 6)
+                    }
                 }
             }
-            .padding(.top, 8)
-        } label: {
-            Label(branch.condition, systemImage: "arrow.turn.down.right")
-                .font(.rounded(.subheadline, weight: .bold))
-                .foregroundStyle(tint)
         }
-        .tint(tint)
-        .padding(10)
-        .background(tint.opacity(0.06), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.surface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Theme.hairline))
+        .overlay(alignment: .top) {
+            UnevenRoundedRectangle(topLeadingRadius: 14, topTrailingRadius: 14, style: .continuous)
+                .fill(color)
+                .frame(height: 3)
+        }
+    }
+}
+
+/// Title, how-to, tool link and outcome; shared by steps and branch steps.
+private struct StepBody: View {
+    let node: TreeNode
+    let titleFont: Font
+    @Environment(ContentStore.self) private var store
+
+    var body: some View {
+        Text(node.step)
+            .font(titleFont)
+            .foregroundStyle(Theme.ink)
+            .fixedSize(horizontal: false, vertical: true)
+        if let how = node.how, !how.isEmpty {
+            Text(how)
+                .font(.rounded(.subheadline))
+                .foregroundStyle(Theme.inkSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        if let id = node.tool, let tool = store.toolsById[id] {
+            NavigationLink(value: Route.tool(id)) {
+                HStack(spacing: 5) {
+                    Image(systemName: "wrench.and.screwdriver")
+                        .foregroundStyle(Playbook.categoryTint(tool.category))
+                    Text(tool.name)
+                        .foregroundStyle(Theme.inkSecondary)
+                }
+                .font(.rounded(.caption, weight: .semibold))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Theme.sunken, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Theme.hairline))
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 2)
+        }
+        if let outcome = node.outcome, !outcome.isEmpty {
+            Label {
+                Text(outcome).foregroundStyle(Theme.ink)
+            } icon: {
+                Image(systemName: "flag.checkered").foregroundStyle(Theme.tint("lime"))
+            }
+            .font(.rounded(.subheadline, weight: .semibold))
+            .fixedSize(horizontal: false, vertical: true)
+        }
     }
 }
 
@@ -429,6 +501,8 @@ struct ToolDetailView: View {
 // MARK: - Styling
 
 extension Playbook {
+    static let branchTints = [Theme.tint("teal"), Theme.tint("amber"), Theme.tint("violet")]
+
     static func themeTint(_ theme: String) -> Color {
         switch theme {
         case "Evals & deception": Theme.tint("violet")
