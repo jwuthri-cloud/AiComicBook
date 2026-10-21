@@ -138,17 +138,26 @@ export function ExperimentPage() {
   if (!experiment) return <NotFound what="experiment" />;
   const tint = themeTint(experiment.theme);
   const book = experiment.fellowship ? store.books.get(experiment.fellowship) : undefined;
+  const route = experiment.chain.split(/\s*(?:→|->)\s*/).filter(Boolean);
+  const forks = experiment.tree.filter((n) => n.branches?.length).length;
 
   return (
-    <article className="narrow stack" style={{ ["--gap" as string]: "22px", ...tinted(tint) }}>
+    <article className="narrow stack" style={{ ["--gap" as string]: "24px", ...tinted(tint) }}>
       <BackButton />
-      <header className="stack" style={{ ["--gap" as string]: "10px", alignItems: "flex-start" }}>
+      <header className="stack" style={{ ["--gap" as string]: "12px", alignItems: "flex-start" }}>
         <Pill text={experiment.theme} tint={tint} icon={<XIcon name={themeIcon(experiment.theme)} size={14} />} />
         <h1 className="title-l">{experiment.question}</h1>
-        <p className="pb-chain">{experiment.chain}</p>
+        <p className="muted small">{experiment.tree.length} steps{forks ? ` · ${forks} decision ${forks === 1 ? "point" : "points"}` : ""}</p>
+        <ol className="pb-route" aria-label="At a glance">
+          {route.map((r, i) => (
+            <li key={i}><span className="pb-route-n">{i + 1}</span>{r}</li>
+          ))}
+        </ol>
       </header>
 
-      <Tree nodes={experiment.tree} numbered />
+      <ol className="pb-steps">
+        {experiment.tree.map((node, i) => <StepCard key={i} node={node} n={i + 1} last={i === experiment.tree.length - 1} />)}
+      </ol>
 
       <div className="stack" style={{ ["--gap" as string]: "12px" }}>
         <InfoRow title="Watch out" text={experiment.confound} icon="warn" tint={tintVar("coral")} />
@@ -166,59 +175,69 @@ export function ExperimentPage() {
   );
 }
 
-/** A column of steps joined by a connector line; numbered at the top level, dotted inside branches. */
-function Tree({ nodes, numbered }: { nodes: TreeNode[]; numbered?: boolean }) {
+/** One top-level step: numbered marker on a connector rail, the step as a card, decisions as a fork below it. */
+function StepCard({ node, n, last }: { node: TreeNode; n: number; last: boolean }) {
   return (
-    <ol className="pb-tree">
-      {nodes.map((node, i) => (
-        <Node key={i} node={node} marker={numbered ? i + 1 : undefined} isLast={i === nodes.length - 1} />
-      ))}
-    </ol>
-  );
-}
-
-function Node({ node, marker, isLast }: { node: TreeNode; marker?: number; isLast: boolean }) {
-  const store = useStore();
-  const tool = node.tool ? store.tools.get(node.tool) : undefined;
-  return (
-    <li className={`pb-node${isLast ? " last" : ""}`}>
+    <li className={`pb-stepwrap${last ? " last" : ""}`}>
       <div className="pb-rail" aria-hidden="true">
-        {marker ? <span className="pb-num">{marker}</span> : <span className="pb-dot" />}
-        {!isLast && <span className="pb-line" />}
+        <span className="pb-num">{n}</span>
+        {!last && <span className="pb-line" />}
       </div>
-      <div className="pb-node-body">
-        <span className="pb-step">{node.step}</span>
-        {node.how && <span className="pb-how">{node.how}</span>}
-        {tool && (
-          <Link to={`/playbook/tool/${tool.id}`} className="chip pb-tool-chip" style={tinted(toolTint(tool.category))}>
-            <Icon name="wrench" size={14} />
-            {tool.name}
-          </Link>
-        )}
-        {node.outcome && (
-          <span className="pb-outcome">
-            <Icon name="flag" size={16} />
-            <span>{node.outcome}</span>
-          </span>
-        )}
-        {(node.branches ?? []).map((b, i) => <BranchView key={i} branch={b} />)}
+      <div className="pb-stepcol">
+        <div className="card pb-card">
+          <StepBody node={node} title="pb-step" />
+        </div>
+        {node.branches?.length ? (
+          <div className="pb-fork">
+            <span className="pb-fork-label"><Icon name="turn" size={14} />Decision: what did you find?</span>
+            <div className="pb-fork-grid">
+              {node.branches.map((b, i) => <BranchCard key={i} branch={b} color={BRANCH_TINTS[i % BRANCH_TINTS.length]} />)}
+            </div>
+          </div>
+        ) : null}
       </div>
     </li>
   );
 }
 
-function BranchView({ branch }: { branch: Branch }) {
+const BRANCH_TINTS = ["teal", "amber", "violet"].map(tintVar);
+
+function BranchCard({ branch, color }: { branch: Branch; color: string }) {
   return (
-    <details className="pb-branch">
-      <summary>
-        <Icon name="turn" size={16} />
-        <span>{branch.if}</span>
-        <span className="pb-branch-chev"><Icon name="right" size={15} /></span>
-      </summary>
-      <div className="pb-branch-body">
-        <Tree nodes={branch.then} />
-      </div>
-    </details>
+    <div className="pb-branch" style={{ ["--b" as string]: color }}>
+      <span className="pb-branch-if">If {branch.if.replace(/^if\s+/i, "")}</span>
+      {branch.then.map((node, i) => (
+        <div key={i} className="pb-substep">
+          <StepBody node={node} title="pb-substep-title" />
+          {node.branches?.map((b, j) => <BranchCard key={j} branch={b} color={color} />)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Title, how-to, tool link and outcome; shared by steps and branch steps. */
+function StepBody({ node, title }: { node: TreeNode; title: string }) {
+  const store = useStore();
+  const tool = node.tool ? store.tools.get(node.tool) : undefined;
+  return (
+    <>
+      <span className={title}>{node.step}</span>
+      {node.how && <span className="pb-how">{node.how}</span>}
+      {(tool || node.outcome) && (
+        <div className="pb-meta">
+          {tool && (
+            <Link to={`/playbook/tool/${tool.id}`} className="pb-tool" style={tinted(toolTint(tool.category))}>
+              <Icon name="wrench" size={13} />
+              {tool.name}
+            </Link>
+          )}
+          {node.outcome && (
+            <span className="pb-outcome"><Icon name="flag" size={14} />{node.outcome}</span>
+          )}
+        </div>
+      )}
+    </>
   );
 }
 
