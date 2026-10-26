@@ -6,6 +6,7 @@ records text that is new or changed. build_content.py then packs them into the a
 
   python3 app/tools/make_narration.py --samples            # one short clip per voice, to choose
   python3 app/tools/make_narration.py --voice george       # every page
+  python3 app/tools/make_narration.py --dry-run            # what a run would record, no API calls
   python3 app/tools/make_narration.py --voice george --only fellowship-01
 
 Needs OPENROUTER_API_KEY in the repo's .env, and app/Panels/Content/content.json
@@ -121,10 +122,11 @@ def text_hash(model: str, voice: str, text: str) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--voice", default="george", choices=VOICES)
-    parser.add_argument("--model", default="elevenlabs/eleven-v4")
+    parser.add_argument("--model", default="elevenlabs/eleven-v4-turbo")  # what the existing clips use
     parser.add_argument("--only", help="page id prefix, e.g. fellowship-01")
     parser.add_argument("--samples", action="store_true", help="record a short sample per voice and stop")
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--dry-run", action="store_true", help="count what would be recorded and stop")
     args = parser.parse_args()
     key = api_key()
 
@@ -159,6 +161,8 @@ def main() -> None:
 
     chars = sum(len(t) for t, _ in jobs)
     print(f"{len(pages)} pages, {len(jobs)} clips to record ({chars:,} characters)")
+    if args.dry_run:
+        return
     done = failed = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(record, key, args.model, args.voice, text, dest): dest for text, dest in jobs}
