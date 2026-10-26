@@ -376,7 +376,7 @@
    ],
    "confound": "Higher catch rate may just come from more review budget; match audit budget across monitors.",
    "success": "Catch rate on split attacks at fixed false alarms beats per-agent monitors, even vs. adaptive attackers.",
-   "example": "UK AISI 2026, Multi-Agent AI Control: per-agent monitors miss attacks split across agents."
+   "example": "Makins et al. 2026 (UK AISI/MATS), Multi-Agent AI Control: per-agent monitors caught less as more agents shared an attack."
   },
   {
    "id": "untrusted-control",
@@ -724,7 +724,7 @@
    ],
    "confound": "Testing only known, static attacks; defences tuned to them break under adaptive attackers.",
    "success": "Attack success rate under adaptive attacks, at an acceptable benign over-refusal rate.",
-   "example": "Sharma et al. 2025 (Anthropic), Constitutional Classifiers: ~3,000 red-team hours found no universal jailbreak."
+   "example": "Sharma et al. 2025 (Anthropic), Constitutional Classifiers: 3,000+ red-team hours found no universal jailbreak of the prototype."
   },
   {
    "id": "introspection-reports",
